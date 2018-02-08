@@ -1,0 +1,15 @@
+<h5 *ngIf="!gettingSpeakers">Loading...</h5>
+
+<div *ngIf="gettingSpeakers">
+  <div *ngFor="let speaker of speakers" class="col-sm-3">
+    <div class="speaker">
+      <div class="photo-wrapper square">
+        <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
+          <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive">
+        </div>
+      </div>
+      <h3 class="name">{{ speaker.name }}</h3>
+      <p class="text-alt"><small>{{ speaker.title }}</small></p>
+    </div>
+  </div>
+</div>
