@@ -19,7 +19,7 @@ export class SpeakerComponent implements OnInit {
   ngOnInit () {
     this.route.params.forEach((params: Params) => {
       const id = params['id']
-      let speaker = this.speakerService.getLocalSpeaker(id)
+      const speaker = this.speakerService.getLocalSpeaker(id)
 
       if (speaker) {
         this.speaker = speaker
