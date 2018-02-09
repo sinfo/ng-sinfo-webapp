@@ -1,7 +1,5 @@
-<h5 *ngIf="!gettingSpeakers">Loading...</h5>
-
-<div *ngIf="gettingSpeakers">
-  <div *ngFor="let speaker of speakers" class="col-sm-3">
+<div *ngIf="speakers">
+  <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
     <div class="speaker">
       <div class="photo-wrapper square">
         <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">

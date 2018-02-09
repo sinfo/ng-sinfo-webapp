@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { Speaker } from './speaker.model'
 import { SpeakerService } from './speaker.service'
 
@@ -8,23 +9,20 @@ import { SpeakerService } from './speaker.service'
   styleUrls: ['./speakers.component.css']
 })
 export class SpeakersComponent implements OnInit {
-  gettingSpeakers = false
-  speakers: Speaker[]
-  speaker: Speaker
+  private speakers: Speaker[]
 
-  constructor (private speakerService: SpeakerService) { }
+  constructor (
+    private router: Router,
+    private speakerService: SpeakerService
+  ) { }
 
   ngOnInit () {
     this.getSpeakers()
-    this.getSpeaker('greg-street')
   }
 
   getSpeakers (): void {
     this.speakerService.getSpeakers()
-      .subscribe(speakers => {
-        this.speakers = speakers
-        this.gettingSpeakers = true
-      })
+      .subscribe(speakers => this.speakers = speakers)
   }
 
   setCompanyImg (speaker) {
@@ -33,9 +31,7 @@ export class SpeakersComponent implements OnInit {
     }
   }
 
-  getSpeaker (id: string): void {
-    this.speakerService.getSpeaker(id)
-      .subscribe(speaker => this.speaker = speaker)
+  onSelect (speaker: Speaker): void {
+    this.router.navigate(['/speakers', speaker.id])
   }
-
 }

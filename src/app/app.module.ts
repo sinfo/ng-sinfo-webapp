@@ -16,6 +16,7 @@ import {
 } from './static/static.component'
 import { MessagesComponent } from './partials/messages/messages.component'
 import { MessageService } from './partials/messages/message.service'
+import { SpeakerComponent } from './speakers/speaker/speaker.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MessageService } from './partials/messages/message.service'
     PrivacyPolicyComponent,
     CodeOfConductComponent,
     PageNotFoundComponent,
-    MessagesComponent
+    MessagesComponent,
+    SpeakerComponent
   ],
   imports: [
     BrowserModule,

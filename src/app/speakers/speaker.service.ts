@@ -14,6 +14,7 @@ const httpOptions = {
 @Injectable()
 export class SpeakerService {
   private speakersUrl = environment.deckUrl + '/api/speakers'
+  private speakers: Speaker[]
 
   constructor (
     private http: HttpClient,
@@ -34,6 +35,7 @@ export class SpeakerService {
     })
     return this.http.get<Speaker[]>(this.speakersUrl, { params })
       .pipe(
+        tap(speakers => this.setLocalSpeakers(speakers)),
         catchError(this.handleError<Speaker[]>('getSpeakers', []))
       )
   }
@@ -43,6 +45,22 @@ export class SpeakerService {
       .pipe(
         catchError(this.handleError<Speaker>(`getSpeaker id=${id}`))
       )
+  }
+
+  getLocalSpeakers (): Speaker[] {
+    return this.speakers ? this.speakers : undefined
+  }
+
+  getLocalSpeaker (id: string): Speaker {
+    if (this.speakers) {
+      return this.speakers.find(speaker => speaker.id === id)
+    } else {
+      return undefined
+    }
+  }
+
+  setLocalSpeakers (speakers: Speaker[]): void {
+    this.speakers = speakers
   }
 
   /**
