@@ -3,77 +3,67 @@
 <section *ngIf="sponsors" id="sponsors" class="section align-center">
   <div class="container">
     <span class="icon section-icon icon-documents-bookmarks-12"></span>
-    <h3>Sponsors</h3>
+    <h2>Sponsors</h2>
     <p class="text-alt">Companies that
       <span class="highlight">support</span> us</p>
 
     <br />
 
-    <h6>Diamond</h6>
+    <h4>Diamond</h4>
 
-    <div class="sponsor big">
+    <div class="sponsor diamond">
       <img src="{{ diamond.img }}" alt="{{ diamond.name }}">
     </div>
 
     <br />
-    <h6>Platinum</h6>
+    <h5>Platinum</h5>
 
-    <div class="sponsors platinum">
-      <div class="row">
-        <div *ngFor="let platinum of platinums">
-          <div class="col-sm-3 sponsor">
-            <img src="{{ platinum.img }}" alt="{{ platinum.name }}">
-          </div>
+    <div class="row">
+      <div class="sponsors platinum">
+        <div class="sponsor" *ngFor="let platinum of platinums">
+          <img src="{{ platinum.img }}" alt="{{ platinum.name }}">
         </div>
       </div>
     </div>
 
     <div *ngIf="showAll">
-
       <br />
-      <h6>Gold</h6>
+      <h5>Gold</h5>
 
-      <div class="sponsors platinum">
-        <div class="row">
-          <div *ngFor="let gold of golds">
-            <div class="col-sm-3 sponsor">
-              <img src="{{ gold.img }}" alt="{{ gold.name }}">
-            </div>
+      <div class="row">
+        <div class="sponsors gold">
+          <div class="sponsor" *ngFor="let gold of golds">
+            <img src="{{ gold.img }}" alt="{{ gold.name }}">
           </div>
         </div>
       </div>
 
       <br />
-      <h6>Silver</h6>
+      <h5>Silver</h5>
 
-      <div class="sponsors platinum">
-        <div class="row">
-          <div *ngFor="let silver of silvers">
-            <div class="col-sm-3 sponsor">
-              <img src="{{ silver.img }}" alt="{{ silver.name }}">
-            </div>
+      <div class="row">
+        <div class="sponsors silver">
+          <div class="sponsor" *ngFor="let silver of silvers">
+            <img src="{{ silver.img }}" alt="{{ silver.name }}">
           </div>
         </div>
       </div>
 
       <br />
-      <h6>Others</h6>
+      <h5>Partners</h5>
 
-      <div class="sponsors platinum">
-        <div class="row">
-          <div *ngFor="let other of others">
-            <div class="col-sm-3 sponsor">
-              <img src="{{ other.img }}" alt="{{ other.name }}">
-            </div>
+      <div class="row">
+        <div class="sponsors silver">
+          <div class="sponsor" *ngFor="let other of others">
+            <img src="{{ other.img }}" alt="{{ other.name }}">
           </div>
         </div>
       </div>
-
     </div>
-
 
     <a *ngIf="!showAll" routerLink="/sponsors" class="btn btn-outline-clr btn-sm">
       See more
     </a>
+
   </div>
 </section>
