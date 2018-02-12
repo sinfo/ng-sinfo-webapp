@@ -17,6 +17,8 @@ import {
 import { MessagesComponent } from './partials/messages/messages.component'
 import { MessageService } from './partials/messages/message.service'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
+import { SponsorsComponent } from './sponsors/sponsors.component'
+import { SponsorService } from './sponsors/sponsor.service'
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { SpeakerComponent } from './speakers/speaker/speaker.component'
     CodeOfConductComponent,
     PageNotFoundComponent,
     MessagesComponent,
-    SpeakerComponent
+    SpeakerComponent,
+    SponsorsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { SpeakerComponent } from './speakers/speaker/speaker.component'
   ],
   providers: [
     SpeakerService,
-    MessageService
+    MessageService,
+    SponsorService
   ],
   bootstrap: [AppComponent]
 })

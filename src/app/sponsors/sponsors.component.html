@@ -1,0 +1,27 @@
+<section id="sponsors" class="section align-center">
+  <div class="container">
+    <span class="icon section-icon icon-documents-bookmarks-12"></span>
+    <h3>Sponsors</h3>
+    <p class="text-alt">Companies that
+      <span class="highlight">support</span> us</p>
+
+    <div *ngIf="sponsors">
+      <div class="sponsors" *ngFor="let sponsor of sponsors">
+
+        <div *ngIf="sponsor.advertisementLvl === 'exclusive'" class="sponsor big">
+          <img src="{{ sponsor.img }}" alt="{{ sponsor.name }}">
+        </div>
+
+        <div *ngIf="sponsor.advertisementLvl === 'max'" class="sponsors platinum">
+          <div class="sponsor">
+            <img src="{{ sponsor.img }}" alt="{{ sponsor.name }}">
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+</section>
