@@ -2337,6 +2337,10 @@ input[type=password].error,
 .call-to-action-section > .overlay:before,
 .thumb-wrapper .overlay:before,
 .header .buy-btn {
+  /*background-color: white;*/
+  background-color: #018ae6;
+ }
+ .speaker .speaker-socials > li .fa {
   background-color: white;
 }
 .base-clr-txt,
@@ -3573,7 +3577,7 @@ button.btn.btn-block {
 .schedule .tab-content-schedule .schedule-item:last-child {
   margin-bottom: 0;
 }
-.schedule .schedule-item + .schedule-item {
+.schedule .schedule-item .schedule-item {
   margin-top: 0;
 }
 .schedule .schedule-item .lecture-icon-wrapper {
@@ -3587,9 +3591,9 @@ button.btn.btn-block {
   font-size: 20px;
   line-height: 36px;
   background-color: #ffffff;
-  border-style: solid;
+/*  border-style: solid;
   border-width: 1px;
-  border-radius: 50%;
+  border-radius: 50%;*/
   overflow: hidden;
 }
 .schedule .schedule-item .schedule-item-toggle {
