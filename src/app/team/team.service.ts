@@ -15,8 +15,7 @@ const httpOptions = {
 }
 
 @Injectable()
-export class MemberService {
-
+export class TeamService {
   private memberUrl = environment.deckUrl + '/api/members'
   private team: Member[]
 
@@ -26,7 +25,7 @@ export class MemberService {
   ) { }
 
   private log (message: string) {
-    this.messageService.add('MemberService: ' + message)
+    this.messageService.add('TeamService: ' + message)
   }
 
   getTeam (): Observable<Member[]> {
@@ -44,23 +43,8 @@ export class MemberService {
       )
   }
 
-  getMember (id: string): Observable<Member> {
-    return this.http.get<Member>(`${this.memberUrl}/${id}`)
-      .pipe(
-        catchError(this.handleError<Member>(`getMember id=${id}`))
-      )
-  }
-
   getLocalTeam (): Member[] {
     return this.team ? this.team : undefined
-  }
-
-  getLocalMember (id: string): Member {
-    if (this.team) {
-      return this.team.find(member => member.id === id)
-    } else {
-      return undefined
-    }
   }
 
   setLocalTeam (team: Member[]): void {

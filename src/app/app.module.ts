@@ -19,7 +19,7 @@ import { MessageService } from './partials/messages/message.service'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
-import { MemberService } from './team/member.service'
+import { TeamService } from './team/team.service'
 
 @NgModule({
   declarations: [
@@ -42,7 +42,7 @@ import { MemberService } from './team/member.service'
   ],
   providers: [
     SpeakerService,
-    MemberService,
+    TeamService,
     MessageService
   ],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Member } from './member.model'
-import { MemberService } from './member.service'
+import { TeamService } from './team.service'
 
 @Component({
   selector: 'app-team',
@@ -9,16 +9,15 @@ import { MemberService } from './member.service'
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-
   private team: Member[]
 
   constructor (
     private router: Router,
-    private memberService: MemberService
+    private teamService: TeamService
   ) { }
 
   ngOnInit () {
-    const team = this.memberService.getLocalTeam()
+    const team = this.teamService.getLocalTeam()
     if (team) {
       this.team = team
     } else {
@@ -28,7 +27,7 @@ export class TeamComponent implements OnInit {
   }
 
   getTeam (): void {
-    this.memberService.getTeam()
+    this.teamService.getTeam()
       .subscribe(team => this.team = team)
   }
 
