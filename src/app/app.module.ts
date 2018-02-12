@@ -22,6 +22,8 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
+import { UserComponent } from './user/user.component'
+import { UserService } from './user/user.service'
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { TeamService } from './team/team.service'
     MessagesComponent,
     SpeakerComponent,
     SponsorsComponent,
-    TeamComponent
+    TeamComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { TeamService } from './team/team.service'
     MessageService,
     SponsorService,
     TeamService,
+    UserService,
     MessageService
   ],
   bootstrap: [AppComponent]

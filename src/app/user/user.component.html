@@ -1,0 +1,14 @@
+<app-menu></app-menu>
+
+<p *ngIf="!user">Loading...</p>
+
+<div *ngIf="user">
+  <h1  >
+    {{user.name}}
+  </h1>
+
+  <br />
+
+  <img src="{{user.img}}">
+
+</div>
