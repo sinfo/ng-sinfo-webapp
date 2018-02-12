@@ -8,10 +8,12 @@ import {
   PageNotFoundComponent
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
+import { SponsorsComponent } from './sponsors/sponsors.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'speakers/:id', component: SpeakerComponent },
+  { path: 'sponsors', component: SponsorsComponent },
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: '**', component: PageNotFoundComponent }
