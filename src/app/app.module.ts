@@ -19,6 +19,9 @@ import { MessageService } from './partials/messages/message.service'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
 import { SponsorService } from './sponsors/sponsor.service'
+import { TeamComponent } from './team/team.component'
+import { Member } from './team/member.model'
+import { TeamService } from './team/team.service'
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { SponsorService } from './sponsors/sponsor.service'
     PageNotFoundComponent,
     MessagesComponent,
     SpeakerComponent,
-    SponsorsComponent
+    SponsorsComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,9 @@ import { SponsorService } from './sponsors/sponsor.service'
   providers: [
     SpeakerService,
     MessageService,
-    SponsorService
+    SponsorService,
+    TeamService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
