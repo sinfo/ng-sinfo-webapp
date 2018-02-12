@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
 import { SpeakersComponent } from './speakers/speakers.component'
+
 import { SpeakerService } from './speakers/speaker.service'
+import { SessionService } from './schedule/session.service'
+
 import { HttpClientModule } from '@angular/common/http'
 import { LandingPageComponent } from './landing-page/landing-page.component'
 import { MenuComponent } from './partials/menu/menu.component'
@@ -22,6 +25,7 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
+import { ScheduleComponent } from './schedule/schedule.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { TeamService } from './team/team.service'
     MessagesComponent,
     SpeakerComponent,
     SponsorsComponent,
-    TeamComponent
+    TeamComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,7 @@ import { TeamService } from './team/team.service'
     MessageService,
     SponsorService,
     TeamService,
+    SessionService,
     MessageService
   ],
   bootstrap: [AppComponent]
