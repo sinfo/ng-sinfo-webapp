@@ -1,0 +1,69 @@
+<app-menu *ngIf="showAll"></app-menu>
+
+<section *ngIf="sponsors" id="sponsors" class="section align-center">
+  <div class="container">
+    <span class="icon section-icon icon-documents-bookmarks-12"></span>
+    <h2>Sponsors</h2>
+    <p class="text-alt">Companies that
+      <span class="highlight">support</span> us</p>
+
+    <br />
+
+    <h4>Diamond</h4>
+
+    <div class="sponsor diamond">
+      <img src="{{ diamond.img }}" alt="{{ diamond.name }}">
+    </div>
+
+    <br />
+    <h5>Platinum</h5>
+
+    <div class="row">
+      <div class="sponsors platinum">
+        <div class="sponsor" *ngFor="let platinum of platinums">
+          <img src="{{ platinum.img }}" alt="{{ platinum.name }}">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showAll">
+      <br />
+      <h5>Gold</h5>
+
+      <div class="row">
+        <div class="sponsors gold">
+          <div class="sponsor" *ngFor="let gold of golds">
+            <img src="{{ gold.img }}" alt="{{ gold.name }}">
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <h5>Silver</h5>
+
+      <div class="row">
+        <div class="sponsors silver">
+          <div class="sponsor" *ngFor="let silver of silvers">
+            <img src="{{ silver.img }}" alt="{{ silver.name }}">
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <h5>Partners</h5>
+
+      <div class="row">
+        <div class="sponsors silver">
+          <div class="sponsor" *ngFor="let other of others">
+            <img src="{{ other.img }}" alt="{{ other.name }}">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a *ngIf="!showAll" routerLink="/sponsors" class="btn btn-outline-clr btn-sm">
+      See more
+    </a>
+
+  </div>
+</section>

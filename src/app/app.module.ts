@@ -17,6 +17,8 @@ import {
 import { MessagesComponent } from './partials/messages/messages.component'
 import { MessageService } from './partials/messages/message.service'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
+import { SponsorsComponent } from './sponsors/sponsors.component'
+import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
@@ -33,6 +35,7 @@ import { TeamService } from './team/team.service'
     PageNotFoundComponent,
     MessagesComponent,
     SpeakerComponent,
+    SponsorsComponent,
     TeamComponent
   ],
   imports: [
@@ -42,6 +45,8 @@ import { TeamService } from './team/team.service'
   ],
   providers: [
     SpeakerService,
+    MessageService,
+    SponsorService,
     TeamService,
     MessageService
   ],
