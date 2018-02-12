@@ -16,7 +16,9 @@ import {
 } from './static/static.component'
 import { MessagesComponent } from './partials/messages/messages.component'
 import { MessageService } from './partials/messages/message.service'
-import { SpeakerComponent } from './speakers/speaker/speaker.component'
+import { SpeakerComponent } from './speakers/speaker/speaker.component';
+import { TeamComponent } from './team/team.component';
+import { MemberComponent } from './team/member/member.component'
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { SpeakerComponent } from './speakers/speaker/speaker.component'
     CodeOfConductComponent,
     PageNotFoundComponent,
     MessagesComponent,
-    SpeakerComponent
+    SpeakerComponent,
+    TeamComponent,
+    MemberComponent
   ],
   imports: [
     BrowserModule,
