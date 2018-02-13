@@ -71,3 +71,21 @@
 .schedule .presentations-item .lecture-icon-wrapper {
   left: 385px;
 }
+
+.ics {
+  margin-bottom: 2.5%;
+  margin-top: -3%;
+}
+
+.ics a {
+  text-decoration: none;
+}
+
+.ics:hover a {
+  color: white;
+}
+
+.ics span {
+  margin-right: 0;
+  padding-right: 0;
+}

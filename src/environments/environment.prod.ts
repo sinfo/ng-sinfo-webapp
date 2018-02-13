@@ -3,11 +3,11 @@ export const environment = {
   deckUrl: 'https://deck.sinfo.org',
   cannonUrl: 'https://cannon.sinfo.org',
   currentEvent: '24-sinfo',
-  themes: {
-    26: 'Software',
-    27: 'Multimedia',
-    28: 'Security',
-    1: 'Games',
-    2: 'Web'
-  }
+  themes: [
+    'Software',
+    'Multimedia',
+    'Security',
+    'Games',
+    'Web'
+  ]
 }
