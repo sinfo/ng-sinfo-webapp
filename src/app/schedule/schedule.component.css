@@ -1,0 +1,91 @@
+.schedule .tab-content-schedule .schedule-item .lecture-icon-wrapper {
+  top: 36px;
+}
+
+.schedule .presentations:before {
+  left: 110px;
+  width: 43%;
+  border-left: 1px solid #eff1f5;
+}
+
+.schedule .presentations:before {
+  left: 110px;
+  width: 43%;
+  border-left: 1px solid #eff1f5;
+}
+.schedule .tab-content-schedule .panel-group {
+  margin-bottom: 0;
+}
+.schedule .tab-content-schedule .schedule-item {	
+  position: relative;
+  margin-bottom: 22px;
+  min-height: 65px;
+  padding: 0 0 0 104px;
+  background-color: transparent;
+  min-height: 300px;
+}
+
+@media (max-width: 480px) {
+  .col-sm-6 {
+    width: 100%;
+  }
+  .schedule .presentations:before {
+    width: 0px;
+    border-left: none;
+  }
+  .schedule .tab-content-schedule {
+    padding: 35px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .col-sm-6 {
+    width: 100%;
+  }
+  .schedule .presentations:before {
+    width: 0px;
+    border-left: none;
+  }
+  .schedule .tab-content {
+    border: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .schedule .tab-content .img-responsive {
+    margin: 0;
+  }
+  .col-sm-6 {
+  width: 100%;
+  }
+  .schedule .presentations:before {
+    width: 0px;
+    border-left: none;
+  }
+}
+
+.place {
+  margin-left: 15px;
+}
+
+.schedule .presentations-item .lecture-icon-wrapper {
+  left: 385px;
+}
+
+.ics {
+  margin-bottom: 2.5%;
+  margin-top: -3%;
+}
+
+.ics a {
+  text-decoration: none;
+}
+
+.ics:hover a {
+  color: white;
+}
+
+.ics span {
+  margin-right: 0;
+  padding-right: 0;
+}

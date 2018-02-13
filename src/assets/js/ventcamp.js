@@ -27,13 +27,13 @@ Ventcamp = {
     defaults: {
         log: true,
         styleSwitcher: false,
-        animations: true,
+        animations: false,
         onePageNav: true,
         alwaysMobileMenuMode: false,
         mobileMenuMaxWidth: 768,
         smoothScroll: false,
         smoothScrollSpeed: 800,
-        pseudoSelect: true,
+        pseudoSelect: false,
         toastrPositionClass: 'toast-top-full-width'
     },
 
@@ -66,10 +66,6 @@ Ventcamp = {
             $('.animated').css('opacity', 1);
 
             this.log( 'Remove animations' );
-
-            $('.animated .counter-block .count').not('.countdown .counter-block  .count').each(function () {
-                $(this).text( $(this).data('to') );
-            });
 
         }else if ( typeof $.fn.appear == 'function' ) {
             this.log( 'Init animations' );
@@ -120,20 +116,6 @@ Ventcamp = {
 
             this.log( 'Can\'t find jQuery.appear function' );
             this.log( 'Remove animations' );
-        }
-
-        if ( $('.counter-block').not('.animated').not('.animated .counter-block').not('.countdown .counter-block').length ) {
-            $('.counter-block').not('.animated').not('.animated .counter-block').not('.countdown .counter-block').each( function () {
-                if ( typeof $.fn.appear == 'function' && typeof $.fn.countTo == 'function' ) {
-                    $(this).appear(function () {
-                        $(this).find('.count').countTo();
-                    });
-
-                }else {
-                    $(this).find('.count').text( $(this).find('.count').data('to') );
-
-                }
-            });
         }
     },
 
@@ -574,30 +556,6 @@ Ventcamp = {
         }
     },
 
-    // count down timer
-    countdownInit: function () {
-        if ( $('.countdown').length ) {
-            if ( typeof $.fn.countdown == 'function' ) {
-                var futureDate = new Date();
-                $countdown = $('.countdown');
-
-                // count down 10 days from today
-                //futureDate.setDate( futureDate.getDate() + 222 );
-                // or set specific date in the future
-                futureDate = new Date(2018, 01, 26);
-
-                $countdown.countdown({
-                    until: futureDate,
-                    compact: true,
-                    padZeroes: true,
-                    layout: $('.countdown').html()
-                });
-            }else {
-                this.log( 'Can\'t find jQuery.countdown function' );
-            }
-        }
-    },
-
     masonryInit: function () {
         var _this = this;
 
@@ -624,71 +582,6 @@ Ventcamp = {
                         }
                     }
                 });
-            });
-        }
-    },
-
-    gallerySliderInit: function () {
-        var _this = this;
-
-        if ( $('.gallery.light-slider').length && typeof $.fn.bxSlider == 'function' ) {
-            $('.gallery.light-slider').each(function () {
-                var $container = $(this),
-                    $imgSLider = $container.find('.img-slider'),
-                    $descrSlider = $container.find('.description-slider');
-
-                $imgSLider.find('li > img').each(function () {
-                    var $this = $(this),
-                        $li = $this.parent(),
-                        imgSrc = $this.attr('src');
-
-                    $li.css('background-image', 'url("' + imgSrc + '")').data('imgSrc', imgSrc);
-                    $this.remove();
-                });
-
-                if ( $imgSLider.length && $descrSlider.length ) {
-                    function countImgMinHeight ($slide) {
-                        var img = new Image();
-
-                        img.src = $slide.data('imgSrc');
-
-                        img.onload = function () {
-                            height = this.height * $slide.outerWidth() / this.width
-                            $imgSLider.css('min-height', height);
-
-                            return height;
-                        }
-
-                        return img.onload;
-                    }
-
-                    $imgSLider.bxSlider({
-                        pager: false,
-                        controls: false,
-                        mode: 'fade',
-                        adaptiveHeight: true,
-
-                        onSliderLoad: function (currentIndex) {
-                            $slide = $imgSLider.find('> li').eq(currentIndex);
-
-                            height = countImgMinHeight($slide);
-                            console.log(height);
-                        },
-
-                        onSlideBefore: function ($slide) {
-                            countImgMinHeight($slide);
-                        }
-                    });
-
-                    $descrSlider.bxSlider({
-                        controls: false,
-                        adaptiveHeight: true,
-
-                        onSlideBefore: function ($slideElement, oldIndex, newIndex) {
-                            $imgSLider.goToSlide(newIndex);
-                        }
-                    });
-                }
             });
         }
     },
@@ -1033,12 +926,6 @@ Ventcamp = {
 
         this.tabNavToSelect();
 
-        this.countdownInit();
-
-        if ( this.options.styleSwitcher ) this.buildStyleSwitcher();
-
-        if ( this.options.smoothScroll ) this.smoothScrollInit();
-
         if ( this.options.pseudoSelect ) this.initPseudoSelect();
 
         if ( typeof google != 'undefined') this.initGoogleMap();
@@ -1050,8 +937,6 @@ Ventcamp = {
         this.calculateMenuSizes();
 
         this.videoBackgroundInit();
-
-        this.gallerySliderInit();
 
         this.setEventHandlers();
 

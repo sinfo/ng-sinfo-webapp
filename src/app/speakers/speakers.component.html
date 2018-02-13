@@ -1,13 +1,49 @@
-<div *ngIf="speakers">
-  <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
-    <div class="speaker">
-      <div class="photo-wrapper square">
-        <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
-          <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive">
+<section *ngIf="speakers" id="speakers" class="section align-center">
+  <div class="container">
+    <span class="icon section-icon icon-faces-users-03"></span>
+    <h3>Speakers</h3>
+    <br />
+    <br />
+
+    <div class="col-sm-3">
+      <div class="speaker hacky">
+        <div class="photo-wrapper square">
+          <div class="view view-first">
+            <img src="https://static.sinfo.org/SINFO_25/speakers/hacky.png" alt="hacky" class="img-responsive">
+            <ul class="speaker-socials">
+              <li>
+                <a href="https://www.instagram.com/sinfoist/">
+                  <span class="fa fa-instagram"></span>
+                </a>
+              </li>
+              <li>
+                <a href="https://facebook.com/sinfoist">
+                  <span class="fa fa-facebook"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <h3 class="name">Know the next one</h3>
+        <p class="text-alt">
+          <small>Stay tuned to our social networks</small>
+        </p>
       </div>
-      <h3 class="name">{{ speaker.name }}</h3>
-      <p class="text-alt"><small>{{ speaker.title }}</small></p>
     </div>
+
+    <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
+      <div class="speaker">
+        <div class="photo-wrapper square">
+          <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
+            <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive">
+          </div>
+        </div>
+        <h3 class="name">{{ speaker.name }}</h3>
+        <p class="text-alt">
+          <small>{{ speaker.title }}</small>
+        </p>
+      </div>
+    </div>
+
   </div>
-</div>
+</section>

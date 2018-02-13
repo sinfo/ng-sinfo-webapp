@@ -4,7 +4,7 @@
 
 <section id="hero" class="hero-section window-height light-text">
   <div class="video-bg">
-    <video autoplay loop muted preload="auto">
+    <video autoplay loop muted playsinline preload="auto">
       <source src="assets/video/Final.mp4" type="video/mp4" />
     </video>
   </div>
@@ -194,96 +194,7 @@
   <br />
 </section>
 
-
-<section id="countdown" class="section align-center overlay bg-cover counterbg light-text">
-  <!-- Countdown start -->
-  <div class="row counters-wrapper countdown">
-    <div class="col-sm-3">
-      <div class="counter-block counter-block-no-border has-separator">
-        <div class="counter-box">
-          <div class="counter-content">
-            <span class="count">{{'{'}}dnn{{'}'}</span>
-
-            <p class="title">days</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="counter-block counter-block-no-border has-separator">
-        <div class="counter-box">
-          <div class="counter-content">
-            <span class="count">{{'{'}}hnn{{'}'}</span>
-
-            <p class="title">hours</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="counter-block counter-block-no-border has-separator">
-        <div class="counter-box">
-          <div class="counter-content">
-            <span class="count">{{'{'}}mnn{{'}'}</span>
-
-            <p class="title">minutes</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="counter-block counter-block-no-border">
-        <div class="counter-box">
-          <div class="counter-content">
-            <span class="count">{{'{'}}snn{{'}'}</span>
-
-            <p class="title">seconds</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="speakers" class="section align-center">
-  <div class="container">
-    <span class="icon section-icon icon-faces-users-03"></span>
-    <h3>Speakers</h3>
-    <br />
-    <br />
-
-    <div class="col-sm-3">
-      <div class="speaker hacky">
-        <div class="photo-wrapper square">
-          <div class="view view-first">
-            <img src="https://static.sinfo.org/SINFO_25/speakers/hacky.png" alt="hacky" class="img-responsive">
-            <ul class="speaker-socials">
-              <li>
-                <a href="https://www.instagram.com/sinfoist/">
-                  <span class="fa fa-instagram"></span>
-                </a>
-              </li>
-              <li>
-                <a href="https://facebook.com/sinfoist">
-                  <span class="fa fa-facebook"></span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <h3 class="name">Know the next one</h3>
-        <p class="text-alt">
-          <small>Stay tuned to our social networks</small>
-        </p>
-      </div>
-    </div>
-
-    <app-speakers></app-speakers>
-  </div>
-</section>
+<app-speakers></app-speakers>
 
 <section id="sign_up" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
@@ -314,6 +225,8 @@
 </section>
 
 <app-team></app-team>
+
+<app-schedule></app-schedule>
 
 <app-sponsors></app-sponsors>
 
