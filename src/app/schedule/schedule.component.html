@@ -60,7 +60,7 @@
                     <img src="{{session.img}}" alt="" class="img-responsive">
                   </div>
 
-                  <a data-toggle="collapse" href="#day{{i}}_keynotes_{{iSession}}" class="schedule-item-toggle">
+                  <a (click)="onSelect(session)" class="schedule-item-header">
                     <strong class="time highlight">
                       <span class="icon icon-office-24"></span>
                       {{session.date | date:'shortTime'}}
@@ -72,7 +72,6 @@
                         {{session.name.split(' - ')[0]}}
                       </strong>
                       -- {{session.name.split(' - ')[1]}}
-                      <i class="icon icon-arrows-06"></i>
                     </h6>
                   </a>
 
@@ -105,7 +104,7 @@
                         <img src="{{presentation.img}}" alt="" class="img-responsive">
                       </div>
 
-                      <a data-toggle="collapse" href="#day{{i}}_presentations_sala1_{{iSession}}" class="schedule-item-toggle">
+                      <a (click)="onSelect(presentation)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
                           {{presentation.date | date:'shortTime'}}
@@ -113,7 +112,6 @@
                           {{presentation.place}}
                         </strong>
                         <h6 class="title">{{presentation.name}}
-                          <i class="icon icon-arrows-06"></i>
                         </h6>
                       </a>
 
@@ -140,7 +138,7 @@
                         <img src="{{presentation.img}}" alt="" class="img-responsive">
                       </div>
 
-                      <a data-toggle="collapse" href="#day{{i}}_presentations_sala2_{{iSession}}" class="schedule-item-toggle">
+                      <a (click)="onSelect(presentation)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
                           {{presentation.date | date:'shortTime'}}
@@ -148,7 +146,6 @@
                           {{presentation.place}}
                         </strong>
                         <h6 class="title">{{presentation.name}}
-                          <i class="icon icon-arrows-06"></i>
                         </h6>
                       </a>
 
@@ -187,7 +184,7 @@
                         <img src="{{workshop.img}}" alt="" class="img-responsive">
                       </div>
 
-                      <a data-toggle="collapse" href="#day{{i}}_workshops_sala1_{{iSession}}" class="schedule-item-toggle">
+                      <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
                           {{workshop.date | date:'shortTime'}}
@@ -195,7 +192,6 @@
                           {{workshop.place}}
                         </strong>
                         <h6 class="title">{{workshop.name}}
-                          <i class="icon icon-arrows-06"></i>
                         </h6>
                       </a>
 
@@ -222,7 +218,7 @@
                         <img src="{{workshop.img}}" alt="" class="img-responsive">
                       </div>
 
-                      <a data-toggle="collapse" href="#{{i}}_workshops_sala2_{{iSession}}" class="schedule-item-toggle">
+                      <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
                           {{workshop.date | date:'shortTime'}}
@@ -230,7 +226,6 @@
                           {{workshop.place}}
                         </strong>
                         <h6 class="title">{{workshop.name}}
-                          <i class="icon icon-arrows-06"></i>
                         </h6>
                       </a>
 
