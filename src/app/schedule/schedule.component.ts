@@ -60,7 +60,7 @@ export class ScheduleComponent implements OnInit {
               sala2: []
             }
           },
-          theme: environment.themes[day],
+          theme: '',
           date: val.date
         }
       }
@@ -73,8 +73,11 @@ export class ScheduleComponent implements OnInit {
       }
     })
 
+    let i = 0
     for (let day in tempSchedule) {
+      tempSchedule[day].theme = environment.themes[i]
       this.schedule.push(tempSchedule[day])
+      i += 1
     }
   }
 }
