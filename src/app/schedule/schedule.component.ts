@@ -16,11 +16,11 @@ export class ScheduleComponent implements OnInit {
   private sessions: Session[]
   private schedule = []
 
-  constructor(
+  constructor (
     private sessionService: SessionService
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     const sessions = this.sessionService.getLocalSessions()
 
     if (sessions) {
@@ -31,7 +31,7 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
-  getSessions(): void {
+  getSessions (): void {
     this.sessionService.getSessions()
       .subscribe(sessions => {
         this.sessions = sessions
@@ -77,11 +77,4 @@ export class ScheduleComponent implements OnInit {
       this.schedule.push(tempSchedule[day])
     }
   }
-
-  setCompanyImg (speaker) {
-    return {
-      'background-image': `url('https://static.sinfo.org/SINFO_25/speakersCompanies/${speaker.name.replace(/\s/g, '')}.png')`
-    }
-  }
-
 }
