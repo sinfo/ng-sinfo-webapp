@@ -33,7 +33,7 @@ export class SessionService {
     const params = new HttpParams({
       fromObject: {
         'sort': 'date',
-        'event': '24-sinfo' // environment.currentEvent
+        'event': environment.currentEvent
       }
     })
     return this.http.get<Session[]>(this.sessionsUrl, { params })
