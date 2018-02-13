@@ -56,12 +56,8 @@ import { ScheduleComponent } from './schedule/schedule.component'
     MessageService,
     SponsorService,
     TeamService,
-<<<<<<< HEAD
     UserService,
-=======
-    SessionService,
->>>>>>> origin/master
-    MessageService
+    SessionService
   ],
   bootstrap: [AppComponent]
 })
