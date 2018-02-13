@@ -1,0 +1,7 @@
+<app-menu></app-menu>
+
+<p *ngIf="!session">Loading...</p>
+
+<h1 *ngIf="session" >
+  {{session.name}}
+</h1>

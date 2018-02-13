@@ -9,10 +9,12 @@ import {
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
+import { SessionsComponent } from './schedule/sessions/sessions.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'speakers/:id', component: SpeakerComponent },
+  { path: 'sessions/:id', component: SessionsComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
