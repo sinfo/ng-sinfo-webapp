@@ -2,6 +2,25 @@
 
 <p *ngIf="!session">Loading...</p>
 
-<h1 *ngIf="session" >
-  {{session.name}}
-</h1>
+<section *ngIf="session" class="section session-section align-center">
+  <h2 class="kind">{{session.kind}}</h2>
+  <h1 class="name">{{session.name}}</h1>
+  <div>
+    <i class="fa fa-calendar">
+      <span>{{session.date | date:'fullDate'}}</span>
+    </i>
+  </div>
+  <div>
+    <i class="fa fa-clock-o">
+      <span>{{session.date | date:'shortTime'}}</span>
+    </i>
+  </div>
+  <div >
+    <i *ngIf="session.place" class="fa fa-map-marker">
+      <span>{{session.place}}</span>
+    </i>
+  </div>
+  <div class="description">
+    <p>{{session.description}}</p>
+  </div>
+</section>

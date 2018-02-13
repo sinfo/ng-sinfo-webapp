@@ -1,0 +1,19 @@
+.session-section h2 {
+    font-size: 28px;
+}
+
+.session-section h1 {
+    font-size: 35px;
+}
+
+.session-section i {
+    color: black;
+}
+
+.session-section i span {
+    margin: 0 5px;
+}
+
+.session-section .description {
+    margin: 20px;
+}

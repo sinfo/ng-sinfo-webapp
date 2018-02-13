@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { SessionService } from '../session.service'
 import { ActivatedRoute, Params } from '@angular/router'
+
+import { SessionService } from '../session.service'
 import { Session } from '../session.model'
 
 @Component({
@@ -8,6 +9,7 @@ import { Session } from '../session.model'
   templateUrl: './sessions.component.html',
   styleUrls: ['./sessions.component.css']
 })
+
 export class SessionsComponent implements OnInit {
   private session: Session
 

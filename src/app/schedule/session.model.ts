@@ -4,6 +4,7 @@ export class Session {
   kind: string
   img: string
   place: string
+  description: string
   speakers: Array<object>
   companies: Array<string>
   date: string
@@ -12,5 +13,4 @@ export class Session {
   event: string
   tickets: object
   surveyNeeded: boolean
-  day: string
 }
