@@ -1,8 +1,11 @@
 <app-menu></app-menu>
 
-<p *ngIf="!user">Loading...</p>
+<div class="container" *ngIf="!user">
+    <span class="icon section-icon icon-alerts-01 align-center"></span>
+    <h3 class="align-center">User not found!</h3>
+</div>
 
-<div *ngIf="user">
+<div class="container align-center" *ngIf="user">
   <h1  >
     {{user.name}}
   </h1>
@@ -10,5 +13,26 @@
   <br />
 
   <img src="{{user.img}}">
-
+  
+  <div class="container" *ngIf="user.area">
+    <h5>Area: </h5>
+    <p>{{user.area}}</p>
+  </div>
+  
+  <div class="container" *ngIf="user.skills">
+    <h5>Skills: </h5>
+    <p>{{user.skills}}</p>
+  </div>
+  
+  <div class="container">
+      <h5>Current points: </h5>
+      <p *ngIf="user.points">{{user.points.total}}</p>
+      <p *ngIf="!user.points">0</p>
+  </div>
+  
+  <div class="container" *ngIf="user.achievements != undefined">
+    <h5>Achievements earned: </h5>
+    <p>{{user.achievements}}</p>
+  </div>
+  
 </div>

@@ -1,0 +1,7 @@
+.container {
+    word-break: break-all;
+}
+
+h5, p {
+    text-align: left;
+}
