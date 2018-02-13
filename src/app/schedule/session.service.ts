@@ -66,6 +66,13 @@ export class SessionService {
     this.sessions = sessions
   }
 
+  /*
+  isActive (): Observable<boolean> {
+    this.hasContent = new Promise<boolean>((resolve, reject) => {
+      this.resolve
+    })
+  }*/
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
