@@ -26,6 +26,13 @@ export class UserService {
         catchError(this.handleError<User>(`getUser id=${id}`))
       )
   }
+  
+  getUserAchievements (id: string): Observable<Achievements> {
+    return this.http.get<Achievements>(`${this.usersUrl}/${id}/achievements`)
+      .pipe(
+        catchError(this.handleError<User>(`getUserAchievements id=${id}`))
+      )
+  }
 
   /**
    * Handle Http operation that failed.
