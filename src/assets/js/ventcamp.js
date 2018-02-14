@@ -32,9 +32,7 @@ Ventcamp = {
         alwaysMobileMenuMode: false,
         mobileMenuMaxWidth: 768,
         smoothScroll: false,
-        smoothScrollSpeed: 800,
-        pseudoSelect: false,
-        toastrPositionClass: 'toast-top-full-width'
+        smoothScrollSpeed: 800
     },
 
     mobileDevice: false,
@@ -55,67 +53,6 @@ Ventcamp = {
             this.mobileDevice = false;
 
             this.log('Desktop')
-        }
-    },
-
-    // init animations on page
-    initAnimations: function () {
-        var _this = this;
-
-        if ( this.mobileDevice || !this.options.animations ) {
-            $('.animated').css('opacity', 1);
-
-            this.log( 'Remove animations' );
-
-        }else if ( typeof $.fn.appear == 'function' ) {
-            this.log( 'Init animations' );
-
-            $('.animated').appear(function() {
-                var $el = $(this),
-                    animation = $el.data('animation'),
-                    animationDelay = $el.data('delay') || 0,
-                    animationDuration = $el.data('duration') || 1000;
-
-                if ( _this.options.animations ) {
-                    $el.css({
-                        '-webkit-animation-delay': animationDelay + 'ms',
-                        'animation-delay': animationDelay + 'ms',
-                        '-webkit-animation-duration': animationDuration/1000 + 's',
-                        'animation-duration': animationDuration/1000 + 's'
-                    });
-
-                    $el.addClass(animation);
-
-                    _this.log( 'Play animation ' + animation + ' with delay = ' + animationDelay + 'ms and duration = ' + animationDuration + 'ms');
-
-                    $el.one('webkitAnimationStart mozAnimationStart MSAnimationStart oanimationstart animationstart', function() {
-                        if ( !$el.closest('.coundown').length ) {
-                            if ( typeof $.fn.countTo == 'function' ) {
-                                if ( $el.find('.count').length ) $el.find('.count').countTo();
-                            } else {
-                                this.log( 'Can\'t find jQuery.countTo function' );
-                            }
-                        }
-                    });
-
-                }else {
-                    $el.removeClass('animated');
-
-                    if ( !$el.closest('.coundown').length ) {
-                        if ( typeof $.fn.countTo == 'function' ) {
-                            if ( $el.find('.count').length ) $el.find('.count').countTo();
-                        } else {
-                            this.log( 'Can\'t find jQuery.countTo function' );
-                        }
-                    }
-                }
-            }, {accY: -150});
-
-        }else {
-            $('.animated').css('opacity', 1);
-
-            this.log( 'Can\'t find jQuery.appear function' );
-            this.log( 'Remove animations' );
         }
     },
 
@@ -184,157 +121,6 @@ Ventcamp = {
         }
 
         this.log( 'Init centered blocks');
-    },
-
-    videoBackgroundInit: function () {
-        var _this = this;
-
-        $('.ytp-player-background').each( function() {
-            var $el = $(this),
-                $player,
-                controlsTempalte;
-
-            if ( $el.data('video') && $el.data('video').length ) {
-                $el.css('background-image', 'url(https://i.ytimg.com/vi/' + $el.data('video') + '/maxresdefault.jpg)')
-            }
-
-            if( !_this.mobileDevice && typeof $.fn.YTPlayer == 'function' ) {
-                _this.log( 'Init video background blocks');
-
-                $player = $el.YTPlayer();
-            } else {
-                $el.addClass('no-video-bg');
-
-                if ( typeof $.fn.YTPlayer != 'function' ) {
-                    _this.log( 'Can\'t find jQuery.YTPlayer function. Video background blocks doesn\'t work.' );
-                }else {
-                    _this.log( 'Can\'t init video background blocks.');
-                }
-            }
-        });
-    },
-
-    initPseudoSelect: function () {
-        var $select = $('select');
-
-        if ( $select.length ) {
-            $select.each(this.makePseudoSelect);
-        }
-    },
-
-    makePseudoSelect: function (i, el) {
-        var $el = $(el),
-            $options = $el.find('option'),
-            $pseudoSelect = $('<div class="pseudo-select"></div>'),
-            $input = $('<input type="text" />'),
-            $field = $('<span class="pseudo-select-field"></span>'),
-            $dropdown = $('<ul class="pseudo-select-dropdown"></ul>');
-
-        $options.each(function () {
-            $li = $('<li class="pseudo-select-dropdown-item"></li>');
-            $li.data('value', this.value);
-            $li.text(this.text);
-
-            if ( this.disabled ) $li.addClass('disabled');
-            if ( this.selected ) {
-                $li.addClass('selected');
-                $field.text(this.text);
-                $input.attr('value', this.value);
-            }
-
-            $dropdown.append($li);
-        });
-
-        $el.after($pseudoSelect);
-        $input.attr({ id: el.id, name: el.name });
-        $pseudoSelect.append($input).append($field).append($dropdown);
-
-        $el.remove();
-
-        var closePseudoSelect = function () {
-                $dropdown.stop(true, true).slideUp(150);
-                setTimeout(function () { $el.removeClass('open'); }, 150);
-            },
-            openPseudoSelect = function () {
-                $el.addClass('open');
-                $dropdown.stop(true, true).slideDown(250);
-            },
-            selectItem = function ($li) {
-                var value = $li.data('value'),
-                    text = $li.text(),
-                    dropdownHeight = $dropdown.outerHeight(),
-                    elHeight = $li.outerHeight(),
-                    scrollTop = $dropdown.scrollTop(),
-                    elemPosition = $li.position().top;
-
-                if ( elemPosition + elHeight > dropdownHeight ) {
-                    $dropdown.scrollTop(elHeight + elemPosition - dropdownHeight + scrollTop);
-                }else if ( elemPosition < 0 ) {
-                    $dropdown.scrollTop(scrollTop + elemPosition);
-                }
-
-                $li.addClass('selected').siblings('li').removeClass('selected');
-                $input.val(value);
-                $field.text(text);
-                $input.trigger('change');
-            }
-
-        $input.on('focus.pseudoSelect', openPseudoSelect);
-        $input.on('blur.pseudoSelect', closePseudoSelect);
-
-        $input.on('keydown', function (event) {
-            var $li = $dropdown.find('li').not('.disabled'),
-                $liSelected = $dropdown.find('li.selected').not('.disabled'),
-                index = $.map($li, function (el, i) { if ( $(el).is('.selected')) { return i; } })[0],
-                nextIndex = (index < $li.length - 1) ? index + 1 : 0,
-                prevIndex = index - 1,
-                $prev = $li.eq(prevIndex),
-                $next = $li.eq(nextIndex);
-
-            if ( event.keyCode == 38 ) {
-                if ( $liSelected.length ) {
-                    selectItem($prev);
-                }else {
-                    selectItem($li.last());
-                }
-            }
-
-            if ( event.keyCode == 40 ) {
-                if ( $liSelected.length ) {
-                    selectItem($next);
-                }else {
-                    selectItem($li.first());
-                }
-            }
-
-            if ( event.keyCode == 32 ) {
-                if ( $el.is('.open') ) closePseudoSelect();
-                else openPseudoSelect();
-            }
-
-            if ( event.keyCode != 13 && event.keyCode != 9 ) {
-                return false;
-            }
-        });
-
-        $field.on('click.pseudoSelect', function (event) {
-            event.preventDefault();
-
-            if ( !$el.is('.open') ) $input.trigger('focus');
-        });
-
-        $('body').on('click.pseudoSelect', function (event) {
-            if ( !$(event.target).closest($field).length && $el.is('.open') ) closePseudoSelect();
-        });
-
-        $dropdown.on('mousedown.pseudoSelect click.pseudoSelect', 'li', function (event) {
-            event.preventDefault();
-
-            selectItem($(this));
-            closePseudoSelect();
-        });
-
-        return $input;
     },
 
     // Google map
@@ -591,8 +377,6 @@ Ventcamp = {
         this.checkHeaderStatus();
 
         this.masonryInit();
-
-        this.hidePreloader();
     },
 
     //on resize handler
@@ -701,21 +485,6 @@ Ventcamp = {
         this.log('Set event hendlers');
     },
 
-    hidePreloader: function (callback) {
-        var _this = this;
-
-        $('.preloader-mask').delay(500).fadeOut(600);
-
-        setTimeout(function() {
-            _this.initAnimations();
-
-        }, 700);
-
-        if ( callback ) {
-            callback();
-        }
-    },
-
     videoPosition: function () {
         var original_video_w = 1920;
         var original_video_h = 1080;
@@ -749,8 +518,6 @@ Ventcamp = {
 
         this.checkMobile();
 
-        if ( this.options.pseudoSelect ) this.initPseudoSelect();
-
         if ( typeof google != 'undefined') this.initGoogleMap();
 
         this.windowHeightBlock();
@@ -758,8 +525,6 @@ Ventcamp = {
         this.centeredBlock();
 
         this.calculateMenuSizes();
-
-        this.videoBackgroundInit();
 
         this.setEventHandlers();
 
