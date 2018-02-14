@@ -27,6 +27,9 @@ import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
 import { ScheduleComponent } from './schedule/schedule.component'
 
+import { QrcodeComponent } from './qrcode/qrcode.component'
+import { NgxQRCodeModule } from 'ngx-qrcode3'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,12 +44,14 @@ import { ScheduleComponent } from './schedule/schedule.component'
     SpeakerComponent,
     SponsorsComponent,
     TeamComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    QrcodeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    Routing
+    Routing,
+    NgxQRCodeModule
   ],
   providers: [
     SpeakerService,
