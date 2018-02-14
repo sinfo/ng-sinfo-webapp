@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 
 <div class="container" *ngIf="!user">
-    <span class="icon section-icon icon-alerts-01 align-center"></span>
-    <h3 class="align-center">User not found!</h3>
+    <span class="icon section-icon fa fa-spinner align-center"></span>
+    <h3 class="align-center">Loading...</h3>
 </div>
 
 <div class="container align-center" *ngIf="user">
@@ -26,13 +26,12 @@
   
   <div class="container">
       <h5>Current points: </h5>
-      <p *ngIf="user.points">{{user.points.total}}</p>
-      <p *ngIf="!user.points">0</p>
+      <p>{{user.points.total ? user.points.total : 0}}</p>
   </div>
-  
-  <div class="container" *ngIf="user.achievements != undefined">
+
+  <div class="container" *ngIf="achievements.length > 0">
     <h5>Achievements earned: </h5>
-    <p>{{user.achievements}}</p>
+    <img class="achievements" src="{{achievement.img}}" align="left" width="220" title="{{achievement.name}}" *ngFor="let achievement of achievements">
   </div>
   
 </div>

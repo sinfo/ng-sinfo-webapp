@@ -10,6 +10,7 @@ import { User } from './user.model'
 })
 export class UserComponent implements OnInit {
   private user: User
+  private achievements: Achievements
 
   constructor (
     private userService: UserService,
@@ -18,11 +19,16 @@ export class UserComponent implements OnInit {
 
   ngOnInit () {
     this.route.params.forEach((params: Params) => this.getUser(params['id']))
+    this.route.params.forEach((params: Params) => this.getUserAchievements(params['id']))
   }
 
   getUser (id: string): void {
     this.userService.getUser(id)
       .subscribe(user => this.user = user)
   }
-
+  
+  getUserAchievements (id: string): void {
+    this.userService.getUserAchievements(id)
+      .subscribe(achievements => this.achievements = achievements)
+  }
 }

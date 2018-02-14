@@ -25,22 +25,19 @@
           </ul>
           <ul class="navigation-list pull-right light-text">
             <li *ngIf="!isLoggedIn" class="navigation-item">
-              <a routerLink="/" class="navigation-link">
-                <span class="fa fa-twitter"></span> Register
-              </a>
-            </li>
-            <li *ngIf="!isLoggedIn" class="navigation-item">
-              <a routerLink="/" class="navigation-link">
-                <span class="fa fa-twitter"></span> Login
+              <a routerLink="/login" class="navigation-link">
+                <span class="fa fa-sign-in"></span> Login
               </a>
             </li>
             <li *ngIf="isLoggedIn" class="navigation-item">
-              <a routerLink="/" class="navigation-link">
+              <a routerLink="/me" class="navigation-link">
                 <span class="fa fa-user"></span> My Profile
               </a>
             </li>
             <li *ngIf="isLoggedIn" class="navigation-item">
-              <a routerLink="/" class="navigation-link">Logout</a>
+              <a routerLink="/" class="navigation-link">
+                <span class="fa fa-sign-out"></span> Logout
+              </a>
             </li>
           </ul>
         </div>

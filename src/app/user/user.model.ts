@@ -34,7 +34,9 @@ export class User {
   achievements: [
     {
       id: string
-      date: string
+      session: string
+      name: string
+      img: string
     }
   ]
   area: string
