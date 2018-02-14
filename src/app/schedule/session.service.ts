@@ -8,7 +8,7 @@ import { of } from 'rxjs/observable/of'
 import { Session } from './session.model'
 
 import { environment } from '../../environments/environment'
-import { MessageService } from '../partials/messages/message.service'
+import { MessageService, Type } from '../partials/messages/message.service'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,10 +24,6 @@ export class SessionService {
     private http: HttpClient,
     private messageService: MessageService
   ) { }
-
-  private log (message: string) {
-    this.messageService.add('SessionService: ' + message)
-  }
 
   getSessions (): Observable<Session[]> {
     const params = new HttpParams({
@@ -85,8 +81,11 @@ export class SessionService {
       // TODO: send the error to remote logging infrastructure
       console.error(error) // log to console instead
 
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`)
+      this.messageService.add({
+        origin: `SessionService: ${operation}`,
+        text: error.message,
+        type: Type.error
+      })
 
       // Let the app keep running by returning an empty result.
       return of(result as T)
