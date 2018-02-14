@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { environment } from '../../../environments/environment'
 import { MessageService, Type } from '../../partials/messages/message.service'
+import { AuthService } from '../auth.service'
 
 declare let FB: any
 
@@ -13,7 +14,8 @@ export class LoginComponent implements OnInit {
   isFacebookActive: boolean
 
   constructor (
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authService: AuthService
   ) {
     if (typeof(FB) !== 'undefined' && FB !== null) {
       this.isFacebookActive = true
@@ -50,9 +52,11 @@ export class LoginComponent implements OnInit {
   }
 
   statusChangeCallback (resp) {
-    console.log(resp)
+    console.log(resp.authResponse)
     if (resp.status === 'connected') {
       // connect here with your server for facebook login by passing access token given by facebook
+      /* this.authService.facebook(resp.authResponse.userID, resp.authResponse.accessToken)
+        .subscribe(cannonToken => console.log(cannonToken)) */
     } else if (resp.status === 'not_authorized') {
       console.log('not auth', resp.status)
     } else {

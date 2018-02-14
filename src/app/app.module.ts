@@ -28,6 +28,7 @@ import { TeamService } from './team/team.service'
 import { ScheduleComponent } from './schedule/schedule.component'
 import { LoginComponent } from './auth/login/login.component'
 import { AuthService } from './auth/auth.service'
+import { StorageService } from './storage.service'
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AuthService } from './auth/auth.service'
     SponsorService,
     TeamService,
     SessionService,
-    AuthService
+    AuthService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })
