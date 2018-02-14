@@ -9,9 +9,11 @@ import {
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
+import { QrcodeComponent } from './qrcode/qrcode.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
+  { path: 'qrcode', component: QrcodeComponent },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'coc', component: CodeOfConductComponent },
