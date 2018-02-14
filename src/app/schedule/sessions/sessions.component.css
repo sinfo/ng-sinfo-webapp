@@ -16,4 +16,5 @@
 
 .session-section .description {
     margin: 20px;
+    white-space: pre-line;
 }

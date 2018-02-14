@@ -2,6 +2,12 @@
 
 <p *ngIf="!speaker">Loading...</p>
 
-<h1 *ngIf="speaker" >
-  {{speaker.name}}
-</h1>
+<section *ngIf="speaker" class="section speaker-section align-center">
+  <img src='{{speaker.img}}'>
+  <h1>{{speaker.name}}</h1>
+  <h2>{{speaker.title}}</h2>
+  <div class="description">
+    <h3>Biography</h3>
+    <p>{{speaker.description}}</p>
+  </div>
+</section>

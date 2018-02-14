@@ -1,0 +1,32 @@
+.speaker-section {
+    padding: 55px 20px 0px;
+}
+
+.speaker-section img {
+    border-radius: 50%;
+}
+
+.speaker-section h1 {
+    font-size: 45px;
+    margin: 10px;
+}
+
+.speaker-section h2 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #a9a9a9;
+}
+
+.speaker-section .description {
+    margin: 4em;
+    text-align: left;
+}
+
+.speaker-section .description h3 {
+    font-size: 24px;
+}
+
+.speaker-section .description p {
+    line-height: 1.45;
+    white-space: pre-line;
+}
