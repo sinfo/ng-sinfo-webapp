@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+
+<section class="section">
+  <div class="container">
+    <i class="icon section-icon fa fa-sign-in align-center"></i>
+    <h3 class="align-center">Login</h3>
+    <br />
+    <br />
+
+    <div class="row align-center">
+      <div class="col-md-4">
+        <button class="btn btn-facebook" (click)="onFacebookLogin()" [disabled]="!isFacebookActive">
+          <i class="fa fa-facebook"></i>
+          Facebook
+        </button>
+      </div>
+
+      <div class="col-md-4">
+        <button class="btn btn-google">
+          <i class="fa fa-google"></i>
+          Google
+        </button>
+      </div>
+
+      <div class="col-md-4">
+        <button class="btn btn-fenix">
+          <i class="fa fa-graduation-cap"></i>
+          Fenix
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>

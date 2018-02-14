@@ -9,5 +9,8 @@ export const environment = {
     'Security',
     'Games',
     'Web'
-  ]
+  ],
+  facebook: {
+    cannonAppId: '708252219264170'
+  }
 }
