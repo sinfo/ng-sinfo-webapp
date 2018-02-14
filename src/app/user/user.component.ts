@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { UserService } from './user.service'
 import { ActivatedRoute, Params } from '@angular/router'
 import { User } from './user.model'
+import { Achievement } from './achievement.model'
 
 @Component({
   selector: 'app-user',
@@ -10,7 +11,7 @@ import { User } from './user.model'
 })
 export class UserComponent implements OnInit {
   private user: User
-  private achievements: Achievements
+  private achievements: Achievement
 
   constructor (
     private userService: UserService,
@@ -26,7 +27,7 @@ export class UserComponent implements OnInit {
     this.userService.getUser(id)
       .subscribe(user => this.user = user)
   }
-  
+
   getUserAchievements (id: string): void {
     this.userService.getUserAchievements(id)
       .subscribe(achievements => this.achievements = achievements)

@@ -6,6 +6,7 @@ import { User } from './user.model'
 import { Observable } from 'rxjs/Observable'
 import { catchError } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
+import { Achievement } from './achievement.model'
 
 @Injectable()
 export class UserService {
@@ -26,11 +27,11 @@ export class UserService {
         catchError(this.handleError<User>(`getUser id=${id}`))
       )
   }
-  
-  getUserAchievements (id: string): Observable<Achievements> {
-    return this.http.get<Achievements>(`${this.usersUrl}/${id}/achievements`)
+
+  getUserAchievements (id: string): Observable<Achievement> {
+    return this.http.get<Achievement>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
-        catchError(this.handleError<User>(`getUserAchievements id=${id}`))
+        catchError(this.handleError<Achievement>(`getUserAchievements id=${id}`))
       )
   }
 
