@@ -11,12 +11,12 @@ import { TeamService } from './team.service'
 export class TeamComponent implements OnInit {
   private team: Member[]
 
-  constructor (
+  constructor(
     private router: Router,
     private teamService: TeamService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     const team = this.teamService.getLocalTeam()
     if (team) {
       this.team = team
@@ -26,9 +26,11 @@ export class TeamComponent implements OnInit {
     }
   }
 
-  getTeam (): void {
+  getTeam(): void {
     this.teamService.getTeam()
-      .subscribe(team => this.team = team)
+      .subscribe(team => {
+        this.team = team
+      })
   }
 
 }

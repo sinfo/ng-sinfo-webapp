@@ -6,31 +6,42 @@
     <br />
     <br />
 
+    <app-loading [content]="team">
+    </app-loading>
+
     <div *ngIf="team">
       <div *ngFor="let member of team" class="col-sm-2">
 
         <div *ngIf="member.name !== 'ToolBot!'" class="speaker member">
           <div class="photo-wrapper rounded">
             <img src="{{member.img}}" alt="{{member.name}}" class="img-responsive">
-              <ul class="speaker-socials">
-                
-                <li *ngIf="member.mail">
-                  <a href='mailto:{{member.mail}}'><span class="fa fa-envelope"></span></a>
-                </li>
+            <ul class="speaker-socials">
 
-                <li *ngIf="member.twitter">
-                  <a href='https://twitter.com/{{member.twitter}}'><span class="fa fa-twitter"></span></a>
-                </li>
+              <li *ngIf="member.mail">
+                <a href='mailto:{{member.mail}}'>
+                  <span class="fa fa-envelope"></span>
+                </a>
+              </li>
 
-                <li *ngIf="member.facebook">
-                  <a href='https://facebook.com/{{member.facebook}}'><span class="fa fa-facebook"></span></a>
-                </li>
+              <li *ngIf="member.twitter">
+                <a href='https://twitter.com/{{member.twitter}}'>
+                  <span class="fa fa-twitter"></span>
+                </a>
+              </li>
 
-                <li *ngIf="member.github">
-                  <a href='https://github.com/{{member.github}}'><span class="fa fa-github"></span></a>
-                </li>
+              <li *ngIf="member.facebook">
+                <a href='https://facebook.com/{{member.facebook}}'>
+                  <span class="fa fa-facebook"></span>
+                </a>
+              </li>
 
-              </ul>
+              <li *ngIf="member.github">
+                <a href='https://github.com/{{member.github}}'>
+                  <span class="fa fa-github"></span>
+                </a>
+              </li>
+
+            </ul>
           </div>
           <h3 class="name">{{member.name}}</h3>
         </div>

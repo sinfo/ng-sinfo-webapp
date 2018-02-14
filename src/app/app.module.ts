@@ -25,7 +25,8 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
-import { ScheduleComponent } from './schedule/schedule.component'
+import { ScheduleComponent } from './schedule/schedule.component';
+import { LoadingComponent } from './loading/loading.component'
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ScheduleComponent } from './schedule/schedule.component'
     SpeakerComponent,
     SponsorsComponent,
     TeamComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

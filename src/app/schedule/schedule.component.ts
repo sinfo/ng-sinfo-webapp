@@ -14,13 +14,13 @@ import { environment } from '../../environments/environment'
 export class ScheduleComponent implements OnInit {
 
   private sessions: Session[]
-  private schedule = []
+  private schedule
 
-  constructor (
+  constructor(
     private sessionService: SessionService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     const sessions = this.sessionService.getLocalSessions()
 
     if (sessions) {
@@ -31,7 +31,7 @@ export class ScheduleComponent implements OnInit {
     }
   }
 
-  getSessions (): void {
+  getSessions(): void {
     this.sessionService.getSessions()
       .subscribe(sessions => {
         this.sessions = sessions
@@ -39,7 +39,7 @@ export class ScheduleComponent implements OnInit {
       })
   }
 
-  createSchedule (sessions: Session[]): void {
+  createSchedule(sessions: Session[]): void {
     let tempSchedule = {}
 
     sessions.forEach((val, index) => {
@@ -74,10 +74,12 @@ export class ScheduleComponent implements OnInit {
     })
 
     let i = 0
+    this.schedule = []
     for (let day in tempSchedule) {
       tempSchedule[day].theme = environment.themes[i]
       this.schedule.push(tempSchedule[day])
       i += 1
     }
+
   }
 }

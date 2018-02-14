@@ -11,8 +11,11 @@
       <span class="fa fa-download"></span>
     </button>
 
+    <app-loading [content]="schedule">
+    </app-loading>
+
     <!-- Schedule start -->
-    <div class="schedule">
+    <div *ngIf="schedule" class="schedule">
 
       <!-- Navigation by day start -->
       <ul class="nav nav-schedule">
