@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core'
 import { MessageService, Type } from '../partials/messages/message.service'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { User } from './user.model'
 import { Observable } from 'rxjs/Observable'
 import { catchError } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { Achievement } from './achievement.model'
+import { AuthService } from '../auth/auth.service'
 
 @Injectable()
 export class UserService {
@@ -14,13 +15,27 @@ export class UserService {
 
   constructor (
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authService: AuthService
   ) { }
 
   getUser (id: string): Observable<User> {
     return this.http.get<User>(`${this.usersUrl}/${id}`)
       .pipe(
         catchError(this.handleError<User>(`getUser id=${id}`))
+      )
+  }
+
+  getMe (): Observable<User> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+    return this.http.get<User>(`${this.usersUrl}/me`, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('getMe'))
       )
   }
 

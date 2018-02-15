@@ -59,8 +59,6 @@ export class LoginComponent implements OnInit {
   }
 
   facebookStatusChange (resp) {
-    console.log('facebookStatusChange')
-    console.log(resp.authResponse)
     if (resp.status === 'connected') {
       // connect here with your server for facebook login by passing access token given by facebook
       this.authService.facebook(resp.authResponse.userID, resp.authResponse.accessToken)
