@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { environment } from '../../environments/environment'
 import { Sponsor } from './sponsor.model'
 import { HttpClient, HttpParams } from '@angular/common/http'
-import { MessageService } from '../partials/messages/message.service'
+import { MessageService, Type } from '../partials/messages/message.service'
 import { Observable } from 'rxjs/Observable'
 import { tap, catchError } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
@@ -16,10 +16,6 @@ export class SponsorService {
     private http: HttpClient,
     private messageService: MessageService
   ) { }
-
-  private log (message: string) {
-    this.messageService.add('SponsorService: ' + message)
-  }
 
   getSponsors (): Observable<Sponsor[]> {
     const params = new HttpParams({
@@ -60,12 +56,11 @@ export class SponsorService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error) // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`)
+      this.messageService.add({
+        origin: `SponsorService: ${operation}`,
+        text: error.message,
+        type: Type.error
+      })
 
       // Let the app keep running by returning an empty result.
       return of(result as T)

@@ -8,7 +8,7 @@ import { of } from 'rxjs/observable/of'
 import { Member } from './member.model'
 
 import { environment } from '../../environments/environment'
-import { MessageService } from '../partials/messages/message.service'
+import { MessageService, Type } from '../partials/messages/message.service'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,10 +23,6 @@ export class TeamService {
     private http: HttpClient,
     private messageService: MessageService
   ) { }
-
-  private log (message: string) {
-    this.messageService.add('TeamService: ' + message)
-  }
 
   getTeam (): Observable<Member[]> {
     const params = new HttpParams({
@@ -59,12 +55,11 @@ export class TeamService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error) // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`)
+      this.messageService.add({
+        origin: `TeamService: ${operation}`,
+        text: error.message,
+        type: Type.error
+      })
 
       // Let the app keep running by returning an empty result.
       return of(result as T)
