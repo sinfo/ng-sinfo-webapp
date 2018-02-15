@@ -20,7 +20,7 @@ export class SessionsComponent implements OnInit {
     private sessionService: SessionService,
     private speakerService: SpeakerService,
     private activatedRoute: ActivatedRoute,
-    private router: Router 
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -28,32 +28,35 @@ export class SessionsComponent implements OnInit {
       const id = params['id']
       const session = this.sessionService.getLocalSession(id)
 
-      if(session) {
+      if (session) {
         this.session = session
-        this.getSpeaker(this.session)        
+        if (session.kind === 'Keynote') {
+          this.getSpeaker(this.session)
+        }
       } else {
         this.getSession(id)
       }
     })
   }
 
-  getSession (id: string): void {
+  getSession(id: string): void {
     this.sessionService.getSession(id)
       .subscribe(session => {
         this.session = session
-        this.getSpeaker(this.session)
+        if (session.kind === 'Keynote') {
+          this.getSpeaker(this.session)
+        }
       })
   }
 
-  getSpeaker (session: Session): void {
-    if (session.kind === 'Keynote') {
-      this.speakerService.getSpeaker(session.speakers[0]['id'])
-        .subscribe(speaker => this.speaker = speaker)
-    }
+  getSpeaker(session: Session): void {
+    this.speakerService.getSpeaker(session.speakers[0]['id'])
+      .subscribe(speaker => this.speaker = speaker)
+
   }
 
-  onSelect (id: string): void {
-    this.router.navigate(['/speakers', id]) 
+  onSelect(id: string): void {
+    this.router.navigate(['/speakers', id])
   }
 
 }

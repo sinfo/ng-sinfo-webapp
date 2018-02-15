@@ -3,37 +3,51 @@
 <p *ngIf="!session">Loading...</p>
 
 <section *ngIf="session" class="section session-section align-center">
-  <h2 class="kind">{{session.kind}}</h2>
-  <h1 class="name">{{session.name}}</h1>
-  <div>
-    <i class="fa fa-calendar">
-      <span>{{session.date | date:'fullDate'}}</span>
-    </i>
+  <h4 class="kind">{{session.kind}}</h4>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 img-column session-img">
+        <img *ngIf="session.kind !== 'Keynote'" src='{{session.img}}'>
+        <img *ngIf="speaker" src='{{speaker.img}}'>
+      </div>
+
+      <div class="col-sm-9 align-left justify">
+
+        <div *ngIf="speaker" class="col-sm-12">
+          <a (click)="onSelect(speaker.id)">
+            <h5 id="speaker-name">{{speaker.name}}</h5>
+            <span id="hiffen">&mdash;</span>
+            <h5>{{speaker.title}}</h5>
+          </a>
+        </div>
+
+        <p>{{session.description}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="session-icons col-sm-offset-7 col-sm-5">
+        <div>
+          <i class="fa fa-calendar">
+            <span>{{session.date | date:'fullDate'}}</span>
+          </i>
+        </div>
+
+        <div>
+          <i class="fa fa-clock-o">
+            <span>{{session.date | date:'shortTime'}}</span>
+          </i>
+        </div>
+
+        <div>
+          <i *ngIf="session.place" class="fa fa-map-marker">
+            <span>{{session.place}}</span>
+          </i>
+        </div>
+
+      </div>
+    </div>
+
   </div>
-  <div>
-    <i class="fa fa-clock-o">
-      <span>{{session.date | date:'shortTime'}}</span>
-    </i>
-  </div>
-  <div >
-    <i *ngIf="session.place" class="fa fa-map-marker">
-      <span>{{session.place}}</span>
-    </i>
-  </div>
-  <div class="description">
-    <p>{{session.description}}</p>
-  </div>
-  <div class="details">
-    <a *ngIf="session.kind === 'Keynote'" (click)="onSelect(speaker.id)">
-      <h4>
-        {{speaker.name}}
-      </h4>
-      <img src='{{speaker.img}}'>
-      <h6>
-        {{speaker.title}}
-      </h6>
-    </a>
-    <img *ngIf="session.kind !== 'Keynote'" src='{{session.img}}'>
-  </div>
-  
+
 </section>

@@ -1,45 +1,102 @@
-.session-section h2 {
-    font-size: 28px;
-}
-
-.session-section h1 {
-    font-size: 35px;
-}
-
 .session-section i {
-    color: black;
+  color: black;
 }
 
 .session-section i span {
-    margin: 0 5px;
+  margin: 0 5px;
 }
 
-.session-section .description p{
-    margin: 20px;
-    white-space: pre-line;
-    line-height: 1.45;
+.session-section .description p {
+  margin: 20px;
+  white-space: pre-line;
+  line-height: 1.45;
 }
 
 .session-section .details {
-    padding: 10px;
+  padding: 10px;
 }
 
-.session-section .details a {
-    display: block;
-    text-decoration: none;
-    cursor: pointer;
+.session-section a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .session-section .details h4 {
-    margin: 10px 10px 20px;
+  margin: 10px 10px 20px;
 }  
 
 .session-section .details img {
-    width: 100px;
-    border-radius: 50%;
+  width: 100px;
+  border-radius: 50%;
 }  
 
-.session-section .details h6 {
-    margin: 25px;
-    color: #a9a9a9;
-}  
+.session-section h6 {
+  margin: 25px;
+  color: #a9a9a9;
+}
+
+.session-img {
+  margin: auto;
+}
+
+#speaker-name {
+  color: #008ae6;
+}
+
+.session-icons div {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.session-icons span {
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.container {
+  margin-top: 2%;
+}
+
+.img-column img {
+  border-radius: 50%;
+}
+
+h5, .container {
+  margin: 15px auto;
+}
+
+h4 {
+  margin-top: 5px;
+}
+
+#linebreak {
+  display: none;
+}
+
+#hiffen {
+  color: black;
+  margin: auto 5px;
+}
+
+h5 {
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  #hiffen {
+    display: none;
+  }
+
+  h5 {
+    text-align: center;
+    display: block;
+  }
+
+  #speaker-name {
+    margin-bottom: 5px;
+  }
+
+  #linebreak {
+    display: block;
+  }
+}
