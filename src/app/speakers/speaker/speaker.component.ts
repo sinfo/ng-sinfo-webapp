@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { SpeakerService } from '../speaker.service'
 import { ActivatedRoute, Params } from '@angular/router'
+
+import { SpeakerService } from '../speaker.service'
 import { Speaker } from '../speaker.model'
 
 @Component({
