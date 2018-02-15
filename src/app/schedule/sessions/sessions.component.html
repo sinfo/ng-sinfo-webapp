@@ -1,6 +1,7 @@
 <app-menu></app-menu>
 
-<p *ngIf="!session">Loading...</p>
+<app-loading [content]="session">
+</app-loading>
 
 <section *ngIf="session" class="section session-section align-center">
   <h4 class="kind">{{session.kind}}</h4>

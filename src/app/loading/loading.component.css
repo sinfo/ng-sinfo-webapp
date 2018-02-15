@@ -1,5 +1,11 @@
-.loading {
+.loading-icon {
   position: relative;
   width: 100%;
-  font-size: 25px;
+  height: 35px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.loading-icon i {
+  font-size: 35px;
 }
