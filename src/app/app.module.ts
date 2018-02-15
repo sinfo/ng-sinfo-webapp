@@ -29,6 +29,8 @@ import { ScheduleComponent } from './schedule/schedule.component'
 import { LoginComponent } from './auth/login/login.component'
 import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
+import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { AuthGuard } from './auth/auth.guard'
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { StorageService } from './storage.service'
     SponsorsComponent,
     TeamComponent,
     ScheduleComponent,
-    LoginComponent
+    LoginComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { StorageService } from './storage.service'
     TeamService,
     SessionService,
     AuthService,
+    AuthGuard,
     StorageService
   ],
   bootstrap: [AppComponent]

@@ -15,6 +15,7 @@ const httpOptions = {
 @Injectable()
 export class AuthService {
   private authUrl = environment.cannonUrl + '/auth'
+  redirectUrl: string
 
   constructor (
     private http: HttpClient,
@@ -25,12 +26,11 @@ export class AuthService {
   facebook (id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/facebook`, { id, token }, httpOptions)
     .pipe(
-      tap((cannonToken: CannonToken) => console.log(cannonToken)),
       catchError(this.handleError<CannonToken>('Facebook Login'))
     )
   }
 
-  getToken (): CannonToken {
+  getToken (): CannonToken | null | undefined {
     return this.storageService.getItem('cannon-auth') as CannonToken
   }
 
@@ -38,15 +38,25 @@ export class AuthService {
     this.storageService.setItem('cannon-auth', token)
   }
 
-  isAuthenticated (): boolean {
-    if (this.getToken().date > Date.now().valueOf()) {
+  isLoggedIn (): boolean {
+    const token = this.getToken()
+    if (!token) {
+      return false
+    }
+
+    const now = new Date()
+    const ttl = token.ttl * 60 // Convert ttl in minutes to UNIX timestamp
+    const expires = token.date + ttl
+
+    if (expires > Math.floor(now.getTime() / 1000)) {
       return true
     }
+    this.logout()
     return false
   }
 
   logout (): void {
-    localStorage.removeItem('cannon-auth')
+    this.storageService.removeItem('cannon-auth')
   }
 
   /**

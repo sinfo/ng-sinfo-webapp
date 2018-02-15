@@ -10,10 +10,14 @@ import {
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
 import { LoginComponent } from './auth/login/login.component'
+import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { AuthGuard } from './auth/auth.guard'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: LoginComponent },
+  { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'coc', component: CodeOfConductComponent },

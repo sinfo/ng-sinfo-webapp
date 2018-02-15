@@ -3,7 +3,8 @@
 <section class="section">
   <div class="container">
     <i class="icon section-icon fa fa-sign-in align-center"></i>
-    <h3 class="align-center">Login</h3>
+    <h3 *ngIf="router.url === '/login'" class="align-center">Login</h3>
+    <h3 *ngIf="router.url === '/register'" class="align-center">Register</h3>
     <br />
     <br />
 
