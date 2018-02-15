@@ -26,48 +26,33 @@ export class SessionService {
   ) { }
 
   getSessions (): Observable<Session[]> {
+    if (this.sessions) {
+      return of(this.sessions)
+    }
+
     const params = new HttpParams({
       fromObject: {
         'sort': 'date',
         'event': environment.currentEvent
       }
     })
+
     return this.http.get<Session[]>(this.sessionsUrl, { params })
       .pipe(
-        tap(sessions => this.setLocalSessions(sessions)),
+        tap(sessions => this.sessions = sessions),
         catchError(this.handleError<Session[]>('getSessions', []))
       )
   }
 
   getSession (id: string): Observable<Session> {
-    return this.http.get<Session>(`${this.sessionsUrl}/${id}`)
-      .pipe(
-        catchError(this.handleError<Session>(`getSession id=${id}`))
-      )
-  }
-
-  getLocalSessions (): Session[] {
-    return this.sessions ? this.sessions : undefined
-  }
-
-  getLocalSession (id: string): Session {
     if (this.sessions) {
-      return this.sessions.find(session => session.id === id)
+      return of(this.sessions.find(session => session.id === id))
     } else {
-      return undefined
+      this.getSessions().subscribe(sessions => {
+        return of(this.sessions.find(session => session.id === id))
+      })
     }
   }
-
-  setLocalSessions (sessions: Session[]): void {
-    this.sessions = sessions
-  }
-
-  /*
-  isActive (): Observable<boolean> {
-    this.hasContent = new Promise<boolean>((resolve, reject) => {
-      this.resolve
-    })
-  }*/
 
   /**
    * Handle Http operation that failed.

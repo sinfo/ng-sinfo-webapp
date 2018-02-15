@@ -20,14 +20,7 @@ export class SpeakerComponent implements OnInit {
   ngOnInit () {
     this.route.params.forEach((params: Params) => {
       const id = params['id']
-      const speaker = this.speakerService.getLocalSpeaker(id)
-
-      if (speaker) {
-        this.speaker = speaker
-      } else {
-        // If speaker does not exist in SpeakerService memory we need to get it from the API
-        this.getSpeaker(id)
-      }
+      this.getSpeaker(id)
     })
   }
 
