@@ -25,7 +25,9 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
-import { ScheduleComponent } from './schedule/schedule.component';
+import { UserComponent } from './user/user.component'
+import { UserService } from './user/user.service'
+import { ScheduleComponent } from './schedule/schedule.component'
 import { SessionsComponent } from './schedule/sessions/sessions.component'
 
 @NgModule({
@@ -42,7 +44,7 @@ import { SessionsComponent } from './schedule/sessions/sessions.component'
     SpeakerComponent,
     SponsorsComponent,
     TeamComponent,
-    ScheduleComponent,
+    UserComponent,
     SessionsComponent
   ],
   imports: [
@@ -55,8 +57,8 @@ import { SessionsComponent } from './schedule/sessions/sessions.component'
     MessageService,
     SponsorService,
     TeamService,
-    SessionService,
-    MessageService
+    UserService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })
