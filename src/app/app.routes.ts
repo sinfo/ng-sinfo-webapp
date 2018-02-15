@@ -12,6 +12,8 @@ import { SponsorsComponent } from './sponsors/sponsors.component'
 import { LoginComponent } from './auth/login/login.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
+import { UserComponent } from './user/user.component'
+import { SessionsComponent } from './schedule/sessions/sessions.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -19,7 +21,9 @@ const routes: Routes = [
   { path: 'register', component: LoginComponent },
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
+  { path: 'sessions/:id', component: SessionsComponent },
   { path: 'sponsors', component: SponsorsComponent },
+  { path: 'user/:id', component: UserComponent },
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: '**', component: PageNotFoundComponent }
