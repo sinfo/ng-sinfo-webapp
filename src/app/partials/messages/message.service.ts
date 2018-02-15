@@ -9,7 +9,7 @@ export const enum Type {
 export interface Message {
   origin: string,
   text: string,
-  type?: Type
+  type: Type
 }
 
 @Injectable()
@@ -17,8 +17,22 @@ export class MessageService {
   messages: Message[] = []
 
   add (message: Message) {
-    console.log(message)
-    this.messages.push(message)
+    switch (message.type) {
+      case Type.error:
+        console.error(message)
+        this.messages.push(message)
+        break
+      case Type.log:
+        console.log(message)
+        break
+      case Type.warning:
+        console.log(message)
+        this.messages.push(message)
+        break
+      default:
+        console.log(message)
+        break
+    }
   }
 
   clear () {

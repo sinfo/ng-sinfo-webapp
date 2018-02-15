@@ -67,10 +67,6 @@ export class AuthService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error) // log to console instead
-
       this.messageService.add({
         origin: `AuthService: ${operation}`,
         text: error.message,
