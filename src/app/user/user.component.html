@@ -1,37 +1,43 @@
 <app-menu></app-menu>
 
-<div class="container" *ngIf="!user">
+<div class="container loading-wrapper" *ngIf="!user">
     <span class="icon section-icon fa fa-spinner align-center"></span>
     <h3 class="align-center">Loading...</h3>
 </div>
 
-<div class="container align-center" *ngIf="user">
-  <h1  >
-    {{user.name}}
-  </h1>
+<div class="container align-center user" *ngIf="user">
+  <div class="row">
+    <h3 class="name">
+      {{user.name}} 
+    </h3>
+  </div>
 
-  <br />
-
-  <img src="{{user.img}}">
+  <div class="row">
+    <div class="portrait-wrapper">
+      <img class="portrait" src="{{user.img}}">
+    </div>  
+  </div>
   
-  <div class="container" *ngIf="user.area">
-    <h5>Area: </h5>
+  <div class="row" *ngIf="user.area">
+    <h5>Area </h5>
     <p>{{user.area}}</p>
   </div>
   
-  <div class="container" *ngIf="user.skills">
-    <h5>Skills: </h5>
-    <p>{{user.skills}}</p>
+  <div class="row" *ngIf="user.skills">
+    <h5>Skills </h5>
+    <p>{{user.skills.join(', ')}}</p>
   </div>
   
-  <div class="container">
-      <h5>Current points: </h5>
+  <div class="row">
+      <h5>Current points </h5>
       <p>{{user.points.total ? user.points.total : 0}}</p>
   </div>
 
-  <div class="container" *ngIf="achievements.length > 0">
-    <h5>Achievements earned: </h5>
-    <img class="achievements" src="{{achievement.img}}" align="left" width="220" title="{{achievement.name}}" *ngFor="let achievement of achievements">
+  <div class="row" *ngIf="achievements && achievements.length > 0">
+    <h5>Achievements earned </h5>
+    <div class="achivements-wrapper">
+      <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
+    </div>
   </div>
   
 </div>

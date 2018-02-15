@@ -1,3 +1,49 @@
-h5, p {
-    text-align: left;
+div.loading-wrapper {
+  margin: 30px auto;
+}
+
+div.user {
+  background: url("http://static.sinfo.org/SINFO_25/powerOnBackground.png") right no-repeat;
+  background-position: right top;
+  background-size: 60%;
+}
+
+div.portrait-wrapper {
+  margin: 10px auto;
+}
+
+h3 {
+  margin: 20px auto;
+}
+
+h5 {
+  margin-top: 10px;
+}
+
+p {
+  font-size: 15px;
+}
+
+img.portrait {
+  border-radius: 50%;
+  border: 3px solid #048ae6;
+}
+
+div.achivements-wrapper {
+  margin: 20px auto;
+}
+
+div.achivements-wrapper img.achievement {
+  width: 100px;
+  margin: 5px;
+}
+
+@media (max-width: 425px){
+  div.user {
+    background-size: 150%;
+  }
+
+  div.user h5 {
+    text-align: center;
+  }
 }

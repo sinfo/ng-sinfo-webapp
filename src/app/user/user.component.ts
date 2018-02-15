@@ -25,7 +25,9 @@ export class UserComponent implements OnInit {
 
   getUser (id: string): void {
     this.userService.getUser(id)
-      .subscribe(user => this.user = user)
+      .subscribe(user => { 
+        this.user = user 
+      })
   }
 
   getUserAchievements (id: string): void {
