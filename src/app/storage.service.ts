@@ -17,6 +17,10 @@ export class StorageService {
 
   getItem (key: string): object {
     try {
+      if (localStorage.getItem(key) === 'undefined') {
+        this.removeItem(key)
+        return undefined
+      }
       return JSON.parse(localStorage.getItem(key))
     } catch (err) {
       console.error(err)
@@ -27,18 +31,18 @@ export class StorageService {
   removeItem (key: string): void {
     try {
       localStorage.removeItem(key)
+      delete this.internalStorage[key]
     } catch (err) {
       console.error(err)
-      delete this.internalStorage[key]
     }
   }
 
   clear (): void {
     try {
       localStorage.clear()
+      this.internalStorage = {}
     } catch (err) {
       console.error(err)
-      this.internalStorage = {}
     }
   }
 }
