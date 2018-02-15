@@ -45,8 +45,10 @@ export class SpeakerService {
     if (this.speakers) {
       return of(this.speakers.find(speaker => speaker.id === id))
     } else {
-      this.getSpeakers()
-      return of(this.speakers.find(speaker => speaker.id === id))
+      return this.http.get<Speaker>(`${this.speakersUrl}/${id}`)
+        .pipe(
+          catchError(this.handleError<Speaker>('getSpeaker'))
+        )
     }
   }
 

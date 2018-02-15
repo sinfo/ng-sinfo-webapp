@@ -48,9 +48,10 @@ export class SessionService {
     if (this.sessions) {
       return of(this.sessions.find(session => session.id === id))
     } else {
-      this.getSessions().subscribe(sessions => {
-        return of(this.sessions.find(session => session.id === id))
-      })
+      return this.http.get<Session>(`${this.sessionsUrl}/${id}`)
+        .pipe(
+          catchError(this.handleError<Session>('getSession'))
+        )
     }
   }
 
