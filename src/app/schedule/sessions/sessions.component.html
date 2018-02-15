@@ -23,4 +23,17 @@
   <div class="description">
     <p>{{session.description}}</p>
   </div>
+  <div class="details">
+    <a *ngIf="session.kind === 'Keynote'" (click)="onSelect(speaker.id)">
+      <h4>
+        {{speaker.name}}
+      </h4>
+      <img src='{{speaker.img}}'>
+      <h6>
+        {{speaker.title}}
+      </h6>
+    </a>
+    <img *ngIf="session.kind !== 'Keynote'" src='{{session.img}}'>
+  </div>
+  
 </section>

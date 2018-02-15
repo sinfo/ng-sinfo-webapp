@@ -14,7 +14,32 @@
     margin: 0 5px;
 }
 
-.session-section .description {
+.session-section .description p{
     margin: 20px;
     white-space: pre-line;
+    line-height: 1.45;
 }
+
+.session-section .details {
+    padding: 10px;
+}
+
+.session-section .details a {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.session-section .details h4 {
+    margin: 10px 10px 20px;
+}  
+
+.session-section .details img {
+    width: 100px;
+    border-radius: 50%;
+}  
+
+.session-section .details h6 {
+    margin: 25px;
+    color: #a9a9a9;
+}  

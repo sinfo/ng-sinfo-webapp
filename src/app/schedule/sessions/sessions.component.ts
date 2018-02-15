@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute, Router, Params } from '@angular/router'
 
 import { SessionService } from '../session.service'
 import { Session } from '../session.model'
+import { SpeakerService } from '../../speakers/speaker.service'
+import { Speaker } from '../../speakers/speaker.model'
 
 @Component({
   selector: 'app-sessions',
@@ -12,19 +14,23 @@ import { Session } from '../session.model'
 
 export class SessionsComponent implements OnInit {
   private session: Session
+  private speaker: Speaker
 
   constructor(
     private sessionService: SessionService,
-    private route: ActivatedRoute 
+    private speakerService: SpeakerService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router 
   ) { }
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
+    this.activatedRoute.params.forEach((params: Params) => {
       const id = params['id']
       const session = this.sessionService.getLocalSession(id)
 
       if(session) {
         this.session = session
+        this.getSpeaker(this.session)        
       } else {
         this.getSession(id)
       }
@@ -33,7 +39,21 @@ export class SessionsComponent implements OnInit {
 
   getSession (id: string): void {
     this.sessionService.getSession(id)
-      .subscribe(session => this.session = session)
+      .subscribe(session => {
+        this.session = session
+        this.getSpeaker(this.session)
+      })
+  }
+
+  getSpeaker (session: Session): void {
+    if (session.kind === 'Keynote') {
+      this.speakerService.getSpeaker(session.speakers[0]['id'])
+        .subscribe(speaker => this.speaker = speaker)
+    }
+  }
+
+  onSelect (id: string): void {
+    this.router.navigate(['/speakers', id]) 
   }
 
 }
