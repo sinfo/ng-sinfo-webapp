@@ -28,6 +28,11 @@ import { TeamService } from './team/team.service'
 import { UserComponent } from './user/user.component'
 import { UserService } from './user/user.service'
 import { ScheduleComponent } from './schedule/schedule.component'
+import { LoginComponent } from './auth/login/login.component'
+import { AuthService } from './auth/auth.service'
+import { StorageService } from './storage.service'
+import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { AuthGuard } from './auth/auth.guard'
 import { SessionsComponent } from './schedule/sessions/sessions.component'
 
 @NgModule({
@@ -44,6 +49,9 @@ import { SessionsComponent } from './schedule/sessions/sessions.component'
     SpeakerComponent,
     SponsorsComponent,
     TeamComponent,
+    ScheduleComponent,
+    LoginComponent,
+    MyProfileComponent,
     UserComponent,
     SessionsComponent
   ],
@@ -57,6 +65,10 @@ import { SessionsComponent } from './schedule/sessions/sessions.component'
     MessageService,
     SponsorService,
     TeamService,
+    SessionService,
+    AuthService,
+    AuthGuard,
+    StorageService,
     UserService,
     SessionService
   ],

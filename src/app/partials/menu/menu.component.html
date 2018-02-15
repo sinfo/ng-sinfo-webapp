@@ -2,7 +2,7 @@
   <div class="header-wrapper">
     <div class="container">
       <div class="col-sm-2 col-xs-12 navigation-header">
-        <a href="/" class="logo">
+        <a routerLink="/" class="logo">
           <img id="logo_blue" src="assets/img/logos/71-x-19-Blue.png" alt="Sinfo" class="retina-hide">
           <img id="logo_white" src="assets/img/logos/71-x-19-White.png" alt="Sinfo" class="retina-show">
         </a>
@@ -16,12 +16,24 @@
       <div class="col-sm-10 col-xs-12 navigation-container">
         <div id="navigation" class="navbar-collapse collapse">
           <ul class="navigation-list pull-left light-text">
-            <li class="navigation-item"><a href="#about" class="navigation-link">About</a></li>
-            <li class="navigation-item"><a href="#feedback" class="navigation-link">Testimonials</a></li>
-            <li class="navigation-item"><a href="#speakers" class="navigation-link">Speakers</a></li>
-            <li class="navigation-item"><a href="#team" class="navigation-link">Team</a></li>
-            <li class="navigation-item"><a href="#schedule" class="navigation-link">Schedule</a></li>
-            <li class="navigation-item"><a href="#contacts" class="navigation-link">Contacts</a></li>
+            <li class="navigation-item">
+              <a href="#about" class="navigation-link">About</a>
+            </li>
+            <li class="navigation-item">
+              <a href="#feedback" class="navigation-link">Testimonials</a>
+            </li>
+            <li class="navigation-item">
+              <a href="#speakers" class="navigation-link">Speakers</a>
+            </li>
+            <li class="navigation-item">
+              <a href="#team" class="navigation-link">Team</a>
+            </li>
+            <li class="navigation-item">
+              <a href="#schedule" class="navigation-link">Schedule</a>
+            </li>
+            <li class="navigation-item">
+              <a href="#contacts" class="navigation-link">Contacts</a>
+            </li>
           </ul>
           <ul class="navigation-list pull-right light-text">
             <li *ngIf="!isLoggedIn" class="navigation-item">
@@ -29,14 +41,20 @@
                 <span class="fa fa-sign-in"></span> Login
               </a>
             </li>
+            <li *ngIf="!isLoggedIn" class="navigation-item">
+              <a routerLink="/register" class="navigation-link">
+                <span class="fa fa-sign-in"></span> Register
+              </a>
+            </li>
+
             <li *ngIf="isLoggedIn" class="navigation-item">
               <a routerLink="/me" class="navigation-link">
                 <span class="fa fa-user"></span> My Profile
               </a>
             </li>
             <li *ngIf="isLoggedIn" class="navigation-item">
-              <a routerLink="/" class="navigation-link">
-                <span class="fa fa-sign-out"></span> Logout
+              <a (click)="onLogout()" class="navigation-link">
+                Logout
               </a>
             </li>
           </ul>
@@ -45,3 +63,15 @@
     </div>
   </div>
 </header>
+
+<div class="container alert-message">
+  <div *ngIf="messageService.messages.length">
+    <div *ngFor="let message of messageService.messages" class="alert alert-warning alert-dismissible" role="alert">
+      <button (click)="messageService.clear()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <strong>Warning!</strong> {{ message.text }}
+    </div>
+
+  </div>
+</div>
