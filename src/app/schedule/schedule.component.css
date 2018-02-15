@@ -95,3 +95,11 @@
   margin-right: 0;
   padding-right: 0;
 }
+
+.schedule-item {
+  min-height: 0px !important;
+}
+
+.room1 div, .room2 div {
+  min-height: 200px;
+}
