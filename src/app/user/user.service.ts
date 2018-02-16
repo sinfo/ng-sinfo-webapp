@@ -12,6 +12,7 @@ import { AuthService } from '../auth/auth.service'
 @Injectable()
 export class UserService {
   private usersUrl = environment.cannonUrl + '/users'
+  private me: User
 
   constructor (
     private http: HttpClient,
@@ -27,6 +28,10 @@ export class UserService {
   }
 
   getMe (): Observable<User> {
+    if (this.me) {
+      return of(this.me)
+    }
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
