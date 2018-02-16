@@ -25,6 +25,7 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
+import { LoadingComponent } from './loading/loading.component'
 import { UserComponent } from './user/user.component'
 import { UserService } from './user/user.service'
 import { ScheduleComponent } from './schedule/schedule.component'
@@ -50,6 +51,7 @@ import { SessionsComponent } from './schedule/sessions/sessions.component'
     SponsorsComponent,
     TeamComponent,
     ScheduleComponent,
+    LoadingComponent,
     LoginComponent,
     MyProfileComponent,
     UserComponent,

@@ -21,11 +21,12 @@ export class ScheduleComponent implements OnInit {
     private router: Router
   ) { }
 
+
   ngOnInit () {
     this.getSessions()
   }
 
-  getSessions (): void {
+  getSessions(): void {
     this.sessionService.getSessions()
       .subscribe(sessions => {
         this.sessions = sessions
@@ -33,7 +34,7 @@ export class ScheduleComponent implements OnInit {
       })
   }
 
-  createSchedule (sessions: Session[]): void {
+  createSchedule(sessions: Session[]): void {
     let tempSchedule = {}
 
     sessions.forEach((val, index) => {
@@ -74,6 +75,7 @@ export class ScheduleComponent implements OnInit {
       this.schedule.push(tempSchedule[day])
       i += 1
     }
+
   }
 
   onSelect (session: Session): void {
