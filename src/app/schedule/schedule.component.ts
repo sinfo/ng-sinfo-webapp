@@ -21,15 +21,9 @@ export class ScheduleComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
-    const sessions = this.sessionService.getLocalSessions()
 
-    if (sessions) {
-      this.sessions = sessions
-    } else {
-      // If session does not exist in SessionService memory we need to get it from the API
-      this.getSessions()
-    }
+  ngOnInit () {
+    this.getSessions()
   }
 
   getSessions(): void {

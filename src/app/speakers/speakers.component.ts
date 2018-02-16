@@ -17,13 +17,7 @@ export class SpeakersComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    const speakers = this.speakerService.getLocalSpeakers()
-    if (speakers) {
-      this.speakers = speakers
-    } else {
-      // If speakers does not exist in SpeakerService memory we need to get it from the API
-      this.getSpeakers()
-    }
+    this.getSpeakers()
   }
 
   getSpeakers (): void {
