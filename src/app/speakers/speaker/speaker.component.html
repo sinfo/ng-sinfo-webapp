@@ -4,11 +4,40 @@
 </app-loading>
 
 <section *ngIf="speaker" class="section speaker-section align-center">
-  <img src='{{speaker.img}}'>
-  <h1>{{speaker.name}}</h1>
-  <h2>{{speaker.title}}</h2>
-  <div class="description">
-    <h3>Biography</h3>
-    <p>{{speaker.description}}</p>
+  <h4 class="kind">Biography</h4>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 img-column session-img">
+        <img src='{{speaker.img}}'>
+      </div>
+
+      <div class="col-sm-9 align-left justify">
+        <div class="col-sm-12">
+          <h5 id="speaker-name">{{speaker.name}}</h5>
+          <span id="hiffen">&mdash;</span>
+          <h5>{{speaker.title}}</h5>
+        </div>
+
+        <p>{{speaker.description}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="session" (click)="onSelect(session)">
+          <h2 class="kind">{{session.kind}}</h2>
+          <h3 class="name">{{session.name}}</h3>
+          <div>
+            <i class="fa fa-calendar"><span>{{session.date | date:'fullDate'}}</span></i>
+          </div>
+          <div>
+            <i class="fa fa-clock-o"><span>{{session.date | date:'shortTime'}}</span></i>
+          </div>
+          <div>
+            <i class="fa fa-map-marker"><span>{{session.place}}</span></i>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

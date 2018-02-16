@@ -11,12 +11,6 @@
     margin: 10px;
 }
 
-.speaker-section h2 {
-    font-size: 18px;
-    font-weight: 400;
-    color: #a9a9a9;
-}
-
 .speaker-section .description {
     margin: 4em;
     text-align: left;
@@ -29,4 +23,32 @@
 .speaker-section .description p {
     line-height: 1.45;
     white-space: pre-line;
+}
+
+.speaker-section .session {
+    margin: 25px 0px;
+    background-color: #0278ab;
+    padding: 20px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.speaker-section .session h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: white;
+}
+
+.speaker-section .session h3 {
+    font-size: 28px;
+    color: white;
+}
+
+.speaker-section .session i {
+    font-size: 16px;
+    color: white;
+}
+
+.speaker-section .session i span{
+    padding-left: 5px;
 }

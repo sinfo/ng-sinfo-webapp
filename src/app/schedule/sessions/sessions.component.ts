@@ -43,7 +43,6 @@ export class SessionsComponent implements OnInit {
   getSpeaker (session: Session): void {
     this.speakerService.getSpeaker(session.speakers[0]['id'])
       .subscribe(speaker => this.speaker = speaker)
-
   }
 
   onSelect (id: string): void {
