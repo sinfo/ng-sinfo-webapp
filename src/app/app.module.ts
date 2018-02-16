@@ -25,7 +25,15 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
+import { UserComponent } from './user/user.component'
+import { UserService } from './user/user.service'
 import { ScheduleComponent } from './schedule/schedule.component'
+import { LoginComponent } from './auth/login/login.component'
+import { AuthService } from './auth/auth.service'
+import { StorageService } from './storage.service'
+import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { AuthGuard } from './auth/auth.guard'
+import { SessionsComponent } from './schedule/sessions/sessions.component'
 
 import { QrcodeComponent } from './qrcode/qrcode.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3'
@@ -45,7 +53,11 @@ import { NgxQRCodeModule } from 'ngx-qrcode3'
     SponsorsComponent,
     TeamComponent,
     ScheduleComponent,
-    QrcodeComponent
+    QrcodeComponent,
+    LoginComponent,
+    MyProfileComponent,
+    UserComponent,
+    SessionsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +71,11 @@ import { NgxQRCodeModule } from 'ngx-qrcode3'
     SponsorService,
     TeamService,
     SessionService,
-    MessageService
+    AuthService,
+    AuthGuard,
+    StorageService,
+    UserService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })

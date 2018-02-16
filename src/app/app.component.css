@@ -1,0 +1,5 @@
+@media (min-height: 900px) {
+    .content {
+        min-height: 87vh;
+    }
+}

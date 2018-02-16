@@ -1,0 +1,38 @@
+button:disabled,
+button[disabled] {
+  background-color: gray
+}
+
+.btn-fb {
+  background-color: #48649F;
+}
+
+.btn-fb:hover {
+  background-color: #3a5287;
+}
+
+.btn-google {
+  background-color: #DD4B39;
+}
+
+.btn-google:hover {
+  background-color: #c43421;
+}
+
+.btn-fenix {
+  background-color: #19ACCD;
+}
+
+.btn-fenix:hover {
+  background-color: #1698b6;
+}
+
+.btn {
+  border: 0px;
+  color: #fff;
+  margin: 10px;
+}
+
+.row .fa {
+  color: white
+}

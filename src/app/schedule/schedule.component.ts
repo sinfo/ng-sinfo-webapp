@@ -17,7 +17,8 @@ export class ScheduleComponent implements OnInit {
   private schedule = []
 
   constructor (
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private router: Router
   ) { }
 
   ngOnInit () {
@@ -79,5 +80,9 @@ export class ScheduleComponent implements OnInit {
       this.schedule.push(tempSchedule[day])
       i += 1
     }
+  }
+
+  onSelect (session: Session): void {
+    this.router.navigate(['/sessions', session.id])
   }
 }
