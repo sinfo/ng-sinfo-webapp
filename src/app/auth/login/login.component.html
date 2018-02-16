@@ -17,11 +17,14 @@
       </div>
 
       <div class="col-md-4">
-        <button class="btn btn-google">
+        <div *ngIf="isGoogleActive" id="google-signin" (data-onsuccess)="onGoogleLogin"></div>
+        <!--<button class="btn btn-google" (click)="onGoogleLogin()" [disabled]="!isBlocking">
           <i class="fa fa-google"></i>
           Google
-        </button>
+        </button>-->
       </div>
+
+
 
       <div class="col-md-4">
         <button class="btn btn-fenix">
