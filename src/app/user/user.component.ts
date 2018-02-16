@@ -19,8 +19,10 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    this.route.params.forEach((params: Params) => this.getUser(params['id']))
-    this.route.params.forEach((params: Params) => this.getUserAchievements(params['id']))
+    this.route.params.forEach((params: Params) => {
+      this.getUser(params['id'])
+      this.getUserAchievements(params['id'])
+    })
   }
 
   getUser (id: string): void {

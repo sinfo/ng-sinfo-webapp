@@ -44,12 +44,11 @@ export class SpeakerService {
   getSpeaker (id: string): Observable<Speaker> {
     if (this.speakers) {
       return of(this.speakers.find(speaker => speaker.id === id))
-    } else {
-      return this.http.get<Speaker>(`${this.speakersUrl}/${id}`)
-        .pipe(
-          catchError(this.handleError<Speaker>('getSpeaker'))
-        )
     }
+    return this.http.get<Speaker>(`${this.speakersUrl}/${id}`)
+      .pipe(
+        catchError(this.handleError<Speaker>(`getSpeaker id=${id}`))
+      )
   }
 
   /**
