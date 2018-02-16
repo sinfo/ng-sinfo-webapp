@@ -43,7 +43,7 @@
             </li>
             <li *ngIf="!isLoggedIn" class="navigation-item">
               <a routerLink="/register" class="navigation-link">
-                <span class="fa fa-sign-in"></span> Register
+                <span class="fa fa-user-plus"></span> Register
               </a>
             </li>
 
@@ -54,7 +54,7 @@
             </li>
             <li *ngIf="isLoggedIn" class="navigation-item">
               <a (click)="onLogout()" class="navigation-link">
-                Logout
+                <span class="fa fa-sign-out"></span> Logout
               </a>
             </li>
           </ul>

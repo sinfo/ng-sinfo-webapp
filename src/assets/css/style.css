@@ -2419,11 +2419,11 @@ input.header.header-color .navigation-header .buy-btn,
 }
 ::selection {
   color: #ffffff;
-  background-color: rgba(254, 73, 24, 0.85);
+  background-color: #008ae6;
 }
 ::-moz-selection {
   color: #ffffff;
-  background-color: rgba(254, 73, 24, 0.85);
+  background-color: #008ae6;
 }
 .bg-low-poly,
 div.bg-low-poly,
