@@ -11,6 +11,13 @@ import { of } from 'rxjs/observable/of'
 export class SponsorService {
   private sponsorUrl = environment.deckUrl + '/api/companies'
   private sponsors: Sponsor[]
+  private params = new HttpParams({
+    fromObject: {
+      'sort': 'name',
+      'event': environment.currentEvent,
+      'participations': 'true'
+    }
+  })
 
   constructor (
     private http: HttpClient,
@@ -21,16 +28,7 @@ export class SponsorService {
     if (this.sponsors) {
       return of(this.sponsors)
     }
-
-    const params = new HttpParams({
-      fromObject: {
-        'sort': 'name',
-        'event': '24-sinfo',
-        'participations': 'true'
-      }
-    })
-
-    return this.http.get<Sponsor[]>(this.sponsorUrl, { params })
+    return this.http.get<Sponsor[]>(this.sponsorUrl, { params: this.params })
       .pipe(
         tap(sponsors => this.sponsors = sponsors),
         catchError(this.handleError<Sponsor[]>('getSponsors', []))
@@ -40,10 +38,11 @@ export class SponsorService {
   getSponsor (id: string): Observable<Sponsor> {
     if (this.sponsors) {
       return of(this.sponsors.find(speaker => speaker.id === id))
-    } else {
-      this.getSponsors()
-      return of(this.sponsors.find(speaker => speaker.id === id))
     }
+    return this.http.get<Sponsor>(`${this.sponsorUrl}/${id}`, { params: this.params })
+      .pipe(
+        catchError(this.handleError<Sponsor>(`getSponsor id=${id}`))
+      )
   }
 
   /**
