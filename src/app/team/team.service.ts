@@ -25,6 +25,10 @@ export class TeamService {
   ) { }
 
   getTeam (): Observable<Member[]> {
+    if (this.team) {
+      return of(this.team)
+    }
+
     const params = new HttpParams({
       fromObject: {
         'sort': 'name',
@@ -34,17 +38,9 @@ export class TeamService {
     })
     return this.http.get<Member[]>(this.memberUrl, { params })
       .pipe(
-        tap(team => this.setLocalTeam(team)),
+        tap(team => this.team = team),
         catchError(this.handleError<Member[]>('getTeam', []))
       )
-  }
-
-  getLocalTeam (): Member[] {
-    return this.team ? this.team : undefined
-  }
-
-  setLocalTeam (team: Member[]): void {
-    this.team = team
   }
 
   /**
