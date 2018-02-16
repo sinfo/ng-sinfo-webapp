@@ -17,13 +17,7 @@ export class TeamComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    const team = this.teamService.getLocalTeam()
-    if (team) {
-      this.team = team
-    } else {
-      // If team does not exist in MemberService memory we need to get it from the API
-      this.getTeam()
-    }
+    this.getTeam()
   }
 
   getTeam (): void {

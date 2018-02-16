@@ -18,6 +18,10 @@ export class SponsorService {
   ) { }
 
   getSponsors (): Observable<Sponsor[]> {
+    if (this.sponsors) {
+      return of(this.sponsors)
+    }
+
     const params = new HttpParams({
       fromObject: {
         'sort': 'name',
@@ -25,27 +29,21 @@ export class SponsorService {
         'participations': 'true'
       }
     })
+
     return this.http.get<Sponsor[]>(this.sponsorUrl, { params })
       .pipe(
-        tap(sponsors => this.setLocalSponsors(sponsors)),
+        tap(sponsors => this.sponsors = sponsors),
         catchError(this.handleError<Sponsor[]>('getSponsors', []))
       )
   }
 
-  getLocalSponsors (): Sponsor[] {
-    return this.sponsors ? this.sponsors : undefined
-  }
-
-  getLocalSponsor (id: string): Sponsor {
+  getSponsor (id: string): Observable<Sponsor> {
     if (this.sponsors) {
-      return this.sponsors.find(speaker => speaker.id === id)
+      return of(this.sponsors.find(speaker => speaker.id === id))
     } else {
-      return undefined
+      this.getSponsors()
+      return of(this.sponsors.find(speaker => speaker.id === id))
     }
-  }
-
-  setLocalSponsors (sponsors: Sponsor[]): void {
-    this.sponsors = sponsors
   }
 
   /**

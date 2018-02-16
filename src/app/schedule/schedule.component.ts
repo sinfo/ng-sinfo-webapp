@@ -14,7 +14,7 @@ import { environment } from '../../environments/environment'
 export class ScheduleComponent implements OnInit {
 
   private sessions: Session[]
-  private schedule = []
+  private schedule
 
   constructor (
     private sessionService: SessionService,
@@ -22,14 +22,7 @@ export class ScheduleComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    const sessions = this.sessionService.getLocalSessions()
-
-    if (sessions) {
-      this.sessions = sessions
-    } else {
-      // If session does not exist in SessionService memory we need to get it from the API
-      this.getSessions()
-    }
+    this.getSessions()
   }
 
   getSessions (): void {
@@ -75,6 +68,7 @@ export class ScheduleComponent implements OnInit {
     })
 
     let i = 0
+    this.schedule = []
     for (let day in tempSchedule) {
       tempSchedule[day].theme = environment.themes[i]
       this.schedule.push(tempSchedule[day])
