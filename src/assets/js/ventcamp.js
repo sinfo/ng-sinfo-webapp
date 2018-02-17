@@ -337,40 +337,6 @@ Ventcamp = {
         return $input;
     },
 
-    // Tabs view
-    tabNavToSelect: function() {
-        $nav = $('.nav');
-
-        var _this = this;
-
-        $nav.each(function () {
-            var $this = $(this),
-                $active = $this.find('li.active > a'),
-                $field = $('<span class="nav-current">' + $active.html() + '</span>');
-
-            $this.wrapAll('<div class="nav-wrapper"></div>')
-
-            $this.before($field);
-
-            $field.on('click', function () {
-                if ( !$this.is('.open') ) $this.stop(true, true).slideDown(250).addClass('open');
-                else $this.stop(true, true).slideUp(150).removeClass('open');
-            });
-
-            $this.on('click', 'a', function () {
-                $field.html($(this).html());
-            });
-
-            $('body').on('click', function (event) {
-                $target = $(event.target);
-
-                if ( !$target.closest($field).length && $this.is('.open') ) {
-                    $this.stop(true, true).slideUp(150).removeClass('open');
-                }
-            });
-        });
-    },
-
     // Google map
     initGoogleMap: function() {
         var _this = this;
@@ -603,139 +569,6 @@ Ventcamp = {
         $('.fade-in-on-stick').fadeOut();
     },
 
-    //one page menu navigation
-    onePageNavInit: function () {
-        var _this = this;
-
-        if ( typeof $.fn.waypoint != 'undefined' ) {
-            var $menuLinks = $('.navigation-list a').not('[href="#"]').filter(function () {
-                    return /#\w+/.test(this.href);
-                }),
-                enterHandler = function( that, direction ) {
-                    var id = that.id,
-                        $item = $('.navigation-list a').filter(function () {
-                            return this.href.indexOf('#' + that.id) > -1;
-                        });
-
-                    $('.navigation-list .active').removeClass('active');
-                    $item.addClass('active');
-
-                    // push anchor to browser URL
-                    if ( _this.options.onePageNavHashChange ){
-                        if ( history.pushState ) {
-                            history.pushState(null, null, '#' + id);
-                        }else {
-                            _this.log('Browser don\'t support history API');
-                        }
-                    }
-                },
-                leaveHandler = function ( that, direction ) {
-                    var $item = $('.navigation-list a').filter(function () {
-                            return this.href.indexOf('#' + that.id) > -1;
-                        });
-
-                    $item.removeClass('active');
-                };
-
-            $menuLinks.each(function (index) {
-                var href = this.href,
-                    anchorId = href.substring(href.indexOf('#'), href.length),
-                    $block = $(anchorId);
-
-                if ( $block.length ) {
-                    $block.waypoint(function (direction) {
-                        if ( direction == 'down' ) {
-                            enterHandler( this.element, direction );
-                        }
-
-                    }, { offset: 0 });
-
-                    $block.waypoint(function (direction) {
-                        if ( direction == 'down' ) {
-                            leaveHandler( this.element, direction );
-
-                        }else {
-                            enterHandler( this.element, direction );
-                        }
-
-                    }, { offset: -$block.outerHeight() });
-
-                    $block.waypoint(function (direction) {
-                        if ( direction == 'up' ) {
-                            leaveHandler( this.element, direction );
-                        }
-
-                    }, { offset: '100%' });
-                }
-            });
-
-            $('body').waypoint(function () {
-                var id = 'hero',
-                    $item = $('.navigation-list a[href="#' + id + '"]');
-
-                $('.navigation-list .active').removeClass('active');
-
-                if ( $item.length ) {
-                    $item.addClass('active');
-
-                    if ( _this.options.onePageNavHashChange ){
-                        if ( history.pushState ) {
-                            history.pushState(null, null, '#' + id);
-                        }else {
-                            _this.log('Browser don\'t support history API');
-                        }
-                    }
-                }
-            }, { offset: -100 });
-
-            $('body').on( 'click', 'a[href*="#"]', function (event) {
-                var href = $(this).attr('href'),
-                    anchorId = href.substring(href.indexOf('#'), href.length);
-
-                if ( $(this).attr('data-toggle') && $(this).attr('data-toggle').length ) {
-                    return;
-
-                }
-
-                if ( $(anchorId).length ) {
-                    _this.anchorClickHandler(anchorId);
-
-                    return false;
-                }
-            });
-
-        }else {
-            this.log( 'Can\'t find jQuery.waypoint function' );
-
-        }
-    },
-
-    //custom smooth scrolling for all onpage anchors
-    anchorClickHandler: function(anchorId) {
-        var _this = this,
-            offsetTop = $(anchorId).offset().top - $('.header').height(),
-            $nav = $('.navigation-list'),
-            $elems = $nav.find('a[href="' + anchorId + '"]');
-
-        $('body, html').animate({
-            scrollTop: offsetTop
-
-        }, 450, function () {
-            if ( _this.options.onePageNavHashChange ) {
-                if ( history.pushState ) {
-                    history.pushState(null, null, anchorId);
-
-                }else {
-                    window.location.hash = anchorId;
-
-                }
-            }
-
-            $nav.find('.active').removeClass('active');
-            $elems.addClass('active');
-        });
-    },
-
     checkHeaderStatus: function () {
         if ( $('header').length ) {
             var $header = $('header'),
@@ -754,14 +587,6 @@ Ventcamp = {
     //onload handler
     windowLoadHeandler: function (event) {
         this.log('Window load handler');
-
-        if ( window.location.hash.length ) {
-            this.anchorClickHandler(window.location.hash);
-        }
-
-        if ( this.options.onePageNav ) {
-            this.onePageNavInit();
-        }
 
         this.checkHeaderStatus();
 
@@ -923,8 +748,6 @@ Ventcamp = {
         this.log('Init');
 
         this.checkMobile();
-
-        this.tabNavToSelect();
 
         if ( this.options.pseudoSelect ) this.initPseudoSelect();
 
