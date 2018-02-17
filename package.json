@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@zxing/ngx-scanner": "^1.0.0-dev.a5265f",
     "core-js": "^2.4.1",
     "instascan": "^1.0.0",
     "ngx-qrcode3": "^0.3.0",

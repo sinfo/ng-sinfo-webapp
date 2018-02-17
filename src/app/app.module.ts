@@ -36,7 +36,9 @@ import { AuthGuard } from './auth/auth.guard'
 import { SessionsComponent } from './schedule/sessions/sessions.component'
 
 import { QrcodeComponent } from './qrcode/qrcode.component'
-import { NgxQRCodeModule } from 'ngx-qrcode3'
+import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
+
+import { NgxZxingModule } from '@zxing/ngx-scanner'
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode3'
     BrowserModule,
     HttpClientModule,
     Routing,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    NgxZxingModule.forRoot()
   ],
   providers: [
     SpeakerService,
