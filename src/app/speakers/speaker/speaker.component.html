@@ -3,41 +3,48 @@
 <app-loading [content]="speaker">
 </app-loading>
 
-<section *ngIf="speaker" class="section speaker-section align-center">
-  <h4 class="kind">Biography</h4>
-
+<section *ngIf="speaker" class="section align-center">
   <div class="container">
     <div class="row">
-      <div class="col-sm-3 img-column session-img">
-        <img src='{{speaker.img}}'>
+      <div class="col-sm-12 session-icons ">
+        <h3 class="title">Biography</h3>
+      </div>
+    </div>
+
+    <div class="row speaker-section">
+      <div class="col-sm-3 col-xs-12">
+        <a (click)="onSelect(speaker.id)">
+          <img src='{{speaker.img}}'>
+        </a>
       </div>
 
-      <div class="col-sm-9 align-left justify">
-        <div class="col-sm-12">
-          <h5 id="speaker-name">{{speaker.name}}</h5>
-          <span id="hiffen">&mdash;</span>
+      <div class="col-sm-9 col-xs-12 align-left justify">
+        <a (click)="onSelect(speaker.id)">
+          <h5 class="name">{{speaker.name}}</h5>
           <h5>{{speaker.title}}</h5>
-        </div>
+        </a>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-sm-12">
         <p>{{speaker.description}}</p>
       </div>
     </div>
+
     <div *ngIf="session" class="row">
-      <div class="col-sm-12">
-        <div class="session" (click)="onSelect(session)">
+      <div class="col-sm-12 session " (click)="onSelect(session)">
+        <div class="well well-lg">
           <h2 class="kind">{{session.kind}}</h2>
           <h3 class="name">{{session.name}}</h3>
-          <div>
-            <i class="fa fa-calendar"><span>{{session.date | date:'fullDate'}}</span></i>
-          </div>
-          <div>
-            <i class="fa fa-clock-o"><span>{{session.date | date:'shortTime'}}</span></i>
-          </div>
-          <div>
-            <i class="fa fa-map-marker"><span>{{session.place}}</span></i>
+          <div class="session-details">
+            <div class="padded"> <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate'}} </p> </div>
+            <div class="padded"> <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime'}} </p> </div>
+            <div *ngIf="session.place"> <p> <i class="fa fa-map-marker"></i> {{session.place}} </p> </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
