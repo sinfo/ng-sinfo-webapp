@@ -31,13 +31,7 @@ export class SponsorsComponent implements OnInit {
      */
     this.router.url === '/' ? this.showAll = false : this.showAll = true
 
-    const sponsors = this.sponsorService.getLocalSponsors()
-    if (sponsors) {
-      this.sponsors = this.displaySponsors(sponsors)
-    } else {
-      // If sponsors does not exist in SponsorService memory we need to get it from the API
-      this.getSponsors()
-    }
+    this.getSponsors()
   }
 
   getSponsors (): void {

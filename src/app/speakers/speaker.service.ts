@@ -22,6 +22,10 @@ export class SpeakerService {
   ) { }
 
   getSpeakers (): Observable<Speaker[]> {
+    if (this.speakers) {
+      return of(this.speakers)
+    }
+
     const params = new HttpParams({
       fromObject: {
         'sort': 'name',
@@ -29,34 +33,22 @@ export class SpeakerService {
         'participations': 'true'
       }
     })
+
     return this.http.get<Speaker[]>(this.speakersUrl, { params })
       .pipe(
-        tap(speakers => this.setLocalSpeakers(speakers)),
+        tap(speakers => this.speakers = speakers),
         catchError(this.handleError<Speaker[]>('getSpeakers', []))
       )
   }
 
   getSpeaker (id: string): Observable<Speaker> {
+    if (this.speakers) {
+      return of(this.speakers.find(speaker => speaker.id === id))
+    }
     return this.http.get<Speaker>(`${this.speakersUrl}/${id}`)
       .pipe(
         catchError(this.handleError<Speaker>(`getSpeaker id=${id}`))
       )
-  }
-
-  getLocalSpeakers (): Speaker[] {
-    return this.speakers ? this.speakers : undefined
-  }
-
-  getLocalSpeaker (id: string): Speaker {
-    if (this.speakers) {
-      return this.speakers.find(speaker => speaker.id === id)
-    } else {
-      return undefined
-    }
-  }
-
-  setLocalSpeakers (speakers: Speaker[]): void {
-    this.speakers = speakers
   }
 
   /**

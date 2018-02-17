@@ -11,6 +11,13 @@ import { of } from 'rxjs/observable/of'
 export class SponsorService {
   private sponsorUrl = environment.deckUrl + '/api/companies'
   private sponsors: Sponsor[]
+  private params = new HttpParams({
+    fromObject: {
+      'sort': 'name',
+      'event': environment.currentEvent,
+      'participations': 'true'
+    }
+  })
 
   constructor (
     private http: HttpClient,
@@ -18,34 +25,24 @@ export class SponsorService {
   ) { }
 
   getSponsors (): Observable<Sponsor[]> {
-    const params = new HttpParams({
-      fromObject: {
-        'sort': 'name',
-        'event': '24-sinfo',
-        'participations': 'true'
-      }
-    })
-    return this.http.get<Sponsor[]>(this.sponsorUrl, { params })
+    if (this.sponsors) {
+      return of(this.sponsors)
+    }
+    return this.http.get<Sponsor[]>(this.sponsorUrl, { params: this.params })
       .pipe(
-        tap(sponsors => this.setLocalSponsors(sponsors)),
+        tap(sponsors => this.sponsors = sponsors),
         catchError(this.handleError<Sponsor[]>('getSponsors', []))
       )
   }
 
-  getLocalSponsors (): Sponsor[] {
-    return this.sponsors ? this.sponsors : undefined
-  }
-
-  getLocalSponsor (id: string): Sponsor {
+  getSponsor (id: string): Observable<Sponsor> {
     if (this.sponsors) {
-      return this.sponsors.find(speaker => speaker.id === id)
-    } else {
-      return undefined
+      return of(this.sponsors.find(speaker => speaker.id === id))
     }
-  }
-
-  setLocalSponsors (sponsors: Sponsor[]): void {
-    this.sponsors = sponsors
+    return this.http.get<Sponsor>(`${this.sponsorUrl}/${id}`, { params: this.params })
+      .pipe(
+        catchError(this.handleError<Sponsor>(`getSponsor id=${id}`))
+      )
   }
 
   /**

@@ -1,6 +1,7 @@
 <app-menu></app-menu>
 
-<p *ngIf="!speaker">Loading...</p>
+<app-loading [content]="speaker">
+</app-loading>
 
 <section *ngIf="speaker" class="section speaker-section align-center">
   <img src='{{speaker.img}}'>

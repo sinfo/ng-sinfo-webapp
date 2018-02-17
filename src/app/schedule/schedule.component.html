@@ -1,3 +1,6 @@
+<app-loading [content]="sessions">
+</app-loading>
+
 <section *ngIf="sessions && sessions.length" id="schedule" class="section schedule-section align-center">
   <div class="container">
     <span class="icon section-icon icon-office-21"></span>
@@ -11,8 +14,11 @@
       <span class="fa fa-download"></span>
     </button>
 
+    <app-loading [content]="schedule">
+    </app-loading>
+
     <!-- Schedule start -->
-    <div class="schedule">
+    <div *ngIf="schedule" class="schedule">
 
       <!-- Navigation by day start -->
       <ul class="nav nav-schedule">

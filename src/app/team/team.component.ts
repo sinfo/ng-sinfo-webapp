@@ -11,24 +11,20 @@ import { TeamService } from './team.service'
 export class TeamComponent implements OnInit {
   private team: Member[]
 
-  constructor (
+  constructor(
     private router: Router,
     private teamService: TeamService
   ) { }
 
   ngOnInit () {
-    const team = this.teamService.getLocalTeam()
-    if (team) {
-      this.team = team
-    } else {
-      // If team does not exist in MemberService memory we need to get it from the API
-      this.getTeam()
-    }
+    this.getTeam()
   }
 
-  getTeam (): void {
+  getTeam(): void {
     this.teamService.getTeam()
-      .subscribe(team => this.team = team)
+      .subscribe(team => {
+        this.team = team
+      })
   }
 
 }

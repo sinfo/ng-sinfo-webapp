@@ -14,25 +14,19 @@ import { environment } from '../../environments/environment'
 export class ScheduleComponent implements OnInit {
 
   private sessions: Session[]
-  private schedule = []
+  private schedule
 
   constructor (
     private sessionService: SessionService,
     private router: Router
   ) { }
 
-  ngOnInit () {
-    const sessions = this.sessionService.getLocalSessions()
 
-    if (sessions) {
-      this.sessions = sessions
-    } else {
-      // If session does not exist in SessionService memory we need to get it from the API
-      this.getSessions()
-    }
+  ngOnInit () {
+    this.getSessions()
   }
 
-  getSessions (): void {
+  getSessions(): void {
     this.sessionService.getSessions()
       .subscribe(sessions => {
         this.sessions = sessions
@@ -40,7 +34,7 @@ export class ScheduleComponent implements OnInit {
       })
   }
 
-  createSchedule (sessions: Session[]): void {
+  createSchedule(sessions: Session[]): void {
     let tempSchedule = {}
 
     sessions.forEach((val, index) => {
@@ -75,11 +69,13 @@ export class ScheduleComponent implements OnInit {
     })
 
     let i = 0
+    this.schedule = []
     for (let day in tempSchedule) {
       tempSchedule[day].theme = environment.themes[i]
       this.schedule.push(tempSchedule[day])
       i += 1
     }
+
   }
 
   onSelect (session: Session): void {
