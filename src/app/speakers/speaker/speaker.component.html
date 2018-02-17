@@ -22,7 +22,7 @@
         <p>{{speaker.description}}</p>
       </div>
     </div>
-    <div class="row">
+    <div *ngIf="session" class="row">
       <div class="col-sm-12">
         <div class="session" (click)="onSelect(session)">
           <h2 class="kind">{{session.kind}}</h2>
