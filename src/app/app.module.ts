@@ -56,6 +56,7 @@ import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
     TeamComponent,
     ScheduleComponent,
     QrcodeScannerComponent,
+    LoadingComponent,
     LoginComponent,
     MyProfileComponent,
     UserComponent,
