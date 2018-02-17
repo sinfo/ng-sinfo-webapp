@@ -1,0 +1,3 @@
+.speaker:not(.hacky) {
+  cursor: pointer;
+}

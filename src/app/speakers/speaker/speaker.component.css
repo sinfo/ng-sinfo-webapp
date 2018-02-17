@@ -1,32 +1,87 @@
+.session {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.session h2 {
+  font-size: 24px;
+  font-weight: 200;
+  color: #262627;
+  margin-bottom: 10px;
+}
+
+.session h3 {
+  font-size: 28px;
+  font-weight: 100;
+  color: #008ae6;
+  margin-bottom: 15px;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+p {
+  font-size: 15px;
+}
+
 .speaker-section {
-    padding: 55px 20px 0px;
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.speaker-section .name {
+  color: #008ae6;
 }
 
 .speaker-section img {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
-.speaker-section h1 {
-    font-size: 45px;
-    margin: 10px;
+.speaker-section h5 {
+  margin: 15px auto;
 }
 
-.speaker-section h2 {
-    font-size: 18px;
-    font-weight: 400;
-    color: #a9a9a9;
+.session-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.speaker-section .description {
-    margin: 4em;
-    text-align: left;
+.session-details i {
+  color: #008ae6;
 }
 
-.speaker-section .description h3 {
-    font-size: 24px;
+.session-details i span {
+  margin: 0 5px;
 }
 
-.speaker-section .description p {
-    line-height: 1.45;
-    white-space: pre-line;
+.session-details div.padded {
+  padding: 0 10px;
+}
+
+.session-details span {
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+@media (max-width: 767px) {
+  .speaker-section {
+    display: block;
+  }
+  .speaker-section h5 {
+    text-align: center;
+  }
+  #speaker-name {
+    margin-bottom: 5px;
+  }
+  h3.title {
+    font-size: 40px;
+  }
+  .session-details p {
+    margin-bottom: 2px;
+  }
 }
