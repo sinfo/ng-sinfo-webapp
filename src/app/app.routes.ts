@@ -9,7 +9,7 @@ import {
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
-import { QrcodeComponent } from './qrcode/qrcode.component'
+import { QrcodeScannerComponent } from './qrcodeScanner/qrcodeScanner.component'
 
 import { LoginComponent } from './auth/login/login.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
@@ -19,7 +19,7 @@ import { SessionsComponent } from './schedule/sessions/sessions.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'qrcode', component: QrcodeComponent },
+  { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: LoginComponent },
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },

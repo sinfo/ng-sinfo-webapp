@@ -1,0 +1,9 @@
+<!--
+<ngx-qrcode [qrc-value]="id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
+-->
+<app-menu></app-menu>
+
+<div class="video-wrapper">
+    <ngx-zxing [start]="camStarted" [device]="selectedDevice" [cssClass]="'videoqrcode'" (camerasFound)="displayCameras($event)"
+        (scanSuccess)="handleQrCodeResult($event)"></ngx-zxing>
+</div>

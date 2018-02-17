@@ -7324,3 +7324,8 @@ div.clear input.btn:hover {
     width: 100%;
   }
 }
+.videoqrcode {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

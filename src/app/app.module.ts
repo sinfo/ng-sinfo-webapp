@@ -35,10 +35,9 @@ import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
 import { SessionsComponent } from './schedule/sessions/sessions.component'
 
-import { QrcodeComponent } from './qrcode/qrcode.component'
+import { QrcodeScannerComponent } from './qrcodeScanner/qrcodeScanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-
-import { NgxZxingModule } from '@zxing/ngx-scanner'
+import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
 
 @NgModule({
   declarations: [
@@ -55,7 +54,7 @@ import { NgxZxingModule } from '@zxing/ngx-scanner'
     SponsorsComponent,
     TeamComponent,
     ScheduleComponent,
-    QrcodeComponent,
+    QrcodeScannerComponent,
     LoginComponent,
     MyProfileComponent,
     UserComponent,
