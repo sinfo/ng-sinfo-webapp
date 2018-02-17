@@ -4,51 +4,57 @@
 </app-loading>
 
 <section *ngIf="session" class="section session-section align-center">
-  <h4 class="kind">{{session.kind}}</h4>
-
   <div class="container">
     <div class="row">
-      <div class="col-sm-3 img-column session-img">
-        <img *ngIf="session.kind !== 'Keynote'" src='{{session.img}}'>
-        <img *ngIf="speaker" src='{{speaker.img}}'>
+      <div class="session-icons col-sm-12">
+        <h3 class="title">{{session.kind}}</h3>
       </div>
+    </div>
 
-      <div class="col-sm-9 align-left justify">
-
-        <div *ngIf="speaker" class="col-sm-12">
-          <a (click)="onSelect(speaker.id)">
-            <h5 id="speaker-name">{{speaker.name}}</h5>
-            <span id="hiffen">&mdash;</span>
-            <h5>{{speaker.title}}</h5>
-          </a>
+    <div class="row">
+      <div class="session-details col-sm-12">
+        <div class="padded">
+          <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate'}} </p>
         </div>
 
+        <div class="padded">
+          <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime'}} </p>
+        </div>
+
+        <div *ngIf="session.place">
+          <p> <i class="fa fa-map-marker"></i> {{session.place}} </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row speaker-section" *ngIf="session.kind === 'Keynote' && speaker" >
+      <div class="col-sm-3 col-xs-12">
+        <a (click)="onSelect(speaker.id)">
+          <img src='{{speaker.img}}'>
+        </a>
+      </div>
+
+      <div class="col-sm-9 col-xs-12 align-left justify">
+        <a (click)="onSelect(speaker.id)">
+          <h5 class="name">{{speaker.name}}</h5>
+          <h5>{{speaker.title}}</h5>
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div *ngIf="session.kind !== 'Keynote'" class="session">
+        <img *ngIf="" src='{{session.img}}'>
+      </div>
+      <!--TODO Add the rest of the information-->
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
         <p>{{session.description}}</p>
       </div>
     </div>
-    <div class="row">
-      <div class="session-icons col-sm-offset-7 col-sm-5">
-        <div>
-          <i class="fa fa-calendar">
-            <span>{{session.date | date:'fullDate'}}</span>
-          </i>
-        </div>
 
-        <div>
-          <i class="fa fa-clock-o">
-            <span>{{session.date | date:'shortTime'}}</span>
-          </i>
-        </div>
-
-        <div>
-          <i *ngIf="session.place" class="fa fa-map-marker">
-            <span>{{session.place}}</span>
-          </i>
-        </div>
-
-      </div>
-    </div>
-
+    <!--TODO Fetch users checked-in -->
   </div>
-
 </section>

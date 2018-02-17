@@ -1,9 +1,52 @@
-.session-section i {
-  color: black;
+a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.session-section i span {
+p {
+  font-size: 15px;
+}
+
+.speaker-section {
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.speaker-section .name {
+  color: #008ae6;
+}
+
+.speaker-section img {
+  border-radius: 50%;
+}
+
+.speaker-section h5 {
+  margin: 15px auto;
+}
+
+.session-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.session-details i {
+  color: #008ae6;
+}
+
+.session-details i span {
   margin: 0 5px;
+}
+
+.session-details div.padded {
+  padding: 0 10px;
+}
+
+.session-details span {
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .session-section .description p {
@@ -12,91 +55,20 @@
   line-height: 1.45;
 }
 
-.session-section .details {
-  padding: 10px;
-}
-
-.session-section a {
-  display: block;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.session-section .details h4 {
-  margin: 10px 10px 20px;
-}  
-
-.session-section .details img {
-  width: 100px;
-  border-radius: 50%;
-}  
-
-.session-section h6 {
-  margin: 25px;
-  color: #a9a9a9;
-}
-
-.session-img {
-  margin: auto;
-}
-
-#speaker-name {
-  color: #008ae6;
-}
-
-.session-icons div {
-  display: inline-block;
-  padding-right: 20px;
-}
-
-.session-icons span {
-  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
-}
-
-.container {
-  margin-top: 2%;
-}
-
-.img-column img {
-  border-radius: 50%;
-}
-
-h5, .container {
-  margin: 15px auto;
-}
-
-h4 {
-  margin-top: 5px;
-}
-
-#linebreak {
-  display: none;
-}
-
-#hiffen {
-  color: black;
-  margin: auto 5px;
-}
-
-h5 {
-  display: inline-block;
-}
-
 @media (max-width: 767px) {
-  #hiffen {
-    display: none;
-  }
-
-  h5 {
-    text-align: center;
+  .speaker-section {
     display: block;
   }
-
+  .speaker-section h5 {
+    text-align: center;
+  }
   #speaker-name {
     margin-bottom: 5px;
   }
-
-  #linebreak {
-    display: block;
+  h3.title {
+    font-size: 40px;
+  }
+  .session-details p {
+    margin-bottom: 2px;
   }
 }
