@@ -5,10 +5,15 @@ import { User } from '../user.model'
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
-  styleUrls: ['./my-profile.component.css']
+  styleUrls: [
+    './my-profile.component.css',
+    './sidebar.component.css'
+  ]
 })
+
 export class MyProfileComponent implements OnInit {
   user: User
+  showSidebar = true
 
   constructor (
     private userService: UserService
@@ -21,5 +26,4 @@ export class MyProfileComponent implements OnInit {
         console.log(this.user)
       })
   }
-
 }

@@ -2,39 +2,81 @@
 
 <app-loading [content]="user"></app-loading>
 
-<div class="container align-center user" *ngIf="user">
-  <div class="row">
-    <h3 class="name">
-      {{user.name}}
-    </h3>
-  </div>
+<div class="user wrapper" *ngIf="user">
+  <nav id="sidebar" [ngClass]="{'active': showSidebar }">
+    <!-- Sidebar Links -->
+    <ul class="list-unstyled components">
+      <li>
+        <a href="#">
+          <i class="glyphicon glyphicon-briefcase"></i>
+          Workshops
+        </a>
+        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+          <i class="glyphicon glyphicon-duplicate"></i>
+          Pages
+        </a>
+        <ul class="collapse list-unstyled" id="pageSubmenu">
+          <li><a href="#">Page 1</a></li>
+          <li><a href="#">Page 2</a></li>
+          <li><a href="#">Page 3</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class="glyphicon glyphicon-link"></i>
+          Links
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="glyphicon glyphicon-king"></i>
+          Promotions
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-  <div class="row">
-    <div class="portrait-wrapper">
-      <img class="portrait" src="{{user.img}}">
+  <div id="content" class="content container-fluid">
+    <button type="button" (click)="showSidebar = !showSidebar" id="sidebarCollapse">
+      <i *ngIf="showSidebar" class="glyphicon glyphicon-menu-left"></i>
+      <i *ngIf="!showSidebar" class="glyphicon glyphicon-menu-right"></i>
+    </button>
+
+    <div class="align-center" >
+
+      <div class="row">
+        <h3 class="name">
+          {{user.name}}
+        </h3>
+      </div>
+
+      <div class="row">
+        <div class="portrait-wrapper">
+          <img class="portrait" src="{{user.img}}">
+        </div>
+      </div>
+
+      <div class="row" *ngIf="user.area">
+        <h5>Area </h5>
+        <p>{{user.area}}</p>
+      </div>
+
+      <div class="row" *ngIf="user.skills">
+        <h5>Skills </h5>
+        <p>{{user.skills.join(', ')}}</p>
+      </div>
+
+      <div class="row">
+        <h5>Current points </h5>
+        <p>{{user.points.total ? user.points.total : 0}}</p>
+      </div>
+
+      <div class="row" *ngIf="achievements && achievements.length > 0">
+        <h5>Achievements earned </h5>
+        <div class="achivements-wrapper">
+          <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="row" *ngIf="user.area">
-    <h5>Area </h5>
-    <p>{{user.area}}</p>
-  </div>
-
-  <div class="row" *ngIf="user.skills">
-    <h5>Skills </h5>
-    <p>{{user.skills.join(', ')}}</p>
-  </div>
-
-  <div class="row">
-      <h5>Current points </h5>
-      <p>{{user.points.total ? user.points.total : 0}}</p>
-  </div>
-
-  <div class="row" *ngIf="achievements && achievements.length > 0">
-    <h5>Achievements earned </h5>
-    <div class="achivements-wrapper">
-      <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
-    </div>
-  </div>
-
 </div>

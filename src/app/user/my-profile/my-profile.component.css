@@ -1,3 +1,10 @@
+#content {
+  position: relative;
+  padding: 20px;
+  transition: all 0.3s;
+  width: 100%;
+}
+
 div.loading-wrapper {
   margin: 30px auto;
 }
