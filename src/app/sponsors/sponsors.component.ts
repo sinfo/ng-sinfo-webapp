@@ -9,14 +9,14 @@ import { Sponsor } from './sponsor.model'
   styleUrls: ['./sponsors.component.css']
 })
 export class SponsorsComponent implements OnInit {
-  private sponsors: Sponsor[]
-  private diamond: Sponsor
-  private platinums: Sponsor[] = []
-  private golds: Sponsor[] = []
-  private silvers: Sponsor[] = []
-  private others: Sponsor[] = []
+  sponsors: Sponsor[]
+  diamond: Sponsor
+  platinums: Sponsor[] = []
+  golds: Sponsor[] = []
+  silvers: Sponsor[] = []
+  others: Sponsor[] = []
 
-  private showAll = false
+  showAll = false
 
   constructor (
     private router: Router,

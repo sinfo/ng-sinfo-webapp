@@ -13,8 +13,8 @@ import { Speaker } from '../../speakers/speaker.model'
 })
 
 export class SessionsComponent implements OnInit {
-  private session: Session
-  private speaker: Speaker
+  session: Session
+  speaker: Speaker
 
   constructor (
     private sessionService: SessionService,

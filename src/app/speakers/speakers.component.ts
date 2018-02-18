@@ -9,7 +9,7 @@ import { SpeakerService } from './speaker.service'
   styleUrls: ['./speakers.component.css']
 })
 export class SpeakersComponent implements OnInit {
-  private speakers: Speaker[]
+  speakers: Speaker[]
 
   constructor (
     private router: Router,

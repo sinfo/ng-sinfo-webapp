@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment'
 })
 export class ScheduleComponent implements OnInit {
 
-  private sessions: Session[]
+  sessions: Session[]
   private schedule
 
   constructor (
@@ -21,12 +21,11 @@ export class ScheduleComponent implements OnInit {
     private router: Router
   ) { }
 
-
   ngOnInit () {
     this.getSessions()
   }
 
-  getSessions(): void {
+  getSessions (): void {
     this.sessionService.getSessions()
       .subscribe(sessions => {
         this.sessions = sessions
@@ -34,7 +33,7 @@ export class ScheduleComponent implements OnInit {
       })
   }
 
-  createSchedule(sessions: Session[]): void {
+  createSchedule (sessions: Session[]): void {
     let tempSchedule = {}
 
     sessions.forEach((val, index) => {

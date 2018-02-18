@@ -12,8 +12,8 @@ import { Session } from '../../schedule/session.model'
   styleUrls: ['./speaker.component.css']
 })
 export class SpeakerComponent implements OnInit {
-  private speaker: Speaker
-  private session: Session
+  speaker: Speaker
+  session: Session
 
   constructor (
     private speakerService: SpeakerService,
@@ -39,7 +39,7 @@ export class SpeakerComponent implements OnInit {
 
   getSession (id: string): void {
     this.sessionService.getSessions()
-      .subscribe(sessions => { 
+      .subscribe(sessions => {
         this.session = sessions.find(session => {
           return session.speakers.length > 0 ? session.speakers[0]['id'] === id : null
         })
@@ -49,4 +49,4 @@ export class SpeakerComponent implements OnInit {
   onSelect (session: Session): void {
     this.router.navigate(['/sessions', session.id])
   }
-} 
+}
