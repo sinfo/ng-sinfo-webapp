@@ -37,6 +37,10 @@ import { AuthGuard } from './auth/auth.guard'
 import { SessionsComponent } from './schedule/sessions/sessions.component';
 import { FeedbackComponent } from './feedback/feedback.component'
 
+import { QrcodeScannerComponent } from './qrcodeScanner/qrcodeScanner.component'
+import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
+import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +56,7 @@ import { FeedbackComponent } from './feedback/feedback.component'
     SponsorsComponent,
     TeamComponent,
     ScheduleComponent,
+    QrcodeScannerComponent,
     LoadingComponent,
     LoginComponent,
     MyProfileComponent,
@@ -62,7 +67,9 @@ import { FeedbackComponent } from './feedback/feedback.component'
   imports: [
     BrowserModule,
     HttpClientModule,
-    Routing
+    Routing,
+    NgxQRCodeModule,
+    NgxZxingModule.forRoot()
   ],
   providers: [
     SpeakerService,
