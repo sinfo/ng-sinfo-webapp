@@ -10,8 +10,8 @@ import { Achievement } from './achievement.model'
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  private user: User
-  private achievements: Achievement
+  user: User
+  achievements: Achievement
 
   constructor (
     private userService: UserService,

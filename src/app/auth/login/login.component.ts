@@ -13,8 +13,8 @@ declare let gapi: any
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, AfterViewInit {
-  private isFacebookActive: boolean
-  private isGoogleActive: boolean
+  isFacebookActive: boolean
+  isGoogleActive: boolean
   private isLoggedIn = false
   private auth2: any
 

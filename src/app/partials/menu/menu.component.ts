@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/auth.service'
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  private isLoggedIn = false
+  isLoggedIn = false
 
   constructor (
     private router: Router,

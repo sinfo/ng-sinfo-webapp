@@ -9,9 +9,9 @@ import { TeamService } from './team.service'
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
-  private team: Member[]
+  team: Member[]
 
-  constructor(
+  constructor (
     private router: Router,
     private teamService: TeamService
   ) { }
@@ -20,7 +20,7 @@ export class TeamComponent implements OnInit {
     this.getTeam()
   }
 
-  getTeam(): void {
+  getTeam (): void {
     this.teamService.getTeam()
       .subscribe(team => {
         this.team = team
