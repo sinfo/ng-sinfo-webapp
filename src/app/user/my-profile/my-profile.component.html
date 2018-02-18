@@ -1,9 +1,6 @@
 <app-menu></app-menu>
 
-<div class="container loading-wrapper" *ngIf="!user">
-    <span class="icon section-icon fa fa-spinner align-center"></span>
-    <h3 class="align-center">Loading...</h3>
-</div>
+<app-loading [content]="user"></app-loading>
 
 <div class="container align-center user" *ngIf="user">
   <div class="row">

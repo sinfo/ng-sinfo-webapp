@@ -1,7 +1,5 @@
-<app-loading [content]="speakers">
-</app-loading>
+<section id="speakers" class="section align-center">
 
-<section *ngIf="speakers" id="speakers" class="section align-center">
   <div class="container">
     <span class="icon section-icon icon-faces-users-03"></span>
     <h3>Speakers</h3>
@@ -34,18 +32,27 @@
       </div>
     </div>
 
-    <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
-      <div class="speaker">
-        <div class="photo-wrapper square">
-          <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
-            <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive">
+    <div class="col-sm-9">
+      <app-loading [content]="speakers">
+      </app-loading>
+    </div>
+
+    <div *ngIf="speakers">
+
+      <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
+        <div class="speaker">
+          <div class="photo-wrapper square">
+            <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
+              <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive">
+            </div>
           </div>
+          <h3 class="name">{{ speaker.name }}</h3>
+          <p class="text-alt">
+            <small>{{ speaker.title }}</small>
+          </p>
         </div>
-        <h3 class="name">{{ speaker.name }}</h3>
-        <p class="text-alt">
-          <small>{{ speaker.title }}</small>
-        </p>
       </div>
+
     </div>
 
   </div>

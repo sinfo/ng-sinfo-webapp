@@ -34,7 +34,8 @@ import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
-import { SessionsComponent } from './schedule/sessions/sessions.component'
+import { SessionsComponent } from './schedule/sessions/sessions.component';
+import { FeedbackComponent } from './feedback/feedback.component'
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { SessionsComponent } from './schedule/sessions/sessions.component'
     LoginComponent,
     MyProfileComponent,
     UserComponent,
-    SessionsComponent
+    SessionsComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
