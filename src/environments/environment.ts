@@ -15,6 +15,7 @@ export const environment = {
     'Games',
     'Web'
   ],
+  eventOcurring: true,
   facebook: {
     appId: '708252219264170'
   },

@@ -42,6 +42,11 @@
   .schedule .tab-content-schedule {
     padding: 35px 0;
   }
+  .nav.nav-schedule {
+    display: inline-block !important;
+    max-height: none !important;
+    margin-bottom: 10px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -79,6 +84,7 @@
 }
 
 .ics {
+  display: inline;
   margin-bottom: 2.5%;
   margin-top: -3%;
 }

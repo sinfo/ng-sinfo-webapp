@@ -3873,7 +3873,7 @@ button.btn.btn-block {
   width: 24px;
   height: 11px;
   content: "";
-  background: transparent url("assets/img/arrow-select-24x11.png") center no-repeat;
+  background: transparent url("./assets/img/arrow-select-24x11.png") center no-repeat;
   border: none;
 }
 .nav.nav-tabs {
@@ -4095,12 +4095,12 @@ button.btn.btn-block {
     -moz-box-shadow: -1px 8px 16px 0 rgba(0, 0, 0, 0.18);
     box-shadow: -1px 8px 16px 0 rgba(0, 0, 0, 0.18);
     float: none;
-    position: absolute;
+    /* position: absolute; */
+    display: block !important;
     top: 100%;
     left: 0;
     right: 0;
-    display: block;
-    display: none;
+    /* display: block; */
     padding: 0;
     height: auto;
     width: auto;
@@ -5885,7 +5885,7 @@ div.clear input.btn:hover {
   }
   section#speakers {
     padding-bottom: 0;
-    margin-bottom: -20px;
+    margin-bottom: 0px;
   }
 }
 @media (max-width: 480px) {
@@ -6853,10 +6853,10 @@ div.clear input.btn:hover {
     Theme styles
 ---------------------------------------------------------------------------- */
 .newsletterbg {
-  background-image: url("assets/img/Newsletter.jpg");
+  background-image: url("./assets/img/Newsletter.jpg");
 }
 .counterbg {
-  background-image: url("assets/img/countdown.jpg");
+  background-image: url("./assets/img/countdown.jpg");
 }
 .gradient-overlay:before {
   background: #9001a5;
@@ -6881,6 +6881,8 @@ div.clear input.btn:hover {
   opacity: 0.1;
 }
 .hero-section {
+  padding-top: 20%;
+  height: 100vh;
   z-index: 1;
   overflow: hidden;
 }
@@ -7093,6 +7095,7 @@ div.clear input.btn:hover {
   }
   .hero-section,
   .hero-section > .container {
+    height: 88vh;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
