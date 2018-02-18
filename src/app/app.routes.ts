@@ -21,7 +21,7 @@ import { PromoteComponent } from './user/promote/promote.component'
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'qrcode', component: QrcodeScannerComponent },
-  { path: 'promote', component: PromoteComponent }
+  { path: 'promote', component: PromoteComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: LoginComponent },
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },

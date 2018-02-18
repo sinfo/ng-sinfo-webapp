@@ -1,7 +1,10 @@
 <app-menu></app-menu>
 
-<app-qrcode-scanner></app-qrcode-scanner>
+<app-qrcode-scanner
+  (data)="processData($event)"
+  [singleton]="true">
+</app-qrcode-scanner>
 
 <p>
-  promote works!
+  {{id}}
 </p>
