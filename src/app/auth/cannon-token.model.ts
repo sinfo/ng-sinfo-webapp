@@ -3,4 +3,5 @@ export class CannonToken {
   refreshToken: string
   ttl: number
   date: number
+  loginWith: string
 }

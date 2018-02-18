@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   private isFacebookActive: boolean
   private isGoogleActive: boolean
   private isLoggedIn = false
+  private auth2: any
 
   constructor (
     private messageService: MessageService,
@@ -31,10 +32,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
       return
     }
 
-    this.initSocialSDKs()
-  }
-
-  initSocialSDKs () {
     this.isFacebookActive = (typeof (FB) !== 'undefined' && FB !== null)
     this.isGoogleActive = (typeof (gapi) !== 'undefined' && gapi !== null)
 
@@ -54,76 +51,61 @@ export class LoginComponent implements OnInit, AfterViewInit {
         type: Type.warning
       })
     }
-
-    if (this.isGoogleActive) {
-      this.initGoogle()
-    }
-    if (this.isFacebookActive) {
-      this.initFacebook()
-    }
-  }
-
-  initFacebook () {
-    FB.init({
-      appId: environment.facebook.appId,
-      cookie: false,
-      xfbml: true,
-      version: 'v2.12'
-    })
-  }
-
-  initGoogle () {
-    gapi.load('auth2', () => {
-      gapi.auth2.init({
-        client_id: environment.google.clientId,
-        cookiepolicy: 'single_host_origin',
-        scope: 'profile email openid'
-      })
-    })
   }
 
   ngAfterViewInit () {
-    gapi.signin2.render('google-signin', {
-      'scope': 'profile email',
-      'width': 240,
-      'height': 50,
-      'longtitle': true,
-      'theme': 'light',
-      'onsuccess': param => this.onGoogleLogin(param),
-      'onfailure': err => this.messageService.add({
-        origin: 'LoginComponent: Google Sign in',
-        text: err.message,
-        type: Type.error
+    this.initSocialSDKs()
+  }
+
+  initSocialSDKs () {
+    if (this.isGoogleActive) {
+      gapi.load('auth2', () => {
+        this.auth2 = gapi.auth2.init({
+          client_id: environment.google.clientId,
+          cookiepolicy: 'single_host_origin',
+          scope: 'profile email openid'
+        })
+        this.attachSignin(document.getElementById('google-signin'))
+      })
+    }
+    if (this.isFacebookActive) {
+      FB.init({
+        appId: environment.facebook.appId,
+        cookie: false,
+        xfbml: true,
+        version: 'v2.12'
+      })
+    }
+  }
+
+  attachSignin (element) {
+    this.auth2.attachClickHandler(element, {}, (googleUser) => {
+      this.onGoogleLogin(googleUser)
+    }, (error) => {
+      this.messageService.add({
+        origin: 'LoginComponent: Google attachSignin',
+        text: error.error,
+        type: Type.log
       })
     })
   }
 
   onGoogleLogin (googleUser) {
     const profile = googleUser.getBasicProfile()
-    console.log('ID: ' + profile.getId()) // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName())
-    console.log('Image URL: ' + profile.getImageUrl())
-    console.log('Email: ' + profile.getEmail()) // This is null if the 'email' scope is not present.
-    console.log('Token: ', googleUser.getAuthResponse().id_token)
-
     const userId = profile.getId()
     const token = googleUser.getAuthResponse().id_token
 
     this.authService.google(userId, token)
       .subscribe(cannonToken => {
-        if (cannonToken) {
-          console.log(cannonToken)
-          this.authService.setToken(cannonToken)
-          this.router.navigate(['/me'])
-        }
-        return
+        this.authService.setToken(cannonToken)
+        this.router.navigate(['/me'])
       })
   }
 
   onFacebookLogin () {
     FB.login(response => {
       this.facebookStatusChange(response)
-    })
+    }, { scope: 'public_profile,email' })
   }
 
   facebookStatusChange (resp) {
@@ -131,21 +113,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
       // connect here with your server for facebook login by passing access token given by facebook
       this.authService.facebook(resp.authResponse.userID, resp.authResponse.accessToken)
         .subscribe(cannonToken => {
-          if (cannonToken) {
-            this.authService.setToken(cannonToken)
-            this.router.navigate(['/me'])
-          }
-          return
+          this.authService.setToken(cannonToken)
+          this.router.navigate(['/me'])
         })
     } else if (resp.status === 'not_authorized') {
       this.messageService.add({
-        origin: 'LoginComponent: facebookStatusChange',
-        text: 'You were not allowed to login',
+        origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
+        text: 'You were not allowed to login with Facebook',
         type: Type.warning
       })
     } else {
-      // TODO: Improve this
-      console.log(resp)
+      this.messageService.add({
+        origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
+        text: 'An error occurred by logging with Facebook',
+        type: Type.error
+      })
     }
   }
 }

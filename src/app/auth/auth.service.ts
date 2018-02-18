@@ -8,8 +8,6 @@ import { CannonToken } from './cannon-token.model'
 import { tap, catchError } from 'rxjs/operators'
 import { StorageService } from '../storage.service'
 
-declare let FB: any
-
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
@@ -28,6 +26,7 @@ export class AuthService {
   facebook (id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/facebook`, { id, token }, httpOptions)
     .pipe(
+      tap(cannonToken => cannonToken.loginWith = 'facebook'),
       catchError(this.handleError<CannonToken>('Facebook Login'))
     )
   }
@@ -35,6 +34,7 @@ export class AuthService {
   google (id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/google`, { id, token }, httpOptions)
     .pipe(
+      tap(cannonToken => cannonToken.loginWith = 'google'),
       catchError(this.handleError<CannonToken>('Google Login'))
     )
   }
@@ -66,9 +66,6 @@ export class AuthService {
 
   logout (): void {
     this.storageService.removeItem('cannon-auth')
-    FB.logout((response) => {
-      console.log(response)
-    })
   }
 
   /**
