@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { MessageService, Type } from '../partials/messages/message.service'
 
 @Component({
@@ -8,7 +8,7 @@ import { MessageService, Type } from '../partials/messages/message.service'
 })
 export class QrcodeScannerComponent implements OnInit {
 
-  private data: Array<string>
+  @Output() data: EventEmitter<string> = new EventEmitter()
 
   camStarted = false
   selectedDevice
@@ -19,9 +19,7 @@ export class QrcodeScannerComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
-  ngOnInit () {
-    this.data = []
-  }
+  ngOnInit () { }
 
   displayCameras (cams: any[]) {
     this.availableDevices = cams
@@ -44,7 +42,7 @@ export class QrcodeScannerComponent implements OnInit {
 
   processContent (content): void {
     if (content) {
-      this.data.push(content)
+      this.data.emit(content)
       this.messageService.add({
         origin: 'qrcode',
         text: content,
@@ -58,13 +56,4 @@ export class QrcodeScannerComponent implements OnInit {
       })
     }
   }
-
-  getData (): string[] {
-    return this.data
-  }
-
-  flushData (): void {
-    this.data = []
-  }
-
 }
