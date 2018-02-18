@@ -9,7 +9,7 @@ import {
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
-import { QrcodeScannerComponent } from './qrcodeScanner/qrcodeScanner.component'
+import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component'
 
 import { LoginComponent } from './auth/login/login.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'

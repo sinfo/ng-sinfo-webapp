@@ -3,15 +3,15 @@ import { MessageService, Type } from '../partials/messages/message.service'
 
 @Component({
   selector: 'app-qrcode-scanner',
-  templateUrl: './qrcodeScanner.component.html',
-  styleUrls: ['./qrcodeScanner.component.css']
+  templateUrl: './qr-code-scanner.component.html',
+  styleUrls: ['./qr-code-scanner.component.css']
 })
 export class QrcodeScannerComponent implements OnInit {
 
   private data: Array<string>
 
-  private camStarted = false
-  private selectedDevice
+  camStarted = false
+  selectedDevice
   private qrResult: string
   private availableDevices: any[]
 
