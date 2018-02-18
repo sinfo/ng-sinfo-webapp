@@ -39,7 +39,9 @@ import { FeedbackComponent } from './feedback/feedback.component'
 
 import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
+import { NgxZxingModule } from '@zxing/ngx-scanner'; // scan qrcode
+
+import { PromoteComponent } from './user/promote/promote.component'
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
     MyProfileComponent,
     UserComponent,
     SessionsComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    PromoteComponent
   ],
   imports: [
     BrowserModule,
