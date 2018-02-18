@@ -34,10 +34,10 @@ import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
-import { SessionsComponent } from './schedule/sessions/sessions.component';
+import { SessionsComponent } from './schedule/sessions/sessions.component'
 import { FeedbackComponent } from './feedback/feedback.component'
 
-import { QrcodeScannerComponent } from './qrcodeScanner/qrcodeScanner.component'
+import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
 import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
 
