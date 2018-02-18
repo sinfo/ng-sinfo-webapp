@@ -16,7 +16,10 @@ export class MyProfileComponent implements OnInit {
 
   ngOnInit () {
     this.userService.getMe()
-      .subscribe(user => console.log(this.user = user))
+      .subscribe(user => {
+        this.user = user
+        console.log(this.user)
+      })
   }
 
 }

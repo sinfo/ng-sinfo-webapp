@@ -17,21 +17,25 @@
       <div class="col-md-4">
         <button class="btn btn-facebook" (click)="onFacebookLogin()" [disabled]="!isFacebookActive">
           <i class="fa fa-facebook"></i>
-          Facebook
+          Sign in with Facebook
         </button>
+        <!--<div class="fb-login-button" data-max-rows="1" data-size="large"
+          data-button-type="continue_with" data-show-faces="false"
+          data-auto-logout-link="false" data-use-continue-as="false"></div>-->
       </div>
 
       <div class="col-md-4">
-        <button class="btn btn-google">
+        <!--<div *ngIf="isGoogleActive" id="google-signin" (data-onsuccess)="onGoogleLogin"></div>-->
+        <button id="google-signin" class="btn btn-google" [disabled]="!isGoogleActive">
           <i class="fa fa-google"></i>
-          Google
+          Sign in with Google
         </button>
       </div>
 
       <div class="col-md-4">
         <button class="btn btn-fenix">
           <i class="fa fa-graduation-cap"></i>
-          Fenix
+          Sign in with Fenix
         </button>
       </div>
     </div>

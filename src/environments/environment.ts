@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   deckUrl: 'https://deck.sinfo.org',
-  cannonUrl: 'https://cannon.sinfo.org',
+  cannonUrl: 'http://localhost:8090',
   currentEvent: '24-sinfo',
   themes: [
     'Software',
@@ -16,6 +16,9 @@ export const environment = {
     'Web'
   ],
   facebook: {
-    cannonAppId: '708252219264170'
+    appId: '708252219264170'
+  },
+  google: {
+    clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
   }
 }

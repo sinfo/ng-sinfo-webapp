@@ -26,7 +26,16 @@ export class AuthService {
   facebook (id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/facebook`, { id, token }, httpOptions)
     .pipe(
+      tap(cannonToken => cannonToken.loginWith = 'facebook'),
       catchError(this.handleError<CannonToken>('Facebook Login'))
+    )
+  }
+
+  google (id, token): Observable<CannonToken> {
+    return this.http.post<CannonToken>(`${this.authUrl}/google`, { id, token }, httpOptions)
+    .pipe(
+      tap(cannonToken => cannonToken.loginWith = 'google'),
+      catchError(this.handleError<CannonToken>('Google Login'))
     )
   }
 
