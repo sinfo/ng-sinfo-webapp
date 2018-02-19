@@ -88,6 +88,7 @@
 
 #sidebarCollapse {
   position: absolute;
+  outline: none;
   right: -55px;
   top: 40vh;
   color: #048ae6;
