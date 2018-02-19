@@ -1,5 +1,9 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+}
+
 #content {
-  position: relative;
   padding: 20px;
   transition: all 0.3s;
   width: 100%;

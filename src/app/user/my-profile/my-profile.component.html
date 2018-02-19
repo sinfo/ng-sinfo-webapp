@@ -3,45 +3,10 @@
 <app-loading [content]="user"></app-loading>
 
 <div class="user wrapper" *ngIf="user">
-  <nav id="sidebar" [ngClass]="{'active': showSidebar }">
-    <!-- Sidebar Links -->
-    <ul class="list-unstyled components">
-      <li>
-        <a href="#">
-          <i class="glyphicon glyphicon-briefcase"></i>
-          Workshops
-        </a>
-        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
-          <i class="glyphicon glyphicon-duplicate"></i>
-          Pages
-        </a>
-        <ul class="collapse list-unstyled" id="pageSubmenu">
-          <li><a href="#">Page 1</a></li>
-          <li><a href="#">Page 2</a></li>
-          <li><a href="#">Page 3</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class="glyphicon glyphicon-link"></i>
-          Links
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="glyphicon glyphicon-king"></i>
-          Promotions
-        </a>
-      </li>
-    </ul>
-  </nav>
+
+  <app-sidebar></app-sidebar>
 
   <div id="content" class="content container-fluid">
-    <button type="button" (click)="showSidebar = !showSidebar" id="sidebarCollapse">
-      <i *ngIf="showSidebar" class="glyphicon glyphicon-menu-left"></i>
-      <i *ngIf="!showSidebar" class="glyphicon glyphicon-menu-right"></i>
-    </button>
-
     <div class="align-center" >
 
       <div class="row">

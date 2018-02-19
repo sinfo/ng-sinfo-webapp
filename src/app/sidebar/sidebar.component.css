@@ -1,51 +1,11 @@
-#sidebar p {
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999;
-}
-
-#sidebar a, 
-#sidebar a:hover, 
-#sidebar a:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-#sidebar .navbar {
-  padding: 15px 10px;
-  background: #048ae6;
-  border: none;
-  border-radius: 0;
-  margin-bottom: 40px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-#sidebar .navbar-btn {
-  box-shadow: none;
-  outline: none !important;
-  border: none;
-}
-
-#sidebar i, #sidebar span {
-  display: inline-block;
-}
-
-/* ---------------------------------------------------
-SIDEBAR STYLE
------------------------------------------------------ */
-.wrapper {
-  display: flex;
-  align-items: stretch;
-}
-
 #sidebar {
+  position: relative;
   min-width: 250px;
   max-width: 250px;
   background: #048ae6;
   color: #fff;
   transition: all 0.3s;
+  height: 100%;
 }
 
 #sidebar.active {
@@ -127,6 +87,7 @@ SIDEBAR STYLE
 
 #sidebarCollapse {
   position: absolute;
+  right: -55px;
   top: 40vh;
   color: #048ae6;
   padding: 2px 30px 2px 0px;
@@ -135,14 +96,48 @@ SIDEBAR STYLE
   font-size: 25px;
 }
 
+@keyframes jump { 
+  0% { right: -55px; } 
+  50% { right: -58px; } 
+  100% { right: -55px; } 
+}
+
 #sidebarCollapse i {
   font-weight: 800;
 }
 
-@keyframes jump { 
-  0% { left: 0; } 
-  50% { left: 3px; } 
-  100% { left: 0; } 
+#sidebar p {
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
+}
+
+#sidebar a, 
+#sidebar a:hover, 
+#sidebar a:focus {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+#sidebar .navbar {
+  padding: 15px 10px;
+  background: #048ae6;
+  border: none;
+  border-radius: 0;
+  margin-bottom: 40px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar .navbar-btn {
+  box-shadow: none;
+  outline: none !important;
+  border: none;
+}
+
+#sidebar i, #sidebar span {
+  display: inline-block;
 }
 
 a[data-toggle="collapse"] {
@@ -174,6 +169,7 @@ ul ul a {
     max-width: 80px;
     text-align: center;
     margin-left: -80px !important ;
+  background: #048ae6;
   }
   a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     top: auto;
@@ -214,7 +210,5 @@ ul ul a {
   #sidebar ul li a i {
     font-size: 1.3em;
   }
-  #sidebar {
-    margin-left: 0;
-  }
 }
+
