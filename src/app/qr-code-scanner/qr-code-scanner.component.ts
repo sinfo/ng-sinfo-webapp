@@ -10,8 +10,9 @@ export class QrcodeScannerComponent implements OnInit {
 
   @Output() data: EventEmitter<string> = new EventEmitter()
   @Input('singleton') singleton: boolean
+  @Input() camStarted: boolean
 
-  camStarted = false
+  // camStarted = false
   selectedDevice
   private qrResult: string
   private availableDevices: any[]
@@ -25,7 +26,7 @@ export class QrcodeScannerComponent implements OnInit {
   displayCameras (cams: any[]) {
     this.availableDevices = cams
     if (cams && cams.length > 0) {
-      this.selectedDevice = cams[0]
+      this.selectedDevice = cams[cams.length - 1]
       this.camStarted = true
     }
   }
@@ -55,10 +56,6 @@ export class QrcodeScannerComponent implements OnInit {
         text: 'Erro na leitura. Tente novamente.',
         type: Type.error
       })
-    }
-
-    if (this.singleton) {
-      this.camStarted = false
     }
   }
 }
