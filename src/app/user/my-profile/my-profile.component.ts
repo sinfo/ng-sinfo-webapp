@@ -19,6 +19,7 @@ export class MyProfileComponent implements OnInit {
     this.userService.getMe()
       .subscribe(user => {
         this.user = user
+        console.log(user)
       })
   }
 }
