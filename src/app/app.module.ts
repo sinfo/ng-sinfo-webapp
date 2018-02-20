@@ -41,8 +41,9 @@ import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.compon
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
 import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
 import { SidebarComponent } from './sidebar/sidebar.component'
-import { AchievementsComponent } from './achievements/achievements.component' 
-import { AchievementService } from './achievements/achievement.service';
+import { AchievementsComponent } from './achievements/achievements.component'
+import { AchievementComponent } from './achievements/achievement/achievement.component'
+import { AchievementService } from './achievements/achievement.service'
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { AchievementService } from './achievements/achievement.service';
     FeedbackComponent,
     SidebarComponent,
     AchievementsComponent,
+    AchievementComponent
   ],
   imports: [
     BrowserModule,

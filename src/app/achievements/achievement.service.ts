@@ -18,7 +18,7 @@ const httpOptions = {
 export class AchievementService {
   
   private achievementsUrl = environment.cannonUrl + '/achievements'
-  private achievemens: Achievement[]
+  private achievements: Achievement[]
 
   constructor(
     private http: HttpClient,
@@ -26,15 +26,26 @@ export class AchievementService {
   ) { }
 
   getAchievements (): Observable<Achievement[]> {
-    if (this.achievemens) {
-      return of(this.achievemens)
+    if (this.achievements) {
+      return of(this.achievements)
     }
 
     return this.http.get<Achievement[]>(this.achievementsUrl)
       .pipe(
-        tap(achievemens => this.achievemens = achievemens),
+        tap(achievemens => this.achievements = achievemens),
         catchError(this.handleError<Achievement[]>('getAchiements', []))
       )
+  }
+
+  getAchievement (id: string): Observable<Achievement> {
+    if (this.achievements) {
+      return of(this.achievements.find(achievement => achievement.id === id))
+    } else {
+      return this.http.get<Achievement>(`${this.achievementsUrl}/${id}`)
+        .pipe(
+          catchError(this.handleError<Achievement>('getAchievement'))
+        )
+    }
   }
 
   /**
