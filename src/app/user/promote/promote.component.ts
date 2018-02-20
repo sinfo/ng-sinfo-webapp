@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { UserService } from '../user.service'
+import { User } from '../user.model'
 
 @Component({
   selector: 'app-promote',
@@ -10,6 +11,7 @@ export class PromoteComponent implements OnInit {
 
   id: string
   active: boolean
+  userRead: User
 
   constructor (
     private userService: UserService
@@ -25,16 +27,26 @@ export class PromoteComponent implements OnInit {
       this.active = false
     }
 
-
-    console.log(`
-      Data: ${data}
-      id:   ${this.id}`
-    )
-
     this.userService.getUser(this.id)
-      .subscribe(user => {
-        console.log(user)
-      })
+      .subscribe(user => this.userRead = user)
+  }
+
+  promoteToTeam () {
+    if (!this.userRead) {
+      return
+    }
+
+    this.userService.changeRole(this.userRead.id, 'team')
+      .subscribe(user => this.userRead = user)
+  }
+
+  demoteUser () {
+    if (!this.userRead) {
+      return
+    }
+
+    this.userService.changeRole(this.userRead.id, 'user')
+      .subscribe(user => this.userRead = user)
   }
 
 }

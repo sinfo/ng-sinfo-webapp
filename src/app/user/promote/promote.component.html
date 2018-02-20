@@ -1,10 +1,30 @@
 <app-menu></app-menu>
 
-<app-qrcode-scanner
-  (data)="processData($event)"
-  [camStarted]="active">
+<app-qrcode-scanner (data)="processData($event)" [camStarted]="active">
 </app-qrcode-scanner>
 
-<p>
-  {{id}}
-</p>
+<div class="container align-center user" *ngIf="userRead">
+  <div class="row">
+    <h3 class="name">
+      {{userRead.name}}
+    </h3>
+
+    <h5 *ngIf="userRead">
+      {{userRead.role}}
+    </h5>
+
+    <h5 *ngIf="!userRead || !userRead.role">
+      user
+    </h5>
+  </div>
+
+  <div class="row">
+    <div class="portrait-wrapper">
+      <img class="portrait" src="{{userRead.img}}">
+    </div>
+  </div>
+
+  <button class="btn btn-button" (click)="promoteToTeam()">Promote to team</button>
+  <button class="btn btn-button" (click)="demoteUser()">Demote user</button>
+
+</div>

@@ -39,7 +39,8 @@ import { FeedbackComponent } from './feedback/feedback.component'
 
 import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
+import { NgxZxingModule } from '@zxing/ngx-scanner'
+import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
 
 import { PromoteComponent } from './user/promote/promote.component'
 
@@ -65,7 +66,8 @@ import { PromoteComponent } from './user/promote/promote.component'
     UserComponent,
     SessionsComponent,
     FeedbackComponent,
-    PromoteComponent
+    PromoteComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

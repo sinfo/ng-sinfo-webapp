@@ -38,6 +38,7 @@ export class UserService {
         'Authorization': `Bearer ${this.authService.getToken().token}`
       })
     }
+
     return this.http.get<User>(`${this.usersUrl}/me`, httpOptions)
       .pipe(
         catchError(this.handleError<User>('getMe'))
@@ -48,6 +49,27 @@ export class UserService {
     return this.http.get<Achievement>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
         catchError(this.handleError<Achievement>(`getUserAchievements id=${id}`))
+      )
+  }
+
+  changeRole (id: string, role: string): Observable<User> {
+
+    console.log(role)
+
+    if (['user', 'team', 'company'].indexOf(role) === -1) {
+      return of(null)
+    }
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('changeRole'))
       )
   }
 

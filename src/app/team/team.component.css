@@ -1,3 +1,23 @@
+@media screen and (max-width: 768px) {
+  .member { height: 220px; }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .member { height: 120px; }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .member { height: 160px; }
+}
+
+@media screen and (min-width: 1200px) {
+  .member { height: 190px; }
+}
+
 .name {
   min-height: 27px;
+}
+
+img {
+  width: 180px;
 }
