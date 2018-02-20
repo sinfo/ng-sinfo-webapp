@@ -1,0 +1,13 @@
+<app-menu></app-menu>
+
+<app-loading [content]="achievements">
+</app-loading>
+
+<section *ngIf="achievements"  class="section achievement-section align-center">
+    <div class="container">
+        <h5>Achievements</h5>
+        <a *ngFor="let achievement of achievements" (click)="onSelect(achievement)"> 
+            <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+        </a>
+    </div>
+</section>
