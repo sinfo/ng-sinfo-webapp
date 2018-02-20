@@ -2,3 +2,7 @@ img.portrait {
     border-radius: 50%;
     border: 3px solid #048ae6;
 }
+
+.dropdown-backdrop {
+    display: none;
+}

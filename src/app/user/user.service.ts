@@ -52,11 +52,13 @@ export class UserService {
       )
   }
 
-  changeRole (id: string, role: string): Observable<User> {
-
-    console.log(role)
+  updateUser (id: string, role: string, company?: string): Observable<User> {
 
     if (['user', 'team', 'company'].indexOf(role) === -1) {
+      return of(null)
+    }
+
+    if (role === 'company' && !company) {
       return of(null)
     }
 
@@ -67,10 +69,23 @@ export class UserService {
       })
     }
 
-    return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
-      .pipe(
-        catchError(this.handleError<User>('changeRole'))
-      )
+    if (role === 'company') {
+      return this.http.put<User>(`${this.usersUrl}/${id}`, {
+        role: role,
+        company: {
+          edition: environment.currentEvent,
+          company: company
+        }
+      }, httpOptions)
+        .pipe(
+          catchError(this.handleError<User>('updateUser'))
+        )
+    } else {
+      return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
+        .pipe(
+          catchError(this.handleError<User>('updateUser'))
+        )
+    }
   }
 
   /**

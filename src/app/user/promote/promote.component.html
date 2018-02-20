@@ -24,7 +24,28 @@
     </div>
   </div>
 
-  <button class="btn btn-button" (click)="promoteToTeam()">Promote to team</button>
-  <button class="btn btn-button" (click)="demoteUser()">Demote user</button>
+  <div class="row">
+
+    <div class="col-md-4">
+      <button class="btn btn-button" (click)="promoteToTeam()">Promote to team</button>
+    </div>
+    <div class="col-md-4">
+      <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          Promote to company
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+          <li *ngFor="let company of companies">
+            <a tabindex="-1" (click)="promoteToCompany(company.name)">{{company.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-button" (click)="demoteUser()">Demote user</button>
+    </div>
+
+  </div>
 
 </div>

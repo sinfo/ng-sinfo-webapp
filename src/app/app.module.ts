@@ -44,6 +44,8 @@ import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
 
 import { PromoteComponent } from './user/promote/promote.component'
 
+import { CompanyService } from './company/company.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +88,8 @@ import { PromoteComponent } from './user/promote/promote.component'
     AuthGuard,
     StorageService,
     UserService,
-    SessionService
+    SessionService,
+    CompanyService
   ],
   bootstrap: [AppComponent]
 })
