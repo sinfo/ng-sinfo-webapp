@@ -5,9 +5,9 @@
 
 <section *ngIf="achievements"  class="section achievement-section align-center">
     <div class="container">
-        <h5>Achievements</h5>
+        <h3>Achievements</h3>
         <a *ngFor="let achievement of achievements" (click)="onSelect(achievement)"> 
-            <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+            <img [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>
     </div>
 </section>
