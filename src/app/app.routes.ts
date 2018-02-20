@@ -16,9 +16,11 @@ import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
 import { UserComponent } from './user/user.component'
 import { SessionsComponent } from './schedule/sessions/sessions.component'
+import { AchievementsComponent } from './achievements/achievements.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
+  { path: 'achievements', component: AchievementsComponent },
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: LoginComponent },
