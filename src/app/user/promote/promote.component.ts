@@ -3,6 +3,7 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
+import { environment } from '../../../environments/environment.prod';
 
 @Component({
   selector: 'app-promote',
@@ -25,7 +26,6 @@ export class PromoteComponent implements OnInit {
   ngOnInit () {
     this.active = true
     this.getCompanies()
-    this.company = 'OLHA PARA MIM'
   }
 
   processData (data: string) {
@@ -35,7 +35,19 @@ export class PromoteComponent implements OnInit {
     }
 
     this.userService.getUser(this.id)
-      .subscribe(user => this.userRead = user)
+      .subscribe(user => {
+        this.userRead = user
+        if (user.role !== 'company') {
+          return
+        }
+
+        for (let i = 0; i < user.company.length; i++) {
+          if (user.company[i].edition === environment.currentEvent) {
+            this.company = user.company[i].edition
+            break
+          }
+        }
+      })
   }
 
   getCompanies (): void {
@@ -58,7 +70,10 @@ export class PromoteComponent implements OnInit {
     }
 
     this.userService.updateUser(this.userRead.id, 'company', company)
-      .subscribe(user => this.userRead = user)
+      .subscribe(user => {
+        this.userRead = user
+        this.company = company
+      })
   }
 
   demoteUser () {

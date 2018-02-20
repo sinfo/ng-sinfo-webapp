@@ -9,8 +9,12 @@
       {{userRead.name}}
     </h3>
 
-    <h5 *ngIf="userRead">
+    <h5 *ngIf="userRead.role === 'team'">
       {{userRead.role}}
+    </h5>
+
+    <h5 *ngIf="userRead.role === 'company'">
+      {{company}}
     </h5>
 
     <h5 *ngIf="!userRead || !userRead.role">
