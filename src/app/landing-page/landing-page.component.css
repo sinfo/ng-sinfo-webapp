@@ -1,0 +1,9 @@
+.intro {
+    animation: jump 1s infinite;
+}
+
+@keyframes jump { 
+    0% { bottom: 4vh; } 
+    50% { bottom: 5vh; } 
+    100% { bottom: 4vh; } 
+}
