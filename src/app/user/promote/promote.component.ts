@@ -23,12 +23,12 @@ import 'rxjs/add/operator/distinctUntilChanged'
 export class PromoteComponent implements OnInit {
 
   private id: string
-  private scannerActive: boolean
-  private userRead: User
+  scannerActive: boolean
+  userRead: User
 
-  private companies: string[]
-  private company: string
-  private searchedCompany: string
+  companies: string[]
+  company: string
+  searchedCompany: string
 
   constructor (
     private userService: UserService,
