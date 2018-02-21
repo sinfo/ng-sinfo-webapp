@@ -8,6 +8,8 @@ import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { Achievement } from './achievement.model'
 import { AuthService } from '../auth/auth.service'
+import { Company } from '../company/company.model'
+import { CompanyService } from '../company/company.service'
 
 @Injectable()
 export class UserService {
@@ -17,11 +19,21 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private companyService: CompanyService,
     private authService: AuthService
   ) { }
 
   getUser(id: string): Observable<User> {
-    return this.http.get<User>(`${this.usersUrl}/${id}`)
+    let headers = {
+      'Content-Type': 'application/json',
+      'Authorization': ''
+    }
+
+    if (this.authService.isLoggedIn()) {
+      headers.Authorization = `Bearer ${this.authService.getToken().token}`
+    }
+
+    return this.http.get<User>(`${this.usersUrl}/${id}`, { headers: new HttpHeaders(headers) })
       .pipe(
       catchError(this.handleError<User>(`getUser id=${id}`))
       )
