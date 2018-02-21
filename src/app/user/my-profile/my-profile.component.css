@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   align-items: stretch;
+  min-height: 87vh;
 }
 
 #content {

@@ -2656,9 +2656,6 @@ div.intro i.fa-chevron-down:hover {
   }
 }
 @media (max-width: 991px) {
-  .wrapper {
-    width: 90%;
-  }
   .img-column {
     padding-bottom: 20px;
   }
@@ -2689,9 +2686,6 @@ div.intro i.fa-chevron-down:hover {
     left: auto;
     right: auto;
     bottom: auto;
-  }
-  .wrapper {
-    width: 100%;
   }
   .bg-cover {
     background-attachment: scroll;
