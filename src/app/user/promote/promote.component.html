@@ -13,8 +13,8 @@
       {{userRead.role}}
     </h5>
 
-    <h5 *ngIf="userRead.role === 'company'">
-      {{company}}
+    <h5 *ngIf="userRead.role === 'company' && userReadCompany">
+      {{userReadCompany.name}}
     </h5>
 
   </div>
@@ -40,9 +40,20 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <input id="typeahead-focus" type="text" class="form-control" [(ngModel)]="searchedCompany" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
-        (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="{{searchedCompany}}" />
-    </div>
+      <input
+        id="typeahead-template"
+        type="text"
+        class="form-control"
+        [(ngModel)]="searchedCompany"
+        [ngbTypeahead]="search"
+        (focus)="focus$.next($event.target.value)"
+        (click)="click$.next($event.target.value)"
+        #instance="ngbTypeahead"
+        placeholder="Search for company"
+        [inputFormatter]="formatter"
+        [resultFormatter]="formatter"
+        [resultTemplate]="rt"
+        />
   </div>
 
   <div class="row">
