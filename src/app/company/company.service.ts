@@ -41,6 +41,19 @@ export class CompanyService {
       )
   }
 
+  getCompany (id: string): Observable<Company> {
+    if (this.companies) {
+      return of(this.companies.find(company => {
+        return company.id === id
+      }))
+    }
+
+    return this.http.get<Company>(`this.companiesUrl/${id}`)
+      .pipe(
+        catchError(this.handleError<Company>('getCompany'))
+      )
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

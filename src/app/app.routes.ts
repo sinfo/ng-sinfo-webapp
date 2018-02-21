@@ -17,11 +17,13 @@ import { AuthGuard } from './auth/auth.guard'
 import { UserComponent } from './user/user.component'
 import { SessionsComponent } from './schedule/sessions/sessions.component'
 import { PromoteComponent } from './user/promote/promote.component'
+import { LinkComponent } from './user/link/link.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'promote', component: PromoteComponent },
+  { path: 'link', component: LinkComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: LoginComponent },
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },

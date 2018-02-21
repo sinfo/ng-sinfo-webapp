@@ -49,7 +49,8 @@ import { CompanyService } from './company/company.service'
 
 import { NgModel } from '@angular/forms/src/directives/ng_model'
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LinkComponent } from './user/link/link.component'
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     SessionsComponent,
     FeedbackComponent,
     PromoteComponent,
-    SidebarComponent
+    SidebarComponent,
+    LinkComponent
   ],
   imports: [
     BrowserModule,

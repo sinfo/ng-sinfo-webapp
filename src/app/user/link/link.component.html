@@ -1,0 +1,42 @@
+<app-menu></app-menu>
+
+<app-qrcode-scanner (data)="processData($event)" [camStarted]="scannerActive">
+</app-qrcode-scanner>
+
+<div class="container align-center user" *ngIf="userRead">
+    <div class="row">
+      <h3 class="name">
+        {{userRead.name}}
+      </h3>
+  
+      <h5 *ngIf="userRead.role === 'team'">
+        {{userRead.role}}
+      </h5>
+  
+      <h5 *ngIf="userRead.role === 'company'">
+        {{company}}
+      </h5>
+  
+    </div>
+  
+    <div class="row">
+      <div class="portrait-wrapper">
+        <img class="portrait" src="{{userRead.img}}">
+      </div>
+    </div>
+
+    <div class="row">
+      <h3 class="name">
+        {{company.name}}
+      </h3>
+    </div>
+  
+    <div class="row">
+      <div class="portrait-wrapper">
+        <img class="portrait" src="{{company.img}}">
+      </div>
+    </div>
+
+
+  
+  </div>
