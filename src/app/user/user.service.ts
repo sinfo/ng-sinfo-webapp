@@ -53,7 +53,6 @@ export class UserService {
   }
 
   updateUser(id: string, role: string, company?: string): Observable<User> {
-
     if (['user', 'team', 'company'].indexOf(role) === -1) {
       return of(null)
     }
@@ -94,6 +93,20 @@ export class UserService {
         catchError(this.handleError<User>('updateUser'))
         )
     }
+  }
+
+  demoteSelf () {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.put<User>(`${this.usersUrl}/me`, { role: 'user' }, httpOptions)
+      .pipe(
+      catchError(this.handleError<User>('updateUser'))
+      )
   }
 
   removeThisEventsCompanyFromUser(id: string): Observable<User> {
