@@ -1,13 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
 import { SpeakersComponent } from './speakers/speakers.component'
-
 import { SpeakerService } from './speakers/speaker.service'
 import { SessionService } from './schedule/session.service'
-
-import { HttpClientModule } from '@angular/common/http'
 import { LandingPageComponent } from './landing-page/landing-page.component'
 import { MenuComponent } from './partials/menu/menu.component'
 import { FooterComponent } from './partials/footer/footer.component'
@@ -39,8 +37,9 @@ import { FeedbackComponent } from './feedback/feedback.component'
 
 import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner';
+import { NgxZxingModule } from '@zxing/ngx-scanner'
 import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
+import { JwtService } from './auth/jwt.service'
 
 @NgModule({
   declarations: [
@@ -83,7 +82,7 @@ import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
     AuthGuard,
     StorageService,
     UserService,
-    SessionService
+    JwtService
   ],
   bootstrap: [AppComponent]
 })
