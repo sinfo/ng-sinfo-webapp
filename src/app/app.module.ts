@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component'
 import { SpeakersComponent } from './speakers/speakers.component'
@@ -46,6 +47,10 @@ import { PromoteComponent } from './user/promote/promote.component'
 
 import { CompanyService } from './company/company.service'
 
+import { NgModel } from '@angular/forms/src/directives/ng_model'
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +81,9 @@ import { CompanyService } from './company/company.service'
     HttpClientModule,
     Routing,
     NgxQRCodeModule,
-    NgxZxingModule.forRoot()
+    NgxZxingModule.forRoot(),
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     SpeakerService,

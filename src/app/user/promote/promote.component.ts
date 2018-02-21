@@ -1,9 +1,19 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment.prod'
+
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap'
+import { Observable } from 'rxjs/Observable'
+import { Subject } from 'rxjs/Subject'
+
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/merge'
+import 'rxjs/add/operator/filter'
+import 'rxjs/add/operator/debounceTime'
+import 'rxjs/add/operator/distinctUntilChanged'
 
 @Component({
   selector: 'app-promote',
@@ -12,26 +22,46 @@ import { environment } from '../../../environments/environment.prod';
 })
 export class PromoteComponent implements OnInit {
 
-  id: string
-  active: boolean
-  userRead: User
-  companies: Company[]
-  company: string
+  private id: string
+  private scannerActive: boolean
+  private userRead: User
+
+  private companies: string[]
+  private company: string
+  private searchedCompany: string
 
   constructor (
     private userService: UserService,
     private companyService: CompanyService
   ) { }
 
+  @ViewChild('instance') instance: NgbTypeahead
+  focus$ = new Subject<string>()
+  click$ = new Subject<string>()
+
+  search = (text$: Observable<string>) =>
+    text$
+      .debounceTime(200).distinctUntilChanged()
+      .merge(this.focus$)
+      .merge(this.click$.filter(() => !this.instance.isPopupOpen()))
+      .map(term => (term === '' ? this.companies : this.companies
+        .filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)))
+
   ngOnInit () {
-    this.active = true
+    this.scannerActive = true
     this.getCompanies()
+  }
+
+  reScan () {
+    this.userRead = null
+    this.id = null
+    this.scannerActive = true
   }
 
   processData (data: string) {
     if (!this.id) {
       this.id = data
-      this.active = false
+      this.scannerActive = false
     }
 
     this.userService.getUser(this.id)
@@ -52,7 +82,9 @@ export class PromoteComponent implements OnInit {
 
   getCompanies (): void {
     this.companyService.getCompanies()
-      .subscribe(companies => this.companies = companies)
+      .subscribe(companies => {
+        this.companies = companies.map(e => e.name)
+      })
   }
 
   promoteToTeam () {
@@ -64,15 +96,15 @@ export class PromoteComponent implements OnInit {
       .subscribe(user => this.userRead = user)
   }
 
-  promoteToCompany (company: string) {
-    if (!this.userRead) {
+  promoteToCompany () {
+    if (!this.userRead || !this.searchedCompany) {
       return
     }
 
-    this.userService.updateUser(this.userRead.id, 'company', company)
+    this.userService.updateUser(this.userRead.id, 'company', this.searchedCompany)
       .subscribe(user => {
         this.userRead = user
-        this.company = company
+        this.company = this.searchedCompany
       })
   }
 

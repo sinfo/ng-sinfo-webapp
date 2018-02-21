@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^5.1.3",
     "@angular/platform-server": "^5.1.3",
     "@angular/router": "^5.1.3",
+    "@ng-bootstrap/ng-bootstrap": "^1.0.0",
     "@zxing/ngx-scanner": "^1.0.0-dev.a5265f",
     "core-js": "^2.4.1",
     "ngx-qrcode2": "0.0.5",

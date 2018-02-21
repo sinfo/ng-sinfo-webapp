@@ -20,14 +20,14 @@ export class UserService {
     private authService: AuthService
   ) { }
 
-  getUser (id: string): Observable<User> {
+  getUser(id: string): Observable<User> {
     return this.http.get<User>(`${this.usersUrl}/${id}`)
       .pipe(
       catchError(this.handleError<User>(`getUser id=${id}`))
       )
   }
 
-  getMe (): Observable<User> {
+  getMe(): Observable<User> {
     if (this.me) {
       return of(this.me)
     }
@@ -45,14 +45,14 @@ export class UserService {
       )
   }
 
-  getUserAchievements (id: string): Observable<Achievement> {
+  getUserAchievements(id: string): Observable<Achievement> {
     return this.http.get<Achievement>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
       catchError(this.handleError<Achievement>(`getUserAchievements id=${id}`))
       )
   }
 
-  updateUser (id: string, role: string, company?: string): Observable<User> {
+  updateUser(id: string, role: string, company?: string): Observable<User> {
 
     if (['user', 'team', 'company'].indexOf(role) === -1) {
       return of(null)
@@ -96,7 +96,7 @@ export class UserService {
     }
   }
 
-  removeThisEventsCompanyFromUser (id: string): Observable<User> {
+  removeThisEventsCompanyFromUser(id: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export class UserService {
 
     return this.http.delete<User>(`${this.usersUrl}/${id}/company?editionId=${environment.currentEvent}`,
       httpOptions).pipe(
-        catchError(this.handleError<User>('removeThisEventsCompanyFromUser'))
+      catchError(this.handleError<User>('removeThisEventsCompanyFromUser'))
       )
   }
 
@@ -128,3 +128,4 @@ export class UserService {
       return of(result as T)
     }
   }
+}

@@ -1,6 +1,6 @@
 <app-menu></app-menu>
 
-<app-qrcode-scanner (data)="processData($event)" [camStarted]="active">
+<app-qrcode-scanner (data)="processData($event)" [camStarted]="scannerActive">
 </app-qrcode-scanner>
 
 <div class="container align-center user" *ngIf="userRead">
@@ -17,9 +17,6 @@
       {{company}}
     </h5>
 
-    <h5 *ngIf="!userRead || !userRead.role">
-      user
-    </h5>
   </div>
 
   <div class="row">
@@ -29,25 +26,36 @@
   </div>
 
   <div class="row">
-
-    <div class="col-md-4">
+    <div class="col-xs-12">
       <button class="btn btn-button" (click)="promoteToTeam()">Promote to team</button>
     </div>
-    <div class="col-md-4">
-      <div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-          Promote to company
-          <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-          <li *ngFor="let company of companies">
-            <a tabindex="-1" (click)="promoteToCompany(company.name)">{{company.name}}</a>
-          </li>
-        </ul>
-      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-button" (click)="promoteToCompany()">Promote to company</button>
     </div>
-    <div class="col-md-4">
-      <button class="btn btn-button" (click)="demoteUser()">Demote user</button>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12">
+      <input id="typeahead-focus" type="text" class="form-control" [(ngModel)]="searchedCompany" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
+        (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="{{searchedCompany}}" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-warning" (click)="reScan()">Rescan QrCode</button>
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-xs-12">
+      <button class="btn btn-button btn-danger" (click)="demoteUser()">Demote user</button>
     </div>
 
   </div>
