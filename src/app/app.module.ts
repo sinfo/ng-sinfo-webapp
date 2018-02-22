@@ -49,8 +49,10 @@ import { CompanyService } from './company/company.service'
 
 import { NgModel } from '@angular/forms/src/directives/ng_model'
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+
 import { LinkComponent } from './user/link/link.component'
+import { LinkService } from './user/link/link.service'
 
 @NgModule({
   declarations: [
@@ -98,7 +100,8 @@ import { LinkComponent } from './user/link/link.component'
     StorageService,
     UserService,
     SessionService,
-    CompanyService
+    CompanyService,
+    LinkService
   ],
   bootstrap: [AppComponent]
 })

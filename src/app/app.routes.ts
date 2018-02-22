@@ -21,9 +21,9 @@ import { LinkComponent } from './user/link/link.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'qrcode', component: QrcodeScannerComponent },
-  { path: 'promote', component: PromoteComponent },
-  { path: 'link', component: LinkComponent },
+  { path: 'qrcode', component: QrcodeScannerComponent, canActivate: [ AuthGuard ] },
+  { path: 'promote', component: PromoteComponent, canActivate: [ AuthGuard ] },
+  { path: 'link', component: LinkComponent, canActivate: [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: LoginComponent },
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },

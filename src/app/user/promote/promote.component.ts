@@ -22,13 +22,12 @@ import 'rxjs/add/operator/distinctUntilChanged'
 })
 export class PromoteComponent implements OnInit {
 
-  private id: string
   scannerActive: boolean
   userRead: User
+  userReadCompany: Company
 
-  companies: string[]
-  company: string
-  searchedCompany: string
+  companies: Company[]
+  searchedCompany: Company
 
   constructor (
     private userService: UserService,
@@ -39,13 +38,15 @@ export class PromoteComponent implements OnInit {
   focus$ = new Subject<string>()
   click$ = new Subject<string>()
 
+  formatter = (company: Company) => company.name
+
   search = (text$: Observable<string>) =>
     text$
       .debounceTime(200).distinctUntilChanged()
       .merge(this.focus$)
       .merge(this.click$.filter(() => !this.instance.isPopupOpen()))
       .map(term => (term === '' ? this.companies : this.companies
-        .filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)))
+        .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1)))
 
   ngOnInit () {
     this.scannerActive = true
@@ -54,28 +55,25 @@ export class PromoteComponent implements OnInit {
 
   reScan () {
     this.userRead = null
-    this.id = null
     this.scannerActive = true
   }
 
-  processData (data: string) {
-    if (!this.id) {
-      this.id = data
-      this.scannerActive = false
-    }
+  processData (id: string) {
+    if (!id) return
 
-    this.userService.getUser(this.id)
+    this.scannerActive = false
+
+    this.userService.getUser(id)
       .subscribe(user => {
         this.userRead = user
-        if (user.role !== 'company') {
-          return
-        }
+        if (this.companies && user.role === 'company') {
+          let userCompany = user.company.find(c => {
+            return c.edition === environment.currentEvent
+          })
 
-        for (let i = 0; i < user.company.length; i++) {
-          if (user.company[i].edition === environment.currentEvent) {
-            this.company = user.company[i].edition
-            break
-          }
+          this.userReadCompany = this.companies.find(c => {
+            return c.id === userCompany.company
+          })
         }
       })
   }
@@ -83,35 +81,29 @@ export class PromoteComponent implements OnInit {
   getCompanies (): void {
     this.companyService.getCompanies()
       .subscribe(companies => {
-        this.companies = companies.map(e => e.name)
+        this.companies = companies
       })
   }
 
   promoteToTeam () {
-    if (!this.userRead) {
-      return
-    }
+    if (!this.userRead) return
 
     this.userService.updateUser(this.userRead.id, 'team')
       .subscribe(user => this.userRead = user)
   }
 
   promoteToCompany () {
-    if (!this.userRead || !this.searchedCompany) {
-      return
-    }
+    if (!this.userRead || !this.searchedCompany) return
 
-    this.userService.updateUser(this.userRead.id, 'company', this.searchedCompany)
+    this.userService.updateUser(this.userRead.id, 'company', this.searchedCompany.id)
       .subscribe(user => {
         this.userRead = user
-        this.company = this.searchedCompany
+        this.userReadCompany = this.searchedCompany
       })
   }
 
   demoteUser () {
-    if (!this.userRead) {
-      return
-    }
+    if (!this.userRead) return
 
     this.userService.updateUser(this.userRead.id, 'user')
       .subscribe(user => this.userRead = user)
