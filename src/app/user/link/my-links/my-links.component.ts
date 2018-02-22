@@ -19,8 +19,8 @@ export class MyLinksComponent implements OnInit {
   links: Link[]
   company: Company
   processedLinks: Array<{
-    attendee: string
-    user: string
+    attendee: User
+    user: User
     note: string
   }>
 
@@ -56,10 +56,11 @@ export class MyLinksComponent implements OnInit {
         this.userService.getUser(link.user)
           .subscribe(user => {
             this.processedLinks.push({
-              attendee: attendee.name,
-              user: user.name,
+              attendee: attendee,
+              user: user,
               note: link.note
             })
+            console.log(attendee)
           })
       })
   }

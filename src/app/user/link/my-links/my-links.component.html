@@ -1,5 +1,7 @@
 <app-menu></app-menu>
 
+<app-loading [content]="links"></app-loading>
+
 <div class="container container-fluid" *ngIf="company && links && processedLinks && links.length === processedLinks.length">
   <div class="align-center">
 
@@ -21,7 +23,7 @@
           <ng-template ngbPanelTitle>
             <div class="row accord">
               <button type="button" class="btn btn-sm">
-                <p>{{link.attendee}}</p>
+                <p>{{link.attendee.name}}</p>
                 <span class="caret"></span>
               </button>
             </div>
@@ -31,9 +33,13 @@
             <div class="row accord">
               <div class="link-note">
                 <p>
-                  <span class="panel-content-strong">Company employee: </span>{{link.user}}</p>
+                  <span class="panel-content-strong">Company employee: </span>
+                  {{link.user.name}}
+                </p>
                 <p>
-                  <span class="panel-content-strong">Note: </span>{{link.note}}</p>
+                  <span class="panel-content-strong">Note: </span>
+                  {{link.note}}
+                </p>
               </div>
             </div>
           </ng-template>
