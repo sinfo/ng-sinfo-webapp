@@ -17,8 +17,6 @@ import {
   CodeOfConductComponent,
   PageNotFoundComponent
 } from './static/static.component'
-import { MessagesComponent } from './partials/messages/messages.component'
-import { MessageService } from './partials/messages/message.service'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
 import { SponsorService } from './sponsors/sponsor.service'
@@ -41,6 +39,7 @@ import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.compon
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
 import { NgxZxingModule } from '@zxing/ngx-scanner';
 import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
+import { MessageService } from './message.service'
 
 @NgModule({
   declarations: [
@@ -52,7 +51,6 @@ import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
     PrivacyPolicyComponent,
     CodeOfConductComponent,
     PageNotFoundComponent,
-    MessagesComponent,
     SpeakerComponent,
     SponsorsComponent,
     TeamComponent,
