@@ -1,0 +1,67 @@
+.accord.row button {
+    width: 90%;
+    left: 5%;
+    margin: 0;
+    background-color: rgba(0,0,0,.03);
+    color: black !important;
+    text-align: left;
+    white-space: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link-note {
+    width: 90%;
+    margin-left: 5%;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+accord.row button:active {
+    background-color: transparent;
+}
+
+accord.row button p {
+    width: 95%;
+    margin-bottom: 0;
+}
+
+accord.row {
+    width: 95%;
+    margin: 5px auto;
+    margin-bottom: 0;
+}
+
+accord.row button, accord.row div {
+    border: 3px solid black;
+    border-radius: .25rem
+}
+
+.caret {
+    float: right;
+}
+
+.link-note p {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 4px;
+    text-align: left;
+}
+
+.panel-content-strong {
+    font-weight: bold;
+}
+
+div.portrait-wrapper {
+    margin: 10px auto;
+}
+  
+h3 {
+    margin: 20px auto;
+}
+
+
+img.portrait {
+    border-radius: 50%;
+    border: 3px solid #048ae6;
+}

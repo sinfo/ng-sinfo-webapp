@@ -7128,3 +7128,7 @@ div.clear input.btn:hover {
     left: 50%;
     transform: translateX(-50%)
 }
+
+.card-header a {
+    text-decoration: none !important;
+}

@@ -38,7 +38,23 @@ export class LinkService {
       )
   }
 
-  createLink(companyId: string, userId: string, attendeeId: string, note: string): Observable<Link> {
+  getLinks (companyId: string): Observable<Link[]> {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': environment.currentEvent
+        }
+      }),
+      headers: this.headers
+    }
+
+    return this.http.get<Link[]>(`${this.companiesUrl}/${companyId}/link`, httpOptions)
+      .pipe(
+        catchError(this.handleError<Link[]>('getLinks', []))
+      )
+  }
+
+  createLink (companyId: string, userId: string, attendeeId: string, note: string): Observable<Link> {
     return this.http.post<Link>(`${this.companiesUrl}/${companyId}/link`, {
       userId: userId,
       attendeeId: attendeeId,
