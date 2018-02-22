@@ -91,29 +91,33 @@
   <div class="container">
 
     <div class="tabs-wrapper tabs-horizontal">
-      <ul class="nav nav-tabs">
-        <li class="active">
-          <a href="#horizontal_tab1" data-toggle="tab">
-            <h6 class="heading-alt">
-              <span class="fa fa-code"></span> About Us </h6>
-          </a>
-        </li>
-        <li>
-          <a href="#horizontal_tab2" data-toggle="tab">
-            <h6 class="heading-alt">
-              <span class="fa fa-rocket"></span> Mission </h6>
-          </a>
-        </li>
-        <li>
-          <a href="#horizontal_tab3" data-toggle="tab">
-            <h6 class="heading-alt">
-              <span class="fa fa-external-link"></span> Vision & Target </h6>
-          </a>
-        </li>
-      </ul>
-
+      <div class="nav-wrapper" (window:resize)="showOrHideDropdown()">
+        <span class="nav-current" (click)="toggleDropdown()">
+          <h6><span>{{ selectedAboutText }}</span></h6>
+        </span>
+        <ul *ngIf="displayAboutDropdown" class="nav nav-tabs" >
+          <li [ngClass]="{'active': selectedAboutText === 'About Us'}">
+            <a href="#horizontal_tab1" data-toggle="tab" (click)="updatedSelectedText('About Us')">
+              <h6 class="heading-alt">
+                <span class="fa fa-code"></span> About Us </h6>
+            </a>
+          </li>
+          <li [ngClass]="{'active': selectedAboutText === 'Mission'}">
+            <a href="#horizontal_tab2" data-toggle="tab" (click)="updatedSelectedText('Mission')">
+              <h6 class="heading-alt">
+                <span class="fa fa-rocket"></span> Mission </h6>
+            </a>
+          </li>
+          <li [ngClass]="{'active': selectedAboutText === 'Vision & Target'}">
+            <a href="#horizontal_tab3" data-toggle="tab" (click)="updatedSelectedText('Vision & Target')">
+              <h6 class="heading-alt">
+                <span class="fa fa-external-link"></span> Vision & Target </h6>
+            </a>
+          </li>
+        </ul>
+      </div>
       <div class="tab-content">
-        <div id="horizontal_tab1" class="tab-pane fade active in">
+        <div id="horizontal_tab1" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'About Us'}">
           <div class="col-sm-5 img-column">
             <img src="assets/img/aboutUs-min.jpg" alt="" class="img-responsive" />
           </div>
@@ -128,7 +132,7 @@
           </div>
         </div>
 
-        <div id="horizontal_tab2" class="tab-pane fade">
+        <div id="horizontal_tab2" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'Mission'}">
           <div class="col-sm-7 align-left">
             <h6>Mission</h6>
             <p>
@@ -145,7 +149,7 @@
           </div>
         </div>
 
-        <div id="horizontal_tab3" class="tab-pane fade">
+        <div id="horizontal_tab3" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'Vision & Target'}">
           <div class="col-sm-5 img-column">
             <img src="assets/img/vision-min.jpg" alt="" class="img-responsive" />
           </div>

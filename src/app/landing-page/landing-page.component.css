@@ -7,3 +7,9 @@
     50% { bottom: 5vh; } 
     100% { bottom: 4vh; } 
 }
+
+@media only screen and (max-width: 768px) {
+    #about .nav.nav-tabs {
+        position: absolute;
+    }
+}

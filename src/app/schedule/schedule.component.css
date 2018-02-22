@@ -60,6 +60,9 @@
   .schedule .tab-content {
     border: none;
   }
+  .nav.nav-schedule {
+    position: absolute;
+  }
 }
 
 @media (max-width: 991px) {
@@ -108,4 +111,8 @@
 
 .room1 div, .room2 div {
   min-height: 200px;
+}
+
+.nav.nav-schedule.nav-day {
+  z-index: 100;
 }
