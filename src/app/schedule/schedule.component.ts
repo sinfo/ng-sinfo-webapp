@@ -114,7 +114,6 @@ export class ScheduleComponent implements OnInit {
   }
 
   updateSelectedSessionText(day: number, session: string) {
-    console.log(day, session)
     this.selectedSession[day] = session
   }
   /* End of Dropdown tabs actions */
