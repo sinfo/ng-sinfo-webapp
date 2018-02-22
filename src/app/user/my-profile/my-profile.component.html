@@ -7,7 +7,7 @@
   <app-sidebar [user]="user"></app-sidebar>
 
   <div id="content" class="content container-fluid">
-    <div class="align-center" >
+    <div class="align-center">
 
       <div class="row">
         <h3 class="name">
@@ -23,6 +23,10 @@
         <div class="portrait-wrapper">
           <img class="portrait" src="{{user.img}}">
         </div>
+      </div>
+
+      <div class="row">
+          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'L'"></ngx-qrcode>
       </div>
 
       <div class="row" *ngIf="user.area">
