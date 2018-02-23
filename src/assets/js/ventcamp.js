@@ -486,8 +486,8 @@ Ventcamp = {
     },
 
     videoPosition: function () {
-        var original_video_w = 1920;
-        var original_video_h = 1080;
+        var original_video_w = 1280;
+        var original_video_h = 720;
         var original_video_r = original_video_w/original_video_h;
 
         var video_wrapper_w = $('.video-bg').width();
