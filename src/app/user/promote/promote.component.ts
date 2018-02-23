@@ -3,7 +3,7 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
-import { environment } from '../../../environments/environment.prod'
+import { environment } from '../../../environments/environment'
 
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap'
 import { Observable } from 'rxjs/Observable'

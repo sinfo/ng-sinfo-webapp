@@ -93,27 +93,25 @@ export class ScheduleComponent implements OnInit {
   }
 
   /* Beggining of Dropdown tabs actions */
-  showOrHideDropdown(): void {
+  showOrHideDropdown (): void {
     this.displayDayDropdown = window.innerWidth > 768 ? true : false
-    console.log(window.innerWidth, this.displayDayDropdown)
-    
     this.displaySessionDropdown = window.innerWidth > 768 ? [true, true, true, true, true] : [false, false, false, false, false]
   }
 
-  toggleDayDropdown(): void {
+  toggleDayDropdown (): void {
     this.displayDayDropdown = !this.displayDayDropdown
   }
 
-  toggleSessionDropdown(day: number): void {
+  toggleSessionDropdown (day: number): void {
     this.displaySessionDropdown[day] = !this.displaySessionDropdown[day]
   }
 
-  updateSelectedDayText(theme: string, day: string): void {
+  updateSelectedDayText (theme: string, day: string): void {
     this.selectedTheme = theme
     this.selectedTime = day
   }
 
-  updateSelectedSessionText(day: number, session: string) {
+  updateSelectedSessionText (day: number, session: string) {
     this.selectedSession[day] = session
   }
   /* End of Dropdown tabs actions */
