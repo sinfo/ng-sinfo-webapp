@@ -15,6 +15,7 @@ import { LoginComponent } from './auth/login/login.component'
 import { MyProfileComponent } from './my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
 import { UserComponent } from './user/user.component'
+import { PromoteComponent } from './user/promote/promote.component'
 import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
 import { SessionComponent } from './session/session.component'
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'achievements', component: AchievementsComponent },
   { path: 'achievements/:id', component: AchievementComponent },
   { path: 'qrcode', component: QrcodeScannerComponent },
+  { path: 'promote', component: PromoteComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: LoginComponent },
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },

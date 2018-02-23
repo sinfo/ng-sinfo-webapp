@@ -3,6 +3,12 @@ export class User {
   name: string
   img: string
   role: string
+  company: [
+    {
+      edition: string
+      company: string
+    }
+  ]
   mail: string
   bearer: [
     {
