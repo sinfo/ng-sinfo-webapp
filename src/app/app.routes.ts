@@ -9,13 +9,13 @@ import {
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
-import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component'
+import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 
 import { LoginComponent } from './auth/login/login.component'
-import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { MyProfileComponent } from './my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
 import { UserComponent } from './user/user.component'
-import { SessionsComponent } from './schedule/sessions/sessions.component'
+import { SessionComponent } from './session/session.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'register', component: LoginComponent },
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
-  { path: 'sessions/:id', component: SessionsComponent },
+  { path: 'sessions/:id', component: SessionComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'coc', component: CodeOfConductComponent },

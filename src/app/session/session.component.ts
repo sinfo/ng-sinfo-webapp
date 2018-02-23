@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router, Params } from '@angular/router'
 
-import { SessionService } from '../session.service'
-import { Session } from '../session.model'
-import { SpeakerService } from '../../speakers/speaker.service'
-import { Speaker } from '../../speakers/speaker.model'
+import { SessionService } from './session.service'
+import { Session } from './session.model'
+import { SpeakerService } from '../speakers/speaker.service'
+import { Speaker } from '../speakers/speaker.model'
 
 @Component({
   selector: 'app-sessions',
-  templateUrl: './sessions.component.html',
-  styleUrls: ['./sessions.component.css']
+  templateUrl: './session.component.html',
+  styleUrls: ['./session.component.css']
 })
 
-export class SessionsComponent implements OnInit {
+export class SessionComponent implements OnInit {
   session: Session
   speaker: Speaker
 
