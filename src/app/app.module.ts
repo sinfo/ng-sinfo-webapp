@@ -43,15 +43,13 @@ import { SessionService } from './session/session.service'
 
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner'// scan qrcode
+import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
 
 import { PromoteComponent } from './user/promote/promote.component'
 
 import { CompanyService } from './company/company.service'
 
 import { NgModel } from '@angular/forms/src/directives/ng_model'
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -85,8 +83,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
     Routing,
     NgxQRCodeModule,
     NgxZxingModule.forRoot(),
-    FormsModule,
-    NgbModule.forRoot()
+    FormsModule
   ],
   providers: [
     SpeakerService,
