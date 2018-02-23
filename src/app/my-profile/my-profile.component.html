@@ -31,7 +31,7 @@
         <p>{{user.skills.join(', ')}}</p>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="user.points">
         <h5>Current points </h5>
         <p>{{user.points.total ? user.points.total : 0}}</p>
       </div>
