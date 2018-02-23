@@ -51,6 +51,11 @@ import { CompanyService } from './company/company.service'
 
 import { NgModel } from '@angular/forms/src/directives/ng_model'
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+
+import { LinkComponent } from './user/link/link.component'
+import { LinkService } from './user/link/link.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +79,7 @@ import { NgModel } from '@angular/forms/src/directives/ng_model'
     FeedbackComponent,
     PromoteComponent,
     SidebarComponent,
+    LinkComponent,
     AchievementsComponent,
     AchievementComponent
   ],
@@ -83,7 +89,8 @@ import { NgModel } from '@angular/forms/src/directives/ng_model'
     Routing,
     NgxQRCodeModule,
     NgxZxingModule.forRoot(),
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     SpeakerService,
@@ -97,6 +104,7 @@ import { NgModel } from '@angular/forms/src/directives/ng_model'
     UserService,
     SessionService,
     CompanyService,
+    LinkService,
     JwtService,
     AchievementService
   ],

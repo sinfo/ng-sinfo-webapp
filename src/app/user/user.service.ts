@@ -14,6 +14,7 @@ import { MessageService, Type } from '../message.service'
 @Injectable()
 export class UserService {
   private usersUrl = environment.cannonUrl + '/users'
+  private companiesUrl = environment.cannonUrl + '/companies'
   private me: User
 
   constructor (

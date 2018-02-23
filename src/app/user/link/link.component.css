@@ -1,0 +1,36 @@
+img.portrait {
+    width: 30%;
+    border-radius: 50%;
+    border: 3px solid #048ae6;
+}
+
+.row button {
+    width: 95%;
+    margin: 5px auto;
+}
+
+.form-control {
+    width: 95%;
+    margin: 5px auto;
+}
+
+.link-warning h6 {
+    color: #018ae6;
+}
+
+.btn-default:focus {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc
+}
+
+.btn-warning {
+    color: #fff !important;
+    background-color: #f0ad4e !important;
+    border-color: #eea236 !important;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border-color: #d9534f;
+}
