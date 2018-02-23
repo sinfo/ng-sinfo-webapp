@@ -1,13 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
 import { SpeakersComponent } from './speakers/speakers.component'
-
 import { SpeakerService } from './speakers/speaker.service'
-import { SessionService } from './schedule/session.service'
 
-import { HttpClientModule } from '@angular/common/http'
 import { LandingPageComponent } from './landing-page/landing-page.component'
 import { MenuComponent } from './partials/menu/menu.component'
 import { FooterComponent } from './partials/footer/footer.component'
@@ -25,22 +23,27 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
-import { LoadingComponent } from './loading/loading.component'
+import { LoadingComponent } from './partials/loading/loading.component'
 import { UserComponent } from './user/user.component'
 import { UserService } from './user/user.service'
-import { ScheduleComponent } from './schedule/schedule.component'
+import { ScheduleComponent } from './landing-page/schedule/schedule.component'
 import { LoginComponent } from './auth/login/login.component'
 import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
-import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { MyProfileComponent } from './my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
-import { SessionsComponent } from './schedule/sessions/sessions.component'
-import { FeedbackComponent } from './feedback/feedback.component'
+import { SessionComponent } from './session/session.component'
+import { FeedbackComponent } from './landing-page/feedback/feedback.component'
 
-import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component'
+import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner';
-import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
+import { JwtService } from './auth/jwt.service'
+import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
+import { SidebarComponent } from './partials/sidebar/sidebar.component'
+import { AchievementsComponent } from './achievements/achievements.component'
+import { AchievementComponent } from './achievements/achievement/achievement.component'
+import { AchievementService } from './achievements/achievement.service'
+import { SessionService } from './session/session.service'
 
 @NgModule({
   declarations: [
@@ -62,9 +65,11 @@ import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
     LoginComponent,
     MyProfileComponent,
     UserComponent,
-    SessionsComponent,
+    SessionComponent,
     FeedbackComponent,
-    SidebarComponent
+    SidebarComponent,
+    AchievementsComponent,
+    AchievementComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +88,8 @@ import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
     AuthGuard,
     StorageService,
     UserService,
-    SessionService
+    JwtService,
+    AchievementService
   ],
   bootstrap: [AppComponent]
 })

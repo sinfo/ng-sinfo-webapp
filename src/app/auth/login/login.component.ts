@@ -79,8 +79,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   attachSignin (element) {
-    this.auth2.attachClickHandler(element, {}, (googleUser) => {
-      this.onGoogleLogin(googleUser)
+    this.auth2.attachClickHandler(element, { }, (googleUser) => {
     }, (error) => {
       this.messageService.add({
         origin: 'LoginComponent: Google attachSignin',
@@ -90,16 +89,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
     })
   }
 
-  onGoogleLogin (googleUser) {
-    const profile = googleUser.getBasicProfile()
-    const userId = profile.getId()
-    const token = googleUser.getAuthResponse().id_token
+  onGoogleLogin () {
+    this.auth2.currentUser.listen(googleUser => {
+      const profile = googleUser.getBasicProfile()
+      const userId = profile.getId()
+      const token = googleUser.getAuthResponse().id_token
 
-    this.authService.google(userId, token)
-      .subscribe(cannonToken => {
-        this.authService.setToken(cannonToken)
-        this.router.navigate(['/me'])
-      })
+      this.authService.google(userId, token)
+        .subscribe(cannonToken => {
+          this.authService.setToken(cannonToken)
+          this.router.navigate(['/me'])
+        })
+    })
   }
 
   onFacebookLogin () {

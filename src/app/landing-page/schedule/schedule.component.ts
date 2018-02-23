@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { Session } from './session.model'
-import { SessionService } from './session.service'
+import { Session } from '../../session/session.model'
+import { SessionService } from '../../session/session.service'
 
-import { environment } from '../../environments/environment'
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'app-schedule',
