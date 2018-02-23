@@ -387,7 +387,7 @@ Ventcamp = {
 
         this.centeredBlock();
 
-        this.calculateMenuSizes();
+        // this.calculateMenuSizes();
     },
 
     //on scroll handler
@@ -524,7 +524,7 @@ Ventcamp = {
 
         this.centeredBlock();
 
-        this.calculateMenuSizes();
+        // this.calculateMenuSizes();
 
         this.setEventHandlers();
 

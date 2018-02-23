@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core'
 import { MessageService, Type } from '../../message.service'
 
 @Component({
@@ -9,8 +9,10 @@ import { MessageService, Type } from '../../message.service'
 export class QrcodeScannerComponent implements OnInit {
 
   @Output() data: EventEmitter<string> = new EventEmitter()
+  @Input('singleton') singleton: boolean
+  @Input() camStarted: boolean
 
-  camStarted = false
+  // camStarted = false
   selectedDevice
   private qrResult: string
   private availableDevices: any[]
@@ -24,7 +26,7 @@ export class QrcodeScannerComponent implements OnInit {
   displayCameras (cams: any[]) {
     this.availableDevices = cams
     if (cams && cams.length > 0) {
-      this.selectedDevice = cams[0]
+      this.selectedDevice = cams[cams.length - 1]
       this.camStarted = true
     }
   }

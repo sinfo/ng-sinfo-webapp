@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
@@ -42,7 +43,15 @@ import { SessionService } from './session/session.service'
 
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner'
+import { NgxZxingModule } from '@zxing/ngx-scanner'// scan qrcode
+
+import { PromoteComponent } from './user/promote/promote.component'
+
+import { CompanyService } from './company/company.service'
+
+import { NgModel } from '@angular/forms/src/directives/ng_model'
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -65,6 +74,7 @@ import { NgxZxingModule } from '@zxing/ngx-scanner'
     UserComponent,
     SessionComponent,
     FeedbackComponent,
+    PromoteComponent,
     SidebarComponent,
     AchievementsComponent,
     AchievementComponent
@@ -74,7 +84,9 @@ import { NgxZxingModule } from '@zxing/ngx-scanner'
     HttpClientModule,
     Routing,
     NgxQRCodeModule,
-    NgxZxingModule.forRoot()
+    NgxZxingModule.forRoot(),
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [
     SpeakerService,
@@ -86,6 +98,8 @@ import { NgxZxingModule } from '@zxing/ngx-scanner'
     AuthGuard,
     StorageService,
     UserService,
+    SessionService,
+    CompanyService,
     JwtService,
     AchievementService
   ],

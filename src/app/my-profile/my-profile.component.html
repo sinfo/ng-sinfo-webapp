@@ -13,6 +13,10 @@
         <h3 class="name">
           {{user.name}}
         </h3>
+
+        <h5 *ngIf="user.role && user.role !== 'user'">
+          {{user.role}}
+        </h5>
       </div>
 
       <div class="row">
