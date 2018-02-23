@@ -1,14 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component'
 import { SpeakersComponent } from './speakers/speakers.component'
-
 import { SpeakerService } from './speakers/speaker.service'
-import { SessionService } from './schedule/session.service'
 
-import { HttpClientModule } from '@angular/common/http'
 import { LandingPageComponent } from './landing-page/landing-page.component'
 import { MenuComponent } from './partials/menu/menu.component'
 import { FooterComponent } from './partials/footer/footer.component'
@@ -18,30 +16,34 @@ import {
   CodeOfConductComponent,
   PageNotFoundComponent
 } from './static/static.component'
-import { MessagesComponent } from './partials/messages/messages.component'
-import { MessageService } from './partials/messages/message.service'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
 import { SponsorService } from './sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { Member } from './team/member.model'
 import { TeamService } from './team/team.service'
-import { LoadingComponent } from './loading/loading.component'
+import { LoadingComponent } from './partials/loading/loading.component'
 import { UserComponent } from './user/user.component'
 import { UserService } from './user/user.service'
-import { ScheduleComponent } from './schedule/schedule.component'
+import { ScheduleComponent } from './landing-page/schedule/schedule.component'
 import { LoginComponent } from './auth/login/login.component'
 import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
-import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { MyProfileComponent } from './my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
-import { SessionsComponent } from './schedule/sessions/sessions.component'
-import { FeedbackComponent } from './feedback/feedback.component'
+import { SessionComponent } from './session/session.component'
+import { FeedbackComponent } from './landing-page/feedback/feedback.component'
+import { MessageService } from './message.service'
+import { JwtService } from './auth/jwt.service'
+import { SidebarComponent } from './partials/sidebar/sidebar.component'
+import { AchievementsComponent } from './achievements/achievements.component'
+import { AchievementComponent } from './achievements/achievement/achievement.component'
+import { AchievementService } from './achievements/achievement.service'
+import { SessionService } from './session/session.service'
 
-import { QrcodeScannerComponent } from './qr-code-scanner/qr-code-scanner.component'
+import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner'
-import { SidebarComponent } from './sidebar/sidebar.component' // scan qrcode
+import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
 
 import { PromoteComponent } from './user/promote/promote.component'
 
@@ -53,6 +55,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { LinkComponent } from './user/link/link.component'
 import { LinkService } from './user/link/link.service'
+
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
 
 @NgModule({
@@ -65,7 +68,6 @@ import { MyLinksComponent } from './user/link/my-links/my-links.component'
     PrivacyPolicyComponent,
     CodeOfConductComponent,
     PageNotFoundComponent,
-    MessagesComponent,
     SpeakerComponent,
     SponsorsComponent,
     TeamComponent,
@@ -75,12 +77,14 @@ import { MyLinksComponent } from './user/link/my-links/my-links.component'
     LoginComponent,
     MyProfileComponent,
     UserComponent,
-    SessionsComponent,
+    SessionComponent,
     FeedbackComponent,
     PromoteComponent,
     SidebarComponent,
     LinkComponent,
-    MyLinksComponent
+    MyLinksComponent,
+    AchievementsComponent,
+    AchievementComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +107,9 @@ import { MyLinksComponent } from './user/link/my-links/my-links.component'
     UserService,
     SessionService,
     CompanyService,
-    LinkService
+    LinkService,
+    JwtService,
+    AchievementService
   ],
   bootstrap: [AppComponent]
 })

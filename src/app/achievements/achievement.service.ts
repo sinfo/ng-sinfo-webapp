@@ -5,52 +5,44 @@ import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 
-import { Session } from './session.model'
-
 import { environment } from '../../environments/environment'
-import { MessageService, Type } from '../partials/messages/message.service'
+
+import { Achievement } from './achievement.model'
+import { MessageService, Type } from '../message.service'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
 
 @Injectable()
-export class SessionService {
-
-  private sessionsUrl = environment.deckUrl + '/api/sessions'
-  private sessions: Session[]
+export class AchievementService {
+  private achievementsUrl = environment.cannonUrl + '/achievements'
+  private achievements: Achievement[]
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getSessions (): Observable<Session[]> {
-    if (this.sessions) {
-      return of(this.sessions)
+  getAchievements (): Observable<Achievement[]> {
+    if (this.achievements) {
+      return of(this.achievements)
     }
 
-    const params = new HttpParams({
-      fromObject: {
-        'sort': 'date',
-        'event': environment.currentEvent
-      }
-    })
-
-    return this.http.get<Session[]>(this.sessionsUrl, { params })
+    return this.http.get<Achievement[]>(this.achievementsUrl)
       .pipe(
-        tap(sessions => this.sessions = sessions),
-        catchError(this.handleError<Session[]>('getSessions', []))
+        tap(achievemens => this.achievements = achievemens),
+        catchError(this.handleError<Achievement[]>('getAchiements', []))
       )
   }
 
-  getSession (id: string): Observable<Session> {
-    if (this.sessions) {
-      return of(this.sessions.find(session => session.id === id))
+  getAchievement (id: string): Observable<Achievement> {
+    if (this.achievements) {
+      return of(this.achievements.find(achievement => achievement.id === id))
     } else {
-      return this.http.get<Session>(`${this.sessionsUrl}/${id}`)
+      return this.http.get<Achievement>(`${this.achievementsUrl}/${id}`)
         .pipe(
-          catchError(this.handleError<Session>('getSession'))
+          catchError(this.handleError<Achievement>('getAchievement'))
         )
     }
   }
@@ -64,9 +56,12 @@ export class SessionService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
-        origin: `SessionService: ${operation}`,
-        text: error.message,
-        type: Type.error
+        origin: `AchievementService: ${operation}`,
+        text: 'When fetching speakers from server',
+        showAlert: true,
+        type: Type.error,
+        timeout: 4000,
+        errorObject: error
       })
 
       // Let the app keep running by returning an empty result.

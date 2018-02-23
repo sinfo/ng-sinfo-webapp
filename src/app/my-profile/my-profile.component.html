@@ -7,16 +7,21 @@
   <app-sidebar [user]="user"></app-sidebar>
 
   <div id="content" class="content container-fluid">
-    <div class="align-center" >
+    <div class="align-center">
 
       <div class="row">
         <h3 class="name">
           {{user.name}}
         </h3>
 
-        <h5 *ngIf="user.role && user.role !== 'user'">
+        <h5 *ngIf="user.role === 'team'">
           {{user.role}}
         </h5>
+
+        <h5 *ngIf="user.role === 'company'">
+          {{company}}
+        </h5>
+
       </div>
 
       <div class="row">
@@ -35,7 +40,7 @@
         <p>{{user.skills.join(', ')}}</p>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="user.points">
         <h5>Current points </h5>
         <p>{{user.points.total ? user.points.total : 0}}</p>
       </div>
