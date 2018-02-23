@@ -7089,7 +7089,6 @@ div.clear input.btn:hover {
   }
   .hero-section,
   .hero-section > .container {
-    height: 88vh;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
@@ -7127,4 +7126,8 @@ div.clear input.btn:hover {
     position: absolute;
     left: 50%;
     transform: translateX(-50%)
+}
+
+.card-header a {
+    text-decoration: none !important;
 }

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core'
-import { MessageService, Type } from '../partials/messages/message.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { User } from './user.model'
 import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
-import { Achievement } from './achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 import { AuthService } from '../auth/auth.service'
 import { Company } from '../company/company.model'
 import { CompanyService } from '../company/company.service'
+import { MessageService, Type } from '../message.service'
 
 @Injectable()
 export class UserService {
@@ -17,14 +17,14 @@ export class UserService {
   private companiesUrl = environment.cannonUrl + '/companies'
   private me: User
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private messageService: MessageService,
     private companyService: CompanyService,
     private authService: AuthService
   ) { }
 
-  getUser(id: string): Observable<User> {
+  getUser (id: string): Observable<User> {
     let headers = {
       'Content-Type': 'application/json',
       'Authorization': ''
@@ -40,7 +40,7 @@ export class UserService {
       )
   }
 
-  getMe(): Observable<User> {
+  getMe (): Observable<User> {
     if (this.me) {
       return of(this.me)
     }
@@ -58,15 +58,14 @@ export class UserService {
       )
   }
 
-  getUserAchievements(id: string): Observable<Achievement> {
+  getUserAchievements (id: string): Observable<Achievement> {
     return this.http.get<Achievement>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
       catchError(this.handleError<Achievement>(`getUserAchievements id=${id}`))
       )
   }
 
-  updateUser(id: string, role: string, company?: string): Observable<User> {
-
+  updateUser (id: string, role: string, company?: string): Observable<User> {
     if (['user', 'team', 'company'].indexOf(role) === -1) {
       return of(null)
     }
@@ -109,7 +108,21 @@ export class UserService {
     }
   }
 
-  removeThisEventsCompanyFromUser(id: string): Observable<User> {
+  demoteSelf () {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.put<User>(`${this.usersUrl}/me`, { role: 'user' }, httpOptions)
+      .pipe(
+      catchError(this.handleError<User>('updateUser'))
+      )
+  }
+
+  removeThisEventsCompanyFromUser (id: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -129,11 +142,13 @@ export class UserService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `UserService: ${operation}`,
-        text: error.message,
+        showAlert: true,
+        text: 'When fetching user information from server',
+        errorObject: error,
         type: Type.error
       })
 

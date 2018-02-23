@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+
 import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
-import { Speaker } from './speaker.model'
+
+import { Session } from './session.model'
+
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
 
@@ -12,43 +15,44 @@ const httpOptions = {
 }
 
 @Injectable()
-export class SpeakerService {
-  private speakersUrl = environment.deckUrl + '/api/speakers'
-  private speakers: Speaker[]
+export class SessionService {
+
+  private sessionsUrl = environment.deckUrl + '/api/sessions'
+  private sessions: Session[]
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getSpeakers (): Observable<Speaker[]> {
-    if (this.speakers) {
-      return of(this.speakers)
+  getSessions (): Observable<Session[]> {
+    if (this.sessions) {
+      return of(this.sessions)
     }
 
     const params = new HttpParams({
       fromObject: {
-        'sort': 'name',
-        'event': environment.currentEvent,
-        'participations': 'true'
+        'sort': 'date',
+        'event': environment.currentEvent
       }
     })
 
-    return this.http.get<Speaker[]>(this.speakersUrl, { params })
+    return this.http.get<Session[]>(this.sessionsUrl, { params })
       .pipe(
-        tap(speakers => this.speakers = speakers),
-        catchError(this.handleError<Speaker[]>('getSpeakers', []))
+        tap(sessions => this.sessions = sessions),
+        catchError(this.handleError<Session[]>('getSessions', []))
       )
   }
 
-  getSpeaker (id: string): Observable<Speaker> {
-    if (this.speakers) {
-      return of(this.speakers.find(speaker => speaker.id === id))
+  getSession (id: string): Observable<Session> {
+    if (this.sessions) {
+      return of(this.sessions.find(session => session.id === id))
+    } else {
+      return this.http.get<Session>(`${this.sessionsUrl}/${id}`)
+        .pipe(
+          catchError(this.handleError<Session>('getSession'))
+        )
     }
-    return this.http.get<Speaker>(`${this.speakersUrl}/${id}`)
-      .pipe(
-        catchError(this.handleError<Speaker>(`getSpeaker id=${id}`))
-      )
   }
 
   /**
@@ -60,11 +64,11 @@ export class SpeakerService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
-        origin: `SpeakerService: ${operation}`,
-        showAlert: true,
-        text: 'When fetching speakers from server',
-        errorObject: error,
+        origin: `SessionService: ${operation}`,
+        text: 'When fetching session from server',
         type: Type.error,
+        showAlert: true,
+        errorObject: error,
         timeout: 4000
       })
 

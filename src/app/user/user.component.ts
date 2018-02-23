@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { UserService } from './user.service'
 import { ActivatedRoute, Params } from '@angular/router'
 import { User } from './user.model'
-import { Achievement } from './achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 
 @Component({
   selector: 'app-user',
