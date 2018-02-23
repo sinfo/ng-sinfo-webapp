@@ -15,10 +15,14 @@ import { LoginComponent } from './auth/login/login.component'
 import { MyProfileComponent } from './my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
 import { UserComponent } from './user/user.component'
-import { SessionComponent } from './session/session.component'
+import { SessionsComponent } from './schedule/sessions/sessions.component'
+import { AchievementsComponent } from './achievements/achievements.component'
+import { AchievementComponent } from './achievements/achievement/achievement.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
+  { path: 'achievements', component: AchievementsComponent },
+  { path: 'achievements/:id', component: AchievementComponent },
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: LoginComponent },

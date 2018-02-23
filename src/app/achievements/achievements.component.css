@@ -1,0 +1,14 @@
+a {
+    cursor: pointer;
+}
+
+img {
+    width: 100px;
+    margin: 5px;
+}
+
+img:not(.unlocked):not(:hover) {
+    opacity: .6;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}

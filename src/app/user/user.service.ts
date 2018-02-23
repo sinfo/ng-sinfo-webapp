@@ -6,7 +6,7 @@ import { User } from './user.model'
 import { Observable } from 'rxjs/Observable'
 import { catchError } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
-import { Achievement } from './achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 import { AuthService } from '../auth/auth.service'
 
 @Injectable()

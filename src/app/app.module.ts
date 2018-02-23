@@ -39,8 +39,11 @@ import { FeedbackComponent } from './landing-page/feedback/feedback.component'
 
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner'
-import { SidebarComponent } from './partials/sidebar/sidebar.component'
+import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
+import { SidebarComponent } from './sidebar/sidebar.component'
+import { AchievementsComponent } from './achievements/achievements.component'
+import { AchievementComponent } from './achievements/achievement/achievement.component'
+import { AchievementService } from './achievements/achievement.service'
 
 @NgModule({
   declarations: [
@@ -64,7 +67,9 @@ import { SidebarComponent } from './partials/sidebar/sidebar.component'
     UserComponent,
     SessionComponent,
     FeedbackComponent,
-    SidebarComponent
+    SidebarComponent,
+    AchievementsComponent,
+    AchievementComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +88,8 @@ import { SidebarComponent } from './partials/sidebar/sidebar.component'
     AuthGuard,
     StorageService,
     UserService,
-    SessionService
+    SessionService,
+    AchievementService
   ],
   bootstrap: [AppComponent]
 })
