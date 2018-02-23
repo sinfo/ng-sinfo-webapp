@@ -12,7 +12,6 @@ import { SponsorsComponent } from './sponsors/sponsors.component'
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 
 import { LoginComponent } from './auth/login/login.component'
-import { MyProfileComponent } from './my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
 import { UserComponent } from './user/user.component'
 import { LinkComponent } from './user/link/link.component'
@@ -22,6 +21,7 @@ import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
 import { SessionComponent } from './session/session.component'
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
+import { MyProfileComponent } from './user/my-profile/my-profile.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },

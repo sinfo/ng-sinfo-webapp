@@ -29,7 +29,6 @@ import { ScheduleComponent } from './landing-page/schedule/schedule.component'
 import { LoginComponent } from './auth/login/login.component'
 import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
-import { MyProfileComponent } from './my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
 import { SessionComponent } from './session/session.component'
 import { FeedbackComponent } from './landing-page/feedback/feedback.component'
@@ -57,6 +56,7 @@ import { LinkComponent } from './user/link/link.component'
 import { LinkService } from './user/link/link.service'
 
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
+import { MyProfileComponent } from './user/my-profile/my-profile.component'
 
 @NgModule({
   declarations: [

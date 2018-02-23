@@ -6,7 +6,7 @@ import { CompanyService } from '../../company/company.service'
 import { environment } from '../../../environments/environment.prod'
 import { LinkService } from './link.service'
 import { Link } from './link.model'
-import { MessageService, Type } from '../../partials/messages/message.service'
+import { MessageService, Type } from '../../message.service'
 
 @Component({
   selector: 'app-link',
@@ -71,26 +71,28 @@ export class LinkComponent implements OnInit {
     this.currentLink ? this.updateLink() : this.createLink()
   }
 
-  createLink() {
+  createLink () {
     this.linkService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
       })
   }
 
-  updateLink() {
+  updateLink () {
     this.linkService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
         this.messageService.add({
           origin: 'Link component',
+          showAlert: true,
           text: 'Link updated',
-          type: Type.warning
+          timeout: 4000,
+          type: Type.success
         })
       })
   }
 
-  deleteLink() {
+  deleteLink () {
     this.linkService.deleteLink(this.company.id, this.userRead.id)
       .subscribe(_link => {
         this.currentLink = null

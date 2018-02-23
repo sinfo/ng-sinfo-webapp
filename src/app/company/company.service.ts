@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
-import { MessageService, Type } from '../partials/messages/message.service'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { Company } from './company.model'
 import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
+import { MessageService, Type } from '../message.service'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -64,6 +64,7 @@ export class CompanyService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `CompanyService: ${operation}`,
+        showAlert: true,
         text: error.message,
         type: Type.error
       })

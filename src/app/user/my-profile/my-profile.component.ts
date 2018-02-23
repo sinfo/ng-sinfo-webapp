@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, NgZone } from '@angular/core'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
@@ -14,11 +14,18 @@ export class MyProfileComponent implements OnInit {
   company: string
 
   constructor (
-    private userService: UserService
-  ) { }
-
-  ngOnInit () {
-    this.userService.getMe()
+    private userService: UserService,
+    private zone: NgZone
+  ) {
+    /**
+     *  TODO: To fix the unknown error with Google login
+     * (https://github.com/sinfo/ng-sinfo-webapp/issues/62) we need to call getMe()
+     * in the constructor this isn't a best practise, change this in the future.
+     * Similar problem:
+     * https://stackoverflow.com/questions/48876926/ngoninit-function-not-called-after-google-login-in-angular4
+     */
+    this.zone.run(() => {
+      this.userService.getMe()
       .subscribe(user => {
         this.user = user
 
@@ -46,5 +53,8 @@ export class MyProfileComponent implements OnInit {
           }
         }
       })
+    })
   }
+
+  ngOnInit () { }
 }
