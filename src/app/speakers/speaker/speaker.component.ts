@@ -3,8 +3,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { SpeakerService } from '../speaker.service'
 import { Speaker } from '../speaker.model'
-import { SessionService } from '../../schedule/session.service'
-import { Session } from '../../schedule/session.model'
+import { SessionService } from '../../session/session.service'
+import { Session } from '../../session/session.model'
 
 @Component({
   selector: 'app-speaker',
