@@ -6,9 +6,9 @@ import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 
 import { environment } from '../../environments/environment'
-import { MessageService, Type } from '../partials/messages/message.service'
 
 import { Achievement } from './achievement.model'
+import { MessageService, Type } from '../message.service'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -57,8 +57,11 @@ export class AchievementService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `AchievementService: ${operation}`,
-        text: error.message,
-        type: Type.error
+        text: 'When fetching speakers from server',
+        showAlert: true,
+        type: Type.error,
+        timeout: 4000,
+        errorObject: error
       })
 
       // Let the app keep running by returning an empty result.
