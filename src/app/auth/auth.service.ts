@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { MessageService, Type } from '../partials/messages/message.service'
 import { environment } from '../../environments/environment'
 import { Observable } from 'rxjs/Observable'
 import { of } from 'rxjs/observable/of'
-import { CannonToken } from './cannon-token.model'
 import { tap, catchError } from 'rxjs/operators'
 import { StorageService } from '../storage.service'
+import { MessageService, Type } from '../message.service'
+import { CannonToken } from './cannon-token.model'
+import { JwtService } from './jwt.service'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,7 +21,8 @@ export class AuthService {
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private jwtService: JwtService
   ) { }
 
   facebook (id, token): Observable<CannonToken> {
@@ -40,32 +42,28 @@ export class AuthService {
   }
 
   getToken (): CannonToken | null | undefined {
-    return this.storageService.getItem('cannon-auth') as CannonToken
+    return this.storageService.getItem('cannon_token') as CannonToken
   }
 
   setToken (token: CannonToken): void {
-    this.storageService.setItem('cannon-auth', token)
+    this.storageService.setItem('cannon_token', token)
   }
 
   isLoggedIn (): boolean {
-    const token = this.getToken()
-    if (!token) {
+    const cannonToken = this.getToken()
+    if (!cannonToken) {
       return false
     }
+    const isTokenExpired = this.jwtService.isTokenExpired(cannonToken.token)
 
-    const now = new Date()
-    const ttl = token.ttl * 60 // Convert ttl in minutes to UNIX timestamp
-    const expires = token.date + ttl
-
-    if (expires > Math.floor(now.getTime() / 1000)) {
-      return true
+    if (isTokenExpired) {
+      this.logout()
     }
-    this.logout()
-    return false
+    return !isTokenExpired
   }
 
   logout (): void {
-    this.storageService.removeItem('cannon-auth')
+    this.storageService.removeItem('cannon_token')
   }
 
   /**
@@ -78,8 +76,11 @@ export class AuthService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `AuthService: ${operation}`,
-        text: error.message,
-        type: Type.error
+        text: 'When signing in',
+        type: Type.error,
+        showAlert: true,
+        errorObject: error,
+        timeout: 8000
       })
 
       // Let the app keep running by returning an empty result.

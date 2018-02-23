@@ -8,7 +8,7 @@ import { of } from 'rxjs/observable/of'
 import { Member } from './member.model'
 
 import { environment } from '../../environments/environment'
-import { MessageService, Type } from '../partials/messages/message.service'
+import { MessageService, Type } from '../message.service'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -53,8 +53,11 @@ export class TeamService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `TeamService: ${operation}`,
-        text: error.message,
-        type: Type.error
+        showAlert: true,
+        text: 'When fetching team members from server',
+        type: Type.error,
+        errorObject: error,
+        timeout: 4000
       })
 
       // Let the app keep running by returning an empty result.

@@ -10,7 +10,6 @@ export class StorageService {
     try {
       localStorage.setItem(key, JSON.stringify(value))
     } catch (err) {
-      console.error(err)
       this.internalStorage[key] = value
     }
   }
@@ -23,7 +22,6 @@ export class StorageService {
       }
       return JSON.parse(localStorage.getItem(key))
     } catch (err) {
-      console.error(err)
       return this.internalStorage[key]
     }
   }
