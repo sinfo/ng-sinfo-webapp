@@ -10,15 +10,14 @@ import { AchievementService } from '../achievement.service'
   styleUrls: ['./achievement.component.css']
 })
 export class AchievementComponent implements OnInit {
-
   achievement: Achievement
 
-  constructor(
+  constructor (
     private achievementService: AchievementService,
     private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.activatedRoute.params.forEach((params: Params) => {
       const id = params['id']
       this.getAchievement(id)
@@ -27,7 +26,7 @@ export class AchievementComponent implements OnInit {
 
   getAchievement (id: string): void {
     this.achievementService.getAchievement(id)
-      .subscribe(achievement => this.achievement = achievement )
+      .subscribe(achievement => this.achievement = achievement)
   }
 
 }

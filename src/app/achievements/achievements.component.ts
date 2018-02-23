@@ -13,25 +13,24 @@ import { User } from '../user/user.model'
   styleUrls: ['./achievements.component.css']
 })
 export class AchievementsComponent implements OnInit {
-  
   achievements: Achievement[]
   private user: User
 
-  constructor(
+  constructor (
     private achievementService: AchievementService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.getAchievements()
   }
 
   getAchievements (): void {
     this.achievementService.getAchievements()
       .subscribe(achievements => {
-        this.achievements = achievements 
+        this.achievements = achievements
         this.getUser()
       })
   }
@@ -52,5 +51,4 @@ export class AchievementsComponent implements OnInit {
   isUnlocked (achievement: Achievement): boolean {
     return this.user ? achievement.users.indexOf(this.user.id) !== -1 : false
   }
-
 }

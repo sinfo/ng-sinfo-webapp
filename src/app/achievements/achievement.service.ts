@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 
@@ -16,11 +16,10 @@ const httpOptions = {
 
 @Injectable()
 export class AchievementService {
-  
   private achievementsUrl = environment.cannonUrl + '/achievements'
   private achievements: Achievement[]
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }

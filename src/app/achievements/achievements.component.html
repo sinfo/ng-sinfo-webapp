@@ -1,12 +1,11 @@
 <app-menu></app-menu>
 
-<app-loading [content]="achievements">
-</app-loading>
+<app-loading [content]="achievements"></app-loading>
 
 <section *ngIf="achievements"  class="section achievement-section align-center">
     <div class="container">
         <h3>Achievements</h3>
-        <a *ngFor="let achievement of achievements" (click)="onSelect(achievement)"> 
+        <a *ngFor="let achievement of achievements" (click)="onSelect(achievement)">
             <img [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>
     </div>
