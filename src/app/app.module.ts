@@ -56,6 +56,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { LinkComponent } from './user/link/link.component'
 import { LinkService } from './user/link/link.service'
 
+import { MyLinksComponent } from './user/link/my-links/my-links.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +82,7 @@ import { LinkService } from './user/link/link.service'
     PromoteComponent,
     SidebarComponent,
     LinkComponent,
+    MyLinksComponent,
     AchievementsComponent,
     AchievementComponent
   ],

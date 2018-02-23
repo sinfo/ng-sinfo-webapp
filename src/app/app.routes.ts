@@ -21,12 +21,14 @@ import { PromoteComponent } from './user/promote/promote.component'
 import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
 import { SessionComponent } from './session/session.component'
+import { MyLinksComponent } from './user/link/my-links/my-links.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'link', component: LinkComponent, canActivate: [ AuthGuard ] },
   { path: 'achievements', component: AchievementsComponent },
   { path: 'achievements/:id', component: AchievementComponent },
+  { path: 'my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'promote', component: PromoteComponent },
   { path: 'login', component: LoginComponent },
