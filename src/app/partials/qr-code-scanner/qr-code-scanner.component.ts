@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core'
-import { MessageService, Type } from '../message.service'
+import { MessageService, Type } from '../../message.service'
 
 @Component({
   selector: 'app-qrcode-scanner',
