@@ -8,7 +8,7 @@
 <div class="container align-center user" *ngIf="user">
   <div class="row">
     <h3 class="name">
-      {{user.name}} 
+      {{user.name}}
     </h3>
 
     <h5 *ngIf="user.role && user.role !== 'user'">
@@ -19,20 +19,20 @@
   <div class="row">
     <div class="portrait-wrapper">
       <img class="portrait" src="{{user.img}}">
-    </div>  
+    </div>
   </div>
-  
+
   <div class="row" *ngIf="user.area">
     <h5>Area </h5>
     <p>{{user.area}}</p>
   </div>
-  
+
   <div class="row" *ngIf="user.skills">
     <h5>Skills </h5>
     <p>{{user.skills.join(', ')}}</p>
   </div>
-  
-  <div class="row">
+
+  <div class="row" *ngIf="user.points">
       <h5>Current points </h5>
       <p>{{user.points.total ? user.points.total : 0}}</p>
   </div>
@@ -43,5 +43,5 @@
       <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
     </div>
   </div>
-  
+
 </div>

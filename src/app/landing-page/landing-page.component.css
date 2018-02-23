@@ -1,0 +1,15 @@
+.intro {
+    animation: jump 1s infinite;
+}
+
+@keyframes jump { 
+    0% { bottom: 4vh; } 
+    50% { bottom: 5vh; } 
+    100% { bottom: 4vh; } 
+}
+
+@media only screen and (max-width: 768px) {
+    #about .nav.nav-tabs {
+        position: absolute;
+    }
+}

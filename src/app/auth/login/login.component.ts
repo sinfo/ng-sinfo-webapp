@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core'
 import { environment } from '../../../environments/environment'
-import { MessageService, Type } from '../../partials/messages/message.service'
 import { AuthService } from '../auth.service'
 import { Router } from '@angular/router'
+import { MessageService, Type } from '../../message.service'
 
 declare let FB: any
 declare let gapi: any
@@ -37,18 +37,20 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     if (!this.isFacebookActive) {
       this.messageService.add({
-        origin: 'LoginComponent: constructor',
-        text: `You need to disable any ad blocker or tracking protection to be
+        origin: `LoginComponent: ngOnInit isFacebookActive=${this.isFacebookActive}`,
+        text: `You need to disable any ad blocker or tracking protection mechanism to be
                 allowed to login with Facebook.`,
-        type: Type.warning
+        showAlert: true,
+        type: Type.log
       })
     }
     if (!this.isGoogleActive) {
       this.messageService.add({
-        origin: 'LoginComponent: constructor',
-        text: `You need to disable any ad blocker or tracking protection to be
+        origin: `LoginComponent: ngOnInit isGoogleActive=${this.isGoogleActive}`,
+        text: `You need to disable any ad blocker or tracking protection mechanism to be
                 allowed to login with Google.`,
-        type: Type.warning
+        type: Type.log,
+        showAlert: true
       })
     }
   }
@@ -79,27 +81,30 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   attachSignin (element) {
-    this.auth2.attachClickHandler(element, {}, (googleUser) => {
-      this.onGoogleLogin(googleUser)
+    this.auth2.attachClickHandler(element, { }, (googleUser) => {
     }, (error) => {
       this.messageService.add({
         origin: 'LoginComponent: Google attachSignin',
         text: error.error,
-        type: Type.log
+        errorObject: error,
+        type: Type.log,
+        showAlert: false
       })
     })
   }
 
-  onGoogleLogin (googleUser) {
-    const profile = googleUser.getBasicProfile()
-    const userId = profile.getId()
-    const token = googleUser.getAuthResponse().id_token
+  onGoogleLogin () {
+    this.auth2.currentUser.listen(googleUser => {
+      const profile = googleUser.getBasicProfile()
+      const userId = profile.getId()
+      const token = googleUser.getAuthResponse().id_token
 
-    this.authService.google(userId, token)
-      .subscribe(cannonToken => {
-        this.authService.setToken(cannonToken)
-        this.router.navigate(['/me'])
-      })
+      this.authService.google(userId, token)
+        .subscribe(cannonToken => {
+          this.authService.setToken(cannonToken)
+          this.router.navigate(['/me'])
+        })
+    })
   }
 
   onFacebookLogin () {
@@ -120,13 +125,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.messageService.add({
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
         text: 'You were not allowed to login with Facebook',
-        type: Type.warning
+        type: Type.error,
+        showAlert: true,
+        errorObject: resp
       })
     } else {
       this.messageService.add({
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
         text: 'An error occurred by logging with Facebook',
-        type: Type.error
+        type: Type.error,
+        showAlert: true,
+        errorObject: resp
       })
     }
   }

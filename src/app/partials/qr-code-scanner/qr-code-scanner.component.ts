@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core'
-import { MessageService, Type } from '../partials/messages/message.service'
+import { MessageService, Type } from '../../message.service'
 
 @Component({
   selector: 'app-qrcode-scanner',
@@ -46,15 +46,19 @@ export class QrcodeScannerComponent implements OnInit {
     if (content) {
       this.data.emit(content)
       this.messageService.add({
-        origin: 'qrcode',
+        origin: 'QrcodeScannerComponent processContent()',
+        showAlert: true,
         text: content,
-        type: Type.warning
+        type: Type.success,
+        timeout: 1000
       })
     } else {
       this.messageService.add({
-        origin: 'qrcode',
-        text: 'Erro na leitura. Tente novamente.',
-        type: Type.error
+        origin: 'QrcodeScannerComponent processContent()',
+        showAlert: true,
+        text: 'Reading the QRCode, try again.',
+        type: Type.error,
+        timeout: 6000
       })
     }
   }
