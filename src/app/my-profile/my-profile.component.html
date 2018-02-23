@@ -30,6 +30,10 @@
         </div>
       </div>
 
+      <div class="row">
+          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'L'"></ngx-qrcode>
+      </div>
+
       <div class="row" *ngIf="user.area">
         <h5>Area </h5>
         <p>{{user.area}}</p>
