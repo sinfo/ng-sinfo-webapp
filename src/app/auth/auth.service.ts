@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { MessageService, Type } from '../partials/messages/message.service'
 import { environment } from '../../environments/environment'
 import { Observable } from 'rxjs/Observable'
 import { of } from 'rxjs/observable/of'
 import { tap, catchError } from 'rxjs/operators'
 import { StorageService } from '../storage.service'
+import { MessageService, Type } from '../message.service'
 import { CannonToken } from './cannon-token.model'
 import { JwtService } from './jwt.service'
 
@@ -76,8 +76,11 @@ export class AuthService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `AuthService: ${operation}`,
-        text: error.message,
-        type: Type.error
+        text: 'When signing in',
+        type: Type.error,
+        showAlert: true,
+        errorObject: error,
+        timeout: 8000
       })
 
       // Let the app keep running by returning an empty result.

@@ -15,8 +15,6 @@ import {
   CodeOfConductComponent,
   PageNotFoundComponent
 } from './static/static.component'
-import { MessagesComponent } from './partials/messages/messages.component'
-import { MessageService } from './partials/messages/message.service'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
 import { SponsorService } from './sponsors/sponsor.service'
@@ -34,16 +32,17 @@ import { MyProfileComponent } from './my-profile/my-profile.component'
 import { AuthGuard } from './auth/auth.guard'
 import { SessionComponent } from './session/session.component'
 import { FeedbackComponent } from './landing-page/feedback/feedback.component'
-
-import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
-import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
+import { MessageService } from './message.service'
 import { JwtService } from './auth/jwt.service'
-import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
 import { SidebarComponent } from './partials/sidebar/sidebar.component'
 import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
 import { AchievementService } from './achievements/achievement.service'
 import { SessionService } from './session/session.service'
+
+import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
+import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
+import { NgxZxingModule } from '@zxing/ngx-scanner'
 
 @NgModule({
   declarations: [
@@ -55,7 +54,6 @@ import { SessionService } from './session/session.service'
     PrivacyPolicyComponent,
     CodeOfConductComponent,
     PageNotFoundComponent,
-    MessagesComponent,
     SpeakerComponent,
     SponsorsComponent,
     TeamComponent,
