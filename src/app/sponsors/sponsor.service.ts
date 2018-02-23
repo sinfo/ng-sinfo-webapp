@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core'
 import { environment } from '../../environments/environment'
 import { Sponsor } from './sponsor.model'
 import { HttpClient, HttpParams } from '@angular/common/http'
-import { MessageService, Type } from '../partials/messages/message.service'
 import { Observable } from 'rxjs/Observable'
 import { tap, catchError } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
+import { MessageService, Type } from '../message.service'
 
 @Injectable()
 export class SponsorService {
@@ -55,8 +55,11 @@ export class SponsorService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `SponsorService: ${operation}`,
-        text: error.message,
-        type: Type.error
+        showAlert: true,
+        text: 'When fetching sponsors from server',
+        type: Type.error,
+        errorObject: error,
+        timeout: 4000
       })
 
       // Let the app keep running by returning an empty result.

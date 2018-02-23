@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { MessageService, Type } from '../message.service'
 
 @Component({
   selector: 'app-landing-page',
@@ -6,10 +7,25 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
-
-  constructor () { }
+  selectedAboutText: string
+  displayAboutDropdown: boolean
 
   ngOnInit () {
+    this.selectedAboutText = 'About Us'
+    this.showOrHideDropdown()
   }
 
+  /* Beggining of Dropdown tabs actions */
+  showOrHideDropdown (): void {
+    this.displayAboutDropdown = window.innerWidth > 768 ? true : false
+  }
+
+  toggleDropdown (): void {
+    this.displayAboutDropdown = !this.displayAboutDropdown
+  }
+
+  updatedSelectedText (text: string): void {
+    this.selectedAboutText = text
+  }
+  /* End of Dropdown tabs actions */
 }

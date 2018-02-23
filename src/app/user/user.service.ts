@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core'
-import { MessageService, Type } from '../partials/messages/message.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { User } from './user.model'
 import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
-import { Achievement } from './achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 import { AuthService } from '../auth/auth.service'
 import { Company } from '../company/company.model'
 import { CompanyService } from '../company/company.service'
+import { MessageService, Type } from '../message.service'
 
 @Injectable()
 export class UserService {
@@ -132,7 +132,9 @@ export class UserService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `UserService: ${operation}`,
-        text: error.message,
+        showAlert: true,
+        text: 'When fetching user information from server',
+        errorObject: error,
         type: Type.error
       })
 
