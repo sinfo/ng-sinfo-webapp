@@ -6,13 +6,17 @@
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
     <li *ngIf="user.role === 'user'">
-      <a href="#workshopsSubmenu" data-toggle="collapse"  aria-expanded="true">
+      <a href="#workshopsSubmenu" data-toggle="collapse" aria-expanded="true">
         <i class="glyphicon glyphicon-briefcase"></i>
         Workshops
       </a>
       <ul class="list-unstyled in" id="workshopsSubmenu">
-        <li><a href="#">Register</a></li>
-        <li><a href="#">My workshops</a></li>
+        <li>
+          <a href="#">Register</a>
+        </li>
+        <li>
+          <a href="#">My workshops</a>
+        </li>
       </ul>
     </li>
     <li *ngIf="user.role === 'team'">
@@ -21,8 +25,12 @@
         Promotions
       </a>
       <ul class="list-unstyled in" id="promotionsSubmenu">
-        <li><a routerLink="/promote">Promote</a></li>
-        <li><a href="#">My Promotions</a></li>
+        <li>
+          <a routerLink="/promote">Promote</a>
+        </li>
+        <li>
+          <a href="#">My Promotions</a>
+        </li>
       </ul>
     </li>
     <li *ngIf="user.role === 'company'">
@@ -31,10 +39,19 @@
         Links
       </a>
       <ul class="list-unstyled in" id="linksSubmenu">
-        <li><a routerLink="/link">Link</a></li>
-        <li><a routerLink="/my-links">My Links</a></li>
+        <li>
+          <a routerLink="/link">Link</a>
+        </li>
+        <li>
+          <a routerLink="/my-links">My Links</a>
+        </li>
       </ul>
+    </li>
+    <li *ngIf="user.role === 'company'">
+      <a routerLink="/signature" data-toggle="collapse" aria-expanded="true">
+        <i class="fa fa-check"></i>
+        Sign
+      </a>
     </li>
   </ul>
 </nav>
-

@@ -53,10 +53,11 @@ import { NgModel } from '@angular/forms/src/directives/ng_model'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { LinkComponent } from './user/link/link.component'
-import { LinkService } from './user/link/link.service'
 
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { SignatureComponent } from './user/signature/signature.component'
+import { CompanyCannonService } from './company/company-cannon.service'
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { MyProfileComponent } from './user/my-profile/my-profile.component'
     LinkComponent,
     MyLinksComponent,
     AchievementsComponent,
-    AchievementComponent
+    AchievementComponent,
+    SignatureComponent
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,7 @@ import { MyProfileComponent } from './user/my-profile/my-profile.component'
     UserService,
     SessionService,
     CompanyService,
-    LinkService,
+    CompanyCannonService,
     JwtService,
     AchievementService
   ],

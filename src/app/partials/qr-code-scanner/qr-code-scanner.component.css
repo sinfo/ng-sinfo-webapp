@@ -3,3 +3,9 @@
     height: 100%;
     overflow: hidden;
 }
+
+img.portrait {
+    width: 30%;
+    border-radius: 50%;
+    border: 3px solid #048ae6;
+}

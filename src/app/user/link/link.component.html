@@ -1,28 +1,9 @@
 <app-menu></app-menu>
 
-<app-qrcode-scanner (data)="processData($event)" [camStarted]="scannerActive">
+<app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
 </app-qrcode-scanner>
 
 <div class="container align-center user" *ngIf="userRead">
-  <div class="row">
-    <h3 class="name">
-      {{userRead.name}}
-    </h3>
-  </div>
-
-  <div class="row link-warning" *ngIf="currentLink">
-    <h6>
-      <span class="glyphicon glyphicon-link"></span>
-      Linked with {{company.name}}
-      <span class="glyphicon glyphicon-link"></span>
-    </h6>
-  </div>
-
-  <div class="row">
-    <div class="portrait-wrapper">
-      <img class="portrait" src="{{userRead.img}}">
-    </div>
-  </div>
 
   <div class="row">
     <textarea [(ngModel)]="notes" class="form-control" placeholder="Insert your notes here">
@@ -42,7 +23,7 @@
   </div>
 
   <div class="row">
-    <button type="button" class="btn btn-warning" (click)="reScan()">Rescan QrCode</button>
+    <button type="button" class="btn" (click)="reScan()">Rescan QrCode</button>
   </div>
 
 

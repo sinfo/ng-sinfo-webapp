@@ -4,9 +4,9 @@ import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
 import { environment } from '../../../environments/environment.prod'
-import { LinkService } from './link.service'
 import { Link } from './link.model'
 import { MessageService, Type } from '../../message.service'
+import { CompanyCannonService } from '../../company/company-cannon.service'
 
 @Component({
   selector: 'app-link',
@@ -16,17 +16,19 @@ import { MessageService, Type } from '../../message.service'
 export class LinkComponent implements OnInit {
 
   scannerActive: boolean
+  title = 'Link'
+  info: string
+
   userRead: User
   company: Company
   me: User
   currentLink: Link
-
   notes: string
 
   constructor (
     private userService: UserService,
     private companyService: CompanyService,
-    private linkService: LinkService,
+    private companyCannonService: CompanyCannonService,
     private messageService: MessageService
   ) { }
 
@@ -54,16 +56,18 @@ export class LinkComponent implements OnInit {
     this.scannerActive = true
   }
 
-  processData (id: string) {
+  updateInfo () {
+    this.info = `Linked with ${this.company.name}`
+  }
+
+  receiveUser (user: User) {
+    this.userRead = user
     this.scannerActive = false
-    this.userService.getUser(id)
-      .subscribe(user => {
-        this.userRead = user
-        this.linkService.getLink(this.company.id, this.userRead.id)
-          .subscribe(_link => {
-            this.currentLink = _link
-            this.notes = _link ? _link.note : null
-          })
+    this.companyCannonService.getLink(this.company.id, this.userRead.id)
+      .subscribe(_link => {
+        this.currentLink = _link
+        this.notes = _link ? _link.note : null
+        if (_link) this.updateInfo()
       })
   }
 
@@ -72,14 +76,15 @@ export class LinkComponent implements OnInit {
   }
 
   createLink () {
-    this.linkService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
+    this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
+        this.updateInfo()
       })
   }
 
   updateLink () {
-    this.linkService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
+    this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
         this.messageService.add({
@@ -93,9 +98,10 @@ export class LinkComponent implements OnInit {
   }
 
   deleteLink () {
-    this.linkService.deleteLink(this.company.id, this.userRead.id)
+    this.companyCannonService.deleteLink(this.company.id, this.userRead.id)
       .subscribe(_link => {
         this.currentLink = null
+        this.info = ''
         this.notes = null
       })
   }

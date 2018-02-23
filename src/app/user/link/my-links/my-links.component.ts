@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core'
 import { Link } from '../link.model'
-import { LinkService } from '../link.service'
 import { User } from '../../user.model'
 import { UserService } from '../../user.service'
 import { Company } from '../../../company/company.model'
 import { CompanyService } from '../../../company/company.service'
 import { environment } from '../../../../environments/environment'
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap'
+import { CompanyCannonService } from '../../../company/company-cannon.service'
 
 @Component({
   selector: 'app-my-links',
@@ -27,7 +27,7 @@ export class MyLinksComponent implements OnInit {
   constructor (
     private userService: UserService,
     private companyService: CompanyService,
-    private linkService: LinkService
+    private companyCannonService: CompanyCannonService
   ) { }
 
   ngOnInit () {
@@ -42,7 +42,7 @@ export class MyLinksComponent implements OnInit {
         this.companyService.getCompany(company.company)
           .subscribe(_company => this.company = _company)
 
-        this.linkService.getLinks(company.company)
+        this.companyCannonService.getLinks(company.company)
           .subscribe(links => {
             this.links = links
             links.forEach(link => this.processLink(link))

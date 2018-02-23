@@ -1,7 +1,31 @@
-<!--
-<ngx-qrcode [qrc-value]="id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
--->
-<div class="video-wrapper">
-    <ngx-zxing [start]="camStarted" [device]="selectedDevice" [cssClass]="'videoqrcode'" (camerasFound)="displayCameras($event)"
-        (scanSuccess)="handleQrCodeResult($event)"></ngx-zxing>
+<div class="container align-center user">
+    <h3 class="title">
+        {{title}}
+    </h3>
+
+    <div class="video-wrapper">
+        <ngx-zxing [start]="camStarted" [device]="selectedDevice" [cssClass]="'videoqrcode'" (camerasFound)="displayCameras($event)"
+            (scanSuccess)="handleQrCodeResult($event)"></ngx-zxing>
+    </div>
+
+    <div *ngIf="!camStarted && userRead">
+        <div class="row">
+            <h3 class="name">
+                {{userRead.name}}
+            </h3>
+        </div>
+
+        <div class="row warning">
+            <h6 *ngIf="info && info.length > 0">
+                {{info}}
+            </h6>
+        </div>
+
+        <div class="row">
+            <div class="portrait-wrapper">
+                <img class="portrait" src="{{userRead.img}}">
+            </div>
+        </div>
+    </div>
+
 </div>
