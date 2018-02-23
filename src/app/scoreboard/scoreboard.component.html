@@ -1,0 +1,60 @@
+<app-menu></app-menu>
+
+<app-loading [content]="scoreboard">
+</app-loading>
+
+<section class="section scoreboard-section align-center">
+  <div class="container">
+    <span class="fa fa-trophy"></span>
+    <h3>Scoreboard</h3>
+    <br>
+    <div class="alert alert-info col-sm-12">
+      Earn points by unlocking the <strong (click)="redirectToAchievements()">Achievements</strong> 
+    </div>
+    <table *ngIf="scoreboard" class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of scoreboard" (click)="redirectToUser(user.id)" [ngClass]="{'currentUser': isCurrentUser(user.id)}">
+          <td class="position">{{ scoreboard.indexOf(user) }}</td>
+          <td class="user">
+            <div class="col-sm-12">
+              <div class="col-sm-3">
+                <img src='{{ user.img }}'>
+              </div>
+              <div class="col-sm-9 name">
+                {{ user.name }}
+              </div>
+            </div>
+          </td>
+          <td class="points">{{ user.points.total }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="this.currentUser && !isUserInTop20()" class="userNotInTop">
+      <span>...</span>
+      <table class="table">
+        <tr class="currentUser">
+          <td class="position">&infin;</td>
+          <td class="user">
+            <div class="col-sm-12">
+              <div class="col-sm-3">
+                <img src='{{ currentUser.img }}'>
+              </div>
+              <div class="col-sm-9 name">
+                {{ currentUser.name }}
+              </div>
+            </div>
+          </td>
+          <td class="points">{{ currentUser.points.total }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+.scoreboard-section .alert-info strong{
+    cursor: pointer;
+}
+
+.scoreboard-section table {
+    text-align: center;
+    font-size: 16px;
+}
+
+.scoreboard-section table tr.currentUser {
+    background-color: #d9edf7;
+}
+
+.scoreboard-section table tr.currentUser td {
+    border-color: #bce8f1;
+}
+
+.scoreboard-section table th {
+    text-align: center;
+}
+
+.scoreboard-section table td {
+    cursor: pointer;
+}
+
+.scoreboard-section table td.position {
+    width: 20px;
+}
+
+.scoreboard-section table td.user img {
+    width: 40px;
+    border-radius: 50%;
+    padding-top: 6px;
+}
+
+.scoreboard-section table td.user .name {
+    height: 45px;
+    padding: 17px;
+}
+
+.scoreboard-section span.fa {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.scoreboard-section .userNotInTop span {
+    font-size: 20px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.scoreboard-section .userNotInTop table td.position {
+    font-size: 30px;
+}

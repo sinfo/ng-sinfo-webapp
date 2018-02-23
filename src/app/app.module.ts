@@ -37,6 +37,8 @@ import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
 import { AchievementService } from './achievements/achievement.service'
 import { SessionService } from './session/session.service'
+import { ScoreboardComponent } from './scoreboard/scoreboard.component'
+import { ScoreboardService } from './scoreboard/scoreboard.service'
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
 import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
@@ -94,7 +96,8 @@ import { WorkshopStatusElementComponent } from './session/workshops/workshop-sta
     WorkshopRegisterButtonComponent,
     WorkshopComponent,
     WorkshopStatusElementComponent,
-    MyWorkshopsComponent
+    MyWorkshopsComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,
@@ -110,7 +113,6 @@ import { WorkshopStatusElementComponent } from './session/workshops/workshop-sta
     MessageService,
     SponsorService,
     TeamService,
-    SessionService,
     AuthService,
     AuthGuard,
     IsTeamGuard,
@@ -121,7 +123,8 @@ import { WorkshopStatusElementComponent } from './session/workshops/workshop-sta
     CompanyCannonService,
     JwtService,
     AchievementService,
-    TicketService
+    TicketService,
+    ScoreboardService
   ],
   bootstrap: [AppComponent]
 })

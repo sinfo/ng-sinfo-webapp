@@ -25,6 +25,7 @@ import { CardComponent } from './user/card/card.component'
 import { WorkshopsComponent } from './session/workshops/workshops.component'
 import { MyWorkshopsComponent } from './session/workshops/my-workshops.component'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
+import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'myworkshops', component: MyWorkshopsComponent },
   { path: 'workshops-status', component: WorkshopsStatusComponent },
   { path: 'sponsors', component: SponsorsComponent },
+  { path: 'scoreboard', component: ScoreboardComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
