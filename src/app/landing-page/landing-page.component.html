@@ -57,33 +57,71 @@
 
 <app-menu></app-menu>
 
+<app-speakers></app-speakers>
+
+<app-schedule></app-schedule>
+
+<app-feedback></app-feedback>
+
+<section id="sign_up" class="section bg-cover overlay newsletterbg light-text align-center">
+  <div class="container">
+    <!-- don't know if I'm feeling the colors with the image too much -->
+    <h2><span class="highlight">Newsletter</span> Sign Up</h2>
+    <small>Be the first to receive the latest updates from SINFO!</small>
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <div id="mc_embed_signup">
+        <form action="https://sinfo.us8.list-manage.com/subscribe/post?u=de57247db0922adf365af7eef&amp;id=107b5bbe53" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <div id="mc_embed_signup_scroll">
+
+            <div class="col-sm-8 mc-field-group">
+              <input type="email" value="" name="EMAIL" placeholder="Insert your email..." class="required email" id="mce-EMAIL">
+            </div>
+            <div id="mce-responses" class="clear">
+              <div class="response col-sm-8" id="mce-error-response" style="display:none"></div>
+              <div class="response col-sm-8" id="mce-success-response" style="display:none"></div>
+            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_de57247db0922adf365af7eef_107b5bbe53" tabindex="-1" value=""></div>
+            <div class="clear col-sm-4">
+              <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-sm btn-outline-clr">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="about" class="section align-center">
   <div class="container">
 
     <div class="tabs-wrapper tabs-horizontal">
-      <ul class="nav nav-tabs">
-        <li class="active">
-          <a href="#horizontal_tab1" data-toggle="tab">
-            <h6 class="heading-alt">
-              <span class="fa fa-code"></span> About Us </h6>
-          </a>
-        </li>
-        <li>
-          <a href="#horizontal_tab2" data-toggle="tab">
-            <h6 class="heading-alt">
-              <span class="fa fa-rocket"></span> Mission </h6>
-          </a>
-        </li>
-        <li>
-          <a href="#horizontal_tab3" data-toggle="tab">
-            <h6 class="heading-alt">
-              <span class="fa fa-external-link"></span> Vision & Target </h6>
-          </a>
-        </li>
-      </ul>
-
+      <div class="nav-wrapper" (window:resize)="showOrHideDropdown()">
+        <span class="nav-current" (click)="toggleDropdown()">
+          <h6><span>{{ selectedAboutText }}</span></h6>
+        </span>
+        <ul *ngIf="displayAboutDropdown" class="nav nav-tabs" >
+          <li [ngClass]="{'active': selectedAboutText === 'About Us'}">
+            <a href="#horizontal_tab1" data-toggle="tab" (click)="updatedSelectedText('About Us')">
+              <h6 class="heading-alt">
+                <span class="fa fa-code"></span> About Us </h6>
+            </a>
+          </li>
+          <li [ngClass]="{'active': selectedAboutText === 'Mission'}">
+            <a href="#horizontal_tab2" data-toggle="tab" (click)="updatedSelectedText('Mission')">
+              <h6 class="heading-alt">
+                <span class="fa fa-rocket"></span> Mission </h6>
+            </a>
+          </li>
+          <li [ngClass]="{'active': selectedAboutText === 'Vision & Target'}">
+            <a href="#horizontal_tab3" data-toggle="tab" (click)="updatedSelectedText('Vision & Target')">
+              <h6 class="heading-alt">
+                <span class="fa fa-external-link"></span> Vision & Target </h6>
+            </a>
+          </li>
+        </ul>
+      </div>
       <div class="tab-content">
-        <div id="horizontal_tab1" class="tab-pane fade active in">
+        <div id="horizontal_tab1" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'About Us'}">
           <div class="col-sm-5 img-column">
             <img src="assets/img/aboutUs-min.jpg" alt="" class="img-responsive" />
           </div>
@@ -98,7 +136,7 @@
           </div>
         </div>
 
-        <div id="horizontal_tab2" class="tab-pane fade">
+        <div id="horizontal_tab2" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'Mission'}">
           <div class="col-sm-7 align-left">
             <h6>Mission</h6>
             <p>
@@ -115,7 +153,7 @@
           </div>
         </div>
 
-        <div id="horizontal_tab3" class="tab-pane fade">
+        <div id="horizontal_tab3" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'Vision & Target'}">
           <div class="col-sm-5 img-column">
             <img src="assets/img/vision-min.jpg" alt="" class="img-responsive" />
           </div>

@@ -13,6 +13,12 @@ import { environment } from '../../../environments/environment'
 })
 export class ScheduleComponent implements OnInit {
 
+  selectedTheme: string
+  selectedTime: string
+  selectedSession: [string, string, string, string, string]
+  displayDayDropdown: boolean
+  displaySessionDropdown: [boolean, boolean, boolean, boolean, boolean]
+
   sessions: Session[]
   private schedule
 
@@ -23,6 +29,8 @@ export class ScheduleComponent implements OnInit {
 
   ngOnInit () {
     this.getSessions()
+
+    this.showOrHideDropdown()
   }
 
   getSessions (): void {
@@ -75,9 +83,38 @@ export class ScheduleComponent implements OnInit {
       i += 1
     }
 
+    this.selectedTheme = this.schedule[0].theme
+    this.selectedTime = this.schedule[0].date
+    this.selectedSession = ['Keynotes', 'Keynotes', 'Keynotes', 'Keynotes', 'Keynotes']
   }
 
   onSelect (session: Session): void {
     this.router.navigate(['/sessions', session.id])
   }
+
+  /* Beggining of Dropdown tabs actions */
+  showOrHideDropdown(): void {
+    this.displayDayDropdown = window.innerWidth > 768 ? true : false
+    console.log(window.innerWidth, this.displayDayDropdown)
+    
+    this.displaySessionDropdown = window.innerWidth > 768 ? [true, true, true, true, true] : [false, false, false, false, false]
+  }
+
+  toggleDayDropdown(): void {
+    this.displayDayDropdown = !this.displayDayDropdown
+  }
+
+  toggleSessionDropdown(day: number): void {
+    this.displaySessionDropdown[day] = !this.displaySessionDropdown[day]
+  }
+
+  updateSelectedDayText(theme: string, day: string): void {
+    this.selectedTheme = theme
+    this.selectedTime = day
+  }
+
+  updateSelectedSessionText(day: number, session: string) {
+    this.selectedSession[day] = session
+  }
+  /* End of Dropdown tabs actions */
 }
