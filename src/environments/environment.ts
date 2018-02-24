@@ -21,5 +21,9 @@ export const environment = {
   },
   google: {
     clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
+  },
+  fenix: {
+    clientId: '1132965128044545',
+    redirectUrl: 'https://sinfo.org/login'
   }
 }

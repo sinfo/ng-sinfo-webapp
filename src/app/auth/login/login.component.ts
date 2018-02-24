@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core'
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../auth.service'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { MessageService, Type } from '../../message.service'
 
 declare let FB: any
@@ -15,14 +15,24 @@ declare let gapi: any
 export class LoginComponent implements OnInit, AfterViewInit {
   isFacebookActive: boolean
   isGoogleActive: boolean
+  fenixUrlAuth =
+  `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${environment.fenix.clientId}&redirect_uri=${environment.fenix.redirectUrl}`
   private isLoggedIn = false
   private auth2: any
 
   constructor (
     private messageService: MessageService,
     private authService: AuthService,
-    public router: Router
-  ) { }
+    public router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe(params => {
+      const fenixCode = params['code']
+      if (fenixCode) {
+        this.onFenixLogin(fenixCode)
+      }
+    })
+  }
 
   ngOnInit () {
     this.isLoggedIn = this.authService.isLoggedIn()
@@ -91,6 +101,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
         showAlert: false
       })
     })
+  }
+
+  onFenixLogin (fenixCode) {
+    console.log('onFenixLogin', fenixCode)
+    this.authService.fenix(fenixCode)
+      .subscribe(cannonToken => {
+        console.log('cannon ok ', cannonToken)
+        this.authService.setToken(cannonToken)
+        this.router.navigate([ `${this.authService.redirectUrl || '/me'}` ])
+      })
   }
 
   onGoogleLogin () {
