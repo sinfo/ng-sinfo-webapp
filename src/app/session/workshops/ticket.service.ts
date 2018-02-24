@@ -64,11 +64,7 @@ export class TicketService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `TicketService: ${operation}`,
-<<<<<<< HEAD
         showAlert: false,
-=======
-        showAlert: true,
->>>>>>> Fix Message Service
         text: 'When fetching tickets from server',
         errorObject: error,
         type: Type.error,
