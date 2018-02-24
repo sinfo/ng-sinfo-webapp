@@ -51,4 +51,12 @@ export class AchievementsComponent implements OnInit {
   isUnlocked (achievement: Achievement): boolean {
     return this.user ? achievement.users.indexOf(this.user.id) !== -1 : false
   }
+
+  redirectToScoreboard (): void {
+    this.router.navigate(['/scoreboard'])
+  }
+
+  numUserAchievements () : string | number {
+    return this.user && this.user.achievements ? this.user.achievements.length : '?'
+  }  
 }

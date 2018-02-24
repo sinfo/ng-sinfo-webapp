@@ -35,9 +35,7 @@ export class ScoreboardComponent implements OnInit {
   }
 
   getUser(): void {    
-    let isLoggedIn = this.authService.isLoggedIn()
-
-    if (isLoggedIn) {
+    if (this.authService.isLoggedIn()) {
       this.userService.getMe()
       .subscribe(user => this.currentUser = user)
     }
@@ -48,7 +46,7 @@ export class ScoreboardComponent implements OnInit {
   }
 
   isUserInTop20(): boolean {
-    return this.scoreboard.indexOf(this.currentUser) === -1
+    return this.scoreboard.indexOf(this.currentUser) !== -1
   }
 
   redirectToUser(id: string): void {

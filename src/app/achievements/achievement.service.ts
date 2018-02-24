@@ -57,7 +57,7 @@ export class AchievementService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `AchievementService: ${operation}`,
-        text: 'When fetching speakers from server',
+        text: 'When fetching achievements from server',
         showAlert: true,
         type: Type.error,
         timeout: 4000,

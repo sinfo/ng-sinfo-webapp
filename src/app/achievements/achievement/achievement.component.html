@@ -5,7 +5,9 @@
 
 <section *ngIf="achievement"  class="section achievement-section align-center">
   <div class="container">
-    <h3>Achievements</h3>
+    <span class="fa fa-star-o"></span>
+    <h3>Achievement</h3>
+    <br>
     <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
     <h5> {{ achievement.name }}</h5>
     <h4> Value: {{ achievement.value }} points</h4>

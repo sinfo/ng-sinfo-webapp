@@ -5,5 +5,10 @@
 
 .achievement-section h5 {
     color: #008ae6;
+    margin: 20px;
+}
+
+.achievement-section span.fa {
+    font-size: 50px;
     margin-bottom: 20px;
 }

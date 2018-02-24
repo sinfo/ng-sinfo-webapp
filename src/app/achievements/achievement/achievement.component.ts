@@ -28,5 +28,4 @@ export class AchievementComponent implements OnInit {
     this.achievementService.getAchievement(id)
       .subscribe(achievement => this.achievement = achievement)
   }
-
 }

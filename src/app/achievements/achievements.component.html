@@ -4,7 +4,18 @@
 
 <section *ngIf="achievements"  class="section achievement-section align-center">
     <div class="container">
+        <span class="fa fa-gamepad"></span>
         <h3>Achievements</h3>
+        <br>
+        <div class="alert alert-info col-sm-12">
+            <span class="col-sm-4" >
+                <strong>Achievements Unlocked:</strong> {{ numUserAchievements() + ' of ' + achievements.length }}
+            </span>
+            <span class="col-sm-4"></span>
+            <span class="col-sm-4 scoreboard" (click)="redirectToScoreboard()">
+                <strong>Check Scoreboard</strong> 
+            </span>
+        </div>
         <a *ngFor="let achievement of achievements" (click)="onSelect(achievement)">
             <img [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>

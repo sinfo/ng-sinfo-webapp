@@ -1,14 +1,23 @@
-a {
+.achievement-section a {
     cursor: pointer;
 }
 
-img {
+.achievement-section img {
     width: 100px;
     margin: 5px;
 }
 
-img:not(.unlocked):not(:hover) {
+.achievement-section img:not(.unlocked):not(:hover) {
     opacity: .6;
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
+}
+
+.achievement-section span.fa {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.achievement-section .scoreboard {
+    cursor: pointer;
 }

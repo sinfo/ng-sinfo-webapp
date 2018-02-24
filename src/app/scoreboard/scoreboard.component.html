@@ -9,7 +9,7 @@
     <h3>Scoreboard</h3>
     <br>
     <div class="alert alert-info col-sm-12">
-      Earn points by unlocking the <strong (click)="redirectToAchievements()">Achievements</strong> 
+      Earn points by unlocking <strong (click)="redirectToAchievements()">Achievements</strong> 
     </div>
     <table *ngIf="scoreboard" class="table table-hover">
       <thead>
@@ -32,12 +32,14 @@
               </div>
             </div>
           </td>
-          <td class="points">{{ user.points.total }}</td>
+          <td class="points">
+            {{ user.points ? user.points.total : 0 }}
+          </td>
         </tr>
       </tbody>
     </table>
-
-    <div *ngIf="this.currentUser && !isUserInTop20()" class="userNotInTop">
+    
+    <div *ngIf="currentUser && !isUserInTop20()" class="userNotInTop">
       <span>...</span>
       <table class="table">
         <tr class="currentUser">
@@ -52,7 +54,9 @@
               </div>
             </div>
           </td>
-          <td class="points">{{ currentUser.points.total }}</td>
+          <td class="points">
+            {{ currentUser.points ? currentUser.points.total : 0 }}
+          </td>
         </tr>
       </table>
     </div>
