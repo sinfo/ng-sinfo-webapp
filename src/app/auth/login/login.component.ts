@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.isLoggedIn = this.authService.isLoggedIn()
 
     if (this.isLoggedIn) {
-      this.router.navigate(['/me'])
+      this.router.navigate([`${this.authService.redirectUrl || '/me'}`])
       return
     }
 
@@ -120,10 +120,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
       const token = googleUser.getAuthResponse().id_token
 
       this.authService.google(userId, token)
-        .subscribe(cannonToken => {
-          this.authService.setToken(cannonToken)
-          this.router.navigate(['/me'])
-        })
+      .subscribe(cannonToken => {
+        this.authService.setToken(cannonToken)
+        this.router.navigate([`${this.authService.redirectUrl || '/me'}`])
+      })
     })
   }
 
@@ -139,7 +139,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.authService.facebook(resp.authResponse.userID, resp.authResponse.accessToken)
         .subscribe(cannonToken => {
           this.authService.setToken(cannonToken)
-          this.router.navigate(['/me'])
+          this.router.navigate([`${this.authService.redirectUrl || '/me'}`])
         })
     } else if (resp.status === 'not_authorized') {
       this.messageService.add({

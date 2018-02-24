@@ -1,21 +1,30 @@
 <nav id="sidebar" [ngClass]="{'active': showSidebar }">
-  <button type="button" (click)="showSidebar = !showSidebar" id="sidebarCollapse">
+  <button type="button" class="hidden-lg hidden-md" (click)="showSidebar = !showSidebar" id="sidebarCollapse">
     <i *ngIf="showSidebar" class="glyphicon glyphicon-menu-left"></i>
     <i *ngIf="!showSidebar" class="glyphicon glyphicon-menu-right"></i>
   </button>
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
-    <li *ngIf="user.role === 'user'">
+    <li>
+      <a routerLink="/me">
+        <i class="glyphicon glyphicon-user"></i>
+        My Profile
+      </a>
+    </li>
+    <li>
       <a href="#workshopsSubmenu" data-toggle="collapse" aria-expanded="true">
         <i class="glyphicon glyphicon-briefcase"></i>
         Workshops
       </a>
       <ul class="list-unstyled in" id="workshopsSubmenu">
         <li>
-          <a href="#">Register</a>
+          <a routerLink="/workshops">Register</a>
         </li>
         <li>
-          <a href="#">My workshops</a>
+          <a routerLink="/myworkshops">My Workshops</a>
+        </li>
+        <li *ngIf="user.role === 'team'">
+          <a routerLink="/workshops-status">Workshop Status</a>
         </li>
       </ul>
     </li>
@@ -57,6 +66,11 @@
       <a routerLink="/signature" data-toggle="collapse" aria-expanded="true">
         <i class="fa fa-check"></i>
         Sign
+      </a>
+    </li>
+    <li >
+      <a (click)="onLogout()">
+        <i class="glyphicon glyphicon-log-out"></i>Logout
       </a>
     </li>
   </ul>

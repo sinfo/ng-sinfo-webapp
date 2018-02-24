@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  min-height: 87vh;
+}
+.workshop-wrapper {
+  margin-left: 40px;
+  padding-right: 35px;
+}
+h3.title {
+  margin-top: 30px;
+}
+h6.lead {
+  margin-top: 20px;
+}
+h4.weekDay {
+  font-size: 35px;
+  margin-top: 25px;
+  font-weight: 200;
+}
+section > div.container {
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+  h4.weekDay {
+    text-align: center;
+  }
+  .workshop-wrapper {
+    margin-left: auto;
+    padding-right: 15px;
+  }
+}

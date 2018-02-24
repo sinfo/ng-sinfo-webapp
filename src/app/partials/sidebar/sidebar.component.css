@@ -4,7 +4,7 @@
 
 #sidebar {
   position: relative;
-  min-width: 250px;
+  min-width: 185px;
   max-width: 250px;
   background: #048ae6;
   color: #fff;
@@ -29,12 +29,12 @@
 #sidebar.active ul li a {
   padding: 20px 10px;
   text-align: center;
-  font-size: 0.85em;
-  margin-bottom: 3px;
+  font-size: 12px;
 }
 
 #sidebar.active ul li {
   margin-bottom: 0px;
+  background: #037ac9;
 }
 
 #sidebar.active ul li a i {
@@ -85,12 +85,19 @@
   margin-right: 10px;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-  color: #fff;
+#sidebar a[aria-expanded="true"] ~ ul{
   background: #037ac9;
 }
+#sidebar a[aria-expanded="true"] ~ ul li a{
+ border-bottom: 1px solid rgba(2, 91, 151, 0.29); 
+}
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+  color: #fff;
+  background: #025b97;
+  font-weight: 600;
+}
 
-#sidebarCollapse {
+button#sidebarCollapse {
   position: absolute;
   outline: none;
   right: -55px;
@@ -100,19 +107,20 @@
   animation: jump 1s infinite;
   animation-timing-function: ease-in-out;
   font-size: 25px;
-  background: rgba(240, 248, 255, 0);
+  background: rgba(0, 0, 0, 0);
   border: none;
+  z-index: 1;
 }
 
+button#sidebarCollapse i {
+  font-weight: 800;
+}
 @keyframes jump { 
   0% { right: -55px; } 
   50% { right: -58px; } 
   100% { right: -55px; } 
 }
 
-#sidebarCollapse i {
-  font-weight: 800;
-}
 
 #sidebar p {
   font-size: 1.1em;
@@ -164,11 +172,9 @@ a[aria-expanded="true"]::before {
   content: '\e260';
 }
 
-
 ul ul a {
-  font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: #048ae6;
+  background: #037ac9;
 }
 
 @media (max-width: 768px) {

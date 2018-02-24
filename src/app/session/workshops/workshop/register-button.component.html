@@ -1,0 +1,20 @@
+<div>
+  <div *ngIf="isWaiting" class="waiting-alert alert alert-warning align-center">
+    <p>
+      <strong>You are in the waiting list</strong>
+    </p>
+    <p>You are the number {{position}}</p>
+  </div>
+  <button id="buttonLoad" class="getTicket btn" 
+    [ngClass]="{
+    'btn-success': !hasTicket, 
+    'btn-danger': hasTicket, 
+    'btn-disabled': isRegistrationClosed}" 
+    [disabled]="loading || isRegistrationClosed"
+    (click)="handleClick()">
+    <span *ngIf="loading">
+      <i class="fa fa-circle-o-notch fa-spin"></i> Processing Request... </span>
+    <span *ngIf="!loading && !isRegistrationClosed">{{ ( !hasTicket) ? 'Get Ticket' : 'Return Ticket' }}</span>
+    <span *ngIf="isRegistrationClosed">Registration Closed</span>
+  </button>
+</div>

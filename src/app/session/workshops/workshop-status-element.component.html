@@ -1,0 +1,34 @@
+<div class="col-sm-12">
+    <div class="well well-sm workshop-wrapper" [ngClass]="{'workshop-collapsed': isRegistrationClosed }">
+      <div class="img-wrapper col-sm-2">
+        <img src="{{workshop.img}}" alt="{{workshop.name}}">
+      </div>
+      <div class="info-wrapper col-sm-10">
+        <h4 class="name">{{workshop.name}}</h4>
+        <div class="session-details">
+          <div *ngIf="workshop.date" class="padded">
+            <p>
+              <i class="fa fa-calendar"></i> {{workshop.date | date:'fullDate'}} </p>
+          </div>
+          <div *ngIf="workshop.date" class="padded">
+            <p>
+              <i class="fa fa-clock-o"></i> {{workshop.date | date:'shortTime'}} </p>
+          </div>
+          <div *ngIf="workshop.duration" class="padded">
+            <p>
+              <i class="fa fa-clock-o"></i> {{workshop.duration | date:'h:mm'}} </p>
+          </div>
+          <div *ngIf="workshop.place">
+            <p>
+              <i class="fa fa-map-marker"></i> {{workshop.place}} </p>
+          </div>
+        </div>
+        <div class="hidden">
+          <app-workshop-register-button (onRegistrationClosed)="onRegistrationClosed($event)" [user]="user" [workshop]="workshop"></app-workshop-register-button>
+        </div>  
+        <div class="col-sm-12">
+          <p><ngb-progressbar type="info" [value]="workshop.tickets.max - ticket.users.length"><b>{{ ticket.users.length }} of {{ workshop.tickets.max }}</b></ngb-progressbar></p>  
+        </div>  
+      </div>
+    </div>
+  </div>

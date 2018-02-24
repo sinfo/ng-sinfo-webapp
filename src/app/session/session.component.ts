@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router, Params } from '@angular/router'
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 import { SessionService } from './session.service'
 import { Session } from './session.model'
@@ -15,11 +16,13 @@ import { Speaker } from '../speakers/speaker.model'
 export class SessionComponent implements OnInit {
   session: Session
   speaker: Speaker
+  description: SafeHtml
 
   constructor (
     private sessionService: SessionService,
     private speakerService: SpeakerService,
     private activatedRoute: ActivatedRoute,
+    private sanitizer: DomSanitizer,
     private router: Router
   ) { }
 
@@ -33,6 +36,7 @@ export class SessionComponent implements OnInit {
   getSession (id: string): void {
     this.sessionService.getSession(id)
       .subscribe(session => {
+        this.description = this.sanitizer.bypassSecurityTrustHtml(session.description)
         this.session = session
         if (session.kind === 'Keynote') {
           this.getSpeaker(this.session)

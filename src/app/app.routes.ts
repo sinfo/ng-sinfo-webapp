@@ -1,6 +1,5 @@
 import { RouterModule, Routes } from '@angular/router'
 import { ModuleWithProviders } from '@angular/core'
-
 import { LandingPageComponent } from './landing-page/landing-page.component'
 import {
   PrivacyPolicyComponent,
@@ -10,12 +9,11 @@ import {
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
-
 import { LoginComponent } from './auth/login/login.component'
 import { AuthGuard } from './auth/auth.guard'
+import { IsTeamGuard } from './auth/is-team.guard'
 import { UserComponent } from './user/user.component'
 import { LinkComponent } from './user/link/link.component'
-
 import { PromoteComponent } from './user/promote/promote.component'
 import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
@@ -24,6 +22,9 @@ import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
 import { CardComponent } from './user/card/card.component'
+import { WorkshopsComponent } from './session/workshops/workshops.component'
+import { MyWorkshopsComponent } from './session/workshops/my-workshops.component'
+import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -40,6 +41,9 @@ const routes: Routes = [
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
+  { path: 'workshops', component: WorkshopsComponent },
+  { path: 'myworkshops', component: MyWorkshopsComponent },
+  { path: 'workshops-status', component: WorkshopsStatusComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'coc', component: CodeOfConductComponent },
