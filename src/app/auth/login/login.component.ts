@@ -15,6 +15,8 @@ declare let gapi: any
 export class LoginComponent implements OnInit, AfterViewInit {
   isFacebookActive: boolean
   isGoogleActive: boolean
+  fenixUrlAuth =
+  `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${environment.fenix.clientId}&redirect_uri=${environment.fenix.redirectUrl}`
   private isLoggedIn = false
   private auth2: any
 
@@ -26,7 +28,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ) {
     this.route.queryParams.subscribe(params => {
       const fenixCode = params['code']
-      this.onFenixLogin(fenixCode)
+      if (fenixCode) {
+        this.onFenixLogin(fenixCode)
+      }
     })
   }
 
