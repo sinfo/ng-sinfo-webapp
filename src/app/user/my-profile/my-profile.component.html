@@ -34,6 +34,14 @@
           <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'L'"></ngx-qrcode>
       </div>
 
+      <div class="row" *ngIf="signatures && user.role === 'user'">
+        <h5>{{signatures.day | date:'EEEE'}}'s card</h5>
+        <p [ngClass]="{allSignatures: signatures.count === signatures.capacity}">
+          {{signatures.count}}/{{signatures.capacity}}
+          <i *ngIf="signatures.count === signatures.capacity" class="fa fa-check"></i>
+        </p>
+      </div>
+
       <div class="row" *ngIf="user.area">
         <h5>Area </h5>
         <p>{{user.area}}</p>

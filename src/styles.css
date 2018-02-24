@@ -7123,7 +7123,8 @@ div.clear input.btn:hover {
 }
 
 .videoqrcode {
-    position: absolute;
+    height: 100%;
+    position: relative;
     left: 50%;
     transform: translateX(-50%)
 }

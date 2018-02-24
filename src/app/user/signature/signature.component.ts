@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { User } from '../user.model'
-import { MessageService } from '../../message.service'
+import { MessageService, Type } from '../../message.service'
 import { UserService } from '../user.service'
 import { Company } from '../../company/company.model'
 import { environment } from '../../../environments/environment'
@@ -21,80 +21,108 @@ export class SignatureComponent implements OnInit {
   userRead: User
   me: User
   myCompany: Company
-  alreadySigned
+  signatureChecked = false
 
-  constructor(
+  constructor (
     private companyCannonService: CompanyCannonService,
     private companyService: CompanyService,
     private userService: UserService,
     private messageService: MessageService
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.scannerActive = true
-    this.updateInfo()
     this.userService.getMe()
       .subscribe(user => {
         this.me = user
-        if (user.role !== 'company') return
-
         let company = user.company.find(c => {
           return c.edition === environment.currentEvent
         })
 
-        if (!company) return
-
         this.companyService.getCompany(company.company)
           .subscribe(_company => {
             this.myCompany = _company
-            if (this.alreadySigned === undefined) {
+            if (!this.signatureChecked && this.userRead) {
               this.checkSignature()
             }
           })
       })
   }
 
-  reScan(): void {
-    this.userRead = null
-    this.scannerActive = true
-  }
-
-  updateInfo (): void {
-    let d = new Date().getDay()
-    let weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    this.info = `${weekday[d]}'s card`
-  }
-
   receiveUser (user: User) {
     this.userRead = user
-    this.scannerActive = false
-    if (this.alreadySigned === undefined) {
+    if (!this.signatureChecked && this.myCompany) {
       this.checkSignature()
     }
+  }
+
+  flushInfo (): void {
+    this.signatureChecked = false
+    this.userRead = undefined
   }
 
   sign (): void {
     this.companyCannonService.sign(this.myCompany.id, this.userRead.id)
       .subscribe(user => {
         if (!user) return
-        this.userRead = user
-        this.alreadySigned = true
+        this.messageService.add({
+          origin: 'Signatures',
+          showAlert: true,
+          text: `Signed ${this.userRead.name}'s card`,
+          type: Type.success,
+          timeout: 7000
+        })
+        this.flushInfo()
       })
   }
 
   checkSignature (): void {
-    let signatures = this.userRead.signatures.find(s => {
-      return s.day === new Date().getDate().toString() && s.edition === environment.currentEvent
-    })
+    let wantedSignature = -1
+    this.signatureChecked = true
+    let signatures
 
-    let wantedSignature = signatures.signatures.indexOf(this.myCompany.id)
+    if (this.userRead.signatures) {
+      signatures = this.userRead.signatures.find(s => {
+        return s.day === new Date().getDate().toString() && s.edition === environment.currentEvent
+      })
 
+      wantedSignature = (signatures && signatures.signatures)
+        ? signatures.signatures.indexOf(this.myCompany.id) : -1
+    }
+
+    // signature not found
     if (wantedSignature === -1) {
-      this.alreadySigned = false
+
+      // check card's capacity
+      let signaturesCount = (signatures && signatures.signatures) ? signatures.signatures.length : 0
+
+      // full card. don't sign
+      if (signaturesCount >= environment.signaturesCardCapacity) {
+        this.messageService.add({
+          origin: 'Signatures',
+          showAlert: true,
+          text: `${this.userRead.name} has already filled his/her card for today`,
+          type: Type.warning,
+          timeout: 7000
+        })
+        this.flushInfo()
+        return
+      }
+
+      this.sign()
       return
     }
 
-    this.alreadySigned = true
+    // signature found
+    this.messageService.add({
+      origin: 'Signatures',
+      showAlert: true,
+      text: `Already signed ${this.userRead.name}'s card for today`,
+      type: Type.warning,
+      timeout: 7000
+    })
+
+    this.flushInfo()
   }
 
 }

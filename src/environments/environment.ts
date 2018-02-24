@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   deckUrl: 'https://deck.sinfo.org',
   cannonUrl: 'http://localhost:8090',
-  currentEvent: '25-sinfo',
+  currentEvent: '24-sinfo',
   themes: [
     'Software',
     'Multimedia',
@@ -16,6 +16,7 @@ export const environment = {
     'Web'
   ],
   eventOcurring: true,
+  signaturesCardCapacity: 3,
   facebook: {
     appId: '708252219264170'
   },
