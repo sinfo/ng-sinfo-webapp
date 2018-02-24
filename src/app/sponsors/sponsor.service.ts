@@ -37,7 +37,7 @@ export class SponsorService {
 
   getSponsor (id: string): Observable<Sponsor> {
     if (this.sponsors) {
-      return of(this.sponsors.find(speaker => speaker.id === id))
+      return of(this.sponsors.find(sponsor => sponsor.id === id))
     }
     return this.http.get<Sponsor>(`${this.sponsorUrl}/${id}`, { params: this.params })
       .pipe(

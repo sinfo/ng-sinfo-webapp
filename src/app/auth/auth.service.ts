@@ -41,6 +41,14 @@ export class AuthService {
     )
   }
 
+  fenix (code): Observable<CannonToken> {
+    return this.http.post<CannonToken>(`${this.authUrl}/fenix`, { code }, httpOptions)
+    .pipe(
+      tap(cannonToken => cannonToken.loginWith = 'fenix'),
+      catchError(this.handleError<CannonToken>('Fenix Login'))
+    )
+  }
+
   getToken (): CannonToken | null | undefined {
     return this.storageService.getItem('cannon_token') as CannonToken
   }

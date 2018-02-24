@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core'
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../auth.service'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { MessageService, Type } from '../../message.service'
 
 declare let FB: any
@@ -21,8 +21,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor (
     private messageService: MessageService,
     private authService: AuthService,
-    public router: Router
-  ) { }
+    public router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe(params => {
+      const fenixCode = params['code']
+      this.onFenixLogin(fenixCode)
+    })
+  }
 
   ngOnInit () {
     this.isLoggedIn = this.authService.isLoggedIn()
@@ -91,6 +97,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
         showAlert: false
       })
     })
+  }
+
+  onFenixLogin (fenixCode) {
+    console.log('onFenixLogin', fenixCode)
+    this.authService.fenix(fenixCode)
+      .subscribe(cannonToken => {
+        console.log('cannon ok ', cannonToken)
+        this.authService.setToken(cannonToken)
+        this.router.navigate([ `${this.authService.redirectUrl || '/me'}` ])
+      })
   }
 
   onGoogleLogin () {
