@@ -7123,9 +7123,8 @@ div.clear input.btn:hover {
 }
 
 .videoqrcode {
+    height: 100%;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%)
 }
 
 .card-header a {

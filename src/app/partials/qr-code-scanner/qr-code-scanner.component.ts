@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core'
 import { MessageService, Type } from '../../message.service'
+import { User } from '../../user/user.model'
+import { UserService } from '../../user/user.service'
 
 @Component({
   selector: 'app-qrcode-scanner',
@@ -8,17 +10,18 @@ import { MessageService, Type } from '../../message.service'
 })
 export class QrcodeScannerComponent implements OnInit {
 
-  @Output() data: EventEmitter<string> = new EventEmitter()
-  @Input('singleton') singleton: boolean
+  @Output() userReadOutput: EventEmitter<User> = new EventEmitter()
+  @Input() title: string
+  @Input() info: string
   @Input() camStarted: boolean
 
-  // camStarted = false
   selectedDevice
-  private qrResult: string
   private availableDevices: any[]
+  userRead: User
 
   constructor (
-    private messageService: MessageService
+    private messageService: MessageService,
+    private userService: UserService
   ) { }
 
   ngOnInit () { }
@@ -31,28 +34,14 @@ export class QrcodeScannerComponent implements OnInit {
     }
   }
 
-  handleQrCodeResult (result: string) {
-    this.qrResult = result
-    this.processContent(result)
-  }
-
   onChange (selectedValue: string) {
     this.camStarted = false
     this.selectedDevice = selectedValue
     this.camStarted = true
   }
 
-  processContent (content): void {
-    if (content) {
-      this.data.emit(content)
-      this.messageService.add({
-        origin: 'QrcodeScannerComponent processContent()',
-        showAlert: true,
-        text: content,
-        type: Type.success,
-        timeout: 1000
-      })
-    } else {
+  handleQrCodeResult (content): void {
+    if (!content) {
       this.messageService.add({
         origin: 'QrcodeScannerComponent processContent()',
         showAlert: true,
@@ -60,6 +49,30 @@ export class QrcodeScannerComponent implements OnInit {
         type: Type.error,
         timeout: 6000
       })
+      return
     }
+
+    this.userService.getUser(content)
+      .subscribe(user => {
+        if (!user) {
+          this.messageService.add({
+            origin: 'QrcodeScannerComponent processContent()',
+            showAlert: true,
+            text: 'User not found.',
+            type: Type.error,
+            timeout: 6000
+          })
+          return
+        }
+
+        this.userReadOutput.emit(user)
+        this.userRead = user
+        this.messageService.add({
+          origin: 'QrcodeScannerComponent processContent()',
+          showAlert: false,
+          text: content,
+          type: Type.success
+        })
+      })
   }
 }

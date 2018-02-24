@@ -1,5 +1,20 @@
 .video-wrapper {
+    border: 15px solid;
+    border-radius: 16px;
+    display: flex;
+    align-items: stretch;
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: 77vh;
     overflow: hidden;
+}
+
+img.portrait {
+    width: 30%;
+    border-radius: 50%;
+    border: 3px solid #048ae6;
+}
+
+.title {
+    margin-top: 10px;
 }

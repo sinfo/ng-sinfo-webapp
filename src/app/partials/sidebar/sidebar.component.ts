@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core'
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'app-sidebar',
@@ -8,12 +9,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   @Input() user: any
+  eventOcurring: boolean
 
   showSidebar = true
 
-  constructor() { }
+  constructor () { }
 
-  ngOnInit() {
+  ngOnInit () {
+    this.eventOcurring = environment.eventOcurring
   }
 
 }

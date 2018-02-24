@@ -1,0 +1,55 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  min-height: 87vh;
+}
+
+#content {
+  padding: 20px;
+  transition: all 0.3s;
+  width: 100%;
+  height: 90vh;
+}
+
+div.portrait-wrapper {
+  margin: 4%;
+  border-radius: 100%;
+  border: 1px solid #048ae6;
+  overflow: hidden;
+  height: 60px;
+  width: 60px;
+}
+
+.signatures {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+}
+
+.missing {
+  background-color: #80808069;
+}
+
+img.portrait {
+  height: 70%;
+}
+
+div.user {
+  background: url("http://static.sinfo.org/SINFO_25/powerOnBackground.png") right no-repeat;
+  background-position: right top;
+  background-size: 60%;
+}
+
+.allSignatures, .allSignatures i {
+    color: green;
+}
+
+@media (max-width: 425px){
+  div.user {
+    background-size: 150%;
+  }
+
+  div.user h5 {
+    text-align: center;
+  }
+}

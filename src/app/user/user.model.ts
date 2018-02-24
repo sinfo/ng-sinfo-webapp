@@ -9,6 +9,13 @@ export class User {
       company: string
     }
   ]
+  signatures: [
+    {
+      day: string,
+      edition: string,
+      signatures: [string]
+    }
+  ]
   mail: string
   bearer: [
     {

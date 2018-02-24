@@ -21,11 +21,15 @@ import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
 import { SessionComponent } from './session/session.component'
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
-import { MyProfileComponent } from './user/my-profile/my-profile.component';
+import { MyProfileComponent } from './user/my-profile/my-profile.component'
+import { SignatureComponent } from './user/signature/signature.component'
+import { CardComponent } from './user/card/card.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'link', component: LinkComponent, canActivate: [ AuthGuard ] },
+  { path: 'signature', component: SignatureComponent, canActivate: [ AuthGuard ] },
+  { path: 'card', component: CardComponent, canActivate: [ AuthGuard ] },
   { path: 'achievements', component: AchievementsComponent },
   { path: 'achievements/:id', component: AchievementComponent },
   { path: 'my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },

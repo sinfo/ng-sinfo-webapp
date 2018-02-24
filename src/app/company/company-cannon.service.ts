@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { environment } from '../../../environments/environment'
 import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
-import { AuthService } from '../../auth/auth.service'
-import { Link } from './link.model'
-import { MessageService, Type } from '../../message.service'
+import { MessageService, Type } from '../message.service'
+import { AuthService } from '../auth/auth.service'
+import { Link } from '../user/link/link.model'
+import { environment } from '../../environments/environment'
+import { User } from '../user/user.model'
 
 @Injectable()
-export class LinkService {
+export class CompanyCannonService {
   private companiesUrl = environment.cannonUrl + '/company'
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -98,6 +99,20 @@ export class LinkService {
     return this.http.delete<Link>(`${this.companiesUrl}/${companyId}/link/${attendeeId}`, httpOptions)
       .pipe(
         catchError(this.handleError<Link>('deleteLink'))
+      )
+  }
+
+  sign (companyId: string, attendeeId: string): Observable<User> {
+    const httpOptions = {
+      headers: this.headers
+    }
+
+    return this.http.post<User>(`${this.companiesUrl}/${companyId}/sign/${attendeeId}`, {
+      editionId: environment.currentEvent,
+      day: new Date().getDate().toString() // current day
+    }, httpOptions)
+      .pipe(
+      catchError(this.handleError<User>('sign'))
       )
   }
 

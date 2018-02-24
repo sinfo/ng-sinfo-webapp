@@ -51,6 +51,10 @@ div.achivements-wrapper img.achievement {
   margin: 5px;
 }
 
+.allSignatures, .allSignatures i {
+  color: green;
+}
+
 @media (max-width: 425px){
   div.user {
     background-size: 150%;

@@ -12,6 +12,7 @@ import { environment } from './../../../environments/environment'
 export class MyProfileComponent implements OnInit {
   user: User
   company: string
+  eventOcurring: boolean
 
   constructor (
     private userService: UserService,
@@ -52,6 +53,7 @@ export class MyProfileComponent implements OnInit {
             })
           }
         }
+
       })
     })
   }

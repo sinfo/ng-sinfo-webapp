@@ -23,6 +23,9 @@ import 'rxjs/add/operator/distinctUntilChanged'
 export class PromoteComponent implements OnInit {
 
   scannerActive: boolean
+  title = 'Promote'
+  info: string
+
   userRead: User
   userReadCompany: Company
 
@@ -58,24 +61,41 @@ export class PromoteComponent implements OnInit {
     this.scannerActive = true
   }
 
-  processData (id: string) {
-    if (!id) return
+  updateInfo (user: User, userCompany?: Company) {
+    let info = ''
 
+    if (userCompany) {
+      info = userCompany.name
+    } else if (user.role === 'team') {
+      info = user.role
+    }
+
+    this.info = info
+  }
+
+  receiveUser (user: User) {
+    this.userRead = user
     this.scannerActive = false
+    this.updateInfo(user)
 
-    this.userService.getUser(id)
-      .subscribe(user => {
-        this.userRead = user
-        if (this.companies && user.role === 'company') {
-          let userCompany = user.company.find(c => {
-            return c.edition === environment.currentEvent
-          })
+    if (!this.companies || user.role !== 'company') {
+      this.updateInfo(user)
+      return
+    }
+    let userCompany = user.company.find(c => {
+      return c.edition === environment.currentEvent
+    })
 
-          this.userReadCompany = this.companies.find(c => {
-            return c.id === userCompany.company
-          })
-        }
-      })
+    if (!userCompany) {
+      this.updateInfo(user)
+      return
+    }
+
+    this.userReadCompany = this.companies.find(c => {
+      return c.id === userCompany.company
+    })
+
+    this.updateInfo(user, this.userReadCompany)
   }
 
   getCompanies (): void {
@@ -89,7 +109,10 @@ export class PromoteComponent implements OnInit {
     if (!this.userRead) return
 
     this.userService.updateUser(this.userRead.id, 'team')
-      .subscribe(user => this.userRead = user)
+      .subscribe(user => {
+        this.userRead = user
+        this.updateInfo(user)
+      })
   }
 
   promoteToCompany () {
@@ -99,6 +122,7 @@ export class PromoteComponent implements OnInit {
       .subscribe(user => {
         this.userRead = user
         this.userReadCompany = this.searchedCompany
+        this.updateInfo(user, this.userReadCompany)
       })
   }
 
@@ -106,7 +130,10 @@ export class PromoteComponent implements OnInit {
     if (!this.userRead) return
 
     this.userService.updateUser(this.userRead.id, 'user')
-      .subscribe(user => this.userRead = user)
+      .subscribe(user => {
+        this.userRead = user
+        this.updateInfo(user)
+      })
   }
 
 }

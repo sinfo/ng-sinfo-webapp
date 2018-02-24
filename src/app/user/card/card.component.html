@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+
+<app-loading [content]="signatures"></app-loading>
+
+<div class="user wrapper" *ngIf="signatures && signatures.companies && signatures.companies.length > 0">
+
+  <app-sidebar [user]="user"></app-sidebar>
+
+  <div id="content" class="content container-fluid">
+    <div class="align-center">
+
+      <div class="row">
+        <h3 class="name">
+          My card
+        </h3>
+
+        <h5 [ngClass]="{allSignatures: signatures.companies.length === signatures.capacity}">
+          {{signatures.companies.length}}/{{signatures.capacity}}
+          <i *ngIf="signatures.companies.length === signatures.capacity" class="fa fa-check"></i>
+        </h5>
+
+      </div>
+
+      <div class="row">
+
+        <div class="signatures">
+
+          <div class="portrait-wrapper" *ngFor="let company of signatures.companies">
+            <img class="portrait" src="{{company.img}}">
+          </div>
+
+          <div class="portrait-wrapper missing" *ngFor="let missing of getArray(signatures.capacity - signatures.companies.length)">
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

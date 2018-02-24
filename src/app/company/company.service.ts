@@ -6,20 +6,23 @@ import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { MessageService, Type } from '../message.service'
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
+import { User } from '../user/user.model'
+import { AuthService } from '../auth/auth.service'
 
 @Injectable()
 export class CompanyService {
 
   private companiesUrl = environment.deckUrl + '/api/companies'
   private companies: Company[]
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${this.authService.getToken().token}`
+  })
 
   constructor (
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authService: AuthService
   ) { }
 
   getCompanies (): Observable<Company[]> {
@@ -36,8 +39,8 @@ export class CompanyService {
 
     return this.http.get<Company[]>(this.companiesUrl, { params })
       .pipe(
-        tap(companies => this.companies = companies),
-        catchError(this.handleError<Company[]>('getCompanies', []))
+      tap(companies => this.companies = companies),
+      catchError(this.handleError<Company[]>('getCompanies', []))
       )
   }
 
@@ -50,7 +53,7 @@ export class CompanyService {
 
     return this.http.get<Company>(`${this.companiesUrl}/${id}`)
       .pipe(
-        catchError(this.handleError<Company>('getCompany'))
+      catchError(this.handleError<Company>('getCompany'))
       )
   }
 
