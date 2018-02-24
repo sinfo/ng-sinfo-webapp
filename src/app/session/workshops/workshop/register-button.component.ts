@@ -53,7 +53,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
         this.onRegistrationClosed.emit(true)
       }
 
-      if (this.authService.isLoggedIn()) {
+      if (this.authService.isLoggedIn() && this.ticket) {
         this.updateState()
         this.userService.getUserSessions(this.user.id)
       }
