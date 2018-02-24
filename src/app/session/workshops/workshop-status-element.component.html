@@ -27,7 +27,7 @@
           <app-workshop-register-button (onRegistrationClosed)="onRegistrationClosed($event)" [user]="user" [workshop]="workshop"></app-workshop-register-button>
         </div>  
         <div class="col-sm-12">
-          <p><ngb-progressbar type="info" [value]="workshop.tickets.max - ticket.users.lenght"><b>{{ ticket.users.lenght }} of {{ workshop.tickets.max }}</b></ngb-progressbar></p>  
+          <p><ngb-progressbar type="info" [value]="workshop.tickets.max - ticket.users.length"><b>{{ ticket.users.length }} of {{ workshop.tickets.max }}</b></ngb-progressbar></p>  
         </div>  
       </div>
     </div>
