@@ -15,7 +15,7 @@ export const environment = {
     'Games',
     'Web'
   ],
-  eventOcurring: true,
+  eventOcurring: false,
   signaturesCardCapacity: 7,
   facebook: {
     appId: '708252219264170'

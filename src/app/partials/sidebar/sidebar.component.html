@@ -19,7 +19,7 @@
         </li>
       </ul>
     </li>
-    <li *ngIf="user.role === 'user'">
+    <li *ngIf="user.role === 'user' && eventOcurring">
       <a routerLink="/card">
         <i class="glyphicon glyphicon-list-alt"></i>
         My card
