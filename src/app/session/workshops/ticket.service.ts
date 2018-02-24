@@ -9,7 +9,7 @@ import { Ticket } from './ticket.model'
 
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
-import { MessageService, Type } from '../../partials/messages/message.service'
+import { Type, MessageService } from '../../message.service'
 
 @Injectable()
 export class TicketService {
@@ -63,9 +63,12 @@ export class TicketService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
-        origin: `SessionService: ${operation}`,
-        text: error.message,
-        type: Type.error
+        origin: `TicketService: ${operation}`,
+        showAlert: true,
+        text: 'When fetching tickets from server',
+        errorObject: error,
+        type: Type.error,
+        timeout: 4000
       })
 
       // Let the app keep running by returning an empty result.
