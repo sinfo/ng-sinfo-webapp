@@ -95,6 +95,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
       this.loading = false
       this.cd.detectChanges()
     }, (error) => {
+      console.log(error)
       this.isError = true
       this.loading = false
     })

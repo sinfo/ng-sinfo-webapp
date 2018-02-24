@@ -9,7 +9,7 @@ import { Ticket } from './ticket.model'
 
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
-import { Type, MessageService } from '../../message.service'
+import { MessageService, Type } from '../../message.service'
 
 @Injectable()
 export class TicketService {
