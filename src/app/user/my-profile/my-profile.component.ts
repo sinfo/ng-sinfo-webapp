@@ -13,11 +13,6 @@ export class MyProfileComponent implements OnInit {
   user: User
   company: string
   eventOcurring: boolean
-  signatures: {
-    day: Date,
-    count: number,
-    capacity: number
-  }
 
   constructor (
     private userService: UserService,
@@ -59,29 +54,6 @@ export class MyProfileComponent implements OnInit {
           }
         }
 
-        // checking this user's signatures for today
-        this.eventOcurring = environment.eventOcurring
-        if (!this.eventOcurring) return
-
-        let signatures = {
-          day: new Date(),
-          count: 0,
-          capacity: environment.signaturesCardCapacity
-        }
-
-        if (!this.user.signatures) {
-          signatures.count = 0
-          this.signatures = signatures
-          return
-        }
-
-        let day = signatures.day.getDate().toString()
-        let userSignatures = this.user.signatures.find(s => {
-          return s.day === day
-        })
-
-        signatures.count = userSignatures ? userSignatures.signatures.length : 0
-        this.signatures = signatures
       })
     })
   }

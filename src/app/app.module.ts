@@ -57,7 +57,8 @@ import { LinkComponent } from './user/link/link.component'
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
-import { CompanyCannonService } from './company/company-cannon.service'
+import { CompanyCannonService } from './company/company-cannon.service';
+import { CardComponent } from './user/card/card.component'
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { CompanyCannonService } from './company/company-cannon.service'
     MyLinksComponent,
     AchievementsComponent,
     AchievementComponent,
-    SignatureComponent
+    SignatureComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

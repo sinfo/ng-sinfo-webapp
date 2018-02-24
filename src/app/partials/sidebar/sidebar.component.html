@@ -19,6 +19,12 @@
         </li>
       </ul>
     </li>
+    <li *ngIf="user.role === 'user'">
+      <a routerLink="/card">
+        <i class="glyphicon glyphicon-list-alt"></i>
+        My card
+      </a>
+    </li>
     <li *ngIf="user.role === 'team'">
       <a href="#promotionsSubmenu" data-toggle="collapse" aria-expanded="true">
         <i class="glyphicon glyphicon-king"></i>

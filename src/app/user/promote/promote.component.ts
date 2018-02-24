@@ -82,10 +82,14 @@ export class PromoteComponent implements OnInit {
       this.updateInfo(user)
       return
     }
-
     let userCompany = user.company.find(c => {
       return c.edition === environment.currentEvent
     })
+
+    if (!userCompany) {
+      this.updateInfo(user)
+      return
+    }
 
     this.userReadCompany = this.companies.find(c => {
       return c.id === userCompany.company
