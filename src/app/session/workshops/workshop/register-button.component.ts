@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core'
 import { Router, RouterStateSnapshot } from '@angular/router'
 
 import { Session } from '../../session.model'
@@ -25,6 +25,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
   isRegistered: boolean
   isWaiting: boolean
   isRegistrationClosed: boolean
+  isError: boolean
   hasTicket
   loading = false
   position: number
@@ -33,7 +34,8 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     private ticketService: TicketService,
     private authService: AuthService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {
     this.snapshot = router.routerState.snapshot
   }
@@ -73,17 +75,28 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     }
 
     this.loading = true
+    this.isError = false
     if (!this.hasTicket) {
       return this.ticketService.registerTicket(this.workshop.id).subscribe(ticket => {
-        this.loading = false
+        console.log(ticket)
         this.ticket = ticket
         this.updateState()
+        this.loading = false
+        this.cd.detectChanges()
+      }, (error) => {
+        console.log(error)
+        this.isError = true
+        this.loading = false
       })
     }
     this.ticketService.voidTicket(this.workshop.id).subscribe(ticket => {
-      this.loading = false
       this.ticket = ticket
       this.updateState()
+      this.loading = false
+      this.cd.detectChanges()
+    }, (error) => {
+      this.isError = true
+      this.loading = false
     })
   }
 }

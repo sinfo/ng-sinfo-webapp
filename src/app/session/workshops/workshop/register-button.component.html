@@ -5,6 +5,12 @@
     </p>
     <p>You are the number {{position}}</p>
   </div>
+  <div *ngIf="isError" class="waiting-alert alert alert-warning align-center">
+    <p>
+      <strong>Error</strong>
+    </p>
+    <p>There was an error processing your request. Please try again.</p>
+  </div>
   <button id="buttonLoad" class="getTicket btn" 
     [ngClass]="{
     'btn-success': !hasTicket, 

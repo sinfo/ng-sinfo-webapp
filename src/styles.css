@@ -7130,3 +7130,7 @@ div.clear input.btn:hover {
 .card-header a {
     text-decoration: none !important;
 }
+
+.wrapper {
+  width: 100%;
+}

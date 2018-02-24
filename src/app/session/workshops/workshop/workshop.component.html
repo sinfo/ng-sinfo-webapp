@@ -1,4 +1,6 @@
-<div class="col-sm-12">
+<app-loading [content]="workshop"></app-loading>
+
+<div class="col-sm-12" *ngIf="workshop">
   <div class="well well-sm workshop-wrapper" [ngClass]="{'workshop-collapsed': isRegistrationClosed }">
     <div class="img-wrapper col-sm-2">
       <img src="{{workshop.img}}" alt="{{workshop.name}}">

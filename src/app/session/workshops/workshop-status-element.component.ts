@@ -18,6 +18,7 @@ export class WorkshopStatusElementComponent implements OnInit {
   showMore = false
   ticket: Ticket
   isRegistrationClosed: boolean
+  count: number
 
   constructor (
     private ticketService: TicketService,
@@ -28,6 +29,7 @@ export class WorkshopStatusElementComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
         this.ticket = ticket
+        this.count = ticket && ticket.users ? (ticket.users.length / this.workshop.tickets.max) * 100 : 0
       })
     }
   }
