@@ -42,9 +42,9 @@
       </div>
     </div>
 
-    <div class="row">
-      <div *ngIf="session.kind !== 'Keynote'" class="session">
-        <img *ngIf="" src='{{session.img}}'>
+    <div *ngIf="session.kind !== 'Keynote'" class="row">
+      <div class="session">
+        <img src='{{session.img}}'>
       </div>
       <!--TODO Add the rest of the information-->
     </div>
@@ -55,6 +55,9 @@
       </div>
     </div>
 
+    <div *ngIf="session.kind === 'Workshop'" class="row">  
+      <app-workshop-register-button [user]="user" [workshop]="session"></app-workshop-register-button>
+    </div>
     <!--TODO Fetch users checked-in -->
   </div>
 </section>

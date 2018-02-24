@@ -11,6 +11,11 @@ export class Session {
   duration: string
   updated: string
   event: string
-  tickets: object
+  tickets: {
+    needed: boolean,
+    start: string,
+    end: string,
+    max: number
+  }
   surveyNeeded: boolean
 }

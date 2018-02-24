@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { Achievement } from '../achievements/achievement.model'
+import { Session } from '../session/session.model'
 import { AuthService } from '../auth/auth.service'
 import { Company } from '../company/company.model'
 import { CompanyService } from '../company/company.service'
@@ -15,7 +16,7 @@ import { MessageService, Type } from '../message.service'
 export class UserService {
   private usersUrl = environment.cannonUrl + '/users'
   private companiesUrl = environment.cannonUrl + '/companies'
-  private me: User
+  public me: User
 
   constructor (
     private http: HttpClient,
@@ -44,7 +45,6 @@ export class UserService {
     if (this.me) {
       return of(this.me)
     }
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -54,7 +54,11 @@ export class UserService {
 
     return this.http.get<User>(`${this.usersUrl}/me`, httpOptions)
       .pipe(
-      catchError(this.handleError<User>('getMe'))
+        tap((user) => {
+          this.me = user
+          console.log(user)
+        }),
+        catchError(this.handleError<User>('getMe'))
       )
   }
 
@@ -134,6 +138,13 @@ export class UserService {
       httpOptions).pipe(
       catchError(this.handleError<User>('removeThisEventsCompanyFromUser'))
       )
+  }
+
+  getUserSessions (id: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.usersUrl}/${id}/sessions`)
+    .pipe(
+      catchError(this.handleError<string[]>(`getUserSessions id=${id}`))
+    )
   }
 
   /**

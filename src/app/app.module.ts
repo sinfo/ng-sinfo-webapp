@@ -2,11 +2,9 @@ import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
-
 import { AppComponent } from './app.component'
 import { SpeakersComponent } from './speakers/speakers.component'
 import { SpeakerService } from './speakers/speaker.service'
-
 import { LandingPageComponent } from './landing-page/landing-page.component'
 import { MenuComponent } from './partials/menu/menu.component'
 import { FooterComponent } from './partials/footer/footer.component'
@@ -39,26 +37,27 @@ import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
 import { AchievementService } from './achievements/achievement.service'
 import { SessionService } from './session/session.service'
-
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
 import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
-
 import { PromoteComponent } from './user/promote/promote.component'
-
 import { CompanyService } from './company/company.service'
-
 import { NgModel } from '@angular/forms/src/directives/ng_model'
-
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
-
 import { LinkComponent } from './user/link/link.component'
-
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
-import { CompanyCannonService } from './company/company-cannon.service';
+import { CompanyCannonService } from './company/company-cannon.service'
 import { CardComponent } from './user/card/card.component'
+import { WorkshopsComponent } from './session/workshops/workshops.component'
+import { WorkshopComponent } from './session/workshops/workshop/workshop.component'
+import { MyWorkshopsComponent } from './session/workshops/my-workshops.component'
+import { TicketService } from './session/workshops/ticket.service'
+import { WorkshopRegisterButtonComponent } from './session/workshops/workshop/register-button.component'
+import { IsTeamGuard } from './auth/is-team.guard'
+import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
+import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component'
 
 @NgModule({
   declarations: [
@@ -88,7 +87,14 @@ import { CardComponent } from './user/card/card.component'
     AchievementsComponent,
     AchievementComponent,
     SignatureComponent,
-    CardComponent
+    CardComponent,
+    SidebarComponent,
+    WorkshopsComponent,
+    WorkshopsStatusComponent,
+    WorkshopRegisterButtonComponent,
+    WorkshopComponent,
+    WorkshopStatusElementComponent,
+    MyWorkshopsComponent
   ],
   imports: [
     BrowserModule,
@@ -107,13 +113,15 @@ import { CardComponent } from './user/card/card.component'
     SessionService,
     AuthService,
     AuthGuard,
+    IsTeamGuard,
     StorageService,
     UserService,
     SessionService,
     CompanyService,
     CompanyCannonService,
     JwtService,
-    AchievementService
+    AchievementService,
+    TicketService
   ],
   bootstrap: [AppComponent]
 })
