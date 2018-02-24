@@ -8,7 +8,7 @@
             (scanSuccess)="handleQrCodeResult($event)"></ngx-zxing>
     </div>
 
-    <div *ngIf="!camStarted && userRead">
+    <div *ngIf="!camStarted && userRead !== undefined">
         <div class="row">
             <h3 class="name">
                 {{userRead.name}}
