@@ -12,11 +12,23 @@
       </a>
     </li>
     <li>
-      <a href="#workshopsSubmenu" data-toggle="collapse" aria-expanded="true">
+      <a routerLink="/achievements">
+        <i class="fa fa-trophy" aria-hidden="true"></i>
+        <span class="cheirinho">Achievements</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/scoreboard">
+        <i class="glyphicon glyphicon-tower"></i>
+        Scoreboard
+      </a>
+    </li>
+    <li>
+      <a href="#workshopsSubmenu" data-toggle="collapse" aria-expanded="false">
         <i class="glyphicon glyphicon-briefcase"></i>
         Workshops
       </a>
-      <ul class="list-unstyled in" id="workshopsSubmenu">
+      <ul class="list-unstyled collapse" id="workshopsSubmenu">
         <li>
           <a routerLink="/workshops">Register</a>
         </li>
@@ -35,25 +47,17 @@
       </a>
     </li>
     <li *ngIf="user.role === 'team'">
-      <a href="#promotionsSubmenu" data-toggle="collapse" aria-expanded="true">
+      <a routerLink="/promote">
         <i class="glyphicon glyphicon-king"></i>
-        Promotions
+        Promote
       </a>
-      <ul class="list-unstyled in" id="promotionsSubmenu">
-        <li>
-          <a routerLink="/promote">Promote</a>
-        </li>
-        <li>
-          <a href="#">My Promotions</a>
-        </li>
-      </ul>
     </li>
     <li *ngIf="user.role === 'company'">
-      <a href="#linksSubmenu" data-toggle="collapse" aria-expanded="true">
+      <a href="#linksSubmenu" data-toggle="collapse" aria-expanded="false">
         <i class="glyphicon glyphicon-duplicate"></i>
         Links
       </a>
-      <ul class="list-unstyled in" id="linksSubmenu">
+      <ul class="collapse list-unstyled" id="linksSubmenu">
         <li>
           <a routerLink="/link">Link</a>
         </li>
@@ -63,14 +67,15 @@
       </ul>
     </li>
     <li *ngIf="user.role === 'company'">
-      <a routerLink="/signature" data-toggle="collapse" aria-expanded="true">
+      <a routerLink="/signature">
         <i class="fa fa-check"></i>
-        Sign
+        Sign Card
       </a>
     </li>
-    <li >
+    <li>
       <a (click)="onLogout()">
-        <i class="glyphicon glyphicon-log-out"></i>Logout
+        <i class="glyphicon glyphicon-log-out"></i>
+        Logout
       </a>
     </li>
   </ul>

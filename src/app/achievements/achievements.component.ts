@@ -24,31 +24,22 @@ export class AchievementsComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    this.getAchievements()
-  }
+    this.achievementService.getAchievements().subscribe(achievements => {
+      this.achievements = achievements
+    })
 
-  getAchievements (): void {
-    this.achievementService.getAchievements()
-      .subscribe(achievements => {
-        this.achievements = achievements
-        this.getUser()
+    if (this.authService.isLoggedIn()) {
+      this.userService.getMe().subscribe(user => {
+        this.user = user
       })
-  }
-
-  onSelect (achievement: Achievement): void {
-    this.router.navigate(['/achievements', achievement.id])
-  }
-
-  getUser (): void {
-    let isLoggedIn = this.authService.isLoggedIn()
-
-    if (isLoggedIn) {
-      this.userService.getMe()
-        .subscribe(user => this.user = user)
     }
   }
 
   isUnlocked (achievement: Achievement): boolean {
     return this.user ? achievement.users.indexOf(this.user.id) !== -1 : false
+  }
+
+  numUserAchievements (): number {
+    return this.user.achievements.length
   }
 }

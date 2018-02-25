@@ -2,11 +2,45 @@
 
 <app-loading [content]="achievements"></app-loading>
 
-<section *ngIf="achievements"  class="section achievement-section align-center">
-    <div class="container">
-        <h3>Achievements</h3>
-        <a *ngFor="let achievement of achievements" (click)="onSelect(achievement)">
-            <img [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+<div class="wrapper" *ngIf="achievements">
+
+  <app-sidebar [user]="user"></app-sidebar>
+
+  <div id="content" class="content">
+    <section class="section achievement-section align-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <i class="fa fa-trophy" aria-hidden="true"></i>
+            <h3>Achievements</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h6 class="lead">
+              Earn points by completing achievements.
+              <br> At the end of the event we will award the
+              <strong>
+                <a routerLink="/scoreboard">scoreboard</a>
+              </strong> leader.
+            </h6>
+          </div>
+        </div>
+
+        <div class="alert alert-info col-sm-12">
+          <span *ngIf="user">
+            <strong>You have unlocked {{ numUserAchievements() }} of {{ achievements.length }} </strong>
+          </span>
+          <span class="scoreboard">
+            <strong>
+              <a routerLink="/scoreboard">See the Scoreboard</a>
+            </strong>
+          </span>
+        </div>
+        <a *ngFor="let achievement of achievements" routerLink="/achievement/{{achievement.id}}">
+          <img [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>
-    </div>
-</section>
+      </div>
+    </section>
+  </div>
+</div>

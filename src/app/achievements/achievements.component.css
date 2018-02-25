@@ -1,14 +1,38 @@
-a {
-    cursor: pointer;
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  min-height: 87vh;
 }
-
-img {
-    width: 100px;
-    margin: 5px;
+#content {
+  padding: 20px;
+  transition: all 0.3s;
+  width: 100%;
 }
-
-img:not(.unlocked):not(:hover) {
-    opacity: .6;
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
+.achievement-section a {
+  cursor: pointer;
+}
+.achievement-section img {  
+  width: 100px;
+  margin: 5px;
+}
+.achievement-section .alert {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around
+}
+.achievement-section span {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.achievement-section img:not(.unlocked):not(:hover) {
+  opacity: .6;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+.achievement-section i.fa {
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+.achievement-section .scoreboard {
+  cursor: pointer;
 }
