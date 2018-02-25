@@ -3,7 +3,7 @@
         {{title}}
     </h3>
 
-    <div class="video-wrapper" [hidden]="!camStarted">
+    <div class="video-wrapper" *ngIf="camStarted">
         <ngx-zxing [start]="camStarted" [device]="selectedDevice" [cssClass]="'videoqrcode'" (camerasFound)="displayCameras($event)"
             (scanSuccess)="handleQrCodeResult($event)"></ngx-zxing>
     </div>

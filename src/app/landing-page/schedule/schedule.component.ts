@@ -42,15 +42,16 @@ export class ScheduleComponent implements OnInit {
   }
 
   createSchedule (sessions: Session[]): void {
-    let tempSchedule = {}
+    let tempSchedule = []
+    let registeredDays = -1
 
     sessions.forEach((val, index) => {
       let date = new Date(Date.parse(val.date))
       let day = date.getDate()
 
       // check if day was already registered
-      if (!tempSchedule[day]) {
-        tempSchedule[day] = {
+      if (!(registeredDays + 1) || tempSchedule[registeredDays].date.getDate() !== day) {
+        tempSchedule.push({
           sessions: {
             Presentation: {
               sala1: [],
@@ -62,26 +63,21 @@ export class ScheduleComponent implements OnInit {
               sala2: []
             }
           },
-          theme: '',
-          date: val.date
-        }
+          theme: environment.themes[registeredDays + 1],
+          date: date
+        })
+        registeredDays += 1
       }
 
       if (val.kind === 'Keynote') {
-        tempSchedule[day].sessions[val.kind].push(val)
+        tempSchedule[registeredDays].sessions[val.kind].push(val)
       } else {
         let place = (val.place === 'sala2') ? 'sala2' : 'sala1'
-        tempSchedule[day].sessions[val.kind][place].push(val)
+        tempSchedule[registeredDays].sessions[val.kind][place].push(val)
       }
     })
 
-    let i = 0
-    this.schedule = []
-    for (let day in tempSchedule) {
-      tempSchedule[day].theme = environment.themes[i]
-      this.schedule.push(tempSchedule[day])
-      i += 1
-    }
+    this.schedule = tempSchedule
 
     this.selectedTheme = this.schedule[0].theme
     this.selectedTime = this.schedule[0].date
