@@ -38,7 +38,6 @@
 
 #sidebar.active ul li {
   margin-bottom: 0px;
-  background: #037ac9;
 }
 
 #sidebar.active ul li a i {
@@ -101,11 +100,12 @@
   background: #037ac9;
 }
 #sidebar a[aria-expanded="true"] ~ ul li a{
- border-bottom: 1px solid rgba(2, 91, 151, 0.29); 
+  border-bottom: 1px solid #eeeeee29;
 }
+
 #sidebar ul li.active > a, a[aria-expanded="true"] {
   color: #fff;
-  background: #025b97;
+  background: #01395f;
   font-weight: 600;
 }
 
@@ -180,6 +180,7 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
   font-family: 'Glyphicons Halflings';
   font-size: 1.15em;
   font-weight: 600;
+  line-height: 11px;
 }
 a[aria-expanded="true"]::before {
   content: '\e260';
@@ -187,7 +188,7 @@ a[aria-expanded="true"]::before {
 
 ul ul a {
   padding-left: 30px !important;
-  background: #037ac9;
+  background: #0065a9;
 }
 
 @media (max-width: 768px) {
@@ -235,6 +236,11 @@ ul ul a {
 
   #sidebar ul li a i {
     font-size: 1.3em;
+  }
+
+  #sidebar ul li a span.cheirinho{
+    position: absolute;
+    left: 7px;
   }
 }
 
