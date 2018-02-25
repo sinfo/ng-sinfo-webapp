@@ -38,7 +38,7 @@ export class TicketService {
     let httpOptions = {
       headers: this.httpHeader.append('Authorization', `Bearer ${this.authService.getToken().token}`)
     }
-    return this.http.post<Ticket>(`${this.ticketsUrl}/${sessionId}`, null, httpOptions)
+    return this.http.post<Ticket>(`${this.ticketsUrl}/${sessionId}`, {}, httpOptions)
       .pipe(
         catchError(this.handleError<Ticket>('registerTicket'))
       )
@@ -49,9 +49,9 @@ export class TicketService {
       headers: this.httpHeader.append('Authorization', `Bearer ${this.authService.getToken().token}`)
     }
     return this.http.delete<Ticket>(`${this.ticketsUrl}/${sessionId}`, httpOptions)
-      .pipe(
-        catchError(this.handleError<Ticket>('voidTicket'))
-      )
+      .map(ticket => {
+        return ticket
+      })
   }
 
   /**
