@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core'
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
 import { Router, RouterStateSnapshot } from '@angular/router'
 
 import { Session } from '../../session.model'
@@ -34,8 +34,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     private ticketService: TicketService,
     private authService: AuthService,
     private userService: UserService,
-    private router: Router,
-    private cd: ChangeDetectorRef
+    private router: Router
   ) {
     this.snapshot = router.routerState.snapshot
   }
@@ -82,7 +81,6 @@ export class WorkshopRegisterButtonComponent implements OnInit {
         this.ticket = ticket
         this.updateState(ticket)
         this.loading = false
-        this.cd.detectChanges()
       }, (error) => {
         console.log(error)
         this.isError = true
@@ -93,7 +91,6 @@ export class WorkshopRegisterButtonComponent implements OnInit {
       this.ticket = ticket
       this.updateState(ticket)
       this.loading = false
-      this.cd.detectChanges()
     }, (error) => {
       console.log(error)
       this.isError = true
