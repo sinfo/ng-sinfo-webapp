@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone } from '@angular/core'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
+import { CompanyService } from '../../company/company.service'
 
 @Component({
   selector: 'app-my-profile',
@@ -16,6 +17,7 @@ export class MyProfileComponent implements OnInit {
 
   constructor (
     private userService: UserService,
+    private companyService: CompanyService
     private zone: NgZone
   ) {
     /**
@@ -35,22 +37,16 @@ export class MyProfileComponent implements OnInit {
 
         if (this.user.role === 'company') {
           let company = this.user.company
-          let found = false
-          for (let i = 0; i < company.length; i++) {
-            if (company[i].edition === environment.currentEvent) {
-              found = true
-            }
-          }
+          let companyFound = company.find(c => {
+            return c.edition === environment.currentEvent
+          })
 
-          if (!found) {
+          if (!companyFound) {
             this.userService.demoteSelf()
               .subscribe(newUser => this.user = newUser)
           } else {
-            this.user.company.forEach(el => {
-              if (el.edition === environment.currentEvent) {
-                this.company = el.company
-              }
-            })
+            this.companyService.getCompany(companyFound.company)
+              .subscribe(c => this.company = c.name)
           }
         }
 
