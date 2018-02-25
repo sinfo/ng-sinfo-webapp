@@ -16,7 +16,7 @@
 .schedule .tab-content-schedule .panel-group {
   margin-bottom: 0;
 }
-.schedule .tab-content-schedule .schedule-item {	
+.schedule .tab-content-schedule .schedule-item {
   position: relative;
   margin-bottom: 22px;
   min-height: 65px;
@@ -25,7 +25,7 @@
   min-height: 300px;
 }
 
-.schedule .tab-content-schedule .schedule-item .schedule-item-header {	
+.schedule .tab-content-schedule .schedule-item .schedule-item-header {
   display: block;
   text-decoration: none;
   cursor: pointer;
@@ -87,22 +87,7 @@
 }
 
 .ics {
-  display: inline;
-  margin-bottom: 2.5%;
-  margin-top: -3%;
-}
-
-.ics a {
-  text-decoration: none;
-}
-
-.ics:hover a {
-  color: white;
-}
-
-.ics span {
-  margin-right: 0;
-  padding-right: 0;
+  margin-bottom: 20px;
 }
 
 .schedule-item {
