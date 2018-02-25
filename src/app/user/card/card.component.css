@@ -12,22 +12,25 @@
 }
 
 div.portrait-wrapper {
-  margin: 4%;
+  margin: 10px;
   border-radius: 100%;
   border: 1px solid #048ae6;
   overflow: hidden;
-  height: 60px;
-  width: 60px;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .signatures {
   display: flex;
   flex-flow: wrap;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .missing {
-  background-color: #80808069;
+  background-color: #048adf57;
 }
 
 img.portrait {
