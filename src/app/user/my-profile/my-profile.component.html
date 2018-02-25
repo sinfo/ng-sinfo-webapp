@@ -39,17 +39,17 @@
         <p>{{user.area}}</p>
       </div>
 
-      <div class="row" *ngIf="user.skills">
+      <div class="row" *ngIf="user.skills && user.role !== 'company'">
         <h5>Skills </h5>
         <p>{{user.skills.join(', ')}}</p>
       </div>
 
-      <div class="row" *ngIf="user.points">
+      <div class="row" *ngIf="user.points && user.role !== 'company'">
         <h5>Current points </h5>
         <p>{{user.points.total ? user.points.total : 0}}</p>
       </div>
 
-      <div class="row" *ngIf="achievements && achievements.length > 0">
+      <div class="row" *ngIf="achievements && achievements.length > 0  && user.role !== 'company'">
         <h5>Achievements earned </h5>
         <div class="achivements-wrapper">
           <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">

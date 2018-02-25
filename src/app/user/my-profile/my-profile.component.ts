@@ -17,7 +17,7 @@ export class MyProfileComponent implements OnInit {
 
   constructor (
     private userService: UserService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
     private zone: NgZone
   ) {
     /**

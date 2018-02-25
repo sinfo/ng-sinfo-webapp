@@ -11,7 +11,7 @@
         My Profile
       </a>
     </li>
-    <li>
+    <li *ngIf="user.role !== 'company'">
       <a href="#workshopsSubmenu" data-toggle="collapse" aria-expanded="true">
         <i class="glyphicon glyphicon-briefcase"></i>
         Workshops
