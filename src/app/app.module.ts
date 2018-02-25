@@ -60,6 +60,7 @@ import { WorkshopRegisterButtonComponent } from './session/workshops/workshop/re
 import { IsTeamGuard } from './auth/is-team.guard'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
 import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component'
+import { SignatureService } from './user/signature/signature.service'
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { WorkshopStatusElementComponent } from './session/workshops/workshop-sta
     JwtService,
     AchievementService,
     TicketService,
+    SignatureService,
     ScoreboardService
   ],
   bootstrap: [AppComponent]

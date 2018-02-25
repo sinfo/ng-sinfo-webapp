@@ -7,6 +7,7 @@
     width: 100%;
     height: 77vh;
     overflow: hidden;
+    justify-content: center;
 }
 
 img.portrait {
@@ -17,4 +18,16 @@ img.portrait {
 
 .title {
     margin-top: 10px;
+}
+
+#changeCamera {
+    position: absolute;
+    margin: 0;
+    right: 0;
+    top: 0;
+    z-index: 10;
+    min-width: 0;
+    width: 47px;
+    border-radius: 0;
+    border-bottom-left-radius: 50%;
 }

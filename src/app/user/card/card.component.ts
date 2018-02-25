@@ -36,6 +36,9 @@ export class CardComponent implements OnInit {
           return s.day === day
         })
 
+        console.log('PASSED', userSignatures, day)
+        if (!userSignatures) return
+
         userSignatures.signatures.forEach(company => {
           this.companyService.getCompany(company)
             .subscribe(c => {
@@ -43,6 +46,7 @@ export class CardComponent implements OnInit {
                 name: c.name,
                 img: c.img
               })
+              console.log(this.signatures.companies)
             })
         })
       })
