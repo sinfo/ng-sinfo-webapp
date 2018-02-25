@@ -72,7 +72,7 @@ export class ScheduleComponent implements OnInit {
       if (val.kind === 'Keynote') {
         tempSchedule[registeredDays].sessions[val.kind].push(val)
       } else {
-        let place = (val.place === 'sala2') ? 'sala2' : 'sala1'
+        let place = (val.place === 'Room 2') ? 'sala2' : 'sala1'
         tempSchedule[registeredDays].sessions[val.kind][place].push(val)
       }
     })
