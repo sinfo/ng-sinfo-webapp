@@ -7133,3 +7133,17 @@ div.clear input.btn:hover {
 .wrapper {
   width: 100%;
 }
+
+.sidebar-wrapper {
+    display: flex;
+    align-items: stretch;
+    min-height: 87vh;
+}
+
+#content {
+    padding: 20px;
+    transition: all 0.3s;
+    width: 100%;
+    height: 93vh;
+    overflow: auto;
+}

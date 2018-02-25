@@ -32,6 +32,8 @@ export class PromoteComponent implements OnInit {
   companies: Company[]
   searchedCompany: Company
 
+  me: User
+
   constructor (
     private userService: UserService,
     private companyService: CompanyService
@@ -53,7 +55,11 @@ export class PromoteComponent implements OnInit {
 
   ngOnInit () {
     this.scannerActive = true
-    this.getCompanies()
+    this.userService.getMe()
+      .subscribe(me => {
+        this.me = me
+        this.getCompanies()
+      })
   }
 
   reScan () {

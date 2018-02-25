@@ -1,43 +1,56 @@
 <app-menu></app-menu>
 
-<app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
-</app-qrcode-scanner>
+<app-loading [content]="companies"></app-loading>
 
-<div class="container align-center user" *ngIf="userRead">
+<div class="user sidebar-wrapper" *ngIf="companies">
 
-  <div class="row">
-    <div class="col-xs-12">
-      <button class="btn btn-button" (click)="promoteToTeam()">Promote to team</button>
+  <app-sidebar [user]="me" [showSidebar]="false"></app-sidebar>
+
+  <div id="content" class="container-fluid">
+    <div class="align-center">
+
+      <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
+      </app-qrcode-scanner>
+
+      <div class="container align-center user" *ngIf="userRead">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button" (click)="promoteToTeam()">Promote to team</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button" (click)="promoteToCompany()">Promote to company</button>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-12">
+            <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
+              (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="Search for company" [inputFormatter]="formatter"
+              [resultFormatter]="formatter" [resultTemplate]="rt" />
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button" (click)="reScan()">Rescan QrCode</button>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button btn-danger" (click)="demoteUser()">Demote user</button>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <button class="btn btn-button" (click)="promoteToCompany()">Promote to company</button>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-xs-12">
-      <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
-        (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="Search for company" [inputFormatter]="formatter"
-        [resultFormatter]="formatter" [resultTemplate]="rt" />
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-xs-12">
-      <button class="btn btn-button" (click)="reScan()">Rescan QrCode</button>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-xs-12">
-      <button class="btn btn-button btn-danger" (click)="demoteUser()">Demote user</button>
-    </div>
-  </div>
-
 </div>
