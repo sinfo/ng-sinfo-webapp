@@ -7155,7 +7155,7 @@ div.clear input.btn:hover {
 .qrcode-wrapper {
   margin-bottom: 30px;
 }
-.qrcode-wrapper img {
+.qrcode-wrapper img, .portrait-wrapper img {
   width: 50vw;
   max-width: 350px;
 }
