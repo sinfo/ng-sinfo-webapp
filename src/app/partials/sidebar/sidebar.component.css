@@ -21,7 +21,6 @@
 #sidebar.active .sidebar-header strong {
   display: block;
 }
-
 #sidebar ul li a {
   text-align: left;
 }
@@ -72,8 +71,12 @@
 }
 
 #sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #048ae6;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 }
 
 #sidebar ul li a {
