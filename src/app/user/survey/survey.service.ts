@@ -7,6 +7,8 @@ import { RedeemCode } from './redeem-code.model'
 import { catchError } from 'rxjs/operators'
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
+import { SurveyResponse } from './response.model'
+import { Achievement } from '../../achievements/achievement.model'
 
 @Injectable()
 export class SurveyService {
@@ -20,14 +22,14 @@ export class SurveyService {
     private authService: AuthService
   ) { }
 
-  getRedeemCode (id: string): Observable<RedeemCode> {
+  submitSurvey (surveyResponse: SurveyResponse, redeemCode: string): Observable<Achievement> {
     let httpOptions = {
       headers: this.httpHeader.append('Authorization', `Bearer ${this.authService.getToken().token}`)
     }
-    const url = `${environment.cannonUrl}/redeem/${id}`
-    return this.http.get<RedeemCode>(url, httpOptions)
+    const url = `${environment.cannonUrl}/surveys/${redeemCode}`
+    return this.http.post<Achievement>(url, surveyResponse, httpOptions)
       .pipe(
-        catchError(this.handleError<RedeemCode>(`fetching redeem code`))
+        catchError(this.handleError<Achievement>(`submiting survey to server`))
       )
   }
 
@@ -42,10 +44,9 @@ export class SurveyService {
       this.messageService.add({
         origin: `SurveyService: ${operation}`,
         showAlert: true,
-        text: `When ${operation} from server`,
+        text: error.error.message,
         errorObject: error,
-        type: Type.error,
-        timeout: 4000
+        type: Type.error
       })
 
       // Let the app keep running by returning an empty result.

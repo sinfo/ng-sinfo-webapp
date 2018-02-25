@@ -1,3 +1,159 @@
-<p>
-  survey works!
-</p>
+<app-menu></app-menu>
+
+<app-loading [content]="!submitting"></app-loading>
+
+<div class="container" *ngIf="!submitting">
+  <div [hidden]="submitted">
+    <h1>Survey</h1>
+    <form #surveyForm="ngForm" (ngSubmit)="onSubmit(surveyForm.value)">
+      <div class="form-group">
+        <label for="age">Age</label>
+        <select class="form-control" id="age" required name="age" ngModel>
+          <option value="" selected disabled hidden>Choose your age</option>
+          <option *ngFor="let age of ages" [value]="age">{{age}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender" required name="gender" ngModel>
+          <option value="" selected disabled hidden>Choose your gender</option>
+          <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="area">What's your formation area?</label>
+        <select class="form-control" id="area" name="area" required ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let area of areas" [value]="area">{{area}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="areaOther">
+          If you selected 'other' on the previous question, which one is it?
+        </label>
+        <input type="text" class="form-control" id="areaOther" required name="areaOther">
+      </div>
+
+      <div class="form-group">
+        <label for="isIST">Are you an IST student?</label>
+        <select class="form-control" id="isIST" required name="isIST" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option [value]="true">Yes</option>
+          <option [value]="false">No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="satisfaction">
+          How satisfied are you with this SINFO edition in general?
+        </label>
+        <select class="form-control" id="satisfaction" name="satisfaction" ngModel required>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let satisfaction of satisfactionList" [value]="satisfaction">{{satisfaction}}</option>
+        </select>
+      </div>
+
+      <h3>How would you rate the logistics details of SINFO?</h3>
+
+      <div class="form-group">
+        <label for="installations">Installations and Confort</label>
+        <select class="form-control" id="installations" required name="logisticsInstallations" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let installations of [5, 4, 3, 2, 1]" [value]="installations">{{installations}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="logisticsLocation">Location</label>
+        <select class="form-control" id="logisticsLocation" required
+                name="logisticsLocation" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let location of [5, 4, 3, 2, 1]" [value]="location">{{location}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="logisticsOrganization">Organization</label>
+        <select class="form-control" id="logisticsOrganization" required
+                name="logisticsOrganization" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let organization of [5, 4, 3, 2, 1]" [value]="organization">{{organization}}</option>
+        </select>
+      </div>
+
+        <div class="form-group">
+        <label for="logisticsCommunication">Communication</label>
+        <select class="form-control" id="logisticsCommunication" required
+                name="logisticsCommunication" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let communication of [5, 4, 3, 2, 1]" [value]="communication">{{communication}}</option>
+        </select>
+      </div>
+
+      <h3>How would you rate this session?</h3>
+
+      <div class="form-group">
+        <label for="sessionOrganization">Was well organized</label>
+        <select class="form-control" id="sessionOrganization" required
+                name="sessionOrganization" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let organization of [5, 4, 3, 2, 1]" [value]="organization">{{organization}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sessionContent">The content was interesting</label>
+        <select class="form-control" id="sessionContent" required
+                name="sessionContent" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let content of [5, 4, 3, 2, 1]" [value]="content">{{content}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sessionSpeaker">Would reccomend this speaker</label>
+        <select class="form-control" id="sessionSpeaker" required
+                name="sessionSpeaker" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let speaker of [5, 4, 3, 2, 1]" [value]="speaker">{{speaker}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sessionDuration">The duration was adequated to the content</label>
+        <select class="form-control" id="sessionDuration" required
+                name="sessionDuration" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let duration of [5, 4, 3, 2, 1]" [value]="duration">{{duration}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="sessionRecommend">Would recommend this session to my friend</label>
+        <select class="form-control" id="sessionRecommend" required
+                name="sessionRecommend" ngModel>
+          <option value="" selected disabled hidden>Choose one</option>
+          <option *ngFor="let recommend of [5, 4, 3, 2, 1]" [value]="recommend">{{recommend}}</option>
+        </select>
+      </div>
+
+      <h3>Any suggestions to SINFO?</h3>
+
+      <div class="form-group">
+        <textarea rows="4" cols="50" class="form-control" id="suggestions"
+                  name="suggestions" ngModel></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!surveyForm.form.valid">Submit</button>
+
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h1 *ngIf="achievement">
+      You won 20 points and an achievement! And the possibility to win a prize! Thank you
+    </h1>
+  </div>
+</div>

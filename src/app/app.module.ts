@@ -59,6 +59,7 @@ import { IsTeamGuard } from './auth/is-team.guard'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
 import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component';
 import { SurveyComponent } from './user/survey/survey.component'
+import { SurveyService } from './user/survey/survey.service'
 
 @NgModule({
   declarations: [
@@ -123,7 +124,8 @@ import { SurveyComponent } from './user/survey/survey.component'
     CompanyCannonService,
     JwtService,
     AchievementService,
-    TicketService
+    TicketService,
+    SurveyService
   ],
   bootstrap: [AppComponent]
 })

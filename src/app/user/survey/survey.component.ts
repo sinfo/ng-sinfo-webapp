@@ -5,7 +5,9 @@ import { Session } from '../../session/session.model'
 import { SurveyService } from './survey.service'
 import { SessionService } from '../../session/session.service'
 import { Achievement } from '../../achievements/achievement.model'
-import { AchievementService } from '../../achievements/achievement.service'
+import { UserService } from '../user.service'
+import { User } from '../user.model'
+import { SurveyResponse } from './response.model'
 
 @Component({
   selector: 'app-survey',
@@ -13,47 +15,80 @@ import { AchievementService } from '../../achievements/achievement.service'
   styleUrls: ['./survey.component.css']
 })
 export class SurveyComponent implements OnInit {
-  redeemCode: RedeemCode
+  redeemCode: string
   session: Session
   achievement: Achievement
+  submitting = false
+  submitted = false
+  ages = [
+    '< 18',
+    '18-22',
+    '23-25',
+    '26-28',
+    '> 28'
+  ]
+  genders = [
+    'Male',
+    'Female'
+  ]
+  areas = [
+    'Computer Engineering',
+    'Electrotechnical Engineering',
+    'Management',
+    'Economy',
+    'Design',
+    'Other'
+  ]
+  satisfactionList = [
+    'Very Satisfied',
+    'Satisfied',
+    'Unsatisfied',
+    'Very Unsatisfied'
+  ]
 
   constructor (
     private route: ActivatedRoute,
     private surveyService: SurveyService,
     private sessionService: SessionService,
-    private achievementService: AchievementService
+    private userService: UserService
   ) { }
 
   ngOnInit () {
     this.route.params.forEach((params: Params) => {
-      const redeemCode = params['redeemCode']
-      this.getRedeemCode(redeemCode)
-    })
-    /**
-     * 1. Get RedeemCode from url params
-     * 2. Get Info from cannon about redeem code
-     * 3. Get achievement
-     * 3. Get session from Deck
-     * 4. Check the type of session
-     */
-  }
-
-  getRedeemCode (id: string): void {
-    this.surveyService.getRedeemCode(id).subscribe(redeemCode => {
-      this.redeemCode = redeemCode
-      this.getAchievement(this.redeemCode.achievement)
+      this.redeemCode = params['redeemCode']
     })
   }
 
-  getAchievement (id: string): void {
-    this.achievementService.getAchievement(id).subscribe(achievement => {
-      this.achievement = achievement
-      this.getSession(this.achievement.session)
-    })
-  }
-
-  getSession (id: string): void {
-    this.sessionService.getSession(id).subscribe(session => this.session = session)
+  onSubmit (form: any) {
+    this.submitting = true
+    const surveyResponse = {
+      age: form.age,
+      area: form.area,
+      gender: form.gender,
+      isIST: (form.isIST === 'true'),
+      satisfaction: form.satisfaction,
+      suggestions: form.suggestions,
+      logistics: {
+        location: Number(form.logisticsLocation),
+        installations: Number(form.logisticsInstallations),
+        organization: Number(form.logisticsOrganization),
+        communication: Number(form.logisticsCommunication)
+      },
+      session: {
+        organization: Number(form.sessionOrganization),
+        content: Number(form.sessionContent),
+        speaker: Number(form.sessionSpeaker),
+        duration: Number(form.sessionDuration),
+        recommend: Number(form.sessionRecommend)
+      }
+    }
+    console.log(surveyResponse)
+    this.surveyService.submitSurvey(surveyResponse as SurveyResponse, this.redeemCode)
+      .subscribe(achievement => {
+        this.submitting = false
+        this.achievement = achievement
+        this.submitted = true
+      })
   }
 
 }

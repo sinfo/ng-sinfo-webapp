@@ -25,6 +25,7 @@ import { CardComponent } from './user/card/card.component'
 import { WorkshopsComponent } from './session/workshops/workshops.component'
 import { MyWorkshopsComponent } from './session/workshops/my-workshops.component'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
+import { SurveyComponent } from './user/survey/survey.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'achievements', component: AchievementsComponent },
   { path: 'achievements/:id', component: AchievementComponent },
   { path: 'my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
+  { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'promote', component: PromoteComponent },
   { path: 'login', component: LoginComponent },
