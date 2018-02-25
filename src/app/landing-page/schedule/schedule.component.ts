@@ -5,7 +5,6 @@ import { Session } from '../../session/session.model'
 import { SessionService } from '../../session/session.service'
 
 import { environment } from '../../../environments/environment'
-import { DatePipe } from '@angular/common/src/pipes/date_pipe';
 
 @Component({
   selector: 'app-schedule',
