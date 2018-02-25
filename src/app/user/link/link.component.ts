@@ -3,10 +3,11 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
-import { environment } from '../../../environments/environment.prod'
+import { environment } from '../../../environments/environment'
 import { Link } from './link.model'
 import { MessageService, Type } from '../../message.service'
 import { CompanyCannonService } from '../../company/company-cannon.service'
+import { SignatureService } from '../signature/signature.service'
 
 @Component({
   selector: 'app-link',
@@ -29,11 +30,12 @@ export class LinkComponent implements OnInit {
     private userService: UserService,
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
+    private signatureService: SignatureService,
     private messageService: MessageService
   ) { }
 
   ngOnInit () {
-    this.scannerActive = true
+    this.scannerActive = false
     this.notes = ''
     this.userService.getMe()
       .subscribe(user => {
@@ -47,7 +49,10 @@ export class LinkComponent implements OnInit {
         if (!company) return
 
         this.companyService.getCompany(company.company)
-          .subscribe(_company => this.company = _company)
+          .subscribe(_company => {
+            this.company = _company
+            this.scannerActive = true
+          })
       })
   }
 
@@ -58,6 +63,7 @@ export class LinkComponent implements OnInit {
 
   updateInfo () {
     this.info = `Linked with ${this.company.name}`
+    this.signatureService.checkSignature(this.userRead, this.company)
   }
 
   receiveUser (user: User) {
