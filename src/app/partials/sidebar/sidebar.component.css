@@ -25,6 +25,10 @@
 #sidebar ul li a {
   text-align: left;
 }
+#sidebar ul li a span.cheirinho{
+  position: absolute;
+  left: 2px;
+}
 
 #sidebar.active ul li a {
   padding: 20px 10px;
@@ -77,12 +81,20 @@
   font-size: 1.1em;
   display: block;
 }
+
+#sidebar ul li a i {
+  margin-right: 10px;
+}
+#sidebar ul li a i.fa::before {
+  color: white;
+}
+
 #sidebar ul li a:hover {
   color: #037ac9;
   background: #fff;
 }
-#sidebar ul li a i {
-  margin-right: 10px;
+#sidebar ul li a:hover i.fa::before {
+  color: #037ac9;
 }
 
 #sidebar a[aria-expanded="true"] ~ ul{
@@ -166,7 +178,8 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
   position: absolute;
   right: 20px;
   font-family: 'Glyphicons Halflings';
-  font-size: 0.8em;
+  font-size: 1.15em;
+  font-weight: 600;
 }
 a[aria-expanded="true"]::before {
   content: '\e260';
