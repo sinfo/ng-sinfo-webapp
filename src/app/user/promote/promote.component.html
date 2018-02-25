@@ -20,35 +20,24 @@
 
   <div class="row">
     <div class="col-xs-12">
-      <input
-        id="typeahead-template"
-        type="text"
-        class="form-control"
-        [(ngModel)]="searchedCompany"
-        [ngbTypeahead]="search"
-        (focus)="focus$.next($event.target.value)"
-        (click)="click$.next($event.target.value)"
-        #instance="ngbTypeahead"
-        placeholder="Search for company"
-        [inputFormatter]="formatter"
-        [resultFormatter]="formatter"
-        [resultTemplate]="rt"
-        />
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <button class="btn" (click)="reScan()">Rescan QrCode</button>
+      <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
+        (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="Search for company" [inputFormatter]="formatter"
+        [resultFormatter]="formatter" [resultTemplate]="rt" />
     </div>
   </div>
 
 
   <div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-button" (click)="reScan()">Rescan QrCode</button>
+    </div>
+  </div>
 
+
+  <div class="row">
     <div class="col-xs-12">
       <button class="btn btn-button btn-danger" (click)="demoteUser()">Demote user</button>
     </div>
-
   </div>
 
 </div>
