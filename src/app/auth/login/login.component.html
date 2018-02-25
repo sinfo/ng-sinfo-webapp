@@ -3,36 +3,38 @@
 <section class="section">
   <div class="container">
     <div class="align-center" *ngIf="router.url === '/login'">
-        <i class="icon section-icon fa fa-sign-in"></i>
-        <h3>Login</h3>
+      <i class="icon section-icon fa fa-sign-in"></i>
+      <h3>Login</h3>
     </div>
     <div class="align-center" *ngIf="router.url === '/register'">
-        <i class="icon section-icon fa fa-user-plus"></i>
-        <h3>Register</h3>
+      <i class="icon section-icon fa fa-user-plus"></i>
+      <h3>Register</h3>
     </div>
     <br />
     <br />
 
     <div class="row align-center">
-      <div class="col-md-4">
+      <div class="col-md-4 col-xs-12">
         <button class="btn btn-facebook" (click)="onFacebookLogin()" [disabled]="!isFacebookActive">
           <i class="fa fa-facebook"></i>
           Sign in with Facebook
         </button>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-4 col-xs-12">
         <button id="google-signin" (click)="onGoogleLogin()" class="btn btn-google" [disabled]="!isGoogleActive">
           <i class="fa fa-google"></i>
           Sign in with Google
         </button>
       </div>
 
-      <div class="col-md-4">
-        <a href="{{ fenixUrlAuth }}" target="_blank" class="btn btn-fenix">
-          <i class="fa fa-graduation-cap"></i>
-          Sign in with Fenix
-        </a>
+      <div class="col-md-4 col-xs-12">
+        <button id="fenix-signin" class="btn btn-fenix">
+          <a href="{{ fenixUrlAuth }}" target="_blank" class="btn btn-fenix">
+            <i class="fa fa-graduation-cap"></i>
+            Sign in with Fenix
+          </a>
+        </button>
       </div>
     </div>
 
