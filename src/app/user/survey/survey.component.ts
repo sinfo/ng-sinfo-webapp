@@ -82,7 +82,6 @@ export class SurveyComponent implements OnInit {
         recommend: Number(form.sessionRecommend)
       }
     }
-    console.log(surveyResponse)
     this.surveyService.submitSurvey(surveyResponse as SurveyResponse, this.redeemCode)
       .subscribe(achievement => {
         this.submitting = false

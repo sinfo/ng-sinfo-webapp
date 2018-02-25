@@ -152,8 +152,15 @@
     </form>
   </div>
   <div [hidden]="!submitted">
-    <h1 *ngIf="achievement">
-      You won 20 points and an achievement! And the possibility to win a prize! Thank you
-    </h1>
+
+    <section *ngIf="achievement"  class="section achievement-section align-center">
+      <div class="container">
+        <h3>You won an achievement!</h3>
+        <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+        <h5> {{ achievement.name }}</h5>
+        <h4> You won {{ achievement.value }} points</h4>
+      </div>
+    </section>
+
   </div>
 </div>
