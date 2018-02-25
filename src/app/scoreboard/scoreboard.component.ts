@@ -14,46 +14,40 @@ import { UserService } from '../user/user.service'
 export class ScoreboardComponent implements OnInit {
   scoreboard: User[]
   private currentUser: User
+  isScoreboardEmpty: boolean
 
-  constructor(
+  constructor (
     private scoreboardService: ScoreboardService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router
   ) { }
 
-  ngOnInit() {
-    this.getTop20Users()
-  }
-
-  getTop20Users(): void {
-    this.scoreboardService.getTop20Users()
-      .subscribe(users => { 
-        this.scoreboard = users
-        this.getUser()
-      })
-  }
-
-  getUser(): void {    
+  ngOnInit () {
     if (this.authService.isLoggedIn()) {
-      this.userService.getMe()
-      .subscribe(user => this.currentUser = user)
+      this.userService.getMe().subscribe(user => {
+        this.currentUser = user
+      })
     }
+    this.scoreboardService.getTop20Users().subscribe(users => {
+      // Filter admin bot
+      this.scoreboard = users.filter(user => {
+        return user.id
+      })
+
+      this.isScoreboardEmpty = this.scoreboard && !this.scoreboard[0].points.total
+    })
   }
 
-  isCurrentUser(id: string): boolean {
+  isCurrentUser (id: string): boolean {
     return this.currentUser && this.currentUser.id === id
   }
 
-  isUserInTop20(): boolean {
-    return this.scoreboard.indexOf(this.currentUser) !== -1
+  isUserInTop20 (): boolean {
+    return this.currentUser ? this.scoreboard.indexOf(this.currentUser) !== -1 : false
   }
 
-  redirectToUser(id: string): void {
+  redirectToUser (id: string): void {
     this.router.navigate(['/user', id])
-  }
-
-  redirectToAchievements(): void {
-    this.router.navigate(['/achievements'])
   }
 }

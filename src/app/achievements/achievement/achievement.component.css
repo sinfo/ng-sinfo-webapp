@@ -1,14 +1,26 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  min-height: 87vh;
+}
+#content {
+  padding: 20px;
+  transition: all 0.3s;
+  width: 100%;
+}
 .achievement-section img {
-    margin: 20px;
-    width: 200px;
+  margin: 20px;
+  width: 200px;
 }
-
 .achievement-section h5 {
-    color: #008ae6;
-    margin: 20px;
+  color: #008ae6;
+  margin: 20px;
+  font-weight: 400;
 }
-
+.achievement-section h4 {
+  font-size: 26px;
+}
 .achievement-section span.fa {
-    font-size: 50px;
-    margin-bottom: 20px;
+  font-size: 50px;
+  margin-bottom: 20px;
 }

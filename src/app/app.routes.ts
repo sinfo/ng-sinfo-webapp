@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'signature', component: SignatureComponent, canActivate: [ AuthGuard ] },
   { path: 'card', component: CardComponent, canActivate: [ AuthGuard ] },
   { path: 'achievements', component: AchievementsComponent },
-  { path: 'achievements/:id', component: AchievementComponent },
+  { path: 'achievement/:id', component: AchievementComponent },
   { path: 'my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'promote', component: PromoteComponent },
