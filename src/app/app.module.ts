@@ -57,7 +57,8 @@ import { TicketService } from './session/workshops/ticket.service'
 import { WorkshopRegisterButtonComponent } from './session/workshops/workshop/register-button.component'
 import { IsTeamGuard } from './auth/is-team.guard'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
-import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component'
+import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component';
+import { SurveyComponent } from './user/survey/survey.component'
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { WorkshopStatusElementComponent } from './session/workshops/workshop-sta
     WorkshopRegisterButtonComponent,
     WorkshopComponent,
     WorkshopStatusElementComponent,
-    MyWorkshopsComponent
+    MyWorkshopsComponent,
+    SurveyComponent
   ],
   imports: [
     BrowserModule,
