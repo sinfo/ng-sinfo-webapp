@@ -54,6 +54,19 @@ div.achivements-wrapper img.achievement {
   color: green;
 }
 
+.qrcode-wrapper {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media (max-width: 990px){
+  .qrcode-wrapper {
+    flex-flow: column;
+  }
+}
+
 @media (max-width: 425px){
   div.user {
     background-size: 150%;

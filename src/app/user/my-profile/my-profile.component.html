@@ -8,7 +8,6 @@
 
   <div id="content" class="content container-fluid">
     <div class="align-center">
-
       <div class="row">
         <h3 class="name">
           {{user.name}}
@@ -24,14 +23,19 @@
 
       </div>
 
-      <div class="row">
-        <div class="portrait-wrapper">
-          <img class="portrait" src="{{user.img}}">
-        </div>
-      </div>
+      <div class="row qrcode-wrapper">
 
-      <div class="row">
+        <div class="qrcode-image">
+          <div class="row">
+            <div class="portrait-wrapper">
+              <img class="portrait" src="{{user.img}}">
+            </div>
+          </div>
+        </div>
+
+        <div class="qrcode">
           <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
+        </div>
       </div>
 
       <div class="row" *ngIf="user.area">
