@@ -12,6 +12,7 @@ import { CompanyService } from '../../company/company.service'
 
 export class MyProfileComponent implements OnInit {
   user: User
+  submitedCV: boolean
   company: string
   eventOcurring: boolean
 
@@ -31,6 +32,11 @@ export class MyProfileComponent implements OnInit {
       this.userService.getMe()
       .subscribe(user => {
         this.user = user
+
+        this.userService.isCVSubmited().subscribe(any => {
+          console.log(any)
+          this.submitedCV = true
+        })
 
         // if this user had company role in the previous edition,
         // it will have a user role in the current edition
@@ -64,6 +70,7 @@ export class MyProfileComponent implements OnInit {
       console.log('uploadCV', file.name)
       formData.append('file', file, file.name)
       this.userService.uploadCV(formData).subscribe(res => {
+        this.submitedCV = true
         console.log(res)
       })
     }

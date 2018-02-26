@@ -31,17 +31,21 @@
       </div>
 
       <div class="row">
-          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
+        <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
       </div>
 
       <div class="row">
-        <form>
-          <div class="form-group">
-            <label for="file">Upload your resume</label>
-            <input type="file" (change)="uploadCV($event)"
-                  placeholder="Upload your resume" accept=".pdf,.doc,.docx">
-          </div>
-        </form>
+        <div class="col-sm-12">
+          <form >
+            <div class="form-group">
+              <input class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+              <label (change)="uploadCV($event)" class="btn" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}" for="file">
+                <span class="glyphicon glyphicon-cloud-upload"></span>
+                {{ submitedCV ? 'Update' : 'Upload' }} your resume
+              </label>
+            </div>
+          </form>
+        </div>
       </div>
 
       <div class="row" *ngIf="user.area">

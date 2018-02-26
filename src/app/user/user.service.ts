@@ -63,6 +63,19 @@ export class UserService {
       )
   }
 
+  isCVSubmited (): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<any>(`${this.filesUrl}/me`, httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('getting CV'))
+      )
+  }
+
   uploadCV (formData: FormData): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
