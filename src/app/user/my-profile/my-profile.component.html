@@ -2,41 +2,50 @@
 
 <app-loading [content]="user"></app-loading>
 
-<div class="user wrapper" *ngIf="user">
+<div class="user sidebar-wrapper" *ngIf="user">
 
   <app-sidebar [user]="user"></app-sidebar>
 
   <div id="content" class="content container-fluid">
     <div class="align-center">
-
       <div class="row">
+
         <h3 class="name">
           {{user.name}}
         </h3>
 
         <h5 *ngIf="user.role === 'team'">
-          {{user.role}}
+          <img class="sinfo-logo" src="https://static.sinfo.org/SINFO_25/sinfoLogo.png">
         </h5>
 
-        <h5 *ngIf="user.role === 'company'">
-          {{company}}
+        <h5 *ngIf="user.role === 'company' && company">
+          {{company.name}}
         </h5>
 
       </div>
 
-      <div class="row">
-        <div class="portrait-wrapper">
-          <img class="portrait" src="{{user.img}}">
+      <div class="row qrcode-wrapper">
+
+        <div class="qrcode-image">
+          <div class="row">
+            <div class="portrait-wrapper">
+              <img class="portrait" src="{{user.img}}">
+              <div class="mini-portrait-wrapper" *ngIf="user.role === 'team' || (user.role === 'company' && company)">
+                <img *ngIf="user.role === 'team'" class="mini-image" src="https://static.sinfo.org/SINFO_25/powerOn.png">
+                <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="qrcode">
+          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
         </div>
       </div>
 
       <div class="row">
-        <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
-      </div>
-
-      <div class="row">
         <div class="col-sm-12">
-          <form >
+          <form>
             <div class="form-group">
               <input class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
               <label (change)="uploadCV($event)" class="btn" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}" for="file">

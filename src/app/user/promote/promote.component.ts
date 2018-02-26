@@ -14,6 +14,7 @@ import 'rxjs/add/operator/merge'
 import 'rxjs/add/operator/filter'
 import 'rxjs/add/operator/debounceTime'
 import 'rxjs/add/operator/distinctUntilChanged'
+import 'rxjs/add/operator/do'
 
 @Component({
   selector: 'app-promote',
@@ -31,6 +32,8 @@ export class PromoteComponent implements OnInit {
 
   companies: Company[]
   searchedCompany: Company
+
+  me: User
 
   constructor (
     private userService: UserService,
@@ -51,9 +54,20 @@ export class PromoteComponent implements OnInit {
       .map(term => (term === '' ? this.companies : this.companies
         .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1)))
 
+  validCompany (): boolean {
+    if (!this.companies || !this.searchedCompany) return false
+    return this.companies.find(c => {
+      return c.id === this.searchedCompany.id
+    }) !== undefined
+  }
+
   ngOnInit () {
     this.scannerActive = true
-    this.getCompanies()
+    this.userService.getMe()
+      .subscribe(me => {
+        this.me = me
+        this.getCompanies()
+      })
   }
 
   reScan () {
@@ -111,6 +125,7 @@ export class PromoteComponent implements OnInit {
     this.userService.updateUser(this.userRead.id, 'team')
       .subscribe(user => {
         this.userRead = user
+        this.userReadCompany = undefined
         this.updateInfo(user)
       })
   }
@@ -132,6 +147,7 @@ export class PromoteComponent implements OnInit {
     this.userService.updateUser(this.userRead.id, 'user')
       .subscribe(user => {
         this.userRead = user
+        this.userReadCompany = undefined
         this.updateInfo(user)
       })
   }

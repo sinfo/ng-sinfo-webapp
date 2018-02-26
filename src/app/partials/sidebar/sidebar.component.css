@@ -14,7 +14,7 @@
 
 #sidebar.active {
   min-width: 80px;
-  max-width: 80px;
+  max-width: 100px;
   text-align: center;
 }
 
@@ -24,10 +24,6 @@
 
 #sidebar ul li a {
   text-align: left;
-}
-#sidebar ul li a span.cheirinho{
-  position: absolute;
-  left: 2px;
 }
 
 #sidebar.active ul li a {
@@ -71,8 +67,12 @@
 }
 
 #sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #048ae6;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
 }
 
 #sidebar ul li a {
@@ -101,6 +101,10 @@
 }
 #sidebar a[aria-expanded="true"] ~ ul li a{
   border-bottom: 1px solid #eeeeee29;
+}
+#sidebar li.active,
+#sidebar li.active a {
+  background: #004777 !important;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
@@ -194,9 +198,9 @@ ul ul a {
 @media (max-width: 768px) {
   #sidebar {
     min-width: 80px;
-    max-width: 80px;
+    max-width: 97px;
     text-align: center;
-    margin-left: -80px !important ;
+    margin-left: -97px !important ;
   }
   a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     top: auto;
@@ -236,11 +240,6 @@ ul ul a {
 
   #sidebar ul li a i {
     font-size: 1.3em;
-  }
-
-  #sidebar ul li a span.cheirinho{
-    position: absolute;
-    left: 7px;
   }
 }
 

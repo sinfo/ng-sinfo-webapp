@@ -15,9 +15,37 @@
 
 button {
     width: 100%;
+    letter-spacing: .15em;
+    padding: 13px;
+    margin: auto;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
 
 .btn-danger {
     background-color: #d9534f;
     border-color: #d9534f;
+}
+
+.promote-team {
+    background: #018ae6 url(https://static.sinfo.org/SINFO_25/powerOn.png);
+    background-repeat: no-repeat;
+    background-size: 73px;
+    text-align: center;
+    background-position-x: 98%;
+    background-position-y: 50%;
+}
+
+.rescan span {
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    top: 27%;
+    right: 10%;
+}
+
+.rescan {
+    background-color: #449d44 !important;
 }

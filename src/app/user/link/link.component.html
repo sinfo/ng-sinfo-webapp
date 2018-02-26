@@ -1,32 +1,52 @@
 <app-menu></app-menu>
 
 <app-loading [content]="company"></app-loading>
-<app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
-</app-qrcode-scanner>
 
-<div class="container align-center user" *ngIf="userRead">
+<div class="user sidebar-wrapper" *ngIf="company">
 
-  <div class="row">
-    <textarea [(ngModel)]="notes" class="form-control" placeholder="Insert your notes here">
-      </textarea>
+  <app-sidebar [user]="me" [showSidebar]="false"></app-sidebar>
+
+  <div id="content" class="container-fluid">
+    <div class="align-center">
+
+      <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
+      </app-qrcode-scanner>
+
+      <div *ngIf="userRead">
+
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes" class="form-control" placeholder="Insert your notes here">
+          </textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-button" (click)="link()">
+              <span class="glyphicon glyphicon-link"></span> Link to {{company.name}}
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button rescan" (click)="reScan()">
+              Rescan QrCode
+              <span class="glyphicon glyphicon-qrcode"></span>
+            </button>
+          </div>
+        </div>
+
+
+        <div class="row" *ngIf="currentLink">
+          <div class="col-xs-12">
+            <button class="btn btn-button btn-danger" (click)="deleteLink()">
+              Remove Link
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
-
-  <div class="row">
-    <button type="button" class="btn" (click)="link()">
-      <span class="glyphicon glyphicon-link"></span> Link to {{company.name}}
-    </button>
-  </div>
-
-  <div class="row" *ngIf="currentLink">
-    <button type="button" class="btn btn-danger" (click)="deleteLink()">
-      Remove link
-    </button>
-  </div>
-
-  <div class="row">
-    <button type="button" class="btn" (click)="reScan()">Rescan QrCode</button>
-  </div>
-
-
-
-</div>

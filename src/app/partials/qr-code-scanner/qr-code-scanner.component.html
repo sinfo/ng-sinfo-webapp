@@ -4,7 +4,8 @@
     </h3>
 
     <div class="video-wrapper" *ngIf="camStarted">
-        <button *ngIf="availableDevices && availableDevices.cams && availableDevices.cams.length > 1" id="changeCamera" (click)="changeCamera()" type="button" class="btn btn-default btn-sm">
+        <button *ngIf="availableDevices && availableDevices.cams && availableDevices.cams.length > 1" id="changeCamera" (click)="changeCamera()"
+            type="button" class="btn btn-default btn-sm">
             <span class="glyphicon glyphicon-retweet"></span>
         </button>
         <ngx-zxing [start]="camStarted" [device]="selectedDevice" [cssClass]="'videoqrcode'" (camerasFound)="displayCameras($event)"
@@ -19,16 +20,26 @@
         </div>
 
         <div class="row warning">
-            <h6 *ngIf="info && info.length > 0">
+            <h5 *ngIf="info === 'team'">
+                <img class="sinfo-logo" src="https://static.sinfo.org/SINFO_25/sinfoLogo.png">
+            </h5>
+
+            <h5 *ngIf="info && info.length > 0 && info !== 'team'">
                 {{info}}
-            </h6>
+            </h5>
         </div>
 
-        <div class="row">
+        <div class="row" id="image-wrapper">
             <div class="portrait-wrapper">
                 <img class="portrait" src="{{userRead.img}}">
+                <div class="mini-portrait-wrapper"
+                    *ngIf="userRead.role === 'team' || (userRead.role === 'company' && company)">
+                    <img *ngIf="userRead.role === 'team'" class="mini-image" src="https://static.sinfo.org/SINFO_25/powerOn.png">
+                    <img *ngIf="userRead.role === 'company' && company" class="mini-image" [src]="company.img">
+                </div>
             </div>
         </div>
+
     </div>
 
 </div>

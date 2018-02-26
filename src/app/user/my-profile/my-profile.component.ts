@@ -3,6 +3,7 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
+import { Company } from '../../company/company.model'
 
 @Component({
   selector: 'app-my-profile',
@@ -12,8 +13,8 @@ import { CompanyService } from '../../company/company.service'
 
 export class MyProfileComponent implements OnInit {
   user: User
+  company: Company
   submitedCV: boolean
-  company: string
   eventOcurring: boolean
 
   constructor (
@@ -52,7 +53,7 @@ export class MyProfileComponent implements OnInit {
               .subscribe(newUser => this.user = newUser)
           } else {
             this.companyService.getCompany(companyFound.company)
-              .subscribe(c => this.company = c.name)
+              .subscribe(c => this.company = c)
           }
         }
 

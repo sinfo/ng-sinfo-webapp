@@ -22,6 +22,27 @@ div.user {
 
 div.portrait-wrapper {
   margin: 10px auto;
+  position: relative;
+}
+
+div.mini-portrait-wrapper {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  background-color: rgba(255,255,255, 1);
+  border: 3px solid #048ae6;
+  padding: 10px;
+}
+
+div.mini-portrait-wrapper img {
+  width: 100%;
+}
+
+.sinfo-logo {
+  height: 30px;
 }
 
 h3 {
@@ -52,6 +73,19 @@ div.achivements-wrapper img.achievement {
 
 .allSignatures, .allSignatures i {
   color: green;
+}
+
+.qrcode-wrapper {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media (max-width: 990px){
+  .qrcode-wrapper {
+    flex-flow: column;
+  }
 }
 
 @media (max-width: 425px){

@@ -11,9 +11,37 @@
 }
 
 img.portrait {
-    width: 30%;
     border-radius: 50%;
     border: 3px solid #048ae6;
+}
+
+#image-wrapper {
+    display: flex;
+}
+
+div.portrait-wrapper {
+    margin: 10px auto;
+    position: relative;
+}
+
+div.mini-portrait-wrapper {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    background-color: rgba(255,255,255, 1);
+    border: 3px solid #048ae6;
+    padding: 10px;
+}
+
+div.mini-portrait-wrapper img {
+    width: 100%;
+}
+
+.sinfo-logo {
+    height: 30px;
 }
 
 .title {

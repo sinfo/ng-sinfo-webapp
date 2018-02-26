@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
 
   @Input() user: any
   eventOcurring: boolean
-  showSidebar = true
+  @Input() showSidebar = true
   url: String
   private snapshot: RouterStateSnapshot
 
