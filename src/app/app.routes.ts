@@ -25,24 +25,16 @@ import { CardComponent } from './user/card/card.component'
 import { WorkshopsComponent } from './session/workshops/workshops.component'
 import { MyWorkshopsComponent } from './session/workshops/my-workshops.component'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
-<<<<<<< HEAD
 import { SurveyComponent } from './user/survey/survey.component'
-=======
 import { ScoreboardComponent } from './scoreboard/scoreboard.component'
->>>>>>> master
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'signature', component: SignatureComponent, canActivate: [ AuthGuard ] },
   { path: 'card', component: CardComponent, canActivate: [ AuthGuard ] },
   { path: 'achievements', component: AchievementsComponent },
-<<<<<<< HEAD
-  { path: 'achievements/:id', component: AchievementComponent },
-  { path: 'my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
   { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
-=======
   { path: 'achievement/:id', component: AchievementComponent },
->>>>>>> master
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'promote', component: PromoteComponent },
   { path: 'login', component: LoginComponent },
