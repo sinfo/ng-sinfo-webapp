@@ -19,7 +19,7 @@ export class SignatureService {
         if (!_user) return
         this.messageService.add({
           origin: 'Signatures',
-          showAlert: false,
+          showAlert: true,
           text: `Signed ${user.name}'s card`,
           type: Type.success,
           timeout: 7000
@@ -50,7 +50,7 @@ export class SignatureService {
       if (signaturesCount >= environment.signaturesCardCapacity) {
         this.messageService.add({
           origin: 'Signatures',
-          showAlert: false,
+          showAlert: true,
           text: `${user.name} has already filled his/her card for today`,
           type: Type.warning,
           timeout: 7000
@@ -65,7 +65,7 @@ export class SignatureService {
     // signature found
     this.messageService.add({
       origin: 'Signatures',
-      showAlert: false,
+      showAlert: true,
       text: `Already signed ${user.name}'s card for today`,
       type: Type.warning,
       timeout: 7000

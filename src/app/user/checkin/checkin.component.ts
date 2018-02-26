@@ -29,41 +29,44 @@ export class CheckinComponent implements OnInit {
 
   ngOnInit () {
     this.scannerActive = false
+    if (this.checkLocalStorage()) return
 
     this.userService.getMe()
       .subscribe(me => {
         this.me = me
-
         if (this.checkLocalStorage()) return
+        this.getSessions()
+      })
+  }
 
-        this.sessionService.getSessions()
-          .subscribe(sessions => {
-            let _sessions = []
-            sessions.forEach(s => {
-              let sessionDate = new Date(s.date)
-              let sessionDuration = new Date(s.duration)
-              let durationInSeconds =
-                (sessionDuration.getHours() * 3600) +
-                (sessionDuration.getMinutes() * 60) +
-                sessionDuration.getSeconds()
+  getSessions () {
+    this.sessionService.getSessions()
+      .subscribe(sessions => {
+        let _sessions = []
+        sessions.forEach(s => {
+          let sessionDate = new Date(s.date)
+          let sessionDuration = new Date(s.duration)
+          let durationInSeconds =
+            (sessionDuration.getHours() * 3600) +
+            (sessionDuration.getMinutes() * 60) +
+            sessionDuration.getSeconds()
 
-              let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
-              let countdown = new Date(sessionEnd.getTime() - sessionDate.getTime())
+          let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
+          let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
-              // today and before it ends
-              if (new Date() < sessionEnd && sessionDate.getDate() === new Date().getDate()) {
-                _sessions.push({
-                  begin: sessionDate,
-                  end: sessionEnd,
-                  countdown: countdown,
-                  session: s
-                })
-              }
-
+          // today and before it ends
+          if (new Date() < sessionEnd && sessionDate.getDate() === new Date().getDate()) {
+            _sessions.push({
+              begin: sessionDate,
+              end: sessionEnd,
+              countdown: countdown,
+              session: s
             })
-            this.sessions = _sessions
-            this.users = []
-          })
+          }
+
+        })
+        this.sessions = _sessions
+        this.users = []
       })
   }
 
@@ -85,23 +88,27 @@ export class CheckinComponent implements OnInit {
     }, [])
 
     this.sessionCannonService.checkin(this.selectedSession.id, ids)
-      .subscribe(something => {
-        console.log(something)
-        localStorage.removeItem('users')
-        localStorage.removeItem('selectedSession')
+      .subscribe(msg => {
+        if (msg && msg === 'Queued. Thank you.') {
+          localStorage.removeItem('users')
+          localStorage.removeItem('selectedSession')
+          this.scannerActive = false
+          this.selectedSession = undefined
+          this.users = undefined
+
+        }
       })
   }
 
   checkLocalStorage (): boolean {
-    let selectedSection = JSON.parse(localStorage.getItem('selectedSession'))
+    let selectedSession = JSON.parse(localStorage.getItem('selectedSession'))
     this.scannerActive = true
 
-    if (!this.selectedSession) return false
+    if (!selectedSession) return false
 
     this.users = JSON.parse(localStorage.getItem('users'))
-    this.selectedSession = selectedSection
+    this.selectedSession = selectedSession
 
-    console.log('retrieved:', this.selectedSession, this.users)
     return true
   }
 
