@@ -80,9 +80,6 @@ export class UserService {
     }
 
     return this.http.post<any>(`${this.filesUrl}/me`, formData, httpOptions)
-      .pipe(
-        catchError(this.handleError<any>('uploading CV'))
-      )
   }
 
   getUserAchievements (id: string): Observable<Achievement> {
