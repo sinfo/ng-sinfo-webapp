@@ -41,16 +41,25 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role === 'user' && eventOcurring" [ngClass]="{'active': detectLocation('/card')}">
+      <li *ngIf="user && user.role === 'user' && eventOcurring" 
+      [ngClass]="{'active': detectLocation('/card')}">
         <a routerLink="/card">
           <i class="glyphicon glyphicon-list-alt"></i>
           My card
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/promote')}">
+      <li *ngIf="user && user.role === 'team'"
+      [ngClass]="{'active': detectLocation('/promote')}">
         <a routerLink="/promote">
           <i class="glyphicon glyphicon-king"></i>
           Promote
+        </a>
+      </li>
+      <li *ngIf="user && user.role === 'team'"
+      [ngClass]="{'active': detectLocation('/checkin')}">
+        <a routerLink="/checkin">
+          <i class="glyphicon glyphicon-qrcode"></i>
+          Check-in
         </a>
       </li>
       <li *ngIf="user && user.role === 'company'">
@@ -67,7 +76,8 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/signature')}">
+      <li *ngIf="user && user.role === 'company'"
+      [ngClass]="{'active': detectLocation('/signature')}">
         <a routerLink="/signature">
           <i class="fa fa-check"></i>
           Sign Card

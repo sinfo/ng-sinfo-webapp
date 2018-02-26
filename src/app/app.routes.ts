@@ -27,11 +27,13 @@ import { MyWorkshopsComponent } from './session/workshops/my-workshops.component
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
 import { SurveyComponent } from './user/survey/survey.component'
 import { ScoreboardComponent } from './scoreboard/scoreboard.component'
+import { CheckinComponent } from './user/checkin/checkin.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'signature', component: SignatureComponent, canActivate: [ AuthGuard ] },
   { path: 'card', component: CardComponent, canActivate: [ AuthGuard ] },
+  { path: 'checkin', component: CheckinComponent, canActivate: [ AuthGuard ] },
   { path: 'achievements', component: AchievementsComponent },
   { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
   { path: 'achievement/:id', component: AchievementComponent },
