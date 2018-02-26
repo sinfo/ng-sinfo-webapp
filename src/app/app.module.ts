@@ -60,6 +60,8 @@ import { WorkshopRegisterButtonComponent } from './session/workshops/workshop/re
 import { IsTeamGuard } from './auth/is-team.guard'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
 import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component'
+import { SurveyComponent } from './user/survey/survey.component'
+import { SurveyService } from './user/survey/survey.service'
 import { SignatureService } from './user/signature/signature.service'
 
 @NgModule({
@@ -98,6 +100,7 @@ import { SignatureService } from './user/signature/signature.service'
     WorkshopComponent,
     WorkshopStatusElementComponent,
     MyWorkshopsComponent,
+    SurveyComponent,
     ScoreboardComponent
   ],
   imports: [
@@ -125,6 +128,7 @@ import { SignatureService } from './user/signature/signature.service'
     JwtService,
     AchievementService,
     TicketService,
+    SurveyService,
     SignatureService,
     ScoreboardService
   ],

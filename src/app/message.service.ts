@@ -23,7 +23,7 @@ export class MessageService {
   add (message: Message) {
     switch (message.type) {
       case Type.error:
-        // message.errorObject ? console.error(message.errorObject) : console.error(message)
+        message.errorObject ? console.error(message.errorObject) : console.error(message)
         if (message.showAlert) {
           message['messageClass'] = this.changeClass('danger')
           this.messages.push(message)
