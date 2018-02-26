@@ -35,8 +35,11 @@ export class MyProfileComponent implements OnInit {
         this.user = user
 
         this.userService.isCVSubmited().subscribe(any => {
-          console.log(any)
+          console.log('sai aqui')
           this.submitedCV = true
+        }, (error) => {
+          console.log('sai ali')
+          this.submitedCV = false
         })
 
         // if this user had company role in the previous edition,
