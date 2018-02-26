@@ -102,12 +102,6 @@ export class QrcodeScannerComponent implements OnInit {
 
         let showAlert = content ? true : false
 
-        this.messageService.add({
-          origin: 'QrcodeScannerComponent processContent()',
-          showAlert: showAlert,
-          text: content,
-          type: Type.success
-        })
       })
   }
 }
