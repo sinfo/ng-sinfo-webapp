@@ -105,6 +105,10 @@
 #sidebar a[aria-expanded="true"] ~ ul li a{
   border-bottom: 1px solid #eeeeee29;
 }
+#sidebar li.active,
+#sidebar li.active a {
+  background: #004777 !important;
+}
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
   color: #fff;
