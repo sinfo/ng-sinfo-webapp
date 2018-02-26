@@ -2,6 +2,9 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core'
 import { MessageService, Type } from '../../message.service'
 import { User } from '../../user/user.model'
 import { UserService } from '../../user/user.service'
+import { CompanyService } from '../../company/company.service'
+import { environment } from '../../../environments/environment'
+import { Company } from '../../company/company.model'
 
 @Component({
   selector: 'app-qrcode-scanner',
@@ -13,18 +16,20 @@ export class QrcodeScannerComponent implements OnInit {
   @Output() userReadOutput: EventEmitter<User> = new EventEmitter()
   @Input() title: string
   @Input() info: string
+  @Input() company: Company
   @Input() camStarted: boolean
+  @Input() userRead: User
 
   selectedDevice
   private availableDevices: {
     cams: any[]
     selected: number
   }
-  userRead: User
 
   constructor (
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private companyService: CompanyService
   ) { }
 
   ngOnInit () { }
@@ -55,6 +60,8 @@ export class QrcodeScannerComponent implements OnInit {
   }
 
   handleQrCodeResult (content): void {
+    this.company = undefined // flush previous info
+
     if (!content) {
       this.messageService.add({
         origin: 'QrcodeScannerComponent processContent()',
@@ -81,6 +88,18 @@ export class QrcodeScannerComponent implements OnInit {
 
         this.userReadOutput.emit(user)
         this.userRead = user
+
+        if (user.role === 'company') {
+          let company = user.company.find(c => {
+            return c.edition === environment.currentEvent
+          })
+
+          if (!company) return
+
+          this.companyService.getCompany(company.company)
+            .subscribe(_company => this.company = _company)
+        }
+
         this.messageService.add({
           origin: 'QrcodeScannerComponent processContent()',
           showAlert: false,
