@@ -15,45 +15,53 @@
         </h3>
       </div>
 
-      <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title">
-      </app-qrcode-scanner>
+      <div *ngIf="selectedSession">
+        <div class="user-spanner" *ngIf="users && users.length > 0">
+          {{users[users.length - 1].name}} ({{users.length}})
+        </div>
+
+        <div class="scanner">
+          <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title">
+          </app-qrcode-scanner>
+
+          <button class="submit btn btn-button" (click)="submit()">Submit {{users.length}} users</button>
+        </div>
+
+      </div>
 
       <div class="container align-center user" *ngIf="!selectedSession">
 
         <div class="sessions-wrapper">
-          <div *ngFor="let session of sessions" class="row well session">
-            <!--<p><strong>Title: </strong>{{session.session.name}}</p>
-            <p><strong>Begin: </strong>{{session.begin | date:'HH:mm'}}</p>
-            <p><strong>End: </strong>{{session.end | date:'HH:mm'}}</p>
-            <p><strong>Time to close: </strong>{{session.countdown | date:'HH:mm'}}</p>-->
-
+          <div *ngFor="let session of sessions" class="row session">
             <div class="col-sm-12">
               <div class="well well-sm workshop-wrapper">
                 <div class="img-wrapper col-sm-2">
-                  <img src="{{session.img}}" alt="{{session.name}}">
+                  <img src="{{session.session.img}}" alt="{{session.session.name}}">
                 </div>
                 <div class="info-wrapper col-sm-7">
                   <h4 class="name">{{session.name}}</h4>
                   <div class="session-details">
-                    <div *ngIf="session.date" class="padded">
+                    <div *ngIf="session.begin" class="padded">
                       <p>
-                        <i class="fa fa-calendar"></i> {{session.date | date:'fullDate'}} </p>
+                        <i class="fa fa-calendar"></i> {{session.begin | date:'fullDate'}} </p>
                     </div>
-                    <div *ngIf="session.date" class="padded">
+                    <div *ngIf="session.begin" class="padded">
                       <p>
-                        <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime'}} </p>
+                        <i class="fa fa-clock-o"></i> {{session.begin | date:'shortTime'}} - {{session.end | date:'shortTime'}}</p>
                     </div>
-                    <div *ngIf="session.duration" class="padded">
+                    <div *ngIf="session.countdown" class="padded">
                       <p>
-                        <i class="fa fa-clock-o"></i> {{session.duration | date:'h:mm'}} </p>
+                        <i class="fa fa-clock-o"></i> Time remaining: {{session.countdown | date:'H:mm'}} </p>
                     </div>
                     <div *ngIf="session.place">
                       <p>
-                        <i class="fa fa-map-marker"></i> {{session.place}} </p>
+                        <i class="fa fa-map-marker"></i> {{session.session.place}} </p>
                     </div>
                   </div>
                 </div>
+                <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check in</button>
               </div>
+
             </div>
 
           </div>

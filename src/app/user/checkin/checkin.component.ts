@@ -13,9 +13,11 @@ import { UserService } from '../user.service'
 export class CheckinComponent implements OnInit {
 
   sessions = []
+
   selectedSession: Session
   users: User[]
   me: User
+  title: string
 
   scannerActive: boolean
 
@@ -31,6 +33,9 @@ export class CheckinComponent implements OnInit {
     this.userService.getMe()
       .subscribe(me => {
         this.me = me
+
+        if (this.checkLocalStorage()) return
+
         this.sessionService.getSessions()
           .subscribe(sessions => {
             let _sessions = []
@@ -57,8 +62,47 @@ export class CheckinComponent implements OnInit {
 
             })
             this.sessions = _sessions
+            this.users = []
           })
       })
+  }
+
+  beginCheckIn (session: Session) {
+    this.selectedSession = session
+    this.scannerActive = true
+    localStorage.setItem('selectedSession', JSON.stringify(this.selectedSession))
+  }
+
+  receiveUser (user: User) {
+    this.users.push(user)
+    localStorage.setItem('users', JSON.stringify(this.users))
+  }
+
+  submit () {
+    let ids = this.users.reduce((acc, cur) => {
+      acc.push(cur.id)
+      return acc
+    }, [])
+
+    this.sessionCannonService.checkin(this.selectedSession.id, ids)
+      .subscribe(something => {
+        console.log(something)
+        localStorage.removeItem('users')
+        localStorage.removeItem('selectedSession')
+      })
+  }
+
+  checkLocalStorage (): boolean {
+    let selectedSection = JSON.parse(localStorage.getItem('selectedSession'))
+    this.scannerActive = true
+
+    if (!this.selectedSession) return false
+
+    this.users = JSON.parse(localStorage.getItem('users'))
+    this.selectedSession = selectedSection
+
+    console.log('retrieved:', this.selectedSession, this.users)
+    return true
   }
 
 }

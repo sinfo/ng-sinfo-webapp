@@ -10,13 +10,7 @@ import { User } from '../user/user.model'
 
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.authService.getToken().token}`
-  })
-}
+import { AuthService } from '../auth/auth.service'
 
 @Injectable()
 export class SessionCannonService {
@@ -25,10 +19,18 @@ export class SessionCannonService {
 
   constructor (
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authService: AuthService
   ) { }
 
-  checkin (sessionId: Session, usersId: string[]) {
+  checkin (sessionId: string, usersId: string[]) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
     return this.http.post<User>(`${this.sessionsUrl}/${sessionId}/check-in`, {
       users: usersId
     }, httpOptions)
