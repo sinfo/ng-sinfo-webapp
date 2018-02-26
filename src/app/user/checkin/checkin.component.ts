@@ -55,7 +55,7 @@ export class CheckinComponent implements OnInit {
           let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
           // today and before it ends
-          if (new Date() < sessionEnd && sessionDate.getDate() === new Date().getDate()) {
+          if (sessionDate.getDate() === new Date().getDate()) {
             _sessions.push({
               begin: sessionDate,
               end: sessionEnd,

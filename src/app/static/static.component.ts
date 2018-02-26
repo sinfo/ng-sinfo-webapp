@@ -20,3 +20,10 @@ export class PrivacyPolicyComponent { }
   styles: []
 })
 export class PageNotFoundComponent { }
+
+@Component({
+  selector: 'app-live',
+  templateUrl: './live.html',
+  styles: []
+})
+export class LiveComponent { }

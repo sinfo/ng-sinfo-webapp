@@ -12,7 +12,8 @@ import { Routing } from './app.routes'
 import {
   PrivacyPolicyComponent,
   CodeOfConductComponent,
-  PageNotFoundComponent
+  PageNotFoundComponent,
+  LiveComponent
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
@@ -104,7 +105,8 @@ import { SessionCannonService } from './session/session-cannon.service'
     MyWorkshopsComponent,
     SurveyComponent,
     ScoreboardComponent,
-    CheckinComponent
+    CheckinComponent,
+    LiveComponent
   ],
   imports: [
     BrowserModule,

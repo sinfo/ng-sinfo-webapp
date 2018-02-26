@@ -42,6 +42,22 @@ export class UserService {
       )
   }
 
+  getUsers (ids: Array<string>): Observable<User[]> {
+    let headers = {
+      'Content-Type': 'application/json',
+      'Authorization': ''
+    }
+
+    if (this.authService.isLoggedIn()) {
+      headers.Authorization = `Bearer ${this.authService.getToken().token}`
+    }
+
+    return this.http.post<User[]>(`${this.usersUrl}/users`, { users: ids }, { headers: new HttpHeaders(headers) })
+      .pipe(
+        catchError(this.handleError<User[]>(`getting user profile`))
+      )
+  }
+
   getMe (): Observable<User> {
     if (this.me) {
       return of(this.me)
