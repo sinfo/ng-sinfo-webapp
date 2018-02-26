@@ -106,6 +106,8 @@ export class CheckinComponent implements OnInit {
             type: Type.success
           })
         }
+      }, err => {
+        console.error('erro no check in', err)
       })
   }
 
