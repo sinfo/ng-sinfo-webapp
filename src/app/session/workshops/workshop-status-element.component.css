@@ -49,6 +49,12 @@ div.workshop-collapsed .img-wrapper img {
   overflow: hidden;
   width: 100%; 
 }
+button.btn {
+  padding: 13px;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-family: "PT Sans";
+}
 @media (max-width: 767px) {
   h4.name {
     font-size: 22px;

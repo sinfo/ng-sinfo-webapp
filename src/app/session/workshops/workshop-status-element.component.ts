@@ -4,6 +4,7 @@ import { Ticket } from './ticket.model'
 import { User } from '../../user/user.model'
 import { TicketService } from './ticket.service'
 import { AuthService } from '../../auth/auth.service'
+import { UserService } from '../../user/user.service'
 
 @Component({
   selector: 'app-workshop-status-element',
@@ -19,9 +20,11 @@ export class WorkshopStatusElementComponent implements OnInit {
   ticket: Ticket
   isRegistrationClosed: boolean
   count: number
+  private userMails = []
 
   constructor (
     private ticketService: TicketService,
+    private userService: UserService,
     private authService: AuthService
   ) { }
 
@@ -30,6 +33,10 @@ export class WorkshopStatusElementComponent implements OnInit {
       this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
         this.ticket = ticket
         this.count = ticket && ticket.users ? (ticket.users.length / this.workshop.tickets.max) * 100 : 0
+
+        this.userService.getUsers(ticket.users).subscribe(users => {
+          this.userMails = users && users.map(user => { return user.mail })
+        })
       })
     }
   }
