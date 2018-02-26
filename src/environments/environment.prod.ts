@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   deckUrl: 'https://deck.sinfo.org',
-  cannonUrl: 'http://localhost:8090',
+  cannonUrl: 'http://cannon.sinfo.org',
   currentEvent: '25-sinfo',
   themes: [
     'Software',
