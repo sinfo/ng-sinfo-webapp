@@ -30,12 +30,7 @@
           <div class="row">
             <div class="portrait-wrapper">
               <img class="portrait" src="{{user.img}}">
-<<<<<<< HEAD
-<<<<<<< HEAD
               <div class="mini-portrait-wrapper" *ngIf="user.role === 'team' || (user.role === 'company' && company)">
-=======
-              <div class="mini-portrait-wrapper">
->>>>>>> added a mini image of sinfo's logo/company logo on my profile page
                 <img *ngIf="user.role === 'team'" class="mini-image" src="https://static.sinfo.org/SINFO_25/powerOn.png">
                 <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
               </div>
@@ -45,13 +40,9 @@
 
         <div class="qrcode">
           <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
-=======
-            </div>
-          </div>
->>>>>>> improved qrcode and user image on my profile page
         </div>
+      </div>
 
-<<<<<<< HEAD
       <div class="row">
         <div class="col-sm-12">
           <form>
@@ -63,10 +54,6 @@
               </label>
             </div>
           </form>
-=======
-        <div class="qrcode">
-          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
->>>>>>> improved qrcode and user image on my profile page
         </div>
       </div>
 

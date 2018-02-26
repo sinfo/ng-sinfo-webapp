@@ -43,7 +43,7 @@
             <div class="code">
               <pre>return candidates[ Math.floor( Math.random() * candidates.length ) ]</pre>
             </div>
-            <button *ngIf="true || !!achievement.users.length" class="pick-winner btn btn-info" (click)="pickWinner()">Pick a Winner</button>
+            <button *ngIf="!!achievement.users.length" class="pick-winner btn btn-info" (click)="pickWinner()">Pick a Winner</button>
             <div *ngIf="winner" class="winner">
               <div class="col-sm-12 align-center">
                 <span class="glyphicon glyphicon-gift"></span>

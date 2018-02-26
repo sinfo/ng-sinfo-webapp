@@ -14,8 +14,8 @@
       </li>
       <li [ngClass]="{'active': detectLocation('/achievements')}">
         <a routerLink="/achievements">
-          <i class="fa fa-trophy" aria-hidden="true"></i>
-            Achievements
+          <i class="fa fa-trophy"></i>
+          Achievements
         </a>
       </li>
       <li [ngClass]="{'active': detectLocation('/scoreboard')}">
@@ -41,15 +41,13 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role === 'user' && eventOcurring" 
-      [ngClass]="{'active': detectLocation('/card')}">
+      <li *ngIf="user && user.role === 'user' && eventOcurring" [ngClass]="{'active': detectLocation('/card')}">
         <a routerLink="/card">
           <i class="glyphicon glyphicon-list-alt"></i>
           My card
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'"
-      [ngClass]="{'active': detectLocation('/promote')}">
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/promote')}">
         <a routerLink="/promote">
           <i class="glyphicon glyphicon-king"></i>
           Promote
@@ -69,8 +67,7 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role === 'company'"
-      [ngClass]="{'active': detectLocation('/signature')}">
+      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/signature')}">
         <a routerLink="/signature">
           <i class="fa fa-check"></i>
           Sign Card

@@ -14,7 +14,7 @@ import { User } from '../../user/user.model'
 })
 export class AchievementComponent implements OnInit {
   achievement: Achievement
-  private user: User
+  user: User
   winner: User
 
   constructor (
@@ -28,7 +28,6 @@ export class AchievementComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
         this.user = user
-        this.winner = user
       })
     }
 
