@@ -34,6 +34,16 @@
           <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
       </div>
 
+      <div class="row">
+        <form>
+          <div class="form-group">
+            <label for="file">Upload your resume</label>
+            <input type="file" (change)="uploadCV($event)"
+                  placeholder="Upload your resume" accept=".pdf,.doc,.docx">
+          </div>
+        </form>
+      </div>
+
       <div class="row" *ngIf="user.area">
         <h5>Area </h5>
         <p>{{user.area}}</p>
