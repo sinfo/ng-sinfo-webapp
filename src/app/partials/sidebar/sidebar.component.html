@@ -6,19 +6,19 @@
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
     <span id="sidebarSpan">
-      <li>
+      <li [ngClass]="{'active': detectLocation('/me')}">
         <a routerLink="/me">
           <i class="glyphicon glyphicon-user"></i>
           My Profile
         </a>
       </li>
-      <li>
+      <li [ngClass]="{'active': detectLocation('/achievements')}">
         <a routerLink="/achievements">
           <i class="fa fa-trophy" aria-hidden="true"></i>
-          Achievements
+            Achievements
         </a>
       </li>
-      <li>
+      <li [ngClass]="{'active': detectLocation('/scoreboard')}">
         <a routerLink="/scoreboard">
           <i class="glyphicon glyphicon-tower"></i>
           Scoreboard
@@ -30,24 +30,26 @@
           Workshops
         </a>
         <ul class="list-unstyled" id="workshopsSubmenu" [ngClass]="{'in': detectLocation('/workshops'), 'collapse': !detectLocation('/workshops')}">
-          <li>
-            <a routerLink="/workshops">Register</a>
+          <li [ngClass]="{'active': detectLocation('/workshops/register')}">
+            <a routerLink="/workshops/register">Register</a>
           </li>
-          <li>
-            <a routerLink="/workshops/myworkshops">My Workshops</a>
+          <li [ngClass]="{'active': detectLocation('/workshops/my-workshops')}">
+            <a routerLink="/workshops/my-workshops">My Workshops</a>
           </li>
-          <li *ngIf="user.role === 'team'">
+          <li *ngIf="user.role === 'team'" [ngClass]="{'active': detectLocation('/workshops/workshops-status')}">
             <a routerLink="/workshops/workshops-status">Workshop Status</a>
           </li>
         </ul>
       </li>
-      <li *ngIf="user.role === 'user' && eventOcurring">
+      <li *ngIf="user.role === 'user' && eventOcurring" 
+      [ngClass]="{'active': detectLocation('/card')}">
         <a routerLink="/card">
           <i class="glyphicon glyphicon-list-alt"></i>
           My card
         </a>
       </li>
-      <li *ngIf="user.role === 'team'">
+      <li *ngIf="user.role === 'team'"
+      [ngClass]="{'active': detectLocation('/promote')}">
         <a routerLink="/promote">
           <i class="glyphicon glyphicon-king"></i>
           Promote
@@ -59,15 +61,16 @@
           Links
         </a>
         <ul class="collapse list-unstyled" id="linksSubmenu" [ngClass]="{'in': detectLocation('/links'), 'collapse': !detectLocation('/links')}">
-          <li>
+          <li [ngClass]="{'active': detectLocation('/links/link')}">
             <a routerLink="/links/link">Link</a>
           </li>
-          <li>
+          <li [ngClass]="{'active': detectLocation('/links/my-links')}">
             <a routerLink="/links/my-links">My Links</a>
           </li>
         </ul>
       </li>
-      <li *ngIf="user.role === 'company'">
+      <li *ngIf="user.role === 'company'"
+      [ngClass]="{'active': detectLocation('/signature')}">
         <a routerLink="/signature">
           <i class="fa fa-check"></i>
           Sign Card

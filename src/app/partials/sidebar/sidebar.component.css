@@ -14,19 +14,16 @@
 
 #sidebar.active {
   min-width: 80px;
-  max-width: 80px;
+  max-width: 100px;
   text-align: center;
 }
 
 #sidebar.active .sidebar-header strong {
   display: block;
 }
+
 #sidebar ul li a {
   text-align: left;
-}
-#sidebar ul li a span.cheirinho{
-  position: absolute;
-  left: 2px;
 }
 
 #sidebar.active ul li a {
@@ -104,6 +101,10 @@
 }
 #sidebar a[aria-expanded="true"] ~ ul li a{
   border-bottom: 1px solid #eeeeee29;
+}
+#sidebar li.active,
+#sidebar li.active a {
+  background: #004777 !important;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
@@ -197,7 +198,7 @@ ul ul a {
 @media (max-width: 768px) {
   #sidebar {
     min-width: 80px;
-    max-width: 80px;
+    max-width: 100px;
     text-align: center;
     margin-left: -80px !important ;
   }
@@ -239,11 +240,6 @@ ul ul a {
 
   #sidebar ul li a i {
     font-size: 1.3em;
-  }
-
-  #sidebar ul li a span.cheirinho{
-    position: absolute;
-    left: 7px;
   }
 }
 
