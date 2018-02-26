@@ -6539,17 +6539,18 @@ div.clear input.btn:hover {
 
 /* sidebar */ 
 .sidebar-wrapper {
-    display: flex;
-    align-items: stretch;
-    min-height: 87vh;
+  display: flex;
+  align-items: stretch;
+  min-height: 87vh;
 }
 
 #content {
-    padding: 20px;
-    transition: all 0.3s;
-    width: 100%;
-    height: 128vh;
-    overflow: auto;
+  display: flex;
+  padding: 20px;
+  transition: all 0.3s;
+  width: 100%;
+  height: 128vh;
+  overflow: auto;
 }
 /* sidebar end */
 

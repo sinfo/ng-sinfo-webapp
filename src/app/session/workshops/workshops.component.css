@@ -6,6 +6,11 @@
 h3.title {
   margin-top: 30px;
 }
+.workshop-wrapper {
+  margin-left: 40px;
+  padding-right: 35px;
+}
+  
 h6.lead {
   margin-top: 20px;
 }

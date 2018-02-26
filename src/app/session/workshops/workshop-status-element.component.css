@@ -49,7 +49,7 @@ div.workshop-collapsed .img-wrapper img {
   overflow: hidden;
   width: 100%; 
 }
-button.btn {
+.btn {
   padding: 13px;
   letter-spacing: 2px;
   font-size: 14px;
