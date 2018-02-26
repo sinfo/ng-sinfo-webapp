@@ -16,6 +16,7 @@ import { MessageService, Type } from '../message.service'
 export class UserService {
   private usersUrl = environment.cannonUrl + '/users'
   private companiesUrl = environment.cannonUrl + '/companies'
+  private filesUrl = environment.cannonUrl + '/files'
   public me: User
 
   constructor (
@@ -37,7 +38,7 @@ export class UserService {
 
     return this.http.get<User>(`${this.usersUrl}/${id}`, { headers: new HttpHeaders(headers) })
       .pipe(
-      catchError(this.handleError<User>(`getUser id=${id}`))
+      catchError(this.handleError<User>(`getting user profile`))
       )
   }
 
@@ -58,14 +59,40 @@ export class UserService {
           this.me = user
           console.log(user)
         }),
-        catchError(this.handleError<User>('getMe'))
+        catchError(this.handleError<User>('getting user personal profile'))
+      )
+  }
+
+  isCVSubmited (): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<any>(`${this.filesUrl}/me`, httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('getting CV'))
+      )
+  }
+
+  uploadCV (formData: FormData): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.post<any>(`${this.filesUrl}/me`, formData, httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('uploading CV'))
       )
   }
 
   getUserAchievements (id: string): Observable<Achievement> {
     return this.http.get<Achievement>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
-      catchError(this.handleError<Achievement>(`getUserAchievements id=${id}`))
+      catchError(this.handleError<Achievement>(`getting user achievements`))
       )
   }
 
@@ -94,7 +121,7 @@ export class UserService {
         }
       }, httpOptions)
         .pipe(
-        catchError(this.handleError<User>('updateUser'))
+        catchError(this.handleError<User>('updating user'))
         )
     } else {
       return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
@@ -107,7 +134,7 @@ export class UserService {
             }
           }
         }),
-        catchError(this.handleError<User>('updateUser'))
+        catchError(this.handleError<User>('updating user'))
         )
     }
   }
@@ -122,7 +149,7 @@ export class UserService {
 
     return this.http.put<User>(`${this.usersUrl}/me`, { role: 'user' }, httpOptions)
       .pipe(
-      catchError(this.handleError<User>('updateUser'))
+        catchError(this.handleError<User>('updating user'))
       )
   }
 
@@ -136,14 +163,14 @@ export class UserService {
 
     return this.http.delete<User>(`${this.usersUrl}/${id}/company?editionId=${environment.currentEvent}`,
       httpOptions).pipe(
-      catchError(this.handleError<User>('removeThisEventsCompanyFromUser'))
+      catchError(this.handleError<User>('removing this events company from user'))
       )
   }
 
   getUserSessions (id: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.usersUrl}/${id}/sessions`)
     .pipe(
-      catchError(this.handleError<string[]>(`getUserSessions id=${id}`))
+      catchError(this.handleError<string[]>(`getting user session`))
     )
   }
 
@@ -158,7 +185,7 @@ export class UserService {
       this.messageService.add({
         origin: `UserService: ${operation}`,
         showAlert: true,
-        text: 'When fetching user information from server',
+        text: `When ${operation}`,
         errorObject: error,
         type: Type.error
       })
