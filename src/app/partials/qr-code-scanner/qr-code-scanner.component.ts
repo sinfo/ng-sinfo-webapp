@@ -100,6 +100,8 @@ export class QrcodeScannerComponent implements OnInit {
             .subscribe(_company => this.company = _company)
         }
 
+        let showAlert = content ? true : false
+
         this.messageService.add({
           origin: 'QrcodeScannerComponent processContent()',
           showAlert: true,

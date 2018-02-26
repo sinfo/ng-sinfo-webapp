@@ -4,6 +4,7 @@ import { SessionService } from '../../session/session.service'
 import { SessionCannonService } from '../../session/session-cannon.service'
 import { User } from '../user.model'
 import { UserService } from '../user.service'
+import { MessageService, Type } from '../../message.service'
 
 @Component({
   selector: 'app-checkin',
@@ -11,7 +12,6 @@ import { UserService } from '../user.service'
   styleUrls: ['./checkin.component.css']
 })
 export class CheckinComponent implements OnInit {
-
   sessions = []
 
   selectedSession: Session
@@ -24,12 +24,12 @@ export class CheckinComponent implements OnInit {
   constructor (
     private sessionService: SessionService,
     private sessionCannonService: SessionCannonService,
-    private userService: UserService
+    private userService: UserService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit () {
     this.scannerActive = false
-    if (this.checkLocalStorage()) return
 
     this.userService.getMe()
       .subscribe(me => {
@@ -89,13 +89,22 @@ export class CheckinComponent implements OnInit {
 
     this.sessionCannonService.checkin(this.selectedSession.id, ids)
       .subscribe(msg => {
-        if (msg && msg === 'Queued. Thank you.') {
+        if (msg) {
           localStorage.removeItem('users')
           localStorage.removeItem('selectedSession')
+
           this.scannerActive = false
           this.selectedSession = undefined
-          this.users = undefined
+          this.users = []
 
+          this.getSessions()
+
+          this.messageService.add({
+            origin: `Check in component`,
+            showAlert: true,
+            text: `Done!`,
+            type: Type.success
+          })
         }
       })
   }
@@ -106,7 +115,14 @@ export class CheckinComponent implements OnInit {
 
     if (!selectedSession) return false
 
-    this.users = JSON.parse(localStorage.getItem('users'))
+    let users = JSON.parse(localStorage.getItem('users'))
+
+    if (!users) {
+      this.users = []
+      return false
+    }
+
+    this.users = users
     this.selectedSession = selectedSession
 
     return true
