@@ -49,7 +49,7 @@ const routes: Routes = [
   { path: 'workshops/register', component: WorkshopsComponent },
   { path: 'workshops/my-workshops', component: MyWorkshopsComponent },
   { path: 'workshops/workshops-status', component: WorkshopsStatusComponent },
-  { path: 'sponsors', component: SponsorsComponent },
+  { path: 'all-sponsors', component: SponsorsComponent },
   { path: 'scoreboard', component: ScoreboardComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'coc', component: CodeOfConductComponent },

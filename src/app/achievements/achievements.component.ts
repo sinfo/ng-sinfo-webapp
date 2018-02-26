@@ -14,7 +14,7 @@ import { User } from '../user/user.model'
 })
 export class AchievementsComponent implements OnInit {
   achievements: Achievement[]
-  private user: User
+  user: User
 
   constructor (
     private achievementService: AchievementService,
@@ -36,10 +36,10 @@ export class AchievementsComponent implements OnInit {
   }
 
   isUnlocked (achievement: Achievement): boolean {
-    return this.user ? achievement.users.indexOf(this.user.id) !== -1 : false
+    return this.user && achievement.users ? achievement.users.indexOf(this.user.id) !== -1 : false
   }
 
-  numUserAchievements (): number {
-    return this.user.achievements.length
+  numUserAchievements () {
+    return this.user.achievements.length ? this.user.achievements.length : 0
   }
 }

@@ -6548,7 +6548,7 @@ div.clear input.btn:hover {
     padding: 20px;
     transition: all 0.3s;
     width: 100%;
-    height: 90vh;
+    height: 128vh;
     overflow: auto;
 }
 /* sidebar end */
@@ -6587,5 +6587,4 @@ div.clear input.btn:hover {
   font-weight: 400;
   font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
-
 /* promote-company-content end */

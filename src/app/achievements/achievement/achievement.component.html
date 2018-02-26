@@ -5,23 +5,57 @@
 
 <div class="wrapper" *ngIf="achievement">
 
-  <app-sidebar [user]="user"></app-sidebar>
+  <app-sidebar [user]="user "></app-sidebar>
 
   <div id="content" class="content">
-    <section class="section achievement-section align-center">
+    <section class="section achievement-section ">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-12 align-center">
             <span class="fa fa-star-o"></span>
             <h3>Achievement</h3>
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-12 align-center">
             <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
             <h5 class="name"> {{ achievement.name }}</h5>
             <h4 class="lead">
               <strong>Value</strong>: {{ achievement.value }} points</h4>
+          </div>
+        </div>
+
+        <hr *ngIf="user && user.role === 'team'">
+
+        <div *ngIf="user && user.role === 'team'" class="row pick-a-winner">
+          <div class="col-sm-12 align-center">
+            <i class="fa fa-trophy" aria-hidden="true"></i>
+            <h3 class="title">Picking the winner</h3>
+            <h6 class="lead">
+              Lets pick the winner!
+              <br>
+              <strong>We only count candidates that have answered the survey that we sent by email</strong>
+              <br> If you have not yet completed it, please do now, we will wait.
+            </h6>
+            <h6 class="lead">
+              This is the code we run to draw the lucky winner
+            </h6>
+            <div class="code">
+              <pre>return candidates[ Math.floor( Math.random() * candidates.length ) ]</pre>
+            </div>
+            <button *ngIf="!!achievement.users.length" class="pick-winner btn btn-info" (click)="pickWinner()">Pick a Winner</button>
+            <div *ngIf="winner" class="winner">
+              <div class="col-sm-12 align-center">
+                <span class="glyphicon glyphicon-gift"></span>
+                <h5>Congratulations</h5>
+                <div class="user">
+                  <div class="img-wrapper">
+                    <img src="{{winner.img}}" alt="{{winner.name}}">
+                  </div>
+                  <h3 class="name">{{winner.name}}</h3>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
