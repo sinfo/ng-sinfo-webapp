@@ -49,10 +49,6 @@
                       <p>
                         <i class="fa fa-clock-o"></i> {{session.begin | date:'shortTime'}} - {{session.end | date:'shortTime'}}</p>
                     </div>
-                    <div *ngIf="session.countdown" class="padded">
-                      <p>
-                        <i class="fa fa-clock-o"></i> Time remaining: {{session.countdown | date:'H:mm'}} </p>
-                    </div>
                     <div *ngIf="session.place">
                       <p>
                         <i class="fa fa-map-marker"></i> {{session.session.place}} </p>
