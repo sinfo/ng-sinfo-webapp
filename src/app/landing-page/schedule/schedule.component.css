@@ -1,5 +1,11 @@
 .schedule .tab-content-schedule .schedule-item .lecture-icon-wrapper {
-  top: 36px;
+  top: 23px;
+  background-color: transparent;
+  
+}
+
+.schedule .tab-content-schedule .schedule-item .lecture-icon-wrapper img {
+  background-color: white;
 }
 
 .schedule .presentations:before {
@@ -16,19 +22,23 @@
 .schedule .tab-content-schedule .panel-group {
   margin-bottom: 0;
 }
-.schedule .tab-content-schedule .schedule-item {	
+.schedule .tab-content-schedule .schedule-item {
   position: relative;
   margin-bottom: 22px;
   min-height: 65px;
-  padding: 0 0 0 104px;
+  padding: 0 0 0 67px;
   background-color: transparent;
   min-height: 300px;
 }
 
-.schedule .tab-content-schedule .schedule-item .schedule-item-header {	
+.schedule .tab-content-schedule .schedule-item .schedule-item-header {
   display: block;
   text-decoration: none;
   cursor: pointer;
+}
+
+.room2 {
+  padding-left: 50px;
 }
 
 @media (max-width: 480px) {
@@ -47,6 +57,10 @@
     max-height: none !important;
     margin-bottom: 10px;
   }
+
+  .room2 {
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 767px) {
@@ -63,6 +77,10 @@
   .nav.nav-schedule {
     position: absolute;
   }
+
+  .room2 {
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 991px) {
@@ -76,6 +94,10 @@
     width: 0px;
     border-left: none;
   }
+
+  .room2 {
+    padding-left: 0;
+  }
 }
 
 .place {
@@ -87,30 +109,19 @@
 }
 
 .ics {
-  display: inline;
-  margin-bottom: 2.5%;
-  margin-top: -3%;
-}
-
-.ics a {
-  text-decoration: none;
-}
-
-.ics:hover a {
-  color: white;
-}
-
-.ics span {
-  margin-right: 0;
-  padding-right: 0;
+  margin-bottom: 20px;
 }
 
 .schedule-item {
   min-height: 0px !important;
 }
 
+.room1 {
+  padding-left: 0;
+}
+
 .room1 div, .room2 div {
-  min-height: 200px;
+  min-height: 150px;
 }
 
 .nav.nav-schedule.nav-day {

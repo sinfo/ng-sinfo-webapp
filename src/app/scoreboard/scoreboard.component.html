@@ -1,0 +1,94 @@
+<app-menu></app-menu>
+
+<app-loading [content]="scoreboard"></app-loading>
+
+<div class="wrapper" *ngIf="scoreboard">
+
+  <app-sidebar [user]="currentUser"></app-sidebar>
+
+  <div id="content" class="content">
+    <section class="section scoreboard-section align-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <span id="icon" class="glyphicon glyphicon-tower"></span>
+            <h3>Scoreboard</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <h6 class="lead">
+              Earn points by completing
+              <strong>
+                <a routerLink="/achievements">achievements</a>
+              </strong>.
+              <br> At the end of the event we will award the scoreboard leader.
+            </h6>
+          </div>
+        </div>
+
+        <div *ngIf="isScoreboardEmpty" class="row">
+          <div class="col-sm-12">
+            <h6 class="lead">
+              It looks like the scoreboard is still empty. ¯\_(ツ)_/¯
+            </h6>
+          </div>
+        </div>
+
+        <div *ngIf="scoreboard && !isScoreboardEmpty" class="row">
+          <div class="col-sm-12 table-wrapper">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of scoreboard" (click)="redirectToUser(user.id)" [ngClass]="{'currentUser': isCurrentUser(user.id)}">
+                  <td class="position">{{ scoreboard.indexOf(user) + 1}}</td>
+                  <td class="user">
+                    <div class="user-wrapper">
+                      <div *ngIf="user.img" class="img-wrapper">
+                        <img src='{{ user.img }}'>
+                      </div>
+                      <div class="name">
+                        {{ user.name }}
+                      </div>
+                    </div>
+                  </td>
+                  <td class="points">
+                    {{ user.points ? user.points.total : 0 }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <span *ngIf="currentUser && !isUserInTop20()" class="userNotInTop">...</span>
+            <table *ngIf="currentUser && !isUserInTop20()" class="userNotInTop" class="table">
+              <tbody>
+                <tr class="currentUser">
+                  <td class="position">&infin;</td>
+                  <td class="user">
+                    <div class="user-wrapper">
+                      <div *ngIf=" currentUser.img" class="img-wrapper">
+                        <img src='{{ currentUser.img }}'>
+                      </div>
+                      <div class="name">
+                        {{ currentUser.name }}
+                      </div>
+                    </div>
+                  </td>
+                  <td class="points">
+                    {{ currentUser.points ? currentUser.points.total : 0 }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

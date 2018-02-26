@@ -16,7 +16,10 @@ export class QrcodeScannerComponent implements OnInit {
   @Input() camStarted: boolean
 
   selectedDevice
-  private availableDevices: any[]
+  private availableDevices: {
+    cams: any[]
+    selected: number
+  }
   userRead: User
 
   constructor (
@@ -27,11 +30,22 @@ export class QrcodeScannerComponent implements OnInit {
   ngOnInit () { }
 
   displayCameras (cams: any[]) {
-    this.availableDevices = cams
+    this.availableDevices = {
+      cams: cams,
+      selected: -1
+    }
+
     if (cams && cams.length > 0) {
       this.selectedDevice = cams[cams.length - 1]
       this.camStarted = true
+      this.availableDevices.selected = cams.length - 1
     }
+  }
+
+  changeCamera () {
+    let selected = (this.availableDevices.selected + 1) % this.availableDevices.cams.length
+    this.availableDevices.selected = selected
+    this.onChange(this.availableDevices.cams[selected])
   }
 
   onChange (selectedValue: string) {

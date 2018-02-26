@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core'
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
 import { Router, RouterStateSnapshot } from '@angular/router'
 
 import { Session } from '../../session.model'
@@ -34,8 +34,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     private ticketService: TicketService,
     private authService: AuthService,
     private userService: UserService,
-    private router: Router,
-    private cd: ChangeDetectorRef
+    private router: Router
   ) {
     this.snapshot = router.routerState.snapshot
   }
@@ -54,17 +53,17 @@ export class WorkshopRegisterButtonComponent implements OnInit {
       }
 
       if (this.authService.isLoggedIn() && this.ticket) {
-        this.updateState()
+        this.updateState(this.ticket)
         this.userService.getUserSessions(this.user.id)
       }
     })
   }
 
-  updateState () {
-    this.isRegistered = this.ticket.users && this.ticket.users.indexOf(this.user.id) !== -1
-    this.isWaiting = this.ticket.waiting && this.ticket.waiting.indexOf(this.user.id) !== -1
+  updateState (ticket) {
+    this.isRegistered = ticket.users && ticket.users.indexOf(this.user.id) !== -1
+    this.isWaiting = ticket.waiting && ticket.waiting.indexOf(this.user.id) !== -1
     this.hasTicket = (this.isRegistered || this.isWaiting)
-    this.position = this.ticket.waiting.indexOf(this.user.id) + 1
+    this.position = ticket.waiting.indexOf(this.user.id) + 1
   }
 
   handleClick () {
@@ -80,9 +79,8 @@ export class WorkshopRegisterButtonComponent implements OnInit {
       return this.ticketService.registerTicket(this.workshop.id).subscribe(ticket => {
         console.log(ticket)
         this.ticket = ticket
-        this.updateState()
+        this.updateState(ticket)
         this.loading = false
-        this.cd.detectChanges()
       }, (error) => {
         console.log(error)
         this.isError = true
@@ -91,10 +89,10 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     }
     this.ticketService.voidTicket(this.workshop.id).subscribe(ticket => {
       this.ticket = ticket
-      this.updateState()
+      this.updateState(ticket)
       this.loading = false
-      this.cd.detectChanges()
     }, (error) => {
+      console.log(error)
       this.isError = true
       this.loading = false
     })

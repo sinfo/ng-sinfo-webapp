@@ -37,6 +37,8 @@ import { AchievementsComponent } from './achievements/achievements.component'
 import { AchievementComponent } from './achievements/achievement/achievement.component'
 import { AchievementService } from './achievements/achievement.service'
 import { SessionService } from './session/session.service'
+import { ScoreboardComponent } from './scoreboard/scoreboard.component'
+import { ScoreboardService } from './scoreboard/scoreboard.service'
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
 import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
@@ -57,9 +59,10 @@ import { TicketService } from './session/workshops/ticket.service'
 import { WorkshopRegisterButtonComponent } from './session/workshops/workshop/register-button.component'
 import { IsTeamGuard } from './auth/is-team.guard'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
-import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component';
+import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component'
 import { SurveyComponent } from './user/survey/survey.component'
 import { SurveyService } from './user/survey/survey.service'
+import { SignatureService } from './user/signature/signature.service'
 
 @NgModule({
   declarations: [
@@ -97,7 +100,8 @@ import { SurveyService } from './user/survey/survey.service'
     WorkshopComponent,
     WorkshopStatusElementComponent,
     MyWorkshopsComponent,
-    SurveyComponent
+    SurveyComponent,
+    ScoreboardComponent
   ],
   imports: [
     BrowserModule,
@@ -113,7 +117,6 @@ import { SurveyService } from './user/survey/survey.service'
     MessageService,
     SponsorService,
     TeamService,
-    SessionService,
     AuthService,
     AuthGuard,
     IsTeamGuard,
@@ -125,7 +128,9 @@ import { SurveyService } from './user/survey/survey.service'
     JwtService,
     AchievementService,
     TicketService,
-    SurveyService
+    SurveyService,
+    SignatureService,
+    ScoreboardService
   ],
   bootstrap: [AppComponent]
 })

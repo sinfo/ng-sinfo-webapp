@@ -3,11 +3,28 @@
 <app-loading [content]="achievement">
 </app-loading>
 
-<section *ngIf="achievement"  class="section achievement-section align-center">
-  <div class="container">
-    <h3>Achievements</h3>
-    <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
-    <h5> {{ achievement.name }}</h5>
-    <h4> Value: {{ achievement.value }} points</h4>
+<div class="wrapper" *ngIf="achievement">
+
+  <app-sidebar [user]="user"></app-sidebar>
+
+  <div id="content" class="content">
+    <section class="section achievement-section align-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <span class="fa fa-star-o"></span>
+            <h3>Achievement</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+            <h5 class="name"> {{ achievement.name }}</h5>
+            <h4 class="lead">
+              <strong>Value</strong>: {{ achievement.value }} points</h4>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
+</div>

@@ -3,6 +3,11 @@ button[disabled] {
   background-color: gray
 }
 
+button {
+  width: 100%;
+  margin-left: 0 !important;
+}
+
 .btn-fb {
   background-color: #48649F;
 }

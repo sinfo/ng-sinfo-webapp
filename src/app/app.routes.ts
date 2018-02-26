@@ -25,17 +25,24 @@ import { CardComponent } from './user/card/card.component'
 import { WorkshopsComponent } from './session/workshops/workshops.component'
 import { MyWorkshopsComponent } from './session/workshops/my-workshops.component'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
+<<<<<<< HEAD
 import { SurveyComponent } from './user/survey/survey.component'
+=======
+import { ScoreboardComponent } from './scoreboard/scoreboard.component'
+>>>>>>> master
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'link', component: LinkComponent, canActivate: [ AuthGuard ] },
   { path: 'signature', component: SignatureComponent, canActivate: [ AuthGuard ] },
   { path: 'card', component: CardComponent, canActivate: [ AuthGuard ] },
   { path: 'achievements', component: AchievementsComponent },
+<<<<<<< HEAD
   { path: 'achievements/:id', component: AchievementComponent },
   { path: 'my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
   { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
+=======
+  { path: 'achievement/:id', component: AchievementComponent },
+>>>>>>> master
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'promote', component: PromoteComponent },
   { path: 'login', component: LoginComponent },
@@ -43,10 +50,13 @@ const routes: Routes = [
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
+  { path: 'links/link', component: LinkComponent, canActivate: [ AuthGuard ] },
+  { path: 'links/my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
   { path: 'workshops', component: WorkshopsComponent },
-  { path: 'myworkshops', component: MyWorkshopsComponent },
-  { path: 'workshops-status', component: WorkshopsStatusComponent },
+  { path: 'workshops/myworkshops', component: MyWorkshopsComponent },
+  { path: 'workshops/workshops-status', component: WorkshopsStatusComponent },
   { path: 'sponsors', component: SponsorsComponent },
+  { path: 'scoreboard', component: ScoreboardComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },

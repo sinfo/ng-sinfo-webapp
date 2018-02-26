@@ -8,7 +8,6 @@
   padding: 20px;
   transition: all 0.3s;
   width: 100%;
-  height: 90vh;
 }
 
 div.loading-wrapper {
@@ -63,4 +62,30 @@ div.achivements-wrapper img.achievement {
   div.user h5 {
     text-align: center;
   }
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  margin-top: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  padding: 15px;
+  line-height: 17px;
+  letter-spacing: 3px;
+}
+.inputfile + label span {
+  font-size: 17px;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+  background-color: red;
 }

@@ -31,7 +31,21 @@
       </div>
 
       <div class="row">
-          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'L'"></ngx-qrcode>
+        <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <form >
+            <div class="form-group">
+              <input class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+              <label (change)="uploadCV($event)" class="btn" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}" for="file">
+                <span class="glyphicon glyphicon-cloud-upload"></span>
+                {{ submitedCV ? 'Update' : 'Upload' }} your resume
+              </label>
+            </div>
+          </form>
+        </div>
       </div>
 
       <div class="row" *ngIf="user.area">
@@ -39,17 +53,17 @@
         <p>{{user.area}}</p>
       </div>
 
-      <div class="row" *ngIf="user.skills">
+      <div class="row" *ngIf="user.skills && user.role !== 'company'">
         <h5>Skills </h5>
         <p>{{user.skills.join(', ')}}</p>
       </div>
 
-      <div class="row" *ngIf="user.points">
+      <div class="row" *ngIf="user.points && user.role !== 'company'">
         <h5>Current points </h5>
         <p>{{user.points.total ? user.points.total : 0}}</p>
       </div>
 
-      <div class="row" *ngIf="achievements && achievements.length > 0">
+      <div class="row" *ngIf="achievements && achievements.length > 0  && user.role !== 'company'">
         <h5>Achievements earned </h5>
         <div class="achivements-wrapper">
           <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">

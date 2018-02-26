@@ -3,7 +3,10 @@
         {{title}}
     </h3>
 
-    <div class="video-wrapper" [hidden]="!camStarted">
+    <div class="video-wrapper" *ngIf="camStarted">
+        <button *ngIf="availableDevices && availableDevices.cams && availableDevices.cams.length > 1" id="changeCamera" (click)="changeCamera()" type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-retweet"></span>
+        </button>
         <ngx-zxing [start]="camStarted" [device]="selectedDevice" [cssClass]="'videoqrcode'" (camerasFound)="displayCameras($event)"
             (scanSuccess)="handleQrCodeResult($event)"></ngx-zxing>
     </div>
