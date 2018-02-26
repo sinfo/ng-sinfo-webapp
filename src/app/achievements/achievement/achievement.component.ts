@@ -15,6 +15,7 @@ import { User } from '../../user/user.model'
 export class AchievementComponent implements OnInit {
   achievement: Achievement
   private user: User
+  winner: User
 
   constructor (
     private achievementService: AchievementService,
@@ -27,12 +28,21 @@ export class AchievementComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
         this.user = user
+        this.winner = user
       })
     }
 
     this.activatedRoute.params.forEach((params: Params) => {
       const id = params['id']
       this.getAchievement(id)
+    })
+  }
+
+  pickWinner () {
+    const winnerId = this.achievement.users[Math.floor(Math.random() * this.achievement.users.length)]
+    this.userService.getUser(winnerId).subscribe(user => {
+      console.log(user)
+      this.winner = user
     })
   }
 
