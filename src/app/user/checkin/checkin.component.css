@@ -31,6 +31,12 @@ span.seeMore:hover {
   width: 150px;
   overflow: hidden;
 }
+.user-spanner{
+  margin-bottom: 3px;
+  position: absolute;
+  z-index: 5;
+  width: 90%;
+}
 h4.name {
   font-size: 25px;
   font-weight: 400;

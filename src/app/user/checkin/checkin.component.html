@@ -16,8 +16,8 @@
       </div>
 
       <div *ngIf="selectedSession">
-        <div class="user-spanner" *ngIf="users && users.length > 0">
-          {{users[users.length - 1].name}} ({{users.length}})
+        <div class="user-spanner alert alert-success" *ngIf="users && users.length > 0">
+            <strong>Last user:</strong> {{users[users.length - 1].name}} <strong>Total: {{users.length}}</strong>
         </div>
 
         <div class="scanner">
