@@ -63,6 +63,8 @@ import { WorkshopStatusElementComponent } from './session/workshops/workshop-sta
 import { SurveyComponent } from './user/survey/survey.component'
 import { SurveyService } from './user/survey/survey.service'
 import { SignatureService } from './user/signature/signature.service'
+import { CheckinComponent } from './user/checkin/checkin.component'
+import { SessionCannonService } from './session/session-cannon.service'
 
 @NgModule({
   declarations: [
@@ -101,7 +103,8 @@ import { SignatureService } from './user/signature/signature.service'
     WorkshopStatusElementComponent,
     MyWorkshopsComponent,
     SurveyComponent,
-    ScoreboardComponent
+    ScoreboardComponent,
+    CheckinComponent
   ],
   imports: [
     BrowserModule,
@@ -130,7 +133,8 @@ import { SignatureService } from './user/signature/signature.service'
     TicketService,
     SurveyService,
     SignatureService,
-    ScoreboardService
+    ScoreboardService,
+    SessionCannonService
   ],
   bootstrap: [AppComponent]
 })
