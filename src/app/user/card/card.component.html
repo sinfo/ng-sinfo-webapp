@@ -25,11 +25,11 @@
 
         <div class="signatures">
 
-          <div class="portrait-wrapper" *ngFor="let company of signatures.companies">
+          <div class="card-portrait-wrapper" *ngFor="let company of signatures.companies">
             <img class="portrait" src="{{company.img}}">
           </div>
 
-          <div class="portrait-wrapper missing" *ngFor="let missing of getArray(signatures.capacity - signatures.companies.length)">
+          <div class="card-portrait-wrapper missing" *ngFor="let missing of getArray(signatures.capacity - signatures.companies.length)">
           </div>
 
         </div>
