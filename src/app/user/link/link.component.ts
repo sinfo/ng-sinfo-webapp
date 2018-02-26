@@ -95,7 +95,7 @@ export class LinkComponent implements OnInit {
         this.currentLink = _link
         this.messageService.add({
           origin: 'Link component',
-          showAlert: true,
+          showAlert: false,
           text: 'Link updated',
           timeout: 4000,
           type: Type.success

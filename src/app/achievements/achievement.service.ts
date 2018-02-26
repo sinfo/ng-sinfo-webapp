@@ -58,7 +58,7 @@ export class AchievementService {
       this.messageService.add({
         origin: `AchievementService: ${operation}`,
         text: 'When fetching achievements from server',
-        showAlert: true,
+        showAlert: false,
         type: Type.error,
         timeout: 4000,
         errorObject: error

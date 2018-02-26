@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         origin: `LoginComponent: ngOnInit isFacebookActive=${this.isFacebookActive}`,
         text: `You need to disable any ad blocker or tracking protection mechanism to be
                 allowed to login with Facebook.`,
-        showAlert: true,
+        showAlert: false,
         type: Type.log
       })
     }
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         text: `You need to disable any ad blocker or tracking protection mechanism to be
                 allowed to login with Google.`,
         type: Type.log,
-        showAlert: true
+        showAlert: false
       })
     }
   }
@@ -146,7 +146,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
         text: 'You were not allowed to login with Facebook',
         type: Type.error,
-        showAlert: true,
+        showAlert: false,
         errorObject: resp
       })
     } else {
@@ -154,7 +154,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
         text: 'An error occurred by logging with Facebook',
         type: Type.error,
-        showAlert: true,
+        showAlert: false,
         errorObject: resp
       })
     }

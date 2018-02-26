@@ -65,7 +65,7 @@ export class QrcodeScannerComponent implements OnInit {
     if (!content) {
       this.messageService.add({
         origin: 'QrcodeScannerComponent processContent()',
-        showAlert: true,
+        showAlert: false,
         text: 'Reading the QRCode, try again.',
         type: Type.error,
         timeout: 6000
@@ -78,7 +78,7 @@ export class QrcodeScannerComponent implements OnInit {
         if (!user) {
           this.messageService.add({
             origin: 'QrcodeScannerComponent processContent()',
-            showAlert: true,
+            showAlert: false,
             text: 'User not found.',
             type: Type.error,
             timeout: 6000

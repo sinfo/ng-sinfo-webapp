@@ -44,7 +44,7 @@ export class ScoreboardService {
       this.messageService.add({
         origin: `ScoreboardService: ${operation}`,
         text: error.message,
-        showAlert: true,
+        showAlert: false,
         type: Type.error,
         timeout: 4000,
         errorObject: error
