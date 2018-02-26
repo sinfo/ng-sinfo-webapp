@@ -55,7 +55,7 @@ export class SponsorService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `SponsorService: ${operation}`,
-        showAlert: true,
+        showAlert: false,
         text: 'When fetching sponsors from server',
         type: Type.error,
         errorObject: error,

@@ -43,7 +43,7 @@ export class SurveyService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `SurveyService: ${operation}`,
-        showAlert: true,
+        showAlert: false,
         text: error.error.message,
         errorObject: error,
         type: Type.error

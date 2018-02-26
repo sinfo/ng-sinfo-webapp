@@ -125,7 +125,7 @@ export class CompanyCannonService {
   private handleError<T> (operation = 'operation', result?: T) {
     var msg = {
       origin: `UserService: ${operation}`,
-      showAlert: true,
+      showAlert: false,
       text: null,
       type: Type.error
     }

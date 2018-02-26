@@ -61,7 +61,7 @@ export class SpeakerService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `SpeakerService: ${operation}`,
-        showAlert: true,
+        showAlert: false,
         text: 'When fetching speakers from server',
         errorObject: error,
         type: Type.error,

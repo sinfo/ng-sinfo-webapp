@@ -67,7 +67,7 @@ export class SessionService {
         origin: `SessionService: ${operation}`,
         text: 'When fetching session from server',
         type: Type.error,
-        showAlert: true,
+        showAlert: false,
         errorObject: error,
         timeout: 4000
       })

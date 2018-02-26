@@ -67,7 +67,7 @@ export class CompanyService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `CompanyService: ${operation}`,
-        showAlert: true,
+        showAlert: false,
         text: error.message,
         type: Type.error
       })

@@ -86,7 +86,7 @@ export class AuthService {
         origin: `AuthService: ${operation}`,
         text: 'When signing in',
         type: Type.error,
-        showAlert: true,
+        showAlert: false,
         errorObject: error,
         timeout: 8000
       })
