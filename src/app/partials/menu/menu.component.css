@@ -5,7 +5,16 @@
 #logo_white {
   height: 20px;
 }
-
+.logo{
+  position: relative
+}
+.label {    
+  position: absolute;
+  top: 9px;
+  right: -48px;
+  padding: .2em .6em;
+  font-size: 54%;
+}
 @media only screen and (max-width: 768px) {
 
   .navbar-collapse {
