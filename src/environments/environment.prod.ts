@@ -10,7 +10,7 @@ export const environment = {
     'Games',
     'Web'
   ],
-  eventOcurring: new Date() >= new Date(2018, 1, 26) && new Date(2018, 2, 4, 23, 59, 59),
+  eventOcurring: new Date() >= new Date(2018, 1, 26) && new Date() <= new Date(2018, 2, 4, 23, 59, 59),
   signaturesCardCapacity: 10,
   facebook: {
     appId: '708252219264170'
