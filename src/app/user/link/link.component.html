@@ -15,27 +15,38 @@
       <div *ngIf="userRead">
 
         <div class="row">
-          <textarea [(ngModel)]="notes" class="form-control" placeholder="Insert your notes here">
-                </textarea>
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes" class="form-control" placeholder="Insert your notes here">
+          </textarea>
+          </div>
         </div>
 
         <div class="row">
-          <button type="button" class="btn" (click)="link()">
-            <span class="glyphicon glyphicon-link"></span> Link to {{company.name}}
-          </button>
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-button" (click)="link()">
+              <span class="glyphicon glyphicon-link"></span> Link to {{company.name}}
+            </button>
+          </div>
         </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button rescan" (click)="reScan()">
+              Rescan QrCode
+              <span class="glyphicon glyphicon-qrcode"></span>
+            </button>
+          </div>
+        </div>
+
 
         <div class="row" *ngIf="currentLink">
-          <button type="button" class="btn btn-danger" (click)="deleteLink()">
-            Remove link
-          </button>
+          <div class="col-xs-12">
+            <button class="btn btn-button btn-danger" (click)="deleteLink()">
+              Remove Link
+            </button>
+          </div>
         </div>
 
-        <div class="row">
-          <button type="button" class="btn" (click)="reScan()">Rescan QrCode</button>
-        </div>
       </div>
-
     </div>
   </div>
-</div>

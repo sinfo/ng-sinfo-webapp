@@ -1,8 +1,3 @@
-.row button {
-    width: 95%;
-    margin: 5px auto;
-}
-
 .form-control {
     width: 95%;
     margin: 5px auto;
@@ -27,4 +22,33 @@
 .btn-danger {
     background-color: #d9534f;
     border-color: #d9534f;
+}
+
+.form-control {
+    font-size: 20px;
+    width: 100%;
+    margin: auto;
+}
+
+button {
+    width: 100%;
+    letter-spacing: .15em;
+    padding: 13px;
+    margin: auto;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.rescan span {
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    top: 27%;
+    right: 10%;
+}
+
+.rescan {
+    background-color: #449d44 !important;
 }

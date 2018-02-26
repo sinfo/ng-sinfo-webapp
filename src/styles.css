@@ -6562,3 +6562,31 @@ div.clear input.btn:hover {
   max-width: 350px;
 }
 /* qrcode end */
+
+/* promote-company-content */
+
+#typeahead-template {
+  margin-bottom: 0 !important;
+}
+
+.typeahead .dropdown-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  top: 0 !important;
+  left: 0 !important;
+  overflow-y: scroll !important;
+  height: 25vh !important;
+}
+
+.typeahead .dropdown-menu button {
+  border: 0;
+  border-bottom: 1px solid;
+  border-color: #018ae6;
+  background-color: white;
+  padding: 20px;
+  line-height: 2px;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+/* promote-company-content end */

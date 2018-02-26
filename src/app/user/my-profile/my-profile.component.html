@@ -9,16 +9,17 @@
   <div id="content" class="content container-fluid">
     <div class="align-center">
       <div class="row">
+
         <h3 class="name">
           {{user.name}}
         </h3>
 
         <h5 *ngIf="user.role === 'team'">
-          {{user.role}}
+          <img class="sinfo-logo" src="https://static.sinfo.org/SINFO_25/sinfoLogo.png">
         </h5>
 
-        <h5 *ngIf="user.role === 'company'">
-          {{company}}
+        <h5 *ngIf="user.role === 'company' && company">
+          {{company.name}}
         </h5>
 
       </div>
@@ -29,6 +30,10 @@
           <div class="row">
             <div class="portrait-wrapper">
               <img class="portrait" src="{{user.img}}">
+              <div class="mini-portrait-wrapper">
+                <img *ngIf="user.role === 'team'" class="mini-image" src="https://static.sinfo.org/SINFO_25/powerOn.png">
+                <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
+              </div>
             </div>
           </div>
         </div>
