@@ -57,7 +57,6 @@ export class UserService {
       .pipe(
         tap((user) => {
           this.me = user
-          console.log(user)
         }),
         catchError(this.handleError<User>('getting user personal profile'))
       )
@@ -71,9 +70,6 @@ export class UserService {
     }
 
     return this.http.get<any>(`${this.filesUrl}/me`, httpOptions)
-      .pipe(
-        catchError(this.handleError<any>('getting CV'))
-      )
   }
 
   uploadCV (formData: FormData): Observable<any> {
@@ -84,9 +80,6 @@ export class UserService {
     }
 
     return this.http.post<any>(`${this.filesUrl}/me`, formData, httpOptions)
-      .pipe(
-        catchError(this.handleError<any>('uploading CV'))
-      )
   }
 
   getUserAchievements (id: string): Observable<Achievement> {
@@ -184,7 +177,7 @@ export class UserService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `UserService: ${operation}`,
-        showAlert: true,
+        showAlert: false,
         text: `When ${operation}`,
         errorObject: error,
         type: Type.error

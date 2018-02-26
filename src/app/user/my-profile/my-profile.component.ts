@@ -35,8 +35,9 @@ export class MyProfileComponent implements OnInit {
         this.user = user
 
         this.userService.isCVSubmited().subscribe(any => {
-          console.log(any)
           this.submitedCV = true
+        }, (error) => {
+          this.submitedCV = false
         })
 
         // if this user had company role in the previous edition,
@@ -72,7 +73,8 @@ export class MyProfileComponent implements OnInit {
       formData.append('file', file, file.name)
       this.userService.uploadCV(formData).subscribe(res => {
         this.submitedCV = true
-        console.log(res)
+      }, (error) => {
+        this.submitedCV = false
       })
     }
   }

@@ -53,7 +53,7 @@ export class TeamService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `TeamService: ${operation}`,
-        showAlert: true,
+        showAlert: false,
         text: 'When fetching team members from server',
         type: Type.error,
         errorObject: error,
