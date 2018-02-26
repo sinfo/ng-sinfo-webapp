@@ -1,3 +1,10 @@
+.align-center {
+  width: 100%;
+}
+.checkin button {
+  width: 100%;
+}
+
 .sessions-wrapper {
     display: flex;
     flex-direction: column;
@@ -16,6 +23,7 @@ button.btn {
   letter-spacing: 2px;
   font-size: 14px;
   font-family: "PT Sans";
+  margin: 0;
 }
 .workshop-wrapper {
   display: flex;
@@ -75,11 +83,12 @@ div.img-wrapper {
   align-items: center;
   margin-bottom: 0px;
   margin-top: 0px;
+  justify-content: center;
 }
 div.img-wrapper img {
   position: absolute;
   overflow: hidden;
-  width: 100%; 
+  height: 100%;
 }
 @media (max-width: 767px) {
   h4.name {

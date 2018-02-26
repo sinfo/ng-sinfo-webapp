@@ -6,6 +6,7 @@ button.getTicket {
   margin-top: 10px;
   border: 1px solid transparent;
   border-radius: 4px;
+  width: 80%;
 }
 button.btn-success {
   background-color: #449d44 !important;
@@ -28,4 +29,10 @@ div.waiting-alert {
   padding: 7px;
   margin-bottom: 5px;
   font-size: 14px;
+}
+
+@media (max-width: 767px) {
+  button.getTicket {
+    font-size: 7px;
+  }
 }

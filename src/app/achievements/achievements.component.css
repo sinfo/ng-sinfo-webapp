@@ -8,11 +8,14 @@
   transition: all 0.3s;
   width: 100%;
 }
+.container {
+  width: 100%;
+}
 .achievement-section a {
   cursor: pointer;
 }
 .achievement-section img {  
-  width: 100px;
+  width: 90px;
   margin: 5px;
 }
 .achievement-section .alert {

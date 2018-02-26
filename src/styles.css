@@ -2115,6 +2115,7 @@ span {
 }
 .align-center {
   text-align: center;
+  display: block;
 }
 .justify {
   text-align: justify;
@@ -6542,6 +6543,7 @@ div.clear input.btn:hover {
   display: flex;
   align-items: stretch;
   min-height: 87vh;
+  width: 100%;
 }
 
 #content {
@@ -6549,8 +6551,13 @@ div.clear input.btn:hover {
   padding: 20px;
   transition: all 0.3s;
   width: 100%;
-  height: 128vh;
-  overflow: auto;
+  height: 90vh;
+  overflow-y: scroll;
+  justify-content: center;
+}
+
+#container {
+  width: 100%;
 }
 /* sidebar end */
 
