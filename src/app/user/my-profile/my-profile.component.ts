@@ -55,4 +55,17 @@ export class MyProfileComponent implements OnInit {
   }
 
   ngOnInit () { }
+
+  uploadCV (event) {
+    let fileList: FileList = event.target.files
+    if (fileList.length > 0) {
+      let file: File = fileList[0]
+      let formData: FormData = new FormData()
+      console.log('uploadCV', file.name)
+      formData.append('file', file, file.name)
+      this.userService.uploadCV(formData).subscribe(res => {
+        console.log(res)
+      })
+    }
+  }
 }
