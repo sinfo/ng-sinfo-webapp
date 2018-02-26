@@ -1,3 +1,15 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  min-height: 87vh;
+}
+
+#content {
+  padding: 20px;
+  transition: all 0.3s;
+  width: 100%;
+}
+
 .btn-success {
   background-color: #449d44 !important;
   border-color: #398439 !important;
