@@ -4,19 +4,6 @@ var Ventcamp;
 
     $(document).on('ready', function () {
         Ventcamp.init();
-
-        $('#logo_white').show();
-        $('#logo_blue').hide();
-
-        if( !Ventcamp.mobileDevice ) {
-            $('.logo img').hover(function (event) {
-                $('#logo_white').hide();
-                $('#logo_blue').show();
-            }, function (event) {
-                $('#logo_blue').hide();
-                $('#logo_white').show();
-            });
-        }
     });
 
 })( jQuery );
@@ -25,14 +12,7 @@ var Ventcamp;
 // Main theme functions start
 Ventcamp = {
     defaults: {
-        log: true,
-        styleSwitcher: false,
-        animations: false,
-        onePageNav: true,
-        alwaysMobileMenuMode: false,
         mobileMenuMaxWidth: 768,
-        smoothScroll: false,
-        smoothScrollSpeed: 800
     },
 
     mobileDevice: false,
@@ -54,40 +34,6 @@ Ventcamp = {
 
             this.log('Desktop')
         }
-    },
-
-    calculateMenuSizes: function () {
-        var _this = this,
-            $dropdownItem = $('.navigation-item.dropdown'),
-            $navbarCollapse = $('.navbar-collapse'),
-            winHeight = window.innerHeight;
-
-        if ( $dropdownItem.length ) {
-            $dropdownItem.each( function () {
-                var $this = $(this),
-                    $dropdown = $this.find('.dropdown-menu'),
-                    headerHeight = $dropdownItem.closest('header').outerHeight();
-
-                if ( !_this.mobileDevice ) {
-                    $dropdown.css( 'max-height', winHeight - headerHeight - 50 );
-
-                }else {
-                    $dropdown.css( 'max-height', '' );
-
-                }
-            });
-        }
-
-        if ( $navbarCollapse.length ) {
-            $navbarCollapse.each( function () {
-                if ( _this.mobileDevice ) {
-                    var headerHeight = $(this).closest('header').outerHeight();
-
-                    $(this).css('max-height', winHeight - headerHeight);
-                }
-            });
-        }
-
     },
 
     windowHeightBlock: function () {
@@ -308,36 +254,6 @@ Ventcamp = {
         }
     },
 
-    masonryInit: function () {
-        var _this = this;
-
-        if ( $('.masonry').length && typeof $.fn.masonry == 'function' ) {
-            $('.masonry').each(function () {
-                var $container = $(this);
-
-                $container.masonry({
-                    itemSelector: '.masonry-item',
-                    isAnimated: true,
-
-                    columnWidth: function( containerWidth ) {
-                        if ( containerWidth > 720 ) {
-                            $container.removeClass('width400').removeClass('width720');
-                            return containerWidth / 4;
-                        }else if ( containerWidth > 400 ) {
-                            $container.addClass('width720').removeClass('width400');
-                            if ( $container.is('.speakers') ) return containerWidth / 2;
-                            else return containerWidth / 3;
-                        }else {
-                            $container.addClass('width400').removeClass('width720');
-                            if ( $container.is('.speakers') ) return containerWidth;
-                            else return containerWidth / 2;
-                        }
-                    }
-                });
-            });
-        }
-    },
-
     //sticky menu initialization
     stickMenu: function () {
         var $header = $('header');
@@ -375,8 +291,6 @@ Ventcamp = {
         this.log('Window load handler');
 
         this.checkHeaderStatus();
-
-        this.masonryInit();
     },
 
     //on resize handler
@@ -387,48 +301,11 @@ Ventcamp = {
 
         this.centeredBlock();
 
-        // this.calculateMenuSizes();
     },
 
     //on scroll handler
     windowScrollHandler: function (event) {
         this.checkHeaderStatus();
-    },
-
-    styleSwitcherHandler: function (event, $el) {
-        event.preventDefault();
-
-        var switcher = $('.style-switcher');
-
-        if (switcher.hasClass('style-active')){
-            switcher.animate({ marginLeft: '0' }, 200, 'linear');
-
-        } else {
-            switcher.animate({ marginLeft: '225' }, 200, 'linear');
-        }
-
-        switcher.toggleClass('style-active');
-    },
-
-    styleSwitcherColorHandler: function (event, $el) {
-        var $this = $el,
-            colorName = $this.attr('data-color');
-
-        event.preventDefault();
-
-        $('.style-switcher-css').remove();
-        $('head').append('<link class="style-switcher-css" rel="stylesheet" type="text/css" href="assets/css/colors/' + colorName + '.css">');
-    },
-
-    styleSwitcherToggleAnimation: function (event, $el) {
-        if ( $el.get(0).checked ) {
-            $('.animated').css('opacity', '');
-            this.options.animations = true;
-
-        }else {
-            $('.animated').css('opacity', 1);
-            this.options.animations = false;
-        }
     },
 
     //small back-to-top link function
@@ -437,52 +314,6 @@ Ventcamp = {
             scrollTop: 0,
             easing: 'swing'
         }, 750);
-    },
-
-    setEventHandlers: function () {
-        var _this = this;
-
-        $(window).on('load', function (event) {
-            _this.windowLoadHeandler(event);
-        });
-
-        $(window).on('resize', function (event) {
-            _this.windowResizeHandler(event);
-        });
-
-        $(window).on('scroll', function (event) {
-            _this.windowScrollHandler(event);
-        });
-
-        $('.back-to-top').on('click', function (event) {
-            event.preventDefault();
-
-            _this.backToTopHandler();
-        });
-
-        $('.navbar-collapse').on( 'mousewheel DOMMouseScroll', function (event) {
-            if ( _this.mobileDevice ) {
-                var e0 = event.originalEvent,
-                    delta = e0.wheelDelta || -e0.detail;
-
-                this.scrollTop -= delta;
-                event.preventDefault();
-            }
-        });
-
-        $('.style-toggle').on('click', function(event){
-            _this.styleSwitcherHandler(event, $(this));
-        });
-
-        $('.style-switcher .color').on('click', function(event) {
-            _this.styleSwitcherColorHandler(event, $(this));
-        });
-
-        $('#animations_switch').on('change', function(event){
-            _this.styleSwitcherToggleAnimation(event, $(this));
-        });
-
-        this.log('Set event hendlers');
     },
 
     videoPosition: function () {
@@ -524,8 +355,6 @@ Ventcamp = {
 
         this.centeredBlock();
 
-        // this.calculateMenuSizes();
-
         this.setEventHandlers();
 
         this.videoPosition();
@@ -538,10 +367,3 @@ $('.navigation-item').on( 'click', function (event) {
     }
 });
 
-$('.logo img').hover(function (event) {
-    $('#logo_white').hide();
-    $('#logo_blue').show();
-}, function (event) {
-    $('#logo_blue').hide();
-    $('#logo_white').show();
-});
