@@ -4,7 +4,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component'
 import {
   PrivacyPolicyComponent,
   CodeOfConductComponent,
-  PageNotFoundComponent
+  PageNotFoundComponent,
+  LiveComponent
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'achievements', component: AchievementsComponent },
   { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
   { path: 'achievement/:id', component: AchievementComponent },
+  { path: 'live', component: LiveComponent },
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'promote', component: PromoteComponent },
   { path: 'login', component: LoginComponent },
