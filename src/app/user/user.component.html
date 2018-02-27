@@ -1,47 +1,50 @@
 <app-menu></app-menu>
 
-<div class="container loading-wrapper" *ngIf="!user">
-    <span class="icon section-icon fa fa-spinner align-center"></span>
-    <h3 class="align-center">Loading...</h3>
-</div>
+<app-loading [content]="user"></app-loading>
 
-<div class="container align-center user" *ngIf="user">
-  <div class="row">
-    <h3 class="name">
-      {{user.name}}
-    </h3>
+<div class="sidebar-wrapper" *ngIf="user">
 
-    <h5 *ngIf="user.role && user.role !== 'user'">
-      {{user.role}}
-    </h5>
-  </div>
+  <app-sidebar [showSidebar]="false"></app-sidebar>
 
-  <div class="row">
-    <div class="portrait-wrapper">
-      <img class="portrait" src="{{user.img}}">
+
+  <div class="container align-center user" *ngIf="user">
+    <div class="row">
+      <h3 class="name">
+        {{user.name}}
+      </h3>
+
+      <h5 *ngIf="user.role && user.role !== 'user'">
+        {{user.role}}
+      </h5>
     </div>
-  </div>
 
-  <div class="row" *ngIf="user.area">
-    <h5>Area </h5>
-    <p>{{user.area}}</p>
-  </div>
+    <div class="row">
+      <div class="portrait-wrapper">
+        <img class="portrait" src="{{user.img}}">
+      </div>
+    </div>
 
-  <div class="row" *ngIf="user.skills">
-    <h5>Skills </h5>
-    <p>{{user.skills.join(', ')}}</p>
-  </div>
+    <div class="row" *ngIf="user.area">
+      <h5>Area </h5>
+      <p>{{user.area}}</p>
+    </div>
 
-  <div class="row" *ngIf="user.points">
+    <div class="row" *ngIf="user.skills">
+      <h5>Skills </h5>
+      <p>{{user.skills.join(', ')}}</p>
+    </div>
+
+    <div class="row" *ngIf="user.points">
       <h5>Current points </h5>
       <p>{{user.points.total ? user.points.total : 0}}</p>
-  </div>
-
-  <div class="row" *ngIf="achievements && achievements.length > 0">
-    <h5>Achievements earned </h5>
-    <div class="achivements-wrapper">
-      <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
     </div>
-  </div>
 
+    <div class="row" *ngIf="achievements && achievements.length > 0">
+      <h5>Achievements earned </h5>
+      <div class="achivements-wrapper">
+        <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
+      </div>
+    </div>
+
+  </div>
 </div>
