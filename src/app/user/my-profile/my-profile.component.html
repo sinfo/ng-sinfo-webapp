@@ -34,7 +34,7 @@
                 <img *ngIf="user.role === 'team'" class="mini-image" src="https://static.sinfo.org/SINFO_25/powerOn.png">
                 <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
               </div>
-              <div class="mini-portrait-wrapper" *ngIf="user.role !== 'team' || user.role !== 'company'">
+              <div class="mini-portrait-wrapper" *ngIf="user.role === 'user'">
               <h2>100</h2> <span class="lead">points</span>
             </div>
             </div>
