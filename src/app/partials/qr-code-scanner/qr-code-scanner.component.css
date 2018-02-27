@@ -1,5 +1,5 @@
 .video-wrapper {
-    border: 15px solid;
+    border: 14px solid;
     border-radius: 16px;
     display: flex;
     align-items: stretch;
@@ -8,8 +8,54 @@
     height: 77vh;
     overflow: hidden;
     justify-content: center;
+
+    -webkit-transition:border 100ms;
+    -moz-transition:border 100ms;
+    -ms-transition:border 100ms;
+    -o-transition:border 100ms;
+    transition: border 100ms ;
 }
 
+.success {
+    border-color: #16d216;
+}
+
+.error {
+    border-color: red;
+}
+button.btn {
+    padding: 13px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-family: "PT Sans";
+    margin: 0;
+    border-radius: 0;
+}
+.buttonAction {
+    position: absolute;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    bottom: 0;
+    z-index: 10;
+    left: 0;
+}
+.scannerMsg{
+    margin-bottom: 3px;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    border-radius: 0;
+    height: 10%;
+    font-size: 19px;
+}
+.scannerMsgWhenCameraFlip {
+    text-align: left;
+    font-size: 90%;
+}
+.flip-camera {
+    z-index: 100;
+}
 img.portrait {
     border-radius: 50%;
     border: 3px solid #048ae6;
@@ -35,7 +81,6 @@ div.mini-portrait-wrapper {
     border: 3px solid #048ae6;
     padding: 10px;
 }
-
 div.mini-portrait-wrapper img {
     width: 100%;
 }
@@ -58,4 +103,5 @@ div.mini-portrait-wrapper img {
     width: 47px;
     border-radius: 0;
     border-bottom-left-radius: 50%;
+    height: 10%;
 }

@@ -20,6 +20,12 @@ export class QrcodeScannerComponent implements OnInit {
   @Input() camStarted: boolean
   @Input() userRead: User
 
+  @Input() insideScannerMsg: [{ title: string, msg: string }]
+  @Output() buttonAction = new EventEmitter()
+  @Input() buttonLabel: string
+
+  animation: boolean // true -> success, false -> error, undefined -> neither
+
   selectedDevice
   private availableDevices: {
     cams: any[]
@@ -76,6 +82,12 @@ export class QrcodeScannerComponent implements OnInit {
     this.userService.getUser(content)
       .subscribe(user => {
         if (!user) {
+
+          this.animation = false
+          setTimeout(() => {
+            this.animation = undefined
+          }, 500)
+
           this.messageService.add({
             origin: 'QrcodeScannerComponent processContent()',
             showAlert: false,
@@ -85,6 +97,11 @@ export class QrcodeScannerComponent implements OnInit {
           })
           return
         }
+
+        this.animation = true
+        setTimeout(() => {
+          this.animation = undefined
+        }, 500)
 
         this.userReadOutput.emit(user)
         this.userRead = user
@@ -103,5 +120,9 @@ export class QrcodeScannerComponent implements OnInit {
         let showAlert = content ? true : false
 
       })
+  }
+
+  buttonClick () {
+    this.buttonAction.emit()
   }
 }
