@@ -45,15 +45,24 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <form>
-            <div class="form-group">
-              <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
-              <label class="btn" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}" for="file">
-                <span class="glyphicon glyphicon-cloud-upload"></span>
-                {{ submitedCV ? 'Update' : 'Upload' }} your resume
-              </label>
+          <div *ngIf="submitedCV" class="container alert-message cv-alert">
+            <div class="alert alert-success" role="alert">
+              Your CV has already been submitted
             </div>
-          </form>
+          </div>
+
+          <div *ngIf="!submitedCV" class="container alert-message cv-alert">
+            <div class="alert alert-info" role="alert">
+              You have not yet submitted your CV
+            </div>
+          </div>
+
+          <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+          <label class="btn" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}" for="file">
+            <span class="glyphicon glyphicon-cloud-upload"></span>
+            {{ submitedCV ? 'Update' : 'Upload' }} your resume
+          </label>
+
         </div>
       </div>
 

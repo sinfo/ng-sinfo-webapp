@@ -136,3 +136,7 @@ div.achivements-wrapper img.achievement {
   background-color: #428bca;
   border-color: #357ebd;
 }
+
+.cv-alert {
+  width: 30%;
+}
