@@ -57,10 +57,15 @@
             </div>
           </div>
 
+          <a href="{{ cvDownloadUrl }}" target="_blank" class="btn btn-info">
+            <span class="glyphicon glyphicon-cloud-download"></span>
+            Download your CV
+          </a>
+
           <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
           <label class="btn" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}" for="file">
             <span class="glyphicon glyphicon-cloud-upload"></span>
-            {{ submitedCV ? 'Update' : 'Upload' }} your resume
+            {{ submitedCV ? 'Update' : 'Upload' }} your CV
           </label>
 
         </div>
