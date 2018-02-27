@@ -4,6 +4,7 @@ import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
+import { AuthService } from '../../auth/auth.service'
 
 @Component({
   selector: 'app-my-profile',
@@ -16,12 +17,15 @@ export class MyProfileComponent implements OnInit {
   company: Company
   submitedCV: boolean
   eventOcurring: boolean
+  cvDownloadUrl: string
 
   constructor (
     private userService: UserService,
     private companyService: CompanyService,
+    private authService: AuthService,
     private zone: NgZone
   ) {
+    this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     /**
      *  TODO: To fix the unknown error with Google login
      * (https://github.com/sinfo/ng-sinfo-webapp/issues/62) we need to call getMe()
