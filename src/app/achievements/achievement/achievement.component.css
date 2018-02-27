@@ -7,10 +7,15 @@
   padding: 20px;
   transition: all 0.3s;
   width: 100%;
+  justify-content: center;
+}
+.achievement-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 .achievement-section img {
-  margin: 20px;
-  width: 200px;
+  width: 87px;
 }
 .achievement-section h5 {
   color: #008ae6;

@@ -17,7 +17,8 @@
 
       <div *ngIf="selectedSession">
         <div class="user-spanner alert alert-success" *ngIf="users && users.length > 0">
-            <strong>Last user:</strong> {{users[users.length - 1].name}} <strong>Total: {{users.length}}</strong>
+          <strong>Last user:</strong> {{users[users.length - 1].name}}
+          <strong>Total: {{users.length}}</strong>
         </div>
 
         <div class="scanner">
@@ -34,7 +35,7 @@
         <div class="sessions-wrapper">
           <div *ngFor="let session of sessions" class="row session">
             <div class="col-sm-12">
-              <div class="well well-sm workshop-wrapper">
+              <div class="row well well-sm workshop-wrapper">
                 <div class="img-wrapper col-sm-2">
                   <img src="{{session.session.img}}" alt="{{session.session.name}}">
                 </div>
@@ -55,7 +56,9 @@
                     </div>
                   </div>
                 </div>
-                <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check in</button>
+                <div class="col-sm-3 checkin">
+                  <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check in</button>
+                </div>
               </div>
 
             </div>
