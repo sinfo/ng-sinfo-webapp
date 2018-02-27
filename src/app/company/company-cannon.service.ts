@@ -60,7 +60,7 @@ export class CompanyCannonService {
       userId: userId,
       attendeeId: attendeeId,
       editionId: environment.currentEvent,
-      note: note
+      note: note || ' '
     }, { headers: this.headers })
       .pipe(
         catchError(this.handleError<Link>('createLink'))
