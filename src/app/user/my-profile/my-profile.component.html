@@ -61,7 +61,8 @@
             </div>
           </div>
 
-          <a href="{{ cvDownloadUrl }}" target="_blank" class="btn btn-info">
+          <a *ngIf="submitedCV" href="{{ cvDownloadUrl }}"
+            target="_blank" class="btn btn-info">
             <span class="glyphicon glyphicon-cloud-download"></span>
             Download your CV
           </a>
@@ -80,7 +81,7 @@
         <p>{{user.area}}</p>
       </div>
 
-      <div class="row" *ngIf="user.skills && user.role !== 'company'">
+      <div class="row" *ngIf="user.skills.length && user.role !== 'company'">
         <h5>Skills </h5>
         <p>{{user.skills.join(', ')}}</p>
       </div>
