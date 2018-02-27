@@ -34,8 +34,9 @@
                 <img *ngIf="user.role === 'team'" class="mini-image" src="https://static.sinfo.org/SINFO_25/powerOn.png">
                 <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
               </div>
-              <div class="mini-portrait-wrapper" *ngIf="user.role === 'user'">
-              <h2>100</h2> <span class="lead">points</span>
+              <div class="mini-portrait-wrapper"
+                  *ngIf="user.role === 'user' && user.points">
+              <h2>{{user.points.total ? user.points.total : 0}}</h2> <span class="lead">points</span>
             </div>
             </div>
           </div>
@@ -82,11 +83,6 @@
       <div class="row" *ngIf="user.skills && user.role !== 'company'">
         <h5>Skills </h5>
         <p>{{user.skills.join(', ')}}</p>
-      </div>
-
-      <div class="row" *ngIf="user.points && user.role !== 'company'">
-        <h5>Current points </h5>
-        <p>{{user.points.total ? user.points.total : 0}}</p>
       </div>
 
       <div class="row" *ngIf="achievements && achievements.length > 0  && user.role !== 'company'">
