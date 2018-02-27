@@ -34,8 +34,9 @@ export class MyProfileComponent implements OnInit {
       .subscribe(user => {
         this.user = user
 
-        this.userService.isCVSubmited().subscribe(any => {
-          this.submitedCV = true
+        this.userService.isCVSubmited().subscribe(response => {
+          // TODO CANNON MUST RETURN 404 on no file
+          this.submitedCV = !!(Object.keys(response).length === 0)
         }, (error) => {
           this.submitedCV = false
         })

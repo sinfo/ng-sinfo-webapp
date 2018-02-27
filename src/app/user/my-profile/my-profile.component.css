@@ -86,22 +86,6 @@ div.achivements-wrapper img.achievement {
   align-items: center;
 }
 
-@media (max-width: 990px){
-  .qrcode-wrapper {
-    flex-flow: column;
-  }
-}
-
-@media (max-width: 425px){
-  div.user {
-    background-size: 150%;
-  }
-
-  div.user h5 {
-    text-align: center;
-  }
-}
-
 .inputfile {
 	width: 0.1px;
 	height: 0.1px;
@@ -138,5 +122,24 @@ div.achivements-wrapper img.achievement {
 }
 
 .cv-alert {
-  width: 30%;
+  max-width: 250px;
+  margin: 0 auto;
+}
+.alert {
+  margin-bottom: 0px;
+}
+
+@media (max-width: 990px){
+  .qrcode-wrapper {
+    flex-flow: column;
+  }
+}
+
+@media (max-width: 425px){
+  div.user {
+    background-size: 150%;
+  }
+  div.user h5 {
+    text-align: center;
+  }
 }
