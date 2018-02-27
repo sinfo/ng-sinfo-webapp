@@ -39,6 +39,15 @@ div.mini-portrait-wrapper {
   background-color: rgba(255,255,255, 1);
   border: 3px solid #048ae6;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+div.mini-portrait-wrapper h2 {
+  margin: 0;
+}
+div.mini-portrait-wrapper span.lead {
+  margin-bottom: 0px;
 }
 
 div.mini-portrait-wrapper img {
@@ -141,5 +150,12 @@ div.achivements-wrapper img.achievement {
   }
   div.user h5 {
     text-align: center;
+  }
+  div.mini-portrait-wrapper h2 {
+    font-size: 25px;
+    line-height: 20px;
+  }
+  div.mini-portrait-wrapper span.lead {
+    font-size: 13px;
   }
 }
