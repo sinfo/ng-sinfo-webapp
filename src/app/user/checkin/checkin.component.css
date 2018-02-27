@@ -9,12 +9,6 @@
     display: flex;
     flex-direction: column;
 }
-.submit {
-  width: 95%;
-  margin: auto;
-  margin-top: 10px;
-}
-
 .session {
     text-align: left;
 }
@@ -24,6 +18,18 @@ button.btn {
   font-size: 14px;
   font-family: "PT Sans";
   margin: 0;
+}
+.destroy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.destroy button {
+  margin-top: 8%;
+  margin-bottom: 8%;
+  width: 80%;
+  background-color: #d9534f;
+  border-color: #d43f3a;
 }
 .workshop-wrapper {
   display: flex;
@@ -38,12 +44,6 @@ span.seeMore:hover {
   margin: 20px;
   width: 150px;
   overflow: hidden;
-}
-.user-spanner{
-  margin-bottom: 3px;
-  position: absolute;
-  z-index: 5;
-  width: 90%;
 }
 h4.name {
   font-size: 25px;

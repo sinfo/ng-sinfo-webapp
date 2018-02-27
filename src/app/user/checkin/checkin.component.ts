@@ -20,6 +20,8 @@ export class CheckinComponent implements OnInit {
   title: string
 
   scannerActive: boolean
+  submitLabel: string
+  insideScannerMsg: [{ title: string, msg: string }]
 
   constructor (
     private sessionService: SessionService,
@@ -79,6 +81,8 @@ export class CheckinComponent implements OnInit {
   receiveUser (user: User) {
     this.users.push(user)
     localStorage.setItem('users', JSON.stringify(this.users))
+    this.submitLabel = `Submit ${this.users.length} users`
+    this.updateInsideScannerMsg()
   }
 
   submit () {
@@ -90,13 +94,7 @@ export class CheckinComponent implements OnInit {
     this.sessionCannonService.checkin(this.selectedSession.id, ids)
       .subscribe(msg => {
         if (msg) {
-          localStorage.removeItem('users')
-          localStorage.removeItem('selectedSession')
-
-          this.scannerActive = false
-          this.selectedSession = undefined
-          this.users = []
-
+          this.emptyLocalStorage()
           this.getSessions()
 
           this.messageService.add({
@@ -126,8 +124,40 @@ export class CheckinComponent implements OnInit {
 
     this.users = users
     this.selectedSession = selectedSession
+    this.submitLabel = `Submit ${this.users.length} users`
+    this.updateInsideScannerMsg()
 
     return true
+  }
+
+  emptyLocalStorage () {
+    localStorage.removeItem('users')
+    localStorage.removeItem('selectedSession')
+    this.scannerActive = false
+    this.selectedSession = undefined
+    this.users = []
+    this.insideScannerMsg = undefined
+  }
+
+  updateInsideScannerMsg () {
+    this.insideScannerMsg = [
+      {
+        title: 'Last user:',
+        msg: `${this.users[this.users.length - 1].name}`
+      },
+      {
+        title: 'Total',
+        msg: `${this.users.length}`
+      }
+    ]
+  }
+
+  delete () {
+    let result = window.confirm('This will delete all the saved check-ins, are you sure?')
+    if (!result) return
+
+    this.emptyLocalStorage()
+    this.getSessions()
   }
 
 }

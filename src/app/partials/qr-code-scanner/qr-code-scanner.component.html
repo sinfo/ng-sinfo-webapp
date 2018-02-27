@@ -3,13 +3,23 @@
         {{title}}
     </h3>
 
-    <div class="video-wrapper" *ngIf="camStarted">
-        <button *ngIf="availableDevices && availableDevices.cams && availableDevices.cams.length > 1" id="changeCamera" (click)="changeCamera()"
-            type="button" class="btn btn-default btn-sm">
+    <div class="video-wrapper" [ngClass]="{'success': animation === true, 'error': animation === false}" *ngIf="camStarted">
+
+        <button  id="changeCamera" (click)="changeCamera()" *ngIf="availableDevices && availableDevices.cams && availableDevices.cams.length > 1"
+            type="button" class="btn btn-default btn-sm flip-camera">
             <span class="glyphicon glyphicon-retweet"></span>
         </button>
+        
+        <div class="scannerMsg alert alert-success" *ngIf="insideScannerMsg" [ngClass]="{'scannerMsgWhenCameraFlip': availableDevices && availableDevices.cams && availableDevices.cams.length > 1 }">
+            <span *ngFor="let msg of insideScannerMsg">
+                <strong>{{msg.title}}</strong> 
+                {{msg.msg.split(' ')[0]}} {{msg.msg.split(' ').length > 1 ? msg.msg.split(' ')[msg.msg.split(' ').length - 1] : ''}}
+            </span>
+        </div>
         <ngx-zxing [start]="camStarted" [device]="selectedDevice" [cssClass]="'videoqrcode'" (camerasFound)="displayCameras($event)"
             (scanSuccess)="handleQrCodeResult($event)"></ngx-zxing>
+        
+        <button *ngIf="buttonLabel" class="buttonAction btn btn-button" (click)="buttonClick()">{{buttonLabel}}</button>
     </div>
 
     <div *ngIf="!camStarted && userRead !== undefined">
