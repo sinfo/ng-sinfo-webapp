@@ -2,18 +2,6 @@
   width: 100%;
 }
 
-.wrapper {
-  display: flex;
-  align-items: stretch;
-  min-height: 87vh;
-}
-
-#content {
-  padding: 20px;
-  transition: all 0.3s;
-  width: 100%;
-}
-
 div.loading-wrapper {
   margin: 30px auto;
 }
@@ -114,6 +102,12 @@ div.achivements-wrapper img.achievement {
   background-color: red;
 }
 
+.btn {
+  margin: 0;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
+
 .btn-success {
   background-color: #449d44 !important;
   border-color: #398439 !important;
@@ -126,6 +120,7 @@ div.achivements-wrapper img.achievement {
 .cv-alert {
   max-width: 285px;
   margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 @media (max-width: 990px){

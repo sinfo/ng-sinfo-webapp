@@ -17,16 +17,18 @@ export class AchievementsComponent implements OnInit {
   myAchievements: Achievement[]
   user: User
 
-  constructor(
+  constructor (
     private achievementService: AchievementService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.achievementService.getAchievements().subscribe(achievements => {
-      this.achievements = achievements.sort()
+      this.achievements = achievements
+      .filter((a) => { return a.id }) // Filter any empty achievements
+      .sort((a, b) => { return a.id.localeCompare(b.id) }) // sort by id
     })
 
     if (this.authService.isLoggedIn()) {
@@ -34,6 +36,9 @@ export class AchievementsComponent implements OnInit {
         this.user = user
         this.userService.getUserAchievements(user.id).subscribe(achievements => {
           this.myAchievements = achievements
+          this.achievements = this.myAchievements.concat(this.achievements.filter((achievement) => {
+            return !~this.myAchievements.map(a => { return a.id }).indexOf(achievement.id)
+          }))
         })
       })
     }
