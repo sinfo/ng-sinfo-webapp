@@ -130,9 +130,6 @@ export class CompanyCannonService {
       type: Type.error
     }
 
-    // even if link does not exist, doesn't show the message
-    msg.showAlert = (operation === 'getLink') ? false : true
-
     return (error: any): Observable<T> => {
       msg.text = error.message
       this.messageService.add(msg)

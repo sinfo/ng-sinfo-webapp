@@ -18,12 +18,6 @@ div.loading-wrapper {
   margin: 30px auto;
 }
 
-div.user {
-  background: url("http://static.sinfo.org/SINFO_25/powerOnBackground.png") right no-repeat;
-  background-position: right top;
-  background-size: 60%;
-}
-
 div.portrait-wrapper {
   margin: 10px auto;
   position: relative;

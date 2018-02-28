@@ -23,6 +23,7 @@ export class MyLinksComponent implements OnInit {
     user: User
     note: string
   }>
+  gotLinks: boolean
 
   constructor (
     private userService: UserService,
@@ -40,7 +41,9 @@ export class MyLinksComponent implements OnInit {
         })
 
         this.companyService.getCompany(company.company)
-          .subscribe(_company => this.company = _company)
+          .subscribe(_company => {
+            this.company = _company
+          })
 
         this.companyCannonService.getLinks(company.company)
           .subscribe(links => {
@@ -60,7 +63,6 @@ export class MyLinksComponent implements OnInit {
               user: user,
               note: link.note
             })
-            console.log(attendee)
           })
       })
   }

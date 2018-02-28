@@ -1,67 +1,65 @@
 .accord.row button {
-    width: 90%;
-    left: 5%;
-    margin: 0;
-    background-color: rgba(0,0,0,.03);
-    color: black !important;
-    text-align: left;
-    white-space: normal;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 90%;
+  left: 5%;
+  margin: 0;
+  background-color: #008ae6ab;
+  color: black !important;
+  text-align: left;
+  white-space: normal;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
 .link-note {
-    width: 90%;
-    margin-left: 5%;
-    border: 1px solid rgba(0,0,0,.125);
+  width: 90%;
+  margin-left: 5%;
+  margin-top: -11px !important;
+  border-top: none !important;
+  padding-top: 11px;
 }
-
-accord.row button:active {
-    background-color: transparent;
-}
-
-accord.row button p {
-    width: 95%;
-    margin-bottom: 0;
-}
-
-accord.row {
-    width: 95%;
-    margin: 5px auto;
-    margin-bottom: 0;
-}
-
-accord.row button, accord.row div {
-    border: 3px solid black;
-    border-radius: .25rem
-}
-
-.caret {
-    float: right;
-}
-
 .link-note p {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 4px;
-    text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 4px;
+  text-align: left;
 }
-
+.link-note .tip {
+  text-align: center;
+}
+.accord.row button:active {
+  background-color: transparent;
+}
+.accord.row button, .accord.row div {
+  border: 1px solid #0164a9;
+  border-radius: .25rem;
+  margin-top: 7px;
+}
+.accord.row button p {
+  width: 95%;
+  margin-bottom: 0;
+  letter-spacing: 2px;
+}
+.card {
+  width: 95%;
+  margin-top: 10px auto !important;
+}
+.caret {
+  float: right;
+  color: #048ae6;
+}
 .panel-content-strong {
-    font-weight: bold;
+  font-weight: bold;
 }
-
 div.portrait-wrapper {
-    margin: 10px auto;
+  margin: 10px auto;
 }
-  
-h3 {
-    margin: 20px auto;
-}
-
-
 img.portrait {
-    border-radius: 50%;
-    border: 3px solid #048ae6;
+  width: 150px;    
+}
+h3 {
+  margin: 20px auto;
+}
+img.portrait {
+  border-radius: 50%;
+  border: 3px solid #048ae6;
 }

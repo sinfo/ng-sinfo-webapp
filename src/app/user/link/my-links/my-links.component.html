@@ -1,26 +1,44 @@
 <app-menu></app-menu>
 
-<app-loading [content]="me"></app-loading>
+<app-loading [content]="me && company"></app-loading>
 
-<div class="sidebar-wrapper" *ngIf="me">
+<div class="sidebar-wrapper" *ngIf="me && company">
 
   <app-sidebar [user]="me"></app-sidebar>
 
-  <div class="container container-fluid" *ngIf="company && links && processedLinks && links.length === processedLinks.length">
+  <div class="container container-fluid">
     <div class="align-center">
 
-      <div class="row">
-        <h3>{{company.name}}</h3>
-        <h6>Links</h6>
-      </div>
-
-      <div class="row">
-        <div class="portrait-wrapper">
-          <img class="portrait" src="{{company.img}}">
+      <div *ngIf="company" class="row">
+        <div class="col-sm-12">
+          <h3>{{company.name}}</h3>
+          <h6>Links</h6>
         </div>
       </div>
 
-      <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+      <div *ngIf="company" class="row">
+        <div class="col-sm-12">
+          <div class="portrait-wrapper">
+            <img class="portrait" src="{{company.img}}">
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!processedLinks" class="row">
+        <div class="col-sm-12">
+          <h6 class="lead">
+            Looks like you have not made any links yet.
+            <br> You can link with attendees
+            <a routerLink="/links/link">here</a>.
+          </h6>
+        </div>
+      </div>
+
+
+      <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" *ngIf="company && processedLinks ">
+
+        <app-loading [content]="links.length === processedLinks.length"></app-loading>
+
         <div *ngFor="let link of processedLinks">
 
           <ngb-panel>
@@ -44,14 +62,15 @@
                     <span class="panel-content-strong">Note: </span>
                     {{link.note}}
                   </p>
+                  <p class="lead small tip">
+                    Tip: To edit this link's note rescan the QR code
+                  </p>
                 </div>
               </div>
             </ng-template>
           </ngb-panel>
-
         </div>
       </ngb-accordion>
-
     </div>
   </div>
 </div>

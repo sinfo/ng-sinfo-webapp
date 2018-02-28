@@ -33,6 +33,7 @@
   width: 40px;
   border-radius: 50%;
   max-width: none;
+  margin: 1px;
 }
 button.pick-winner {
   padding: 13px;
