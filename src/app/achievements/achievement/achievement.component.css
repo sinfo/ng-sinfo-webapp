@@ -29,6 +29,11 @@
   font-size: 50px;
   margin-bottom: 20px;
 }
+.users-wrapper img{
+  width: 40px;
+  border-radius: 50%;
+  max-width: none;
+}
 button.pick-winner {
   padding: 13px;
   margin: auto;

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Params } from '@angular/router'
+import { Component, OnInit, Input } from '@angular/core'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 
 import { Achievement } from '../achievement.model'
 import { AchievementService } from '../achievement.service'
@@ -16,25 +16,35 @@ export class AchievementComponent implements OnInit {
   achievement: Achievement
   user: User
   winner: User
+  users: User[]
 
   constructor (
     private achievementService: AchievementService,
-    private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit () {
+    this.route.params.forEach((params: Params) => {
+      const id = params['id']
+      console.log(id)
+      this.achievementService.getAchievement(id).subscribe(achievement => {
+        console.log(achievement)
+        this.achievement = achievement
+
+        this.userService.getUsers(this.achievement.users).subscribe(users => {
+          console.log(users)
+          this.users = users
+        })
+      })
+    })
+
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
         this.user = user
       })
     }
-
-    this.activatedRoute.params.forEach((params: Params) => {
-      const id = params['id']
-      this.getAchievement(id)
-    })
   }
 
   pickWinner () {
@@ -43,10 +53,5 @@ export class AchievementComponent implements OnInit {
       console.log(user)
       this.winner = user
     })
-  }
-
-  getAchievement (id: string): void {
-    this.achievementService.getAchievement(id)
-      .subscribe(achievement => this.achievement = achievement)
   }
 }

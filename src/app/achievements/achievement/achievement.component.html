@@ -25,6 +25,26 @@
           </div>
         </div>
 
+
+        <div *ngIf="!users" class="row">
+          <div class="col-sm-12 align-center">
+            <h6 class="lead">
+              No users have yet claimed this achievement
+            </h6>
+          </div>
+        </div>
+
+        <div *ngIf="users" class="row">
+          <div class="col-sm-12 align-center users-wrapper">
+            <h6 class="lead">
+              Users that have already claimed this achievement
+            </h6>
+          </div>
+          <div class="col-sm-12 align-center users-wrapper">
+            <img *ngFor="let user of users" src="{{user.img}}" alt="{{user.name}}" title="{{user.name}}">
+          </div>
+        </div>
+
         <hr *ngIf="user && user.role === 'team'">
 
         <div *ngIf="user && user.role === 'team'" class="row pick-a-winner">
