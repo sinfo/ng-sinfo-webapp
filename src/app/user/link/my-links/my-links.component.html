@@ -1,52 +1,57 @@
 <app-menu></app-menu>
 
-<app-loading [content]="links"></app-loading>
+<app-loading [content]="me"></app-loading>
 
-<div class="container container-fluid" *ngIf="company && links && processedLinks && links.length === processedLinks.length">
-  <div class="align-center">
+<div class="sidebar-wrapper" *ngIf="me">
 
-    <div class="row">
-      <h3>{{company.name}}</h3>
-      <h6>Links</h6>
-    </div>
+  <app-sidebar [user]="me"></app-sidebar>
 
-    <div class="row">
-      <div class="portrait-wrapper">
-        <img class="portrait" src="{{company.img}}">
+  <div class="container container-fluid" *ngIf="company && links && processedLinks && links.length === processedLinks.length">
+    <div class="align-center">
+
+      <div class="row">
+        <h3>{{company.name}}</h3>
+        <h6>Links</h6>
       </div>
-    </div>
 
-    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
-      <div *ngFor="let link of processedLinks">
+      <div class="row">
+        <div class="portrait-wrapper">
+          <img class="portrait" src="{{company.img}}">
+        </div>
+      </div>
 
-        <ngb-panel>
-          <ng-template ngbPanelTitle>
-            <div class="row accord">
-              <button type="button" class="btn btn-sm">
-                <p>{{link.attendee.name}}</p>
-                <span class="caret"></span>
-              </button>
-            </div>
-          </ng-template>
+      <ngb-accordion [closeOthers]="true" #acc="ngbAccordion">
+        <div *ngFor="let link of processedLinks">
 
-          <ng-template ngbPanelContent>
-            <div class="row accord">
-              <div class="link-note">
-                <p>
-                  <span class="panel-content-strong">Company employee: </span>
-                  {{link.user.name}}
-                </p>
-                <p>
-                  <span class="panel-content-strong">Note: </span>
-                  {{link.note}}
-                </p>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <div class="row accord">
+                <button type="button" class="btn btn-sm">
+                  <p>{{link.attendee.name}}</p>
+                  <span class="caret"></span>
+                </button>
               </div>
-            </div>
-          </ng-template>
-        </ngb-panel>
+            </ng-template>
 
-      </div>
-    </ngb-accordion>
+            <ng-template ngbPanelContent>
+              <div class="row accord">
+                <div class="link-note">
+                  <p>
+                    <span class="panel-content-strong">Company employee: </span>
+                    {{link.user.name}}
+                  </p>
+                  <p>
+                    <span class="panel-content-strong">Note: </span>
+                    {{link.note}}
+                  </p>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+        </div>
+      </ngb-accordion>
 
     </div>
+  </div>
 </div>
