@@ -3,9 +3,7 @@ div.loading-wrapper {
 }
 
 div.user {
-  background: url("http://static.sinfo.org/SINFO_25/powerOnBackground.png") right no-repeat;
-  background-position: right top;
-  background-size: 60%;
+  padding-bottom: 20px;
 }
 
 div.portrait-wrapper {

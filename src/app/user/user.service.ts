@@ -98,10 +98,10 @@ export class UserService {
     return this.http.post<any>(`${this.filesUrl}/me`, formData, httpOptions)
   }
 
-  getUserAchievements (id: string): Observable<Achievement> {
-    return this.http.get<Achievement>(`${this.usersUrl}/${id}/achievements`)
+  getUserAchievements (id: string): Observable<Achievement[]> {
+    return this.http.get<Achievement[]>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
-      catchError(this.handleError<Achievement>(`getting user achievements`))
+      catchError(this.handleError<Achievement[]>(`getting user achievements`))
       )
   }
 

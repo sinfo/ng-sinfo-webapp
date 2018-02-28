@@ -38,8 +38,8 @@
           </span>
         </div>
         <div class="achievements-wrapper">
-          <a *ngFor="let achievement of achievements" routerLink="/achievement/{{achievement.id}}">
-            <img [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+          <a *ngFor="let achievement of achievements"  routerLink="/achievement/{{achievement.id}}">
+            <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
           </a>
         </div>
       </div>

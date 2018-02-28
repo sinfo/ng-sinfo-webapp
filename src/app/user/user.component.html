@@ -8,21 +8,45 @@
 
 
   <div class="container align-center user" *ngIf="user">
-    <div class="row">
+    <div class="row align-center">
+
       <h3 class="name">
         {{user.name}}
       </h3>
 
-      <h5 *ngIf="user.role && user.role !== 'user'">
-        {{user.role}}
+      <h5 *ngIf="user.role === 'team'">
+        <img class="sinfo-logo" src="https://static.sinfo.org/SINFO_25/sinfoLogo.png">
       </h5>
+
+      <h5 *ngIf="user.role === 'company' && company">
+        {{company.name}}
+      </h5>
+
     </div>
 
-    <div class="row">
-      <div class="portrait-wrapper">
-        <img class="portrait" src="{{user.img}}">
+    <div class="row qrcode-wrapper">
+
+      <div class="qrcode-image">
+        <div class="row">
+          <div class="portrait-wrapper">
+            <img class="portrait" src="{{user.img}}">
+            <div class="mini-portrait-wrapper" *ngIf="user.role === 'team' || (user.role === 'company' && company)">
+              <img *ngIf="user.role === 'team'" class="mini-image" src="https://static.sinfo.org/SINFO_25/powerOn.png">
+              <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
+            </div>
+            <div class="mini-portrait-wrapper" *ngIf="user.role === 'user' && user.points">
+              <h2>{{user.points.total ? user.points.total : 0}}</h2>
+              <span class="lead">points</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="qrcode">
+        <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
       </div>
     </div>
+
 
     <div class="row" *ngIf="user.area">
       <h5>Area </h5>

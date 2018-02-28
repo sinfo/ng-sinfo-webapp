@@ -12,17 +12,25 @@
           My Profile
         </a>
       </li>
-      <li [ngClass]="{'active': detectLocation('/achievements')}">
-        <a routerLink="/achievements">
-          <i class="fa fa-trophy"></i>
-          Achievements
+      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/signature')}">
+        <a routerLink="/signature">
+          <i class="fa fa-check"></i>
+          Sign Card
         </a>
       </li>
-      <li [ngClass]="{'active': detectLocation('/scoreboard')}">
-        <a routerLink="/scoreboard">
-          <i class="glyphicon glyphicon-tower"></i>
-          Scoreboard
+      <li *ngIf="user && user.role === 'company'">
+        <a href="#linksSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/links') }}">
+          <i class="glyphicon glyphicon-duplicate"></i>
+          Links
         </a>
+        <ul class="collapse list-unstyled" id="linksSubmenu" [ngClass]="{'in': detectLocation('/links'), 'collapse': !detectLocation('/links')}">
+          <li [ngClass]="{'active': detectLocation('/links/link')}">
+            <a routerLink="/links/link">Link</a>
+          </li>
+          <li [ngClass]="{'active': detectLocation('/links/my-links')}">
+            <a routerLink="/links/my-links">My Links</a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#workshopsSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/workshops') }}">
@@ -41,48 +49,37 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role === 'user' && eventOcurring" 
-      [ngClass]="{'active': detectLocation('/card')}">
+      <li [ngClass]="{'active': detectLocation('/achievements')}">
+        <a routerLink="/achievements">
+          <i class="fa fa-trophy"></i>
+          Achievements
+        </a>
+      </li>
+      <li [ngClass]="{'active': detectLocation('/scoreboard')}">
+        <a routerLink="/scoreboard">
+          <i class="glyphicon glyphicon-tower"></i>
+          Scoreboard
+        </a>
+      </li>
+      <li *ngIf="user && user.role === 'user' && eventOcurring" [ngClass]="{'active': detectLocation('/card')}">
         <a routerLink="/card">
           <i class="glyphicon glyphicon-list-alt"></i>
           My card
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'"
-      [ngClass]="{'active': detectLocation('/promote')}">
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/promote')}">
         <a routerLink="/promote">
           <i class="glyphicon glyphicon-king"></i>
           Promote
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'"
-      [ngClass]="{'active': detectLocation('/checkin')}">
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/checkin')}">
         <a routerLink="/checkin">
           <i class="glyphicon glyphicon-qrcode"></i>
           Check-in
         </a>
       </li>
-      <li *ngIf="user && user.role === 'company'">
-        <a href="#linksSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/links') }}">
-          <i class="glyphicon glyphicon-duplicate"></i>
-          Links
-        </a>
-        <ul class="collapse list-unstyled" id="linksSubmenu" [ngClass]="{'in': detectLocation('/links'), 'collapse': !detectLocation('/links')}">
-          <li [ngClass]="{'active': detectLocation('/links/link')}">
-            <a routerLink="/links/link">Link</a>
-          </li>
-          <li [ngClass]="{'active': detectLocation('/links/my-links')}">
-            <a routerLink="/links/my-links">My Links</a>
-          </li>
-        </ul>
-      </li>
-      <li *ngIf="user && user.role === 'company'"
-      [ngClass]="{'active': detectLocation('/signature')}">
-        <a routerLink="/signature">
-          <i class="fa fa-check"></i>
-          Sign Card
-        </a>
-      </li>
+
     </span>
     <span id="logoutSpan">
       <li>

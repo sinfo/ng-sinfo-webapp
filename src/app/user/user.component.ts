@@ -11,7 +11,7 @@ import { Achievement } from '../achievements/achievement.model'
 })
 export class UserComponent implements OnInit {
   user: User
-  achievements: Achievement
+  achievements: Achievement[]
 
   constructor (
     private userService: UserService,

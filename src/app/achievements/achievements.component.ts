@@ -14,23 +14,27 @@ import { User } from '../user/user.model'
 })
 export class AchievementsComponent implements OnInit {
   achievements: Achievement[]
+  myAchievements: Achievement[]
   user: User
 
-  constructor (
+  constructor(
     private achievementService: AchievementService,
     private authService: AuthService,
     private userService: UserService,
     private router: Router
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.achievementService.getAchievements().subscribe(achievements => {
-      this.achievements = achievements
+      this.achievements = achievements.sort()
     })
 
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
         this.user = user
+        this.userService.getUserAchievements(user.id).subscribe(achievements => {
+          this.myAchievements = achievements
+        })
       })
     }
   }
@@ -40,6 +44,6 @@ export class AchievementsComponent implements OnInit {
   }
 
   numUserAchievements () {
-    return this.user.achievements.length ? this.user.achievements.length : 0
+    return this.myAchievements && this.myAchievements.length ? this.myAchievements.length : 0
   }
 }

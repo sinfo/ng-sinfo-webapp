@@ -5,6 +5,7 @@ import { environment } from './../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 import { AuthService } from '../../auth/auth.service'
+import { Achievement } from '../../achievements/achievement.model';
 
 @Component({
   selector: 'app-my-profile',
@@ -18,6 +19,7 @@ export class MyProfileComponent implements OnInit {
   submitedCV: boolean
   eventOcurring: boolean
   cvDownloadUrl: string
+  achievements: Achievement[]
 
   constructor (
     private userService: UserService,
@@ -43,6 +45,10 @@ export class MyProfileComponent implements OnInit {
           this.submitedCV = response && response.id
         }, (error) => {
           this.submitedCV = false
+        })
+
+        this.userService.getUserAchievements(user.id).subscribe(achievements => {
+          this.achievements = achievements
         })
 
         // if this user had company role in the previous edition,

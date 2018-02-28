@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      <div class="row" *ngIf="user.area">
+      <div class="row" *ngIf="user.area && user.role !== 'company' ">
         <h5>Area </h5>
         <p>{{user.area}}</p>
       </div>
