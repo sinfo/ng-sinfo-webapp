@@ -27,18 +27,15 @@ export class User {
   ]
   facebook: {
     id: string
-    token: string
+  }
+  linkedIn: {
+    id: string
   }
   google: {
     id: string
-    token: string
   }
   fenix: {
     id: string
-    token: string
-    refreshToken: string
-    ttl: number
-    created: string
   }
   points: {
     available: number
