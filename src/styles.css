@@ -6599,3 +6599,6 @@ div.clear input.btn:hover {
   font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 /* promote-company-content end */
+.header + div {
+  position: relative;
+}

@@ -1,6 +1,9 @@
 .align-center {
     width: 100%;
 }
+#content {
+    height: auto;
+}
 
 .dropdown-backdrop {
     display: none;

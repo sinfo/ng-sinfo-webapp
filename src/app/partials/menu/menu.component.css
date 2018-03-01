@@ -1,5 +1,14 @@
 .alert-message {
-  margin-top: 20px
+  top: 10px;
+  margin: 0 auto;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+.alert{
+  width: 70%;
+  margin: 0 auto;
 }
 
 #logo_white {

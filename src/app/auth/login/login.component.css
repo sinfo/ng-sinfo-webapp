@@ -2,10 +2,17 @@ button:disabled,
 button[disabled] {
   background-color: gray
 }
-
-button {
+button,
+a.btn {
   width: 100%;
   margin-left: 0 !important;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+button i,
+a.btn i {
+  font-size: 18px;
 }
 
 .btn-fb {
