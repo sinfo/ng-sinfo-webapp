@@ -8,6 +8,7 @@ import { AuthService } from '../../auth/auth.service'
 import { Achievement } from '../../achievements/achievement.model'
 import { RedeemCode } from '../survey/redeem-code.model'
 import { SurveyService } from '../survey/survey.service'
+import { AchievementService } from '../../achievements/achievement.service'
 
 @Component({
   selector: 'app-my-profile',
@@ -25,14 +26,15 @@ export class MyProfileComponent implements OnInit {
   redeemCodes: Array<{
     achievement: Achievement
     id: string
-  }>
+  }> = new Array()
 
   constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private authService: AuthService,
     private surveyService: SurveyService,
-    private zone: NgZone
+    private zone: NgZone,
+    private achievementService: AchievementService
   ) {
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     /**
@@ -59,31 +61,42 @@ export class MyProfileComponent implements OnInit {
 
             this.surveyService.getMyRedeemCodes()
               .subscribe(myRedeemCodes => {
-                myRedeemCodes.forEach(redeemCode => {
-                  let wantedAchievement = achievements.find(achievement => {
-                    return achievement.id === redeemCode.achievement
-                  })
+                if (!myRedeemCodes || myRedeemCodes.length === 0) { return }
+                this.achievementService.getAchievements()
+                  .subscribe(allAchievements => {
+                    let redeemCodes = []
+                    myRedeemCodes.forEach(redeemCode => {
 
-                  if (wantedAchievement) {
-                    if (!this.redeemCodes) {
-                      this.redeemCodes = [{
-                        achievement: wantedAchievement,
-                        id: redeemCode.id
-                      }]
-                    } else {
-                      this.redeemCodes.push({
-                        achievement: wantedAchievement,
-                        id: redeemCode.id
+                      // in the case of multiple check-ins of the same person in a session,
+                      // we only show redeem codes for different achievements
+
+                      if (redeemCodes.find(rc => {
+                        return rc.achievement.id === redeemCode.achievement
+                      })) { return }
+
+                      let wantedAchievement = allAchievements.find(a => {
+                        return a.id === redeemCode.achievement
                       })
-                    }
-                  }
 
-                })
+                      if (!wantedAchievement) { return }
+
+                      let newRedeemCode = {
+                        achievement: wantedAchievement,
+                        id: redeemCode.id
+                      }
+
+                      if (wantedAchievement) {
+                        redeemCodes.push(newRedeemCode)
+                        this.redeemCodes.push(newRedeemCode)
+                      }
+                    })
+                  })
               })
-          })
 
-          // if this user had company role in the previous edition,
-          // it will have a user role in the current edition
+            // if this user had company role in the previous edition,
+            // it will have a user role in the current edition
+
+          })
 
           if (this.user.role === 'company') {
             let company = this.user.company
