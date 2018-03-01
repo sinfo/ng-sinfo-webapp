@@ -15,6 +15,7 @@ import { SurveyResponse } from './response.model'
   styleUrls: ['./survey.component.css']
 })
 export class SurveyComponent implements OnInit {
+  me: User
   redeemCode: string
   session: Session
   achievement: Achievement
@@ -54,9 +55,13 @@ export class SurveyComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    this.route.params.forEach((params: Params) => {
-      this.redeemCode = params['redeemCode']
-    })
+    this.userService.getMe()
+      .subscribe(me => {
+        this.me = me
+        this.route.params.forEach((params: Params) => {
+          this.redeemCode = params['redeemCode']
+        })
+      })
   }
 
   onSubmit (form: any) {

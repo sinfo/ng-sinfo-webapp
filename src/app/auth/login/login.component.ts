@@ -50,8 +50,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
         origin: `LoginComponent: ngOnInit isFacebookActive=${this.isFacebookActive}`,
         text: `You need to disable any ad blocker or tracking protection mechanism to be
                 allowed to login with Facebook.`,
-        showAlert: false,
-        type: Type.log
+        showAlert: true,
+        type: Type.log,
+        timeout: 4000
       })
     }
     if (!this.isGoogleActive) {
@@ -60,7 +61,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
         text: `You need to disable any ad blocker or tracking protection mechanism to be
                 allowed to login with Google.`,
         type: Type.log,
-        showAlert: false
+        showAlert: true,
+        timeout: 4000
       })
     }
   }

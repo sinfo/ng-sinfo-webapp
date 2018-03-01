@@ -4,6 +4,8 @@
 
 <div class="wrapper">
 
+  <app-sidebar [user]="me"></app-sidebar>
+
   <div id="content" class="content" *ngIf="!submitting">
     <div [hidden]="submitted">
       <section class="section">
