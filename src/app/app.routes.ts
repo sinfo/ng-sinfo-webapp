@@ -29,6 +29,7 @@ import { WorkshopsStatusComponent } from './session/workshops/workshops-status.c
 import { SurveyComponent } from './user/survey/survey.component'
 import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 import { CheckinComponent } from './user/checkin/checkin.component'
+import { LinkedInLoginComponent } from './auth/login/linkedin.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'qrcode', component: QrcodeScannerComponent },
   { path: 'promote', component: PromoteComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'login/linkedIn', component: LinkedInLoginComponent },
   { path: 'register', component: LoginComponent },
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },

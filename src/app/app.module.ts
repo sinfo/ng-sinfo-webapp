@@ -66,6 +66,7 @@ import { SurveyService } from './user/survey/survey.service'
 import { SignatureService } from './user/signature/signature.service'
 import { CheckinComponent } from './user/checkin/checkin.component'
 import { SessionCannonService } from './session/session-cannon.service'
+import { LinkedInLoginComponent } from './auth/login/linkedin.component'
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import { SessionCannonService } from './session/session-cannon.service'
     SurveyComponent,
     ScoreboardComponent,
     CheckinComponent,
-    LiveComponent
+    LiveComponent,
+    LinkedInLoginComponent
   ],
   imports: [
     BrowserModule,

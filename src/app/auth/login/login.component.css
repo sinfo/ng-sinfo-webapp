@@ -19,24 +19,16 @@ a.btn i {
   background-color: #48649F;
 }
 
-.btn-fb:hover {
-  background-color: #3a5287;
-}
-
 .btn-google {
   background-color: #DD4B39;
-}
-
-.btn-google:hover {
-  background-color: #c43421;
 }
 
 .btn-fenix {
   background-color: #19ACCD;
 }
 
-.btn-fenix:hover {
-  background-color: #1698b6;
+.btn-linkedIn {
+  background-color: #0077B5;
 }
 
 .btn {

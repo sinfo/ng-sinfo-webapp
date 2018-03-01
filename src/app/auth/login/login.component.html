@@ -13,23 +13,32 @@
     <br />
     <br />
 
-    <div class="row align-center">
-      <div class="col-md-4 col-xs-12">
+    <app-loading [content]="!submitting"></app-loading>
+
+    <div class="row align-center" *ngIf="!submitting">
+      <div class="col-md-3 col-xs-12">
         <button class="btn btn-facebook" (click)="onFacebookLogin()" [disabled]="!isFacebookActive">
           <i class="fa fa-facebook"></i>
           Sign in with Facebook
         </button>
       </div>
 
-      <div class="col-md-4 col-xs-12">
+      <div class="col-md-3 col-xs-12">
         <button id="google-signin" (click)="onGoogleLogin()" class="btn btn-google" [disabled]="!isGoogleActive">
           <i class="fa fa-google"></i>
           Sign in with Google
         </button>
       </div>
 
-      <div class="col-md-4 col-xs-12">
-        <a id="fenix-signin" href="{{ fenixUrlAuth }}" target="_blank" class="btn btn-fenix">
+      <div class="col-md-3 col-xs-12">
+        <a href="{{ linkedInUrlAuth }}" class="btn btn-linkedIn">
+          <i class="fa fa-linkedin"></i>
+          Sign in with LinkedIn
+        </a>
+      </div>
+
+      <div class="col-md-3 col-xs-12">
+        <a href="{{ fenixUrlAuth }}" class="btn btn-fenix">
           <i class="fa fa-graduation-cap"></i>
           Sign in with Fenix
         </a>

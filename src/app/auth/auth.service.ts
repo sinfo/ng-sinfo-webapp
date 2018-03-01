@@ -17,6 +17,7 @@ const httpOptions = {
 export class AuthService {
   private authUrl = environment.cannonUrl + '/auth'
   redirectUrl: string
+  linkedInState: string
 
   constructor (
     private http: HttpClient,
@@ -46,6 +47,14 @@ export class AuthService {
     .pipe(
       tap(cannonToken => cannonToken.loginWith = 'fenix'),
       catchError(this.handleError<CannonToken>('Fenix Login'))
+    )
+  }
+
+  linkedIn (code): Observable<CannonToken> {
+    return this.http.post<CannonToken>(`${this.authUrl}/linkedin`, { code }, httpOptions)
+    .pipe(
+      tap(cannonToken => cannonToken.loginWith = 'linkedIn'),
+      catchError(this.handleError<CannonToken>('LinkedIn Login'))
     )
   }
 
