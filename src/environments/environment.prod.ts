@@ -21,5 +21,9 @@ export const environment = {
   fenix: {
     clientId: '1132965128044545',
     redirectUrl: 'https://sinfo.org/login'
+  },
+  linkedIn: {
+    clientId: '78k3k77vq56igl',
+    redirectUrl: 'https://sinfo.org/login/linkedIn'
   }
 }

@@ -15,8 +15,15 @@ declare let gapi: any
 export class LoginComponent implements OnInit, AfterViewInit {
   isFacebookActive: boolean
   isGoogleActive: boolean
+
+  submitting = false
+
   fenixUrlAuth =
   `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${environment.fenix.clientId}&redirect_uri=${environment.fenix.redirectUrl}`
+
+  // tslint:disable-next-line:max-line-length
+  linkedInUrlAuth = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${environment.linkedIn.clientId}&redirect_uri=${environment.linkedIn.redirectUrl}&state=SINFO&scope=r_basicprofile%20r_emailaddress`
+
   private isLoggedIn = false
   private auth2: any
 
@@ -25,14 +32,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private authService: AuthService,
     public router: Router,
     private route: ActivatedRoute
-  ) {
-    this.route.queryParams.subscribe(params => {
-      const fenixCode = params['code']
-      if (fenixCode) {
-        this.onFenixLogin(fenixCode)
-      }
-    })
-  }
+  ) { }
 
   ngOnInit () {
     this.isLoggedIn = this.authService.isLoggedIn()
@@ -41,6 +41,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.router.navigate([`${this.authService.redirectUrl || '/me'}`])
       return
     }
+
+    this.route.queryParams.subscribe(params => {
+      const fenixCode = params['code']
+      if (fenixCode) {
+        this.onFenixLogin(fenixCode)
+      }
+    })
 
     this.isFacebookActive = (typeof (FB) !== 'undefined' && FB !== null)
     this.isGoogleActive = (typeof (gapi) !== 'undefined' && gapi !== null)
@@ -104,16 +111,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   onFenixLogin (fenixCode) {
-    console.log('onFenixLogin', fenixCode)
-    this.authService.fenix(fenixCode)
-      .subscribe(cannonToken => {
-        console.log('cannon ok ', cannonToken)
-        this.authService.setToken(cannonToken)
-        this.router.navigate([ `${this.authService.redirectUrl || '/me'}` ])
-      })
+    this.submitting = true
+    this.authService.fenix(fenixCode).subscribe(cannonToken => {
+      this.authService.setToken(cannonToken)
+      this.router.navigate([ `${this.authService.redirectUrl || '/me'}` ])
+    })
   }
 
   onGoogleLogin () {
+    this.submitting = true
     this.auth2.currentUser.listen(googleUser => {
       const profile = googleUser.getBasicProfile()
       const userId = profile.getId()
@@ -128,6 +134,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   onFacebookLogin () {
+    this.submitting = true
     FB.login(response => {
       this.facebookStatusChange(response)
     }, { scope: 'public_profile,email' })
