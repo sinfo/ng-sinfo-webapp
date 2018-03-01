@@ -104,6 +104,7 @@ export class CheckinComponent implements OnInit {
             type: Type.success
           })
         }
+
       }, err => {
         console.error('erro no check in', err)
       })
@@ -137,6 +138,7 @@ export class CheckinComponent implements OnInit {
     this.selectedSession = undefined
     this.users = []
     this.insideScannerMsg = undefined
+    this.submitLabel = undefined
   }
 
   updateInsideScannerMsg () {
@@ -146,7 +148,7 @@ export class CheckinComponent implements OnInit {
         msg: `${this.users[this.users.length - 1].name}`
       },
       {
-        title: 'Total',
+        title: 'Total:',
         msg: `${this.users.length}`
       }
     ]

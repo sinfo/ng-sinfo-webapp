@@ -5,12 +5,15 @@ import { environment } from './../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 import { AuthService } from '../../auth/auth.service'
-import { Achievement } from '../../achievements/achievement.model';
+import { Achievement } from '../../achievements/achievement.model'
+import { RedeemCode } from '../survey/redeem-code.model'
+import { SurveyService } from '../survey/survey.service'
+import { AchievementService } from '../../achievements/achievement.service'
 
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
-  styleUrls: [ './my-profile.component.css' ]
+  styleUrls: ['./my-profile.component.css']
 })
 
 export class MyProfileComponent implements OnInit {
@@ -20,12 +23,18 @@ export class MyProfileComponent implements OnInit {
   eventOcurring: boolean
   cvDownloadUrl: string
   achievements: Achievement[]
+  redeemCodes: Array<{
+    achievement: Achievement
+    id: string
+  }> = new Array()
 
-  constructor (
+  constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private authService: AuthService,
-    private zone: NgZone
+    private surveyService: SurveyService,
+    private zone: NgZone,
+    private achievementService: AchievementService
   ) {
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     /**
@@ -37,45 +46,79 @@ export class MyProfileComponent implements OnInit {
      */
     this.zone.run(() => {
       this.userService.getMe()
-      .subscribe(user => {
-        this.user = user
+        .subscribe(user => {
+          this.user = user
 
-        this.userService.isCVSubmited().subscribe(response => {
-          // TODO CANNON MUST RETURN 404 on no file
-          this.submitedCV = response && response.id
-        }, (error) => {
-          this.submitedCV = false
-        })
-
-        this.userService.getUserAchievements(user.id).subscribe(achievements => {
-          this.achievements = achievements
-        })
-
-        // if this user had company role in the previous edition,
-        // it will have a user role in the current edition
-
-        if (this.user.role === 'company') {
-          let company = this.user.company
-          let companyFound = company.find(c => {
-            return c.edition === environment.currentEvent
+          this.userService.isCVSubmited().subscribe(response => {
+            // TODO CANNON MUST RETURN 404 on no file
+            this.submitedCV = response && response.id
+          }, (error) => {
+            this.submitedCV = false
           })
 
-          if (!companyFound) {
-            this.userService.demoteSelf()
-              .subscribe(newUser => this.user = newUser)
-          } else {
-            this.companyService.getCompany(companyFound.company)
-              .subscribe(c => this.company = c)
-          }
-        }
+          this.userService.getUserAchievements(user.id).subscribe(achievements => {
+            this.achievements = achievements
 
-      })
+            this.surveyService.getMyRedeemCodes()
+              .subscribe(myRedeemCodes => {
+                if (!myRedeemCodes || myRedeemCodes.length === 0) { return }
+                this.achievementService.getAchievements()
+                  .subscribe(allAchievements => {
+                    let redeemCodes = []
+                    myRedeemCodes.forEach(redeemCode => {
+
+                      // in the case of multiple check-ins of the same person in a session,
+                      // we only show redeem codes for different achievements
+
+                      if (redeemCodes.find(rc => {
+                        return rc.achievement.id === redeemCode.achievement
+                      })) { return }
+
+                      let wantedAchievement = allAchievements.find(a => {
+                        return a.id === redeemCode.achievement
+                      })
+
+                      if (!wantedAchievement) { return }
+
+                      let newRedeemCode = {
+                        achievement: wantedAchievement,
+                        id: redeemCode.id
+                      }
+
+                      if (wantedAchievement) {
+                        redeemCodes.push(newRedeemCode)
+                        this.redeemCodes.push(newRedeemCode)
+                      }
+                    })
+                  })
+              })
+
+            // if this user had company role in the previous edition,
+            // it will have a user role in the current edition
+
+          })
+
+          if (this.user.role === 'company') {
+            let company = this.user.company
+            let companyFound = company.find(c => {
+              return c.edition === environment.currentEvent
+            })
+
+            if (!companyFound) {
+              this.userService.demoteSelf()
+                .subscribe(newUser => this.user = newUser)
+            } else {
+              this.companyService.getCompany(companyFound.company)
+                .subscribe(c => this.company = c)
+            }
+          }
+        })
     })
   }
 
-  ngOnInit () { }
+  ngOnInit() { }
 
-  uploadCV (event) {
+  uploadCV(event) {
     let fileList: FileList = event.target.files
     if (fileList.length > 0) {
       let file: File = fileList[0]

@@ -33,6 +33,20 @@ export class SurveyService {
       )
   }
 
+  getMyRedeemCodes () {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<RedeemCode[]>(`${environment.cannonUrl}/redeem/me`, httpOptions)
+      .pipe(
+        catchError(this.handleError<any>('getMyRedeemCodes'))
+      )
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

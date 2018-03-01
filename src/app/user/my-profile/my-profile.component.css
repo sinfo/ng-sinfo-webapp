@@ -123,6 +123,10 @@ div.achivements-wrapper img.achievement {
   margin-bottom: 10px;
 }
 
+.mini-achievement {
+  max-width: 50px;
+}
+
 @media (max-width: 990px){
   .qrcode-wrapper {
     flex-flow: column;

@@ -34,10 +34,10 @@
                 <img *ngIf="user.role === 'team'" class="mini-image" src="https://static.sinfo.org/SINFO_25/powerOn.png">
                 <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
               </div>
-              <div class="mini-portrait-wrapper"
-                  *ngIf="user.role === 'user' && user.points">
-              <h2>{{user.points.total ? user.points.total : 0}}</h2> <span class="lead">points</span>
-            </div>
+              <div class="mini-portrait-wrapper" *ngIf="user.role === 'user' && user.points">
+                <h2>{{user.points.total ? user.points.total : 0}}</h2>
+                <span class="lead">points</span>
+              </div>
             </div>
           </div>
         </div>
@@ -61,8 +61,7 @@
             </div>
           </div>
 
-          <a *ngIf="submitedCV" href="{{ cvDownloadUrl }}"
-            target="_blank" class="btn btn-info">
+          <a *ngIf="submitedCV" href="{{ cvDownloadUrl }}" target="_blank" class="btn btn-info">
             <span class="glyphicon glyphicon-cloud-download"></span>
             Download your CV
           </a>
@@ -84,6 +83,24 @@
       <div class="row" *ngIf="user.skills.length && user.role !== 'company'">
         <h5>Skills </h5>
         <p>{{user.skills.join(', ')}}</p>
+      </div>
+
+      <div class="row" *ngIf="redeemCodes && redeemCodes.length > 0">
+        <div class="col-sm-12 align-center">
+          <div class="alert-message cv-alert">
+            <div class="alert alert-info" role="alert">
+              You have pending surveys. Fill the surveys to obtain the achievements.
+
+              <div class="mini-achivements">
+                <span *ngFor="let redeemCode of redeemCodes">
+                  <img class="mini-achievement" routerLink="/survey/{{redeemCode.id}}" src="{{redeemCode.achievement.img}}" alt="{{redeemCode.achievement.name}}"
+                    title="{{redeemCode.achievement.name}}">
+                </span>
+              </div>
+              
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="row" *ngIf="achievements && achievements.length > 0  && user.role !== 'company'">
