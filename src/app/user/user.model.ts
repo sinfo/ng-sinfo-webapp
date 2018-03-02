@@ -13,6 +13,7 @@ export class User {
     {
       day: string,
       edition: string,
+      redeemed: boolean,
       signatures: [string]
     }
   ]
