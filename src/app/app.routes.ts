@@ -30,18 +30,20 @@ import { SurveyComponent } from './user/survey/survey.component'
 import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 import { CheckinComponent } from './user/checkin/checkin.component'
 import { LinkedInLoginComponent } from './auth/login/linkedin.component'
+import { ValidateCardComponent } from './user/validate-card/validate-card.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'signature', component: SignatureComponent, canActivate: [ AuthGuard ] },
   { path: 'card', component: CardComponent, canActivate: [ AuthGuard ] },
+  { path: 'validate-card', component: ValidateCardComponent, canActivate: [ AuthGuard ] },
   { path: 'checkin', component: CheckinComponent, canActivate: [ AuthGuard ] },
   { path: 'achievements', component: AchievementsComponent },
   { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
   { path: 'achievement/:id', component: AchievementComponent },
   { path: 'live', component: LiveComponent },
   { path: 'qrcode', component: QrcodeScannerComponent },
-  { path: 'promote', component: PromoteComponent },
+  { path: 'promote', component: PromoteComponent, canActivate: [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
   { path: 'login/linkedIn', component: LinkedInLoginComponent },
   { path: 'register', component: LoginComponent },
@@ -51,7 +53,7 @@ const routes: Routes = [
   { path: 'links/link', component: LinkComponent, canActivate: [ AuthGuard ] },
   { path: 'links/my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
   { path: 'workshops/register', component: WorkshopsComponent },
-  { path: 'workshops/my-workshops', component: MyWorkshopsComponent },
+  { path: 'workshops/my-workshops', component: MyWorkshopsComponent, canActivate: [ AuthGuard ] },
   { path: 'workshops/workshops-status', component: WorkshopsStatusComponent },
   { path: 'all-sponsors', component: SponsorsComponent },
   { path: 'scoreboard', component: ScoreboardComponent },

@@ -1,0 +1,15 @@
+<app-menu></app-menu>
+
+<app-loading [content]="user"></app-loading>
+
+<div class="sidebar-wrapper" *ngIf="user">
+
+  <app-sidebar [user]="user"></app-sidebar>
+
+  <div id="content" class="container-fluid">
+    <div class="align-center">
+      <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title">
+      </app-qrcode-scanner>
+    </div>
+  </div>
+</div>

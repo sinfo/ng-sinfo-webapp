@@ -183,6 +183,23 @@ export class UserService {
     )
   }
 
+  validateCard (id: string): Observable<User> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+    const payload = {
+      editionId: environment.currentEvent,
+      day: new Date().getDate().toString()
+    }
+
+    return this.http.post<User>(`${this.usersUrl}/${id}/redeem-card`, payload, httpOptions)
+    .pipe(
+      catchError(this.handleError<User>(`validating users card`))
+    )
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

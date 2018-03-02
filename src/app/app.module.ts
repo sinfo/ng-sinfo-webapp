@@ -67,6 +67,7 @@ import { SignatureService } from './user/signature/signature.service'
 import { CheckinComponent } from './user/checkin/checkin.component'
 import { SessionCannonService } from './session/session-cannon.service'
 import { LinkedInLoginComponent } from './auth/login/linkedin.component'
+import { ValidateCardComponent } from './user/validate-card/validate-card.component'
 
 @NgModule({
   declarations: [
@@ -108,7 +109,8 @@ import { LinkedInLoginComponent } from './auth/login/linkedin.component'
     ScoreboardComponent,
     CheckinComponent,
     LiveComponent,
-    LinkedInLoginComponent
+    LinkedInLoginComponent,
+    ValidateCardComponent
   ],
   imports: [
     BrowserModule,
