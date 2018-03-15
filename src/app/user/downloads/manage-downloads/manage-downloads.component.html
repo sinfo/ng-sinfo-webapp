@@ -1,0 +1,40 @@
+<app-menu></app-menu>
+
+<app-loading [content]="me"></app-loading>
+
+<div class="sidebar-wrapper" *ngIf="me">
+
+  <app-sidebar [user]="me"></app-sidebar>
+
+  <div id="content" class="container">
+    <div class="align-center">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Manage Downloads</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h6 class="lead">
+            Here we are able to track the state of the download enpoints.
+            <br>Here one is able to create new ones and also edit existing ones.
+          </h6>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 typeahead">
+          <h6 class="lead">
+            Would be could to use this to select single companies
+          </h6>
+          <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
+            (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="Search for company" [inputFormatter]="formatter"
+            [resultFormatter]="formatter" [resultTemplate]="rt" />
+        </div>
+      </div>
+
+      TODO Add date picker, `select all companies` button
+    </div>
+  </div>
+</div>

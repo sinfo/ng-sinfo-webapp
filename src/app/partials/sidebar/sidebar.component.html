@@ -12,6 +12,18 @@
           My Profile
         </a>
       </li>
+      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/downloads')}">
+        <a routerLink="/downloads">
+          <i class="glyphicon glyphicon-paperclip"></i>
+          Download CVs
+        </a>
+      </li>
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/downloads/manage')}">
+        <a routerLink="/downloads/manage">
+          <i class="glyphicon glyphicon-paperclip"></i>
+          Manage Downloads
+        </a>
+      </li>
       <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/signature')}">
         <a routerLink="/signature">
           <i class="fa fa-check"></i>
@@ -73,13 +85,13 @@
           Validate Card
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/promote')}">
+      <li *ngIf="user && user.role === 'team' && eventOcurring" [ngClass]="{'active': detectLocation('/promote')}">
         <a routerLink="/promote">
           <i class="glyphicon glyphicon-king"></i>
           Promote
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/checkin')}">
+      <li *ngIf="user && user.role === 'team' && eventOcurring" [ngClass]="{'active': detectLocation('/checkin')}">
         <a routerLink="/checkin">
           <i class="glyphicon glyphicon-qrcode"></i>
           Check-in

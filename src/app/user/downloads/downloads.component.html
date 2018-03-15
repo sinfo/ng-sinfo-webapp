@@ -1,0 +1,52 @@
+<app-menu></app-menu>
+
+<app-loading [content]="me && company"></app-loading>
+
+<div class="sidebar-wrapper" *ngIf="me && company">
+
+  <app-sidebar [user]="me"></app-sidebar>
+
+  <div id="content" class="container">
+    <div class="align-center">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3>Download CVs</h3>
+          <h6>{{company.name}}</h6>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="portrait-wrapper">
+            <img class="portrait" src="{{company.img}}">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h6 class="lead">
+            Bellow you will be able to download the CVs of all attendees
+            <br> including your company's links'.
+          </h6>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <a href="{{ cvsDownloadUrl }}" target="_blank" class="btn btn-info">
+            <span class="glyphicon glyphicon-cloud-download"></span>
+            Download CVs
+          </a>
+        </div>
+        <div class="col-sm-12">
+          <a  href="{{ linksCVsDownloadUrl }}" target="_blank" class="btn btn-info">
+            <span class="glyphicon glyphicon-link"></span>
+            Download Links' CVs
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -68,6 +68,9 @@ import { CheckinComponent } from './user/checkin/checkin.component'
 import { SessionCannonService } from './session/session-cannon.service'
 import { LinkedInLoginComponent } from './auth/login/linkedin.component'
 import { ValidateCardComponent } from './user/validate-card/validate-card.component'
+import { EndpointService } from './endpoints/endpoint.service'
+import { DownloadsComponent } from './user/downloads/downloads.component'
+import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
 
 @NgModule({
   declarations: [
@@ -110,7 +113,9 @@ import { ValidateCardComponent } from './user/validate-card/validate-card.compon
     CheckinComponent,
     LiveComponent,
     LinkedInLoginComponent,
-    ValidateCardComponent
+    ValidateCardComponent,
+    DownloadsComponent,
+    ManageDownloadsComponent
   ],
   imports: [
     BrowserModule,
@@ -140,7 +145,8 @@ import { ValidateCardComponent } from './user/validate-card/validate-card.compon
     SurveyService,
     SignatureService,
     ScoreboardService,
-    SessionCannonService
+    SessionCannonService,
+    EndpointService
   ],
   bootstrap: [AppComponent]
 })
