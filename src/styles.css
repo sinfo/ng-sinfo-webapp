@@ -6602,3 +6602,78 @@ div.clear input.btn:hover {
 .header + div {
   position: relative;
 }
+
+/* manage-downloads */
+.manage-downloads .custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+.manage-downloads .custom-day.focused {
+  background-color: #e6e6e6;
+}
+.manage-downloads .custom-day.range,
+.manage-downloads .custom-day:hover {
+  background-color: rgb(2, 117, 216);
+  color: white;
+}
+.manage-downloads .custom-day.faded {
+  background-color: rgba(2, 117, 216, 0.5);
+}
+.manage-downloads ngb-datepicker {
+  outline: none;
+}
+.manage-downloads .ngb-dp-arrow .btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s;
+  width: 50%;
+  font-weight: 400;
+  color: #007bff !important;
+  background-color: transparent;
+  min-width: auto;
+}
+.manage-downloads .ngb-dp-arrow .btn:hover {
+  color: #23527c !important;
+}
+.manage-downloads .typeahead {
+  min-width: 200px;
+}
+.manage-downloads .typeahead input {
+  font-size: 14px;
+  font-family: "PT Sans";
+}
+.manage-downloads .typeahead button {
+  width: 100%;
+  padding: 13px;
+  margin: auto;
+  padding: 20px;
+  line-height: 2px;  
+  border: 0;
+  border-bottom: 1px solid;
+  border-color: #018ae6;
+  font-family: "PT Sans";
+}
+.manage-downloads .typeahead button:hover {
+  background: #e9e9e9;
+}
+.manage-downloads .dropdown-menu {
+  width: 100%;
+  margin: 0px;
+  position: initial !important;
+}
+/* manage-downloads end */

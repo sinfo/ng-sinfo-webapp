@@ -71,6 +71,7 @@ import { ValidateCardComponent } from './user/validate-card/validate-card.compon
 import { EndpointService } from './endpoints/endpoint.service'
 import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
+import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { ManageDownloadsComponent } from './user/downloads/manage-downloads/mana
     LinkedInLoginComponent,
     ValidateCardComponent,
     DownloadsComponent,
-    ManageDownloadsComponent
+    ManageDownloadsComponent,
+    DownloadsStatusComponent
   ],
   imports: [
     BrowserModule,

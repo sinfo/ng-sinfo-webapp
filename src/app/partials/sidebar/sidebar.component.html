@@ -18,11 +18,19 @@
           Download CVs
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/downloads/manage')}">
-        <a routerLink="/downloads/manage">
+      <li *ngIf="user && user.role === 'team'">
+        <a href="#downloadsSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/downloads') }}">
           <i class="glyphicon glyphicon-paperclip"></i>
           Manage Downloads
         </a>
+        <ul class="collapse list-unstyled" id="downloadsSubmenu" [ngClass]="{'in': detectLocation('/downloads'), 'collapse': !detectLocation('/downloads')}">
+          <li [ngClass]="{'active': detectLocation('/downloads/status')}">
+            <a routerLink="/downloads/status">Endpoints Status</a>
+          </li>
+          <li [ngClass]="{'active': detectLocation('/downloads/manage')}">
+            <a routerLink="/downloads/manage">Create Endpoints</a>
+          </li>
+        </ul>
       </li>
       <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/signature')}">
         <a routerLink="/signature">

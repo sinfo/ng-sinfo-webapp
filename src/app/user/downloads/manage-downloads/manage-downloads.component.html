@@ -6,35 +6,68 @@
 
   <app-sidebar [user]="me"></app-sidebar>
 
-  <div id="content" class="container">
-    <div class="align-center">
-      <div class="row">
-        <div class="col-sm-12">
-          <h3>Manage Downloads</h3>
-        </div>
+  <div id="content" class="container manage-downloads">
+    <div class="row">
+      <div class="col-sm-12 align-center">
+        <h3>Create Download Endpoints</h3>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-sm-12">
-          <h6 class="lead">
-            Here we are able to track the state of the download enpoints.
-            <br>Here one is able to create new ones and also edit existing ones.
-          </h6>
-        </div>
+    <div class="row">
+      <div class="col-sm-12 align-center">
+        <h6 class="lead">
+          Sinfo members must create the enpoints to allow companies
+          <br> to download the CVs Zip files.
+        </h6>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-xs-12 typeahead">
-          <h6 class="lead">
-            Would be could to use this to select single companies
-          </h6>
+    <div class="row">
+      <div class="col-sm-12 align-center">
+        <h6 class="lead">
+          <b>First:</b> Select which companies you are creating endpoints to.
+        </h6>
+      </div>
+      <div class="col-sm-12 select-companies-wrapper">
+        <div class="align-center select-companies btn-group btn-group-toggle">
+          <label class="btn-primary" ngbButtonLabel>
+            <input type="checkbox" ngbButton [(ngModel)]="allCompanies"> Select All Companies
+          </label>
+        </div>
+        <div class="typeahead">
           <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
-            (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="Search for company" [inputFormatter]="formatter"
-            [resultFormatter]="formatter" [resultTemplate]="rt" />
+            (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="Select multiple companies" [inputFormatter]="formatter"
+            [resultFormatter]="formatter" [resultTemplate]="rt" disabled/>
         </div>
       </div>
+    </div>
 
-      TODO Add date picker, `select all companies` button
+    <div class="row align-center">
+      <div class="col-sm-12">
+        <h6 class="lead">
+          <b>Second:</b> Select the period these endpoints will be open.
+        </h6>
+
+        <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
+        </ngb-datepicker>
+
+        <ng-template #t let-date="date" let-focused="focused">
+          <span class="custom-day" [class.focused]="focused" [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 create-endpoints align-center">
+        <button class="btn btn-success" (click)="createEndpoints()" [disabled]="loading">
+          <span *ngIf="loading">
+            <i class="fa fa-circle-o-notch fa-spin"></i></span>
+          Create Endpoints
+        </button>
+      </div>
     </div>
   </div>
 </div>

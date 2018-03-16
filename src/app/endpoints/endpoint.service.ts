@@ -34,17 +34,17 @@ export class EndpointService {
       return of(this.endpoints)
     }
 
-    return this.http.get<Endpoint[]>(this.endpointsUrl, { params: this.params })
+    return this.http.get<Endpoint[]>(this.endpointsUrl, { params: this.params, headers: this.headers })
       .pipe(
       tap(endpoints => this.endpoints = endpoints),
       catchError(this.handleError<Endpoint[]>('getEndpoints', []))
       )
   }
 
-  getEndpoint (companyId: string, editionId: string): Observable<Endpoint> {
+  getEndpoint (companyId: string): Observable<Endpoint> {
     if (this.endpoints) {
       return of(this.endpoints.find(c => {
-        return c.company === companyId && c.edition === editionId
+        return c.company === companyId && c.edition === environment.currentEvent
       }))
     }
 
@@ -57,10 +57,10 @@ export class EndpointService {
     )
   }
 
-  createEndpoints (companies: string[], edition: string, from: Date, to: Date): Observable<Endpoint[]> {
+  createEndpoints (companies: string[], from: Date, to: Date): Observable<Endpoint[]> {
     return this.http.post<Endpoint[]>(`${this.endpointsUrl}`, {
       companies,
-      edition,
+      edition: environment.currentEvent,
       validaty: {
         from,
         to
@@ -71,7 +71,7 @@ export class EndpointService {
     )
   }
 
-  updateEndpoint (companyId: string, edition: string, from: Date, to: Date): Observable<Endpoint> {
+  updateEndpoint (companyId: string, from: Date, to: Date): Observable<Endpoint> {
     return this.http.post<Endpoint>(`${this.endpointsUrl}/${companyId}`, {
       validaty: {
         from,
@@ -86,7 +86,7 @@ export class EndpointService {
     )
   }
 
-  deleteEndpoint (companyId: string, edition: string): Observable<Endpoint> {
+  deleteEndpoint (companyId: string): Observable<Endpoint> {
     return this.http.delete<Endpoint>(`${this.endpointsUrl}/${companyId}`, {
       headers: this.headers,
       params: this.params
@@ -106,7 +106,7 @@ export class EndpointService {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `CompanyService: ${operation}`,
-        showAlert: false,
+        showAlert: true,
         text: error.message,
         type: Type.error
       })
