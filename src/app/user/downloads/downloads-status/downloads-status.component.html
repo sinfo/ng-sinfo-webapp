@@ -1,0 +1,63 @@
+<app-menu></app-menu>
+
+<app-loading [content]="endpoints && hasCompanies"></app-loading>
+
+<div class="sidebar-wrapper" *ngIf="endpoints && hasCompanies">
+
+  <app-sidebar [user]="me"></app-sidebar>
+
+  <div id="content" class="container downloads-status">
+    <div class="row">
+      <div class="col-sm-12 align-center">
+        <h3>Endpoints Status</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 align-center">
+        <h6 class="lead">
+          Here we are able to track the state of the download enpoints.
+        </h6>
+      </div>
+    </div>
+
+    <div *ngIf="!endpoints.length"class="row">
+      <div class="col-sm-12 align-center">
+        <h6 class="lead">
+          At the moment there are no endpoints.
+          <br> No one has access to CVs.
+        </h6>
+      </div>
+    </div>
+
+    <div *ngIf="endpoints.length" class="row">
+      <div class="col-sm-12 endpoints-wrapper">
+        <div *ngFor="let endpoint of endpoints" class="endpoint align-center" [ngStyle]="{ 'background-image': 'url(' + companies[endpoint.company].img + ')'}">
+          <div class="shade">
+            <h6 class="company-name">{{companies[endpoint.company].name}}</h6>
+            <h6 class="visited lead">
+              Visited
+              <b>{{endpoint.visited}}</b> times
+            </h6>
+            <p class="validaty lead">
+              Validaty
+            </p>
+            <p>
+              <b>From:</b> {{endpoint.validaty.from | date:'fullDate'}}
+              <br>
+              <b>To:</b> {{endpoint.validaty.to | date:'fullDate'}}
+            </p>
+            <button class="btn btn-danger" (click)="removeEndpoint(endpoint.company)">
+              Delete Endpoint
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 align-center">
+        <button class="btn btn-danger" (click)="removeAllEndpoints()">
+          Delete ALL Endpoints
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.btn {
+  margin: 0;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  min-width: 250px;
+  padding: 15px;
+  font-size: 12px;;
+}
+.btn-info {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.portrait-wrapper img {
+  max-width: 120px;
+}

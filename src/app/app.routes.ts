@@ -31,6 +31,9 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 import { CheckinComponent } from './user/checkin/checkin.component'
 import { LinkedInLoginComponent } from './auth/login/linkedin.component'
 import { ValidateCardComponent } from './user/validate-card/validate-card.component'
+import { DownloadsComponent } from './user/downloads/downloads.component'
+import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
+import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -50,6 +53,9 @@ const routes: Routes = [
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
+  { path: 'downloads/download', component: DownloadsComponent, canActivate: [ AuthGuard ] },
+  { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [ AuthGuard ] },
+  { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [ AuthGuard ] },
   { path: 'links/link', component: LinkComponent, canActivate: [ AuthGuard ] },
   { path: 'links/my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
   { path: 'workshops/register', component: WorkshopsComponent },
