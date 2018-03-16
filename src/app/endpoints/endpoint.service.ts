@@ -67,6 +67,7 @@ export class EndpointService {
       }
     }, { headers: this.headers })
     .pipe(
+      tap(endpoints => this.endpoints = endpoints),
       catchError(this.handleError<Endpoint[]>('createEndpoints'))
     )
   }
@@ -92,6 +93,9 @@ export class EndpointService {
       params: this.params
     })
     .pipe(
+      tap(endpoint => this.endpoints = this.endpoints.filter(e => {
+        return e.company !== endpoint.company && e.edition !== endpoint.edition
+      })),
       catchError(this.handleError<Endpoint>('deleteEndpoints'))
     )
   }

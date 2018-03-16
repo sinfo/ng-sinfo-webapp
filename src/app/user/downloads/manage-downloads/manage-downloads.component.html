@@ -31,14 +31,38 @@
       <div class="col-sm-12 select-companies-wrapper">
         <div class="align-center select-companies btn-group btn-group-toggle">
           <label class="btn-primary" ngbButtonLabel>
-            <input type="checkbox" ngbButton [(ngModel)]="allCompanies"> Select All Companies
+            <input type="checkbox" ngbButton [(ngModel)]="selectAllCompanies"> Select All Companies
           </label>
         </div>
         <div class="typeahead">
-          <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany" [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)"
-            (click)="click$.next($event.target.value)" #instance="ngbTypeahead" placeholder="Select multiple companies" [inputFormatter]="formatter"
-            [resultFormatter]="formatter" [resultTemplate]="rt" disabled/>
+          <input id="typeahead-template" #input type="text" class="form-control" 
+            #instance="ngbTypeahead" placeholder="Select multiple companies" 
+            (focus)="focus$.next($event.target.value)"
+            (click)="click$.next($event.target.value)" 
+            (selectItem)="selectedItem($event); input.value='' "
+            [(ngModel)]="searchedCompany" 
+            [ngbTypeahead]="search" 
+            [inputFormatter]="formatter"
+            [resultFormatter]="formatter" 
+            [resultTemplate]="rt"/>
+          <ng-template #rt let-r="result" let-t="term">
+            <p>{{r.name}}</p>
+            <span class="btn-primary glyphicon glyphicon-plus"></span>
+          </ng-template>
         </div>
+      </div>
+      <div *ngIf="selectedCompanies.length > 0 && !selectAllCompanies" class="col-sm-12 align-center">
+        <h6 class="lead selected-list">
+          Selected Companies
+        </h6>
+        <ul class="selected-list">
+          <li *ngFor="let c of selectedCompanies">
+            <span class="label" (click)="removeSelected(c)">
+              {{c.name}}
+              <span class="glyphicon glyphicon-trash"></span>
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
 
@@ -62,9 +86,11 @@
 
     <div class="row">
       <div class="col-sm-12 create-endpoints align-center">
-        <button class="btn btn-success" (click)="createEndpoints()" [disabled]="loading">
+        <button class="btn btn-success" (click)="createEndpoints()" 
+        [disabled]="loading || !fromDate || !toDate || ( !selectedCompanies.length > 0 && !selectAllCompanies )">
           <span *ngIf="loading">
-            <i class="fa fa-circle-o-notch fa-spin"></i></span>
+            <i class="fa fa-circle-o-notch fa-spin"></i>
+          </span>
           Create Endpoints
         </button>
       </div>

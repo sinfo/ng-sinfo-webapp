@@ -12,8 +12,8 @@
           My Profile
         </a>
       </li>
-      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/downloads')}">
-        <a routerLink="/downloads">
+      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/downloads/download')}">
+        <a routerLink="/downloads/download">
           <i class="glyphicon glyphicon-paperclip"></i>
           Download CVs
         </a>
@@ -24,6 +24,9 @@
           Manage Downloads
         </a>
         <ul class="collapse list-unstyled" id="downloadsSubmenu" [ngClass]="{'in': detectLocation('/downloads'), 'collapse': !detectLocation('/downloads')}">
+          <li [ngClass]="{'active': detectLocation('/downloads/download')}">
+            <a routerLink="/downloads/download">Download CVs</a>
+          </li>
           <li [ngClass]="{'active': detectLocation('/downloads/status')}">
             <a routerLink="/downloads/status">Endpoints Status</a>
           </li>

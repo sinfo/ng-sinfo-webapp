@@ -1,5 +1,5 @@
 #content {
-  height: 100%;
+    height: 100%;
   padding-bottom: 10vh;
   flex-direction: column;
 }
@@ -45,4 +45,32 @@ button.btn-success {
   color: #fff;
   background-color: #0062cc;
   border-color: #005cbf;
+}
+h6.selected-list {
+  margin-bottom: 10px;
+}
+ul.selected-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+ul.selected-list {
+  margin: 5px;
+}
+ul.selected-list li .label{
+  padding: 0.4em .7em .4em;
+  font-size: 13px;
+  background-color: #0062cc;
+  border-color: #005cbf;
+  font-weight: 600;
+  cursor: pointer;
+}
+ul.selected-list li .label:hover{
+  box-shadow: inset 0 65px 0 rgba(255, 255, 255, 0.16);
+}
+ul.selected-list li .label span{
+  margin-left: 2px;
+}
+ul.selected-list li .label:hover span{
+  font-weight: 700;
 }

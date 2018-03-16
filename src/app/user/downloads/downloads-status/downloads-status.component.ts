@@ -51,14 +51,17 @@ export class DownloadsStatusComponent implements OnInit {
 
   removeEndpoint = (id: string) => {
     this.endpointService.deleteEndpoint(id).subscribe(e => {
-      console.log(e)
+      this.endpoints = this.endpoints.filter(endpoint => { return endpoint.company !== id })
     })
   }
 
   removeAllEndpoints = () => {
     this.endpoints.forEach(c => {
+      this.endpoints = []
       this.endpointService.deleteEndpoint(c.company).subscribe(e => {
-        console.log(e)
+      // tslint:disable-next-line:handle-callback-err
+      }, (err) => {
+        this.endpoints.push(c)
       })
     })
   }

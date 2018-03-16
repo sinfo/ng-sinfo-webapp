@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 
-<app-loading [content]="me && company"></app-loading>
+<app-loading [content]="me"></app-loading>
 
-<div class="sidebar-wrapper" *ngIf="me && company">
+<div class="sidebar-wrapper" *ngIf="me">
 
   <app-sidebar [user]="me"></app-sidebar>
 
@@ -11,14 +11,15 @@
       <div class="row">
         <div class="col-sm-12">
           <h3>Download CVs</h3>
-          <h6>{{company.name}}</h6>
+          <h6 *ngIf="company">{{company.name}}</h6>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-12">
           <div class="portrait-wrapper">
-            <img class="portrait" src="{{company.img}}">
+            <img *ngIf="company" class="portrait" src="{{company.img}}">
+            <img *ngIf="me && me.role==='team'" class="portrait" src="https://static.sinfo.org/SINFO_25/powerOn.png">
           </div>
         </div>
       </div>
@@ -39,8 +40,8 @@
             Download CVs
           </a>
         </div>
-        <div class="col-sm-12">
-          <a  href="{{ linksCVsDownloadUrl }}" target="_blank" class="btn btn-info">
+        <div *ngIf="me && me.role === 'company'" class="col-sm-12">
+          <a href="{{ linksCVsDownloadUrl }}" target="_blank" class="btn btn-info">
             <span class="glyphicon glyphicon-link"></span>
             Download Links' CVs
           </a>

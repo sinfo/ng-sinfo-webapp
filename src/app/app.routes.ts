@@ -53,7 +53,7 @@ const routes: Routes = [
   { path: 'me', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
-  { path: 'downloads', component: DownloadsComponent, canActivate: [ AuthGuard ] },
+  { path: 'downloads/download', component: DownloadsComponent, canActivate: [ AuthGuard ] },
   { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [ AuthGuard ] },
   { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [ AuthGuard ] },
   { path: 'links/link', component: LinkComponent, canActivate: [ AuthGuard ] },

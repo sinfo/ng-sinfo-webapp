@@ -10,3 +10,6 @@
   background-color: #428bca;
   border-color: #357ebd;
 }
+.portrait-wrapper img {
+  max-width: 120px;
+}

@@ -37,8 +37,8 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
 export class ManageDownloadsComponent implements OnInit {
 
   companies: Company[]
-  searchedCompany: Company
-  allCompanies = true
+  selectedCompanies: Company[] = []
+  selectAllCompanies = false
   me: User
   hoveredDate: NgbDateStruct
   fromDate: NgbDateStruct
@@ -66,13 +66,6 @@ export class ManageDownloadsComponent implements OnInit {
       .merge(this.click$.filter(() => !this.instance.isPopupOpen()))
       .map(term => (term === '' ? this.companies : this.companies
         .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1)))
-
-  validCompany (): boolean {
-    if (!this.companies || !this.searchedCompany) return false
-    return this.companies.find(c => {
-      return c.id === this.searchedCompany.id
-    }) !== undefined
-  }
 
   onDateChange (date: NgbDateStruct) {
     if (!this.fromDate && !this.toDate) {
@@ -105,23 +98,37 @@ export class ManageDownloadsComponent implements OnInit {
       })
   }
 
-  createEndpoints (): void {
-    this.loading = true
-    let companies = []
-    if (this.allCompanies) {
-      companies = this.companies && this.companies.map(c => { return c.id })
+  selectedItem ($event) {
+    $event.preventDefault()
+    if (!~this.selectedCompanies.indexOf($event.item)) {
+      this.selectedCompanies.push($event.item)
     }
-    console.log(companies, new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day), this.toDate)
+  }
+
+  removeSelected (c: Company) {
+    this.selectedCompanies = this.selectedCompanies.filter(company => { return company.id !== c.id })
+  }
+
+  createEndpoints (): void {
+    if (!this.fromDate || !this.toDate) {
+      return
+    }
+
+    this.loading = true
+
+    let _companies = []
+    _companies = this.selectAllCompanies ? this.companies : this.selectedCompanies
+    _companies = _companies.map(c => { return c.id })
+
     this.enpointService.createEndpoints(
-      companies,
+      _companies,
       new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day),
       new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day, 23, 59, 59)
      ).subscribe(endpoints => {
-       console.log(endpoints)
        this.loading = false
        this.router.navigate(['/downloads/status'])
-     // tslint:disable-next-line:handle-callback-err
      }, err => {
+       console.log(err)
        this.loading = false
      })
   }
