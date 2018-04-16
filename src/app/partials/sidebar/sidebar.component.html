@@ -96,7 +96,7 @@
           Validate Card
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team' && eventOcurring" [ngClass]="{'active': detectLocation('/promote')}">
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/promote')}">
         <a routerLink="/promote">
           <i class="glyphicon glyphicon-king"></i>
           Promote
