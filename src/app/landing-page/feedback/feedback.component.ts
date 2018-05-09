@@ -13,7 +13,10 @@ export class FeedbackComponent implements OnInit {
   constructor () { }
 
   ngOnInit () {
-    this.show = !environment.eventOcurring
+    let eventOcurring: boolean = environment.begin !== null && environment.end !== null ?
+      new Date() >= environment.begin && new Date() <= environment.end
+      : false
+    this.show = !eventOcurring
   }
 
 }

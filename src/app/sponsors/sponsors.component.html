@@ -1,6 +1,6 @@
 <app-menu *ngIf="showAll"></app-menu>
 
-<section id="sponsors" class="section align-center">
+<section *ngIf="sponsors && sponsors.length > 0" id="sponsors" class="section align-center">
 
   <div class="container">
     <span class="icon section-icon icon-documents-bookmarks-12"></span>

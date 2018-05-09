@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   deckUrl: 'https://deck.sinfo.org',
   cannonUrl: 'https://cannon.sinfo.org',
-  currentEvent: '25-sinfo',
+  currentEvent: '26-sinfo',
   themes: [
     'Software',
     'Multimedia',
@@ -10,7 +10,10 @@ export const environment = {
     'Games',
     'Web'
   ],
-  eventOcurring: new Date() >= new Date(2018, 1, 26) && new Date() <= new Date(2018, 2, 4, 23, 59, 59),
+  // begin: new Date(2018, 4, 10), // watch out: months begin in 0
+  // end: new Date(2018, 4, 14, 23, 59, 59),
+  begin: null,
+  end: null,
   signaturesCardCapacity: 10,
   facebook: {
     appId: '708252219264170'

@@ -1,4 +1,4 @@
-<section id="speakers" class="section align-center">
+<section *ngIf="speakers && speakers.length > 0" id="speakers" class="section align-center">
 
   <div class="container">
     <span class="icon section-icon icon-faces-users-03"></span>
@@ -37,7 +37,7 @@
       </app-loading>
     </div>
 
-    <div *ngIf="speakers">
+    <div>
 
       <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
         <div class="speaker">

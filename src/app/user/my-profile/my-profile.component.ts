@@ -20,7 +20,6 @@ export class MyProfileComponent implements OnInit {
   user: User
   company: Company
   submitedCV: boolean
-  eventOcurring: boolean
   cvDownloadUrl: string
   achievements: Achievement[]
   redeemCodes: Array<{
@@ -28,7 +27,7 @@ export class MyProfileComponent implements OnInit {
     id: string
   }> = new Array()
 
-  constructor(
+  constructor (
     private userService: UserService,
     private companyService: CompanyService,
     private authService: AuthService,

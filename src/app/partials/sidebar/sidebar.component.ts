@@ -27,7 +27,9 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.eventOcurring = environment.eventOcurring
+    let eventOcurring: boolean = environment.begin !== null && environment.end !== null ?
+      new Date() >= environment.begin && new Date() <= environment.end
+      : false
     this.url = this.snapshot.url.toString()
 
     if (this.authService.isLoggedIn()) {

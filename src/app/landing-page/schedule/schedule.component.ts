@@ -79,9 +79,12 @@ export class ScheduleComponent implements OnInit {
 
     this.schedule = tempSchedule
 
-    this.selectedTheme = this.schedule[0].theme
-    this.selectedTime = this.schedule[0].date
-    this.selectedSession = ['Keynotes', 'Keynotes', 'Keynotes', 'Keynotes', 'Keynotes']
+    if (this.schedule.length > 0) {
+      this.selectedTheme = this.schedule[0].theme
+      this.selectedTime = this.schedule[0].date
+      this.selectedSession = ['Keynotes', 'Keynotes', 'Keynotes', 'Keynotes', 'Keynotes']
+    }
+
   }
 
   onSelect (session: Session): void {
