@@ -9,6 +9,7 @@ export const environment = {
   // cannonUrl: 'http://localhost:8090',
   cannonUrl: 'https://cannon.sinfo.org',
   currentEvent: '26-sinfo',
+  previousEvent: '25-sinfo',
   themes: [
     'Software',
     'Multimedia',

@@ -15,6 +15,7 @@ const httpOptions = {
 export class SpeakerService {
   private speakersUrl = environment.deckUrl + '/api/speakers'
   private speakers: Speaker[]
+  private previousSpeakers: Speaker[]
 
   constructor (
     private http: HttpClient,
@@ -38,6 +39,26 @@ export class SpeakerService {
       .pipe(
         tap(speakers => this.speakers = speakers),
         catchError(this.handleError<Speaker[]>('getSpeakers', []))
+      )
+  }
+
+  getPreviousSpeakers (): Observable<Speaker[]> {
+    if (this.previousSpeakers) {
+      return of(this.previousSpeakers)
+    }
+
+    const params = new HttpParams({
+      fromObject: {
+        'sort': 'name',
+        'event': environment.previousEvent,
+        'participations': 'true'
+      }
+    })
+
+    return this.http.get<Speaker[]>(this.speakersUrl, { params })
+      .pipe(
+        tap(previousSpeakers => this.previousSpeakers = previousSpeakers),
+        catchError(this.handleError<Speaker[]>('getPreviousSpeakers', []))
       )
   }
 

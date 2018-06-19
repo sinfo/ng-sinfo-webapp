@@ -10,6 +10,7 @@ import { SpeakerService } from './speaker.service'
 })
 export class SpeakersComponent implements OnInit {
   speakers: Speaker[]
+  previousSpeakers: Speaker[]
 
   constructor (
     private router: Router,
@@ -22,7 +23,14 @@ export class SpeakersComponent implements OnInit {
 
   getSpeakers (): void {
     this.speakerService.getSpeakers()
-      .subscribe(speakers => this.speakers = speakers)
+      .subscribe(speakers => {
+        this.speakers = speakers
+
+        if (speakers.length !== 0) { return }
+
+        this.speakerService.getPreviousSpeakers()
+          .subscribe(previousSpeakers => this.previousSpeakers = previousSpeakers)
+      })
   }
 
   setCompanyImg (speaker) {

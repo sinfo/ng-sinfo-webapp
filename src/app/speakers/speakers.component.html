@@ -1,8 +1,10 @@
-<section *ngIf="speakers && speakers.length > 0" id="speakers" class="section align-center">
+<section *ngIf="(speakers && speakers.length > 0) || previousSpeakers && previousSpeakers.length > 0"
+  id="speakers" class="section align-center">
 
   <div class="container">
     <span class="icon section-icon icon-faces-users-03"></span>
-    <h3>Speakers</h3>
+    <h3 *ngIf="speakers.length > 0">Speakers</h3>
+    <h3 *ngIf="speakers.length === 0 && previousSpeakers.length > 0">Last Edition's Speakers</h3>
     <br />
     <br />
 
@@ -32,28 +34,56 @@
       </div>
     </div> -->
 
-    <div class="col-sm-12">
-      <app-loading [content]="speakers">
-      </app-loading>
-    </div>
-
-    <div>
-
-      <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
-        <div class="speaker">
-          <div class="photo-wrapper square">
-            <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
-              <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive">
-            </div>
-          </div>
-          <h3 class="name">{{ speaker.name }}</h3>
-          <p class="text-alt">
-            <small>{{ speaker.title }}</small>
-          </p>
-        </div>
+    <span *ngIf="speakers.length > 0">
+      <div class="col-sm-12">
+        <app-loading [content]="speakers">
+        </app-loading>
       </div>
 
-    </div>
+      <div>
+
+        <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
+          <div class="speaker">
+            <div class="photo-wrapper square">
+              <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
+                <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive">
+              </div>
+            </div>
+            <h3 class="name">{{ speaker.name }}</h3>
+            <p class="text-alt">
+              <small>{{ speaker.title }}</small>
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </span>
+
+    <span *ngIf="speakers.length === 0">
+      <div class="col-sm-12">
+        <app-loading [content]="previousSpeakers">
+        </app-loading>
+      </div>
+
+      <div>
+
+        <div *ngFor="let speaker of previousSpeakers" class="col-sm-3" (click)="onSelect(speaker)">
+          <div class="speaker">
+            <div class="photo-wrapper square">
+              <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
+                <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive">
+              </div>
+            </div>
+            <h3 class="name">{{ speaker.name }}</h3>
+            <p class="text-alt">
+              <small>{{ speaker.title }}</small>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </span>
 
   </div>
 </section>
