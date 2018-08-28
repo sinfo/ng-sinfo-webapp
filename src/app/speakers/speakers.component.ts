@@ -35,7 +35,8 @@ export class SpeakersComponent implements OnInit {
 
   setCompanyImg (speaker) {
     return {
-      'background-image': `url('https://static.sinfo.org/SINFO_25/speakersCompanies/${ speaker.name.replace(/\s/g, '')}.png')`
+      'background-image': `url('https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakersCompanies/${
+        speaker.id}.png')`
     }
   }
 

@@ -6544,7 +6544,7 @@ div.clear input.btn:hover {
   align-items: stretch;
   min-height: 87vh;
   width: 100%;
-  background: url("http://static.sinfo.org/SINFO_25/powerOnBackground.png") right no-repeat;
+  background: url("https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOnBackground.png") right no-repeat;
   background-position: right top;
   background-size: 60%;
 }

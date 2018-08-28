@@ -38,7 +38,7 @@ img.portrait {
 }
 
 div.user {
-  background: url("http://static.sinfo.org/SINFO_25/powerOnBackground.png") right no-repeat;
+  background: url("https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOnBackground.png") right no-repeat;
   background-position: right top;
   background-size: 60%;
 }
