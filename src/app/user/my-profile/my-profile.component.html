@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="user.role !== 'company'">
         <div class="col-sm-12 align-center">
           <div *ngIf="submitedCV" class="alert-message cv-alert">
             <div class="alert alert-success" role="alert">
@@ -85,7 +85,7 @@
         <p>{{user.skills.join(', ')}}</p>
       </div>
 
-      <div class="row" *ngIf="redeemCodes && redeemCodes.length > 0">
+      <div class="row" *ngIf="redeemCodes && redeemCodes.length > 0 && user.role !== 'company'">
         <div class="col-sm-12 align-center">
           <div class="alert-message cv-alert">
             <div class="alert alert-info" role="alert">
