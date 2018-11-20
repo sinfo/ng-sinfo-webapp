@@ -5,9 +5,8 @@
 
 export const environment = {
   production: false,
-  deckUrl: 'https://deck.sinfo.org',
-  // cannonUrl: 'http://localhost:8090',
-  cannonUrl: 'https://cannon.sinfo.org',
+  deckUrl: 'http://localhost:8080',
+  cannonUrl: 'http://localhost:8090',
   currentEvent: '26-sinfo',
   previousEvent: '25-sinfo',
   themes: [

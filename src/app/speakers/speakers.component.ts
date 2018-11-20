@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Speaker } from './speaker.model'
 import { SpeakerService } from './speaker.service'
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-speakers',
@@ -35,7 +36,7 @@ export class SpeakersComponent implements OnInit {
 
   setCompanyImg (speaker) {
     return {
-      'background-image': `url('https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakersCompanies/${
+      'background-image': `url('https://sinfo.ams3.digitaloceanspaces.com/static/${environment.currentEvent}/speakersCompanies/${
         speaker.id}.png')`
     }
   }
