@@ -37,7 +37,7 @@ export class SpeakersComponent implements OnInit {
   setCompanyImg (speaker) {
     return {
       'background-image': `url('https://sinfo.ams3.digitaloceanspaces.com/static/${environment.currentEvent}/speakersCompanies/${
-        speaker.id}.png')`
+        speaker.id}.jpg')`
     }
   }
 
