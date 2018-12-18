@@ -98,6 +98,16 @@ export class UserService {
     return this.http.post<any>(`${this.filesUrl}/me`, formData, httpOptions)
   }
 
+  deleteCV (): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.delete<any>(`${this.filesUrl}/me`, httpOptions)
+  }
+
   getUserAchievements (id: string): Observable<Achievement[]> {
     return this.http.get<Achievement[]>(`${this.usersUrl}/${id}/achievements`)
       .pipe(

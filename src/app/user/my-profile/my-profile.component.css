@@ -116,6 +116,11 @@ div.achivements-wrapper img.achievement {
   background-color: #428bca;
   border-color: #357ebd;
 }
+#deleteFile {
+  width: 100%;
+  background-color: #d9534f !important;
+  border-color: #d43f3a !important;
+}
 
 .cv-alert {
   max-width: 285px;

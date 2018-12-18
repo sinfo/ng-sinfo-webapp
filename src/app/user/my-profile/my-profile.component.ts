@@ -51,6 +51,7 @@ export class MyProfileComponent implements OnInit {
           this.userService.isCVSubmited().subscribe(response => {
             // TODO CANNON MUST RETURN 404 on no file
             this.submitedCV = response && response.id
+            console.log('isCVSubmited', response)
           }, (error) => {
             this.submitedCV = false
           })
@@ -130,5 +131,11 @@ export class MyProfileComponent implements OnInit {
         this.submitedCV = false
       })
     }
+  }
+
+  deleteCV () {
+    this.userService.deleteCV().subscribe(res => {
+      this.submitedCV = false
+    })
   }
 }

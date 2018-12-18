@@ -72,6 +72,11 @@
             {{ submitedCV ? 'Update' : 'Upload' }} your CV
           </label>
 
+          <button *ngIf="submitedCV" class="btn" id="deleteFile" (click)="deleteCV()">
+            <span class="glyphicon glyphicon-remove"></span>
+            Delete your CV
+          </button>
+
         </div>
       </div>
 
