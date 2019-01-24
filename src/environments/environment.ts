@@ -22,7 +22,7 @@ export const environment = {
   end: new Date('Feb 22, 2019'),
   signaturesCardCapacity: 10,
   facebook: {
-    appId: '708252219264170'
+    appId: '1993609550676550' // development appId
   },
   google: {
     clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
