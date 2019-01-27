@@ -31,6 +31,17 @@
             <li class="navigation-item">
               <a routerLink="/" fragment="contacts" class="navigation-link">Contacts</a>
             </li>
+            <li class="navigation-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" class="navigation-link">Previous Editions</a>
+              <div class="dropdown-menu">
+                <a routerLink="/event/sinfo25" class="dropdown-item navigation-link" href="#">Sinfo 25</a>
+                <a routerLink="/event/sinfo24" class="dropdown-item navigation-link" href="#">Sinfo 24</a>
+                <a routerLink="/event/sinfo23" class="dropdown-item navigation-link" href="#">Sinfo 23</a>
+                <a routerLink="/events" class="dropdown-item navigation-link" href="#">Other</a>
+              </div>
+            </li>
+
+
           </ul>
           <ul class="navigation-list pull-right light-text">
             <li *ngIf="!isLoggedIn" class="navigation-item">

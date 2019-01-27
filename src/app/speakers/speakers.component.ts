@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Speaker } from './speaker.model'
 import { SpeakerService } from './speaker.service'
@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment'
   styleUrls: ['./speakers.component.css']
 })
 export class SpeakersComponent implements OnInit {
+  @Input() event: string = environment.currentEvent
   speakers: Speaker[]
   previousSpeakers: Speaker[]
 
@@ -27,9 +28,11 @@ export class SpeakersComponent implements OnInit {
       .subscribe(speakers => {
         this.speakers = speakers
 
+        console.log("event: ",this.event)
+
         if (speakers.length !== 0) { return }
 
-        this.speakerService.getPreviousSpeakers()
+        this.speakerService.getPreviousSpeakers(this.event)
           .subscribe(previousSpeakers => this.previousSpeakers = previousSpeakers)
       })
   }

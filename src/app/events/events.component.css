@@ -1,0 +1,35 @@
+.intro {
+  animation: jump 1s infinite;
+}
+
+.video-bg {
+  background-image: url("https://sinfo.ams3.digitaloceanspaces.com/static/26-sinfo/webapp/sinfo-tent.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.heading-alt {
+  width: fit-content;
+  align-items: center;
+  justify-content: space-around;
+  align-self: center;
+}
+
+.heading-alt > span {
+  display: flex;
+  align-content: center;
+  margin: 5px;
+}
+
+@keyframes jump { 
+  0% { bottom: 4vh; } 
+  50% { bottom: 5vh; } 
+  100% { bottom: 4vh; } 
+}
+
+@media only screen and (max-width: 768px) {
+  #about .nav.nav-tabs {
+      position: absolute;
+  }
+}

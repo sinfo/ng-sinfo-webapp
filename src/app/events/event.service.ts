@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of'
 
 import { environment } from '../../environments/environment'
 
-import { Achievement } from './achievement.model'
+import { Event } from './event.model'
 import { MessageService, Type } from '../message.service'
 
 const httpOptions = {
@@ -15,34 +15,34 @@ const httpOptions = {
 }
 
 @Injectable()
-export class AchievementService {
-  private achievementsUrl = environment.cannonUrl + '/achievements'
-  private achievements: Achievement[]
+export class EventService {
+  private eventsUrl = environment.deckUrl + '/api/events'
+  private events: Event[]
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getAchievements (): Observable<Achievement[]> {
-    if (this.achievements) {
-      return of(this.achievements)
+  getEvents (): Observable<Event[]> {
+    if (this.events) {
+      return of(this.events)
     }
 
-    return this.http.get<Achievement[]>(this.achievementsUrl)
+    return this.http.get<Event[]>(this.eventsUrl)
       .pipe(
-        tap(achievements => this.achievements = achievements),
-        catchError(this.handleError<Achievement[]>('getAchievements', []))
+        tap(events => this.events = events),
+        catchError(this.handleError<Event[]>('getEvents', []))
       )
   }
 
-  getAchievement (id: string): Observable<Achievement> {
-    if (this.achievements) {
-      return of(this.achievements.find(achievement => achievement.id === id))
+  getEvent (id: string): Observable<Event> {
+    if (this.events) {
+      return of(this.events.find(event => event.id === id))
     } else {
-      return this.http.get<Achievement>(`${this.achievementsUrl}/${id}`)
+      return this.http.get<Event>(`${this.eventsUrl}/${id}`)
         .pipe(
-          catchError(this.handleError<Achievement>('getAchievement'))
+          catchError(this.handleError<Event>('getEvent'))
         )
     }
   }
@@ -56,8 +56,8 @@ export class AchievementService {
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
-        origin: `AchievementService: ${operation}`,
-        text: 'When fetching achievements from server',
+        origin: `EventService: ${operation}`,
+        text: 'When fetching events from server',
         showAlert: false,
         type: Type.error,
         timeout: 4000,

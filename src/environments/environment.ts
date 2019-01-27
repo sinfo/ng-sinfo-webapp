@@ -18,7 +18,7 @@ export const environment = {
   ],
   // begin: new Date(2018, 4, 10), // watch out: months begin in 0
   // end: new Date(2018, 4, 14, 23, 59, 59),
-  begin: new Date('Feb 18, 2019'),
+  begin: new Date('Jan 18, 2019'),
   end: new Date('Feb 22, 2019'),
   signaturesCardCapacity: 10,
   facebook: {

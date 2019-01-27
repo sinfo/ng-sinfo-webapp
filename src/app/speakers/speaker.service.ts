@@ -16,6 +16,7 @@ export class SpeakerService {
   private speakersUrl = environment.deckUrl + '/api/speakers'
   private speakers: Speaker[]
   private previousSpeakers: Speaker[]
+  private previousEvent: string
 
   constructor (
     private http: HttpClient,
@@ -42,18 +43,20 @@ export class SpeakerService {
       )
   }
 
-  getPreviousSpeakers (): Observable<Speaker[]> {
-    if (this.previousSpeakers) {
+  getPreviousSpeakers (event: string): Observable<Speaker[]> {
+    if (this.previousSpeakers && event == this.previousEvent) {
       return of(this.previousSpeakers)
     }
 
     const params = new HttpParams({
       fromObject: {
         'sort': 'name',
-        'event': environment.previousEvent,
+        'event': event,
         'participations': 'true'
       }
     })
+
+    this.previousEvent = event
 
     return this.http.get<Speaker[]>(this.speakersUrl, { params })
       .pipe(
