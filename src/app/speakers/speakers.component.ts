@@ -10,9 +10,8 @@ import { environment } from '../../environments/environment'
   styleUrls: ['./speakers.component.css']
 })
 export class SpeakersComponent implements OnInit {
-  @Input() event: string = environment.currentEvent
+  @Input() event: string
   speakers: Speaker[]
-  previousSpeakers: Speaker[]
 
   constructor (
     private router: Router,
@@ -24,17 +23,24 @@ export class SpeakersComponent implements OnInit {
   }
 
   getSpeakers (): void {
-    this.speakerService.getSpeakers()
-      .subscribe(speakers => {
-        this.speakers = speakers
+    if (this.event) {
+      this.speakerService.getPreviousSpeakers(this.event)
+        .subscribe(previousSpeakers => this.speakers = previousSpeakers)
+    } else {
+      this.speakerService.getSpeakers()
+        .subscribe(speakers => {
+          this.speakers = speakers
 
-        console.log("event: ",this.event)
-
-        if (speakers.length !== 0) { return }
-
-        this.speakerService.getPreviousSpeakers(this.event)
-          .subscribe(previousSpeakers => this.previousSpeakers = previousSpeakers)
-      })
+          if (speakers.length !== 0) {
+            this.event = environment.currentEvent
+            return
+          } else {
+            this.event = environment.previousEvent
+            this.speakerService.getPreviousSpeakers(this.event)
+              .subscribe(previousSpeakers => this.speakers = previousSpeakers)
+          }
+        })
+      }
   }
 
   setCompanyImg (speaker) {
