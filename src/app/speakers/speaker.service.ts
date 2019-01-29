@@ -15,38 +15,19 @@ const httpOptions = {
 export class SpeakerService {
   private speakersUrl = environment.deckUrl + '/api/speakers'
   private speakers: Speaker[]
-  private previousSpeakers: Speaker[]
-  private previousEvent: string
+  private event: string
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getSpeakers (): Observable<Speaker[]> {
-    if (this.speakers) {
+  getSpeakers (event: string): Observable<Speaker[]> {
+    if (this.speakers && this.event == event) {
       return of(this.speakers)
     }
 
-    const params = new HttpParams({
-      fromObject: {
-        'sort': 'name',
-        'event': environment.currentEvent,
-        'participations': 'true'
-      }
-    })
-
-    return this.http.get<Speaker[]>(this.speakersUrl, { params })
-      .pipe(
-        tap(speakers => this.speakers = speakers),
-        catchError(this.handleError<Speaker[]>('getSpeakers', []))
-      )
-  }
-
-  getPreviousSpeakers (event: string): Observable<Speaker[]> {
-    if (this.previousSpeakers && event == this.previousEvent) {
-      return of(this.previousSpeakers)
-    }
+    this.event = event
 
     const params = new HttpParams({
       fromObject: {
@@ -56,12 +37,10 @@ export class SpeakerService {
       }
     })
 
-    this.previousEvent = event
-
     return this.http.get<Speaker[]>(this.speakersUrl, { params })
       .pipe(
-        tap(previousSpeakers => this.previousSpeakers = previousSpeakers),
-        catchError(this.handleError<Speaker[]>('getPreviousSpeakers', []))
+        tap(speakers => this.speakers = speakers),
+        catchError(this.handleError<Speaker[]>('getSpeakers', []))
       )
   }
 

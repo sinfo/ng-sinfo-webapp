@@ -11,6 +11,7 @@ import { MessageService, Type } from '../message.service'
 export class SponsorService {
   private sponsorUrl = environment.deckUrl + '/api/companies'
   private sponsors: Sponsor[]
+  private event: string
 
 
   constructor (
@@ -19,9 +20,11 @@ export class SponsorService {
   ) { }
 
   getSponsors (event: string): Observable<Sponsor[]> {
-    if (this.sponsors) {
+    if (this.sponsors && this.event == event) {
       return of(this.sponsors)
     }
+
+    this.event = event
 
     const params = new HttpParams({
       fromObject: {

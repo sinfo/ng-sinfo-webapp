@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { Member } from './member.model'
 import { TeamService } from './team.service'
@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment'
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.css']
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent implements OnInit, OnChanges {
   @Input() event: string
   team: Member[]
 
@@ -19,6 +19,10 @@ export class TeamComponent implements OnInit {
   ) { }
 
   ngOnInit () {
+    this.getTeam()
+  }
+
+  ngOnChanges () {
     this.getTeam()
   }
 

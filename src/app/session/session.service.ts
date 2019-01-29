@@ -16,9 +16,9 @@ const httpOptions = {
 
 @Injectable()
 export class SessionService {
-
   private sessionsUrl = environment.deckUrl + '/api/sessions'
   private sessions: Session[]
+  private event: string
 
   constructor (
     private http: HttpClient,
@@ -26,9 +26,11 @@ export class SessionService {
   ) { }
 
   getSessions (event: string): Observable<Session[]> {
-    if (this.sessions) {
+    if (this.sessions && this.event == event) {
       return of(this.sessions)
     }
+
+    this.event = event
 
     const params = new HttpParams({
       fromObject: {

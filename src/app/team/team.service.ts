@@ -18,6 +18,7 @@ const httpOptions = {
 export class TeamService {
   private memberUrl = environment.deckUrl + '/api/members'
   private team: Member[]
+  private event: string
 
   constructor (
     private http: HttpClient,
@@ -25,9 +26,11 @@ export class TeamService {
   ) { }
 
   getTeam (event: string): Observable<Member[]> {
-    if (this.team) {
+    if (this.team && this.event == event) {
       return of(this.team)
     }
+
+    this.event = event
 
     const params = new HttpParams({
       fromObject: {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core'
+import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { Session } from '../../session/session.model'
@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment'
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent implements OnInit, OnChanges {
   @Input() event: string
 
   selectedTheme: string
@@ -32,6 +32,10 @@ export class ScheduleComponent implements OnInit {
     this.getSessions()
 
     this.showOrHideDropdown()
+  }
+
+  ngOnChanges () {
+    this.getSessions()
   }
 
   getSessions (): void {
