@@ -11,24 +11,27 @@ import { MessageService, Type } from '../message.service'
 export class SponsorService {
   private sponsorUrl = environment.deckUrl + '/api/companies'
   private sponsors: Sponsor[]
-  private params = new HttpParams({
-    fromObject: {
-      'sort': 'name',
-      'event': environment.currentEvent,
-      'participations': 'true'
-    }
-  })
+
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getSponsors (): Observable<Sponsor[]> {
+  getSponsors (event: string): Observable<Sponsor[]> {
     if (this.sponsors) {
       return of(this.sponsors)
     }
-    return this.http.get<Sponsor[]>(this.sponsorUrl, { params: this.params })
+
+    const params = new HttpParams({
+      fromObject: {
+        'sort': 'name',
+        'event': event,
+        'participations': 'true'
+      }
+    })
+
+    return this.http.get<Sponsor[]>(this.sponsorUrl, { params })
       .pipe(
         tap(sponsors => this.sponsors = sponsors),
         catchError(this.handleError<Sponsor[]>('getSponsors', []))
@@ -39,7 +42,18 @@ export class SponsorService {
     if (this.sponsors) {
       return of(this.sponsors.find(sponsor => sponsor.id === id))
     }
-    return this.http.get<Sponsor>(`${this.sponsorUrl}/${id}`, { params: this.params })
+
+    /* TODO params might be necessary
+    const params = new HttpParams({
+      fromObject: {
+        'sort': 'name',
+        'event': event,
+        'participations': 'true'
+      }
+    })
+
+    return this.http.get<Sponsor>(`${this.sponsorUrl}/${id}`, { params })*/
+    return this.http.get<Sponsor>(`${this.sponsorUrl}/${id}`)
       .pipe(
         catchError(this.handleError<Sponsor>(`getSponsor id=${id}`))
       )

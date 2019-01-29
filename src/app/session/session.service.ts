@@ -25,7 +25,7 @@ export class SessionService {
     private messageService: MessageService
   ) { }
 
-  getSessions (): Observable<Session[]> {
+  getSessions (event: string): Observable<Session[]> {
     if (this.sessions) {
       return of(this.sessions)
     }
@@ -33,7 +33,7 @@ export class SessionService {
     const params = new HttpParams({
       fromObject: {
         'sort': 'date',
-        'event': environment.currentEvent
+        'event': event
       }
     })
 

@@ -24,7 +24,7 @@ export class TeamService {
     private messageService: MessageService
   ) { }
 
-  getTeam (): Observable<Member[]> {
+  getTeam (event: string): Observable<Member[]> {
     if (this.team) {
       return of(this.team)
     }
@@ -32,7 +32,7 @@ export class TeamService {
     const params = new HttpParams({
       fromObject: {
         'sort': 'name',
-        'event': environment.currentEvent,
+        'event': event,
         'participations': 'true'
       }
     })

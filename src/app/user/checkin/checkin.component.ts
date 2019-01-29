@@ -5,6 +5,7 @@ import { SessionCannonService } from '../../session/session-cannon.service'
 import { User } from '../user.model'
 import { UserService } from '../user.service'
 import { MessageService, Type } from '../../message.service'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-checkin',
@@ -21,7 +22,7 @@ export class CheckinComponent implements OnInit {
 
   scannerActive: boolean
   submitLabel: string
-  insideScannerMsg: [{ title: string, msg: string }]
+  insideScannerMsg: [{ title: string, msg: string }, { title: string, msg: string }]
 
   constructor (
     private sessionService: SessionService,
@@ -42,7 +43,7 @@ export class CheckinComponent implements OnInit {
   }
 
   getSessions () {
-    this.sessionService.getSessions()
+    this.sessionService.getSessions(environment.currentEvent)
       .subscribe(sessions => {
         let _sessions = []
         sessions.forEach(s => {

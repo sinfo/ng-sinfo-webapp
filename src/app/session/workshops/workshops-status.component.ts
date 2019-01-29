@@ -6,6 +6,7 @@ import { Session } from '../session.model'
 import { UserService } from '../../user/user.service'
 import { User } from '../../user/user.model'
 import { AuthService } from '../../auth/auth.service'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-workshops-status',
@@ -44,7 +45,7 @@ export class WorkshopsStatusComponent implements OnInit {
         this.router.navigate(['/me'])
       }
 
-      this.sessionService.getSessions().subscribe(sessions => {
+      this.sessionService.getSessions(environment.currentEvent).subscribe(sessions => {
 
         this.workshops = sessions.filter((session) => {
           return session.kind === 'Workshop'

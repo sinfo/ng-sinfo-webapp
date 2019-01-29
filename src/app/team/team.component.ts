@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { Member } from './member.model'
 import { TeamService } from './team.service'
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-team',
@@ -9,6 +10,7 @@ import { TeamService } from './team.service'
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent implements OnInit {
+  @Input() event: string
   team: Member[]
 
   constructor (
@@ -21,10 +23,12 @@ export class TeamComponent implements OnInit {
   }
 
   getTeam (): void {
-    this.teamService.getTeam()
+    if (this.event == null) {
+      this.event = environment.currentEvent
+    }
+    this.teamService.getTeam(this.event)
       .subscribe(team => {
         this.team = team
       })
   }
-
 }

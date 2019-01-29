@@ -6,6 +6,7 @@ import { Session } from '../session.model'
 import { UserService } from '../../user/user.service'
 import { User } from '../../user/user.model'
 import { AuthService } from '../../auth/auth.service'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-my-workshops',
@@ -38,7 +39,7 @@ export class MyWorkshopsComponent implements OnInit {
     this.userService.getMe().subscribe(user => {
       this.user = user
       this.userService.getUserSessions(user.id).subscribe(mySessions => {
-        this.sessionService.getSessions().subscribe(sessions => {
+        this.sessionService.getSessions(environment.currentEvent).subscribe(sessions => {
 
           this.workshops = sessions.filter((session) => {
             return (session.kind === 'Workshop' && ~mySessions.indexOf(session.id))

@@ -5,6 +5,7 @@ import { SpeakerService } from '../speaker.service'
 import { Speaker } from '../speaker.model'
 import { SessionService } from '../../session/session.service'
 import { Session } from '../../session/session.model'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-speaker',
@@ -38,7 +39,7 @@ export class SpeakerComponent implements OnInit {
   }
 
   getSession (id: string): void {
-    this.sessionService.getSessions()
+    this.sessionService.getSessions(environment.currentEvent)
       .subscribe(sessions => {
         this.session = sessions.find(session => {
           return session.speakers.length > 0 ? session.speakers[0]['id'] === id : null

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { SponsorService } from './sponsor.service'
 import { Sponsor } from './sponsor.model'
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-sponsors',
@@ -9,6 +10,8 @@ import { Sponsor } from './sponsor.model'
   styleUrls: ['./sponsors.component.css']
 })
 export class SponsorsComponent implements OnInit {
+  @Input() event: string
+
   sponsors: Sponsor[]
   diamond: Sponsor
   platinums: Sponsor[] = []
@@ -35,7 +38,11 @@ export class SponsorsComponent implements OnInit {
   }
 
   getSponsors (): void {
-    this.sponsorService.getSponsors()
+    if (this.event == null) {
+      this.event = environment.currentEvent
+    }
+
+    this.sponsorService.getSponsors(this.event)
       .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
   }
 

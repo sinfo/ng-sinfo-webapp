@@ -26,6 +26,7 @@ export class SpeakersComponent implements OnInit {
     if (this.event) {
       this.speakerService.getPreviousSpeakers(this.event)
         .subscribe(previousSpeakers => this.speakers = previousSpeakers)
+        
     } else {
       this.speakerService.getSpeakers()
         .subscribe(speakers => {

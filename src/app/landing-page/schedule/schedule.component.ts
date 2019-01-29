@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { Session } from '../../session/session.model'
@@ -12,6 +12,7 @@ import { environment } from '../../../environments/environment'
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent implements OnInit {
+  @Input() event: string
 
   selectedTheme: string
   selectedTime: string
@@ -34,7 +35,10 @@ export class ScheduleComponent implements OnInit {
   }
 
   getSessions (): void {
-    this.sessionService.getSessions()
+    if (this.event == null) {
+      this.event = environment.currentEvent
+    }
+    this.sessionService.getSessions(this.event)
       .subscribe(sessions => {
         this.sessions = sessions
         this.createSchedule(sessions)
