@@ -14,7 +14,7 @@
     <div class="row speaker-section">
       <div class="col-sm-3 col-xs-12">
         <a (click)="onSelect(speaker.id)">
-          <img src='{{speaker.img}}'>
+          <img src='{{speaker.img}}' onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
         </a>
       </div>
 

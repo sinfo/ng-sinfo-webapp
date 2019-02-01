@@ -10,7 +10,6 @@ import { Event } from '../event.model'
 })
 export class EventComponent implements OnInit {
   event: Event
-  id: string
 
   constructor (
     private eventService: EventService,
@@ -20,15 +19,10 @@ export class EventComponent implements OnInit {
 
   ngOnInit () {
     this.route.params.forEach((params: Params) => {
-      this.id = params['id']
-      this.getEvent(this.id)
-    })
-  }
-
-  getEvent (id: string): void {
-    this.eventService.getEvent(id)
-      .subscribe(event => {
+      const id = params['id']
+      this.eventService.getEvent(id).subscribe(event => {
         this.event = event
       })
+    })
   }
 }

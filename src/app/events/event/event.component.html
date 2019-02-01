@@ -1,9 +1,13 @@
 <app-menu></app-menu>
 
-<app-speakers [event]="id"></app-speakers>
+<div class="container">
+    <h1>{{event.name}}</h1>
+</div>
 
-<app-schedule [event]="id"></app-schedule>
+<app-speakers [event]="event.id"></app-speakers>
 
-<app-team [event]="id"></app-team>
+<app-schedule [event]="event.id"></app-schedule>
 
-<app-sponsors [event]="id"></app-sponsors>
+<app-team [event]="event.id"></app-team>
+
+<app-sponsors [event]="event.id"></app-sponsors>
