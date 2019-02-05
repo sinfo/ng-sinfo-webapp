@@ -13,7 +13,7 @@
       <h4 *ngIf="diamond">Diamond</h4>
 
       <div class="sponsor diamond" *ngIf="diamond">
-        <img src="{{ diamond.img }}" alt="{{ diamond.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+        <img src="{{ diamond.img }}" alt="{{ diamond.name }}" title="{{ diamond.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
       </div>
 
       <h5 *ngIf="platinums.length">Platinum</h5>
@@ -21,7 +21,7 @@
       <div class="row" *ngIf="platinums.length">
         <div class="sponsors platinum">
           <div class="sponsor" *ngFor="let platinum of platinums">
-            <img src="{{ platinum.img }}" alt="{{ platinum.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+            <img src="{{ platinum.img }}" alt="{{ platinum.name }}" title="{{ platinum.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
         <div class="row" *ngIf="golds.length">
           <div class="sponsors gold">
             <div class="sponsor" *ngFor="let gold of golds">
-              <img src="{{ gold.img }}" alt="{{ gold.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+              <img src="{{ gold.img }}" alt="{{ gold.name }}" title="{{ gold.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
         <div class="row" *ngIf="silvers.length">
           <div class="sponsors silver">
             <div class="sponsor" *ngFor="let silver of silvers">
-              <img src="{{ silver.img }}" alt="{{ silver.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+              <img src="{{ silver.img }}" alt="{{ silver.name }}" title="{{ silver.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="row" *ngIf="others.length">
           <div class="sponsors silver">
             <div class="sponsor" *ngFor="let other of others">
-              <img src="{{ other.img }}" alt="{{ other.name }}">
+              <img src="{{ other.img }}" alt="{{ other.name }}" title="{{ other.name }}">
             </div>
           </div>
         </div>

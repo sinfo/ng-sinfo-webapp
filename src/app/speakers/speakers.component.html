@@ -44,7 +44,7 @@
           <div class="speaker">
             <div class="photo-wrapper square">
               <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
-                <img src="{{ speaker.img }}" alt="{{ speaker.name }}" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                <img src="{{ speaker.img }}" alt="{{ speaker.name }}" title="{{ speaker.name }}" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
               </div>
             </div>
             <h3 class="name">{{ speaker.name }}</h3>

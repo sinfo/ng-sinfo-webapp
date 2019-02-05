@@ -14,7 +14,7 @@
 
         <div *ngIf="member.name !== 'ToolBot!'" class="speaker member">
           <div class="photo-wrapper rounded">
-            <img src="{{member.img}}" alt="{{member.name}}" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+            <img src="{{member.img}}" alt="{{member.name}}" title="{{member.name}}" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
             <ul class="speaker-socials">
 
               <li *ngIf="member.mail">
