@@ -16,7 +16,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   selectedTheme: string
   selectedTime: string
-  selectedSession: [string, string, string, string, string]
+  selectedSession: string
   displayDayDropdown: boolean
   displaySessionDropdown: [boolean, boolean, boolean, boolean, boolean]
 
@@ -90,7 +90,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
     if (this.schedule.length > 0) {
       this.selectedTheme = this.schedule[0].theme
       this.selectedTime = this.schedule[0].date
-      this.selectedSession = ['Keynotes', 'Keynotes', 'Keynotes', 'Keynotes', 'Keynotes']
+      this.selectedSession = 'Keynotes'
     }
 
   }
@@ -118,8 +118,8 @@ export class ScheduleComponent implements OnInit, OnChanges {
     this.selectedTime = day
   }
 
-  updateSelectedSessionText (day: number, session: string) {
-    this.selectedSession[day] = session
+  updateSelectedSessionText (session: string) {
+    this.selectedSession = session
   }
   /* End of Dropdown tabs actions */
 }
