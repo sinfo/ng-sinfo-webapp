@@ -9,13 +9,45 @@ export const environment = {
   cannonUrl: 'http://localhost:8090',
   currentEvent: '26-sinfo',
   previousEvent: '25-sinfo',
-  themes: [
-    'Software',
-    'Multimedia',
-    'Security',
-    'Games',
-    'Web'
-  ],
+  url_to_id: {'26-sinfo': '26-sinfo',
+    '25-sinfo':'25-sinfo',
+    '24-sinfo':'24-sinfo',
+    '23-sinfo':'23-sinfo-conf'
+  },
+  id_to_url: {'26-sinfo': '26-sinfo',
+    '25-sinfo':'25-sinfo',
+    '24-sinfo':'24-sinfo',
+    '23-sinfo-conf':'23-sinfo'
+  },
+  themes: {'26-sinfo': [
+      'Software',
+      'Multimedia',
+      'Security',
+      'Games',
+      'Web'
+    ],
+    '25-sinfo': [
+      'Software',
+      'Multimedia',
+      'Security',
+      'Games',
+      'Web'
+    ],
+    '24-sinfo': [
+      'Software',
+      'Multimedia',
+      'Security',
+      'Games',
+      'Web'
+    ],
+    '23-sinfo': [
+      'Software',
+      'Multimedia',
+      'Security',
+      'Games',
+      'Web'
+    ]
+  },
   // begin: new Date(2018, 4, 10), // watch out: months begin in 0
   // end: new Date(2018, 4, 14, 23, 59, 59),
   begin: new Date('Jan 28, 2019'),
