@@ -71,7 +71,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
               sala2: []
             }
           },
-          theme: environment.themes[registeredDays + 1],
+          theme: environment.themes[this.event][registeredDays + 1],
           date: date
         })
         registeredDays += 1

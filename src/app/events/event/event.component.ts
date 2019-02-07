@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { EventService } from '../event.service'
 import { Event } from '../event.model'
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'app-event',
@@ -19,7 +20,7 @@ export class EventComponent implements OnInit {
 
   ngOnInit () {
     this.route.params.forEach((params: Params) => {
-      const id = params['id']
+      const id = environment.url_to_id[params['id']]
       this.eventService.getEvent(id).subscribe(event => {
         this.event = event
       })
