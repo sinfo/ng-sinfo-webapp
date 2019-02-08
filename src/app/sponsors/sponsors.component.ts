@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment.prod';
   styleUrls: ['./sponsors.component.css']
 })
 export class SponsorsComponent implements OnInit, OnChanges {
-  @Input() event: string
+  @Input() eventId: string
 
   sponsors: Sponsor[]
   diamond: Sponsor
@@ -42,11 +42,7 @@ export class SponsorsComponent implements OnInit, OnChanges {
   }
 
   getSponsors (): void {
-    if (this.event == null) {
-      this.event = environment.currentEvent
-    }
-
-    this.sponsorService.getSponsors(this.event)
+    this.sponsorService.getSponsors(this.eventId)
       .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
   }
 
@@ -61,7 +57,6 @@ export class SponsorsComponent implements OnInit, OnChanges {
       /* if (sponsor.id === 'deloitte') {
         console.log(sponsor)
       } */
-      console.log(sponsor.name, sponsor.advertisementLvl)
       if (sponsor.advertisementLvl === 'exclusive') this.diamond = sponsor
       if (sponsor.advertisementLvl === 'max') this.platinums.push(sponsor)
       if (sponsor.advertisementLvl === 'med') this.golds.push(sponsor)

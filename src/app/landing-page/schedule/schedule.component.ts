@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment'
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent implements OnInit, OnChanges {
-  @Input() event: string
+  @Input() eventId: string
 
   selectedTheme: string
   selectedTime: string
@@ -39,10 +39,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
   }
 
   getSessions (): void {
-    if (this.event == null) {
-      this.event = environment.currentEvent
-    }
-    this.sessionService.getSessions(this.event)
+    this.sessionService.getSessions(this.eventId)
       .subscribe(sessions => {
         this.sessions = sessions
         this.createSchedule(sessions)
@@ -71,7 +68,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
               sala2: []
             }
           },
-          theme: environment.themes[this.event][registeredDays + 1],
+          theme: environment.themes[this.eventId][registeredDays + 1],
           date: date
         })
         registeredDays += 1

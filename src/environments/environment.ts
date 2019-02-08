@@ -40,7 +40,7 @@ export const environment = {
       'Games',
       'Web'
     ],
-    '23-sinfo': [
+    '23-sinfo-conf': [
       'Software',
       'Multimedia',
       'Security',

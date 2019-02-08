@@ -10,8 +10,9 @@ import { environment } from '../../environments/environment'
   styleUrls: ['./speakers.component.css']
 })
 export class SpeakersComponent implements OnInit, OnChanges {
-  @Input() event: string
+  @Input() eventId: string
   speakers: Speaker[]
+  previousSpeakers: Boolean
 
   constructor (
     private router: Router,
@@ -27,27 +28,23 @@ export class SpeakersComponent implements OnInit, OnChanges {
   }
 
   getSpeakers (): void {
-    if (this.event == null) {
-      this.event = environment.currentEvent
-    }
-
-    this.speakerService.getSpeakers(this.event)
+    this.speakerService.getSpeakers(this.eventId)
       .subscribe(speakers => {
-        this.speakers = speakers
-
-        if (speakers.length !== 0) { return }
-
-        this.event = environment.previousEvent
-        this.speakerService.getSpeakers(environment.previousEvent)
-          .subscribe(previousSpeakers => this.speakers = previousSpeakers)
-        
+        if (speakers.length !== 0) {
+          this.speakers = speakers
+          this.previousSpeakers = false
+        } else {
+          this.eventId = environment.previousEvent
+          this.speakerService.getSpeakers(environment.previousEvent)
+            .subscribe(previousSpeakers => this.speakers = previousSpeakers)
+          this.previousSpeakers = true
+        }
       })
   }
 
   setCompanyImg (speaker) {
     return {
-      'background-image': `url('https://sinfo.ams3.cdn.digitaloceanspaces.com/static/${environment.currentEvent}/speakersCompanies/${
-        speaker.id}.png')`
+      'background-image': `url('https://sinfo.ams3.cdn.digitaloceanspaces.com/static/${this.eventId}/speakersCompanies/${speaker.id}.png')`
     }
   }
 

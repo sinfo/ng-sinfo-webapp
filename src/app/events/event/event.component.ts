@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
 import { EventService } from '../event.service'
-import { Event } from '../event.model'
 import { environment } from '../../../environments/environment'
 
 @Component({
@@ -10,7 +9,8 @@ import { environment } from '../../../environments/environment'
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  event: Event
+  eventId: string
+  eventName: string
 
   constructor (
     private eventService: EventService,
@@ -20,9 +20,9 @@ export class EventComponent implements OnInit {
 
   ngOnInit () {
     this.route.params.forEach((params: Params) => {
-      const id = environment.url_to_id[params['id']]
-      this.eventService.getEvent(id).subscribe(event => {
-        this.event = event
+      this.eventId = environment.url_to_id[params['id']]
+      this.eventService.getEvent(this.eventId).subscribe(event => {
+        this.eventName = event.name
       })
     })
   }

@@ -1,7 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core'
-import { MessageService, Type } from '../message.service'
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'
+import { Component, OnInit } from '@angular/core'
+import { Router, NavigationEnd } from '@angular/router'
 import { environment } from '../../environments/environment'
+import { EventService } from '../events/event.service'
 
 @Component({
   selector: 'app-landing-page',
@@ -11,11 +11,13 @@ import { environment } from '../../environments/environment'
 export class LandingPageComponent implements OnInit {
   selectedAboutText: string
   displayAboutDropdown: boolean
+  eventId: string
   begin: Date
   end: Date
 
   constructor (
-    private router: Router
+    private router: Router,
+    private eventService: EventService
   ) {
     this.begin = environment.begin
     this.end = environment.end
@@ -36,6 +38,7 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit () {
     this.selectedAboutText = 'About Us'
+    this.eventId = environment.currentEvent
     this.showOrHideDropdown()
   }
 
