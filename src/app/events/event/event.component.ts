@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 import { EventService } from '../event.service'
 import { environment } from '../../../environments/environment'
 
@@ -15,6 +16,7 @@ export class EventComponent implements OnInit {
   constructor (
     private eventService: EventService,
     private route: ActivatedRoute,
+    private titleService: Title,
     private router: Router
   ) { }
 
@@ -23,6 +25,7 @@ export class EventComponent implements OnInit {
       this.eventId = environment.url_to_id[params['id']]
       this.eventService.getEvent(this.eventId).subscribe(event => {
         this.eventName = event.name
+        this.titleService.setTitle( this.eventName );
       })
     })
   }
