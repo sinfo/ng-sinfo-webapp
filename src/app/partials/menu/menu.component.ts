@@ -14,7 +14,7 @@ import { environment } from '../../../environments/environment.prod';
 export class MenuComponent implements OnInit {
   isLoggedIn = false
   private shortEventList: Event[]
-  private id_to_url: string = environment.id_to_url
+  private id_to_url = environment.id_to_url
 
   constructor (
     private router: Router,

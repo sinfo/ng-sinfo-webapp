@@ -64,9 +64,9 @@
 
 <app-menu></app-menu>
 
-<app-speakers></app-speakers>
+<app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
 
-<app-schedule></app-schedule>
+<app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
 
 <section id="sign_up" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
@@ -82,7 +82,7 @@
   </div>
 </section>
 
-<app-team></app-team>
+<app-team *ngIf="eventId" [eventId]="eventId"></app-team>
 
 <section id="sign_up" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
@@ -187,7 +187,7 @@
   </div>
 </section>
 
-<app-sponsors></app-sponsors>
+<app-sponsors *ngIf="eventId" [eventId]="eventId"></app-sponsors>
 
 <app-feedback></app-feedback>
 
