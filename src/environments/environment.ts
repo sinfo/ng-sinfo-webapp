@@ -20,34 +20,34 @@ export const environment = {
     '23-sinfo-conf':'23-sinfo'
   },
   themes: {'26-sinfo': [
-      'Software',
-      'Multimedia',
-      'Security',
-      'Games',
-      'Web'
-    ],
-    '25-sinfo': [
-      'Software',
-      'Multimedia',
-      'Security',
-      'Games',
-      'Web'
-    ],
-    '24-sinfo': [
-      'Software',
-      'Multimedia',
-      'Security',
-      'Games',
-      'Web'
-    ],
-    '23-sinfo-conf': [
-      'Software',
-      'Multimedia',
-      'Security',
-      'Games',
-      'Web'
-    ]
-  },
+    'Software',
+    'Multimedia',
+    'Security',
+    'Games',
+    'AI'
+  ],
+  '25-sinfo': [
+    'Software',
+    'VR',
+    'Security',
+    'Games',
+    'Web'
+  ],
+  '24-sinfo': [
+    'Software Engineering',
+    'Multimedia',
+    'Security',
+    'Games',
+    'Disruptive Technology'
+  ],
+  '23-sinfo-conf': [
+    'Dev Ops',
+    'Multimedia',
+    'Security',
+    'Games',
+    'Software Engineering'
+  ]
+ },
   // begin: new Date(2018, 4, 10), // watch out: months begin in 0
   // end: new Date(2018, 4, 14, 23, 59, 59),
   begin: new Date('Jan 28, 2019'),
