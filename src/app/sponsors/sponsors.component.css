@@ -5,7 +5,7 @@ div.sponsors {
   flex-wrap: wrap;
 }
 div.sponsor.diamond {
-  width: 300px;
+  width: 255px;
   margin: 0 auto;
 }
 div.sponsors.platinum div.sponsor {
@@ -40,9 +40,4 @@ div.sponsors.silver div.sponsor {
   div.sponsors.silver div.sponsor {
     width: 12%;
   }
-}
-
-h1,
-h2 {
-  margin: 0px;
 }
