@@ -8,12 +8,15 @@ import { of } from 'rxjs/observable/of'
 import { MessageService, Type } from '../message.service'
 import { User } from '../user/user.model'
 import { AuthService } from '../auth/auth.service'
+import { EventService } from '../events/event.service'
+import { Event } from '../events/event.model'
 
 @Injectable()
 export class CompanyService {
 
   private companiesUrl = environment.deckUrl + '/api/companies'
   private companies: Company[]
+  private event: Event
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -22,8 +25,11 @@ export class CompanyService {
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private eventService: EventService
+  ) {
+    this.eventService.getCurrent().subscribe(event => this.event)
+  }
 
   getCompanies (): Observable<Company[]> {
     if (this.companies) {
@@ -32,7 +38,7 @@ export class CompanyService {
 
     const params = new HttpParams({
       fromObject: {
-        'event': environment.currentEvent,
+        'event': this.event.id,
         'participations': 'true'
       }
     })

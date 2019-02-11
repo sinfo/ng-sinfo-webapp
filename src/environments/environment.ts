@@ -7,17 +7,15 @@ export const environment = {
   production: false,
   deckUrl: 'http://localhost:8080',
   cannonUrl: 'http://localhost:8090',
-  currentEvent: '26-sinfo',
-  previousEvent: '25-sinfo',
   url_to_id: {'26-sinfo': '26-sinfo',
-    '25-sinfo':'25-sinfo',
-    '24-sinfo':'24-sinfo',
-    '23-sinfo':'23-sinfo-conf'
+    '25-sinfo': '25-sinfo',
+    '24-sinfo': '24-sinfo',
+    '23-sinfo': '23-sinfo-conf'
   },
   id_to_url: {'26-sinfo': '26-sinfo',
-    '25-sinfo':'25-sinfo',
-    '24-sinfo':'24-sinfo',
-    '23-sinfo-conf':'23-sinfo'
+    '25-sinfo': '25-sinfo',
+    '24-sinfo': '24-sinfo',
+    '23-sinfo-conf': '23-sinfo'
   },
   themes: {'26-sinfo': [
     'Software',
@@ -26,32 +24,28 @@ export const environment = {
     'Games',
     'AI'
   ],
-  '25-sinfo': [
-    'Software',
-    'VR',
-    'Security',
-    'Games',
-    'Web'
-  ],
-  '24-sinfo': [
-    'Software Engineering',
-    'Multimedia',
-    'Security',
-    'Games',
-    'Disruptive Technology'
-  ],
-  '23-sinfo-conf': [
-    'Dev Ops',
-    'Multimedia',
-    'Security',
-    'Games',
-    'Software Engineering'
-  ]
- },
-  // begin: new Date(2018, 4, 10), // watch out: months begin in 0
-  // end: new Date(2018, 4, 14, 23, 59, 59),
-  begin: new Date('Jan 28, 2019'),
-  end: new Date('Feb 1, 2019'),
+    '25-sinfo': [
+      'Software',
+      'VR',
+      'Security',
+      'Games',
+      'Web'
+    ],
+    '24-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'Security',
+      'Games',
+      'Disruptive Technology'
+    ],
+    '23-sinfo-conf': [
+      'Dev Ops',
+      'Multimedia',
+      'Security',
+      'Games',
+      'Software Engineering'
+    ]
+  },
   signaturesCardCapacity: 10,
   facebook: {
     appId: '1993609550676550' // development appId

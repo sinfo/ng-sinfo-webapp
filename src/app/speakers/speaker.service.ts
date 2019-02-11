@@ -15,24 +15,24 @@ const httpOptions = {
 export class SpeakerService {
   private speakersUrl = environment.deckUrl + '/api/speakers'
   private speakers: Speaker[]
-  private event: string
+  private eventId: string
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getSpeakers (event: string): Observable<Speaker[]> {
-    if (this.speakers && this.event == event) {
+  getSpeakers (eventId: string): Observable<Speaker[]> {
+    if (this.speakers && this.eventId === eventId) {
       return of(this.speakers)
     }
 
-    this.event = event
+    this.eventId = eventId
 
     const params = new HttpParams({
       fromObject: {
         'sort': 'name',
-        'event': event,
+        'event': eventId,
         'participations': 'true'
       }
     })

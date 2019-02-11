@@ -3,9 +3,9 @@ import { User } from '../user.model'
 import { MessageService, Type } from '../../message.service'
 import { UserService } from '../user.service'
 import { Company } from '../../company/company.model'
-import { environment } from '../../../environments/environment'
 import { CompanyCannonService } from '../../company/company-cannon.service'
 import { CompanyService } from '../../company/company.service'
+import { EventService } from '../../events/event.service'
 import { SignatureService } from './signature.service'
 
 @Component({
@@ -28,24 +28,26 @@ export class SignatureComponent implements OnInit {
     private companyService: CompanyService,
     private userService: UserService,
     private signatureService: SignatureService,
+    private eventService: EventService,
     private messageService: MessageService
   ) { }
 
   ngOnInit () {
     this.scannerActive = false
-    this.userService.getMe()
-      .subscribe(user => {
-        this.me = user
-        let company = user.company.find(c => {
-          return c.edition === environment.currentEvent
-        })
-
-        this.companyService.getCompany(company.company)
-          .subscribe(_company => {
-            this.myCompany = _company
-            this.scannerActive = true
+    this.eventService.getCurrent().subscribe(event => {
+      this.userService.getMe()
+        .subscribe(user => {
+          this.me = user
+          let company = user.company.find(c => {
+            return c.edition === event.id
           })
-      })
+          this.companyService.getCompany(company.company)
+            .subscribe(_company => {
+              this.myCompany = _company
+              this.scannerActive = true
+            })
+        })
+    })
   }
 
   receiveUser (user: User) {

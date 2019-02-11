@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { Observable } from 'rxjs/Observable'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError, map, tap, take, filter } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 
 import { environment } from '../../environments/environment'
@@ -16,8 +16,12 @@ const httpOptions = {
 
 @Injectable()
 export class EventService {
-  private eventsUrl = environment.deckUrl + '/api/events'
+  private eventsUrl = environment.deckUrl + '/api/events?sort=-date'
+  private currentEventUrl = environment.deckUrl + '/api/events?sort=-date&limit=1'
+  private previousEventUrl = environment.deckUrl + '/api/events?sort=-date&limit=1&skip=1'
   private events: Event[]
+  private current: Event
+  private previous: Event
 
   constructor (
     private http: HttpClient,
@@ -43,6 +47,32 @@ export class EventService {
       return this.http.get<Event>(`${this.eventsUrl}/${id}`)
         .pipe(
           catchError(this.handleError<Event>('getEvent'))
+        )
+    }
+  }
+
+  getCurrent (): Observable<Event> {
+    if (this.current) {
+      return of(this.current)
+    } else {
+      return this.http.get<Event>(`${this.currentEventUrl}`)
+      .pipe(
+          map(events => new Event(events[0])),
+          tap(event => this.current = event),
+          catchError(this.handleError<Event>('getCurrentEvent'))
+        )
+    }
+  }
+
+  getPrevious (): Observable<Event> {
+    if (this.previous) {
+      return of(this.previous)
+    } else {
+      return this.http.get<Event>(`${this.previousEventUrl}`)
+        .pipe(
+          map(events => events[0]),
+          tap(event => this.previous = event),
+          catchError(this.handleError<Event>('getPreviousEvent'))
         )
     }
   }

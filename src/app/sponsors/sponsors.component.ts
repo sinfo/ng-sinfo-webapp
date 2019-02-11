@@ -2,7 +2,6 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { SponsorService } from './sponsor.service'
 import { Sponsor } from './sponsor.model'
-import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-sponsors',
@@ -52,7 +51,7 @@ export class SponsorsComponent implements OnInit, OnChanges {
     this.golds = []
     this.silvers = []
     this.others = []
-    
+
     sponsors.forEach(sponsor => {
       /* if (sponsor.id === 'deloitte') {
         console.log(sponsor)

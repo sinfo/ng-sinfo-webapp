@@ -4,9 +4,8 @@ import { User } from '../../user.model'
 import { UserService } from '../../user.service'
 import { Company } from '../../../company/company.model'
 import { CompanyService } from '../../../company/company.service'
-import { environment } from '../../../../environments/environment'
-import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap'
 import { CompanyCannonService } from '../../../company/company-cannon.service'
+import { EventService } from '../../../events/event.service'
 
 @Component({
   selector: 'app-my-links',
@@ -28,29 +27,32 @@ export class MyLinksComponent implements OnInit {
   constructor (
     private userService: UserService,
     private companyService: CompanyService,
-    private companyCannonService: CompanyCannonService
+    private companyCannonService: CompanyCannonService,
+    private eventService: EventService
   ) { }
 
   ngOnInit () {
     this.processedLinks = []
-    this.userService.getMe()
-      .subscribe(me => {
-        this.me = me
-        const company = me.company.find(c => {
-          return c.edition === environment.currentEvent
+    this.eventService.getCurrent().subscribe(event => {
+      this.userService.getMe()
+        .subscribe(me => {
+          this.me = me
+          const company = me.company.find(c => {
+            return c.edition === event.id
+          })
+
+          this.companyService.getCompany(company.company)
+            .subscribe(_company => {
+              this.company = _company
+            })
+
+          this.companyCannonService.getLinks(company.company)
+            .subscribe(links => {
+              this.links = links
+              links.forEach(link => this.processLink(link))
+            })
         })
-
-        this.companyService.getCompany(company.company)
-          .subscribe(_company => {
-            this.company = _company
-          })
-
-        this.companyCannonService.getLinks(company.company)
-          .subscribe(links => {
-            this.links = links
-            links.forEach(link => this.processLink(link))
-          })
-      })
+    })
   }
 
   processLink (link: Link) {

@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core'
 import { Router } from '@angular/router'
 import { Speaker } from './speaker.model'
 import { SpeakerService } from './speaker.service'
-import { environment } from '../../environments/environment'
+import { EventService } from '../events/event.service'
 
 @Component({
   selector: 'app-speakers',
@@ -16,7 +16,8 @@ export class SpeakersComponent implements OnInit, OnChanges {
 
   constructor (
     private router: Router,
-    private speakerService: SpeakerService
+    private speakerService: SpeakerService,
+    private eventService: EventService
   ) { }
 
   ngOnInit () {
@@ -34,10 +35,12 @@ export class SpeakersComponent implements OnInit, OnChanges {
           this.speakers = speakers
           this.previousSpeakers = false
         } else {
-          this.eventId = environment.previousEvent
-          this.speakerService.getSpeakers(environment.previousEvent)
-            .subscribe(previousSpeakers => this.speakers = previousSpeakers)
-          this.previousSpeakers = true
+          this.eventService.getPrevious().subscribe(event => {
+            this.eventId = event.id
+            this.speakerService.getSpeakers(this.eventId)
+              .subscribe(previousSpeakers => this.speakers = previousSpeakers)
+            this.previousSpeakers = true
+          })
         }
       })
   }

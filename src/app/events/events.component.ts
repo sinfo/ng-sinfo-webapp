@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core'
 import { MessageService, Type } from '../message.service'
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'
-import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-events',
@@ -11,14 +10,10 @@ import { environment } from '../../environments/environment'
 export class EventsComponent implements OnInit {
   selectedAboutText: string
   displayAboutDropdown: boolean
-  begin: Date
-  end: Date
 
   constructor (
     private router: Router
   ) {
-    this.begin = environment.begin
-    this.end = environment.end
     /**
      * At time of writing this, there is no way to scroll to fragments, natively.
      * Issue: https://github.com/angular/angular/issues/6595
