@@ -19,7 +19,7 @@ export class EventService {
   private eventsUrl = environment.deckUrl + '/api/events?sort=-date'
   private currentEventUrl = environment.deckUrl + '/api/events?sort=-date&limit=1'
   private previousEventUrl = environment.deckUrl + '/api/events?sort=-date&limit=1&skip=1'
-  private events: Event[] = []
+  private events: Event[]
   private current: Event
   private previous: Event
 
@@ -35,9 +35,7 @@ export class EventService {
 
     return this.http.get<Event[]>(this.eventsUrl)
       .pipe(
-        tap(events => this.events = events.sort(function (a, b) {
-          return Date.parse(b.date) - Date.parse(a.date)
-        })),
+        tap(events => this.events = events),
         catchError(this.handleError<Event[]>('getEvents', []))
       )
   }

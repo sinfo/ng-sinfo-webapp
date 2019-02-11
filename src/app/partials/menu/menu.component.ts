@@ -34,9 +34,11 @@ export class MenuComponent implements OnInit {
   }
 
   getShortEventList (): void {
-    this.eventService.getEvents().subscribe(events => {
-      this.shortEventList = events.filter(function (a) {
-        return a.id !== this.eventService.getCurrent().id
+    this.eventService.getCurrent().subscribe(event => {
+      this.eventService.getEvents().subscribe(events => {
+        this.shortEventList = events.filter(function (a) {
+          return a.id !== event.id
+        })
       })
     })
   }
