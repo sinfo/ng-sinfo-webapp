@@ -10,13 +10,11 @@
 
     <div *ngIf="sponsors">
 
-      <h4 *ngIf="diamond">Diamond</h4>
-
       <div class="sponsor diamond" *ngIf="diamond">
         <img src="{{ diamond.img }}" alt="{{ diamond.name }}" title="{{ diamond.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
       </div>
 
-      <h5 *ngIf="platinums.length">Platinum</h5>
+      <hr>
 
       <div class="row" *ngIf="platinums.length">
         <div class="sponsors platinum">
@@ -27,8 +25,7 @@
       </div>
 
       <div *ngIf="showAll">
-        <br />
-        <h5 *ngIf="golds.length">Gold</h5>
+        <hr>
 
         <div class="row" *ngIf="golds.length">
           <div class="sponsors gold">
@@ -38,9 +35,7 @@
           </div>
         </div>
 
-        <br />
-
-        <h5 *ngIf="silvers.length">Silver</h5>
+        <hr>
 
         <div class="row" *ngIf="silvers.length">
           <div class="sponsors silver">
@@ -50,8 +45,7 @@
           </div>
         </div>
 
-        <br />
-        <h5 *ngIf="others.length">Partners</h5>
+        <hr *ngIf="others.length">
 
         <div class="row" *ngIf="others.length">
           <div class="sponsors silver">
