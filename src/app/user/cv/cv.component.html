@@ -1,0 +1,74 @@
+<app-menu></app-menu>
+
+<app-loading [content]="user"></app-loading>
+
+<div class="user sidebar-wrapper" *ngIf="user">
+
+  <app-sidebar [user]="user"></app-sidebar>
+
+  <div id="content" class="content container-fluid">
+    <div class="align-center">
+      
+      <div class="row">
+        <h3>Upload CV</h3>
+      </div>
+      
+      <div class="row">
+        <h6>Submit or update your CV and enable yourself to win prizes!</h6>
+      </div>
+
+      <div id="info">
+
+  
+        <div class="row">
+          <h5>Last upload:</h5>
+        </div>
+        
+        <div class="row" *ngIf="myCv">
+          <ul>
+            <li>{{myCv.name}}</li>
+            <li>({{ myCv.updated | date: 'dd/MM/yyyy' }})</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div id ="actions" class="row">
+        <div class="col-sm-12 align-center cv-buttons">
+
+          <!--
+          <div *ngIf="submitedCV" class="alert-message cv-alert">
+            <div class="alert alert-success" role="alert">
+              Your CV has already been submitted
+            </div>
+          </div>
+
+          <div *ngIf="!submitedCV" class="alert-message cv-alert">
+            <div class="alert alert-info" role="alert">
+              You have not yet submitted your CV
+            </div>
+          </div>
+          -->
+
+            <button class="btn cv-button upload" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}">
+              <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+              <span class="glyphicon glyphicon-cloud-upload"></span>
+              {{ submitedCV ? 'Update' : 'Upload' }} your CV
+            </button>
+
+            <a *ngIf="submitedCV" href="{{ cvDownloadUrl }}" target="_blank" class="btn cv-button download">
+              <span class="glyphicon glyphicon-cloud-download"></span>
+              Download your CV
+            </a>
+
+            <button *ngIf="submitedCV" class="btn cv-button delete" id="deleteFile" (click)="deleteCV()">
+              <span class="glyphicon glyphicon-remove"></span>
+              Delete your CV
+            </button>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

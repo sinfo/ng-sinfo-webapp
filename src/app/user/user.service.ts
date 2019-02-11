@@ -13,6 +13,7 @@ import { CompanyService } from '../company/company.service'
 import { MessageService, Type } from '../message.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
+import { File } from '../user/cv/file'
 
 @Injectable()
 export class UserService {
@@ -84,7 +85,7 @@ export class UserService {
       )
   }
 
-  isCVSubmited (): Observable<any> {
+  isCVSubmited (): Observable<File> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`

@@ -6,6 +6,12 @@
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
     <span id="sidebarSpan">
+      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/file')}">
+        <a routerLink="/cv">
+          <i class="glyphicon glyphicon-file"></i>
+          Upload CV
+        </a>
+      </li>
       <li [ngClass]="{'active': detectLocation('/me')}">
         <a routerLink="/me">
           <i class="glyphicon glyphicon-user"></i>
