@@ -18,7 +18,6 @@ export class LandingPageComponent implements OnInit {
     private router: Router,
     private eventService: EventService
   ) {
-    this.eventService.getCurrent().subscribe(event => { this.begin = event.begin; this.end = event.end })
     /**
      * At time of writing this, there is no way to scroll to fragments, natively.
      * Issue: https://github.com/angular/angular/issues/6595
@@ -36,7 +35,11 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit () {
     this.selectedAboutText = 'About Us'
-    this.eventService.getCurrent().subscribe(event => { this.eventId = event.id })
+    this.eventService.getCurrent().subscribe(event => {
+      this.eventId = event.id
+      this.begin = event.begin
+      this.end = event.end
+    })
     this.showOrHideDropdown()
   }
 

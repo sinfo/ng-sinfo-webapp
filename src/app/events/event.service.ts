@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { Observable } from 'rxjs/Observable'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError, map, tap, take, filter } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 
 import { environment } from '../../environments/environment'
@@ -58,7 +58,9 @@ export class EventService {
       return of(this.current)
     } else {
       return this.http.get<Event>(`${this.currentEventUrl}`)
-        .pipe(
+      .pipe(
+          map(events => new Event(events[0])),
+          tap(event => this.current = event),
           catchError(this.handleError<Event>('getCurrentEvent'))
         )
     }
@@ -70,6 +72,8 @@ export class EventService {
     } else {
       return this.http.get<Event>(`${this.previousEventUrl}`)
         .pipe(
+          map(events => events[0]),
+          tap(event => this.previous = event),
           catchError(this.handleError<Event>('getPreviousEvent'))
         )
     }
