@@ -25,7 +25,7 @@ export class EventComponent implements OnInit {
       this.eventId = environment.url_to_id[params['id']]
       this.eventService.getEvent(this.eventId).subscribe(event => {
         this.eventName = event.name
-        this.titleService.setTitle( this.eventName );
+        this.titleService.setTitle(this.eventName)
       })
     })
   }

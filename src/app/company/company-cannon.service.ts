@@ -8,10 +8,13 @@ import { AuthService } from '../auth/auth.service'
 import { Link } from '../user/link/link.model'
 import { environment } from '../../environments/environment'
 import { User } from '../user/user.model'
+import { EventService } from '../events/event.service'
+import { Event } from '../events/event.model'
 
 @Injectable()
 export class CompanyCannonService {
   private companiesUrl = environment.cannonUrl + '/company'
+  private event: Event
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -20,14 +23,17 @@ export class CompanyCannonService {
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private eventService: EventService
+  ) {
+    this.eventService.getCurrent().subscribe(event => this.event)
+  }
 
   getLink (companyId: string, attendeeId: string): Observable<Link> {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
-          'editionId': environment.currentEvent
+          'editionId': this.event.id
         }
       }),
       headers: this.headers
@@ -43,7 +49,7 @@ export class CompanyCannonService {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
-          'editionId': environment.currentEvent
+          'editionId': this.event.id
         }
       }),
       headers: this.headers
@@ -59,7 +65,7 @@ export class CompanyCannonService {
     return this.http.post<Link>(`${this.companiesUrl}/${companyId}/link`, {
       userId: userId,
       attendeeId: attendeeId,
-      editionId: environment.currentEvent,
+      editionId: this.event.id,
       note: note || ' '
     }, { headers: this.headers })
       .pipe(
@@ -71,7 +77,7 @@ export class CompanyCannonService {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
-          'editionId': environment.currentEvent
+          'editionId': this.event.id
         }
       }),
       headers: this.headers
@@ -90,7 +96,7 @@ export class CompanyCannonService {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
-          'editionId': environment.currentEvent
+          'editionId': this.event.id
         }
       }),
       headers: this.headers
@@ -108,7 +114,7 @@ export class CompanyCannonService {
     }
 
     return this.http.post<User>(`${this.companiesUrl}/${companyId}/sign/${attendeeId}`, {
-      editionId: environment.currentEvent,
+      editionId: this.event.id,
       day: new Date().getDate().toString() // current day
     }, httpOptions)
       .pipe(

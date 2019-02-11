@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core'
+import { Component, NgZone } from '@angular/core'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
@@ -9,6 +9,7 @@ import { Achievement } from '../../achievements/achievement.model'
 import { RedeemCode } from '../survey/redeem-code.model'
 import { SurveyService } from '../survey/survey.service'
 import { AchievementService } from '../../achievements/achievement.service'
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-my-profile',
@@ -16,7 +17,7 @@ import { AchievementService } from '../../achievements/achievement.service'
   styleUrls: ['./my-profile.component.css']
 })
 
-export class MyProfileComponent implements OnInit {
+export class MyProfileComponent {
   user: User
   company: Company
   submitedCV: boolean
@@ -33,7 +34,8 @@ export class MyProfileComponent implements OnInit {
     private authService: AuthService,
     private surveyService: SurveyService,
     private zone: NgZone,
-    private achievementService: AchievementService
+    private achievementService: AchievementService,
+    private eventService: EventService
   ) {
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     /**
@@ -52,7 +54,7 @@ export class MyProfileComponent implements OnInit {
             // TODO CANNON MUST RETURN 404 on no file
             this.submitedCV = response && response.id
             console.log('isCVSubmited', response)
-          }, (error) => {
+          }, () => {
             this.submitedCV = false
           })
 
@@ -97,28 +99,27 @@ export class MyProfileComponent implements OnInit {
             // it will have a user role in the current edition
 
           })
+          this.eventService.getCurrent().subscribe(event => {
+            if (this.user.role === 'company') {
+              let company = this.user.company
+              let companyFound = company.find(c => {
+                return c.edition === event.id
+              })
 
-          if (this.user.role === 'company') {
-            let company = this.user.company
-            let companyFound = company.find(c => {
-              return c.edition === environment.currentEvent
-            })
-
-            if (!companyFound) {
-              this.userService.demoteSelf()
-                .subscribe(newUser => this.user = newUser)
-            } else {
-              this.companyService.getCompany(companyFound.company)
-                .subscribe(c => this.company = c)
+              if (!companyFound) {
+                this.userService.demoteSelf()
+                  .subscribe(newUser => this.user = newUser)
+              } else {
+                this.companyService.getCompany(companyFound.company)
+                  .subscribe(c => this.company = c)
+              }
             }
-          }
+          })
         })
     })
   }
 
-  ngOnInit() { }
-
-  uploadCV(event) {
+  uploadCV (event) {
     let fileList: FileList = event.target.files
     if (fileList.length > 0) {
       let file: File = fileList[0]
@@ -127,7 +128,7 @@ export class MyProfileComponent implements OnInit {
       formData.append('file', file, file.name)
       this.userService.uploadCV(formData).subscribe(res => {
         this.submitedCV = true
-      }, (error) => {
+      }, () => {
         this.submitedCV = false
       })
     }

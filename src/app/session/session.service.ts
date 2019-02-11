@@ -18,24 +18,24 @@ const httpOptions = {
 export class SessionService {
   private sessionsUrl = environment.deckUrl + '/api/sessions'
   private sessions: Session[]
-  private event: string
+  private eventId: string
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getSessions (event: string): Observable<Session[]> {
-    if (this.sessions && this.event == event) {
+  getSessions (eventId: string): Observable<Session[]> {
+    if (this.sessions && this.eventId === eventId) {
       return of(this.sessions)
     }
 
-    this.event = event
+    this.eventId = eventId
 
     const params = new HttpParams({
       fromObject: {
         'sort': 'date',
-        'event': event
+        'event': eventId
       }
     })
 

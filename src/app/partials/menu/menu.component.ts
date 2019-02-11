@@ -4,7 +4,7 @@ import { AuthService } from '../../auth/auth.service'
 import { MessageService } from '../../message.service'
 import { EventService } from '../../events/event.service'
 import { Event } from '../../events/event.model'
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../../environments/environment.prod'
 
 @Component({
   selector: 'app-menu',
@@ -35,12 +35,8 @@ export class MenuComponent implements OnInit {
 
   getShortEventList (): void {
     this.eventService.getEvents().subscribe(events => {
-      //Sort array
-      this.shortEventList = events.sort(function(a,b){
-        return Date.parse(b.date) - Date.parse(a.date);
-      //Remove current event
-      }).filter(function(a){
-        return a.id != environment.currentEvent
+      this.shortEventList = events.filter(function (a) {
+        return a.id !== this.eventService.getCurrent().id
       })
     })
   }

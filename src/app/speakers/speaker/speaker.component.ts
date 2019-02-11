@@ -5,7 +5,7 @@ import { SpeakerService } from '../speaker.service'
 import { Speaker } from '../speaker.model'
 import { SessionService } from '../../session/session.service'
 import { Session } from '../../session/session.model'
-import { environment } from '../../../environments/environment';
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-speaker',
@@ -19,6 +19,7 @@ export class SpeakerComponent implements OnInit {
   constructor (
     private speakerService: SpeakerService,
     private sessionService: SessionService,
+    private eventService: EventService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -39,12 +40,14 @@ export class SpeakerComponent implements OnInit {
   }
 
   getSession (id: string): void {
-    this.sessionService.getSessions(environment.currentEvent)
-      .subscribe(sessions => {
-        this.session = sessions.find(session => {
-          return session.speakers.length > 0 ? session.speakers[0]['id'] === id : null
+    this.eventService.getCurrent().subscribe(event => {
+      this.sessionService.getSessions(event.id)
+        .subscribe(sessions => {
+          this.session = sessions.find(session => {
+            return session.speakers.length > 0 ? session.speakers[0]['id'] === id : null
+          })
         })
-      })
+    })
   }
 
   onSelect (session: Session): void {

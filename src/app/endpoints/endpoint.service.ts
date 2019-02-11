@@ -7,27 +7,33 @@ import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
+import { EventService } from '../events/event.service'
+import { Event } from '../events/event.model'
 
 @Injectable()
 export class EndpointService {
 
   private endpointsUrl = environment.cannonUrl + '/company-endpoint'
   private endpoints: Endpoint[]
+  private event: Event
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${this.authService.getToken().token}`
   })
   private params = new HttpParams({
     fromObject: {
-      'edition': environment.currentEvent
+      'edition': this.event.id
     }
   })
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private eventService: EventService
+  ) {
+    this.eventService.getCurrent().subscribe(event => this.event)
+  }
 
   getEndpoints (): Observable<Endpoint[]> {
     if (this.endpoints) {
@@ -44,7 +50,7 @@ export class EndpointService {
   getEndpoint (companyId: string): Observable<Endpoint> {
     if (this.endpoints) {
       return of(this.endpoints.find(c => {
-        return c.company === companyId && c.edition === environment.currentEvent
+        return c.company === companyId && c.edition === this.event.id
       }))
     }
 
@@ -60,7 +66,7 @@ export class EndpointService {
   createEndpoints (companies: string[], from: Date, to: Date): Observable<Endpoint[]> {
     return this.http.post<Endpoint[]>(`${this.endpointsUrl}`, {
       companies,
-      edition: environment.currentEvent,
+      edition: this.event.id,
       validaty: {
         from,
         to

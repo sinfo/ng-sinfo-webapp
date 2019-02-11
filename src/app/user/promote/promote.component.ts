@@ -3,7 +3,7 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
-import { environment } from '../../../environments/environment'
+import { EventService } from '../../events/event.service'
 
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap'
 import { Observable } from 'rxjs/Observable'
@@ -37,7 +37,8 @@ export class PromoteComponent implements OnInit {
 
   constructor (
     private userService: UserService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private eventService: EventService
   ) { }
 
   @ViewChild('instance') instance: NgbTypeahead
@@ -96,20 +97,22 @@ export class PromoteComponent implements OnInit {
       this.updateInfo(user)
       return
     }
-    let userCompany = user.company.find(c => {
-      return c.edition === environment.currentEvent
+    this.eventService.getCurrent().subscribe(event => {
+      let userCompany = user.company.find(c => {
+        return c.edition === event.id
+      })
+
+      if (!userCompany) {
+        this.updateInfo(user)
+        return
+      }
+
+      this.userReadCompany = this.companies.find(c => {
+        return c.id === userCompany.company
+      })
+
+      this.updateInfo(user, this.userReadCompany)
     })
-
-    if (!userCompany) {
-      this.updateInfo(user)
-      return
-    }
-
-    this.userReadCompany = this.companies.find(c => {
-      return c.id === userCompany.company
-    })
-
-    this.updateInfo(user, this.userReadCompany)
   }
 
   getCompanies (): void {
