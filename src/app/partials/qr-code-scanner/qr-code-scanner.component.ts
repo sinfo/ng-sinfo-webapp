@@ -3,8 +3,9 @@ import { MessageService, Type } from '../../message.service'
 import { User } from '../../user/user.model'
 import { UserService } from '../../user/user.service'
 import { CompanyService } from '../../company/company.service'
-import { environment } from '../../../environments/environment'
 import { Company } from '../../company/company.model'
+
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-qrcode-scanner',
@@ -35,7 +36,8 @@ export class QrcodeScannerComponent implements OnInit {
   constructor (
     private messageService: MessageService,
     private userService: UserService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private eventService: EventService
   ) { }
 
   ngOnInit () { }
@@ -107,18 +109,14 @@ export class QrcodeScannerComponent implements OnInit {
         this.userRead = user
 
         if (user.role === 'company') {
-          let company = user.company.find(c => {
-            return c.edition === environment.currentEvent
+          this.eventService.getCurrent().subscribe(event => {
+            let company = user.company.find(c => c.edition === event.id)
+            if (!company) return
+
+            this.companyService.getCompany(company.company)
+              .subscribe(_company => this.company = _company)
           })
-
-          if (!company) return
-
-          this.companyService.getCompany(company.company)
-            .subscribe(_company => this.company = _company)
         }
-
-        let showAlert = content ? true : false
-
       })
   }
 

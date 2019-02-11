@@ -1,5 +1,32 @@
-@media (min-height: 900px) {
-    .footer {
-        height: 13vh;
+.first {
+    margin-left: 0;
+}
+
+.container {
+    text-align: center
+}
+
+ul {
+    display: inline-block;
+    text-align: left;
+}
+
+.footer-nav-item {
+    text-align: center
+}
+
+.socials-nav {
+    text-align: center
+}
+
+.list {
+    margin: 0;
+}
+
+@media (min-width: 1000px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

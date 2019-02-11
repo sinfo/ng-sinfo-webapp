@@ -1,7 +1,9 @@
 .schedule .tab-content-schedule .schedule-item .lecture-icon-wrapper {
-  top: 23px;
   background-color: transparent;
-  
+  left: -8px;
+  width: 60px;
+  height: 60px;
+  top: 0;
 }
 
 .schedule .tab-content-schedule .schedule-item .lecture-icon-wrapper img {

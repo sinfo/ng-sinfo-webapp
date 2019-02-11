@@ -2435,7 +2435,7 @@ li {
 }
 .section {
   position: relative;
-  padding: 30px 0;
+  /*padding: 30px 0;*/
 }
 .fullwidth-section {
   zoom: 1;

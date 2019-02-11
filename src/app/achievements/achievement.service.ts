@@ -31,8 +31,8 @@ export class AchievementService {
 
     return this.http.get<Achievement[]>(this.achievementsUrl)
       .pipe(
-        tap(achievemens => this.achievements = achievemens),
-        catchError(this.handleError<Achievement[]>('getAchiements', []))
+        tap(achievements => this.achievements = achievements),
+        catchError(this.handleError<Achievement[]>('getAchievements', []))
       )
   }
 

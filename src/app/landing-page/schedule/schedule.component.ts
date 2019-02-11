@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { Router } from '@angular/router'
 
 import { Session } from '../../session/session.model'
@@ -11,11 +11,12 @@ import { environment } from '../../../environments/environment'
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent implements OnInit, OnChanges {
+  @Input() eventId: string
 
   selectedTheme: string
   selectedTime: string
-  selectedSession: [string, string, string, string, string]
+  selectedSession: string
   displayDayDropdown: boolean
   displaySessionDropdown: [boolean, boolean, boolean, boolean, boolean]
 
@@ -33,8 +34,12 @@ export class ScheduleComponent implements OnInit {
     this.showOrHideDropdown()
   }
 
+  ngOnChanges () {
+    this.getSessions()
+  }
+
   getSessions (): void {
-    this.sessionService.getSessions()
+    this.sessionService.getSessions(this.eventId)
       .subscribe(sessions => {
         this.sessions = sessions
         this.createSchedule(sessions)
@@ -63,7 +68,7 @@ export class ScheduleComponent implements OnInit {
               sala2: []
             }
           },
-          theme: environment.themes[registeredDays + 1],
+          theme: environment.themes[this.eventId][registeredDays + 1],
           date: date
         })
         registeredDays += 1
@@ -82,7 +87,7 @@ export class ScheduleComponent implements OnInit {
     if (this.schedule.length > 0) {
       this.selectedTheme = this.schedule[0].theme
       this.selectedTime = this.schedule[0].date
-      this.selectedSession = ['Keynotes', 'Keynotes', 'Keynotes', 'Keynotes', 'Keynotes']
+      this.selectedSession = 'Keynotes'
     }
 
   }
@@ -110,8 +115,8 @@ export class ScheduleComponent implements OnInit {
     this.selectedTime = day
   }
 
-  updateSelectedSessionText (day: number, session: string) {
-    this.selectedSession[day] = session
+  updateSelectedSessionText (session: string) {
+    this.selectedSession = session
   }
   /* End of Dropdown tabs actions */
 }

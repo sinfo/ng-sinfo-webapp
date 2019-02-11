@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { environment } from '../../../environments/environment'
+
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-feedback',
@@ -10,13 +11,12 @@ export class FeedbackComponent implements OnInit {
 
   show: boolean
 
-  constructor () { }
+  constructor (private eventService: EventService) { }
 
   ngOnInit () {
-    let eventOcurring: boolean = environment.begin !== null && environment.end !== null ?
-      new Date() >= environment.begin && new Date() <= environment.end
-      : false
-    this.show = !eventOcurring
+    this.eventService.getCurrent().subscribe(event => {
+      this.show = !event.isOcurring
+    })
   }
 
 }

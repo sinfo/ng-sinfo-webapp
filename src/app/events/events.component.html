@@ -64,9 +64,9 @@
 
 <app-menu></app-menu>
 
-<app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
+<app-speakers></app-speakers>
 
-<app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
+<app-schedule></app-schedule>
 
 <section id="sign_up" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
@@ -82,7 +82,7 @@
   </div>
 </section>
 
-<app-team *ngIf="eventId" [eventId]="eventId"></app-team>
+<app-team></app-team>
 
 <section id="sign_up" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
@@ -187,27 +187,6 @@
   </div>
 </section>
 
-<app-sponsors *ngIf="eventId" [eventId]="eventId"></app-sponsors>
+<app-sponsors></app-sponsors>
 
 <app-feedback></app-feedback>
-
-<section id="contacts">
-  <div class="contacts-wrapper">
-    <div id="contacts-map" class="map" data-settings="assets/map-settings.json" style="height:560px;"></div>
-
-    <div class="container contacts-on-map-container">
-      <div class="contacts-on-map">
-        <h3>Contacts</h3>
-
-        <ul class="list">
-          <li>
-            <i class="fa fa-map-marker"></i>Instituto Superior Técnico, Lisbon</li>
-          <li>
-            <i class="fa fa-envelope"></i>
-            <a href="mailto:geral@sinfo.org">geral@sinfo.org</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>

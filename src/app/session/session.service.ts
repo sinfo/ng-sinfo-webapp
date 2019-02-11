@@ -16,24 +16,26 @@ const httpOptions = {
 
 @Injectable()
 export class SessionService {
-
   private sessionsUrl = environment.deckUrl + '/api/sessions'
   private sessions: Session[]
+  private eventId: string
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getSessions (): Observable<Session[]> {
-    if (this.sessions) {
+  getSessions (eventId: string): Observable<Session[]> {
+    if (this.sessions && this.eventId === eventId) {
       return of(this.sessions)
     }
+
+    this.eventId = eventId
 
     const params = new HttpParams({
       fromObject: {
         'sort': 'date',
-        'event': environment.currentEvent
+        'event': eventId
       }
     })
 

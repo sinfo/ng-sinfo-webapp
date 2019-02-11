@@ -34,6 +34,8 @@ import { ValidateCardComponent } from './user/validate-card/validate-card.compon
 import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
 import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
+//import { EventsComponent } from './events/events.component'
+import { EventComponent } from './events/event/event.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -66,6 +68,8 @@ const routes: Routes = [
   { path: 'user/:id', component: UserComponent },
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  //{ path: 'events', component: EventsComponent },
+  { path: 'event/:id', component: EventComponent },
   { path: '**', component: PageNotFoundComponent }
 ]
 

@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
-import { Company } from '../../company/company.model'
-import { CompanyService } from '../../company/company.service'
-import { environment } from '../../../environments/environment'
 import { MessageService, Type } from '../../message.service'
-import { CompanyCannonService } from '../../company/company-cannon.service'
-import { SignatureService } from '../signature/signature.service'
 
 @Component({
   selector: 'app-validate-card',

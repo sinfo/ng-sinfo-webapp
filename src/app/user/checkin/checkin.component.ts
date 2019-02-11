@@ -5,6 +5,7 @@ import { SessionCannonService } from '../../session/session-cannon.service'
 import { User } from '../user.model'
 import { UserService } from '../user.service'
 import { MessageService, Type } from '../../message.service'
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-checkin',
@@ -21,13 +22,14 @@ export class CheckinComponent implements OnInit {
 
   scannerActive: boolean
   submitLabel: string
-  insideScannerMsg: [{ title: string, msg: string }]
+  insideScannerMsg: [{ title: string, msg: string }, { title: string, msg: string }]
 
   constructor (
     private sessionService: SessionService,
     private sessionCannonService: SessionCannonService,
     private userService: UserService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private eventService: EventService
   ) { }
 
   ngOnInit () {
@@ -42,34 +44,36 @@ export class CheckinComponent implements OnInit {
   }
 
   getSessions () {
-    this.sessionService.getSessions()
-      .subscribe(sessions => {
-        let _sessions = []
-        sessions.forEach(s => {
-          let sessionDate = new Date(s.date)
-          let sessionDuration = new Date(s.duration)
-          let durationInSeconds =
-            (sessionDuration.getHours() * 3600) +
-            (sessionDuration.getMinutes() * 60) +
-            sessionDuration.getSeconds()
+    this.eventService.getCurrent().subscribe(event => {
+      this.sessionService.getSessions(event.id)
+        .subscribe(sessions => {
+          let _sessions = []
+          sessions.forEach(s => {
+            let sessionDate = new Date(s.date)
+            let sessionDuration = new Date(s.duration)
+            let durationInSeconds =
+              (sessionDuration.getHours() * 3600) +
+              (sessionDuration.getMinutes() * 60) +
+              sessionDuration.getSeconds()
 
-          let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
-          let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
+            let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
+            let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
-          // today and before it ends
-          if (sessionDate.getDate() === new Date().getDate()) {
-            _sessions.push({
-              begin: sessionDate,
-              end: sessionEnd,
-              countdown: countdown,
-              session: s
-            })
-          }
+            // today and before it ends
+            if (sessionDate.getDate() === new Date().getDate()) {
+              _sessions.push({
+                begin: sessionDate,
+                end: sessionEnd,
+                countdown: countdown,
+                session: s
+              })
+            }
 
+          })
+          this.sessions = _sessions
+          this.users = []
         })
-        this.sessions = _sessions
-        this.users = []
-      })
+    })
   }
 
   beginCheckIn (session: Session) {

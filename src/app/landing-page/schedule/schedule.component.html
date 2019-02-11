@@ -44,16 +44,16 @@
 
           <!-- Navigation by auditorium start -->
           <div class="nav-wrapper">
-            <span class="nav-current" (click)="toggleSessionDropdown(i)">{{selectedSession[i]}}</span>
+            <span class="nav-current" (click)="toggleSessionDropdown(i)">{{selectedSession}}</span>
             <ul *ngIf="displaySessionDropdown && displaySessionDropdown[i]" class="nav nav-schedule schedule-type">
-              <li [ngClass]="{'active': selectedSession[i] === 'Presentations'}">
-                <a href="#day{{i}}_presentations" data-toggle="tab" (click)="updateSelectedSessionText(i, 'Presentations')">Presentations</a>
+              <li [ngClass]="{'active': selectedSession === 'Presentations'}">
+                <a href="#day{{i}}_presentations" data-toggle="tab" (click)="updateSelectedSessionText('Presentations')">Presentations</a>
               </li>
-              <li [ngClass]="{'active': selectedSession[i] === 'Keynotes'}">
-                <a href="#day{{i}}_keynotes" data-toggle="tab" (click)="updateSelectedSessionText(i, 'Keynotes')">Keynotes</a>
+              <li [ngClass]="{'active': selectedSession === 'Keynotes'}">
+                <a href="#day{{i}}_keynotes" data-toggle="tab" (click)="updateSelectedSessionText('Keynotes')">Keynotes</a>
               </li>
-              <li [ngClass]="{'active': selectedSession[i] === 'Workshops'}">
-                <a href="#day{{i}}_workshops" data-toggle="tab" (click)="updateSelectedSessionText(i, 'Workshops')">Workshops</a>
+              <li [ngClass]="{'active': selectedSession === 'Workshops'}">
+                <a href="#day{{i}}_workshops" data-toggle="tab" (click)="updateSelectedSessionText('Workshops')">Workshops</a>
               </li>
             </ul>
           </div>
@@ -63,7 +63,7 @@
           <div class="tab-content tab-content-schedule">
 
             <!-- Keynotes content start -->
-            <div id="day{{i}}_keynotes" class="tab-pane fade in" [ngClass]="{'active': selectedSession[i] === 'Keynotes'}">
+            <div id="day{{i}}_keynotes" class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Keynotes'}">
 
               <!-- Accordion start -->
               <div *ngIf="day.sessions.Keynote" class="panel-group" id="day{{i}}_keynotes_timeline">
@@ -71,7 +71,7 @@
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" class="panel schedule-item">
 
                   <div class="lecture-icon-wrapper">
-                    <img src="{{session.img}}" alt="" class="img-responsive">
+                    <img src="{{session.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                   </div>
 
                   <a (click)="onSelect(session)" class="schedule-item-header">
@@ -103,7 +103,7 @@
             <!-- Keynotes content end -->
 
             <!-- Presentations content start -->
-            <div id="day{{i}}_presentations" class="tab-pane fade in" [ngClass]="{'active': selectedSession[i] === 'Presentations'}">
+            <div id="day{{i}}_presentations" class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Presentations'}">
 
               <!-- Accordion start -->
               <div *ngIf="day.sessions.Presentation" class="panel-group" id="day{{i}}_presentations_timeline">
@@ -115,7 +115,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{presentation.img}}" alt="" class="img-responsive">
+                        <img src="{{presentation.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
@@ -149,7 +149,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{presentation.img}}" alt="" class="img-responsive">
+                        <img src="{{presentation.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
@@ -183,7 +183,7 @@
             <!-- Presentations content end -->
 
             <!-- Workshops content start -->
-            <div id="day{{i}}_workshops" class="tab-pane fade in" [ngClass]="{'active': selectedSession[i] === 'Workshops'}">
+            <div id="day{{i}}_workshops" class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Workshops'}">
 
               <!-- Accordion start -->
               <div *ngIf="day.sessions.Workshop" class="panel-group" id="day{{i}}_workshops_timeline">
@@ -195,7 +195,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{workshop.img}}" alt="" class="img-responsive">
+                        <img src="{{workshop.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                       </div>
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
@@ -228,7 +228,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{workshop.img}}" alt="" class="img-responsive">
+                        <img src="{{workshop.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                       </div>
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">

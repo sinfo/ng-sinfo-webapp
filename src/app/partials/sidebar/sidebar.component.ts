@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { environment } from '../../../environments/environment'
 import { Router, RouterStateSnapshot } from '@angular/router'
 import { AuthService } from '../../auth/auth.service'
 import { UserService } from '../../user/user.service'
 import { User } from '../../user/user.model'
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +13,7 @@ import { User } from '../../user/user.model'
 export class SidebarComponent implements OnInit {
 
   @Input() user: User
-  eventOcurring: boolean
+  eventOcurring: Boolean
   @Input() showSidebar = true
   url: String
   private snapshot: RouterStateSnapshot
@@ -21,15 +21,14 @@ export class SidebarComponent implements OnInit {
   constructor (
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private eventService: EventService
   ) {
     this.snapshot = router.routerState.snapshot
   }
 
   ngOnInit () {
-    let eventOcurring: boolean = environment.begin !== null && environment.end !== null ?
-      new Date() >= environment.begin && new Date() <= environment.end
-      : false
+    this.eventService.getCurrent().subscribe(event => { this.eventOcurring = event.isOcurring })
     this.url = this.snapshot.url.toString()
 
     if (this.authService.isLoggedIn()) {

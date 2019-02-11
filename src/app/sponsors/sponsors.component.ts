@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { SponsorService } from './sponsor.service'
 import { Sponsor } from './sponsor.model'
@@ -8,7 +8,9 @@ import { Sponsor } from './sponsor.model'
   templateUrl: './sponsors.component.html',
   styleUrls: ['./sponsors.component.css']
 })
-export class SponsorsComponent implements OnInit {
+export class SponsorsComponent implements OnInit, OnChanges {
+  @Input() eventId: string
+
   sponsors: Sponsor[]
   diamond: Sponsor
   platinums: Sponsor[] = []
@@ -34,17 +36,26 @@ export class SponsorsComponent implements OnInit {
     this.getSponsors()
   }
 
+  ngOnChanges () {
+    this.getSponsors()
+  }
+
   getSponsors (): void {
-    this.sponsorService.getSponsors()
+    this.sponsorService.getSponsors(this.eventId)
       .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
   }
 
   displaySponsors (sponsors: Sponsor[]): Sponsor[] {
+    this.diamond = null
+    this.platinums = []
+    this.golds = []
+    this.silvers = []
+    this.others = []
+
     sponsors.forEach(sponsor => {
       /* if (sponsor.id === 'deloitte') {
         console.log(sponsor)
-      }
-      console.log(sponsor.name, sponsor.advertisementLvl) */
+      } */
       if (sponsor.advertisementLvl === 'exclusive') this.diamond = sponsor
       if (sponsor.advertisementLvl === 'max') this.platinums.push(sponsor)
       if (sponsor.advertisementLvl === 'med') this.golds.push(sponsor)

@@ -6,6 +6,7 @@ import { Session } from '../session.model'
 import { UserService } from '../../user/user.service'
 import { User } from '../../user/user.model'
 import { AuthService } from '../../auth/auth.service'
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-workshops',
@@ -25,30 +26,33 @@ export class WorkshopsComponent implements OnInit {
     private sessionService: SessionService,
     private userService: UserService,
     private authService: AuthService,
+    private eventService: EventService,
     private router: Router
   ) { }
 
   ngOnInit () {
-    this.sessionService.getSessions()
-    .subscribe(sessions => {
+    this.eventService.getCurrent().subscribe(event => {
+      this.sessionService.getSessions(event.id)
+      .subscribe(sessions => {
 
-      this.workshops = sessions.filter((session) => {
-        return session.kind === 'Workshop'
-      })
+        this.workshops = sessions.filter((session) => {
+          return session.kind === 'Workshop'
+        })
 
-      this._workshops = this.workshops
-      .sort((wsA, wsB) => {
-        return Date.parse(wsA.date) - Date.parse(wsB.date)
-      })
-      .reduce((accumulator, session, index, array) => {
-        let lastIndex = accumulator.length - 1
-        if (index > 0 && array[--index].date === session.date) {
-          accumulator[lastIndex].workshops.push(session)
+        this._workshops = this.workshops
+        .sort((wsA, wsB) => {
+          return Date.parse(wsA.date) - Date.parse(wsB.date)
+        })
+        .reduce((accumulator, session, index, array) => {
+          let lastIndex = accumulator.length - 1
+          if (index > 0 && array[--index].date === session.date) {
+            accumulator[lastIndex].workshops.push(session)
+            return accumulator
+          }
+          accumulator.push({ date: session.date, workshops: [session] })
           return accumulator
-        }
-        accumulator.push({ date: session.date, workshops: [session] })
-        return accumulator
-      }, [])
+        }, [])
+      })
     })
 
     if (this.authService.isLoggedIn()) {

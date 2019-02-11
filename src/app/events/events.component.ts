@@ -1,22 +1,18 @@
-import { Component, OnInit } from '@angular/core'
-import { Router, NavigationEnd } from '@angular/router'
-import { EventService } from '../events/event.service'
+import { Component, OnInit, AfterViewInit } from '@angular/core'
+import { MessageService, Type } from '../message.service'
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router'
 
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.css']
+  selector: 'app-events',
+  templateUrl: './events.component.html',
+  styleUrls: ['./events.component.css']
 })
-export class LandingPageComponent implements OnInit {
+export class EventsComponent implements OnInit {
   selectedAboutText: string
   displayAboutDropdown: boolean
-  eventId: string
-  begin: Date
-  end: Date
 
   constructor (
-    private router: Router,
-    private eventService: EventService
+    private router: Router
   ) {
     /**
      * At time of writing this, there is no way to scroll to fragments, natively.
@@ -35,11 +31,6 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit () {
     this.selectedAboutText = 'About Us'
-    this.eventService.getCurrent().subscribe(event => {
-      this.eventId = event.id
-      this.begin = event.begin
-      this.end = event.end
-    })
     this.showOrHideDropdown()
   }
 

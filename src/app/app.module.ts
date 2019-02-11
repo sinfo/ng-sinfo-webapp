@@ -72,6 +72,9 @@ import { EndpointService } from './endpoints/endpoint.service'
 import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
 import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
+import { EventService } from './events/event.service'
+//import { EventsComponent } from './events/events.component'
+import { EventComponent } from './events/event/event.component'
 
 @NgModule({
   declarations: [
@@ -117,7 +120,9 @@ import { DownloadsStatusComponent } from './user/downloads/downloads-status/down
     ValidateCardComponent,
     DownloadsComponent,
     ManageDownloadsComponent,
-    DownloadsStatusComponent
+    DownloadsStatusComponent,
+    //EventsComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
@@ -148,7 +153,8 @@ import { DownloadsStatusComponent } from './user/downloads/downloads-status/down
     SignatureService,
     ScoreboardService,
     SessionCannonService,
-    EndpointService
+    EndpointService,
+    EventService
   ],
   bootstrap: [AppComponent]
 })

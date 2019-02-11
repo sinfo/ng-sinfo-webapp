@@ -11,6 +11,8 @@ import { AuthService } from '../auth/auth.service'
 import { Company } from '../company/company.model'
 import { CompanyService } from '../company/company.service'
 import { MessageService, Type } from '../message.service'
+import { EventService } from '../events/event.service'
+import { Event } from '../events/event.model'
 
 @Injectable()
 export class UserService {
@@ -18,13 +20,17 @@ export class UserService {
   private companiesUrl = environment.cannonUrl + '/companies'
   private filesUrl = environment.cannonUrl + '/files'
   public me: User
+  private event: Event
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
     private companyService: CompanyService,
+    private eventService: EventService,
     private authService: AuthService
-  ) { }
+  ) {
+    this.eventService.getCurrent().subscribe(event => this.event)
+  }
 
   getUser (id: string): Observable<User> {
     let headers = {
@@ -130,32 +136,33 @@ export class UserService {
         'Authorization': `Bearer ${this.authService.getToken().token}`
       })
     }
-
-    if (role === 'company') {
-      return this.http.put<User>(`${this.usersUrl}/${id}`, {
-        role: role,
-        company: {
-          edition: environment.currentEvent,
-          company: company
-        }
-      }, httpOptions)
-        .pipe(
-        catchError(this.handleError<User>('updating user'))
-        )
-    } else {
-      return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
-        .pipe(
-        tap(user => {
-          for (let i = 0; i < user.company.length; i++) {
-            if (user.company[i].edition === environment.currentEvent) {
-              this.removeThisEventsCompanyFromUser(id).subscribe()
-              break
-            }
+    this.eventService.getCurrent().subscribe(event => {
+      if (role === 'company') {
+        return this.http.put<User>(`${this.usersUrl}/${id}`, {
+          role: role,
+          company: {
+            edition: event.id,
+            company: company
           }
-        }),
-        catchError(this.handleError<User>('updating user'))
-        )
-    }
+        }, httpOptions)
+          .pipe(
+          catchError(this.handleError<User>('updating user'))
+          )
+      } else {
+        return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
+          .pipe(
+          tap(user => {
+            for (let i = 0; i < user.company.length; i++) {
+              if (user.company[i].edition === this.event.id) {
+                this.removeThisEventsCompanyFromUser(id).subscribe()
+                break
+              }
+            }
+          }),
+          catchError(this.handleError<User>('updating user'))
+          )
+      }
+    })
   }
 
   demoteSelf () {
@@ -180,7 +187,7 @@ export class UserService {
       })
     }
 
-    return this.http.delete<User>(`${this.usersUrl}/${id}/company?editionId=${environment.currentEvent}`,
+    return this.http.delete<User>(`${this.usersUrl}/${id}/company?editionId=${this.event.id}`,
       httpOptions).pipe(
       catchError(this.handleError<User>('removing this events company from user'))
       )
@@ -200,7 +207,7 @@ export class UserService {
       })
     }
     const payload = {
-      editionId: environment.currentEvent,
+      editionId: this.event.id,
       day: new Date().getDate().toString()
     }
 
