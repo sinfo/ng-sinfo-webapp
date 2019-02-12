@@ -68,5 +68,4 @@ export class CvComponent implements OnInit {
       this.submitedCV = false
     })
   }
-
 }

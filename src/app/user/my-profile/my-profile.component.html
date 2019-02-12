@@ -18,12 +18,6 @@
           <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
         </h5>
 
-        <h5 *ngIf="user.role === 'company' && company">
-          {{company.name}}
-
-          {{user.name}}
-        </h5>
-
       </div>
 
       <div class="row qrcode-wrapper">
@@ -49,7 +43,7 @@
           <h3 class="name">
               {{user.name}}
           </h3>
-          <h5 *ngIf="user.role === 'company' && company">
+          <h5 *ngIf="user.role === 'company' && company" class="name">
               {{company.name}}
           </h5>
 
