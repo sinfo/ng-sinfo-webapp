@@ -74,7 +74,8 @@ import { ManageDownloadsComponent } from './user/downloads/manage-downloads/mana
 import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
 import { EventService } from './events/event.service'
 //import { EventsComponent } from './events/events.component'
-import { EventComponent } from './events/event/event.component'
+import { EventComponent } from './events/event/event.component';
+import { CvComponent } from './user/cv/cv.component'
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { EventComponent } from './events/event/event.component'
     ManageDownloadsComponent,
     DownloadsStatusComponent,
     //EventsComponent,
-    EventComponent
+    EventComponent,
+    CvComponent
   ],
   imports: [
     BrowserModule,

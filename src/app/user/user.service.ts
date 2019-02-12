@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { User } from './user.model'
 import { Observable } from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { Achievement } from '../achievements/achievement.model'
-import { Session } from '../session/session.model'
 import { AuthService } from '../auth/auth.service'
-import { Company } from '../company/company.model'
 import { CompanyService } from '../company/company.service'
 import { MessageService, Type } from '../message.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
+import { File } from '../user/cv/file'
 
 @Injectable()
 export class UserService {
@@ -84,7 +83,7 @@ export class UserService {
       )
   }
 
-  isCVSubmited (): Observable<any> {
+  isCVSubmited (): Observable<File> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -98,10 +97,12 @@ export class UserService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
-      })
+      }),
+      reportProgress: true
     }
+    const req = new HttpRequest('POST', `${this.filesUrl}/me`, formData, httpOptions)
 
-    return this.http.post<any>(`${this.filesUrl}/me`, formData, httpOptions)
+    return this.http.request(req)
   }
 
   deleteCV (): Observable<any> {

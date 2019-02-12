@@ -1,0 +1,54 @@
+h6 {
+    color: #686e6e;
+}
+
+h5 {
+    font-weight: 400;
+}
+
+.cv-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.cv-button {
+    width: 100%;
+    border-radius: 2rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 5%;
+}
+
+#file {
+    opacity: 0;
+    position: absolute;
+}
+
+.delete {
+    background-color: #e26562;
+}
+
+.download {
+    background-color: #0b5ba7;
+}
+
+.upload {
+    background-color: #09df98;
+}
+
+#info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 45%;
+    margin-bottom: 10%;
+}
+
+.img {
+    height: 80%;
+}
+
+#progress-bar {
+    height: 5%;
+}

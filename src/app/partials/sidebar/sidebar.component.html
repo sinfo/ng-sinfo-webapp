@@ -6,10 +6,16 @@
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
     <span id="sidebarSpan">
+      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/file')}">
+        <a routerLink="/cv">
+          <img src="assets/img/icons/sidebar/cv.png">
+          Upload CV
+        </a>
+      </li>
       <li [ngClass]="{'active': detectLocation('/me')}">
         <a routerLink="/me">
           <i class="glyphicon glyphicon-user"></i>
-          My Profile
+          QrCode
         </a>
       </li>
       <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/downloads/download')}">
@@ -109,14 +115,6 @@
         </a>
       </li>
 
-    </span>
-    <span id="logoutSpan">
-      <li>
-        <a (click)="onLogout()">
-          <i class="glyphicon glyphicon-log-out"></i>
-          Logout
-        </a>
-      </li>
     </span>
   </ul>
 </nav>

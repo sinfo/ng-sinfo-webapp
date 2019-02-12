@@ -6,7 +6,6 @@ import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 import { AuthService } from '../../auth/auth.service'
 import { Achievement } from '../../achievements/achievement.model'
-import { RedeemCode } from '../survey/redeem-code.model'
 import { SurveyService } from '../survey/survey.service'
 import { AchievementService } from '../../achievements/achievement.service'
 import { EventService } from '../../events/event.service'
@@ -52,8 +51,7 @@ export class MyProfileComponent {
 
           this.userService.isCVSubmited().subscribe(response => {
             // TODO CANNON MUST RETURN 404 on no file
-            this.submitedCV = response && response.id
-            console.log('isCVSubmited', response)
+            this.submitedCV = response !== null && response.id !== null
           }, () => {
             this.submitedCV = false
           })
@@ -124,7 +122,6 @@ export class MyProfileComponent {
     if (fileList.length > 0) {
       let file: File = fileList[0]
       let formData: FormData = new FormData()
-      console.log('uploadCV', file.name)
       formData.append('file', file, file.name)
       this.userService.uploadCV(formData).subscribe(res => {
         this.submitedCV = true

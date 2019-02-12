@@ -6,7 +6,7 @@
   position: relative;
   min-width: 185px;
   max-width: 250px;
-  background: #048ae6;
+  background: #133157;
   color: #fff;
   transition: all 0.3s;
   height: 100%;
@@ -58,7 +58,7 @@
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #048ae6;
+  background: #133157;
 }
 
 #sidebar .sidebar-header strong {
@@ -84,6 +84,11 @@
 #sidebar ul li a i {
   margin-right: 10px;
 }
+
+#sidebar ul li a i, #sidebar ul li a img {
+  max-height: 40px;
+}
+
 #sidebar ul li a i.fa::before {
   color: white;
 }
@@ -118,7 +123,7 @@ button#sidebarCollapse {
   outline: none;
   right: -55px;
   top: 40vh;
-  color: #048ae6;
+  color: #133157;
   padding: 2px 30px 2px 0px;
   animation: jump 1s infinite;
   animation-timing-function: ease-in-out;
@@ -155,7 +160,7 @@ button#sidebarCollapse i {
 
 #sidebar .navbar {
   padding: 15px 10px;
-  background: #048ae6;
+  background: #133157;
   border: none;
   border-radius: 0;
   margin-bottom: 40px;
