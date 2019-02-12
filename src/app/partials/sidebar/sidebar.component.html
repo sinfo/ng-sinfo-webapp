@@ -15,7 +15,7 @@
       <li [ngClass]="{'active': detectLocation('/me')}">
         <a routerLink="/me">
           <i class="glyphicon glyphicon-user"></i>
-          My Profile
+          QrCode
         </a>
       </li>
       <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/downloads/download')}">
@@ -115,14 +115,6 @@
         </a>
       </li>
 
-    </span>
-    <span id="logoutSpan">
-      <li>
-        <a (click)="onLogout()">
-          <i class="glyphicon glyphicon-log-out"></i>
-          Logout
-        </a>
-      </li>
     </span>
   </ul>
 </nav>

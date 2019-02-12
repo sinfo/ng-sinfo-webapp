@@ -58,7 +58,7 @@
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #048ae6;
+  background: #133157;
 }
 
 #sidebar .sidebar-header strong {
@@ -123,7 +123,7 @@ button#sidebarCollapse {
   outline: none;
   right: -55px;
   top: 40vh;
-  color: #048ae6;
+  color: #133157;
   padding: 2px 30px 2px 0px;
   animation: jump 1s infinite;
   animation-timing-function: ease-in-out;
@@ -160,7 +160,7 @@ button#sidebarCollapse i {
 
 #sidebar .navbar {
   padding: 15px 10px;
-  background: #048ae6;
+  background: #133157;
   border: none;
   border-radius: 0;
   margin-bottom: 40px;
