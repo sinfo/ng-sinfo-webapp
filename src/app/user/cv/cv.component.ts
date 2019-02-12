@@ -17,7 +17,6 @@ export class CvComponent implements OnInit {
 
   user: User
   myCv: CV
-  submitedCV: boolean
   cvDownloadUrl: string
   upload_progress: number
   updated: boolean
@@ -34,25 +33,13 @@ export class CvComponent implements OnInit {
         .subscribe(user => {
           this.user = user
 
-          this.userService.isCVSubmited().subscribe(response => {
-            // TODO CANNON MUST RETURN 404 on no file
-            this.submitedCV = response !== null && response.id !== null
-            this.myCv = response
-            this.checkIfUpdated()
-          }, () => {
-            this.submitedCV = false
-          })
+          this.userService.getCv().subscribe(cv => this.myCv)
+          this.userService.isCvUpdated().subscribe(updated => this.updated)
         })
     })
   }
 
   ngOnInit () {
-  }
-
-  checkIfUpdated () {
-    this.eventService.getCurrent().subscribe(event => {
-      this.updated = new Date(this.myCv.updated).getTime() >= event.date.getTime()
-    })
   }
 
   uploadCV (event) {
@@ -66,23 +53,19 @@ export class CvComponent implements OnInit {
         if (e.type === HttpEventType.UploadProgress) {
           this.upload_progress = Math.round(100 * e.loaded / e.total)
         } else if (e instanceof HttpResponse) {
-          this.submitedCV = true
           this.myCv = e.body
           this.upload_progress = 100
-          this.checkIfUpdated()
+
+          this.userService.isCvUpdated().subscribe(updated => this.updated)
 
           setTimeout(() => { this.upload_progress = undefined }, 1000)
         }
-
-      }, () => {
-        this.submitedCV = false
       })
     }
   }
 
   deleteCV () {
     this.userService.deleteCV().subscribe(res => {
-      this.submitedCV = false
       this.myCv = undefined
     })
   }

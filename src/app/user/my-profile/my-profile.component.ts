@@ -51,9 +51,9 @@ export class MyProfileComponent {
           this.user = user
           this.presentationRole = this.getPresentationRole(this.user)
 
-          this.userService.isCVSubmited().subscribe(response => {
+          this.userService.getCv().subscribe(cv => {
             // TODO CANNON MUST RETURN 404 on no file
-            this.submitedCV = response !== null && response.id !== null
+            this.submitedCV = cv !== null && cv.id !== null
           }, () => {
             this.submitedCV = false
           })

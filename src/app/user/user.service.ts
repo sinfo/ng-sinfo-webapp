@@ -11,7 +11,7 @@ import { CompanyService } from '../company/company.service'
 import { MessageService, Type } from '../message.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
-import { File } from '../user/cv/file'
+import { File as CV } from './cv/file'
 
 @Injectable()
 export class UserService {
@@ -20,6 +20,7 @@ export class UserService {
   private filesUrl = environment.cannonUrl + '/files'
   public me: User
   private event: Event
+  private cv: CV
 
   constructor (
     private http: HttpClient,
@@ -28,7 +29,7 @@ export class UserService {
     private eventService: EventService,
     private authService: AuthService
   ) {
-    this.eventService.getCurrent().subscribe(event => this.event)
+    this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
   getUser (id: string): Observable<User> {
@@ -83,7 +84,10 @@ export class UserService {
       )
   }
 
-  isCVSubmited (): Observable<File> {
+  getCv (): Observable<CV> {
+    if (this.cv) {
+      return of(this.cv)
+    }
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -91,6 +95,12 @@ export class UserService {
     }
 
     return this.http.get<any>(`${this.filesUrl}/me`, httpOptions)
+  }
+
+  isCvUpdated (): Observable<boolean> {
+    return this.getCv().pipe(
+      map(cv => new Date(this.cv.updated).getTime() >= this.event.date.getTime())
+    )
   }
 
   uploadCV (formData: FormData): Observable<any> {
@@ -106,6 +116,7 @@ export class UserService {
   }
 
   deleteCV (): Observable<any> {
+    this.cv = null
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
