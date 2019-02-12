@@ -5,8 +5,6 @@ import { environment } from './../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { File as CV } from './file'
 import { HttpEventType, HttpResponse } from '@angular/common/http'
-import { EventService } from '../../events/event.service'
-import { Event } from '../../events/event.model'
 
 @Component({
   selector: 'app-cv',
@@ -24,7 +22,6 @@ export class CvComponent implements OnInit {
   constructor (
     private userService: UserService,
     private authService: AuthService,
-    private eventService: EventService,
     private zone: NgZone
   ) {
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
@@ -33,8 +30,8 @@ export class CvComponent implements OnInit {
         .subscribe(user => {
           this.user = user
 
-          this.userService.getCv().subscribe(cv => this.myCv)
-          this.userService.isCvUpdated().subscribe(updated => this.updated)
+          this.userService.getCv().subscribe(cv => this.myCv = cv)
+          this.userService.isCvUpdated().subscribe(updated => this.updated = updated)
         })
     })
   }
@@ -56,7 +53,10 @@ export class CvComponent implements OnInit {
           this.myCv = e.body
           this.upload_progress = 100
 
-          this.userService.isCvUpdated().subscribe(updated => this.updated)
+          this.userService.isCvUpdated().subscribe(updated => {
+            console.log(updated)
+            this.updated = updated
+          })
 
           setTimeout(() => { this.upload_progress = undefined }, 1000)
         }

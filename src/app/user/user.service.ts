@@ -99,7 +99,19 @@ export class UserService {
 
   isCvUpdated (): Observable<boolean> {
     return this.getCv().pipe(
-      map(cv => new Date(this.cv.updated).getTime() >= this.event.date.getTime())
+      map(cv => {
+        const curr = new Date()
+        const year = 1000 * 60 * 60 * 24 * 365 // 1 year
+
+        // cvs get old once an event begins
+        // if a cv is posted after the current event it is updated
+        // if the current event hasn't started yet, a cv is updated if it has less than a year
+        if (new Date(cv.updated).getTime() >= new Date(this.event.date).getTime()) return true
+        if (curr.getTime() < new Date(this.event.date).getTime() &&
+        new Date(cv.updated).getTime() >= new Date(new Date(this.event.date).getTime() - year).getTime()) return true
+
+        return false
+      })
     )
   }
 
