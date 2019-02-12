@@ -17,6 +17,8 @@ export class SidebarComponent implements OnInit {
   @Input() showSidebar = true
   url: String
   private snapshot: RouterStateSnapshot
+  hascv: boolean
+  updatedcv: boolean
 
   constructor (
     private router: Router,

@@ -14,7 +14,9 @@
       </li>
       <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/cv')}">
         <a routerLink="/cv">
-          <img src="assets/img/icons/sidebar/cv.png">
+          <img *ngIf="!hasCv" src="assets/img/icons/sidebar/nocv.png">
+          <img *ngIf="hasCv && !updatedCv" src="assets/img/icons/sidebar/oldcv.png">
+          <img *ngIf="hasCv && updatedCv" src="assets/img/icons/sidebar/cv.png">
           Upload CV
         </a>
       </li>
