@@ -84,6 +84,11 @@
 #sidebar ul li a i {
   margin-right: 10px;
 }
+
+#sidebar ul li a i, #sidebar ul li a img {
+  max-height: 40px;
+}
+
 #sidebar ul li a i.fa::before {
   color: white;
 }

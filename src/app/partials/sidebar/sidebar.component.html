@@ -8,7 +8,7 @@
     <span id="sidebarSpan">
       <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/file')}">
         <a routerLink="/cv">
-          <i class="glyphicon glyphicon-file"></i>
+          <img src="assets/img/icons/sidebar/cv.png">
           Upload CV
         </a>
       </li>

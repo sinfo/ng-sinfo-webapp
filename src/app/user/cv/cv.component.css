@@ -37,6 +37,10 @@ h5 {
 }
 
 #info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     height: 40%;
     margin-bottom: 10%;
 }

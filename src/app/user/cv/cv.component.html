@@ -19,12 +19,15 @@
 
       <div id="info">
 
-  
-        <div class="row">
+        <div>
           <h5>Last upload:</h5>
         </div>
+
+        <div class="img">
+          <img src="assets/img/icons/sidebar/cv.png">
+        </div>
         
-        <div class="row" *ngIf="myCv">
+        <div *ngIf="myCv">
           <ul>
             <li>{{myCv.name}}</li>
             <li>({{ myCv.updated | date: 'dd/MM/yyyy' }})</li>
