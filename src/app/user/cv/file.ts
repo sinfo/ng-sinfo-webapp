@@ -4,6 +4,6 @@ export class File {
   kind: String
   name: String
   extension: String
-  updated: String
-  created: String
+  updated: Date
+  created: Date
 }

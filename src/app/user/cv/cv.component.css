@@ -40,7 +40,14 @@ h5 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    height: 40%;
+    height: 45%;
     margin-bottom: 10%;
+}
+
+.img {
+    height: 80%;
+}
+
+#progress-bar {
+    height: 5%;
 }

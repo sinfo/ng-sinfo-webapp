@@ -18,6 +18,7 @@
           <img *ngIf="hasCv && !updatedCv" src="assets/img/icons/sidebar/oldcv.png">
           <img *ngIf="hasCv && updatedCv" src="assets/img/icons/sidebar/cv.png">
           Upload CV
+
         </a>
       </li>
       <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/downloads/download')}">

@@ -23,17 +23,34 @@
           <h5>Last upload:</h5>
         </div>
 
-        <div class="img">
+        <div class="img" *ngIf="myCv && updated">
           <img src="assets/img/icons/sidebar/cv.png">
+        </div>
+
+        <div class="img" *ngIf="myCv && !updated">
+          <img src="assets/img/icons/sidebar/oldcv.png">
+        </div>
+
+        <div class="img" *ngIf="myCv === undefined">
+          <img src="assets/img/icons/sidebar/nocv.png">
         </div>
         
         <div *ngIf="myCv">
           <ul>
-            <li>{{myCv.name}}</li>
+            <li><a href="{{ cvDownloadUrl }}">{{myCv.name}}</a></li>
             <li>({{ myCv.updated | date: 'dd/MM/yyyy' }})</li>
           </ul>
         </div>
+        <div *ngIf="myCv === undefined">
+          <h5>No uploads</h5>
+        </div>
 
+      </div>
+
+      <div id="progress-bar">
+        <span *ngIf="upload_progress">
+          <ngb-progressbar type="info" [value]="upload_progress" [striped]="true"></ngb-progressbar>
+        </span>
       </div>
 
       <div id ="actions" class="row">

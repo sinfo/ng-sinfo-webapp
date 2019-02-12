@@ -3,7 +3,7 @@
 }
 
 .video-bg {
-  background-image: url("https://sinfo.ams3.digitaloceanspaces.com/static/26-sinfo/webapp/sinfo-tent.jpg");
+  background-image: url("https://sinfo.ams3.cdn.digitaloceanspaces.com/static/26-sinfo/webapp/sinfo-tent.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;

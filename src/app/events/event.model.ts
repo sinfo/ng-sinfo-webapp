@@ -2,9 +2,9 @@ export class Event {
   id: string
   name: string
   kind: string
-  date: string
-  updated: string
-  duration: string
+  date: Date
+  updated: Date
+  duration: Date
   begin: Date
   end: Date
   isOcurring: Boolean
@@ -13,12 +13,13 @@ export class Event {
     this.id = event.id
     this.name = event.name
     this.kind = event.kind
-    this.date = event.date
-    this.updated = event.updated
-    this.duration = event.duration
+    this.date = new Date(event.date)
+    this.updated = new Date(event.updated)
+    this.duration = new Date(event.duration)
 
-    this.begin = new Date(this.date)
-    this.end = new Date(new Date(this.date).getTime() + new Date(this.duration).getTime())
-    this.isOcurring = new Date() >= this.begin && new Date() <= this.end
+    const curr = new Date()
+    this.begin = this.date
+    this.end = new Date(this.date.getTime() + this.duration.getTime())
+    this.isOcurring = curr >= this.begin && curr <= this.end
   }
 }
