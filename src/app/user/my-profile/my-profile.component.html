@@ -10,7 +10,7 @@
     <div class="align-center">
       <div class="row">
 
-        <h3 class="name">
+        <h3 class="qr-code-title">
           Qr Code
         </h3>
 
@@ -53,15 +53,15 @@
               {{company.name}}
           </h5>
 
-          <div class="role">
+          <div *ngIf="presentationRole" class="role">
             <h3>
-                {{user.role}}
+                {{presentationRole}}
             </h3>
           </div>
         </div>
       </div>
       <div class="row">
-          <h5>
+          <h5 class="show-message">
               Show this Qr Code to a SINFO member! 
           </h5>
       </div>
