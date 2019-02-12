@@ -77,6 +77,20 @@ div.achivements-wrapper img.achievement {
   align-items: center;
 }
 
+.qrcode {
+  background: #145DA5;
+    padding: 60px;
+    border-radius: 15px;
+}
+
+.name {
+  color: white;
+}
+
+.role {
+  background: white
+}
+
 .inputfile {
 	width: 0.1px;
 	height: 0.1px;

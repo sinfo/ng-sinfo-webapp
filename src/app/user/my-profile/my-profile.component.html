@@ -11,7 +11,7 @@
       <div class="row">
 
         <h3 class="name">
-          {{user.name}}
+          Qr Code
         </h3>
 
         <h5 *ngIf="user.role === 'team'">
@@ -20,13 +20,15 @@
 
         <h5 *ngIf="user.role === 'company' && company">
           {{company.name}}
+
+          {{user.name}}
         </h5>
 
       </div>
 
       <div class="row qrcode-wrapper">
 
-        <div class="qrcode-image">
+        <!-- div class="qrcode-image">
           <div class="row">
             <div class="portrait-wrapper">
               <img class="portrait" src="{{user.img}}">
@@ -40,14 +42,31 @@
               </div>
             </div>
           </div>
-        </div>
+        </div-->
 
         <div class="qrcode">
           <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
+          <h3 class="name">
+              {{user.name}}
+          </h3>
+          <h5 *ngIf="user.role === 'company' && company">
+              {{company.name}}
+          </h5>
+
+          <div class="role">
+            <h3>
+                {{user.role}}
+            </h3>
+          </div>
         </div>
       </div>
+      <div class="row">
+          <h5>
+              Show this Qr Code to a SINFO member! 
+          </h5>
+      </div>
 
-      <div class="row" *ngIf="user.role !== 'company'">
+      <!--div class="row" *ngIf="user.role !== 'company'">
         <div class="col-sm-12 align-center">
           <div *ngIf="submitedCV" class="alert-message cv-alert">
             <div class="alert alert-success" role="alert">
@@ -113,7 +132,7 @@
         <div class="achivements-wrapper">
           <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
         </div>
-      </div>
+      </div-->
     </div>
   </div>
 </div>
