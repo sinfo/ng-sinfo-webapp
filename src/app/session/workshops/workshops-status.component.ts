@@ -43,7 +43,7 @@ export class WorkshopsStatusComponent implements OnInit {
       this.user = user
 
       if (user.role !== 'team') {
-        this.router.navigate(['/me'])
+        this.router.navigate(['/qrcode'])
       }
       this.eventService.getCurrent().subscribe(event => {
         this.sessionService.getSessions(event.id).subscribe(sessions => {

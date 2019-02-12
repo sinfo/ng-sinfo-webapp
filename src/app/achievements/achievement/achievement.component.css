@@ -8,6 +8,7 @@
   transition: all 0.3s;
   width: 100%;
   justify-content: center;
+  margin-bottom: 30px;
 }
 .achievement-section {
   display: flex;

@@ -24,15 +24,15 @@
         </div>
 
         <div class="img" *ngIf="myCv && updated">
-          <img src="assets/img/icons/sidebar/updated.png">
+          <img src="assets/img/icons/sidebar/updatedcv.png">
         </div>
 
         <div class="img" *ngIf="myCv && !updated">
-          <img src="assets/img/icons/sidebar/notUpdated.png">
+          <img src="assets/img/icons/sidebar/oldcv.png">
         </div>
 
         <div class="img" *ngIf="myCv === undefined">
-          <img src="assets/img/icons/sidebar/noCv.png">
+          <img src="assets/img/icons/sidebar/nocv.png">
         </div>
         
         <div *ngIf="myCv">
@@ -41,7 +41,6 @@
             <li>({{ myCv.updated | date: 'dd/MM/yyyy' }})</li>
           </ul>
         </div>
-
         <div *ngIf="myCv === undefined">
           <h5>No uploads</h5>
         </div>
@@ -71,18 +70,18 @@
           </div>
           -->
 
-            <button class="btn cv-button upload" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}">
+            <button class="btn cv-button upload" [ngClass]="{'btn-success': myCv, 'btn-info': !myCv}">
               <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
               <span class="glyphicon glyphicon-cloud-upload"></span>
-              {{ submitedCV ? 'Update' : 'Upload' }} your CV
+              {{ myCv ? 'Update' : 'Upload' }} your CV
             </button>
 
-            <a *ngIf="submitedCV" href="{{ cvDownloadUrl }}" target="_blank" class="btn cv-button download">
+            <a *ngIf="myCv" href="{{ cvDownloadUrl }}" target="_blank" class="btn cv-button download">
               <span class="glyphicon glyphicon-cloud-download"></span>
               Download your CV
             </a>
 
-            <button *ngIf="submitedCV" class="btn cv-button delete" id="deleteFile" (click)="deleteCV()">
+            <button *ngIf="myCv" class="btn cv-button delete" id="deleteFile" (click)="deleteCV()">
               <span class="glyphicon glyphicon-remove"></span>
               Delete your CV
             </button>

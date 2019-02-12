@@ -21,7 +21,7 @@ export class LinkedInLoginComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn()
 
     if (this.isLoggedIn) {
-      this.router.navigate([`${this.authService.redirectUrl || '/me'}`])
+      this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
       return
     }
 
@@ -36,7 +36,7 @@ export class LinkedInLoginComponent implements OnInit {
   onLinkedInLogin (code) {
     this.authService.linkedIn(code).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
-      this.router.navigate([ `${this.authService.redirectUrl || '/me'}` ])
+      this.router.navigate([ `${this.authService.redirectUrl || '/qrcode'}` ])
     })
   }
 }

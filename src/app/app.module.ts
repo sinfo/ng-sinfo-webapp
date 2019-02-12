@@ -73,8 +73,8 @@ import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
 import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
 import { EventService } from './events/event.service'
-//import { EventsComponent } from './events/events.component'
-import { EventComponent } from './events/event/event.component';
+// TODO import { EventsComponent } from './events/events.component'
+import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 
 @NgModule({
@@ -122,7 +122,7 @@ import { CvComponent } from './user/cv/cv.component'
     DownloadsComponent,
     ManageDownloadsComponent,
     DownloadsStatusComponent,
-    //EventsComponent,
+    // TODO EventsComponent,
     EventComponent,
     CvComponent
   ],

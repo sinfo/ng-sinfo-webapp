@@ -11,7 +11,7 @@ import { CompanyService } from '../company/company.service'
 import { MessageService, Type } from '../message.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
-import { File } from '../user/cv/file'
+import { File as CV } from './cv/file'
 
 @Injectable()
 export class UserService {
@@ -20,6 +20,7 @@ export class UserService {
   private filesUrl = environment.cannonUrl + '/files'
   public me: User
   private event: Event
+  private cv: CV
 
   constructor (
     private http: HttpClient,
@@ -28,7 +29,7 @@ export class UserService {
     private eventService: EventService,
     private authService: AuthService
   ) {
-    this.eventService.getCurrent().subscribe(event => this.event)
+    this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
   getUser (id: string): Observable<User> {
@@ -83,7 +84,10 @@ export class UserService {
       )
   }
 
-  isCVSubmited (): Observable<File> {
+  getCv (): Observable<CV> {
+    if (this.cv) {
+      return of(this.cv)
+    }
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -91,6 +95,24 @@ export class UserService {
     }
 
     return this.http.get<any>(`${this.filesUrl}/me`, httpOptions)
+  }
+
+  isCvUpdated (): Observable<boolean> {
+    return this.getCv().pipe(
+      map(cv => {
+        const curr = new Date()
+        const year = 1000 * 60 * 60 * 24 * 365 // 1 year
+
+        // cvs get old once an event begins
+        // if a cv is posted after the current event it is updated
+        // if the current event hasn't started yet, a cv is updated if it has less than a year
+        if (new Date(cv.updated).getTime() >= new Date(this.event.date).getTime()) return true
+        if (curr.getTime() < new Date(this.event.date).getTime() &&
+        new Date(cv.updated).getTime() >= new Date(new Date(this.event.date).getTime() - year).getTime()) return true
+
+        return false
+      })
+    )
   }
 
   uploadCV (formData: FormData): Observable<any> {
@@ -106,6 +128,7 @@ export class UserService {
   }
 
   deleteCV (): Observable<any> {
+    this.cv = null
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`

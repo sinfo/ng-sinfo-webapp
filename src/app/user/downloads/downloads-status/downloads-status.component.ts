@@ -31,7 +31,7 @@ export class DownloadsStatusComponent implements OnInit {
       this.me = user
 
       if (user.role !== 'team') {
-        this.router.navigate(['/me'])
+        this.router.navigate(['/qrcode'])
       }
 
       this.endpointService.getEndpoints().subscribe(endpoints => {

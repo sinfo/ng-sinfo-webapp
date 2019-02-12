@@ -40,7 +40,6 @@ h5 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
     height: 45%;
     margin-bottom: 10%;
 }

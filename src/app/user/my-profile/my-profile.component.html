@@ -9,21 +9,13 @@
   <div id="content" class="content container-fluid">
     <div class="align-center">
       <div class="row">
-
-        <h3 class="name">
+        <h3 class="qr-code-title">
           Qr Code
         </h3>
 
         <h5 *ngIf="user.role === 'team'">
           <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
         </h5>
-
-        <h5 *ngIf="user.role === 'company' && company">
-          {{company.name}}
-
-          {{user.name}}
-        </h5>
-
       </div>
 
       <div class="row qrcode-wrapper">
@@ -49,19 +41,19 @@
           <h3 class="name">
               {{user.name}}
           </h3>
-          <h5 *ngIf="user.role === 'company' && company">
+          <h5 *ngIf="user.role === 'company' && company" class="name">
               {{company.name}}
           </h5>
 
-          <div class="role">
+          <div *ngIf="presentationRole" class="role">
             <h3>
-                {{user.role}}
+                {{presentationRole}}
             </h3>
           </div>
         </div>
       </div>
       <div class="row">
-          <h5>
+          <h5 class="show-message">
               Show this Qr Code to a SINFO member! 
           </h5>
       </div>

@@ -1,3 +1,7 @@
+.content {
+  margin-bottom: 30px;
+}
+
 .align-center {
   width: 100%;
 }
@@ -77,10 +81,15 @@ div.achivements-wrapper img.achievement {
   align-items: center;
 }
 
+
+.qr-code-title {
+  margin: 0 0 20px 0;
+}
+
 .qrcode {
   background: #145DA5;
-    padding: 60px;
-    border-radius: 15px;
+  padding: 6vw;
+  border-radius: 15px;
 }
 
 .name {
@@ -89,6 +98,13 @@ div.achivements-wrapper img.achievement {
 
 .role {
   background: white
+}
+
+
+.show-message {
+  color: grey;
+  font-size: 18px
+
 }
 
 .inputfile {

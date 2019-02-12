@@ -18,6 +18,7 @@ import { EventService } from '../../events/event.service'
 
 export class MyProfileComponent {
   user: User
+  presentationRole: string
   company: Company
   submitedCV: boolean
   cvDownloadUrl: string
@@ -48,10 +49,11 @@ export class MyProfileComponent {
       this.userService.getMe()
         .subscribe(user => {
           this.user = user
+          this.presentationRole = this.getPresentationRole(this.user)
 
-          this.userService.isCVSubmited().subscribe(response => {
+          this.userService.getCv().subscribe(cv => {
             // TODO CANNON MUST RETURN 404 on no file
-            this.submitedCV = response !== null && response.id !== null
+            this.submitedCV = cv !== null && cv.id !== null
           }, () => {
             this.submitedCV = false
           })
@@ -115,6 +117,13 @@ export class MyProfileComponent {
           })
         })
     })
+  }
+
+  getPresentationRole (user: User) {
+    if (user.role === 'user') return 'Atendee'
+    if (user.role === 'company') return 'Company'
+    if (user.role === 'team') return 'Member'
+    if (user.role === 'admin') return 'Admin'
   }
 
   uploadCV (event) {

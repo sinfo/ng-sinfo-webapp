@@ -5,8 +5,6 @@ import { environment } from './../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { File as CV } from './file'
 import { HttpEventType, HttpResponse } from '@angular/common/http'
-import { EventService } from '../../events/event.service'
-import { Event } from '../../events/event.model'
 
 @Component({
   selector: 'app-cv',
@@ -17,7 +15,6 @@ export class CvComponent implements OnInit {
 
   user: User
   myCv: CV
-  submitedCV: boolean
   cvDownloadUrl: string
   upload_progress: number
   updated: boolean
@@ -25,7 +22,6 @@ export class CvComponent implements OnInit {
   constructor (
     private userService: UserService,
     private authService: AuthService,
-    private eventService: EventService,
     private zone: NgZone
   ) {
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
@@ -34,26 +30,13 @@ export class CvComponent implements OnInit {
         .subscribe(user => {
           this.user = user
 
-          this.userService.isCVSubmited().subscribe(response => {
-            // TODO CANNON MUST RETURN 404 on no file
-            this.submitedCV = response !== null && response.id !== null
-            this.myCv = response
-
-            this.checkIfUpdated()
-          }, () => {
-            this.submitedCV = false
-          })
+          this.userService.getCv().subscribe(cv => this.myCv = cv)
+          this.userService.isCvUpdated().subscribe(updated => this.updated = updated)
         })
     })
   }
 
   ngOnInit () {
-  }
-
-  checkIfUpdated () {
-    this.eventService.getCurrent().subscribe(event => {
-      this.updated = new Date(this.myCv.updated).getTime() >= event.date.getTime()
-    })
   }
 
   uploadCV (event) {
@@ -67,25 +50,23 @@ export class CvComponent implements OnInit {
         if (e.type === HttpEventType.UploadProgress) {
           this.upload_progress = Math.round(100 * e.loaded / e.total)
         } else if (e instanceof HttpResponse) {
-          this.submitedCV = true
           this.myCv = e.body
           this.upload_progress = 100
-          this.checkIfUpdated()
+
+          this.userService.isCvUpdated().subscribe(updated => {
+            console.log(updated)
+            this.updated = updated
+          })
 
           setTimeout(() => { this.upload_progress = undefined }, 1000)
         }
-
-      }, () => {
-        this.submitedCV = false
       })
     }
   }
 
   deleteCV () {
     this.userService.deleteCV().subscribe(res => {
-      this.submitedCV = false
       this.myCv = undefined
     })
   }
-
 }
