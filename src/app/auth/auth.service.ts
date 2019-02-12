@@ -67,7 +67,9 @@ export class AuthService {
   }
 
   isLoggedIn (): boolean {
+    console.log('is logged in?')
     const cannonToken = this.getToken()
+    console.log(cannonToken)
     if (!cannonToken) {
       return false
     }
