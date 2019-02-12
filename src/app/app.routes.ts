@@ -9,7 +9,6 @@ import {
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
 import { SponsorsComponent } from './sponsors/sponsors.component'
-import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { LoginComponent } from './auth/login/login.component'
 import { AuthGuard } from './auth/auth.guard'
 import { IsTeamGuard } from './auth/is-team.guard'
@@ -47,11 +46,9 @@ const routes: Routes = [
   { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
   { path: 'achievement/:id', component: AchievementComponent },
   { path: 'live', component: LiveComponent },
-  /*{ path: 'qrcode', component: QrcodeScannerComponent },*/
   { path: 'promote', component: PromoteComponent, canActivate: [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
   { path: 'login/linkedIn', component: LinkedInLoginComponent },
-  { path: 'register', component: LoginComponent },
   { path: 'qrcode', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
