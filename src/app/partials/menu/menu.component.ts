@@ -30,7 +30,10 @@ export class MenuComponent implements OnInit {
 
   onLogout (): void {
     this.authService.logout()
-    this.router.navigate(['/'])
+
+    this.router.url === '/'
+      ? window.location.reload()
+      : this.router.navigate(['/'])
   }
 
   getShortEventList (): void {
