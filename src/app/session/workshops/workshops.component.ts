@@ -15,8 +15,11 @@ import { EventService } from '../../events/event.service'
 })
 export class WorkshopsComponent implements OnInit {
 
-  workshops: Session[]
-  _workshops: Array<{
+  myPresentationWorkshops: Array<{
+    date: string,
+    workshops: Session[]
+  }>
+  allPresentationWorkshops: Array<{
     date: string,
     workshops: Session[]
   }>
@@ -31,36 +34,110 @@ export class WorkshopsComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    this.eventService.getCurrent().subscribe(event => {
-      this.sessionService.getSessions(event.id)
-      .subscribe(sessions => {
 
-        this.workshops = sessions.filter((session) => {
-          return session.kind === 'Workshop'
-        })
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login'])
+      return
+    }
 
-        this._workshops = this.workshops
-        .sort((wsA, wsB) => {
-          return Date.parse(wsA.date) - Date.parse(wsB.date)
+    this.userService.getMe().subscribe(user => {
+      this.user = user
+      this.userService.getUserSessions(user.id).subscribe(mySessions => {
+        this.eventService.getCurrent().subscribe(event => {
+          this.sessionService.getSessions(event.id).subscribe(sessions => {
+
+            let workshops = sessions
+              .filter((session) => {
+                return session.kind === 'Workshop'
+              })
+              .sort((wsA, wsB) => {
+                return Date.parse(wsA.date) - Date.parse(wsB.date)
+              })
+
+            this.myPresentationWorkshops = workshops.filter((session) => {
+              return (mySessions.indexOf(session.id) >= 0)
+            })
+            .reduce((accumulator, session, index, array) => {
+              let lastIndex = accumulator.length - 1
+              if (index > 0 && array[--index].date === session.date) {
+                accumulator[lastIndex].workshops.push(session)
+                return accumulator
+              }
+              accumulator.push({ date: session.date, workshops: [session] })
+              return accumulator
+            }, [])
+
+            this.allPresentationWorkshops = workshops.filter((session) => {
+              return (mySessions.indexOf(session.id) < 0)
+            })
+            .reduce((accumulator, session, index, array) => {
+              let lastIndex = accumulator.length - 1
+              if (index > 0 && array[--index].date === session.date) {
+                accumulator[lastIndex].workshops.push(session)
+                return accumulator
+              }
+              accumulator.push({ date: session.date, workshops: [session] })
+              return accumulator
+            }, [])
+          })
         })
-        .reduce((accumulator, session, index, array) => {
-          let lastIndex = accumulator.length - 1
-          if (index > 0 && array[--index].date === session.date) {
-            accumulator[lastIndex].workshops.push(session)
-            return accumulator
-          }
-          accumulator.push({ date: session.date, workshops: [session] })
-          return accumulator
-        }, [])
       })
     })
+  }
 
-    if (this.authService.isLoggedIn()) {
-      this.userService.getMe().subscribe(user => {
-        this.user = user
-        this.userService.getUserSessions(user.id).subscribe(sessions => {
-          console.log(sessions)
+  // TODO refactor me
+  isReserved (isReserved: boolean, workshop: Session) {
+
+    // se foi adicionado o ticket
+    if (isReserved) {
+
+      // tira da lista de todos
+      this.allPresentationWorkshops.forEach(element => {
+        element.workshops = element.workshops.filter(session => {
+          return (session.id !== workshop.id)
         })
+      })
+
+      // pões na minha lista
+      let pushed = false
+      this.myPresentationWorkshops.forEach(element => {
+        if (element.date === workshop.date) {
+          element.workshops.push(workshop)
+          pushed = true
+        }
+      })
+      if (!pushed) {
+        this.myPresentationWorkshops.push({ date: workshop.date, workshops: [workshop] })
+      }
+
+      this.myPresentationWorkshops.sort((wsA, wsB) => {
+        return Date.parse(wsA.date) - Date.parse(wsB.date)
+      })
+
+    // se foi removido o ticket
+    } else {
+
+      // tira na minha lista
+      this.myPresentationWorkshops.forEach(element => {
+        element.workshops = element.workshops.filter(session => {
+          return (session.id !== workshop.id)
+        })
+      })
+
+      // pões na lista de todos
+      let pushed = false
+      this.allPresentationWorkshops.forEach(element => {
+        if (element.date === workshop.date) {
+          element.workshops.push(workshop)
+          pushed = true
+        }
+      })
+      if (!pushed) {
+        this.allPresentationWorkshops.push({ date: workshop.date, workshops: [workshop] })
+      }
+
+      this.allPresentationWorkshops.sort((wsA, wsB) => {
+        return Date.parse(wsA.date) - Date.parse(wsB.date)
       })
     }
   }

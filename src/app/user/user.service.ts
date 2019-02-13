@@ -98,8 +98,11 @@ export class UserService {
   }
 
   isCvUpdated (): Observable<boolean> {
-    return this.getCv().pipe(
+    let curriculum = this.getCv()
+    console.log('cv', curriculum)
+    return curriculum.pipe(
       map(cv => {
+        console.log('cccccccccccccccccccccccccccccccccccccccvvvvvvvvvvvvvvv', cv)
         const curr = new Date()
         const year = 1000 * 60 * 60 * 24 * 365 // 1 year
 

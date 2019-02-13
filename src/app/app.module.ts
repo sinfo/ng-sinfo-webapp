@@ -53,7 +53,6 @@ import { CompanyCannonService } from './company/company-cannon.service'
 import { CardComponent } from './user/card/card.component'
 import { WorkshopsComponent } from './session/workshops/workshops.component'
 import { WorkshopComponent } from './session/workshops/workshop/workshop.component'
-import { MyWorkshopsComponent } from './session/workshops/my-workshops.component'
 import { TicketService } from './session/workshops/ticket.service'
 import { WorkshopRegisterButtonComponent } from './session/workshops/workshop/register-button.component'
 import { IsTeamGuard } from './auth/is-team.guard'
@@ -109,7 +108,6 @@ import { CvComponent } from './user/cv/cv.component'
     WorkshopRegisterButtonComponent,
     WorkshopComponent,
     WorkshopStatusElementComponent,
-    MyWorkshopsComponent,
     SurveyComponent,
     ScoreboardComponent,
     CheckinComponent,

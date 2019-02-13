@@ -94,8 +94,8 @@
 }
 
 #sidebar ul li a:hover {
-  color: #037ac9;
-  background: #fff;
+  color: #fff;
+  background: #037ac9;
 }
 #sidebar ul li a:hover i.fa::before {
   color: #037ac9;
@@ -108,7 +108,7 @@
   border-bottom: 1px solid #eeeeee29;
 }
 #sidebar li.active,
-#sidebar li.active a {
+#sidebar li.active + a {
   background: #004777 !important;
 }
 

@@ -1,31 +1,38 @@
 <app-menu></app-menu>
 
-<app-loading [content]="workshops"></app-loading>
+<app-loading [content]="allPresentationWorkshops"></app-loading>
 
-<div class="wrapper" *ngIf="workshops">
+<div class="wrapper" *ngIf="allPresentationWorkshops">
   <app-sidebar *ngIf="user" [user]="user"></app-sidebar>
   
   <section id="content">
     <div class="container workshop-wrapper">
+      <div *ngIf="myPresentationWorkshops.length !== 0">
+        <div class="row align-center">
+          <div class="col-sm-12">
+            <h3 class="title">My Workshops</h3>
+          </div>
+        </div>
+
+        <div class="row" *ngFor="let workshopsOfTheDay of myPresentationWorkshops">
+          <div class="col-sm-12" *ngIf="workshopsOfTheDay.date">
+            <h4 class="weekDay">{{workshopsOfTheDay.date | date:'EEEE'}}</h4>
+          </div>
+          <app-workshop *ngFor="let workshop of workshopsOfTheDay.workshops" [user]="user" [workshop]="workshop" (isReserved)="isReserved($event, workshop)"></app-workshop>
+        </div>
+      </div>
 
       <div class="row align-center">
         <div class="col-sm-12">
-          <h3 class="title">{{ title || 'Workshops' }}</h3>
+          <h3 class="title">Workshops</h3>
         </div>
       </div>
 
-      <div *ngIf="workshops && workshops.length === 0" class="row">
-        <div class="col-sm-12 align-center">          
-          <h6 class="lead">You are not registered to any workshop. <br>
-            You can register <a routerLink="/workshops/register">here</a></h6>
+      <div class="row" *ngFor="let workshopsOfTheDay of allPresentationWorkshops">
+        <div class="col-sm-12" *ngIf="workshopsOfTheDay.date">
+          <h4 class="weekDay">{{workshopsOfTheDay.date | date:'EEEE'}}</h4>
         </div>
-      </div>
-
-      <div class="row" *ngFor="let workshops of _workshops">
-        <div class="col-sm-12" *ngIf="workshops.date">
-          <h4 class="weekDay">{{workshops.date | date:'EEEE'}}</h4>
-        </div>
-        <app-workshop *ngFor="let workshop of workshops.workshops" [user]="user" [workshop]="workshop"></app-workshop>
+        <app-workshop *ngFor="let workshop of workshopsOfTheDay.workshops" [user]="user" [workshop]="workshop" (isReserved)="isReserved($event, workshop)"></app-workshop>
       </div>
     </div>
 
