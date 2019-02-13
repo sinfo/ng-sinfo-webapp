@@ -58,9 +58,6 @@ export class WorkshopsComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
         this.user = user
-        this.userService.getUserSessions(user.id).subscribe(sessions => {
-          console.log(sessions)
-        })
       })
     }
   }

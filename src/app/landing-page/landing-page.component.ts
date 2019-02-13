@@ -39,6 +39,7 @@ export class LandingPageComponent implements OnInit {
       this.eventId = event.id
       this.begin = event.begin
       this.end = event.end
+      const curr = new Date().getTime()
     })
     this.showOrHideDropdown()
   }

@@ -126,8 +126,7 @@ export class ManageDownloadsComponent implements OnInit {
      ).subscribe(endpoints => {
        this.loading = false
        this.router.navigate(['/downloads/status'])
-     }, err => {
-       console.log(err)
+     }, () => {
        this.loading = false
      })
   }

@@ -28,13 +28,12 @@ export class AchievementComponent implements OnInit {
   ngOnInit () {
     this.route.params.forEach((params: Params) => {
       const id = params['id']
-      console.log(id)
+
       this.achievementService.getAchievement(id).subscribe(achievement => {
-        console.log(achievement)
+
         this.achievement = achievement
 
         this.userService.getUsers(this.achievement.users).subscribe(users => {
-          console.log(users)
           this.users = users
         })
       })
@@ -50,7 +49,6 @@ export class AchievementComponent implements OnInit {
   pickWinner () {
     const winnerId = this.achievement.users[Math.floor(Math.random() * this.achievement.users.length)]
     this.userService.getUser(winnerId).subscribe(user => {
-      console.log(user)
       this.winner = user
     })
   }

@@ -77,12 +77,10 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     this.isError = false
     if (!this.hasTicket) {
       return this.ticketService.registerTicket(this.workshop.id).subscribe(ticket => {
-        console.log(ticket)
         this.ticket = ticket
         this.updateState(ticket)
         this.loading = false
-      }, (error) => {
-        console.log(error)
+      }, () => {
         this.isError = true
         this.loading = false
       })
@@ -91,8 +89,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
       this.ticket = ticket
       this.updateState(ticket)
       this.loading = false
-    }, (error) => {
-      console.log(error)
+    }, () => {
       this.isError = true
       this.loading = false
     })
