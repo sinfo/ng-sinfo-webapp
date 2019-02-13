@@ -35,9 +35,6 @@ export class SessionCannonService {
       users: usersId
     }, httpOptions)
       .pipe(
-        tap(response => {
-          console.log(response)
-        }),
         catchError(this.handleError<any>('check-in'))
       )
   }

@@ -28,7 +28,7 @@ export class CompanyService {
     private authService: AuthService,
     private eventService: EventService
   ) {
-    this.eventService.getCurrent().subscribe(event => this.event)
+    this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
   getCompanies (): Observable<Company[]> {

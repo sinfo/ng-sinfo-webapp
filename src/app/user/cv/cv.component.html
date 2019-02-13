@@ -70,11 +70,11 @@
           </div>
           -->
 
-            <button class="btn cv-button upload" [ngClass]="{'btn-success': myCv, 'btn-info': !myCv}">
-              <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+            <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+            <label for="file" class="btn cv-button upload" [ngClass]="{'btn-success': myCv, 'btn-info': !myCv}">
               <span class="glyphicon glyphicon-cloud-upload"></span>
               {{ myCv ? 'Update' : 'Upload' }} your CV
-            </button>
+            </label>
 
             <a *ngIf="myCv" href="{{ cvDownloadUrl }}" target="_blank" class="btn cv-button download">
               <span class="glyphicon glyphicon-cloud-download"></span>

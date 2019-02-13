@@ -82,8 +82,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
         this.updateState(ticket)
         this.isReserved.emit(this.hasTicket)
         this.loading = false
-      }, (error) => {
-        console.log(error)
+      }, () => {
         this.isError = true
         this.loading = false
       })
@@ -93,8 +92,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
       this.updateState(ticket)
       this.isReserved.emit(this.hasTicket)
       this.loading = false
-    }, (error) => {
-      console.log(error)
+    }, () => {
       this.isError = true
       this.loading = false
     })
