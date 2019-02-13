@@ -55,19 +55,13 @@ export class WorkshopsComponent implements OnInit {
 
             this.myWorkshops = sessions.filter((session) => {
               return (mySessions.indexOf(session.id) >= 0 && session.kind === 'Workshop')
+            }).sort((wsA, wsB) => {
+              return Date.parse(wsA.date) - Date.parse(wsB.date)
             })
 
             this.allWorkshops = sessions
               .filter((session) => {
                 return session.kind === 'Workshop' && mySessions.indexOf(session.id) < 0
-              })
-              .sort((wsA, wsB) => {
-                return Date.parse(wsA.date) - Date.parse(wsB.date)
-              })
-
-            this.allWorkshops = sessions
-              .filter((session) => {
-                return session.kind === 'Workshop'
               })
               .sort((wsA, wsB) => {
                 return Date.parse(wsA.date) - Date.parse(wsB.date)
