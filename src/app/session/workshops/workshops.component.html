@@ -1,20 +1,20 @@
 <app-menu></app-menu>
 
-<app-loading [content]="allPresentationWorkshops"></app-loading>
+<app-loading [content]="allWorkshopsFrontend"></app-loading>
 
-<div class="wrapper" *ngIf="allPresentationWorkshops">
+<div class="wrapper" *ngIf="allWorkshopsFrontend">
   <app-sidebar *ngIf="user" [user]="user"></app-sidebar>
   
   <section id="content">
     <div class="container workshop-wrapper">
-      <div *ngIf="myPresentationWorkshops.length !== 0">
+      <div *ngIf="myWorkshopsFrontend.length !== 0">
         <div class="row align-center">
           <div class="col-sm-12">
             <h3 class="title">My Workshops</h3>
           </div>
         </div>
 
-        <div class="row" *ngFor="let workshopsOfTheDay of myPresentationWorkshops">
+        <div class="row" *ngFor="let workshopsOfTheDay of myWorkshopsFrontend">
           <div class="col-sm-12" *ngIf="workshopsOfTheDay.date">
             <h4 class="weekDay">{{workshopsOfTheDay.date | date:'EEEE'}}</h4>
           </div>
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div class="row" *ngFor="let workshopsOfTheDay of allPresentationWorkshops">
+      <div class="row" *ngFor="let workshopsOfTheDay of allWorkshopsFrontend">
         <div class="col-sm-12" *ngIf="workshopsOfTheDay.date">
           <h4 class="weekDay">{{workshopsOfTheDay.date | date:'EEEE'}}</h4>
         </div>

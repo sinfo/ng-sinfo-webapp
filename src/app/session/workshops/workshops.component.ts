@@ -7,6 +7,7 @@ import { UserService } from '../../user/user.service'
 import { User } from '../../user/user.model'
 import { AuthService } from '../../auth/auth.service'
 import { EventService } from '../../events/event.service'
+import { Event } from '../../events/event.model'
 
 @Component({
   selector: 'app-workshops',
@@ -15,15 +16,20 @@ import { EventService } from '../../events/event.service'
 })
 export class WorkshopsComponent implements OnInit {
 
-  myPresentationWorkshops: Array<{
+  myWorkshopsFrontend: Array<{
     date: string,
     workshops: Session[]
   }>
-  allPresentationWorkshops: Array<{
+  allWorkshopsFrontend: Array<{
     date: string,
     workshops: Session[]
   }>
+
+  myWorkshops: Session[]
+  allWorkshops: Session[]
+
   user: User
+  event: Event
 
   constructor (
     private sessionService: SessionService,
@@ -44,9 +50,22 @@ export class WorkshopsComponent implements OnInit {
       this.user = user
       this.userService.getUserSessions(user.id).subscribe(mySessions => {
         this.eventService.getCurrent().subscribe(event => {
+          this.event = event
           this.sessionService.getSessions(event.id).subscribe(sessions => {
 
-            let workshops = sessions
+            this.myWorkshops = sessions.filter((session) => {
+              return (mySessions.indexOf(session.id) >= 0 && session.kind === 'Workshop')
+            })
+
+            this.allWorkshops = sessions
+              .filter((session) => {
+                return session.kind === 'Workshop' && mySessions.indexOf(session.id) < 0
+              })
+              .sort((wsA, wsB) => {
+                return Date.parse(wsA.date) - Date.parse(wsB.date)
+              })
+
+            this.allWorkshops = sessions
               .filter((session) => {
                 return session.kind === 'Workshop'
               })
@@ -54,35 +73,73 @@ export class WorkshopsComponent implements OnInit {
                 return Date.parse(wsA.date) - Date.parse(wsB.date)
               })
 
-            this.myPresentationWorkshops = workshops.filter((session) => {
-              return (mySessions.indexOf(session.id) >= 0)
-            })
-            .reduce((accumulator, session, index, array) => {
-              let lastIndex = accumulator.length - 1
-              if (index > 0 && array[--index].date === session.date) {
-                accumulator[lastIndex].workshops.push(session)
-                return accumulator
-              }
-              accumulator.push({ date: session.date, workshops: [session] })
-              return accumulator
-            }, [])
+            this.updateWorkhopsFrontend()
 
-            this.allPresentationWorkshops = workshops.filter((session) => {
-              return (mySessions.indexOf(session.id) < 0)
-            })
-            .reduce((accumulator, session, index, array) => {
-              let lastIndex = accumulator.length - 1
-              if (index > 0 && array[--index].date === session.date) {
-                accumulator[lastIndex].workshops.push(session)
-                return accumulator
-              }
-              accumulator.push({ date: session.date, workshops: [session] })
-              return accumulator
-            }, [])
           })
         })
       })
     })
+  }
+
+  updateWorkhopsFrontend () {
+    this.myWorkshopsFrontend = this.myWorkshops
+      .reduce((accumulator, session, index, array) => {
+        let lastIndex = accumulator.length - 1
+
+        if (index > 0) {
+          const sessionDate = new Date(session.date)
+          const prevSessionDate = new Date(array[--index].date)
+          const sameDay =
+            sessionDate.getDate() === prevSessionDate.getDate()
+            && sessionDate.getMonth() === prevSessionDate.getMonth()
+            && sessionDate.getFullYear() === prevSessionDate.getFullYear()
+
+          if (sameDay) {
+            accumulator[lastIndex].workshops.push(session)
+            return accumulator
+          }
+        }
+
+        const date = new Date(session.date)
+
+        date.setHours(0)
+        date.setMinutes(0)
+        date.setSeconds(0)
+        date.setMilliseconds(0)
+
+        accumulator.push({ date: date, workshops: [session] })
+        return accumulator
+      }, [])
+
+    this.allWorkshopsFrontend = this.allWorkshops
+      .reduce((accumulator, session, index, array) => {
+        let lastIndex = accumulator.length - 1
+
+        if (index > 0) {
+          const sessionDate = new Date(session.date)
+          const prevSessionDate = new Date(array[--index].date)
+          const sameDay =
+            sessionDate.getDate() === prevSessionDate.getDate()
+            && sessionDate.getMonth() === prevSessionDate.getMonth()
+            && sessionDate.getFullYear() === prevSessionDate.getFullYear()
+
+          if (sameDay) {
+            accumulator[lastIndex].workshops.push(session)
+            return accumulator
+          }
+        }
+
+        const date = new Date(session.date)
+
+        date.setHours(0)
+        date.setMinutes(0)
+        date.setSeconds(0)
+        date.setMilliseconds(0)
+
+        accumulator.push({ date: date, workshops: [session] })
+        return accumulator
+      }, [])
+
   }
 
   // TODO refactor me
@@ -92,25 +149,14 @@ export class WorkshopsComponent implements OnInit {
     if (isReserved) {
 
       // tira da lista de todos
-      this.allPresentationWorkshops.forEach(element => {
-        element.workshops = element.workshops.filter(session => {
-          return (session.id !== workshop.id)
-        })
+      this.allWorkshops = this.allWorkshops.filter(session => {
+        return (session.id !== workshop.id)
       })
 
       // pões na minha lista
-      let pushed = false
-      this.myPresentationWorkshops.forEach(element => {
-        if (element.date === workshop.date) {
-          element.workshops.push(workshop)
-          pushed = true
-        }
-      })
-      if (!pushed) {
-        this.myPresentationWorkshops.push({ date: workshop.date, workshops: [workshop] })
-      }
+      this.myWorkshops.push(workshop)
 
-      this.myPresentationWorkshops.sort((wsA, wsB) => {
+      this.myWorkshops.sort((wsA, wsB) => {
         return Date.parse(wsA.date) - Date.parse(wsB.date)
       })
 
@@ -118,27 +164,19 @@ export class WorkshopsComponent implements OnInit {
     } else {
 
       // tira na minha lista
-      this.myPresentationWorkshops.forEach(element => {
-        element.workshops = element.workshops.filter(session => {
-          return (session.id !== workshop.id)
-        })
+      this.myWorkshops = this.myWorkshops.filter(session => {
+        return (session.id !== workshop.id)
       })
 
       // pões na lista de todos
-      let pushed = false
-      this.allPresentationWorkshops.forEach(element => {
-        if (element.date === workshop.date) {
-          element.workshops.push(workshop)
-          pushed = true
-        }
-      })
-      if (!pushed) {
-        this.allPresentationWorkshops.push({ date: workshop.date, workshops: [workshop] })
-      }
+      this.allWorkshops.push(workshop)
 
-      this.allPresentationWorkshops.sort((wsA, wsB) => {
+      this.allWorkshops.sort((wsA, wsB) => {
         return Date.parse(wsA.date) - Date.parse(wsB.date)
       })
+
     }
+
+    this.updateWorkhopsFrontend()
   }
 }
