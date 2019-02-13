@@ -17,7 +17,9 @@ export class WorkshopRegisterButtonComponent implements OnInit {
 
   @Input() workshop: Session
   @Input() user: User
+
   @Output() onRegistrationClosed = new EventEmitter<boolean>()
+  @Output() isReserved = new EventEmitter<boolean>()
 
   ticket: Ticket
   snapshot: RouterStateSnapshot
@@ -42,7 +44,6 @@ export class WorkshopRegisterButtonComponent implements OnInit {
   ngOnInit () {
     this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
       this.ticket = ticket
-
       const now = Date.now()
       this.isRegistrationClosed = (now < Date.parse(this.workshop.tickets.start) ||
       now > Date.parse(this.workshop.tickets.end) ||
@@ -79,6 +80,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
       return this.ticketService.registerTicket(this.workshop.id).subscribe(ticket => {
         this.ticket = ticket
         this.updateState(ticket)
+        this.isReserved.emit(this.hasTicket)
         this.loading = false
       }, () => {
         this.isError = true
@@ -88,6 +90,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     this.ticketService.voidTicket(this.workshop.id).subscribe(ticket => {
       this.ticket = ticket
       this.updateState(ticket)
+      this.isReserved.emit(this.hasTicket)
       this.loading = false
     }, () => {
       this.isError = true

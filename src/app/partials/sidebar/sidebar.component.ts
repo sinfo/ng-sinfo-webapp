@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
   @Input() showSidebar = true
   url: String
   private snapshot: RouterStateSnapshot
-  isCvUpdated: boolean
+  isCvUpdated: Boolean = true
 
   constructor (
     private router: Router,
@@ -36,7 +36,10 @@ export class SidebarComponent implements OnInit {
       this.userService.getMe().subscribe(user => {
         this.user = user
       })
-      this.userService.isCvUpdated().subscribe(isCvUpdated => this.isCvUpdated = isCvUpdated)
+      this.userService.isCvUpdated().subscribe(isCvUpdated => this.isCvUpdated = isCvUpdated, err => {
+        this.isCvUpdated = false
+        console.log(err)
+      })
     }
   }
 

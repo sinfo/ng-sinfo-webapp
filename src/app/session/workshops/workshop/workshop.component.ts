@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core'
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
 import { Session } from '../../session.model'
 import { Ticket } from '../ticket.model'
 import { User } from '../../../user/user.model'
@@ -14,6 +14,7 @@ export class WorkshopComponent implements OnInit {
 
   @Input() workshop: Session
   @Input() user: User
+  @Output() isReserved = new EventEmitter<boolean>()
 
   showMore = false
   ticket: Ticket
@@ -34,5 +35,9 @@ export class WorkshopComponent implements OnInit {
 
   onRegistrationClosed (isRegistrationClosed: boolean) {
     this.isRegistrationClosed = isRegistrationClosed
+  }
+
+  hasTicket (isReserved: boolean) {
+    this.isReserved.emit(isReserved)
   }
 }

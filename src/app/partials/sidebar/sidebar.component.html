@@ -63,22 +63,17 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role !== 'company'">
-        <a href="#workshopsSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/workshops') }}">
+      <li *ngIf="user && user.role !== 'company'"[ngClass]="{'active': detectLocation('/workshops')}">
+        <a routerLink="/workshops">
           <img src="assets/img/icons/sidebar/workshops.png">
           Workshops
         </a>
-        <ul class="list-unstyled" id="workshopsSubmenu" [ngClass]="{'in': detectLocation('/workshops'), 'collapse': !detectLocation('/workshops')}">
-          <li [ngClass]="{'active': detectLocation('/workshops/register')}">
-            <a routerLink="/workshops/register">Register</a>
-          </li>
-          <li [ngClass]="{'active': detectLocation('/workshops/my-workshops')}">
-            <a routerLink="/workshops/my-workshops">My Workshops</a>
-          </li>
-          <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/workshops/workshops-status')}">
-            <a routerLink="/workshops/workshops-status">Workshop Status</a>
-          </li>
-        </ul>
+      </li>
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/workshops/workshops-status')}">
+        <a routerLink="/workshops/workshops-status">
+          <img src="assets/img/icons/sidebar/workshops.png">
+          Workshop Status
+        </a>
       </li>
       <li [ngClass]="{'active': detectLocation('/achievements')}">
         <a routerLink="/achievements">
