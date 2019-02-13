@@ -53,9 +53,6 @@ export class SponsorsComponent implements OnInit, OnChanges {
     this.others = []
 
     sponsors.forEach(sponsor => {
-      /* if (sponsor.id === 'deloitte') {
-        console.log(sponsor)
-      } */
       if (sponsor.advertisementLvl === 'exclusive') this.diamond = sponsor
       if (sponsor.advertisementLvl === 'max') this.platinums.push(sponsor)
       if (sponsor.advertisementLvl === 'med') this.golds.push(sponsor)

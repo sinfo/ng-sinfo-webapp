@@ -54,7 +54,6 @@ export class CvComponent implements OnInit {
           this.upload_progress = 100
 
           this.userService.isCvUpdated().subscribe(updated => {
-            console.log(updated)
             this.updated = updated
           })
 
