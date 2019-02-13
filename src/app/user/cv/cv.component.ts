@@ -46,6 +46,7 @@ export class CvComponent implements OnInit {
       let formData: FormData = new FormData()
       formData.append('file', file, file.name)
 
+      this.upload_progress = 0
       this.userService.uploadCV(formData).subscribe(e => {
         if (e.type === HttpEventType.UploadProgress) {
           this.upload_progress = Math.round(100 * e.loaded / e.total)
