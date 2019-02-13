@@ -20,6 +20,7 @@ export class SponsorsComponent implements OnInit, OnChanges {
   others: Sponsor[] = []
 
   showAll = false
+  isAllSponsors = false
 
   constructor (
     private router: Router,
@@ -34,6 +35,7 @@ export class SponsorsComponent implements OnInit, OnChanges {
      * If in Sponsors page show ALL sponsors (this.showAll = true)
      */
     this.router.url === '/' ? this.showAll = false : this.showAll = true
+    this.router.url === '/all-sponsors' ? this.isAllSponsors = true : this.isAllSponsors = false
 
     this.getSponsors()
   }
