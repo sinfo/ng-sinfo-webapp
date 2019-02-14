@@ -6,6 +6,7 @@ import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 
 import { EventService } from '../../events/event.service'
+import { last } from 'rxjs/operators';
 
 @Component({
   selector: 'app-qrcode-scanner',
@@ -26,6 +27,7 @@ export class QrcodeScannerComponent implements OnInit {
   @Input() buttonLabel: string
 
   animation: boolean // true -> success, false -> error, undefined -> neither
+  lastUser: User = undefined
 
   selectedDevice
   private availableDevices: {
@@ -99,23 +101,25 @@ export class QrcodeScannerComponent implements OnInit {
           })
           return
         }
+        if(this.lastUser === undefined || this.lastUser.id != user.id){
+          this.animation = true
+          setInterval(() => {
+            this.animation = undefined
+          }, 500)
 
-        this.animation = true
-        setTimeout(() => {
-          this.animation = undefined
-        }, 500)
+          this.userReadOutput.emit(user)
+          this.userRead = user
 
-        this.userReadOutput.emit(user)
-        this.userRead = user
+          if (user.role === 'company') {
+            this.eventService.getCurrent().subscribe(event => {
+              let company = user.company.find(c => c.edition === event.id)
+              if (!company) return
 
-        if (user.role === 'company') {
-          this.eventService.getCurrent().subscribe(event => {
-            let company = user.company.find(c => c.edition === event.id)
-            if (!company) return
-
-            this.companyService.getCompany(company.company)
-              .subscribe(_company => this.company = _company)
-          })
+              this.companyService.getCompany(company.company)
+                .subscribe(_company => this.company = _company)
+            })
+          }
+          this.lastUser = user;
         }
       })
   }

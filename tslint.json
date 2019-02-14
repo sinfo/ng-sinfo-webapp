@@ -5,8 +5,7 @@
   ],
   "rules": {
     "import-blacklist": [
-      true,
-      "rxjs"
+      true
     ],
     "interface-over-type-literal": true,
     "label-position": true,
