@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { User } from './user.model'
-import { Observable ,  of } from 'rxjs'
+import { Observable , of } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
 import { Achievement } from '../achievements/achievement.model'
 import { AuthService } from '../auth/auth.service'
-import { CompanyService } from '../company/company.service'
 import { MessageService, Type } from '../message.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
@@ -15,7 +14,6 @@ import { File as CV } from './cv/file'
 @Injectable()
 export class UserService {
   private usersUrl = environment.cannonUrl + '/users'
-  private companiesUrl = environment.cannonUrl + '/companies'
   private filesUrl = environment.cannonUrl + '/files'
   public me: User
   private event: Event
@@ -24,7 +22,6 @@ export class UserService {
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
-    private companyService: CompanyService,
     private eventService: EventService,
     private authService: AuthService
   ) {
@@ -159,20 +156,19 @@ export class UserService {
         'Authorization': `Bearer ${this.authService.getToken().token}`
       })
     }
-    this.eventService.getCurrent().subscribe(event => {
-      if (role === 'company') {
-        return this.http.put<User>(`${this.usersUrl}/${id}`, {
-          role: role,
-          company: {
-            edition: event.id,
-            company: company
-          }
-        }, httpOptions)
+    if (role === 'company') {
+      return this.http.put<User>(`${this.usersUrl}/${id}`, {
+        role: role,
+        company: {
+          edition: this.event.id,
+          company: company
+        }
+      }, httpOptions)
           .pipe(
           catchError(this.handleError<User>('updating user'))
           )
-      } else {
-        return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
+    } else {
+      return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
           .pipe(
           tap(user => {
             for (let i = 0; i < user.company.length; i++) {
@@ -184,8 +180,7 @@ export class UserService {
           }),
           catchError(this.handleError<User>('updating user'))
           )
-      }
-    })
+    }
   }
 
   demoteSelf () {
