@@ -6,15 +6,15 @@ import { CompanyService } from '../../company/company.service'
 import { EventService } from '../../events/event.service'
 
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap'
-import { Observable } from 'rxjs/Observable'
-import { Subject } from 'rxjs/Subject'
+import { Observable ,  Subject } from 'rxjs'
+import { debounceTime, merge, filter, map, distinctUntilChanged} from 'rxjs/operators'
 
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/merge'
-import 'rxjs/add/operator/filter'
-import 'rxjs/add/operator/debounceTime'
-import 'rxjs/add/operator/distinctUntilChanged'
-import 'rxjs/add/operator/do'
+
+
+
+
+
+
 
 @Component({
   selector: 'app-promote',
@@ -49,11 +49,11 @@ export class PromoteComponent implements OnInit {
 
   search = (text$: Observable<string>) =>
     text$
-      .debounceTime(200).distinctUntilChanged()
-      .merge(this.focus$)
-      .merge(this.click$.filter(() => !this.instance.isPopupOpen()))
-      .map(term => (term === '' ? this.companies : this.companies
-        .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1)))
+      .pipe(debounceTime(200)).pipe(distinctUntilChanged())
+      .pipe(merge(this.focus$))
+      .pipe(merge(this.click$.pipe(filter(() => !this.instance.isPopupOpen()))))
+      .pipe(map(term => (term === '' ? this.companies : this.companies
+        .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1))))
 
   validCompany (): boolean {
     if (!this.companies || !this.searchedCompany) return false

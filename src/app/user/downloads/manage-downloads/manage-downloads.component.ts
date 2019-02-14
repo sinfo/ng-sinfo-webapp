@@ -6,15 +6,9 @@ import { CompanyService } from '../../../company/company.service'
 import { EndpointService } from '../../../endpoints/endpoint.service'
 import { Router } from '@angular/router'
 import { NgbTypeahead, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap'
-import { Observable } from 'rxjs/Observable'
-import { Subject } from 'rxjs/Subject'
+import { Observable ,  Subject } from 'rxjs'
+import { debounceTime, distinctUntilChanged, merge, filter, map } from 'rxjs/operators'
 
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/merge'
-import 'rxjs/add/operator/filter'
-import 'rxjs/add/operator/debounceTime'
-import 'rxjs/add/operator/distinctUntilChanged'
-import 'rxjs/add/operator/do'
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
   one && two && two.year === one.year && two.month === one.month && two.day === one.day
@@ -60,11 +54,11 @@ export class ManageDownloadsComponent implements OnInit {
 
   search = (text$: Observable<string>) =>
     text$
-      .debounceTime(200).distinctUntilChanged()
-      .merge(this.focus$)
-      .merge(this.click$.filter(() => !this.instance.isPopupOpen()))
-      .map(term => (term === '' ? this.companies : this.companies
-        .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1)))
+      .pipe(debounceTime(200)).pipe(distinctUntilChanged())
+      .pipe(merge(this.focus$))
+      .pipe(merge(this.click$.pipe(filter(() => !this.instance.isPopupOpen()))))
+      .pipe(map(term => (term === '' ? this.companies : this.companies
+        .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1))))
 
   onDateChange (date: NgbDateStruct) {
     if (!this.fromDate && !this.toDate) {

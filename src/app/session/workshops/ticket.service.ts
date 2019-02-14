@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 
-import { Observable } from 'rxjs/Observable'
+import { Observable ,  of } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
-import { of } from 'rxjs/observable/of'
 
 import { Ticket } from './ticket.model'
 
@@ -49,9 +48,9 @@ export class TicketService {
       headers: this.httpHeader.append('Authorization', `Bearer ${this.authService.getToken().token}`)
     }
     return this.http.delete<Ticket>(`${this.ticketsUrl}/${sessionId}`, httpOptions)
-      .map(ticket => {
+      .pipe(map(ticket => {
         return ticket
-      })
+      }))
   }
 
   /**

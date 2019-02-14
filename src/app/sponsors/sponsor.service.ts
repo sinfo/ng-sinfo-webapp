@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core'
 import { environment } from '../../environments/environment'
 import { Sponsor } from './sponsor.model'
 import { HttpClient, HttpParams } from '@angular/common/http'
-import { Observable } from 'rxjs/Observable'
+import { Observable ,  of } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
-import { of } from 'rxjs/observable/of'
 import { MessageService, Type } from '../message.service'
 
 @Injectable()
