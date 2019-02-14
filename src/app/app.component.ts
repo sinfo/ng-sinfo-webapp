@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
+
 import { Router, NavigationEnd } from '@angular/router'
 
 @Component({
@@ -6,15 +7,25 @@ import { Router, NavigationEnd } from '@angular/router'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  constructor (private router: Router) { }
+export class AppComponent {
+  constructor (
+    private router: Router
+  ) {
 
-  ngOnInit () {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return
+    /**
+     * At time of writing this, there is no way to scroll to fragments, natively.
+     * Issue: https://github.com/angular/angular/issues/6595
+     */
+    this.router.events.subscribe(s => {
+      if (s instanceof NavigationEnd) {
+        const tree = this.router.parseUrl(this.router.url)
+        if (tree.fragment) {
+          const element = document.querySelector('#' + tree.fragment)
+          if (element) { element.scrollIntoView(true) }
+        } else {
+          window.scrollTo(0, 0)
+        }
       }
-      window.scrollTo(0, 0)
     })
   }
 }
