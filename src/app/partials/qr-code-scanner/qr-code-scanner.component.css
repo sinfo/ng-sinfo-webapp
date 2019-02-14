@@ -105,3 +105,8 @@ div.mini-portrait-wrapper img {
     border-bottom-left-radius: 50%;
     height: 10%;
 }
+
+zxing-scanner {
+    display: flex;
+    justify-content: stretch;
+}
