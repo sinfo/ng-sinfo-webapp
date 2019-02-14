@@ -19,9 +19,8 @@ h5 {
     margin-bottom: 5%;
 }
 
-#file {
-    opacity: 0;
-    position: absolute;
+input[type="file"] {
+    display: none;
 }
 
 .delete {

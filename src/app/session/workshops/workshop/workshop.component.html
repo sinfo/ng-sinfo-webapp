@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="button-wrapper col-sm-3 col-xs-12 align-center">
-      <app-workshop-register-button (onRegistrationClosed)="onRegistrationClosed($event)" [user]="user" [workshop]="workshop"></app-workshop-register-button>
+      <app-workshop-register-button (isReserved)="hasTicket($event)" (onRegistrationClosed)="onRegistrationClosed($event)" [user]="user" [workshop]="workshop"></app-workshop-register-button>
     </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { SponsorService } from './sponsor.service'
+import { EventService } from '../events/event.service'
 import { Sponsor } from './sponsor.model'
 
 @Component({
@@ -19,10 +20,12 @@ export class SponsorsComponent implements OnInit, OnChanges {
   others: Sponsor[] = []
 
   showAll = false
+  isAllSponsors = false
 
   constructor (
     private router: Router,
-    private sponsorService: SponsorService
+    private sponsorService: SponsorService,
+    private eventService: EventService
   ) { }
 
   ngOnInit () {
@@ -32,6 +35,7 @@ export class SponsorsComponent implements OnInit, OnChanges {
      * If in Sponsors page show ALL sponsors (this.showAll = true)
      */
     this.router.url === '/' ? this.showAll = false : this.showAll = true
+    this.router.url === '/all-sponsors' ? this.isAllSponsors = true : this.isAllSponsors = false
 
     this.getSponsors()
   }
@@ -41,8 +45,15 @@ export class SponsorsComponent implements OnInit, OnChanges {
   }
 
   getSponsors (): void {
-    this.sponsorService.getSponsors(this.eventId)
-      .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
+    if (this.eventId) {
+      this.sponsorService.getSponsors(this.eventId)
+        .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
+    } else {
+      this.eventService.getCurrent().subscribe(event => {
+        this.sponsorService.getSponsors(event.id)
+          .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
+      })
+    }
   }
 
   displaySponsors (sponsors: Sponsor[]): Sponsor[] {
@@ -53,9 +64,6 @@ export class SponsorsComponent implements OnInit, OnChanges {
     this.others = []
 
     sponsors.forEach(sponsor => {
-      /* if (sponsor.id === 'deloitte') {
-        console.log(sponsor)
-      } */
       if (sponsor.advertisementLvl === 'exclusive') this.diamond = sponsor
       if (sponsor.advertisementLvl === 'max') this.platinums.push(sponsor)
       if (sponsor.advertisementLvl === 'med') this.golds.push(sponsor)

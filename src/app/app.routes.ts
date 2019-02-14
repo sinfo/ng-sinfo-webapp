@@ -23,7 +23,6 @@ import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
 import { CardComponent } from './user/card/card.component'
 import { WorkshopsComponent } from './session/workshops/workshops.component'
-import { MyWorkshopsComponent } from './session/workshops/my-workshops.component'
 import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
 import { SurveyComponent } from './user/survey/survey.component'
 import { ScoreboardComponent } from './scoreboard/scoreboard.component'
@@ -58,8 +57,7 @@ const routes: Routes = [
   { path: 'cv', component: CvComponent, canActivate: [ AuthGuard ] },
   { path: 'links/link', component: LinkComponent, canActivate: [ AuthGuard ] },
   { path: 'links/my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
-  { path: 'workshops/register', component: WorkshopsComponent },
-  { path: 'workshops/my-workshops', component: MyWorkshopsComponent, canActivate: [ AuthGuard ] },
+  { path: 'workshops', component: WorkshopsComponent },
   { path: 'workshops/workshops-status', component: WorkshopsStatusComponent },
   { path: 'all-sponsors', component: SponsorsComponent },
   { path: 'scoreboard', component: ScoreboardComponent },

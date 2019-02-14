@@ -42,12 +42,13 @@ div.workshop-collapsed .img-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 0px;
   margin-top: 0px;
 }
 div.workshop-collapsed .img-wrapper img {
   overflow: hidden;
-  width: 100%; 
+  max-height: 100%; 
 }
 .btn {
   padding: 13px;

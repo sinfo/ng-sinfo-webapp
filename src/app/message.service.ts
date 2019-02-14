@@ -30,14 +30,12 @@ export class MessageService {
         }
         break
       case Type.log:
-        console.log(message)
         if (message.showAlert) {
           message['messageClass'] = this.changeClass('info')
           this.messages.push(message)
         }
         break
       case Type.warning:
-        console.log(message)
         if (message.showAlert) {
           message['messageClass'] = this.changeClass('warning')
           this.messages.push(message)
@@ -50,7 +48,6 @@ export class MessageService {
         }
         break
       default:
-        console.log(message)
         break
     }
     if (message.timeout) {
