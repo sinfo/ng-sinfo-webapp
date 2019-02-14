@@ -95,10 +95,10 @@
 
 #sidebar ul li a:hover {
   color: #fff;
-  background: #037ac9;
+  background: #2C49A6;
 }
 #sidebar ul li a:hover i.fa::before {
-  color: #037ac9;
+  color: #2C49A6;
 }
 
 #sidebar a[aria-expanded="true"] ~ ul{
@@ -109,12 +109,12 @@
 }
 #sidebar li.active,
 #sidebar li.active + a {
-  background: #004777 !important;
+  background: #2C49A6 !important;
 }
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
   color: #fff;
-  background: #01395f;
+  background: #2C49A6;
   font-weight: 600;
 }
 

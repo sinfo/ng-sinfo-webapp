@@ -1,7 +1,6 @@
 <app-menu></app-menu>
 
-<app-loading [content]="speaker">
-</app-loading>
+<app-loading [content]="speaker"></app-loading>
 
 <section *ngIf="speaker" class="section align-center">
   <div class="container">
@@ -27,7 +26,7 @@
     </div>
 
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-12 align-left">
         <p>{{speaker.description}}</p>
       </div>
     </div>
