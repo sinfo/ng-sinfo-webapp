@@ -15,6 +15,7 @@ export class MenuComponent implements OnInit {
   isLoggedIn = false
   shortEventList: Event[]
   id_to_url = environment.id_to_url
+  showDropDown: Boolean = false
 
   constructor (
     private router: Router,
@@ -44,5 +45,13 @@ export class MenuComponent implements OnInit {
         })
       })
     })
+  }
+
+  toggleDropdown () {
+    this.showDropDown = ! this.showDropDown
+  }
+
+  closeDropdown () {
+    this.showDropDown = false
   }
 }

@@ -34,14 +34,16 @@ export class SponsorsComponent implements OnInit, OnChanges {
      * or sponsors page (/sponsors)
      * If in Sponsors page show ALL sponsors (this.showAll = true)
      */
-    this.router.url === '/' ? this.showAll = false : this.showAll = true
-    this.router.url === '/all-sponsors' ? this.isAllSponsors = true : this.isAllSponsors = false
+    this.showAll = this.router.url !== '/'
+    this.isAllSponsors = this.router.url === '/all-sponsors'
 
     this.getSponsors()
   }
 
   ngOnChanges () {
     this.getSponsors()
+    this.showAll = this.router.url !== '/'
+    this.isAllSponsors = this.router.url === '/all-sponsors'
   }
 
   getSponsors (): void {

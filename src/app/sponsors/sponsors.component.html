@@ -1,4 +1,6 @@
-<app-menu *ngIf="showAll"></app-menu>
+<app-menu *ngIf="isAllSponsors"></app-menu>
+
+<app-loading [content]="sponsors && sponsors.length > 0"></app-loading>
 
 <section *ngIf="sponsors && sponsors.length > 0" id="sponsors" class="section align-center">
 

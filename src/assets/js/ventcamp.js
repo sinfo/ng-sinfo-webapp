@@ -1,6 +1,6 @@
 var Ventcamp;
 
-; (function ($) {
+(function ($) {
 
     $(document).on('ready', function () {
         Ventcamp.init();
@@ -130,10 +130,3 @@ Ventcamp = {
         this.videoPosition();
     }
 }
-
-$('.navigation-item').on('click', function (event) {
-    if ($('#navigation').hasClass('in')) {
-        $('#navigation').removeClass('in');
-    }
-});
-

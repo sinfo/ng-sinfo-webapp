@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, NavigationEnd } from '@angular/router'
+import { Router } from '@angular/router'
 import { EventService } from '../events/event.service'
 
 @Component({
@@ -13,24 +13,13 @@ export class LandingPageComponent implements OnInit {
   eventId: string
   begin: Date
   end: Date
+  fragment: string
 
   constructor (
     private router: Router,
     private eventService: EventService
   ) {
-    /**
-     * At time of writing this, there is no way to scroll to fragments, natively.
-     * Issue: https://github.com/angular/angular/issues/6595
-     */
-    router.events.subscribe(s => {
-      if (s instanceof NavigationEnd) {
-        const tree = router.parseUrl(router.url)
-        if (tree.fragment) {
-          const element = document.querySelector('#' + tree.fragment)
-          if (element) { element.scrollIntoView(true) }
-        }
-      }
-    })
+
   }
 
   ngOnInit () {
@@ -47,10 +36,6 @@ export class LandingPageComponent implements OnInit {
   /* Beggining of Dropdown tabs actions */
   showOrHideDropdown (): void {
     this.displayAboutDropdown = window.innerWidth > 768 ? true : false
-  }
-
-  toggleDropdown (): void {
-    this.displayAboutDropdown = !this.displayAboutDropdown
   }
 
   updatedSelectedText (text: string): void {
