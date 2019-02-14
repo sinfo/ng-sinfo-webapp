@@ -60,7 +60,7 @@ div.user-wrapper {
   padding: 0 !important;
   width: 50%;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   padding: 8px;
 }

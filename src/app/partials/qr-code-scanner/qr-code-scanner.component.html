@@ -16,8 +16,8 @@
                 {{msg.msg.split(' ')[0]}} {{msg.msg.split(' ').length > 1 ? msg.msg.split(' ')[msg.msg.split(' ').length - 1] : ''}}
             </span>
         </div>
-        <ngx-zxing [start]="camStarted" [device]="selectedDevice" [cssClass]="'videoqrcode'" (camerasFound)="displayCameras($event)"
-            (scanSuccess)="handleQrCodeResult($event)"></ngx-zxing>
+        <zxing-scanner [scannerEnabled]="camStarted" [device]="selectedDevice" (camerasFound)="displayCameras($event)"
+            (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
         
         <button *ngIf="buttonLabel" class="buttonAction btn btn-button" (click)="buttonClick()">{{buttonLabel}}</button>
     </div>

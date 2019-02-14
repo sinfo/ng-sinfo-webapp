@@ -41,7 +41,7 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 import { ScoreboardService } from './scoreboard/scoreboard.service'
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { NgxZxingModule } from '@zxing/ngx-scanner' // scan qrcode
+import { ZXingScannerModule  } from '@zxing/ngx-scanner' // scan qrcode
 import { PromoteComponent } from './user/promote/promote.component'
 import { CompanyService } from './company/company.service'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
@@ -126,7 +126,7 @@ import { CvComponent } from './user/cv/cv.component'
     HttpClientModule,
     Routing,
     NgxQRCodeModule,
-    NgxZxingModule.forRoot(),
+    ZXingScannerModule,
     FormsModule,
     NgbModule.forRoot()
   ],
