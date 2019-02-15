@@ -38,11 +38,6 @@ img.portrait {
   height: 70%;
 }
 
-div.user {
-  background: url("https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOnBackground.png") right no-repeat;
-  background-position: right top;
-  background-size: 60%;
-}
 
 .allSignatures, .allSignatures i {
     color: green;
