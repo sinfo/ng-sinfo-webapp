@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { Endpoint } from './endpoint.model'
-import { Observable ,  of } from 'rxjs'
+import { Observable , of } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
@@ -19,11 +19,6 @@ export class EndpointService {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${this.authService.getToken().token}`
   })
-  private params = new HttpParams({
-    fromObject: {
-      'edition': this.event.id
-    }
-  })
 
   constructor (
     private http: HttpClient,
@@ -31,7 +26,7 @@ export class EndpointService {
     private authService: AuthService,
     private eventService: EventService
   ) {
-    this.eventService.getCurrent().subscribe(event => this.event)
+    this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
   getEndpoints (): Observable<Endpoint[]> {
@@ -39,7 +34,13 @@ export class EndpointService {
       return of(this.endpoints)
     }
 
-    return this.http.get<Endpoint[]>(this.endpointsUrl, { params: this.params, headers: this.headers })
+    let params = new HttpParams({
+      fromObject: {
+        'edition': this.event.id
+      }
+    })
+
+    return this.http.get<Endpoint[]>(this.endpointsUrl, { params: params, headers: this.headers })
       .pipe(
       tap(endpoints => this.endpoints = endpoints),
       catchError(this.handleError<Endpoint[]>('getEndpoints', []))
@@ -53,9 +54,15 @@ export class EndpointService {
       }))
     }
 
+    let params = new HttpParams({
+      fromObject: {
+        'edition': this.event.id
+      }
+    })
+
     return this.http.get<Endpoint>(`${this.endpointsUrl}/${companyId}`, {
       headers: this.headers,
-      params: this.params
+      params: params
     })
     .pipe(
       catchError(this.handleError<Endpoint>('getEndpoint'))
@@ -78,6 +85,12 @@ export class EndpointService {
   }
 
   updateEndpoint (companyId: string, from: Date, to: Date): Observable<Endpoint> {
+    let params = new HttpParams({
+      fromObject: {
+        'edition': this.event.id
+      }
+    })
+
     return this.http.post<Endpoint>(`${this.endpointsUrl}/${companyId}`, {
       validaty: {
         from,
@@ -85,7 +98,7 @@ export class EndpointService {
       }
     }, {
       headers: this.headers,
-      params: this.params
+      params: params
     })
     .pipe(
       catchError(this.handleError<Endpoint>('updateEndpoints'))
@@ -93,9 +106,16 @@ export class EndpointService {
   }
 
   deleteEndpoint (companyId: string): Observable<Endpoint> {
+
+    let params = new HttpParams({
+      fromObject: {
+        'edition': this.event.id
+      }
+    })
+
     return this.http.delete<Endpoint>(`${this.endpointsUrl}/${companyId}`, {
       headers: this.headers,
-      params: this.params
+      params: params
     })
     .pipe(
       tap(endpoint => this.endpoints = this.endpoints.filter(e => {

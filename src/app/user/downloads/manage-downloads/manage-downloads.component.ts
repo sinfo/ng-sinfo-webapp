@@ -6,9 +6,8 @@ import { CompanyService } from '../../../company/company.service'
 import { EndpointService } from '../../../endpoints/endpoint.service'
 import { Router } from '@angular/router'
 import { NgbTypeahead, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap'
-import { Observable ,  Subject } from 'rxjs'
+import { Observable , Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged, merge, filter, map } from 'rxjs/operators'
-
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
   one && two && two.year === one.year && two.month === one.month && two.day === one.day
