@@ -41,8 +41,6 @@ export class WorkshopsComponent implements OnInit {
 
   ngOnInit () {
 
-    console.log("We're on the workshops")
-
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login'])
       return
