@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 
-<app-loading [content]="achievements"></app-loading>
+<app-loading [content]="activeAchievements"></app-loading>
 
-<div class="wrapper" *ngIf="achievements">
+<div class="wrapper" *ngIf="activeAchievements">
 
   <app-sidebar [user]="user"></app-sidebar>
 
@@ -28,7 +28,7 @@
 
         <div class="alert alert-info col-sm-12">
           <span *ngIf="user">
-            <strong>You have unlocked {{ numUserAchievements() }} of {{ achievements.length }} </strong>
+            <strong>You have unlocked {{ numUserAchievements() }} of {{ activeAchievements.length }} </strong>
           </span>
           <span class="scoreboard">
             <strong>
@@ -37,9 +37,22 @@
           </span>
         </div>
         <div class="achievements-wrapper">
-          <a *ngFor="let achievement of achievements"  routerLink="/achievement/{{achievement.id}}">
+          <h6>Currently obtainable achievements</h6>
+          <a *ngFor="let achievement of activeAchievements"  routerLink="/achievement/{{achievement.id}}">
             <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
           </a>
+        </div>
+        <button class="change" (click)="showPrev()">{{show_hide}}</button>
+        <div *ngIf="show">
+            <hr>
+            <div *ngFor="let day of cheat">
+            <h6 class="day">{{day}}</h6>
+            <div class="achievements-wrapper">
+                <a *ngFor="let achievement of days[day.toLowerCase()]"  routerLink="/achievement/{{achievement.id}}">
+                  <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+                </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
