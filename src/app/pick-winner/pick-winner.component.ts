@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, Params, RouterStateSnapshot } from '@angular/router'
+import { Router } from '@angular/router'
 import { UserService } from '../user/user.service'
 import { User } from '../user/user.model'
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
+import { SessionService } from '../session/session.service'
+import { AchievementService } from '../achievements/achievement.service'
+import { Achievement } from '../achievements/achievement.model'
+
+import { map, tap, reduce, filter } from 'rxjs/operators'
+import { element } from '@angular/core/src/render3'
 
 @Component({
   selector: 'app-pick-winner',
@@ -10,22 +15,37 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser'
   styleUrls: ['./pick-winner.component.css']
 })
 export class PickWinnerComponent implements OnInit {
-  numberOfParticipants: string
   me: User
-  link: SafeUrl
+  users: User[] = []
+  winner: User
+
+  achievement: Achievement
+
+  achievements: Array<{
+    session: string,
+    achievement: Achievement
+  }> = []
 
   constructor (
     private router: Router,
     private userService: UserService,
-    private sanitizer: DomSanitizer
+    private sessionService: SessionService,
+    private achievementService: AchievementService
   ) {
-
+    this.achievements = []
+    // TODO CHANGE ME SOOOOOON this.achievementService.getActiveAchievements().subscribe(achievements => {
+    this.achievementService.getAchievements().subscribe(achievements => {
+      achievements.filter(achievement => {
+        return achievement.users && achievement.users.length > 0 && achievement.session
+      }).forEach(achievement => {
+        this.sessionService.getSession(achievement.session).subscribe(session => {
+          this.achievements.push({ 'session': session.name, 'achievement': achievement })
+        })
+      })
+    })
   }
 
   ngOnInit () {
-    let randomLink = `https://www.random.org/widgets/integers/iframe.php?title=True+Random+Number+Generator&amp;buttontxt=Generate&amp;width=160&amp;height=200&amp;border=off&amp;bgcolor=%23FFFFFF&amp;txtcolor=%23777777&amp;altbgcolor=%23CCCCFF&amp;alttxtcolor=%23000000&amp;defaultmin=0&amp;defaultmax=50&amp;fixed=off`
-    this.link = this.sanitizer.bypassSecurityTrustResourceUrl(randomLink)
-
     this.userService.getMe().subscribe(user => {
       this.me = user
 
@@ -33,9 +53,26 @@ export class PickWinnerComponent implements OnInit {
         this.router.navigate(['/qrcode'])
       }
     })
+  }
 
-    console.log(this.link)
+  showUsers (achievement: Achievement) {
+    this.achievement = achievement
+    this.users = []
+    achievement.users.forEach(userId => {
+      this.userService.getUser(userId).subscribe(user => {
+        this.users.push(user)
+      })
+    })
+  }
 
+  chooseWinner () {
+    this.winner = this.users[Math.floor(Math.random() * this.users.length)]
+  }
+
+  changeSession () {
+    this.winner = null
+    this.users = []
+    this.achievement = null
   }
 
 }

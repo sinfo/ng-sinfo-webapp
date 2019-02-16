@@ -36,7 +36,7 @@ export class AchievementService {
       )
   }
 
-  getActiveAchievements(): Observable<Achievement[]>{
+  getActiveAchievements (): Observable<Achievement[]> {
     return this.http.get<Achievement[]>(this.activeUrl)
       .pipe(
         tap(achievements => this.achievements = achievements),
