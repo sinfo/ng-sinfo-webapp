@@ -31,6 +31,8 @@ export class WorkshopStatusElementComponent implements OnInit {
   ngOnInit () {
     if (this.authService.isLoggedIn()) {
       this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
+        if (ticket === undefined) return
+
         this.ticket = ticket
         this.count = ticket && ticket.users ? (ticket.users.length / this.workshop.tickets.max) * 100 : 0
 

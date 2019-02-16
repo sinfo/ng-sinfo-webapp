@@ -6555,6 +6555,7 @@ div.clear input.btn:hover {
   /*height: 92vh;
    overflow-y: scroll; */
   justify-content: center;
+  height: 90vh;
 }
 
 #container {
