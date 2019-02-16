@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { Observable ,  of } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
@@ -25,7 +25,7 @@ export class CompanyCannonService {
     private authService: AuthService,
     private eventService: EventService
   ) {
-    this.eventService.getCurrent().subscribe(event => this.event)
+    this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
   getLink (companyId: string, attendeeId: string): Observable<Link> {

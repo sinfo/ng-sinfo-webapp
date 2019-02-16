@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { MessageService, Type } from '../../message.service'
-import { Observable ,  of } from 'rxjs'
+import { Observable , of } from 'rxjs'
 import { RedeemCode } from './redeem-code.model'
 import { catchError } from 'rxjs/operators'
 import { environment } from '../../../environments/environment'

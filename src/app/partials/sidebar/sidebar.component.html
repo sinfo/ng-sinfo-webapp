@@ -105,6 +105,12 @@
           Promote
         </a>
       </li>
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/pick-winner')}">
+        <a routerLink="/pick-winner">
+          <i class="glyphicon glyphicon-flag"></i>
+          Pick Winner
+        </a>
+      </li>
       <li *ngIf="user && user.role === 'team' && eventOcurring" [ngClass]="{'active': detectLocation('/checkin')}">
         <a routerLink="/checkin">
           <i class="glyphicon glyphicon-qrcode"></i>

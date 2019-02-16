@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.eventService.getCurrent().subscribe(event => { this.eventOcurring = event.isOcurring })
+    this.eventService.getCurrent().subscribe(event => this.eventOcurring = event.isOcurring)
     this.url = this.snapshot.url.toString()
 
     if (this.authService.isLoggedIn()) {

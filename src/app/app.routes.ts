@@ -32,6 +32,7 @@ import { ValidateCardComponent } from './user/validate-card/validate-card.compon
 import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
 import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
+import { PickWinnerComponent } from './pick-winner/pick-winner.component'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 
@@ -54,6 +55,7 @@ const routes: Routes = [
   { path: 'downloads/download', component: DownloadsComponent, canActivate: [ AuthGuard ] },
   { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [ AuthGuard ] },
   { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [ AuthGuard ] },
+  { path: 'pick-winner', component: PickWinnerComponent, canActivate: [ AuthGuard ] },
   { path: 'cv', component: CvComponent, canActivate: [ AuthGuard ] },
   { path: 'links/link', component: LinkComponent, canActivate: [ AuthGuard ] },
   { path: 'links/my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },

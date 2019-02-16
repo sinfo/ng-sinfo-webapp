@@ -72,6 +72,7 @@ import { DownloadsStatusComponent } from './user/downloads/downloads-status/down
 import { EventService } from './events/event.service'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
+import { PickWinnerComponent } from './pick-winner/pick-winner.component'
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { CvComponent } from './user/cv/cv.component'
     DownloadsComponent,
     ManageDownloadsComponent,
     DownloadsStatusComponent,
+    PickWinnerComponent,
     // TODO EventsComponent,
     EventComponent,
     CvComponent

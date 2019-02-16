@@ -1,0 +1,58 @@
+#content {
+  display: block;
+  height: 100%;
+
+  margin-bottom: 30px;
+}
+.endpoints-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.endpoint {
+  margin: 5px;
+  margin-bottom: 10px;
+  min-width: 200px;
+  -webkit-box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+  border: 1px solid #e9e9e9;
+  background-position: center;
+  background-size: 54%;
+  background-repeat: no-repeat;
+}
+.shade {
+  padding: 3px 7px;
+  padding-top: 7px;
+  background: #ffffffdb;
+  height: 100%;
+}
+.shade p {
+  margin: 0;
+  font-size: 13px;
+}
+.shade .visited {
+  margin-bottom: 5px;
+}
+.shade p.validaty {
+  font-size: 17px;
+  font-weight: 400;
+}
+.shade h6.company-name {
+  font-family: "PT Sans";
+  color: #008ae6;
+  font-weight: 600;
+}
+button.btn {
+  margin: 5px;
+  letter-spacing: 2px;
+  padding: 9px;
+  font-size: 12px;
+}
+button.btn-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+button.btn-danger:hover {
+  background-color: #d2322d;
+  border-color: #ac2925;
+}
