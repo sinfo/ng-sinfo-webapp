@@ -1,8 +1,8 @@
 <app-menu></app-menu>
 
-<app-loading [content]="achievements"></app-loading>
+<app-loading [content]="activeAchievements"></app-loading>
 
-<div class="wrapper" *ngIf="achievements">
+<div class="wrapper" *ngIf="activeAchievements">
 
   <app-sidebar [user]="user"></app-sidebar>
 
@@ -27,8 +27,8 @@
         </div>
 
         <div class="alert alert-info col-sm-12">
-          <span *ngIf="user">
-            <strong>You have unlocked {{ numUserAchievements() }} of {{ achievements.length }} </strong>
+          <span *ngIf="user && numUserAchievements && activeAchievements && myPoints">
+            <strong>You have unlocked {{ numUserAchievements() }} of {{ activeAchievements.total.number }} ({{myPoints}} points) </strong>
           </span>
           <span class="scoreboard">
             <strong>
@@ -36,10 +36,73 @@
             </strong>
           </span>
         </div>
+
         <div class="achievements-wrapper">
-          <a *ngFor="let achievement of achievements"  routerLink="/achievement/{{achievement.id}}">
-            <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
-          </a>
+          <h4>Obtainable today</h4>
+          <span *ngIf="activeAchievements">
+
+            <div *ngIf="activeAchievements.workshops.length > 0">
+              <h5>Workshops</h5>
+              <h6>{{activeAchievements.workshops[0].value}} points each</h6>
+              <a *ngFor="let achievement of activeAchievements.workshops"  routerLink="/achievement/{{achievement.id}}">
+                <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+              </a>
+            </div>
+
+            <div *ngIf="activeAchievements.presentations.length > 0">
+              <h5>Presentations</h5>
+              <h6>{{activeAchievements.presentations[0].value}} points each</h6>
+              <a *ngFor="let achievement of activeAchievements.presentations"  routerLink="/achievement/{{achievement.id}}">
+                <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+              </a>
+            </div>
+
+            <div *ngIf="activeAchievements.stands.length > 0">
+              <h5>Stands</h5>
+              <h6>{{activeAchievements.stands[0].value}} points each</h6>
+              <a *ngFor="let achievement of activeAchievements.stands"  routerLink="/achievement/{{achievement.id}}">
+                <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+              </a>
+            </div>
+
+            <div *ngIf="activeAchievements.keynotes.length > 0">
+              <h5>Keynotes</h5>
+              <h6>{{activeAchievements.keynotes[0].value}} points each</h6>
+              <a *ngFor="let achievement of activeAchievements.keynotes"  routerLink="/achievement/{{achievement.id}}">
+                <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+              </a>
+            </div>
+
+            <div *ngIf="activeAchievements.cv || activeAchievements.other.length > 0">
+              <h5>Miscellaneous</h5>
+              
+              <span *ngIf="activeAchievements.cv">
+                <a routerLink="/achievement/{{activeAchievements.cv.id}}">
+                  <img *ngIf="activeAchievements.cv.id && activeAchievements.cv.img" [ngClass]="{'unlocked': isUnlocked(activeAchievements.cv)}" src="{{activeAchievements.cv.img}}" alt="{{activeAchievements.cv.name}}" title="{{activeAchievements.cv.name}}">
+                </a>
+              </span>
+
+              <span *ngIf="activeAchievements.other.length > 0">
+                <a *ngFor="let achievement of activeAchievements.other"  routerLink="/achievement/{{achievement.id}}">
+                  <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+                </a>
+              </span>
+
+            </div>
+
+          </span>
+        </div>
+        <button class="change" (click)="showPrev()">{{show_hide}}</button>
+        <div *ngIf="show">
+            <hr>
+            <div *ngFor="let day of cheat">
+            <h6 class="day">{{day}}</h6>
+            <div class="achievements-wrapper">
+                <a *ngFor="let achievement of days[day.toLowerCase()]"  routerLink="/achievement/{{achievement.id}}">
+                  <img *ngIf="achievement.id && achievement.img" [ngClass]="{'unlocked': isUnlocked(achievement)}" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
+                </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>

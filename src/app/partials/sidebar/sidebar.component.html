@@ -75,13 +75,13 @@
           Workshop Status
         </a>
       </li>
-      <li [ngClass]="{'active': detectLocation('/achievements')}">
+      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/achievements')}">
         <a routerLink="/achievements">
           <img src="assets/img/icons/sidebar/achievements.png">
           Achievements
         </a>
       </li>
-      <li [ngClass]="{'active': detectLocation('/scoreboard')}">
+      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/scoreboard')}">
         <a routerLink="/scoreboard">
           <img src="assets/img/icons/sidebar/scoreboard.png">
           Scoreboard

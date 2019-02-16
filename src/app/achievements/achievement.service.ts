@@ -16,6 +16,7 @@ const httpOptions = {
 @Injectable()
 export class AchievementService {
   private achievementsUrl = environment.cannonUrl + '/achievements'
+  private activeUrl = this.achievementsUrl + '/active'
   private achievements: Achievement[]
 
   constructor (
@@ -29,6 +30,14 @@ export class AchievementService {
     }
 
     return this.http.get<Achievement[]>(this.achievementsUrl)
+      .pipe(
+        tap(achievements => this.achievements = achievements),
+        catchError(this.handleError<Achievement[]>('getAchievements', []))
+      )
+  }
+
+  getActiveAchievements(): Observable<Achievement[]>{
+    return this.http.get<Achievement[]>(this.activeUrl)
       .pipe(
         tap(achievements => this.achievements = achievements),
         catchError(this.handleError<Achievement[]>('getAchievements', []))
