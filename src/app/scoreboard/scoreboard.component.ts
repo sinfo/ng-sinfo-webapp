@@ -29,13 +29,13 @@ export class ScoreboardComponent implements OnInit {
         this.currentUser = user
       })
     }
-    this.scoreboardService.getTop20Users().subscribe(users => {
-      // Filter admin bot
+    this.scoreboardService.getUsersPoints().subscribe(users => {
+      // Filter admin bot and get top 20
       this.scoreboard = users.filter(user => {
         return user.id
-      })
+      }).splice(0, 20)
 
-      this.isScoreboardEmpty = this.scoreboard && !this.scoreboard[0].points.total
+      this.isScoreboardEmpty = this.scoreboard && this.scoreboard.length > 0 && !this.scoreboard[0].points
     })
   }
 
@@ -44,7 +44,7 @@ export class ScoreboardComponent implements OnInit {
   }
 
   isUserInTop20 (): boolean {
-    return this.currentUser ? this.scoreboard.indexOf(this.currentUser) !== -1 : false
+    return this.scoreboard.filter(user => user.id === this.currentUser.id).length === 1
   }
 
   redirectToUser (id: string): void {

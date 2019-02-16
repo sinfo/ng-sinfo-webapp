@@ -37,7 +37,7 @@
 
       <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" *ngIf="company && processedLinks ">
 
-        <app-loading [content]="links.length === processedLinks.length"></app-loading>
+        <app-loading [content]="links && processedLinks && links.length === processedLinks.length"></app-loading>
 
         <div *ngFor="let link of processedLinks">
 

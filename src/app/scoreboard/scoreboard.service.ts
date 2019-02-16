@@ -18,17 +18,10 @@ export class ScoreboardService {
     private messageService: MessageService
   ) { }
 
-  getTop20Users (): Observable<User[]> {
-    const params = new HttpParams({
-      fromObject: {
-        'sort': '-points.total',
-        'limit': '20'
-      }
-    })
-
-    return this.http.get<User[]>(this.usersUrl, { params })
+  getUsersPoints (): Observable<User[]> {
+    return this.http.get<User[]>(this.usersUrl)
       .pipe(
-        catchError(this.handleError<User[]>('getTop20Users', []))
+        catchError(this.handleError<User[]>('getUsersPoints', []))
       )
   }
 

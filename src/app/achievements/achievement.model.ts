@@ -1,9 +1,13 @@
 export class Achievement {
   id: string
   name: string
-  event: string
+  validity: {
+    from: Date,
+    to: Date
+  }
   session: string
   img: string
+  kind: string
   description: string
   category: string
   users: [
