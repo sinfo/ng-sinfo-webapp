@@ -26,7 +26,7 @@
           <p class="text-alt">{{ selectedTime | date:'dd-MM-yyyy' }}</p>
         </span>
         <ul *ngIf="displayDayDropdown" class="nav nav-schedule nav-day">
-          <li *ngFor="let day of schedule; let i=index" [ngClass]="{'active': selectedTheme === day.theme}">
+          <li *ngFor="let day of schedule; let i=index" [class.active]="selectedTheme === day.theme">
             <a href="#day{{i}}" data-toggle="tab" (click)="updateSelectedDayText(day.theme, day.date)">
               <h5 class="highlight">{{day.theme}}</h5>
               <p class="text-alt">{{day.date | date:'dd-MM-yyyy'}}</p>
@@ -39,20 +39,19 @@
       <!-- First level content start -->
       <div class="tab-content">
 
-        <!-- Day 1 content start -->
-        <div *ngFor="let day of schedule; let i=index" [ngClass]="{'active': selectedTheme === day.theme}" id="day{{i}}" class="tab-pane fade in">
+        <div *ngFor="let day of schedule; let i=index" [class.active]="selectedTheme === day.theme" id="day{{i}}" class="tab-pane fade in">
 
           <!-- Navigation by auditorium start -->
           <div class="nav-wrapper">
             <span class="nav-current" (click)="toggleSessionDropdown(i)">{{selectedSession}}</span>
             <ul *ngIf="displaySessionDropdown && displaySessionDropdown[i]" class="nav nav-schedule schedule-type">
-              <li [ngClass]="{'active': selectedSession === 'Presentations'}">
+              <li [class.active]="selectedSession === 'Presentations'">
                 <a href="#day{{i}}_presentations" data-toggle="tab" (click)="updateSelectedSessionText('Presentations')">Presentations</a>
               </li>
-              <li [ngClass]="{'active': selectedSession === 'Keynotes'}">
+              <li [class.active]="selectedSession === 'Keynotes'">
                 <a href="#day{{i}}_keynotes" data-toggle="tab" (click)="updateSelectedSessionText('Keynotes')">Keynotes</a>
               </li>
-              <li [ngClass]="{'active': selectedSession === 'Workshops'}">
+              <li [class.active]="selectedSession === 'Workshops'">
                 <a href="#day{{i}}_workshops" data-toggle="tab" (click)="updateSelectedSessionText('Workshops')">Workshops</a>
               </li>
             </ul>
@@ -63,7 +62,7 @@
           <div class="tab-content tab-content-schedule">
 
             <!-- Keynotes content start -->
-            <div id="day{{i}}_keynotes" class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Keynotes'}">
+            <div id="day{{i}}_keynotes" class="tab-pane fade in" [class.active]="selectedSession === 'Keynotes'">
 
               <!-- Accordion start -->
               <div *ngIf="day.sessions.Keynote" class="panel-group" id="day{{i}}_keynotes_timeline">
@@ -265,7 +264,6 @@
           <!-- Second level content end -->
 
         </div>
-        <!-- Day 1 content end -->
 
       </div>
 

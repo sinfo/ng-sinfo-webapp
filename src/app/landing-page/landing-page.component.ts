@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
 import { EventService } from '../events/event.service'
 
 @Component({
@@ -16,7 +15,6 @@ export class LandingPageComponent implements OnInit {
   fragment: string
 
   constructor (
-    private router: Router,
     private eventService: EventService
   ) {
 
@@ -28,8 +26,8 @@ export class LandingPageComponent implements OnInit {
       this.eventId = event.id
       this.begin = event.begin
       this.end = event.end
-      const curr = new Date().getTime()
     })
+
     this.showOrHideDropdown()
   }
 

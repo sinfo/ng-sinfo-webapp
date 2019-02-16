@@ -21,7 +21,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
   displaySessionDropdown: [boolean, boolean, boolean, boolean, boolean]
 
   sessions: Session[]
-  private schedule
+  schedule: any
 
   constructor (
     private sessionService: SessionService,
@@ -30,7 +30,6 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   ngOnInit () {
     this.getSessions()
-
     this.showOrHideDropdown()
   }
 
@@ -98,8 +97,8 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   /* Beggining of Dropdown tabs actions */
   showOrHideDropdown (): void {
-    this.displayDayDropdown = window.innerWidth > 768 ? true : false
-    this.displaySessionDropdown = window.innerWidth > 768 ? [true, true, true, true, true] : [false, false, false, false, false]
+    this.displayDayDropdown = true
+    this.displaySessionDropdown = [false, false, false, false, false]
   }
 
   toggleDayDropdown (): void {
