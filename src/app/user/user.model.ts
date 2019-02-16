@@ -39,27 +39,7 @@ export class User {
   fenix: {
     id: string
   }
-  points: {
-    available: number
-    total: number
-  }
-  achievements: [
-    {
-      id: string
-      session: string
-      name: string
-      img: string
-    }
-  ]
-  area: string
-  skills: [
-    string
-  ]
-  job: {
-    startup: boolean
-    internship: boolean
-    start: string
-  }
+  points: number
   registered: string
   updated: string
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpParams } from '@angular/common/http'
 
-import { Observable ,  of } from 'rxjs'
+import { Observable , of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
 import { MessageService, Type } from '../message.service'
@@ -13,22 +13,15 @@ import { User } from '../user/user.model'
 export class ScoreboardService {
   private usersUrl = environment.cannonUrl + '/users'
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getTop20Users(): Observable<User[]> {
-    const params = new HttpParams({
-      fromObject: {
-        'sort': '-points.total',
-        'limit': '20'
-      }
-    })
-
-    return this.http.get<User[]>(this.usersUrl, { params })
+  getUsersPoints (): Observable<User[]> {
+    return this.http.get<User[]>(this.usersUrl)
       .pipe(
-        catchError(this.handleError<User[]>('getTop20Users', []))
+        catchError(this.handleError<User[]>('getUsersPoints', []))
       )
   }
 

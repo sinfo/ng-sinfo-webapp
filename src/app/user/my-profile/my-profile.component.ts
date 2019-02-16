@@ -9,6 +9,7 @@ import { Achievement } from '../../achievements/achievement.model'
 import { SurveyService } from '../survey/survey.service'
 import { AchievementService } from '../../achievements/achievement.service'
 import { EventService } from '../../events/event.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-my-profile',
@@ -35,7 +36,8 @@ export class MyProfileComponent {
     private surveyService: SurveyService,
     private zone: NgZone,
     private achievementService: AchievementService,
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router
   ) {
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     /**
@@ -120,6 +122,9 @@ export class MyProfileComponent {
   }
 
   getPresentationRole (user: User) {
+    if (user === undefined) {
+      this.router.navigate(['/'])
+    }
     if (user.role === 'user') return 'Atendee'
     if (user.role === 'company') return 'Company'
     if (user.role === 'team') return 'Member'

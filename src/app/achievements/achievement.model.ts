@@ -7,6 +7,7 @@ export class Achievement {
   }
   session: string
   img: string
+  kind: string
   description: string
   category: string
   users: [
