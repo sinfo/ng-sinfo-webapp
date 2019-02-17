@@ -1,0 +1,14 @@
+<app-menu></app-menu>
+
+<div class="user sidebar-wrapper">
+
+    <app-sidebar [user]="me"></app-sidebar>
+
+    <div id="content" class="container-fluid">
+        <div class="align-center">
+            <app-qrcode-scanner (rawOutput)="receiveRedeemCode($event)" [camStarted]="scannerActive" [title]="title">
+            </app-qrcode-scanner>
+        </div>
+    </div>
+
+</div>
