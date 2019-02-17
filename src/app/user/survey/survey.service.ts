@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { MessageService, Type } from '../../message.service'
-import { Observable ,  of } from 'rxjs'
+import { Observable , of } from 'rxjs'
 import { RedeemCode } from './redeem-code.model'
 import { catchError } from 'rxjs/operators'
 import { environment } from '../../../environments/environment'
@@ -29,20 +29,6 @@ export class SurveyService {
     return this.http.post<Achievement>(url, surveyResponse, httpOptions)
       .pipe(
         catchError(this.handleError<Achievement>(`submiting survey to server`))
-      )
-  }
-
-  getMyRedeemCodes () {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.authService.getToken().token}`
-      })
-    }
-
-    return this.http.get<RedeemCode[]>(`${environment.cannonUrl}/redeem/me`, httpOptions)
-      .pipe(
-        catchError(this.handleError<any>('getMyRedeemCodes'))
       )
   }
 
