@@ -14,6 +14,13 @@
             <h3>Achievements</h3>
           </div>
         </div>
+        
+        <div class="row" *ngIf="user && user.role === 'team' && myPoints !== undefined && myPoints > 0">
+          <div class="delete-achv col-sm-12">
+            <button class="btn" (click)="deleteAchievements()">Clear my achievements</button>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-sm-12">
             <h6 class="lead">

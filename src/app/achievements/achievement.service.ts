@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 
-import { Observable ,  of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { Observable , of } from 'rxjs'
+import { catchError, tap } from 'rxjs/operators'
 
 import { environment } from '../../environments/environment'
 
 import { Achievement } from './achievement.model'
 import { MessageService, Type } from '../message.service'
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
+import { AuthService } from '../auth/auth.service'
 
 @Injectable()
 export class AchievementService {
@@ -21,7 +18,8 @@ export class AchievementService {
 
   constructor (
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private authService: AuthService
   ) { }
 
   getAchievements (): Observable<Achievement[]> {
@@ -36,7 +34,7 @@ export class AchievementService {
       )
   }
 
-  getActiveAchievements(): Observable<Achievement[]>{
+  getActiveAchievements (): Observable<Achievement[]> {
     return this.http.get<Achievement[]>(this.activeUrl)
       .pipe(
         tap(achievements => this.achievements = achievements),
@@ -53,6 +51,32 @@ export class AchievementService {
           catchError(this.handleError<Achievement>('getAchievement'))
         )
     }
+  }
+
+  getMyAchievements (): Observable<Achievement[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<Achievement[]>(`${this.achievementsUrl}/me`, httpOptions)
+        .pipe(
+          catchError(this.handleError<Achievement[]>('getMyAchievements'))
+        )
+  }
+
+  deleteMyAchievements (): Observable<Achievement[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.delete<Achievement[]>(`${this.achievementsUrl}/me`, httpOptions)
+        .pipe(
+          catchError(this.handleError<Achievement[]>('deleteMyAchievements'))
+        )
   }
 
   /**
