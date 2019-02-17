@@ -5,6 +5,7 @@ import { ScoreboardService } from './scoreboard.service'
 import { User } from '../user/user.model'
 import { AuthService } from '../auth/auth.service'
 import { UserService } from '../user/user.service'
+import { EventService } from '../events/event.service'
 
 @Component({
   selector: 'app-scoreboard',
@@ -14,22 +15,40 @@ import { UserService } from '../user/user.service'
 export class ScoreboardComponent implements OnInit {
   scoreboard: User[]
   private currentUser: User
+  begin: Date
+  current: Date = new Date()
+  days: Date[] = []
   isScoreboardEmpty: boolean
 
   constructor (
     private scoreboardService: ScoreboardService,
     private authService: AuthService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private eventService: EventService
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event =>{
+      let dayLength = 1000*60*60*24 //A day worth of miliseconds
+      this.begin = event.begin
+      this.begin.setHours(23)
+      this.begin.setMinutes(59)
+      this.begin.setSeconds(59)
+      this.begin.setMilliseconds(999)
+      for(let day = this.begin.getTime() ; day < this.current.getTime() ; day+= dayLength){
+        let temp = new Date(day)
+        console.log(day)
+        this.days.push(temp)
+      }
+      console.log(this.days)
+    })
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
         this.currentUser = user
       })
     }
-    this.scoreboardService.getUsersPoints().subscribe(users => {
+    this.scoreboardService.getUsersPoints(this.current.toISOString()).subscribe(users => {
       // Filter admin bot and get top 20
       this.scoreboard = users.filter(user => {
         return user.id
@@ -49,5 +68,23 @@ export class ScoreboardComponent implements OnInit {
 
   redirectToUser (id: string): void {
     this.router.navigate(['/user', id])
+  }
+
+  setScoreboard(date: string){
+    this.scoreboardService.getUsersPoints(date).subscribe(users => {
+      // Filter admin bot and get top 20
+      this.scoreboard = users.filter(user => {
+        return user.id
+      }).splice(0, 20)
+
+      console.log(this.scoreboard)
+
+      this.isScoreboardEmpty = this.scoreboard && this.scoreboard.length > 0 && !this.scoreboard[0].points
+    })
+  }
+
+  getDay(day: Date): number{
+    let diff = day.getTime() - this.begin.getTime()
+    return diff/(1000*60*60*24) + 1
   }
 }

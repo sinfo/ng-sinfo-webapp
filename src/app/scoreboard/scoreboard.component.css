@@ -90,3 +90,19 @@ div.user-wrapper {
     width: 100%;
   }
 }
+.dropdown-menu{
+  text-align: center;
+  right: 0;
+  margin: 0!important;
+}
+.dropdown{
+  text-align: center;
+}
+.dropdown-item{
+  font-size: 24px;
+  align-self: center;
+}
+
+.dropdown-item:hover{
+  cursor: pointer;
+}
