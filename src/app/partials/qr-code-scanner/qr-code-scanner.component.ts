@@ -6,7 +6,7 @@ import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 
 import { EventService } from '../../events/event.service'
-import { last } from 'rxjs/operators';
+import { last } from 'rxjs/operators'
 
 @Component({
   selector: 'app-qrcode-scanner',
@@ -16,6 +16,7 @@ import { last } from 'rxjs/operators';
 export class QrcodeScannerComponent implements OnInit {
 
   @Output() userReadOutput: EventEmitter<User> = new EventEmitter()
+  @Output() rawOutput: EventEmitter<string> = new EventEmitter()
   @Input() title: string
   @Input() info: string
   @Input() company: Company
@@ -28,6 +29,7 @@ export class QrcodeScannerComponent implements OnInit {
 
   animation: boolean // true -> success, false -> error, undefined -> neither
   lastUser: User = undefined
+  lastRaw: string
 
   selectedDevice
   private availableDevices: {
@@ -83,6 +85,13 @@ export class QrcodeScannerComponent implements OnInit {
       return
     }
 
+    if (this.lastRaw === content) {
+      return
+    }
+
+    this.rawOutput.emit(content)
+    this.lastRaw = content
+
     this.userService.getUser(content)
       .subscribe(user => {
         if (!user) {
@@ -101,7 +110,7 @@ export class QrcodeScannerComponent implements OnInit {
           })
           return
         }
-        if(this.lastUser === undefined || this.lastUser.id != user.id){
+        if (this.lastUser === undefined || this.lastUser.id !== user.id) {
           this.animation = true
           setInterval(() => {
             this.animation = undefined
@@ -119,7 +128,7 @@ export class QrcodeScannerComponent implements OnInit {
                 .subscribe(_company => this.company = _company)
             })
           }
-          this.lastUser = user;
+          this.lastUser = user
         }
       })
   }

@@ -81,6 +81,12 @@
           Achievements
         </a>
       </li>
+      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/redeem')}">
+        <a routerLink="/redeem">
+          <img src="assets/img/icons/sidebar/achievements.png">
+          Find achievements
+        </a>
+      </li>
       <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/scoreboard')}">
         <a routerLink="/scoreboard">
           <img src="assets/img/icons/sidebar/scoreboard.png">
