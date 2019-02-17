@@ -2244,7 +2244,7 @@ body > .container {
 }
 
 .my-area-content {
-	margin-left: 100px;
+	margin-left: 100px !important;
 }
 
 

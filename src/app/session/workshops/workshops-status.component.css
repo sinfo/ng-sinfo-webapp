@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  overflow-y: scroll
 }
 span.seeMore:hover {
   color: #008ae6;
