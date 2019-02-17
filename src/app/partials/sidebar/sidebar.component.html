@@ -9,7 +9,7 @@
       <li [ngClass]="{'active': detectLocation('/qrcode')}">
         <a routerLink="/qrcode">
           <img src="assets/img/icons/sidebar/qrcode.png">
-          QrCode
+          QR Code
         </a>
       </li>
       <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/cv')}">
