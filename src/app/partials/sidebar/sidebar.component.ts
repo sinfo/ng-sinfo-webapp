@@ -46,6 +46,12 @@ export class SidebarComponent implements OnInit {
     return this.url.indexOf(location) !== -1
   }
 
+  /*showOrHideBar () {
+    if (window.innerWidth > 975) {
+      this.showSidebar = true
+    }
+  }*/
+
   onLogout (): void {
     this.authService.logout()
     this.router.navigate(['/'])
