@@ -35,9 +35,8 @@ export class SidebarComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
         this.user = user
-        console.log(this.user)
       })
-      this.userService.isCvUpdated().subscribe(isCvUpdated => this.isCvUpdated = isCvUpdated, err => {
+      this.userService.isCvUpdated().subscribe(isCvUpdated => this.isCvUpdated = isCvUpdated, () => {
         this.isCvUpdated = false
       })
     }
@@ -46,12 +45,6 @@ export class SidebarComponent implements OnInit {
   detectLocation (location: string): boolean {
     return this.url.indexOf(location) !== -1
   }
-
-  /*showOrHideBar () {
-    if (window.innerWidth > 975) {
-      this.showSidebar = true
-    }
-  }*/
 
   onLogout (): void {
     this.authService.logout()
