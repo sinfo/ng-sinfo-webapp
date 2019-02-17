@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { User } from '../user.model'
-import { MessageService, Type } from '../../message.service'
 import { UserService } from '../user.service'
 import { Company } from '../../company/company.model'
-import { CompanyCannonService } from '../../company/company-cannon.service'
 import { CompanyService } from '../../company/company.service'
 import { EventService } from '../../events/event.service'
 import { SignatureService } from './signature.service'
@@ -24,12 +22,10 @@ export class SignatureComponent implements OnInit {
   myCompany: Company
 
   constructor (
-    private companyCannonService: CompanyCannonService,
     private companyService: CompanyService,
     private userService: UserService,
     private signatureService: SignatureService,
-    private eventService: EventService,
-    private messageService: MessageService
+    private eventService: EventService
   ) { }
 
   ngOnInit () {

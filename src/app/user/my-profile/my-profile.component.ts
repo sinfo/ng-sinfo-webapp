@@ -63,40 +63,6 @@ export class MyProfileComponent {
           this.userService.getUserAchievements(user.id).subscribe(achievements => {
             this.achievements = achievements
 
-            this.surveyService.getMyRedeemCodes()
-              .subscribe(myRedeemCodes => {
-                if (!myRedeemCodes || myRedeemCodes.length === 0) { return }
-                this.achievementService.getAchievements()
-                  .subscribe(allAchievements => {
-                    let redeemCodes = []
-                    myRedeemCodes.forEach(redeemCode => {
-
-                      // in the case of multiple check-ins of the same person in a session,
-                      // we only show redeem codes for different achievements
-
-                      if (redeemCodes.find(rc => {
-                        return rc.achievement.id === redeemCode.achievement
-                      })) { return }
-
-                      let wantedAchievement = allAchievements.find(a => {
-                        return a.id === redeemCode.achievement
-                      })
-
-                      if (!wantedAchievement) { return }
-
-                      let newRedeemCode = {
-                        achievement: wantedAchievement,
-                        id: redeemCode.id
-                      }
-
-                      if (wantedAchievement) {
-                        redeemCodes.push(newRedeemCode)
-                        this.redeemCodes.push(newRedeemCode)
-                      }
-                    })
-                  })
-              })
-
             // if this user had company role in the previous edition,
             // it will have a user role in the current edition
 

@@ -35,6 +35,7 @@ import { DownloadsStatusComponent } from './user/downloads/downloads-status/down
 import { PickWinnerComponent } from './pick-winner/pick-winner.component'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
+import { RedeemComponent } from './user/redeem/redeem.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
   { path: 'validate-card', component: ValidateCardComponent, canActivate: [ AuthGuard ] },
   { path: 'checkin', component: CheckinComponent, canActivate: [ AuthGuard ] },
   { path: 'achievements', component: AchievementsComponent },
+  { path: 'redeem', component: RedeemComponent },
   { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
   { path: 'achievement/:id', component: AchievementComponent },
   { path: 'live', component: LiveComponent },

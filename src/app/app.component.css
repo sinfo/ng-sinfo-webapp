@@ -1,4 +1,4 @@
 .content {
     min-height: 90vh;
-    overflow: overlay;
+    /* overflow: overlay; */
 }
