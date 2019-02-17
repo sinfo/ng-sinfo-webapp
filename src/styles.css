@@ -2116,7 +2116,6 @@ span {
 .align-center {
   text-align: center;
   display: block;
-  overflow-x: scroll;
 }
 .justify {
   text-align: justify;
