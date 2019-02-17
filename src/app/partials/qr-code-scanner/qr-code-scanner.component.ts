@@ -53,7 +53,7 @@ export class QrcodeScannerComponent implements OnInit {
     }
 
     if (cams && cams.length > 0) {
-      this.selectedDevice = cams[cams.length - 1]
+      this.selectedDevice = cams[0]
       this.camStarted = true
       this.availableDevices.selected = cams.length - 1
     }
