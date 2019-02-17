@@ -3,12 +3,8 @@
   align-items: stretch;
   min-height: 87vh;
 }
-#content {
-  padding: 20px;
-  transition: all 0.3s;
+.subsection {
   width: 100%;
-  justify-content: center;
-  margin-bottom: 30px;
 }
 .achievement-section {
   display: flex;
