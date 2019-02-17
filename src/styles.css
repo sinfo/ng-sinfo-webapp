@@ -2116,6 +2116,7 @@ span {
 .align-center {
   text-align: center;
   display: block;
+  overflow-x: scroll;
 }
 .justify {
   text-align: justify;
@@ -2244,7 +2245,7 @@ body > .container {
 }
 
 .my-area-content {
-	margin-left: 100px !important;
+	margin-left: 25% !important;
 }
 
 
@@ -6553,15 +6554,16 @@ div.clear input.btn:hover {
   align-items: stretch;
   min-height: 87vh;
   width: 100%;
-  background-color: #f2fefe;
+  background-color: white;
 }
 
 #content {
   display: flex;
-  padding: 20px;
+  padding: 5%;
+  width: 75%;
   transition: all 0.3s;
-  width: 100%;
   justify-content: center;
+  background-color: white;
 }
 
 #container {

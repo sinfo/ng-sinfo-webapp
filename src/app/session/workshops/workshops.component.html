@@ -5,8 +5,8 @@
 <div class="wrapper" *ngIf="allWorkshopsFrontend">
   <app-sidebar *ngIf="user" [user]="user"></app-sidebar>
   
-  <section id="content">
-    <div class="container workshop-wrapper my-area-content">
+  <section id="content" class="my-area-content">
+    <div class="container workshop-wrapper">
       <div *ngIf="myWorkshopsFrontend.length !== 0">
         <div class="row align-center">
           <div class="col-sm-12">

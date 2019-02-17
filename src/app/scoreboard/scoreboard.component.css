@@ -3,14 +3,6 @@
   align-items: stretch;
   min-height: 87vh;
 }
-
-#content {
-  padding: 20px;
-  transition: all 0.3s;
-  width: 100%;
-  margin-bottom: 30px;
-  
-}
 h3.title {
   margin-bottom: 30px;
 }
@@ -41,6 +33,7 @@ div.table-wrapper {
 }
 .scoreboard-section table tr.currentUser td {
   border-color: #bce8f1;
+  font-size: 0.5rem;
 }
 .scoreboard-section table th {
   text-align: center;
@@ -105,4 +98,18 @@ div.user-wrapper {
 
 .dropdown-item:hover{
   cursor: pointer;
+}
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+}
+.dropdown button {
+  font-size: 0.5rem;
+}
+ul li a {
+  font-size: 0.5rem;
 }

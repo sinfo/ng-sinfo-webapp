@@ -3,12 +3,6 @@
   align-items: stretch;
   min-height: 87vh;
 }
-#content {
-  padding: 20px;
-  transition: all 0.3s;
-  width: 100%;
-  margin-bottom: 30px;
-}
 .container {
   width: 100%;
 }

@@ -56,6 +56,9 @@ div.workshop-collapsed .img-wrapper img {
   font-size: 14px;
   font-family: "PT Sans";
 }
+.info-wrapper {
+  width: 100%;
+}
 @media (max-width: 767px) {
   h4.name {
     font-size: 22px;

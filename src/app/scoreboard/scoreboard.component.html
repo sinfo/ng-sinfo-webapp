@@ -6,7 +6,7 @@
 
   <app-sidebar [user]="currentUser"></app-sidebar>
 
-  <div id="content" class="content my-area-content">
+  <div id="content" class="my-area-content">
     <section class="section scoreboard-section align-center">
       <div class="container">
         <div class="row">
@@ -88,7 +88,7 @@
 
             <div class="dropdown">
                 <button class="btn btn-outline-primary" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  See other scoreboards
+                  Change day
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <li><a *ngFor="let day of days" class="dropdown-item" (click)="setScoreboard(day.toISOString())">Day {{getDay(day)}}</a></li>
