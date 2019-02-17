@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { RedeemService } from './redeem.service'
 import { AchievementService } from '../../achievements/achievement.service'
 import { Achievement } from '../../achievements/achievement.model'
+import { UserService } from '../user.service'
+import { User } from '../user.model'
 
 @Component({
   selector: 'app-redeem',
@@ -10,6 +12,7 @@ import { Achievement } from '../../achievements/achievement.model'
 })
 export class RedeemComponent implements OnInit {
 
+  me: User
   redeemCode: string
   scannerActive = false
   title = 'Find achievements'
@@ -19,10 +22,15 @@ export class RedeemComponent implements OnInit {
 
   constructor (
     private redeemService: RedeemService,
-    private achievementService: AchievementService
+    private achievementService: AchievementService,
+    private userService: UserService
   ) { }
 
   ngOnInit () {
+    this.userService.getMe().subscribe(user => {
+      this.me = user
+    })
+
     this.updateMyAchievements()
   }
 
