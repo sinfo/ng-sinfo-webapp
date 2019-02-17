@@ -2245,7 +2245,7 @@ body > .container {
 .my-area-content {
   margin-left: 100px;
   margin-right: 0px !important;
-  width: 100% !important;
+  width: calc(100% - 100px) !important;
 }
 
 img {
