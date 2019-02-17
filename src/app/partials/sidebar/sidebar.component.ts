@@ -35,6 +35,7 @@ export class SidebarComponent implements OnInit {
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
         this.user = user
+        console.log(this.user)
       })
       this.userService.isCvUpdated().subscribe(isCvUpdated => this.isCvUpdated = isCvUpdated, err => {
         this.isCvUpdated = false
