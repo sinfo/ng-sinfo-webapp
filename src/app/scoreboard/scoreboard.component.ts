@@ -38,10 +38,8 @@ export class ScoreboardComponent implements OnInit {
       this.begin.setMilliseconds(999)
       for(let day = this.begin.getTime() ; day < this.current.getTime() ; day+= dayLength){
         let temp = new Date(day)
-        console.log(day)
         this.days.push(temp)
       }
-      console.log(this.days)
     })
     if (this.authService.isLoggedIn()) {
       this.userService.getMe().subscribe(user => {
@@ -76,8 +74,6 @@ export class ScoreboardComponent implements OnInit {
       this.scoreboard = users.filter(user => {
         return user.id
       }).splice(0, 20)
-
-      console.log(this.scoreboard)
 
       this.isScoreboardEmpty = this.scoreboard && this.scoreboard.length > 0 && !this.scoreboard[0].points
     })
