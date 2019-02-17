@@ -27,7 +27,7 @@
         </span>
         <ul *ngIf="displayDayDropdown" class="nav nav-schedule nav-day">
           <li *ngFor="let day of schedule; let i=index" [ngClass]="{'active': selectedTheme === day.theme}">
-            <a href="#day{{i}}" data-toggle="tab" (click)="updateSelectedDayText(day.theme, day.date)">
+            <a (click)="updateSelectedDayText(day.theme, day.date)">
               <h5 class="highlight">{{day.theme}}</h5>
               <p class="text-alt">{{day.date | date:'dd-MM-yyyy'}}</p>
             </a>
@@ -40,33 +40,33 @@
       <div class="tab-content">
 
         <!-- Day 1 content start -->
-        <div *ngFor="let day of schedule; let i=index" [ngClass]="{'active': selectedTheme === day.theme}" id="day{{i}}" class="tab-pane fade in">
+        <div *ngFor="let day of schedule; let i=index" class="tab-pane fade in" [ngClass]="{'active': selectedTheme === day.theme}">
 
-          <!-- Navigation by auditorium start -->
+          <!-- Navigation by session type start -->
           <div class="nav-wrapper">
-            <span class="nav-current" (click)="toggleSessionDropdown(i)">{{selectedSession}}</span>
-            <ul *ngIf="displaySessionDropdown && displaySessionDropdown[i]" class="nav nav-schedule schedule-type">
+            <span class="nav-current" (click)="toggleSessionDropdown()">{{selectedSession}}</span>
+            <ul *ngIf="displaySessionDropdown" class="nav nav-schedule schedule-type">
               <li [ngClass]="{'active': selectedSession === 'Presentations'}">
-                <a href="#day{{i}}_presentations" data-toggle="tab" (click)="updateSelectedSessionText('Presentations')">Presentations</a>
+                <a (click)="updateSelectedSessionText('Presentations')">Presentations</a>
               </li>
               <li [ngClass]="{'active': selectedSession === 'Keynotes'}">
-                <a href="#day{{i}}_keynotes" data-toggle="tab" (click)="updateSelectedSessionText('Keynotes')">Keynotes</a>
+                <a (click)="updateSelectedSessionText('Keynotes')">Keynotes</a>
               </li>
               <li [ngClass]="{'active': selectedSession === 'Workshops'}">
-                <a href="#day{{i}}_workshops" data-toggle="tab" (click)="updateSelectedSessionText('Workshops')">Workshops</a>
+                <a (click)="updateSelectedSessionText('Workshops')">Workshops</a>
               </li>
             </ul>
           </div>
-          <!-- Navigation by auditorium start -->
+          <!-- Navigation by session type start -->
 
           <!-- Second level content start -->
           <div class="tab-content tab-content-schedule">
 
             <!-- Keynotes content start -->
-            <div id="day{{i}}_keynotes" class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Keynotes'}">
+            <div class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Keynotes'}">
 
               <!-- Accordion start -->
-              <div *ngIf="day.sessions.Keynote" class="panel-group" id="day{{i}}_keynotes_timeline">
+              <div *ngIf="day.sessions.Keynote" class="panel-group">
 
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" class="panel schedule-item">
 
@@ -89,7 +89,7 @@
                     </h6>
                   </a>
 
-                  <div id="day{{i}}_keynotes_{{iSession}}" class="panel-collapse collapse in schedule-item-body">
+                  <div class="panel-collapse collapse in schedule-item-body">
                     <article>
                       <p class="description">{{session.description}}</p>
                     </article>
@@ -103,10 +103,10 @@
             <!-- Keynotes content end -->
 
             <!-- Presentations content start -->
-            <div id="day{{i}}_presentations" class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Presentations'}">
+            <div class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Presentations'}">
 
               <!-- Accordion start -->
-              <div *ngIf="day.sessions.Presentation" class="panel-group" id="day{{i}}_presentations_timeline">
+              <div *ngIf="day.sessions.Presentation" class="panel-group">
 
                 <div *ngIf="day.sessions.Presentation.sala1" class="room1 col-sm-6">
 
@@ -129,7 +129,7 @@
                         </h6>
                       </a>
 
-                      <div id="day{{i}}_presentations_sala1_{{iSession}}" class="panel-collapse collapse in schedule-item-body">
+                      <div class="panel-collapse collapse in schedule-item-body">
                         <article>
                           <p class="description">{{presentation.description}}</p>
                           <strong *ngFor="let speaker of presentation.speakers" class="highlight speaker-name">
@@ -163,7 +163,7 @@
                         </h6>
                       </a>
 
-                      <div id="day{{i}}_presentations_sala2_{{iSession}}" class="panel-collapse collapse in schedule-item-body">
+                      <div class="panel-collapse collapse in schedule-item-body">
                         <article>
                           <p class="description">{{presentation.description}}</p>
                           <strong *ngFor="let speaker of presentation.speakers" class="highlight speaker-name">
@@ -183,10 +183,10 @@
             <!-- Presentations content end -->
 
             <!-- Workshops content start -->
-            <div id="day{{i}}_workshops" class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Workshops'}">
+            <div class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Workshops'}">
 
               <!-- Accordion start -->
-              <div *ngIf="day.sessions.Workshop" class="panel-group" id="day{{i}}_workshops_timeline">
+              <div *ngIf="day.sessions.Workshop" class="panel-group">
 
                 <div *ngIf="day.sessions.Workshop.sala1" class="room1 col-sm-6">
 
@@ -208,7 +208,7 @@
                         </h6>
                       </a>
 
-                      <div id="day{{i}}_workshops_sala1_{{iSession}}" class="panel-collapse collapse in schedule-item-body">
+                      <div class="panel-collapse collapse in schedule-item-body">
                         <article>
                           <p class="description">{{workshop.description}}</p>
                           <strong *ngFor="let speaker of workshop.speakers" class="highlight speaker-name">

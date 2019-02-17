@@ -17,8 +17,8 @@ export class ScheduleComponent implements OnInit, OnChanges {
   selectedTheme: string
   selectedTime: string
   selectedSession: string
-  displayDayDropdown: boolean
-  displaySessionDropdown: [boolean, boolean, boolean, boolean, boolean]
+  displayDayDropdown: Boolean
+  displaySessionDropdown: Boolean
 
   sessions: Session[]
   private schedule
@@ -30,12 +30,12 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   ngOnInit () {
     this.getSessions()
-
     this.showOrHideDropdown()
   }
 
   ngOnChanges () {
     this.getSessions()
+    console.log(this.schedule)
   }
 
   getSessions (): void {
@@ -92,31 +92,33 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   }
 
+  showOrHideDropdown () {
+    this.displayDayDropdown = window.innerWidth > 768
+    this.displaySessionDropdown = window.innerWidth > 768
+  }
+
+  toggleDayDropdown () {
+    this.displayDayDropdown = !this.displayDayDropdown || window.innerWidth > 768
+  }
+
+  toggleSessionDropdown () {
+    this.displaySessionDropdown = !this.displaySessionDropdown || window.innerWidth > 768
+  }
+
   onSelect (session: Session): void {
     this.router.navigate(['/sessions', session.id])
-  }
-
-  /* Beggining of Dropdown tabs actions */
-  showOrHideDropdown (): void {
-    this.displayDayDropdown = window.innerWidth > 768 ? true : false
-    this.displaySessionDropdown = window.innerWidth > 768 ? [true, true, true, true, true] : [false, false, false, false, false]
-  }
-
-  toggleDayDropdown (): void {
-    this.displayDayDropdown = !this.displayDayDropdown
-  }
-
-  toggleSessionDropdown (day: number): void {
-    this.displaySessionDropdown[day] = !this.displaySessionDropdown[day]
+    console.log(this.schedule)
   }
 
   updateSelectedDayText (theme: string, day: string): void {
     this.selectedTheme = theme
     this.selectedTime = day
+    this.toggleDayDropdown()
   }
 
   updateSelectedSessionText (session: string) {
     this.selectedSession = session
+    this.toggleSessionDropdown()
   }
   /* End of Dropdown tabs actions */
 }
