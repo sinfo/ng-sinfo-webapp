@@ -36,7 +36,7 @@ export class SidebarComponent implements OnInit {
       this.userService.getMe().subscribe(user => {
         this.user = user
       })
-      this.userService.isCvUpdated().subscribe(isCvUpdated => this.isCvUpdated = isCvUpdated, err => {
+      this.userService.isCvUpdated().subscribe(isCvUpdated => this.isCvUpdated = isCvUpdated, () => {
         this.isCvUpdated = false
       })
     }
