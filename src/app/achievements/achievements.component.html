@@ -34,8 +34,8 @@
         </div>
 
         <div class="alert alert-info col-sm-12">
-          <span *ngIf="user && numUserAchievements && activeAchievements && myPoints">
-            <strong>You have unlocked {{ numUserAchievements() }} of {{ activeAchievements.total.number }} ({{myPoints}} points) </strong>
+          <span *ngIf="user && myAchievements !== undefined && activeAchievements && myPoints !== undefined">
+            <strong>You have unlocked {{ myAchievements }} of {{ activeAchievements.total.number }} ({{myPoints}} points) </strong>
           </span>
           <span class="scoreboard">
             <strong>

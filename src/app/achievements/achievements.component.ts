@@ -25,7 +25,7 @@ export class AchievementsComponent implements OnInit {
   }
 
   achievements: Achievement[]
-  myAchievements: Achievement[]
+  myAchievements: number
   myPoints: number
 
   user: User
@@ -68,6 +68,8 @@ export class AchievementsComponent implements OnInit {
 
   updateActiveAchievements () {
     this.myPoints = 0
+    this.myAchievements = 0
+
     this.achievementService.getActiveAchievements().subscribe(achievements => {
       this.activeAchievements = achievements
       .filter((a) => { return a.id !== undefined }) // Filter any empty achievements
@@ -100,6 +102,7 @@ export class AchievementsComponent implements OnInit {
         if (curr.value !== undefined && curr.value > 0 &&
           curr.users.filter(userId => userId === this.user.id).length > 0) {
           this.myPoints += curr.value
+          this.myAchievements += 1
         }
 
         return acc
@@ -161,10 +164,6 @@ export class AchievementsComponent implements OnInit {
 
   isUnlocked (achievement: Achievement): boolean {
     return this.user && achievement.users ? achievement.users.indexOf(this.user.id) !== -1 : false
-  }
-
-  numUserAchievements () {
-    return this.myAchievements && this.myAchievements.length ? this.myAchievements.length : 0
   }
 
   changeButton () {
