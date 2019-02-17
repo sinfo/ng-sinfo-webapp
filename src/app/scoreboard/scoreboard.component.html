@@ -21,7 +21,7 @@
               <strong>
                 <a routerLink="/achievements">achievements</a>
               </strong>.
-              <br> At the end of the event we will award the scoreboard leader.
+              <br> At the end of the day we will award the scoreboard leader.
             </h6>
           </div>
         </div>
@@ -85,6 +85,17 @@
                 </tr>
               </tbody>
             </table>
+
+            <div class="dropdown">
+                <button class="btn btn-outline-primary" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  See other scoreboards
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a *ngFor="let day of days" class="dropdown-item" (click)="setScoreboard(day.toISOString())">Day {{getDay(day)}}</a></li>
+                  <li><a class="dropdown-item" (click)="setScoreboard(current .toISOString())">Today</a></li>
+                </ul>
+              </div>
+    
           </div>
         </div>
       </div>

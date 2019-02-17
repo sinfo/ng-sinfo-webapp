@@ -6,10 +6,21 @@
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
     <span id="sidebarSpan">
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/checkin')}">
+        <a routerLink="/checkin">
+          <i class="glyphicon glyphicon-qrcode"></i>
+          Check-in
+        </a>
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/pick-winner')}">
+        <a routerLink="/pick-winner">
+          <i class="glyphicon glyphicon-flag"></i>
+          Pick Winner
+        </a>
+      </li>
       <li [ngClass]="{'active': detectLocation('/qrcode')}">
         <a routerLink="/qrcode">
           <img src="assets/img/icons/sidebar/qrcode.png">
-          QrCode
+          QR Code
         </a>
       </li>
       <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/cv')}">
@@ -83,7 +94,7 @@
       </li>
       <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/redeem')}">
         <a routerLink="/redeem">
-          <img src="assets/img/icons/sidebar/achievements.png">
+          <img src="assets/img/icons/sidebar/qrcode-achievement.svg">
           Find achievements
         </a>
       </li>
@@ -99,7 +110,7 @@
           My card
         </a>
       </li>
-      <li *ngIf="user && user.role == 'team' && eventOcurring" [ngClass]="{'active': detectLocation('/validate-card')}">
+      <li *ngIf="user && user.role == 'team'" [ngClass]="{'active': detectLocation('/validate-card')}">
         <a routerLink="/validate-card">
           <i class="glyphicon glyphicon-search"></i>
           Validate Card
@@ -111,17 +122,7 @@
           Promote
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/pick-winner')}">
-        <a routerLink="/pick-winner">
-          <i class="glyphicon glyphicon-flag"></i>
-          Pick Winner
-        </a>
-      </li>
-      <li *ngIf="user && user.role === 'team' && eventOcurring" [ngClass]="{'active': detectLocation('/checkin')}">
-        <a routerLink="/checkin">
-          <i class="glyphicon glyphicon-qrcode"></i>
-          Check-in
-        </a>
+      <li class="lastOne">
       </li>
 
     </span>

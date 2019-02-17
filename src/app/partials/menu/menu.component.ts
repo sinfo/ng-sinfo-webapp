@@ -16,6 +16,7 @@ export class MenuComponent implements OnInit {
   shortEventList: Event[]
   id_to_url = environment.id_to_url
   showDropDown: Boolean = false
+  showEditionsDropDown: Boolean = false
 
   constructor (
     private router: Router,
@@ -49,6 +50,10 @@ export class MenuComponent implements OnInit {
 
   toggleDropdown () {
     this.showDropDown = ! this.showDropDown
+  }
+
+  showEditionsDropdown () {
+    this.showEditionsDropDown = ! this.showEditionsDropDown
   }
 
   closeDropdown () {

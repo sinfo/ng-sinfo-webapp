@@ -35,7 +35,6 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   ngOnChanges () {
     this.getSessions()
-    console.log(this.schedule)
   }
 
   getSessions (): void {
@@ -107,7 +106,6 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   onSelect (session: Session): void {
     this.router.navigate(['/sessions', session.id])
-    console.log(this.schedule)
   }
 
   updateSelectedDayText (theme: string, day: string): void {

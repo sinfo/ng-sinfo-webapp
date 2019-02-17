@@ -11,15 +11,15 @@ import { User } from '../user/user.model'
 
 @Injectable()
 export class ScoreboardService {
-  private usersUrl = environment.cannonUrl + '/users'
+  private usersUrl = environment.cannonUrl + '/users?date='
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getUsersPoints (): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl)
+  getUsersPoints (date: string): Observable<User[]> {
+    return this.http.get<User[]>(this.usersUrl+date)
       .pipe(
         catchError(this.handleError<User[]>('getUsersPoints', []))
       )

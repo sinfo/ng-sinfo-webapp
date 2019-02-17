@@ -10,7 +10,7 @@
     <div class="align-center">
       <div class="row">
         <h3 class="qr-code-title">
-          Qr Code
+          QR Code
         </h3>
 
         <h5 *ngIf="user.role === 'team'">
@@ -20,24 +20,8 @@
 
       <div class="row qrcode-wrapper">
 
-        <!-- div class="qrcode-image">
-          <div class="row">
-            <div class="portrait-wrapper">
-              <img class="portrait" src="{{user.img}}">
-              <div class="mini-portrait-wrapper" *ngIf="user.role === 'team' || (user.role === 'company' && company)">
-                <img *ngIf="user.role === 'team'" class="mini-image" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
-                <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
-              </div>
-              <div class="mini-portrait-wrapper" *ngIf="user.role === 'user' && user.points">
-                <h2>{{user.points.total ? user.points.total : 0}}</h2>
-                <span class="lead">points</span>
-              </div>
-            </div>
-          </div>
-        </div-->
-
         <div class="qrcode">
-          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
+          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=2 [qrc-correction-level]="'M'"></ngx-qrcode>
           <h3 class="name">
               {{user.name}}
           </h3>
@@ -54,7 +38,7 @@
       </div>
       <div class="row">
           <h5 class="show-message">
-              Show this Qr Code to a SINFO member! 
+              Show this QR Code to a SINFO member! 
           </h5>
       </div>
 

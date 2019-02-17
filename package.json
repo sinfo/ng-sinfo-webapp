@@ -32,7 +32,6 @@
     "hoek": "^6.1.2",
     "macaddress": "^0.2.9",
     "ng": "0.0.0",
-    "ngx-qrcode2": "0.0.5",
     "ngx-qrcode3": "^0.3.0",
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.4.0",
@@ -44,7 +43,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular/cli": "7.3.1",
-    "@angular/compiler-cli": "7.2.4",
+    "@angular/compiler-cli": "^7.2.5",
     "@angular/language-service": "7.2.4",
     "@types/jasmine": "^2.8.16",
     "@types/jasminewd2": "^2.0.6",

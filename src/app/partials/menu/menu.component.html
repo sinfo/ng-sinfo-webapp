@@ -37,9 +37,9 @@
               <a routerLink="/" fragment="team" class="navigation-link">Team</a>
             </li-->
 
-            <li class="navigation-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" class="navigation-link">Previous Editions</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" *ngIf="shortEventList">
+            <li class="navigation-item dropdown" [class.open]="showEditionsDropDown">
+              <a class="nav-link" class="navigation-link" (click)="showEditionsDropdown()">Previous Editions</a>
+              <div class="dropdown-menu" *ngIf="shortEventList">
                 
                   <a *ngFor="let event of shortEventList" routerLink="/event/{{id_to_url[event.id]}}" class="dropdown-item navigation-link" (click)="closeDropdown()">{{event.name}}</a>
                   <!--a routerLink="/events" class="dropdown-item navigation-link" href="#">Other</a-->

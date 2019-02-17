@@ -33,13 +33,14 @@ export class PickWinnerComponent implements OnInit {
     private achievementService: AchievementService
   ) {
     this.achievements = []
-    // TODO CHANGE ME SOOOOOON this.achievementService.getActiveAchievements().subscribe(achievements => {
-    this.achievementService.getAchievements().subscribe(achievements => {
+    this.achievementService.getActiveAchievements().subscribe(achievements => {
       achievements.filter(achievement => {
         return achievement.users && achievement.users.length > 0 && achievement.session
       }).forEach(achievement => {
         this.sessionService.getSession(achievement.session).subscribe(session => {
-          this.achievements.push({ 'session': session.name, 'achievement': achievement })
+          if (session) {
+            this.achievements.push({ 'session': session.name, 'achievement': achievement })
+          }
         })
       })
     })
@@ -60,7 +61,9 @@ export class PickWinnerComponent implements OnInit {
     this.users = []
     achievement.users.forEach(userId => {
       this.userService.getUser(userId).subscribe(user => {
-        this.users.push(user)
+        if (user.role !== 'team') {
+          this.users.push(user)
+        }
       })
     })
   }
