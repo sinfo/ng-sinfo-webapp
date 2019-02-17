@@ -2242,6 +2242,13 @@ body {
 body > .container {
   padding-top: 65px;
 }
+
+.my-area-content {
+	margin-left: 100px;
+}
+
+
+
 img {
   max-width: 100%;
 }
@@ -5492,7 +5499,9 @@ div.clear input.btn:hover {
     Header
 ---------------------------------------------------------------------------- */
 .header {
-  position: relative;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
   line-height: 1.5625;
   z-index: 1000;
 }
@@ -5605,7 +5614,7 @@ div.clear input.btn:hover {
 .navigation-item {
   margin-left: 21px;
   display: inline-block;
-  padding: 34px 0 16px;
+  padding: 20px 0 16px;
 }
 .navigation-item:first-child {
   margin-left: 0;
@@ -6553,8 +6562,6 @@ div.clear input.btn:hover {
   transition: all 0.3s;
   width: 100%;
   justify-content: center;
-  height: 90vh;
-  overflow-y: scroll;
 }
 
 #container {

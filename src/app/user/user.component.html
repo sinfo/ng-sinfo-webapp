@@ -4,10 +4,11 @@
 
 <div class="sidebar-wrapper" *ngIf="user">
 
-  <app-sidebar [showSidebar]="false"></app-sidebar>
+  <!--app-sidebar [showSidebar]="false"></app-sidebar-->
+  <app-sidebar></app-sidebar>
 
 
-  <div class="container align-center user" *ngIf="user">
+  <div class="container align-center user my-area-content" *ngIf="user">
     <div class="row align-center">
 
       <h3 class="name">

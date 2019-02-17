@@ -3,13 +3,26 @@
 }
 
 #sidebar {
-  position: relative;
-  min-width: 185px;
+  width: 100px;
   max-width: 250px;
   background: #133157;
   color: #fff;
   transition: all 0.3s;
   height: 100%;
+
+  position: fixed;
+  z-index: 1;
+  top: 75px;
+  bottom: 0;
+}
+
+#sidebar ul{
+  overflow-y: scroll;
+}
+
+/* remove scroll bar*/
+#sidebar ul::-webkit-scrollbar { 
+  display: none;
 }
 
 #sidebar.active {
@@ -131,6 +144,7 @@ button#sidebarCollapse {
   background: rgba(0, 0, 0, 0);
   border: none;
   z-index: 1;
+  height: 40px;
 }
 
 button#sidebarCollapse i {
@@ -200,7 +214,7 @@ ul ul a {
   background: #0065a9;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 975px) {
   #sidebar {
     min-width: 80px;
     max-width: 97px;

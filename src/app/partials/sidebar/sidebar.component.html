@@ -1,8 +1,8 @@
-<nav id="sidebar" [ngClass]="{'active': showSidebar }">
+<nav id="sidebar" class="active"><!-- [ngClass]="{'active': showSidebar }" (window:resize)="showOrHideBar()">
   <button type="button" class="hidden-lg hidden-md" (click)="showSidebar = !showSidebar" id="sidebarCollapse">
     <i *ngIf="showSidebar" class="glyphicon glyphicon-menu-left"></i>
     <i *ngIf="!showSidebar" class="glyphicon glyphicon-menu-right"></i>
-  </button>
+  </button-->
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
     <span id="sidebarSpan">
