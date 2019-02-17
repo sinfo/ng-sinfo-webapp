@@ -2497,7 +2497,6 @@ li {
 }
 .container {
   position: relative;
-  width: 100%;
 }
 .bg-cover {
   -webkit-background-size: cover;
