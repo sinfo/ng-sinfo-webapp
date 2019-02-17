@@ -1,3 +1,7 @@
+.schedule-section {
+  width: 100%;
+}
+
 .schedule .tab-content-schedule .schedule-item .lecture-icon-wrapper {
   background-color: transparent;
   left: -8px;
