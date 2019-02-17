@@ -1,6 +1,7 @@
 .footer {
     position: relative;
     z-index: 1;
+    margin-top: 5px
 }
 
 .first {
