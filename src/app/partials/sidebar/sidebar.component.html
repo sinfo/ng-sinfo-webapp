@@ -6,6 +6,17 @@
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
     <span id="sidebarSpan">
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/checkin')}">
+        <a routerLink="/checkin">
+          <i class="glyphicon glyphicon-qrcode"></i>
+          Check-in
+        </a>
+      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/pick-winner')}">
+        <a routerLink="/pick-winner">
+          <i class="glyphicon glyphicon-flag"></i>
+          Pick Winner
+        </a>
+      </li>
       <li [ngClass]="{'active': detectLocation('/qrcode')}">
         <a routerLink="/qrcode">
           <img src="assets/img/icons/sidebar/qrcode.png">
@@ -109,12 +120,6 @@
         <a routerLink="/promote">
           <i class="glyphicon glyphicon-king"></i>
           Promote
-        </a>
-      </li>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/checkin')}">
-        <a routerLink="/checkin">
-          <i class="glyphicon glyphicon-qrcode"></i>
-          Check-in
         </a>
       </li>
       <li class="lastOne">
