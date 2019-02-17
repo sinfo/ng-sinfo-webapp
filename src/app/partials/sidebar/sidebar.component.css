@@ -3,8 +3,8 @@
 }
 
 #sidebar {
-  width: 100px;
-  max-width: 250px;
+  width: 25%;
+  max-width: 25%;
   background: #133157;
   color: #fff;
   transition: all 0.3s;

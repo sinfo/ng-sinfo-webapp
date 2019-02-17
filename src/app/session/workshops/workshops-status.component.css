@@ -51,6 +51,9 @@ div.workshop-collapsed .img-wrapper img {
   overflow: hidden;
   max-height: 100%; 
 }
+.row {
+  width: 100%;
+}
 @media (max-width: 767px) {
   h4.name {
     font-size: 22px;
