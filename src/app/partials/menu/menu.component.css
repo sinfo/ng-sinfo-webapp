@@ -6,6 +6,15 @@
   width: 100%;
 }
 
+.navigation-header {
+  height: 75px;
+  padding-top: 20px;
+}
+
+.header-wrapper {
+  height: 75px;
+}
+
 .alert{
   width: 70%;
   margin: 0 auto;

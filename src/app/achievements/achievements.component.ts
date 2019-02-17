@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core'
 
 import { Achievement } from './achievement.model'
 import { AchievementService } from './achievement.service'
-import { AuthService } from '../auth/auth.service'
 import { UserService } from '../user/user.service'
 import { User } from '../user/user.model'
 
@@ -26,7 +25,7 @@ export class AchievementsComponent implements OnInit {
   }
 
   achievements: Achievement[]
-  myAchievements: Achievement[]
+  myAchievements: number
   myPoints: number
 
   user: User
@@ -45,7 +44,6 @@ export class AchievementsComponent implements OnInit {
 
   constructor (
     private achievementService: AchievementService,
-    private authService: AuthService,
     private userService: UserService
   ) { }
 
@@ -60,6 +58,18 @@ export class AchievementsComponent implements OnInit {
     }
     this.show = false
     this.show_hide = 'Show all achievements'
+
+    this.userService.getMe().subscribe(user => {
+      this.user = user
+      this.updateActiveAchievements()
+      this.updateAchievements()
+    })
+  }
+
+  updateActiveAchievements () {
+    this.myPoints = 0
+    this.myAchievements = 0
+
     this.achievementService.getActiveAchievements().subscribe(achievements => {
       this.activeAchievements = achievements
       .filter((a) => { return a.id !== undefined }) // Filter any empty achievements
@@ -88,6 +98,13 @@ export class AchievementsComponent implements OnInit {
 
         acc.total.value += curr.value
         acc.total.number += 1
+
+        if (curr.value !== undefined && curr.value > 0 &&
+          curr.users.filter(userId => userId === this.user.id).length > 0) {
+          this.myPoints += curr.value
+          this.myAchievements += 1
+        }
+
         return acc
       }, {
         workshops: [],
@@ -103,7 +120,9 @@ export class AchievementsComponent implements OnInit {
       })
 
     })
+  }
 
+  updateAchievements () {
     this.achievementService.getAchievements().subscribe(achievements => {
       this.achievements = achievements
       .filter((a) => { return a.id })
@@ -141,30 +160,10 @@ export class AchievementsComponent implements OnInit {
         }
       })
     })
-
-    if (this.authService.isLoggedIn()) {
-      this.userService.getMe().subscribe(user => {
-        this.user = user
-        this.userService.getUserAchievements(user.id).subscribe(achievements => {
-          this.myAchievements = achievements
-
-          let points = 0
-          this.myAchievements.forEach(achievement => {
-            if (achievement.value) { points += achievement.value }
-          })
-          this.myPoints = points
-
-        })
-      })
-    }
   }
 
   isUnlocked (achievement: Achievement): boolean {
     return this.user && achievement.users ? achievement.users.indexOf(this.user.id) !== -1 : false
-  }
-
-  numUserAchievements () {
-    return this.myAchievements && this.myAchievements.length ? this.myAchievements.length : 0
   }
 
   changeButton () {
@@ -174,5 +173,10 @@ export class AchievementsComponent implements OnInit {
   showPrev () {
     this.show = !this.show
     this.changeButton()
+  }
+
+  deleteAchievements () {
+    this.achievementService.deleteMyAchievements()
+      .subscribe(() => this.updateActiveAchievements())
   }
 }

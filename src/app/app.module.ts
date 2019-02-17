@@ -41,7 +41,7 @@ import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 import { ScoreboardService } from './scoreboard/scoreboard.service'
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
 import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
-import { ZXingScannerModule  } from '@zxing/ngx-scanner' // scan qrcode
+import { ZXingScannerModule } from '@zxing/ngx-scanner' // scan qrcode
 import { PromoteComponent } from './user/promote/promote.component'
 import { CompanyService } from './company/company.service'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
@@ -72,6 +72,8 @@ import { DownloadsStatusComponent } from './user/downloads/downloads-status/down
 import { EventService } from './events/event.service'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
+import { RedeemComponent } from './user/redeem/redeem.component'
+import { RedeemService } from './user/redeem/redeem.service'
 
 @NgModule({
   declarations: [
@@ -119,7 +121,8 @@ import { CvComponent } from './user/cv/cv.component'
     DownloadsStatusComponent,
     // TODO EventsComponent,
     EventComponent,
-    CvComponent
+    CvComponent,
+    RedeemComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +154,8 @@ import { CvComponent } from './user/cv/cv.component'
     ScoreboardService,
     SessionCannonService,
     EndpointService,
-    EventService
+    EventService,
+    RedeemService
   ],
   bootstrap: [AppComponent]
 })
