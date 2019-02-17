@@ -2,7 +2,7 @@
   width: 90%;
   left: 5%;
   margin: 0;
-  background-color: #008ae6ab;
+  background-color: yellow;
   color: black !important;
   text-align: left;
   white-space: normal;
@@ -10,13 +10,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.link-note {
-  width: 90%;
-  margin-left: 5%;
-  margin-top: -11px !important;
-  border-top: none !important;
-  padding-top: 11px;
-}
+
 .link-note p {
   padding-left: 10px;
   padding-right: 10px;
@@ -62,4 +56,22 @@ h3 {
 img.portrait {
   border-radius: 50%;
   border: 3px solid #048ae6;
+}
+
+#links {
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+  border-color: #058ae6;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 28px;
+
+  padding: 3%;
+  background-color: #058ae629;
 }

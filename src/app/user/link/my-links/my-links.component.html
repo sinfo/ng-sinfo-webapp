@@ -34,43 +34,30 @@
         </div>
       </div>
 
+      <div id="links" *ngIf="company && processedLinks">
 
-      <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" *ngIf="company && processedLinks ">
+          <div *ngFor="let link of processedLinks" class="link">
+              
+            <h6>{{link.attendee.name}}</h6>
+            
+            <div class="link-note">
+              <p>
+                <span class="panel-content-strong">Company employee: </span>
+                {{link.user.name}}
+              </p>
+              <p>
+                <span class="panel-content-strong">Note: </span>
+                {{link.note}}
+              </p>
+              <p class="lead small tip">
+                Tip: To edit this link's note rescan the QR code
+              </p>
+            </div>
 
-        <app-loading [content]="links && processedLinks && links.length === processedLinks.length"></app-loading>
+          </div>
 
-        <div *ngFor="let link of processedLinks">
+      </div>
 
-          <ngb-panel>
-            <ng-template ngbPanelTitle>
-              <div class="row accord">
-                <button type="button" class="btn btn-sm">
-                  <p>{{link.attendee.name}}</p>
-                  <span class="caret"></span>
-                </button>
-              </div>
-            </ng-template>
-
-            <ng-template ngbPanelContent>
-              <div class="row accord">
-                <div class="link-note">
-                  <p>
-                    <span class="panel-content-strong">Company employee: </span>
-                    {{link.user.name}}
-                  </p>
-                  <p>
-                    <span class="panel-content-strong">Note: </span>
-                    {{link.note}}
-                  </p>
-                  <p class="lead small tip">
-                    Tip: To edit this link's note rescan the QR code
-                  </p>
-                </div>
-              </div>
-            </ng-template>
-          </ngb-panel>
-        </div>
-      </ngb-accordion>
     </div>
   </div>
 </div>

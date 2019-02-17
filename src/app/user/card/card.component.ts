@@ -37,6 +37,8 @@ export class CardComponent implements OnInit {
           return s.day === day
         })
 
+        userSignatures.signatures = userSignatures.signatures.slice(0, this.signatures.capacity)
+
         if (!userSignatures) return
         this.signatures.redeemed = userSignatures.redeemed
 

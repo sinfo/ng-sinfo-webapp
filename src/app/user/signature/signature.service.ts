@@ -44,22 +44,6 @@ export class SignatureService {
 
       // signature not found
       if (wantedSignature === -1) {
-
-        // check card's capacity
-        let signaturesCount = (signatures && signatures.signatures) ? signatures.signatures.length : 0
-
-        // full card. don't sign
-        if (signaturesCount >= environment.signaturesCardCapacity) {
-          this.messageService.add({
-            origin: 'Signatures',
-            showAlert: true,
-            text: `${user.name} has already filled his/her card for today`,
-            type: Type.warning,
-            timeout: 7000
-          })
-          return
-        }
-
         this.sign(user, company)
         return
       }
