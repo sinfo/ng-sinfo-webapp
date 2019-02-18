@@ -230,9 +230,6 @@ export class UserService {
     }
 
     return this.http.post<User>(`${this.usersUrl}/${id}/redeem-card`, payload, httpOptions)
-    .pipe(
-      catchError(this.handleError<User>(`validating users card`))
-    )
   }
 
   /**

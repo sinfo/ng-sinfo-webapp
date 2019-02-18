@@ -39,6 +39,26 @@ export class ValidateCardComponent implements OnInit {
         type: Type.success,
         timeout: 7000
       })
+    }, error => {
+
+      if (error.error.statusCode === 409) {
+        this.messageService.add({
+          origin: 'Validate card',
+          showAlert: true,
+          text: `${user.name}'s card is already validated`,
+          type: Type.warning,
+          timeout: 7000
+        })
+      } else if (error.error.statusCode === 404 || error.error.statusCode === 422) {
+        this.messageService.add({
+          origin: 'Validate card',
+          showAlert: true,
+          text: `Not enough signatures on ${user.name}'s card`,
+          type: Type.warning,
+          timeout: 7000
+        })
+      }
+
     })
   }
 }
