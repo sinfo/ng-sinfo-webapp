@@ -41,7 +41,7 @@ export const environment = {
       'Software Engineering'
     ]
   },
-  signaturesCardCapacity: 10,
+  signaturesCardCapacity: 6,
   facebook: {
     appId: '708252219264170'
   },
