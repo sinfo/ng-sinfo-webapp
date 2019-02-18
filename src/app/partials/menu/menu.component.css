@@ -1,9 +1,13 @@
 .alert-message {
+  left: 100px;
   top: 10px;
   margin: 0 auto;
   position: absolute;
+  display: flex;
   z-index: 1;
-  width: 100%;
+  width: 70vw;
+  justify-content: center;
+  align-items: center;
 }
 
 .navigation-header {
@@ -16,8 +20,7 @@
 }
 
 .alert{
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
 }
 
 #logo_white {
