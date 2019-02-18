@@ -13,7 +13,7 @@ export interface Message {
   text: string,
   type: Type,
   errorObject?: object
-  timeout?: number
+  timeout?: number,
 }
 
 @Injectable()

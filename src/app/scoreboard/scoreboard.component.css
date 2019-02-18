@@ -92,8 +92,9 @@ div.user-wrapper {
   text-align: center;
 }
 .dropdown-item{
-  font-size: 24px;
+  font-size: 1.2rem!important;
   align-self: center;
+  padding: 0.5rem;
 }
 
 .dropdown-item:hover{
@@ -108,8 +109,12 @@ div.user-wrapper {
   width: 100%;
 }
 .dropdown button {
-  font-size: 0.5rem;
+  font-size: 0.7rem;
 }
 ul li a {
-  font-size: 0.5rem;
+  font-size: 1rem;
+}
+
+.name, .points{
+  font-size: 18px!important;
 }
