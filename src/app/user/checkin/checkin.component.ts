@@ -52,10 +52,9 @@ export class CheckinComponent implements OnInit {
             let sessionDate = new Date(s.date)
             let sessionDuration = new Date(s.duration)
             let durationInSeconds =
-              (sessionDuration.getHours() * 3600) +
+              (sessionDuration.getHours() * 3600 - 3600) +
               (sessionDuration.getMinutes() * 60) +
               sessionDuration.getSeconds()
-
             let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
             let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
