@@ -19,7 +19,7 @@
           </div>
 
           <div *ngIf="achievements && achievements.length > 0 && !achievement" class="btn-group-vertical">
-            <button *ngFor="let element of achievements" (click)=showUsers(element.achievement) type="button" class="btn btn-secondary">{{element.session}}</button>
+            <button *ngFor="let element of achievements" (click)=showUsers(element.achievement) type="button" class="btn btn-secondary">{{element.name}}</button>
           </div>
 
         <div *ngIf="achievement && users.length > 0 && !winner">
