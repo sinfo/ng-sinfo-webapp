@@ -33,7 +33,6 @@ div.table-wrapper {
 }
 .scoreboard-section table tr.currentUser td {
   border-color: #bce8f1;
-  font-size: 0.5rem;
 }
 .scoreboard-section table th {
   text-align: center;
