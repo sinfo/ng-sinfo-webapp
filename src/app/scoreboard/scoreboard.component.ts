@@ -47,6 +47,13 @@ export class ScoreboardComponent implements OnInit {
       })
     }
     this.scoreboardService.getUsersPoints(this.current.toISOString()).subscribe(users => {
+      // Find current user with user.points format
+      let user = users.find((a) =>{
+        return a.id === this.currentUser.id
+      })
+      if(user !== undefined){
+        this.currentUser = user
+      }
       // Filter admin bot and get top 20
       this.scoreboard = users.filter(user => {
         return user.id
@@ -70,6 +77,11 @@ export class ScoreboardComponent implements OnInit {
 
   setScoreboard(date: string){
     this.scoreboardService.getUsersPoints(date).subscribe(users => {
+      // Find current user with user.points format
+      let user = users.find((a) =>{
+        return a.id === this.currentUser.id
+      })
+      user === undefined? this.currentUser.points = 0 : this.currentUser = user
       // Filter admin bot and get top 20
       this.scoreboard = users.filter(user => {
         return user.id

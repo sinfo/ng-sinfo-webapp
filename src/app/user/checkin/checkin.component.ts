@@ -50,7 +50,11 @@ export class CheckinComponent implements OnInit {
           let _sessions = []
           sessions.forEach(s => {
             let sessionDate = new Date(s.date)
-            let sessionDuration = new Date(s.duration)
+            // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
+            let duration = s.duration.slice(4)
+            duration = "2010"+duration
+            // End of fix
+            let sessionDuration = new Date(duration)
             let durationInSeconds =
               (sessionDuration.getHours() * 3600) +
               (sessionDuration.getMinutes() * 60) +
