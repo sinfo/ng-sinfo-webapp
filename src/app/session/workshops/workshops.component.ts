@@ -66,7 +66,15 @@ export class WorkshopsComponent implements OnInit {
               .sort((wsA, wsB) => {
                 return Date.parse(wsA.date) - Date.parse(wsB.date)
               })
-
+            
+              // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
+            this.allWorkshops.forEach((a)=>{
+              a.duration = '2010' + a.duration.slice(4)
+            })
+            this.myWorkshops.forEach((a) =>{
+              a.duration = '2010'+a.duration.slice(4)
+            })
+            // End of fix
             this.updateWorkhopsFrontend()
 
           })
