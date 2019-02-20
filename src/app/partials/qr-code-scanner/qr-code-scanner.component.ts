@@ -23,6 +23,8 @@ export class QrcodeScannerComponent implements OnInit {
   @Input() camStarted: boolean
   @Input() userRead: User
 
+  @Input() processUser: boolean
+
   @Input() insideScannerMsg: [{ title: string, msg: string }]
   @Output() buttonAction = new EventEmitter()
   @Input() buttonLabel: string
@@ -44,7 +46,11 @@ export class QrcodeScannerComponent implements OnInit {
     private eventService: EventService
   ) { }
 
-  ngOnInit () { }
+  ngOnInit () {
+    if (this.processUser === undefined) {
+      this.processUser = true
+    }
+  }
 
   displayCameras (cams: any[]) {
     this.availableDevices = {
@@ -91,6 +97,8 @@ export class QrcodeScannerComponent implements OnInit {
 
     this.rawOutput.emit(content)
     this.lastRaw = content
+
+    if (!this.processUser) return
 
     this.userService.getUser(content)
       .subscribe(user => {

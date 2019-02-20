@@ -14,9 +14,10 @@ export class RedeemComponent implements OnInit {
 
   me: User
   redeemCode: string
+  info: string
   scannerActive = false
   title = 'Find achievements'
-  info: string
+  processUser = false
 
   myAchievements: Achievement[]
 
