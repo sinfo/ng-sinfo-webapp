@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router, Params, RouterStateSnapshot } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 
 import { SessionService } from '../session.service'
 import { Session } from '../session.model'
@@ -28,12 +29,17 @@ export class WorkshopsStatusComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private eventService: EventService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) {
     this.snapshot = router.routerState.snapshot
   }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Workshop Status')
+    })
+
     if (!this.authService.isLoggedIn()) {
       this.authService.redirectUrl = this.snapshot.url
       this.router.navigate(['/login'])

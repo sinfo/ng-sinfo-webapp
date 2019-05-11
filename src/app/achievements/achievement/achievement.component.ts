@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 
 import { Achievement } from '../achievement.model'
 import { AchievementService } from '../achievement.service'
 import { AuthService } from '../../auth/auth.service'
 import { UserService } from '../../user/user.service'
+import { EventService } from '../../events/event.service'
 import { User } from '../../user/user.model'
 
 @Component({
@@ -22,10 +24,16 @@ export class AchievementComponent implements OnInit {
     private achievementService: AchievementService,
     private authService: AuthService,
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Achievement')
+    })
+
     this.route.params.forEach((params: Params) => {
       const id = params['id']
 

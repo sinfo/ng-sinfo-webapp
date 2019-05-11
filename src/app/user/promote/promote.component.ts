@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
@@ -6,15 +8,8 @@ import { CompanyService } from '../../company/company.service'
 import { EventService } from '../../events/event.service'
 
 import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap'
-import { Observable ,  Subject } from 'rxjs'
-import { debounceTime, merge, filter, map, distinctUntilChanged} from 'rxjs/operators'
-
-
-
-
-
-
-
+import { Observable, Subject } from 'rxjs'
+import { debounceTime, merge, filter, map, distinctUntilChanged } from 'rxjs/operators'
 
 @Component({
   selector: 'app-promote',
@@ -38,7 +33,8 @@ export class PromoteComponent implements OnInit {
   constructor (
     private userService: UserService,
     private companyService: CompanyService,
-    private eventService: EventService
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   @ViewChild('instance') instance: NgbTypeahead
@@ -63,6 +59,10 @@ export class PromoteComponent implements OnInit {
   }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Promote')
+    })
+
     this.scannerActive = true
     this.userService.getMe()
       .subscribe(me => {

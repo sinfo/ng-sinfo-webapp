@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 
 import { ScoreboardService } from './scoreboard.service'
 import { User } from '../user/user.model'
@@ -25,18 +26,20 @@ export class ScoreboardComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
+    private titleService: Title,
     private eventService: EventService
   ) { }
 
   ngOnInit () {
-    this.eventService.getCurrent().subscribe(event =>{
-      let dayLength = 1000*60*60*24 //A day worth of miliseconds
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Scoreboard')
+      let dayLength = 1000 * 60 * 60 * 24 // A day worth of miliseconds
       this.begin = event.begin
       this.begin.setHours(23)
       this.begin.setMinutes(59)
       this.begin.setSeconds(59)
       this.begin.setMilliseconds(999)
-      for(let day = this.begin.getTime() ; day < this.current.getTime() ; day+= dayLength){
+      for (let day = this.begin.getTime() ; day < this.current.getTime() ; day += dayLength) {
         let temp = new Date(day)
         this.days.push(temp)
       }
@@ -48,10 +51,10 @@ export class ScoreboardComponent implements OnInit {
     }
     this.scoreboardService.getUsersPoints(this.current.toISOString()).subscribe(users => {
       // Find current user with user.points format
-      let user = users.find((a) =>{
+      let user = users.find((a) => {
         return a.id === this.currentUser.id
       })
-      if(user !== undefined){
+      if (user !== undefined) {
         this.currentUser = user
       }
       // Filter admin bot and get top 20
@@ -75,13 +78,13 @@ export class ScoreboardComponent implements OnInit {
     this.router.navigate(['/user', id])
   }
 
-  setScoreboard(date: string){
+  setScoreboard (date: string) {
     this.scoreboardService.getUsersPoints(date).subscribe(users => {
       // Find current user with user.points format
-      let user = users.find((a) =>{
+      let user = users.find((a) => {
         return a.id === this.currentUser.id
       })
-      user === undefined? this.currentUser.points = 0 : this.currentUser = user
+      user === undefined ? this.currentUser.points = 0 : this.currentUser = user
       // Filter admin bot and get top 20
       this.scoreboard = users.filter(user => {
         return user.id
@@ -91,8 +94,8 @@ export class ScoreboardComponent implements OnInit {
     })
   }
 
-  getDay(day: Date): number{
+  getDay (day: Date): number {
     let diff = day.getTime() - this.begin.getTime()
-    return diff/(1000*60*60*24) + 1
+    return diff / (1000 * 60 * 60 * 24) + 1
   }
 }

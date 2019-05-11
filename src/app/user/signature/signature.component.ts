@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { User } from '../user.model'
 import { UserService } from '../user.service'
 import { Company } from '../../company/company.model'
@@ -22,6 +24,7 @@ export class SignatureComponent implements OnInit {
   myCompany: Company
 
   constructor (
+    private titleService: Title,
     private companyService: CompanyService,
     private userService: UserService,
     private signatureService: SignatureService,
@@ -31,6 +34,7 @@ export class SignatureComponent implements OnInit {
   ngOnInit () {
     this.scannerActive = false
     this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Signature')
       this.userService.getMe()
         .subscribe(user => {
           this.me = user

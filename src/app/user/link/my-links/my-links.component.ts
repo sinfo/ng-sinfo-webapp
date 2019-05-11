@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { Link } from '../link.model'
 import { User } from '../../user.model'
 import { UserService } from '../../user.service'
@@ -28,12 +30,14 @@ export class MyLinksComponent implements OnInit {
     private userService: UserService,
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
-    private eventService: EventService
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
     this.processedLinks = []
     this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - My Links')
       this.userService.getMe()
         .subscribe(me => {
           this.me = me

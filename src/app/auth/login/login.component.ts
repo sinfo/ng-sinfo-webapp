@@ -1,8 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core'
+import { Router, ActivatedRoute } from '@angular/router'
+import { Title } from '@angular/platform-browser'
+
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../auth.service'
-import { Router, ActivatedRoute } from '@angular/router'
 import { MessageService, Type } from '../../message.service'
+import { EventService } from '../../events/event.service'
 
 declare let FB: any
 declare let gapi: any
@@ -30,11 +33,17 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor (
     private messageService: MessageService,
     private authService: AuthService,
+    private eventService: EventService,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Login')
+    })
+
     this.isLoggedIn = this.authService.isLoggedIn()
 
     if (this.isLoggedIn) {

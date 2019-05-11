@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { Meta } from '@angular/platform-browser'
+import { Meta, Title } from '@angular/platform-browser'
 import { EventService } from './events/event.service'
 
 import { Router, NavigationEnd } from '@angular/router'
@@ -12,6 +12,7 @@ import { Router, NavigationEnd } from '@angular/router'
 export class AppComponent {
   constructor (
     private router: Router,
+    private titleService: Title,
     private meta: Meta,
     private eventService: EventService
   ) {
@@ -20,8 +21,11 @@ export class AppComponent {
     for organizing one of the biggest Tech conferences in Portugal.'
     const IMAGE = 'https://sinfo.org/assets/img/savethedate26.png'
 
-    // meta data tags
     eventService.getCurrent().subscribe(event => {
+      // Set pages title
+      this.titleService.setTitle(event.name)
+
+      // Meta data tags
       // Common tags
       this.meta.addTags([
         { name: 'description', content: DESCRIPTION },

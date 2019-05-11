@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { MessageService, Type } from '../../message.service'
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-validate-card',
@@ -17,10 +20,16 @@ export class ValidateCardComponent implements OnInit {
 
   constructor (
     private userService: UserService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Validate Card')
+    })
+
     this.scannerActive = true
     this.userService.getMe()
     .subscribe(user => {

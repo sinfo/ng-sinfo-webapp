@@ -63,7 +63,6 @@ import { SurveyService } from './user/survey/survey.service'
 import { SignatureService } from './user/signature/signature.service'
 import { CheckinComponent } from './user/checkin/checkin.component'
 import { SessionCannonService } from './session/session-cannon.service'
-import { LinkedInLoginComponent } from './auth/login/linkedin.component'
 import { ValidateCardComponent } from './user/validate-card/validate-card.component'
 import { EndpointService } from './endpoints/endpoint.service'
 import { DownloadsComponent } from './user/downloads/downloads.component'
@@ -115,13 +114,11 @@ import { RedeemService } from './user/redeem/redeem.service'
     ScoreboardComponent,
     CheckinComponent,
     LiveComponent,
-    LinkedInLoginComponent,
     ValidateCardComponent,
     DownloadsComponent,
     ManageDownloadsComponent,
     DownloadsStatusComponent,
     PickWinnerComponent,
-    // TODO EventsComponent,
     EventComponent,
     CvComponent,
     RedeemComponent

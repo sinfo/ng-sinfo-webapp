@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { environment } from '../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-card',
@@ -21,10 +24,16 @@ export class CardComponent implements OnInit {
 
   constructor (
     private userService: UserService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Card')
+    })
+
     this.userService.getMe()
       .subscribe(user => {
         this.user = user
