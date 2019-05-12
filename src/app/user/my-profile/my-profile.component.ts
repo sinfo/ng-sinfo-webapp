@@ -1,4 +1,7 @@
 import { Component, NgZone } from '@angular/core'
+import { Router } from '@angular/router'
+import { Title } from '@angular/platform-browser'
+
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
@@ -9,7 +12,6 @@ import { Achievement } from '../../achievements/achievement.model'
 import { SurveyService } from '../survey/survey.service'
 import { AchievementService } from '../../achievements/achievement.service'
 import { EventService } from '../../events/event.service'
-import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-my-profile',
@@ -37,8 +39,14 @@ export class MyProfileComponent {
     private zone: NgZone,
     private achievementService: AchievementService,
     private eventService: EventService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) {
+
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - QR Code')
+    })
+
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     /**
      *  TODO: To fix the unknown error with Google login

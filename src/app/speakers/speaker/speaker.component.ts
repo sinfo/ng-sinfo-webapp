@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params, Router } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 
 import { SpeakerService } from '../speaker.service'
 import { Speaker } from '../speaker.model'
@@ -21,13 +22,17 @@ export class SpeakerComponent implements OnInit {
     private sessionService: SessionService,
     private eventService: EventService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
     this.route.params.forEach((params: Params) => {
       const id = params['id']
       this.getSpeaker(id)
+      this.eventService.getCurrent().subscribe(event => {
+        this.titleService.setTitle(event.name + ' - ' + this.speaker.name)
+      })
     })
   }
 

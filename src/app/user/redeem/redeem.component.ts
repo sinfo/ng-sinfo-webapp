@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { RedeemService } from './redeem.service'
 import { AchievementService } from '../../achievements/achievement.service'
+import { EventService } from '../../events/event.service'
 import { Achievement } from '../../achievements/achievement.model'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
@@ -24,10 +27,16 @@ export class RedeemComponent implements OnInit {
   constructor (
     private redeemService: RedeemService,
     private achievementService: AchievementService,
-    private userService: UserService
+    private userService: UserService,
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Redeem')
+    })
+
     this.userService.getMe().subscribe(user => {
       this.me = user
     })

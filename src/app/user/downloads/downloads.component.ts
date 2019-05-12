@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { User } from '../user.model'
 import { UserService } from '../user.service'
 import { Company } from '../../company/company.model'
@@ -23,7 +25,8 @@ export class DownloadsComponent implements OnInit {
     private userService: UserService,
     private companyService: CompanyService,
     private authService: AuthService,
-    private eventService: EventService
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
@@ -31,6 +34,8 @@ export class DownloadsComponent implements OnInit {
     .subscribe(me => {
       this.me = me
       this.eventService.getCurrent().subscribe(event => {
+        this.titleService.setTitle(event.name + ' - Downloads')
+
         if (me.role === 'team') {
           this.cvsDownloadUrl = `${environment.cannonUrl}` +
           `/files/download?editionId=${event.id}` +

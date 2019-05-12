@@ -1,5 +1,7 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { Router } from '@angular/router'
+import { Title } from '@angular/platform-browser'
+
 import { SponsorService } from './sponsor.service'
 import { EventService } from '../events/event.service'
 import { Sponsor } from './sponsor.model'
@@ -24,6 +26,7 @@ export class SponsorsComponent implements OnInit, OnChanges {
 
   constructor (
     private router: Router,
+    private titleService: Title,
     private sponsorService: SponsorService,
     private eventService: EventService
   ) { }
@@ -35,7 +38,13 @@ export class SponsorsComponent implements OnInit, OnChanges {
      * If in Sponsors page show ALL sponsors (this.showAll = true)
      */
     this.showAll = this.router.url !== '/'
-    this.isAllSponsors = this.router.url === '/all-sponsors'
+    this.isAllSponsors = this.router.url === '/sponsors'
+
+    if (this.isAllSponsors) {
+      this.eventService.getCurrent().subscribe(event => {
+        this.titleService.setTitle(event.name + ' - Sponsors')
+      })
+    }
 
     this.getSponsors()
   }
@@ -43,7 +52,7 @@ export class SponsorsComponent implements OnInit, OnChanges {
   ngOnChanges () {
     this.getSponsors()
     this.showAll = this.router.url !== '/'
-    this.isAllSponsors = this.router.url === '/all-sponsors'
+    this.isAllSponsors = this.router.url === '/sponsors'
   }
 
   getSponsors (): void {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
@@ -32,13 +34,15 @@ export class LinkComponent implements OnInit {
     private companyCannonService: CompanyCannonService,
     private signatureService: SignatureService,
     private messageService: MessageService,
-    private eventService: EventService
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
     this.scannerActive = false
     this.notes = ''
     this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Links')
       this.userService.getMe()
         .subscribe(user => {
           this.me = user

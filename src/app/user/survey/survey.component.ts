@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Params } from '@angular/router'
+import { Title } from '@angular/platform-browser'
+
 import { RedeemCode } from './redeem-code.model'
 import { Session } from '../../session/session.model'
 import { SurveyService } from './survey.service'
 import { SessionService } from '../../session/session.service'
+import { EventService } from '../../events/event.service'
 import { Achievement } from '../../achievements/achievement.model'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
@@ -51,10 +54,16 @@ export class SurveyComponent implements OnInit {
     private route: ActivatedRoute,
     private surveyService: SurveyService,
     private sessionService: SessionService,
-    private userService: UserService
+    private userService: UserService,
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Survey')
+    })
+
     this.userService.getMe()
       .subscribe(me => {
         this.me = me

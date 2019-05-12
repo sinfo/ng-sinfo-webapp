@@ -1,4 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
+import { EventService } from '../../../events/event.service'
 import { UserService } from '../../user.service'
 import { User } from '../../user.model'
 import { Company } from '../../../company/company.model'
@@ -38,11 +41,13 @@ export class ManageDownloadsComponent implements OnInit {
   loading = false
 
   constructor (
+    private eventService: EventService,
     private userService: UserService,
     private companyService: CompanyService,
     private calendar: NgbCalendar,
     private enpointService: EndpointService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   @ViewChild('instance') instance: NgbTypeahead
@@ -76,6 +81,10 @@ export class ManageDownloadsComponent implements OnInit {
   isTo = date => equals(date, this.toDate)
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Manage Downloads')
+    })
+
     this.userService.getMe()
       .subscribe(me => {
         this.me = me

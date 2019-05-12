@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { Router, Params } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 
 import { SessionService } from '../session.service'
 import { Session } from '../session.model'
@@ -36,7 +37,8 @@ export class WorkshopsComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private eventService: EventService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
@@ -50,6 +52,7 @@ export class WorkshopsComponent implements OnInit {
       this.user = user
       this.userService.getUserSessions(user.id).subscribe(mySessions => {
         this.eventService.getCurrent().subscribe(event => {
+          this.titleService.setTitle(event.name + ' - Workshops')
           this.event = event
           this.sessionService.getSessions(event.id).subscribe(sessions => {
 
@@ -66,13 +69,13 @@ export class WorkshopsComponent implements OnInit {
               .sort((wsA, wsB) => {
                 return Date.parse(wsA.date) - Date.parse(wsB.date)
               })
-            
+
               // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
-            this.allWorkshops.forEach((a)=>{
+            this.allWorkshops.forEach((a) => {
               a.duration = '2010' + a.duration.slice(4)
             })
-            this.myWorkshops.forEach((a) =>{
-              a.duration = '2010'+a.duration.slice(4)
+            this.myWorkshops.forEach((a) => {
+              a.duration = '2010' + a.duration.slice(4)
             })
             // End of fix
             this.updateWorkhopsFrontend()

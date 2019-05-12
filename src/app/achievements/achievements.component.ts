@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
 
 import { Achievement } from './achievement.model'
 import { AchievementService } from './achievement.service'
+import { EventService } from './../events/event.service'
 import { UserService } from '../user/user.service'
 import { User } from '../user/user.model'
 
@@ -44,10 +46,16 @@ export class AchievementsComponent implements OnInit {
 
   constructor (
     private achievementService: AchievementService,
-    private userService: UserService
+    private userService: UserService,
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Achievements')
+    })
+
     this.days = {
       monday: [],
       tuesday: [],

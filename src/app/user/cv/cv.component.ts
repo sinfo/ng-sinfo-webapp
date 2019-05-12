@@ -1,10 +1,13 @@
 import { Component, OnInit, NgZone } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+import { HttpEventType, HttpResponse } from '@angular/common/http'
+
+import { EventService } from '../../events/event.service'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { File as CV } from './file'
-import { HttpEventType, HttpResponse } from '@angular/common/http'
 
 @Component({
   selector: 'app-cv',
@@ -20,9 +23,11 @@ export class CvComponent implements OnInit {
   updated: boolean
 
   constructor (
+    private eventService: EventService,
     private userService: UserService,
     private authService: AuthService,
-    private zone: NgZone
+    private zone: NgZone,
+    private titleService: Title
   ) {
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     this.zone.run(() => {
@@ -37,6 +42,9 @@ export class CvComponent implements OnInit {
   }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Curriculum')
+    })
   }
 
   uploadCV (event) {

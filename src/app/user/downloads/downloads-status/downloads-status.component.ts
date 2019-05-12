@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Router, Params, RouterStateSnapshot } from '@angular/router'
+import { Title } from '@angular/platform-browser'
+
+import { EventService } from '../../../events/event.service'
 import { Endpoint } from '../../../endpoints/endpoint.model'
 import { EndpointService } from '../../../endpoints/endpoint.service'
 import { UserService } from '../../user.service'
@@ -20,13 +23,19 @@ export class DownloadsStatusComponent implements OnInit {
   me: User
 
   constructor (
+    private eventService: EventService,
     private endpointService: EndpointService,
     private router: Router,
     private companyService: CompanyService,
-    private userService: UserService
+    private userService: UserService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Download Status')
+    })
+
     this.userService.getMe().subscribe(user => {
       this.me = user
 

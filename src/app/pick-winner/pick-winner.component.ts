@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { Title } from '@angular/platform-browser'
+
 import { UserService } from '../user/user.service'
 import { User } from '../user/user.model'
 import { SessionService } from '../session/session.service'
 import { AchievementService } from '../achievements/achievement.service'
 import { Achievement } from '../achievements/achievement.model'
-
-import { map, tap, reduce, filter } from 'rxjs/operators'
-import { element } from '@angular/core/src/render3'
-import { Session } from '../session/session.model';
+import { EventService } from './../events/event.service'
 
 @Component({
   selector: 'app-pick-winner',
@@ -24,7 +23,7 @@ export class PickWinnerComponent implements OnInit {
 
   achievements: Array<{
     name: string,
-    start : string;
+    start: string;
     achievement: Achievement
   }> = []
 
@@ -32,7 +31,9 @@ export class PickWinnerComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private sessionService: SessionService,
-    private achievementService: AchievementService
+    private achievementService: AchievementService,
+    private eventService: EventService,
+    private titleService: Title
   ) {
     this.achievements = []
     this.achievementService.getActiveAchievements().subscribe(achievements => {
@@ -41,13 +42,19 @@ export class PickWinnerComponent implements OnInit {
       }).forEach(achievement => {
         this.sessionService.getSession(achievement.session).subscribe(session => {
           if (session) {
-            this.achievements.push({ 'name': session.companies.length ? session.companies[0] + ' - ' + session.kind : session.name, 'start': session.date, "achievement": achievement })
-            this.achievements.sort( (a,b) : number => {
-              if(a.start === b.start){ return 0}
+            this.achievements.push({
+              'name': session.companies.length ? session.companies[0] + ' - ' + session.kind : session.name,
+              'start': session.date,
+              'achievement': achievement
+            })
+            this.achievements.sort((a, b): number => {
+              if (a.start === b.start) {
+                return 0
+              }
               let date1 = new Date(a.start)
               let date2 = new Date(b.start)
-              return date1 > date2? 1: -1
-            } )
+              return date1 > date2 ? 1 : -1
+            })
           }
         })
       })
@@ -61,6 +68,10 @@ export class PickWinnerComponent implements OnInit {
       if (user.role !== 'team') {
         this.router.navigate(['/qrcode'])
       }
+
+      this.eventService.getCurrent().subscribe(event => {
+        this.titleService.setTitle(event.name + ' - Pick Winner')
+      })
     })
   }
 

@@ -27,7 +27,6 @@ import { WorkshopsStatusComponent } from './session/workshops/workshops-status.c
 import { SurveyComponent } from './user/survey/survey.component'
 import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 import { CheckinComponent } from './user/checkin/checkin.component'
-import { LinkedInLoginComponent } from './auth/login/linkedin.component'
 import { ValidateCardComponent } from './user/validate-card/validate-card.component'
 import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
@@ -50,7 +49,6 @@ const routes: Routes = [
   { path: 'live', component: LiveComponent },
   { path: 'promote', component: PromoteComponent, canActivate: [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
-  { path: 'login/linkedIn', component: LinkedInLoginComponent },
   { path: 'qrcode', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
@@ -63,7 +61,7 @@ const routes: Routes = [
   { path: 'links/my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
   { path: 'workshops', component: WorkshopsComponent },
   { path: 'workshops/workshops-status', component: WorkshopsStatusComponent },
-  { path: 'all-sponsors', component: SponsorsComponent },
+  { path: 'sponsors', component: SponsorsComponent },
   { path: 'scoreboard', component: ScoreboardComponent },
   { path: 'user/:id', component: UserComponent },
   { path: 'coc', component: CodeOfConductComponent },

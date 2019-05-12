@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { EventService } from '../events/event.service'
+import { Title } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-landing-page',
@@ -17,6 +18,7 @@ export class LandingPageComponent implements OnInit {
 
   constructor (
     private router: Router,
+    private titleService: Title,
     private eventService: EventService
   ) {
 
@@ -25,6 +27,7 @@ export class LandingPageComponent implements OnInit {
   ngOnInit () {
     this.selectedAboutText = 'About Us'
     this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name)
       this.eventId = event.id
       this.begin = event.begin
       this.end = event.end

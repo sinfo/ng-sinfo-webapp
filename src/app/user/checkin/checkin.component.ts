@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+
 import { Session } from '../../session/session.model'
 import { SessionService } from '../../session/session.service'
 import { SessionCannonService } from '../../session/session-cannon.service'
@@ -29,10 +31,15 @@ export class CheckinComponent implements OnInit {
     private sessionCannonService: SessionCannonService,
     private userService: UserService,
     private messageService: MessageService,
-    private eventService: EventService
+    private eventService: EventService,
+    private titleService: Title
   ) { }
 
   ngOnInit () {
+    this.eventService.getCurrent().subscribe(event => {
+      this.titleService.setTitle(event.name + ' - Check In')
+    })
+
     this.scannerActive = false
 
     this.userService.getMe()
@@ -52,7 +59,7 @@ export class CheckinComponent implements OnInit {
             let sessionDate = new Date(s.date)
             // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
             let duration = s.duration.slice(4)
-            duration = "2010"+duration
+            duration = '2010' + duration
             // End of fix
             let sessionDuration = new Date(duration)
             let durationInSeconds =
