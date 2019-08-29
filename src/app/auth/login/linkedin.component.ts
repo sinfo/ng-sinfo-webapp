@@ -9,7 +9,6 @@ import { AuthService } from '../auth.service'
 })
 export class LinkedInLoginComponent implements OnInit {
   private isLoggedIn = false
-  submitting = true
 
   constructor (
     private authService: AuthService,

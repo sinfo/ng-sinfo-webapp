@@ -31,14 +31,13 @@ export class LandingPageComponent implements OnInit {
       this.eventId = event.id
       this.begin = event.begin
       this.end = event.end
-      const curr = new Date().getTime()
     })
     this.showOrHideDropdown()
   }
 
   /* Beggining of Dropdown tabs actions */
   showOrHideDropdown (): void {
-    this.displayAboutDropdown = window.innerWidth > 768 ? true : false
+    this.displayAboutDropdown = window.innerWidth > 768
   }
 
   updatedSelectedText (text: string): void {

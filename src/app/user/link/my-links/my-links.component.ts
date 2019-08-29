@@ -24,7 +24,6 @@ export class MyLinksComponent implements OnInit {
     user: User
     note: string
   }>
-  gotLinks: boolean
 
   constructor (
     private userService: UserService,

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { Company } from './company.model'
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError, tap } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
 import { EventService } from '../events/event.service'
@@ -12,9 +12,11 @@ import { Event } from '../events/event.model'
 @Injectable()
 export class CompanyService {
 
-  private companiesUrl = environment.deckUrl + '/api/companies'
+  private companiesUrl = environment.deckUrl + '/public/companies'
   private companies: Company[]
   private event: Event
+
+  // TODO why is this unused
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${this.authService.getToken().token}`

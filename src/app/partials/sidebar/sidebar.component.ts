@@ -14,7 +14,6 @@ export class SidebarComponent implements OnInit {
 
   @Input() user: User
   eventOcurring: Boolean
-  // @Input() showSidebar = true
   url: String
   private snapshot: RouterStateSnapshot
   isCvUpdated: Boolean = true
@@ -46,12 +45,7 @@ export class SidebarComponent implements OnInit {
     return this.url.indexOf(location) !== -1
   }
 
-  /*showOrHideBar () {
-    if (window.innerWidth > 975) {
-      this.showSidebar = true
-    }
-  }*/
-
+  // TODO why is it unused
   onLogout (): void {
     this.authService.logout()
     this.router.navigate(['/'])

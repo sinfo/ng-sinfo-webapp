@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
 import { Link } from '../user/link/link.model'
@@ -128,7 +128,7 @@ export class CompanyCannonService {
    * @param result - optional value to return as the observable result
    */
   private handleError<T> (operation = 'operation', result?: T) {
-    var msg = {
+    const msg = {
       origin: `UserService: ${operation}`,
       showAlert: false,
       text: null,

@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 
-import { Observable ,  of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { Observable , of } from 'rxjs'
+import { catchError, tap } from 'rxjs/operators'
 
 import { Member } from './member.model'
 
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
-
 @Injectable()
 export class TeamService {
-  private memberUrl = environment.deckUrl + '/api/members'
+  private memberUrl = environment.deckUrl + '/members'
   private team: Member[]
   private eventId: string
 

@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
-import { Observable ,  of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { Observable , of } from 'rxjs'
+import { catchError, tap } from 'rxjs/operators'
 import { Speaker } from './speaker.model'
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
-
 @Injectable()
 export class SpeakerService {
-  private speakersUrl = environment.deckUrl + '/api/speakers'
+  private speakersUrl = environment.deckUrl + '/public/speakers'
   private speakers: Speaker[]
   private eventId: string
 

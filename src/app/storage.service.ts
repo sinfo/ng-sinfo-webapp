@@ -35,6 +35,7 @@ export class StorageService {
     }
   }
 
+  // TODO why is it unused
   clear (): void {
     try {
       localStorage.clear()

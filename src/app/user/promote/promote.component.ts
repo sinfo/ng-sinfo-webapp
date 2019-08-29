@@ -43,6 +43,7 @@ export class PromoteComponent implements OnInit {
 
   formatter = (company: Company) => company.name
 
+  // TODO deprecated symbol
   search = (text$: Observable<string>) =>
     text$
       .pipe(debounceTime(200)).pipe(distinctUntilChanged())

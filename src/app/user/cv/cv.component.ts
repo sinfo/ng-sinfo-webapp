@@ -5,7 +5,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http'
 import { EventService } from '../../events/event.service'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
-import { environment } from './../../../environments/environment'
+import { environment } from '../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { File as CV } from './file'
 
@@ -73,7 +73,7 @@ export class CvComponent implements OnInit {
   }
 
   deleteCV () {
-    this.userService.deleteCV().subscribe(res => {
+    this.userService.deleteCV().subscribe(() => {
       this.myCv = undefined
     })
   }

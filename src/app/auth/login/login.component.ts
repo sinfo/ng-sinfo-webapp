@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   attachSignin (element) {
-    this.auth2.attachClickHandler(element, { }, (googleUser) => {
+    this.auth2.attachClickHandler(element, { }, () => {
     }, (error) => {
       this.messageService.add({
         origin: 'LoginComponent: Google attachSignin',

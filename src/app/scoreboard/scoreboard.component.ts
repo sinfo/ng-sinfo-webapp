@@ -58,8 +58,8 @@ export class ScoreboardComponent implements OnInit {
         this.currentUser = user
       }
       // Filter admin bot and get top 20
-      this.scoreboard = users.filter(user => {
-        return user.id
+      this.scoreboard = users.filter(usr => {
+        return usr.id
       }).splice(0, 20)
 
       this.isScoreboardEmpty = this.scoreboard && this.scoreboard.length > 0 && !this.scoreboard[0].points
@@ -86,8 +86,8 @@ export class ScoreboardComponent implements OnInit {
       })
       user === undefined ? this.currentUser.points = 0 : this.currentUser = user
       // Filter admin bot and get top 20
-      this.scoreboard = users.filter(user => {
-        return user.id
+      this.scoreboard = users.filter(usr => {
+        return usr.id
       }).splice(0, 20)
 
       this.isScoreboardEmpty = this.scoreboard && this.scoreboard.length > 0 && !this.scoreboard[0].points

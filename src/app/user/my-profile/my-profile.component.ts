@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser'
 
 import { UserService } from '../user.service'
 import { User } from '../user.model'
-import { environment } from './../../../environments/environment'
+import { environment } from '../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 import { AuthService } from '../../auth/auth.service'
@@ -26,10 +26,6 @@ export class MyProfileComponent {
   submitedCV: boolean
   cvDownloadUrl: string
   achievements: Achievement[]
-  redeemCodes: Array<{
-    achievement: Achievement
-    id: string
-  }> = new Array()
 
   constructor (
     private userService: UserService,

@@ -56,6 +56,7 @@ export class ManageDownloadsComponent implements OnInit {
 
   formatter = (company: Company) => company.name
 
+  // TODO deprecated warning
   search = (text$: Observable<string>) =>
     text$
       .pipe(debounceTime(200)).pipe(distinctUntilChanged())
@@ -117,12 +118,11 @@ export class ManageDownloadsComponent implements OnInit {
 
     this.loading = true
 
-    let _companies = []
-    _companies = this.selectAllCompanies ? this.companies : this.selectedCompanies
-    _companies = _companies.map(c => { return c.id })
+    const companies = this.selectAllCompanies ? this.companies : this.selectedCompanies
+    const companyIds = companies.map(c => { return c.id })
 
     this.enpointService.createEndpoints(
-      _companies,
+      companyIds,
       new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day),
       new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day, 23, 59, 59)
      ).subscribe(endpoints => {

@@ -6,7 +6,6 @@ import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 
 import { EventService } from '../../events/event.service'
-import { last } from 'rxjs/operators'
 
 @Component({
   selector: 'app-qrcode-scanner',

@@ -16,7 +16,6 @@ const httpOptions = {
 export class AuthService {
   private authUrl = environment.cannonUrl + '/auth'
   redirectUrl: string
-  linkedInState: string
 
   constructor (
     private http: HttpClient,

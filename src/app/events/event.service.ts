@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap, take, filter } from 'rxjs/operators'
+import { catchError, map, tap } from 'rxjs/operators'
 
 import { environment } from '../../environments/environment'
 
 import { Event } from './event.model'
 import { MessageService, Type } from '../message.service'
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
-
 @Injectable()
 export class EventService {
-  private eventsUrl = environment.deckUrl + '/api/events?sort=-date'
-  private currentEventUrl = environment.deckUrl + '/api/events?sort=-date&limit=1'
-  private previousEventUrl = environment.deckUrl + '/api/events?sort=-date&limit=1&skip=1'
+  private eventsUrl = environment.deckUrl + '/events'
+  // TODO change to current event endpoint
+  private currentEventUrl = environment.deckUrl + '/public/events?sort=-date&limit=1'
+  private previousEventUrl = environment.deckUrl + '/public/events?sort=-date&limit=1&skip=1'
   private events: Event[]
   private current: Event
   private previous: Event

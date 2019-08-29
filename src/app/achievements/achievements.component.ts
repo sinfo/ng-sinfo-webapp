@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser'
 
 import { Achievement } from './achievement.model'
 import { AchievementService } from './achievement.service'
-import { EventService } from './../events/event.service'
+import { EventService } from '../events/event.service'
 import { UserService } from '../user/user.service'
 import { User } from '../user/user.model'
 

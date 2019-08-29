@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core'
 import { environment } from '../../environments/environment'
 import { Sponsor } from './sponsor.model'
 import { HttpClient, HttpParams } from '@angular/common/http'
-import { Observable ,  of } from 'rxjs'
+import { Observable , of } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 
 @Injectable()
 export class SponsorService {
-  private sponsorUrl = environment.deckUrl + '/api/companies'
+  private sponsorUrl = environment.deckUrl + '/public/companies'
   private sponsors: Sponsor[]
   private eventId: string
 
@@ -39,6 +39,7 @@ export class SponsorService {
       )
   }
 
+  // TODO why is it unused
   getSponsor (id: string): Observable<Sponsor> {
     if (this.sponsors) {
       return of(this.sponsors.find(sponsor => sponsor.id === id))

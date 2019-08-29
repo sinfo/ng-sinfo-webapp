@@ -7,7 +7,7 @@ import { User } from '../user/user.model'
 import { SessionService } from '../session/session.service'
 import { AchievementService } from '../achievements/achievement.service'
 import { Achievement } from '../achievements/achievement.model'
-import { EventService } from './../events/event.service'
+import { EventService } from '../events/event.service'
 
 @Component({
   selector: 'app-pick-winner',

@@ -1,21 +1,17 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError, tap } from 'rxjs/operators'
 
 import { Session } from './session.model'
 
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-}
-
 @Injectable()
 export class SessionService {
-  private sessionsUrl = environment.deckUrl + '/api/sessions'
+  private sessionsUrl = environment.deckUrl + '/sessions'
   private sessions: Session[]
   private eventId: string
 

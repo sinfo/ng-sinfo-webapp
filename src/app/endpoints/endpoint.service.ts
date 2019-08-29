@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { Endpoint } from './endpoint.model'
 import { Observable , of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError, tap } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
 import { EventService } from '../events/event.service'
@@ -47,6 +47,7 @@ export class EndpointService {
       )
   }
 
+  // TODO why is it unused
   getEndpoint (companyId: string): Observable<Endpoint> {
     if (this.endpoints) {
       return of(this.endpoints.find(c => {
@@ -84,6 +85,7 @@ export class EndpointService {
     )
   }
 
+  // TODO why is it unused
   updateEndpoint (companyId: string, from: Date, to: Date): Observable<Endpoint> {
     let params = new HttpParams({
       fromObject: {

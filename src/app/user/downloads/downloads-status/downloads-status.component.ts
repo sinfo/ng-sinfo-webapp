@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, Params, RouterStateSnapshot } from '@angular/router'
+import { Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
 import { EventService } from '../../../events/event.service'
@@ -59,7 +59,7 @@ export class DownloadsStatusComponent implements OnInit {
   }
 
   removeEndpoint = (id: string) => {
-    this.endpointService.deleteEndpoint(id).subscribe(e => {
+    this.endpointService.deleteEndpoint(id).subscribe(() => {
       this.endpoints = this.endpoints.filter(endpoint => { return endpoint.company !== id })
     })
   }
@@ -67,9 +67,8 @@ export class DownloadsStatusComponent implements OnInit {
   removeAllEndpoints = () => {
     this.endpoints.forEach(c => {
       this.endpoints = []
-      this.endpointService.deleteEndpoint(c.company).subscribe(e => {
-      // tslint:disable-next-line:handle-callback-err
-      }, (err) => {
+      this.endpointService.deleteEndpoint(c.company).subscribe(() => {
+      }, () => {
         this.endpoints.push(c)
       })
     })

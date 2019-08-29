@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core'
-import { ActivatedRoute, Params, Router } from '@angular/router'
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Params } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
 import { Achievement } from '../achievement.model'
