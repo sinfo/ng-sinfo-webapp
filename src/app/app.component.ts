@@ -17,13 +17,16 @@ export class AppComponent {
     private eventService: EventService
   ) {
 
-    const DESCRIPTION = 'SINFO is a non-profit, college student, organization responsible \
-    for organizing one of the biggest Tech conferences in Portugal.'
-    const IMAGE = 'https://sinfo.org/assets/img/savethedate26.png'
-
     eventService.getCurrent().subscribe(event => {
+
+      const DESCRIPTION = 'SINFO is a non-profit, college student, organization responsible \
+      for organizing one of the biggest Tech conferences in Portugal.'
+      const IMAGE = 'https://sinfo.org/assets/img/savethedate26.png'
+      // const TITLE = event.name
+      const TITLE = 'SINFO 27'
+
       // Set pages title
-      this.titleService.setTitle(event.name)
+      this.titleService.setTitle(TITLE)
 
       // Meta data tags
       // Common tags
@@ -36,7 +39,7 @@ export class AppComponent {
       // Twitter
       this.meta.addTags([
         { name: 'twitter:site', content: '@sinfoist' },
-        { name: 'twitter:title', content: event.name },
+        { name: 'twitter:title', content: TITLE },
         { name: 'twitter:description', content: DESCRIPTION },
         { name: 'twitter:card', content: 'summary' },
         { name: 'twitter:image:src', content: IMAGE }
@@ -44,15 +47,15 @@ export class AppComponent {
 
       // Schema.org for Google
       this.meta.addTags([
-        { itemprop: 'name', content: event.name },
+        { itemprop: 'name', content: TITLE },
         { itemprop: 'description', content: DESCRIPTION },
         { itemprop: 'image', content: IMAGE }
       ])
 
       // Open Graph general (Facebook, Pinterest & Google+)
       this.meta.addTags([
-        { name: 'og:site_name', content: event.name },
-        { name: 'og:title', content: event.name },
+        { name: 'og:site_name', content: TITLE },
+        { name: 'og:title', content: TITLE },
         { name: 'og:description', content: DESCRIPTION },
         { name: 'og:image', content: IMAGE },
         { name: 'og:url', content: 'https://sinfo.org' },

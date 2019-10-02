@@ -16,31 +16,31 @@
       <div class="col-sm-10 col-xs-12 navigation-container">
         <div id="navigation" class="navbar-collapse collapse" [ngClass]="{'in': showDropDown}">
           <ul class="nav nav-tabs navigation-list pull-left light-text">
-            
-            <li class="navigation-item" (click)="closeDropdown()">
+
+            <!--<li class="navigation-item" (click)="closeDropdown()">
               <a routerLink="/" fragment="schedule" class="navigation-link" >Schedule</a>
-            </li>
+            </li>-->
 
             <li class="navigation-item" (click)="closeDropdown()">
               <a routerLink="/" fragment="speakers" class="navigation-link">Speakers</a>
             </li>
 
-            <li class="navigation-item" (click)="closeDropdown()">
+            <!--<li class="navigation-item" (click)="closeDropdown()">
               <a routerLink="/" fragment="sponsors" class="navigation-link">Sponsors</a>
-            </li>
+            </li>-->
 
             <!--li class="navigation-item">
               <a routerLink="/" fragment="about" class="navigation-link">About</a>
             </li-->
 
-            <!--li class="navigation-item">
+            <li class="navigation-item">
               <a routerLink="/" fragment="team" class="navigation-link">Team</a>
-            </li-->
+            </li>
 
             <li class="navigation-item dropdown" [class.open]="showEditionsDropDown">
               <a class="nav-link" class="navigation-link" (click)="showEditionsDropdown()">Previous Editions</a>
               <div class="dropdown-menu" *ngIf="shortEventList">
-                
+
                   <a *ngFor="let event of shortEventList" routerLink="/event/{{id_to_url[event.id]}}" class="dropdown-item navigation-link" (click)="closeDropdown()">{{event.name}}</a>
                   <!--a routerLink="/events" class="dropdown-item navigation-link" href="#">Other</a-->
               </div>

@@ -43,7 +43,7 @@
             <span class="fa fa-map-marker base-clr-txt" style="margin-left: 14px;"></span>
             Técnico, Lisbon
         </span>
-        
+
         <span *ngIf="begin && end">
           <br class="visible-xs">
           <span class="fa fa-calendar-o base-clr-txt"></span>
@@ -70,7 +70,7 @@
     <div class="tabs-wrapper tabs-horizontal">
       <div class="nav-wrapper" (window:resize)="showOrHideDropdown()">
         <span class="nav-current">
-          <h6><span>{{ selectedAboutText }}</span></h6>
+          <h6>{{ selectedAboutText }}</h6>
         </span>
         <ul *ngIf="displayAboutDropdown" class="nav nav-tabs" >
           <li [ngClass]="{'active': selectedAboutText === 'About Us'}">
@@ -153,9 +153,20 @@
   </div>
 </section>
 
-<section id="sign_up" class="section bg-cover overlay newsletterbg light-text align-center">
+
+<section id="sponsors-program" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
-    <!-- don't know if I'm feeling the colors with the image too much -->
+    <h2>
+      <span class="highlight">Sponsors' Program</span>
+    </h2>
+    <h6 class="lead">Are you a tech company looking to recruit the most talented students in Portugal? SINFO is for you! Contact us to grant your place in the biggest free tech conference in Portugal!</h6>
+  </div>
+</section>
+
+<app-feedback></app-feedback>
+
+<section id="upload-cv" class="section bg-cover overlay newsletterbg light-text align-center">
+  <div class="container">
     <h2>
       <span class="highlight">Upload your CV</span> now!
     </h2>
@@ -167,19 +178,16 @@
   </div>
 </section>
 
-<app-feedback></app-feedback>
-
 <app-team *ngIf="eventId" [eventId]="eventId"></app-team>
 
-<section id="sign_up" class="section bg-cover overlay newsletterbg light-text align-center">
+<section id="newsletter" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
-    <!-- don't know if I'm feeling the colors with the image too much -->
     <h2>
       <span class="highlight">Newsletter</span> Sign Up
     </h2>
-    
+
     <h6 class="lead">Be the first to receive the latest updates from SINFO!</h6>
-    
+
     <a class="btn btn btn-md" href="https://sinfo.us8.list-manage.com/subscribe?u=de57247db0922adf365af7eef&id=107b5bbe53" target="_blank">Subscribe</a>
 
   </div>
