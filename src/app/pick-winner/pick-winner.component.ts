@@ -43,8 +43,8 @@ export class PickWinnerComponent implements OnInit {
         this.sessionService.getSession(achievement.session).subscribe(session => {
           if (session) {
             this.achievements.push({
-              'name': session.companies.length ? session.companies[0] + ' - ' + session.kind : session.name,
-              'start': session.date,
+              'name': session.company ? session.company.name + ' - ' + session.kind : session.title,
+              'start': session.begin,
               'achievement': achievement
             })
             this.achievements.sort((a, b): number => {

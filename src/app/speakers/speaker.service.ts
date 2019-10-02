@@ -26,9 +26,7 @@ export class SpeakerService {
 
     const params = new HttpParams({
       fromObject: {
-        'sort': 'name',
-        'event': eventId,
-        'participations': 'true'
+        'event': eventId
       }
     })
 

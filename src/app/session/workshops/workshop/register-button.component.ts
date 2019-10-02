@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { Router, RouterStateSnapshot } from '@angular/router'
 
 import { Session } from '../../session.model'
@@ -47,7 +47,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
       const now = Date.now()
       this.isRegistrationClosed = (now < Date.parse(this.workshop.tickets.start) ||
       now > Date.parse(this.workshop.tickets.end) ||
-      now > Date.parse(this.workshop.date))
+      now > Date.parse(this.workshop.begin))
 
       if (this.isRegistrationClosed) {
         this.onRegistrationClosed.emit(true)

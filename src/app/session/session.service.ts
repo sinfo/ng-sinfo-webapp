@@ -11,7 +11,7 @@ import { MessageService, Type } from '../message.service'
 
 @Injectable()
 export class SessionService {
-  private sessionsUrl = environment.deckUrl + '/sessions'
+  private sessionsUrl = environment.deckUrl + '/public/sessions'
   private sessions: Session[]
   private eventId: string
 
@@ -29,7 +29,6 @@ export class SessionService {
 
     const params = new HttpParams({
       fromObject: {
-        'sort': 'date',
         'event': eventId
       }
     })

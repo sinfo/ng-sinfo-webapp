@@ -34,7 +34,7 @@ export class ScoreboardComponent implements OnInit {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Scoreboard')
       let dayLength = 1000 * 60 * 60 * 24 // A day worth of miliseconds
-      this.begin = event.begin
+      this.begin = event.beginDate
       this.begin.setHours(23)
       this.begin.setMinutes(59)
       this.begin.setSeconds(59)

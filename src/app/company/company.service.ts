@@ -16,7 +16,7 @@ export class CompanyService {
   private companies: Company[]
   private event: Event
 
-  // TODO why is this unused
+  // TODO why is this unused (put it everywhere or nowhere)
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -38,8 +38,7 @@ export class CompanyService {
 
     const params = new HttpParams({
       fromObject: {
-        'event': this.event.id,
-        'participations': 'true'
+        'event': this.event.id
       }
     })
 

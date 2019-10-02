@@ -41,10 +41,10 @@ export class WorkshopsComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  async ngOnInit () {
 
     if (!this.authService.isLoggedIn()) {
-      this.router.navigate(['/login'])
+      await this.router.navigate(['/login'])
       return
     }
 
@@ -59,7 +59,7 @@ export class WorkshopsComponent implements OnInit {
             this.myWorkshops = sessions.filter((session) => {
               return (mySessions.indexOf(session.id) >= 0 && session.kind === 'Workshop')
             }).sort((wsA, wsB) => {
-              return Date.parse(wsA.date) - Date.parse(wsB.date)
+              return wsA.beginDate.getTime() - wsB.beginDate.getTime()
             })
 
             this.allWorkshops = sessions
@@ -67,16 +67,17 @@ export class WorkshopsComponent implements OnInit {
                 return session.kind === 'Workshop' && mySessions.indexOf(session.id) < 0
               })
               .sort((wsA, wsB) => {
-                return Date.parse(wsA.date) - Date.parse(wsB.date)
+                return wsA.beginDate.getTime() - wsB.beginDate.getTime()
               })
 
-              // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
-            this.allWorkshops.forEach((a) => {
+            // TODO is this necessary? removed on deck2 refactor
+            // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
+            /*this.allWorkshops.forEach((a) => {
               a.duration = '2010' + a.duration.slice(4)
             })
             this.myWorkshops.forEach((a) => {
               a.duration = '2010' + a.duration.slice(4)
-            })
+            })*/
             // End of fix
             this.updateWorkhopsFrontend()
 
@@ -92,12 +93,11 @@ export class WorkshopsComponent implements OnInit {
         let lastIndex = accumulator.length - 1
 
         if (index > 0) {
-          const sessionDate = new Date(session.date)
-          const prevSessionDate = new Date(array[--index].date)
+          const prevSessionDate = array[--index].beginDate
           const sameDay =
-            sessionDate.getDate() === prevSessionDate.getDate()
-            && sessionDate.getMonth() === prevSessionDate.getMonth()
-            && sessionDate.getFullYear() === prevSessionDate.getFullYear()
+            session.beginDate.getDate() === prevSessionDate.getDate()
+            && session.beginDate.getMonth() === prevSessionDate.getMonth()
+            && session.beginDate.getFullYear() === prevSessionDate.getFullYear()
 
           if (sameDay) {
             accumulator[lastIndex].workshops.push(session)
@@ -105,8 +105,9 @@ export class WorkshopsComponent implements OnInit {
           }
         }
 
-        const date = new Date(session.date)
+        const date = session.beginDate
 
+        // TODO is this necessary?
         date.setHours(0)
         date.setMinutes(0)
         date.setSeconds(0)
@@ -121,12 +122,11 @@ export class WorkshopsComponent implements OnInit {
         let lastIndex = accumulator.length - 1
 
         if (index > 0) {
-          const sessionDate = new Date(session.date)
-          const prevSessionDate = new Date(array[--index].date)
+          const prevSessionDate = array[--index].beginDate
           const sameDay =
-            sessionDate.getDate() === prevSessionDate.getDate()
-            && sessionDate.getMonth() === prevSessionDate.getMonth()
-            && sessionDate.getFullYear() === prevSessionDate.getFullYear()
+            session.beginDate.getDate() === prevSessionDate.getDate()
+            && session.beginDate.getMonth() === prevSessionDate.getMonth()
+            && session.beginDate.getFullYear() === prevSessionDate.getFullYear()
 
           if (sameDay) {
             accumulator[lastIndex].workshops.push(session)
@@ -134,8 +134,9 @@ export class WorkshopsComponent implements OnInit {
           }
         }
 
-        const date = new Date(session.date)
+        const date = session.beginDate
 
+        // TODO is this necessary?
         date.setHours(0)
         date.setMinutes(0)
         date.setSeconds(0)
@@ -162,7 +163,7 @@ export class WorkshopsComponent implements OnInit {
       this.myWorkshops.push(workshop)
 
       this.myWorkshops.sort((wsA, wsB) => {
-        return Date.parse(wsA.date) - Date.parse(wsB.date)
+        return wsA.beginDate.getTime() - wsB.beginDate.getTime()
       })
 
     // se foi removido o ticket
@@ -177,7 +178,7 @@ export class WorkshopsComponent implements OnInit {
       this.allWorkshops.push(workshop)
 
       this.allWorkshops.sort((wsA, wsB) => {
-        return Date.parse(wsA.date) - Date.parse(wsB.date)
+        return wsA.beginDate.getTime() - wsB.beginDate.getTime()
       })
 
     }

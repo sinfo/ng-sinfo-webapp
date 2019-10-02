@@ -35,7 +35,7 @@ export class SessionComponent implements OnInit {
       this.getSession(id)
 
       this.eventService.getCurrent().subscribe(event => {
-        this.titleService.setTitle(event.name + ' - ' + this.session.name)
+        this.titleService.setTitle(event.name + ' - ' + this.session.title)
       })
     })
   }

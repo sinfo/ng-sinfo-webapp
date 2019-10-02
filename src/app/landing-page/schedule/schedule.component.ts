@@ -50,7 +50,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
     let registeredDays = -1
 
     sessions.forEach((val, index) => {
-      let date = new Date(Date.parse(val.date))
+      let date = val.beginDate
       let day = date.getDate()
 
       // check if day was already registered
@@ -104,8 +104,8 @@ export class ScheduleComponent implements OnInit, OnChanges {
     this.displaySessionDropdown = !this.displaySessionDropdown || window.innerWidth > 768
   }
 
-  onSelect (session: Session): void {
-    this.router.navigate(['/sessions', session.id])
+  async onSelect (session: Session) {
+    await this.router.navigate(['/sessions', session.id])
   }
 
   updateSelectedDayText (theme: string, day: string): void {

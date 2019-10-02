@@ -13,7 +13,7 @@ import { EventService } from '../../events/event.service'
 export class SidebarComponent implements OnInit {
 
   @Input() user: User
-  eventOcurring: Boolean
+  eventOccurring: Boolean
   url: String
   private snapshot: RouterStateSnapshot
   isCvUpdated: Boolean = true
@@ -28,7 +28,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.eventService.getCurrent().subscribe(event => this.eventOcurring = event.isOcurring)
+    this.eventService.getCurrent().subscribe(event => this.eventOccurring = event.isOccurring)
     this.url = this.snapshot.url.toString()
 
     if (this.authService.isLoggedIn()) {

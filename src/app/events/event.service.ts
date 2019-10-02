@@ -11,9 +11,9 @@ import { MessageService, Type } from '../message.service'
 
 @Injectable()
 export class EventService {
-  private eventsUrl = environment.deckUrl + '/events'
-  // TODO change to current event endpoint
-  private currentEventUrl = environment.deckUrl + '/public/events?sort=-date&limit=1'
+  private eventsUrl = environment.deckUrl + '/public/events'
+  private currentEventUrl = environment.deckUrl + '/public/events?current=true'
+  // TODO remove previousEvent
   private previousEventUrl = environment.deckUrl + '/public/events?sort=-date&limit=1&skip=1'
   private events: Event[]
   private current: Event

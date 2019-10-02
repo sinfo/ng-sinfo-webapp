@@ -11,7 +11,7 @@ import { MessageService, Type } from '../message.service'
 
 @Injectable()
 export class TeamService {
-  private memberUrl = environment.deckUrl + '/members'
+  private memberUrl = environment.deckUrl + '/public/members'
   private team: Member[]
   private eventId: string
 
@@ -29,9 +29,7 @@ export class TeamService {
 
     const params = new HttpParams({
       fromObject: {
-        'sort': 'name',
-        'event': eventId,
-        'participations': 'true'
+        'event': eventId
       }
     })
     return this.http.get<Member[]>(this.memberUrl, { params })

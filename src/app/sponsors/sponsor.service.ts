@@ -26,9 +26,7 @@ export class SponsorService {
 
     const params = new HttpParams({
       fromObject: {
-        'sort': 'name',
-        'event': eventId,
-        'participations': 'true'
+        'event': eventId
       }
     })
 
@@ -48,9 +46,7 @@ export class SponsorService {
     /* TODO params might be necessary
     const params = new HttpParams({
       fromObject: {
-        'sort': 'name',
-        'event': event,
-        'participations': 'true'
+        'event': event
       }
     })
 

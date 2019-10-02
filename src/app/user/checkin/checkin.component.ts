@@ -55,31 +55,16 @@ export class CheckinComponent implements OnInit {
       this.sessionService.getSessions(event.id)
         .subscribe(sessions => {
           let _sessions = []
-          sessions.forEach(s => {
-            let sessionDate = new Date(s.date)
-            // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
-            let duration = s.duration.slice(4)
-            duration = '2010' + duration
-            // End of fix
-            let sessionDuration = new Date(duration)
-            let durationInSeconds =
-              (sessionDuration.getHours() * 3600) +
-              (sessionDuration.getMinutes() * 60) +
-              sessionDuration.getSeconds()
-
-            let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
-            let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
-
-            // today and before it ends
-            if (sessionDate.getDate() === new Date().getDate()) {
+          sessions.forEach(session => {
+            // adds today's sessions
+            if (session.beginDate.getDate() === new Date().getDate()) {
               _sessions.push({
-                begin: sessionDate,
-                end: sessionEnd,
-                countdown: countdown,
-                session: s
+                begin: session.beginDate,
+                end: session.endDate,
+                countdown: new Date(session.endDate.getTime() - new Date().getTime()),
+                session: session
               })
             }
-
           })
           this.sessions = _sessions
           this.users = []

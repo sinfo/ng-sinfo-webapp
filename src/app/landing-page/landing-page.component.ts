@@ -29,8 +29,8 @@ export class LandingPageComponent implements OnInit {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name)
       this.eventId = event.id
-      this.begin = event.begin
-      this.end = event.end
+      this.begin = event.beginDate
+      this.end = event.endDate
     })
     this.showOrHideDropdown()
   }

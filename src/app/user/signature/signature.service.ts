@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core'
 import { CompanyCannonService } from '../../company/company-cannon.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
-import { environment } from '../../../environments/environment'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
 

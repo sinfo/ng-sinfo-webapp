@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, Params, RouterStateSnapshot } from '@angular/router'
+import { Router, RouterStateSnapshot } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
 import { SessionService } from '../session.service'
@@ -61,15 +61,15 @@ export class WorkshopsStatusComponent implements OnInit {
           // Array used to easily show workshops by day date
           this._workshops = this.workshops
             .sort((wsA, wsB) => {
-              return Date.parse(wsA.date) - Date.parse(wsB.date)
+              return wsA.beginDate.getTime() - wsB.beginDate.getTime()
             })
             .reduce((accumulator, session, index, array) => {
               let lastIndex = accumulator.length - 1
-              if (index > 0 && array[--index].date === session.date) {
+              if (index > 0 && array[--index].beginDate === session.beginDate) {
                 accumulator[lastIndex].workshops.push(session)
                 return accumulator
               }
-              accumulator.push({ date: session.date, workshops: [session] })
+              accumulator.push({ date: session.beginDate, workshops: [session] })
               return accumulator
             }, [])
         })

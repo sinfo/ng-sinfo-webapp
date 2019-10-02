@@ -15,7 +15,7 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit () {
     this.eventService.getCurrent().subscribe(event => {
-      this.show = !event.isOcurring
+      this.show = !event.isOccurring
     })
   }
 

@@ -1,25 +1,26 @@
+
 export class Event {
   id: string
   name: string
-  kind: string
-  date: string
-  updated: string
-  duration: string
-  begin: Date
-  end: Date
-  isOcurring: Boolean
+  themes: string[]
+  begin: string
+  end: string
+
+  // calculated fields
+  beginDate: Date
+  endDate: Date
+  isOccurring: Boolean
 
   constructor (event: Event) {
     this.id = event.id
     this.name = event.name
-    this.kind = event.kind
-    this.date = event.date
-    this.updated = event.updated
-    this.duration = event.duration
+    this.themes = event.themes
+    this.begin = event.begin
+    this.end = event.end
 
     const curr = new Date()
-    this.begin = new Date(this.date)
-    this.end = new Date(new Date(this.date).getTime() + new Date(this.duration).getTime())
-    this.isOcurring = curr >= new Date(this.begin) && curr <= new Date(this.end)
+    this.beginDate = new Date(this.begin)
+    this.endDate = new Date(this.end)
+    this.isOccurring = curr >= new Date(this.begin) && curr <= new Date(this.end)
   }
 }

@@ -1,10 +1,22 @@
+
 export class Company {
   id: string
-  thread: string
-  name: string
-  area: string
-  description: string
   img: string
-  updated: string
-  advertisementLvl: string
+  name: string
+  site: string
+  participation: {
+    event: number
+    // TODO unnecessay, onlyNeed string "Gold"
+    package: {
+      items: {
+        item: string
+        quantity: number
+      }[]
+      name: string
+    }
+  }[]
+
+  // TODO add these fields
+  // description: string
+  // Contacts
 }
