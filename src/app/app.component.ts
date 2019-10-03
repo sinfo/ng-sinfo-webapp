@@ -21,7 +21,7 @@ export class AppComponent {
 
       const DESCRIPTION = 'SINFO is a non-profit, college student, organization responsible \
       for organizing one of the biggest Tech conferences in Portugal.'
-      const IMAGE = 'https://sinfo.org/assets/img/savethedate26.png'
+      const IMAGE = 'assets/img/thumbnail-sinfo27.png'
       // const TITLE = event.name
       const TITLE = 'SINFO 27'
 
