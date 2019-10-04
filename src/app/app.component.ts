@@ -22,22 +22,21 @@ export class AppComponent {
       const DESCRIPTION = 'SINFO is a non-profit, college student, organization responsible \
       for organizing one of the biggest Tech conferences in Portugal.'
       const IMAGE = 'assets/img/thumbnail-sinfo27.png'
-      // const TITLE = event.name
-      const TITLE = 'SINFO 27'
+      const TITLE = event.name
 
       // Set pages title
-      this.titleService.setTitle(TITLE)
+      titleService.setTitle(TITLE)
 
       // Meta data tags
       // Common tags
-      this.meta.addTags([
+      meta.addTags([
         { name: 'description', content: DESCRIPTION },
         { name: 'author', content: 'The SINFO Organization' },
         { name: 'image', content: IMAGE }
       ])
 
       // Twitter
-      this.meta.addTags([
+      meta.addTags([
         { name: 'twitter:site', content: '@sinfoist' },
         { name: 'twitter:title', content: TITLE },
         { name: 'twitter:description', content: DESCRIPTION },
@@ -46,14 +45,14 @@ export class AppComponent {
       ])
 
       // Schema.org for Google
-      this.meta.addTags([
+      meta.addTags([
         { itemprop: 'name', content: TITLE },
         { itemprop: 'description', content: DESCRIPTION },
         { itemprop: 'image', content: IMAGE }
       ])
 
       // Open Graph general (Facebook, Pinterest & Google+)
-      this.meta.addTags([
+      meta.addTags([
         { name: 'og:site_name', content: TITLE },
         { name: 'og:title', content: TITLE },
         { name: 'og:description', content: DESCRIPTION },
