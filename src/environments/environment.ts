@@ -7,23 +7,26 @@ export const environment = {
   production: false,
   deckUrl: 'http://localhost:8080',
   cannonUrl: 'http://localhost:8090',
-  url_to_id: {'26-sinfo': '26-sinfo',
+  url_to_id: {
+    '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
     '23-sinfo': '23-sinfo-conf'
   },
-  id_to_url: {'26-sinfo': '26-sinfo',
+  id_to_url: {
+    '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
     '23-sinfo-conf': '23-sinfo'
   },
-  themes: {'26-sinfo': [
-    'Software',
-    'Multimedia',
-    'Security',
-    'Games',
-    'AI'
-  ],
+  themes: {
+    '26-sinfo': [
+      'Software',
+      'Multimedia',
+      'Security',
+      'Games',
+      'AI'
+    ],
     '25-sinfo': [
       'Software',
       'VR',
@@ -59,6 +62,6 @@ export const environment = {
   },
   linkedIn: {
     clientId: '78k3k77vq56igl',
-    redirectUrl: 'http://localhost:4200/login/linkedIn'
+    redirectUrl: 'http://localhost:4201/login/linkedIn'
   }
 }
