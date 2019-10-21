@@ -21,6 +21,10 @@ div.sponsors.silver div.sponsor {
   width: 7%;
 }
 
+.sponsors:not(.hacky) {
+  cursor: pointer;
+}
+
 @media (max-width: 767px) {
   div.sponsors.platinum div.sponsor {
     width: 20%;

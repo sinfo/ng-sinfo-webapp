@@ -17,7 +17,7 @@ export class SpeakerComponent implements OnInit {
   speaker: Speaker
   session: Session
 
-  constructor (
+  constructor(
     private speakerService: SpeakerService,
     private sessionService: SessionService,
     private eventService: EventService,
@@ -26,8 +26,8 @@ export class SpeakerComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
-    this.route.params.forEach((params: Params) => {
+  async ngOnInit() {
+    await this.route.params.forEach((params: Params) => {
       const id = params['id']
       this.getSpeaker(id)
       this.eventService.getCurrent().subscribe(event => {
@@ -36,7 +36,7 @@ export class SpeakerComponent implements OnInit {
     })
   }
 
-  getSpeaker (id: string): void {
+  getSpeaker(id: string): void {
     this.speakerService.getSpeaker(id)
       .subscribe(speaker => {
         this.speaker = speaker
@@ -44,7 +44,7 @@ export class SpeakerComponent implements OnInit {
       })
   }
 
-  getSession (id: string): void {
+  getSession(id: string): void {
     this.eventService.getCurrent().subscribe(event => {
       this.sessionService.getSessions(event.id)
         .subscribe(sessions => {
@@ -55,7 +55,7 @@ export class SpeakerComponent implements OnInit {
     })
   }
 
-  onSelect (session: Session): void {
+  onSelect(session: Session): void {
     this.router.navigate(['/sessions', session.id])
   }
 }

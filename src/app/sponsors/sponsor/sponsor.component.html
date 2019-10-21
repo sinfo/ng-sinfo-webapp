@@ -1,0 +1,59 @@
+<app-menu></app-menu>
+
+<app-loading [content]="sponsor"></app-loading>
+
+<section *ngIf="sponsor" class="section align-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 session-icons ">
+        <h3 class="title">{{sponsor.name}}</h3>
+      </div>
+    </div>
+
+    <div class="row sponsor-section">
+      <div class="col-sm-3 col-xs-12 sponsor-image">
+        <img src='{{sponsor.img}}'
+          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sponsors/hacky.png'">
+      </div>
+
+      <div class="col-sm-9 col-xs-12 align-left justify">
+        <div class="contacts">
+          <div class="contact location">
+            <i class="fa fa-map-marker"></i>
+            <a href="https://goo.gl/maps/9NQdxy8svXL2" target="_blank">Instituto
+              Superior
+              Técnico, Lisbon
+            </a>
+            <!-- <a href="{{sponsor.locationUrl}}" target="_blank">
+              {{sponsor.location}}
+            </a> -->
+          </div>
+          <div class="contact email">
+            <i class="fa fa-envelope"></i>
+            <a href="mailto:geral@sinfo.org">geral@sinfo.org</a>
+            <!-- <a href="mailto:{{sponsor.contact}}">{{sponsor.contact}}</a> -->
+          </div>
+          <div class="contact site">
+            <i class="fa fa-link"></i>
+            <a href="http://sinfo.org">sinfo.org</a>
+            <!-- <a href="http://{{sponsor.site}}">{{sponsor.site}}</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 align-left">
+        <p>{{sponsor.description}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 align-left">
+        <img class="sinfo-banner img-responsive" src="assets/img/Sinfo-banner.jpg" alt="">
+        <!-- <img class="sinfo-banner img-responsive" src="{{sponsor.bannerImage}}" alt="Banner Image"> -->
+      </div>
+    </div>
+
+  </div>
+</section>

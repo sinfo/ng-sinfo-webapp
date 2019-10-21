@@ -5,4 +5,8 @@ export class Sponsor {
   description: string
   advertisementLvl: string
   updated: string
+  contact: string
+  location: string
+  bannerImage: string
+  site: string
 }
