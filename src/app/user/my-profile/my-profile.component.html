@@ -23,23 +23,23 @@
         <div class="qrcode">
           <ngx-qrcode [qrc-value]="user.id" [qrc-version]=2 [qrc-correction-level]="'M'"></ngx-qrcode>
           <h3 class="name">
-              {{user.name}}
+            {{user.name}}
           </h3>
           <h5 *ngIf="user.role === 'company' && company" class="name">
-              {{company.name}}
+            {{company.name}}
           </h5>
 
           <div *ngIf="presentationRole" class="role">
             <h3>
-                {{presentationRole}}
+              {{presentationRole}}
             </h3>
           </div>
         </div>
       </div>
       <div class="row">
-          <h5 class="show-message">
-              Show this QR Code to a SINFO member! 
-          </h5>
+        <h5 class="show-message">
+          Show this QR Code to a SINFO member!
+        </h5>
       </div>
 
       <!--div class="row" *ngIf="user.role !== 'company'">
