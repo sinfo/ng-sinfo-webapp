@@ -37,6 +37,7 @@
     "hoek": "^6.1.2",
     "macaddress": "^0.2.9",
     "ng": "0.0.0",
+    "ngx-build-plus": "^7.8.3",
     "ngx-qrcode2": "0.0.9",
     "ngx-qrcode3": "^0.3.0",
     "rxjs": "^6.4.0",
@@ -47,7 +48,8 @@
     "zone.js": "^0.8.29"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular-builders/custom-webpack": "~7.4.3",
+    "@angular-devkit/build-angular": "^0.13.9",
     "@angular/cli": "7.3.1",
     "@angular/compiler-cli": "^7.2.5",
     "@angular/language-service": "7.2.4",
@@ -64,6 +66,8 @@
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "^5.4.2",
+    "purify-css": "^1.2.5",
+    "purifycss-webpack": "^0.7.0",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "tslint-config-standard": "^7.1.0",
