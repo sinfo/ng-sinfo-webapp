@@ -37,7 +37,7 @@ export class PromoteComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  @ViewChild('instance') instance: NgbTypeahead
+  @ViewChild('instance', { static: false }) instance: NgbTypeahead
   focus$ = new Subject<string>()
   click$ = new Subject<string>()
 
