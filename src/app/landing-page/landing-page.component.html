@@ -64,6 +64,23 @@
 
 <app-menu></app-menu>
 
+<app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
+
+<section id="newsletter" class="section bg-cover overlay newsletterbg light-text align-center">
+  <div class="container">
+    <h2>
+      <span class="highlight">Newsletter</span> Sign Up
+    </h2>
+
+    <h6 class="lead">Be the first to receive the latest updates from SINFO!</h6>
+
+    <a class="btn btn btn-md"
+      href="https://sinfo.us8.list-manage.com/subscribe?u=de57247db0922adf365af7eef&id=107b5bbe53"
+      target="_blank">Subscribe</a>
+
+  </div>
+</section>
+
 <section id="about" class="section align-center">
   <div class="container">
 
@@ -167,6 +184,7 @@
   </div>
 </section>
 
+<<<<<<< HEAD
 
 <section id="sponsors-program" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
@@ -183,6 +201,8 @@
 
 <app-feedback></app-feedback>
 
+=======
+>>>>>>> eight
 <section id="upload-cv" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
     <h2>
@@ -197,28 +217,39 @@
   </div>
 </section>
 
-<app-team *ngIf="eventId" [eventId]="eventId"></app-team>
 
-<section id="newsletter" class="section bg-cover overlay newsletterbg light-text align-center">
+<!-- <section id="sponsors-program" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">
     <h2>
-      <span class="highlight">Newsletter</span> Sign Up
+      <span class="highlight">Sponsors' Program</span>
     </h2>
+    <h6 class="lead">Are you a tech company looking to recruit the most talented students in Portugal? SINFO is for you! Contact us to grant your place in the biggest free tech conference in Portugal!</h6>
 
+<<<<<<< HEAD
     <h6 class="lead">Be the first to receive the latest updates from SINFO!</h6>
 
     <a class="btn btn btn-md"
       href="https://sinfo.us8.list-manage.com/subscribe?u=de57247db0922adf365af7eef&id=107b5bbe53"
       target="_blank">Subscribe</a>
+=======
+    <a class="btn btn btn-md" href="mailto:geral@sinfo.org">Contact us</a>
+>>>>>>> eight
 
   </div>
-</section>
+</section> -->
+
+<app-feedback></app-feedback>
+
+
+<app-team *ngIf="eventId" [eventId]="eventId"></app-team>
+
+
 
 <!--
 <app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
 -->
 
-<app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
+
 
 <!--
 <app-sponsors *ngIf="eventId" [eventId]="eventId"></app-sponsors>

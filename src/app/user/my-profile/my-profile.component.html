@@ -21,7 +21,7 @@
       <div class="row qrcode-wrapper">
 
         <div class="qrcode">
-          <ngx-qrcode [qrc-value]="user.id" [qrc-version]=2 [qrc-correction-level]="'M'"></ngx-qrcode>
+          <qrcode [qrdata]="user.id" [level]="'M'"></qrcode>
           <h3 class="name">
             {{user.name}}
           </h3>
@@ -97,7 +97,7 @@
                     title="{{redeemCode.achievement.name}}">
                 </span>
               </div>
-              
+
             </div>
           </div>
         </div>

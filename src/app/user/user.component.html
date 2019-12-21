@@ -32,7 +32,8 @@
           <div class="portrait-wrapper">
             <img class="portrait" src="{{user.img}}">
             <div class="mini-portrait-wrapper" *ngIf="user.role === 'team' || (user.role === 'company' && company)">
-              <img *ngIf="user.role === 'team'" class="mini-image" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
+              <img *ngIf="user.role === 'team'" class="mini-image"
+                src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
               <img *ngIf="user.role === 'company' && company" class="mini-image" src="{{company.img}}">
             </div>
             <div class="mini-portrait-wrapper" *ngIf="user.role === 'user' && user.points">
@@ -44,7 +45,7 @@
       </div>
 
       <div class="qrcode">
-        <ngx-qrcode [qrc-value]="user.id" [qrc-version]=5 [qrc-correction-level]="'M'"></ngx-qrcode>
+        <qrcode [qrdata]="user.id" [level]="'M'"></qrcode>
       </div>
     </div>
 
@@ -67,7 +68,8 @@
     <div class="row" *ngIf="achievements && achievements.length > 0">
       <h5>Achievements earned </h5>
       <div class="achivements-wrapper">
-        <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
+        <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}"
+          *ngFor="let achievement of achievements">
       </div>
     </div>
 
