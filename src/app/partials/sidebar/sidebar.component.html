@@ -1,4 +1,5 @@
-<nav id="sidebar" class="active"><!-- [ngClass]="{'active': showSidebar }" (window:resize)="showOrHideBar()">
+<nav id="sidebar" class="active">
+  <!-- [ngClass]="{'active': showSidebar }" (window:resize)="showOrHideBar()">
   <button type="button" class="hidden-lg hidden-md" (click)="showSidebar = !showSidebar" id="sidebarCollapse">
     <i *ngIf="showSidebar" class="glyphicon glyphicon-menu-left"></i>
     <i *ngIf="!showSidebar" class="glyphicon glyphicon-menu-right"></i>
@@ -38,13 +39,14 @@
           Download CVs
         </a>
       </li>
-      
+
       <li *ngIf="user && user.role === 'team'">
         <a href="#downloadsSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/downloads') }}">
           <i class="glyphicon glyphicon-paperclip"></i>
           Manage Downloads
         </a>
-        <ul class="collapse list-unstyled" id="downloadsSubmenu" [ngClass]="{'in': detectLocation('/downloads'), 'collapse': !detectLocation('/downloads')}">
+        <ul class="collapse list-unstyled" id="downloadsSubmenu"
+          [ngClass]="{'in': detectLocation('/downloads'), 'collapse': !detectLocation('/downloads')}">
           <li [ngClass]="{'active': detectLocation('/downloads/download')}">
             <a routerLink="/downloads/download">Download CVs</a>
           </li>
@@ -67,7 +69,8 @@
           <i class="glyphicon glyphicon-duplicate"></i>
           Links
         </a>
-        <ul class="collapse list-unstyled" id="linksSubmenu" [ngClass]="{'in': detectLocation('/links'), 'collapse': !detectLocation('/links')}">
+        <ul class="collapse list-unstyled" id="linksSubmenu"
+          [ngClass]="{'in': detectLocation('/links'), 'collapse': !detectLocation('/links')}">
           <li [ngClass]="{'active': detectLocation('/links/link')}">
             <a routerLink="/links/link">Link</a>
           </li>
@@ -76,7 +79,7 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role !== 'company'"[ngClass]="{'active': detectLocation('/workshops')}">
+      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/workshops')}">
         <a routerLink="/workshops">
           <img src="assets/img/icons/sidebar/workshops.png">
           Workshops
@@ -124,8 +127,8 @@
           Promote
         </a>
       </li>
-      <li class="lastOne">
-      </li>
+      <!--li class="lastOne">
+      </li-->
 
     </span>
   </ul>

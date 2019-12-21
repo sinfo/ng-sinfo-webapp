@@ -6556,6 +6556,7 @@ div.clear input.btn:hover {
   min-height: 87vh;
   width: 100%;
   background-color: white;
+  overflow-y: scroll;
 }
 
 #content {
