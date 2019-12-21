@@ -53,7 +53,6 @@ export class QrcodeScannerComponent implements OnInit {
   }
 
   camerasFoundHandler(cams: any[]) {
-    console.log(cams)
     this.availableDevices = {
       cams: cams,
       selected: -1
