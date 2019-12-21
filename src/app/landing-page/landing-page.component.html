@@ -85,11 +85,11 @@
   <div class="container">
 
     <div class="tabs-wrapper tabs-horizontal">
-      <div class="nav-wrapper" (window:resize)="showOrHideDropdown()">
+      <div class="nav-wrapper" (window:resize)="showOrHideDropdown()" (click)="updateMenuClick()">
         <span class="nav-current">
           <h6>{{ selectedAboutText }}</h6>
         </span>
-        <ul *ngIf="displayAboutDropdown" class="nav nav-tabs">
+        <ul *ngIf="displayAboutDropdown || dropdown()" class="nav nav-tabs">
           <li [ngClass]="{'active': selectedAboutText === 'About Us'}">
             <a href="#horizontal_tab1" data-toggle="tab" (click)="updatedSelectedText('About Us')">
               <h6 class="heading-alt">
