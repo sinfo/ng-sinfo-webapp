@@ -11,12 +11,13 @@ import { Title } from '@angular/platform-browser'
 export class LandingPageComponent implements OnInit {
   selectedAboutText: string
   displayAboutDropdown: boolean
+  menuClick: boolean
   eventId: string
   begin: Date
   end: Date
   fragment: string
 
-  constructor (
+  constructor(
     private router: Router,
     private titleService: Title,
     private eventService: EventService
@@ -24,7 +25,7 @@ export class LandingPageComponent implements OnInit {
 
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.selectedAboutText = 'About Us'
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name)
@@ -37,11 +38,20 @@ export class LandingPageComponent implements OnInit {
   }
 
   /* Beggining of Dropdown tabs actions */
-  showOrHideDropdown (): void {
+  showOrHideDropdown(): void {
     this.displayAboutDropdown = window.innerWidth > 768 ? true : false
+    this.menuClick = false;
   }
 
-  updatedSelectedText (text: string): void {
+  dropdown(): boolean {
+    return !this.displayAboutDropdown && this.menuClick;
+  }
+
+  updateMenuClick(): void {
+    this.menuClick = !this.menuClick;
+  }
+
+  updatedSelectedText(text: string): void {
     this.selectedAboutText = text
   }
   /* End of Dropdown tabs actions */
