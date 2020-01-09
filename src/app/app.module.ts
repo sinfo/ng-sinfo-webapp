@@ -41,7 +41,7 @@ import { SessionService } from './session/session.service'
 import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 import { ScoreboardService } from './scoreboard/scoreboard.service'
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
-import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
+import { QRCodeModule } from 'angularx-qrcode'
 import { ZXingScannerModule } from '@zxing/ngx-scanner' // scan qrcode
 import { PromoteComponent } from './user/promote/promote.component'
 import { CompanyService } from './company/company.service'
@@ -131,7 +131,7 @@ import { PartnersComponent } from './partners/partners.component'
     BrowserModule,
     HttpClientModule,
     Routing,
-    NgxQRCodeModule,
+    QRCodeModule,
     ZXingScannerModule,
     FormsModule,
     NgbModule.forRoot()
