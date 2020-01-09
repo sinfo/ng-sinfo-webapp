@@ -14,7 +14,7 @@ import { EventService } from '../../events/event.service'
 export class FeedbackComponent implements OnInit {
 
   show: boolean
-  images = [700, 533, 807, 124].map((n) => `https://picsum.photos/id/${n}/900/500`);
+
   constructor(private eventService: EventService, config: NgbCarouselConfig) {
     config.interval = 10000;
     config.wrap = false;
