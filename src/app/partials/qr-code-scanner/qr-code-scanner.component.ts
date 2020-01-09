@@ -32,52 +32,52 @@ export class QrcodeScannerComponent implements OnInit {
   animation: boolean // true -> success, false -> error, undefined -> neither
   lastUser: User = undefined
   lastRaw: string
+  desiredDevice: MediaDeviceInfo = null
 
-  selectedDevice
   private availableDevices: {
-    cams: any[]
+    cams: MediaDeviceInfo[]
     selected: number
   }
 
-  constructor (
+  constructor(
     private messageService: MessageService,
     private userService: UserService,
     private companyService: CompanyService,
     private eventService: EventService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     if (this.processUser === undefined) {
       this.processUser = true
     }
   }
 
-  displayCameras (cams: any[]) {
+  camerasFoundHandler(cams: any[]) {
     this.availableDevices = {
       cams: cams,
       selected: -1
     }
 
     if (cams && cams.length > 0) {
-      this.selectedDevice = cams[0]
+      this.desiredDevice = cams[0]
       this.camStarted = true
       this.availableDevices.selected = cams.length - 1
     }
   }
 
-  changeCamera () {
+  changeCamera() {
     let selected = (this.availableDevices.selected + 1) % this.availableDevices.cams.length
     this.availableDevices.selected = selected
     this.onChange(this.availableDevices.cams[selected])
   }
 
-  onChange (selectedValue: string) {
+  onChange(selectedValue: MediaDeviceInfo) {
     this.camStarted = false
-    this.selectedDevice = selectedValue
+    this.desiredDevice = selectedValue
     this.camStarted = true
   }
 
-  handleQrCodeResult (content): void {
+  handleQrCodeResult(content): void {
     this.company = undefined // flush previous info
 
     if (!content) {
@@ -141,7 +141,7 @@ export class QrcodeScannerComponent implements OnInit {
       })
   }
 
-  buttonClick () {
+  buttonClick() {
     this.buttonAction.emit()
   }
 }
