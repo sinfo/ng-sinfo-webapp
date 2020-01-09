@@ -1,3 +1,7 @@
 .testimonial .text-box {
-    line-height: 20px !important;
+  line-height: 20px !important;
+}
+
+.title {
+  color: white;
 }

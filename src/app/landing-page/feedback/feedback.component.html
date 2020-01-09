@@ -4,48 +4,64 @@
     <h3>Testimonials</h3>
     <br />
     <br />
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="testimonial">
-          <article class="text-box">
-              SINFO is a terrific conference. The team develops a week of highly interesting speakers covering a broad spectrum of topics.
-          </article>
-          <div class="author-block">
-            <div class="photo-container" style="background-image: url(https://static.sinfo.org/static/27-sinfo/webapp/erik-smitt.jpg)"></div>
-            <strong class="name">Erik Smitt</strong>
-            <small class="text-alt company">Director of Photography @ Pixar Animation Studios</small>
+
+    <div id="feedbackSlideshow" class="carousel slide" data-ride="carousel">
+
+      <ol class="carousel-indicators">
+        <li data-target="#feedbackSlideshow" data-slide-to="0" class="active"></li>
+        <li data-target="#feedbackSlideshow" data-slide-to="1"></li>
+        <li data-target="#feedbackSlideshow" data-slide-to="2"></li>
+      </ol>
+
+      <div class="carousel-inner">
+
+        <div class="item active">
+          <img
+            [src]="'https://scontent.flis7-1.fna.fbcdn.net/v/t1.0-0/p640x640/60333039_2202398486473922_9090539238239240192_o.jpg?_nc_cat=102&_nc_ohc=X079Drem-GgAQn3UkukZvZyhk86n5Mci2FC51jwHa-veT_Vqm3AOeHm8g&_nc_ht=scontent.flis7-1.fna&_nc_tp=1&oh=1273b18e3069e71a76fbbec995b5856a&oe=5EA99AAE'"
+            alt="Diana Kelley" style="width:100%;">
+          <div class="carousel-caption">
+            <h5 class="title">Diana Kelley</h5>
+            <p>The SINFO conference team is top notch, amazing that it is all student run! From organizational
+              efficiency to speaker quality to level of technical content - SINFO is one of the better tech
+              conferences
+              I've been to.</p>
           </div>
         </div>
-      </div>
 
-      <div class="col-sm-4">
-        <div class="testimonial">
-          <article class="text-box">
-              The SINFO conference team is top notch, amazing that it is all student run! From organizational efficiency to speaker quality to level of technical content - SINFO is one of the better tech conferences I've been to.
-          </article>
-          <div class="author-block">
-            <div class="photo-container" style="background-image: url(https://static.sinfo.org/static/27-sinfo/webapp/diana-kelley.jpg)"></div>
-
-            <strong class="name">Diana Kelley</strong>
-            <small class="text-alt company">Cybersecurity Field CTO @ Microsoft</small>
+        <div class="item">
+          <img
+            [src]="'https://scontent.flis7-1.fna.fbcdn.net/v/t1.0-0/p640x640/65147077_2274862095894227_2014650454247473152_o.jpg?_nc_cat=111&_nc_ohc=sH23a93oNVgAQlofJ3PPD1_vOekE7wvnhKja-CuEFmuWxDaB3RtUOt9Zg&_nc_ht=scontent.flis7-1.fna&_nc_tp=1&oh=bb1966daf0c960013c382749840ddfb0&oe=5E9B2037'"
+            alt="Ben Kehoe" style="width:100%;">
+          <div class="carousel-caption">
+            <h4 class="title">Ben Kehoe</h4>
+            <p>SINFO is an undergrad-run conference at IST in Lisbon that brings industry folks in to talk about their
+              jobs. It’s an awesome thing. More schools should do it!</p>
           </div>
         </div>
-      </div>
 
-      <div class="col-sm-4">
-        <div class="testimonial">
-          <article class="text-box">
-              SINFO is an undergrad-run conference at IST in Lisbon that brings industry folks in to talk about their jobs. It’s an awesome thing. More schools should do it!
-          </article>
-          <div class="author-block">
-            <div class="photo-container" style="background-image: url(https://static.sinfo.org/static/27-sinfo/webapp/ben-kehoe.jpg)"></div>
-
-            <strong class="name">Ben Kehoe</strong>
-            <small class="text-alt company">Cloud Robotics Research Scientist @ iRobot</small>
+        <div class="item">
+          <img
+            [src]="'https://scontent.flis7-1.fna.fbcdn.net/v/t1.0-0/p640x640/64387748_2260419604005143_8185282014824366080_o.jpg?_nc_cat=105&_nc_ohc=BCwHzeRbF1AAQkLs3Y4wrjTOCT0bPl1ExXQTeinsCrycAG-VfIPa5KlGA&_nc_ht=scontent.flis7-1.fna&_nc_tp=1&oh=6bce7bd47aa6ad2eaf643290e4cf20f0&oe=5E8DAC78'"
+            alt="Erik Smitt" style="width:100%;">
+          <div class="carousel-caption">
+            <h4 class="title">Erik Smitt</h4>
+            <p> SINFO is a terrific conference. The team develops a week of highly interesting speakers covering a broad
+              spectrum of topics.</p>
           </div>
         </div>
+
       </div>
+
+      <a class="left carousel-control" href="#feedbackSlideshow" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#feedbackSlideshow" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
+
   </div>
   <br />
   <br />
