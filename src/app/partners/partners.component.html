@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+
+<app-loading [content]="partners"></app-loading>
+
+<div class="wrapper" *ngIf="partners">
+
+  <app-sidebar [user]="currentUser"></app-sidebar>
+
+
+  <div class="container content-wrapper">
+
+    <div class="row align-center">
+      <div class="col-sm-12">
+        <h3 class="title">Partners</h3>
+      </div>
+    </div>
+
+
+    <div class="cards">
+      <div class='card-wrap' *ngFor="let p of partners; let i = index" (click)='flip(i)'>
+        <div class="card" *ngIf='!flipped[i]'>
+          <div class="card-img">
+            <img src='{{p.img}}'>
+          </div>
+          <p class='card-text'>{{p.name}}</p>
+        </div>
+        <div class='card' *ngIf='flipped[i]'>
+          <p class='card-description'>{{p.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
