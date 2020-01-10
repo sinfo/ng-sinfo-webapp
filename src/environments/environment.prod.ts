@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  deckUrl: 'https://deck.sinfo.org',
-  cannonUrl: 'https://cannon.sinfo.org',
+  deckUrl: 'https://deck.staging.sinfo.org',
+  cannonUrl: 'https://cannon.staging.sinfo.org',
   url_to_id: {'26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
@@ -50,10 +50,10 @@ export const environment = {
   },
   fenix: {
     clientId: '1132965128044545',
-    redirectUrl: 'https://sinfo.org/login'
+    redirectUrl: 'https://staging.sinfo.org/login'
   },
   linkedIn: {
     clientId: '78k3k77vq56igl',
-    redirectUrl: 'https://sinfo.org/login/linkedIn'
+    redirectUrl: 'https://staging.sinfo.org/login/linkedIn'
   }
 }
