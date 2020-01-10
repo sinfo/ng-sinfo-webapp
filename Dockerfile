@@ -10,7 +10,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm run build-dev
+RUN npm run build
 
 FROM nginx:alpine
 
