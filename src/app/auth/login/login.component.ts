@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   submitting = false
 
   fenixUrlAuth =
-  `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${environment.fenix.clientId}&redirect_uri=${environment.fenix.redirectUrl}`
+    `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${environment.fenix.clientId}&redirect_uri=${environment.fenix.redirectUrl}`
 
   // tslint:disable-next-line:max-line-length
   linkedInUrlAuth = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${environment.linkedIn.clientId}&redirect_uri=${environment.linkedIn.redirectUrl}&state=SINFO&scope=r_basicprofile%20r_emailaddress`
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   private isLoggedIn = false
   private auth2: any
 
-  constructor (
+  constructor(
     private messageService: MessageService,
     private authService: AuthService,
     private eventService: EventService,
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Login')
     })
@@ -83,11 +83,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit () {
+  ngAfterViewInit() {
     this.initSocialSDKs()
   }
 
-  initSocialSDKs () {
+  initSocialSDKs() {
     if (this.isGoogleActive) {
       gapi.load('auth2', () => {
         this.auth2 = gapi.auth2.init({
@@ -103,13 +103,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
         appId: environment.facebook.appId,
         cookie: false,
         xfbml: true,
-        version: 'v2.12'
+        version: 'v5.0'
       })
     }
   }
 
-  attachSignin (element) {
-    this.auth2.attachClickHandler(element, { }, (googleUser) => {
+  attachSignin(element) {
+    this.auth2.attachClickHandler(element, {}, (googleUser) => {
     }, (error) => {
       this.messageService.add({
         origin: 'LoginComponent: Google attachSignin',
@@ -121,15 +121,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
     })
   }
 
-  onFenixLogin (fenixCode) {
+  onFenixLogin(fenixCode) {
     this.submitting = true
     this.authService.fenix(fenixCode).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
-      this.router.navigate([ `${this.authService.redirectUrl || '/qrcode'}` ])
+      this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
     })
   }
 
-  onGoogleLogin () {
+  onGoogleLogin() {
     this.submitting = true
     this.auth2.currentUser.listen(googleUser => {
       const profile = googleUser.getBasicProfile()
@@ -137,21 +137,21 @@ export class LoginComponent implements OnInit, AfterViewInit {
       const token = googleUser.getAuthResponse().id_token
 
       this.authService.google(userId, token)
-      .subscribe(cannonToken => {
-        this.authService.setToken(cannonToken)
-        this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
-      })
+        .subscribe(cannonToken => {
+          this.authService.setToken(cannonToken)
+          this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
+        })
     })
   }
 
-  onFacebookLogin () {
+  onFacebookLogin() {
     this.submitting = true
     FB.login(response => {
       this.facebookStatusChange(response)
     }, { scope: 'public_profile,email' })
   }
 
-  facebookStatusChange (resp) {
+  facebookStatusChange(resp) {
     if (resp.status === 'connected') {
       // connect here with your server for facebook login by passing access token given by facebook
       this.authService.facebook(resp.authResponse.userID, resp.authResponse.accessToken)
