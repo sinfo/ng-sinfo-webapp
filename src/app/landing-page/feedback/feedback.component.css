@@ -1,3 +1,13 @@
 .testimonial .text-box {
-    line-height: 20px !important;
+  line-height: 20px !important;
+}
+
+.title {
+  color: white;
+}
+
+.feedbackField {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 13pt;
 }
