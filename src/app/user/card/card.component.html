@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-sm-12">
           <h3 class="name">
-            {{signatures.day | date:'EEEE'}}'s card
+            {{signatures.day | date:'EEEE':'+0000'}}'s card
           </h3>
           <h6 *ngIf="signatures.redeemed" class="lead">
             Already redeemed your prize.
@@ -31,7 +31,8 @@
             <div class="card-portrait-wrapper" *ngFor="let company of signatures.companies">
               <img class="portrait" src="{{company.img}}">
             </div>
-            <div class="card-portrait-wrapper missing" *ngFor="let missing of getArray(signatures.capacity - signatures.companies.length)">
+            <div class="card-portrait-wrapper missing"
+              *ngFor="let missing of getArray(signatures.capacity - signatures.companies.length)">
             </div>
           </div>
         </div>

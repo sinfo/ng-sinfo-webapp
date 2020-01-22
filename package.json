@@ -32,7 +32,6 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.3",
     "@zxing/ngx-scanner": "^2.0.1",
     "angularx-qrcode": "^1.7.0-beta.5",
-    "core-js": "^2.6.4",
     "rxjs": "^6.4.0",
     "zone.js": "~0.9.1"
   },

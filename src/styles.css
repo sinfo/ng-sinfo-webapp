@@ -5274,7 +5274,7 @@ div.clear input.btn:hover {
 /* ----------------------------------------------------------------------------
     Members
 ---------------------------------------------------------------------------- */
-.member { 
+.member {
   margin-bottom: 40px;
 }
 .member .name {
@@ -5317,7 +5317,7 @@ div.clear input.btn:hover {
   display: inline-block;
   /* if you need ie6/7 support */
   *display: inline;
-  z-index: 250; 
+  z-index: 250;
   zoom: 1;
 }
 .speaker .speaker-socials > li a:hover .fa,
@@ -6545,7 +6545,7 @@ div.clear input.btn:hover {
   }
 }
 
-/* sidebar */ 
+/* sidebar */
 .sidebar-wrapper {
   display: flex;
   align-items: stretch;
@@ -6575,6 +6575,8 @@ div.clear input.btn:hover {
 .qrcode-wrapper img, .portrait-wrapper img {
   width: 50vw;
   max-width: 350px;
+  background: white;
+  padding: 30px;
 }
 /* qrcode end */
 /* promote-company-content */

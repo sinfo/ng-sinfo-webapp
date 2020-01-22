@@ -14,11 +14,11 @@
     <div class="row">
       <div class="session-details col-sm-12">
         <div class="padded">
-          <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate'}} </p>
+          <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate':'+0000'}} </p>
         </div>
 
         <div class="padded">
-          <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime'}} </p>
+          <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime':'+0000'}} </p>
         </div>
 
         <div *ngIf="session.place">
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="row speaker-section" *ngIf="session.kind === 'Keynote' && speaker" >
+    <div class="row speaker-section" *ngIf="session.kind === 'Keynote' && speaker">
       <div class="col-sm-3 col-xs-12">
         <a (click)="onSelect(speaker.id)">
           <img src='{{speaker.img}}'>
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div *ngIf="session.kind === 'Workshop'" class="row">  
+    <div *ngIf="session.kind === 'Workshop'" class="row">
       <app-workshop-register-button [user]="user" [workshop]="session"></app-workshop-register-button>
     </div>
     <!--TODO Fetch users checked-in -->
