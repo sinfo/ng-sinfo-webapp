@@ -6,32 +6,32 @@
   </div>
   <ul class="socials-nav">
     <li class="socials-nav-item">
-      <a href="https://twitter.com/sinfoist" target="_blank">
+      <a href="https://twitter.com/sinfoist" target="_blank" aria-label="Twitter">
         <span class="fa fa-twitter"></span>
       </a>
     </li>
     <li class="socials-nav-item">
-      <a href="https://www.facebook.com/sinfoist/" target="_blank">
+      <a href="https://www.facebook.com/sinfoist/" target="_blank" aria-label="Facebook">
         <span class="fa fa-facebook"></span>
       </a>
     </li>
     <li class="socials-nav-item">
-      <a href="https://github.com/sinfo" target="_blank">
+      <a href="https://github.com/sinfo" target="_blank" aria-label="Github">
         <span class="fa fa-github"></span>
       </a>
     </li>
     <li class="socials-nav-item">
-      <a href="https://www.instagram.com/sinfoist/" target="_blank">
+      <a href="https://www.instagram.com/sinfoist/" target="_blank" aria-label="Instagram">
         <span class="fa fa-instagram"></span>
       </a>
     </li>
     <li class="socials-nav-item">
-      <a href="https://www.youtube.com/user/sinfoist" target="_blank">
+      <a href="https://www.youtube.com/user/sinfoist" target="_blank" aria-label="Youtube">
         <span class="fa fa-youtube"></span>
       </a>
     </li>
     <li class="socials-nav-item">
-      <a href="https://www.linkedin.com/company/2760221" target="_blank">
+      <a href="https://www.linkedin.com/company/2760221" target="_blank" aria-label="Linkedin">
         <span class="fa fa-linkedin"></span>
       </a>
     </li>
@@ -47,7 +47,7 @@
         <span *ngIf="begin && end">
           <br class="visible-xs">
           <span class="fa fa-calendar-o base-clr-txt"></span>
-          {{begin | date:'d MMM'}} - {{end | date:'d MMM'}}
+          {{begin | date:'d MMM':'+0000'}} - {{end | date:'d MMM':'+0000'}}
         </span>
       </h5>
       <img class="logo-hero" src="assets/img/logo-branco2.png" alt="SINFO logo">
@@ -57,7 +57,7 @@
   </div>
   <div class="intro ">
     <a href="#speakers">
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      <i class="fa fa-chevron-down" aria-hidden="true" aria-label="Scroll down"></i>
     </a>
   </div>
 </section>
@@ -205,9 +205,7 @@
       <span class="highlight">Sponsors' Program</span>
     </h2>
     <h6 class="lead">Are you a tech company looking to recruit the most talented students in Portugal? SINFO is for you! Contact us to grant your place in the biggest free tech conference in Portugal!</h6>
-
     <a class="btn btn btn-md" href="mailto:geral@sinfo.org">Contact us</a>
-
   </div>
 </section> -->
 
