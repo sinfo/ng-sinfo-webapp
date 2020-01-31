@@ -6,8 +6,19 @@
   color: white;
 }
 
-.feedbackField {
-  font-style: italic;
-  font-weight: 500;
-  font-size: 13pt;
+@media screen and (min-width: 360px) {
+  .feedbackField {
+    font-style: italic;
+    font-weight: 700;
+    font-size: 8pt;
+    line-height: 18px;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .feedbackField {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13pt;
+  }
 }
