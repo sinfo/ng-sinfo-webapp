@@ -8,5 +8,8 @@
   border: solid;
   border-radius: 5px;
   border-color: #C90000;
-  margin: 15px auto;
+}
+
+.livebuttondiv {
+  text-align: center;
 }

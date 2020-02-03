@@ -28,7 +28,7 @@ export class LivestreamService {
       )
   }*/
 
-  /*getLiveStreamInfo() {
+  /*isLive() {
     var livestreamUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${this.channelID}&type=video&eventType=live&key=${this.youtubeApiKey}`;
     
     this.http.get(livestreamUrl)
