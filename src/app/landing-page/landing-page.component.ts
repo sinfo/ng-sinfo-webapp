@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { EventService } from '../events/event.service'
 import { Title } from '@angular/platform-browser'
+import { LivestreamService } from './livestream/livestream.service'
 
 @Component({
   selector: 'app-landing-page',
@@ -16,11 +17,13 @@ export class LandingPageComponent implements OnInit {
   begin: Date
   end: Date
   fragment: string
+  liveStream: boolean
 
   constructor(
     private router: Router,
     private titleService: Title,
-    private eventService: EventService
+    private eventService: EventService,
+    private liveStreamService: LivestreamService
   ) {
 
   }
@@ -34,7 +37,8 @@ export class LandingPageComponent implements OnInit {
       this.end = event.end
       const curr = new Date().getTime()
     })
-    this.showOrHideDropdown()
+    this.showOrHideDropdown();
+    this.checkLiveStream();
   }
 
   /* Beggining of Dropdown tabs actions */
@@ -55,4 +59,8 @@ export class LandingPageComponent implements OnInit {
     this.selectedAboutText = text
   }
   /* End of Dropdown tabs actions */
+
+  checkLiveStream() {
+    this.liveStream = this.liveStreamService.isLive();
+  }
 }

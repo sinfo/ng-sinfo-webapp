@@ -53,9 +53,10 @@
       <img class="logo-hero" src="assets/img/logo-branco2.png" alt="SINFO logo">
       <h6 class="thin base-font align-center">Biggest
         <strong>free tech conference</strong> in Portugal</h6>
+      <app-livestream *ngIf="liveStream"></app-livestream>
     </div>
   </div>
-  <div class="intro ">
+  <div class="intro">
     <a href="#speakers">
       <i class="fa fa-chevron-down" aria-hidden="true" aria-label="Scroll down"></i>
     </a>
@@ -197,7 +198,6 @@
     </a>
   </div>
 </section>
-
 
 <!-- <section id="sponsors-program" class="section bg-cover overlay newsletterbg light-text align-center">
   <div class="container">

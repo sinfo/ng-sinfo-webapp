@@ -1,0 +1,12 @@
+.livebutton {
+  background-color: red;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  font-size: 13pt;
+  font-weight: bold;
+  border: solid;
+  border-radius: 5px;
+  border-color: #C90000;
+  margin: 15px auto;
+}
