@@ -2667,12 +2667,6 @@ small {
   display: inline-block;
   font-size: 13px;
 }
-
-.text-alt,
-.counter-box .counter-content .title {
-  color: #9B9B9B;
-}
-
 a {
   -webkit-transition: color 0.2s ease;
   -moz-transition: color 0.2s ease;
@@ -6052,15 +6046,15 @@ section#feedback {
   top: 50px;
   left: 0;
   right: 0;
-  text-align: center;
+  text-align: center !important;
   z-index: 2 !important;
 }
 
 .socials-nav-item {
   margin: 0 12px;
   display: inline-block;
-  width: 24px;
   font-size: 20px;
+  padding: 10px;
 }
 
 .socials-nav-item a {
@@ -6401,7 +6395,7 @@ div.clear input.btn:hover {
 
 .member .name {
   height: auto;
-  color: #007acc;
+  color: #004ecc;
 }
 
 .hacky .photo-wrapper,
@@ -7959,6 +7953,8 @@ div.clear input.btn:hover {
 .portrait-wrapper img {
   width: 50vw;
   max-width: 350px;
+  background: white;
+  padding: 30px;
 }
 
 /* qrcode end */

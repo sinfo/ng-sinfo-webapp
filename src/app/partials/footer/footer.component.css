@@ -1,7 +1,13 @@
 .footer {
+    color: white !important;
     position: relative;
     z-index: 1;
     margin-top: 5px
+}
+
+.footer i,
+.footer a {
+    color: rgb(106, 213, 255);
 }
 
 .first {
@@ -18,11 +24,8 @@ ul {
 }
 
 .footer-nav-item {
-    text-align: center
-}
-
-.socials-nav {
-    text-align: center
+    text-align: center;
+    padding: 10px;
 }
 
 .list {
