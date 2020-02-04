@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators'
 export class LivestreamService {
 
   private channelID = "UC1yAz5N4s78RIxIS4GggEJg";
-  private youtubeApiKey = "";
+  private youtubeApiKey = "AIzaSyA2m8y5y4Q6bla660d0fKz-RzG9BorOw1g";
   private livestreamCount = 0;
   private livestreamId = "";
 
