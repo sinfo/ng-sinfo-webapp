@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LivestreamService } from './livestream.service';
 
 @Component({
   selector: 'app-livestream',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LivestreamComponent implements OnInit {
 
-  constructor() { }
+  constructor(private livestreamService: LivestreamService) { }
 
   ngOnInit() {
+
+  }
+
+  goToLivestream() {
+    var livestreamId = this.livestreamService.getLivestreamId();
+    if (livestreamId)
+      window.location.href = 'https://www.youtube.com/watch?v=' + livestreamId;
   }
 
 }
