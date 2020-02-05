@@ -25,16 +25,24 @@ h3 {
     margin: 20px auto;
 }
 
+.align-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .cards {
     display: flex;
     flex-flow: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    max-width: 66vw;
 }
 
 .card-wrapper {
-    margin: 5vw;
-    height: 50vw;
-    width: 50vw;
+    margin: 1vw;
+    height: 20vw;
+    width: 20vw;
     max-width: 500px;
     max-height: 500px;
     perspective: 1000px;
@@ -52,12 +60,13 @@ h3 {
 .card-img-wrapper{
     background: white;
     width: 100%;
-    height: 35vw;
-    margin-left: 5vw;
-    margin-right: 5vw;
-    margin-bottom: 2vh;
+    height: 12vw;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
     border-radius: 15px;
     display: flex;
+    flex-grow: 2;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -70,21 +79,22 @@ h3 {
 
 .card-text{
     width: 100%;
-    margin-left: 5vw;
-    margin-right: 5vw;
+    margin-left: 5%;
+    margin-right: 5%;
     border-radius: 15px;
     background: white;
-    font-size: 3vw;
+    font-size: 2vw;
     color: black;
 }
 
 .card-front, .card-back{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
     align-items: center;
-    padding: 10%;
+    padding: 5%;
     position: absolute;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
@@ -93,4 +103,29 @@ h3 {
 .card-back{
     justify-content: center;
     transform: rotateY(180deg);
+}
+
+@media (max-width: 765px){
+    .card-wrapper{
+        height: 50vw;
+        width: 50vw;
+        margin: 5vw;
+    }
+
+    .card-img-wrapper{
+        height: 35vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+        margin-bottom: 2vh;
+    }
+
+    .card-text{
+        margin-left: 5vw;
+        margin-right: 5vw;
+        font-size: 3vw;
+    }
+
+    .cards{
+        max-width: 60vw;
+    }
 }
