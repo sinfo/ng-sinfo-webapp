@@ -6,28 +6,37 @@
 
   <app-sidebar [user]="currentUser"></app-sidebar>
 
+  <div id="content" class="content container-fluid my-area-content">
+    <div class="align-center">
 
-  <div class="container content-wrapper">
-
-    <div class="row align-center">
-      <div class="col-sm-12">
-        <h3 class="title">Partners</h3>
+      <div class="row">
+        <h3 class="partners-title">
+          Partners
+        </h3>
       </div>
-    </div>
 
-
-    <div class="cards">
-      <div class='card-wrap' *ngFor="let p of partners; let i = index" (click)='flip(i)'>
-        <div class="card" *ngIf='!flipped[i]'>
-          <div class="card-img">
-            <img src='{{p.img}}'>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="cards">
+            <div class="card-wrapper" *ngFor="let p of partners; let i = index" (click)='flip(i)'>
+              <div class='card' id='{{i}}'>
+                <div class='card-front'>
+                  <div class='card-img-wrapper'>
+                    <img src='{{p.img}}' class='card-img'>
+                  </div>
+                  <div class='card-text'>{{p.name}}</div>
+                </div>
+                <div class='card-back'>
+                  <div class='card-text'>
+                    Promo code
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <p class='card-text'>{{p.name}}</p>
-        </div>
-        <div class='card' *ngIf='flipped[i]'>
-          <p class='card-description'>{{p.description}}</p>
         </div>
       </div>
+
     </div>
   </div>
 

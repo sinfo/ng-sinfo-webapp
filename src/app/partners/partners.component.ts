@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { SponsorService } from '../sponsors/sponsor.service';
 import { EventService } from '../events/event.service';
 import { filter, map } from 'rxjs/operators';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-partners',
@@ -51,6 +52,11 @@ export class PartnersComponent implements OnInit {
 
   flip(i: number) {
     this.flipped[i] = !this.flipped[i]
+    if (this.flipped[i]) {
+      document.getElementById(i.toString()).style.transform = "rotateY(180deg)"
+    } else {
+      document.getElementById(i.toString()).style.transform = "rotateY(0deg)"
+    }
   }
 
 }

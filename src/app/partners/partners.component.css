@@ -1,63 +1,96 @@
-.cards{
+.wrapper {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: center;
+    align-items: stretch;
+    min-height: 87vh;
+    overflow-y: scroll;
 }
 
-.card-row{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: center;
+.align-center {
+    width: 100%;
 }
 
-.card-wrap{
+#content {
+    padding: 20px;
+    transition: all 0.3s;
+    width: 100%;
+    height: 90vh;
+    margin-bottom: 30px;
+}
+
+.partners-title {
+    margin: 0 0 20px 0;
+}
+
+h3 {
+    margin: 20px auto;
+}
+
+.cards {
     display: flex;
-    flex-direction: column;
-    justify-content: stretch;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.card-wrapper {
+    margin: 5vw;
+    height: 50vw;
+    width: 50vw;
+    max-width: 500px;
+    max-height: 500px;
+    perspective: 1000px;
 }
 
 .card{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     background: #2C49A6;
     border-radius: 15px;
-    padding: 20px;
-    max-width: 300px;
-    margin-top: 30px;
-    flex-grow: 2;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
 }
 
-.card-text, .card-description{
+.card-img-wrapper{
     background: white;
-    color: black;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    width: 100%;
+    height: 35vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 2vh;
     border-radius: 15px;
-    padding: 15px;
-}
-
-.card-text{
-    font-size: 40px;
-}
-
-.card-description{
-    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-img{
-    flex-grow: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    max-width: 90%;
+    max-height: 75%;
 }
 
-.content-wrapper{
+.card-text{
+    width: 100%;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border-radius: 15px;
+    background: white;
+    font-size: 3vw;
+    color: black;
+}
+
+.card-front, .card-back{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 10%;
+    position: absolute;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+.card-back{
+    justify-content: center;
+    transform: rotateY(180deg);
 }
