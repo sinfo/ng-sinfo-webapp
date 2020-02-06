@@ -6,6 +6,8 @@ import { SponsorService } from '../sponsors/sponsor.service';
 import { EventService } from '../events/event.service';
 import { filter, map } from 'rxjs/operators';
 import { stringify } from 'querystring';
+import { Partner } from './partner.model';
+import { PartnersService } from './partners.service';
 
 @Component({
   selector: 'app-partners',
@@ -13,13 +15,11 @@ import { stringify } from 'querystring';
   styleUrls: ['./partners.component.css']
 })
 export class PartnersComponent implements OnInit {
-  partners: Sponsor[]
-  flipped: boolean[]
+  partners: Partner[]
 
   constructor(
-    private router: Router,
-    private sponsorService: SponsorService,
-    private eventService: EventService
+    private partnerService: PartnersService,
+    private sponsorService: SponsorService
   ) { }
 
   ngOnInit() {
@@ -27,36 +27,48 @@ export class PartnersComponent implements OnInit {
   }
 
   getPartners(): void {
-    this.eventService.getCurrent().subscribe(event => {
-      this.sponsorService.getSponsors(event.id)
-        .subscribe(sponsors => this.partners = this.filterSponsors(sponsors))
-    })
+    this.partnerService.getPartners()
+      .subscribe(partners => this.getImages(partners))
   }
 
-  filterSponsors(sponsors: Sponsor[]): Sponsor[] {
+  getImages(partners: Partner[]) {
 
-    let partners = []
-    this.flipped = []
-
-    console.log(sponsors)
-
-    sponsors.forEach(sponsor => {
-      if (sponsor.advertisementLvl === 'other'
-        || sponsor.advertisementLvl === 'media') {
-        partners.push(sponsor)
-        this.flipped.push(false)
-      }
+    partners.forEach(p => {
+      this.sponsorService.getSponsor(p.company).subscribe((sponsor: Sponsor) => {
+        p.img = sponsor.img
+        p.name = sponsor.name
+        p.flipped = false
+      })
     })
-    return partners
+
+    this.partners = partners
   }
 
   flip(i: number) {
-    this.flipped[i] = !this.flipped[i]
-    if (this.flipped[i]) {
+    this.partners[i].flipped = !this.partners[i].flipped
+    if (this.partners[i].flipped) {
       document.getElementById(i.toString()).style.transform = "rotateY(180deg)"
     } else {
       document.getElementById(i.toString()).style.transform = "rotateY(0deg)"
     }
+  }
+
+  copy(event, str: string) {
+    const el = document.createElement('textarea')
+    el.value = str
+    document.body.appendChild(el)
+    el.select()
+    document.execCommand('copy')
+    document.body.removeChild(el)
+    event.stopPropagation()
+
+    const ttp = document.getElementById('tooltip-' + str)
+    ttp.style.opacity === '0' ? ttp.style.opacity = '0.8' : ttp.style.opacity = '0'
+
+    setTimeout((str) => {
+      const ttp = document.getElementById('tooltip-' + str)
+      ttp.style.opacity === '0' ? ttp.style.opacity = '0.8' : ttp.style.opacity = '0'
+    }, 1500, str)
   }
 
 }

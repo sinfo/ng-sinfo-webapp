@@ -21,6 +21,12 @@
     margin: 0 0 20px 0;
 }
 
+.subtitle{
+    font-weight: 300;
+    line-height: 1.4;
+    font-size: 21px;
+}
+
 h3 {
     margin: 20px auto;
 }
@@ -48,6 +54,10 @@ h3 {
     perspective: 1000px;
 }
 
+.card-wrapper:hover{
+    cursor: pointer;
+}
+
 .card{
     background: #2C49A6;
     border-radius: 15px;
@@ -57,7 +67,7 @@ h3 {
     transform-style: preserve-3d;
 }
 
-.card-img-wrapper{
+.card-img-wrapper, .code-description{
     background: white;
     width: 100%;
     height: 12vw;
@@ -72,9 +82,30 @@ h3 {
     align-items: center;
 }
 
+.code-description{
+    color: black;
+    font-size: 2vw;
+}
+
 .card-img{
     max-width: 90%;
     max-height: 75%;
+}
+
+.tooltip{
+    width:40%;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    display: block;
+    position: absolute;
+    transform: translateY(18vw);
+    font-size: 1vw;
+    transition: 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .card-text{
@@ -85,6 +116,10 @@ h3 {
     background: white;
     font-size: 2vw;
     color: black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card-front, .card-back{
@@ -101,7 +136,6 @@ h3 {
 }
 
 .card-back{
-    justify-content: center;
     transform: rotateY(180deg);
 }
 
@@ -112,20 +146,31 @@ h3 {
         margin: 5vw;
     }
 
-    .card-img-wrapper{
+    .card-img-wrapper, .code-description{
         height: 35vw;
         margin-left: 5vw;
         margin-right: 5vw;
-        margin-bottom: 2vh;
+        margin-bottom: 1vh;
+    }
+
+    .code-description{
+        font-size: 4vw;
     }
 
     .card-text{
         margin-left: 5vw;
         margin-right: 5vw;
-        font-size: 3vw;
+        font-size: 4vw;
+        border-radius: 10px;
     }
 
     .cards{
         max-width: 60vw;
+    }
+
+    .tooltip{
+        transform: translateY(45vw);
+        height: 5vw;
+        font-size: 3vw;
     }
 }

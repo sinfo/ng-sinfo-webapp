@@ -14,6 +14,9 @@
           <h3 class="partners-title">
             Partners
           </h3>
+          <h6 class='subtitle'> Click a card to view the code!
+          </h6>
+          <h6 class='subtitle'>Click the code to copy it!</h6>
         </div>
       </div>
 
@@ -29,9 +32,11 @@
                   <div class='card-text'>{{p.name}}</div>
                 </div>
                 <div class='card-back'>
-                  <div class='card-text'>
-                    Promo code
+                  <div class='code-description'>{{p.description}}</div>
+                  <div class='card-text' (click)='copy($event, p.code)'>
+                    <b>{{p.code}}</b>
                   </div>
+                  <div id='tooltip-{{p.code}}' class='tooltip' style='opacity: 0;'>Copied!</div>
                 </div>
               </div>
             </div>
