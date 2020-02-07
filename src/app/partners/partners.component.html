@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf='partners'>
         <div class="col-sm-12">
           <div class="cards">
             <div class="card-wrapper" *ngFor="let p of partners; let i = index" (click)='flip(i)'>
