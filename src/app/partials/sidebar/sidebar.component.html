@@ -117,8 +117,8 @@
       </li>
       <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/partners')}">
         <a routerLink="/partners">
-          <img src="assets/img/icons/sidebar/achievements.png">
-          Partners
+          <img src="assets/img/icons/sidebar/discount-coupon-white.png">
+          Promo Codes
         </a>
       </li>
       <li *ngIf="user && user.role == 'team'" [ngClass]="{'active': detectLocation('/validate-card')}">

@@ -1,11 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { Sponsor } from '../sponsors/sponsor.model';
-import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 import { SponsorService } from '../sponsors/sponsor.service';
-import { EventService } from '../events/event.service';
-import { filter, map } from 'rxjs/operators';
-import { stringify } from 'querystring';
 import { Partner } from './partner.model';
 import { PartnersService } from './partners.service';
 
@@ -16,6 +11,7 @@ import { PartnersService } from './partners.service';
 })
 export class PartnersComponent implements OnInit {
   partners: Partner[]
+  isPartnersEmpty: boolean
 
   constructor(
     private partnerService: PartnersService,
@@ -42,6 +38,7 @@ export class PartnersComponent implements OnInit {
     })
 
     this.partners = partners
+    this.isPartnersEmpty = this.partners.length === 0
   }
 
   flip(i: number) {

@@ -20,9 +20,9 @@
         </div>
       </div>
 
-      <div class="row" *ngIf='partners'>
+      <div class="row">
         <div class="col-sm-12">
-          <div class="cards">
+          <div class="cards" *ngIf='!isPartnersEmpty'>
             <div class="card-wrapper" *ngFor="let p of partners; let i = index" (click)='flip(i)'>
               <div class='card' id='{{i}}'>
                 <div class='card-front'>
@@ -40,6 +40,11 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <div *ngIf='isPartnersEmpty'>
+            <h6 class='subtitle'> No promo codes yet :(
+            </h6>
           </div>
         </div>
       </div>
