@@ -1,0 +1,53 @@
+.testimonial .text-box {
+  line-height: 20px !important;
+}
+
+.title {
+  color: black;
+}
+
+@media screen and (min-width: 360px) {
+  .standsField {
+    font-style: italic;
+    font-weight: 700;
+    font-size: 8pt;
+    line-height: 18px;
+  }
+}
+
+@media screen and (min-width: 601px) {
+  .standsField {
+    font-style: italic;
+    font-weight: 500;
+    font-size: 13pt;
+  }
+}
+
+.carousel-inner img {
+  background-color: white;
+  max-height: 80vh;
+  width: auto;
+}
+
+.carousel-indicators {
+  top: 5%;;
+  bottom: inherit;
+}
+
+.carousel-indicators li.active {
+  background-color: black;
+}
+
+.carousel-indicators li {
+  border-color: black;
+}
+
+.carousel-caption {
+  top: 6%;
+  bottom: inherit;
+  color: black;
+}
+
+.carousel-control {
+  background-image: none !important;
+}
