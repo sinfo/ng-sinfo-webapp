@@ -51,10 +51,6 @@ h3 {
     perspective: 1000px;
 }
 
-.card-wrapper:hover{
-    cursor: pointer;
-}
-
 .card{
     background: #2C49A6;
     border-radius: 15px;
@@ -126,6 +122,10 @@ h3 {
     flex-direction: row;
     justify-content: center;
     padding: 5%;
+}
+
+.card-text:hover{
+    cursor: pointer;
 }
 
 .text-box{

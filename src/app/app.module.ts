@@ -76,6 +76,8 @@ import { PickWinnerComponent } from './pick-winner/pick-winner.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 import { RedeemService } from './user/redeem/redeem.service';
 import { PartnersComponent } from './partners/partners.component'
+import { StandsComponent } from './landing-page/stands/stands.component';
+import { ImageDirective } from './partials/image.directive'
 
 @NgModule({
   declarations: [
@@ -125,7 +127,9 @@ import { PartnersComponent } from './partners/partners.component'
     EventComponent,
     CvComponent,
     RedeemComponent,
-    PartnersComponent
+    PartnersComponent,
+    StandsComponent,
+    ImageDirective
   ],
   imports: [
     BrowserModule,
