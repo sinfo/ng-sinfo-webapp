@@ -8116,3 +8116,8 @@ div.clear input.btn:hover {
 }
 
 /* manage-downloads end */
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100vh;
+}

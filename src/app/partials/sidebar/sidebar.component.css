@@ -3,8 +3,7 @@
 }
 
 #sidebar {
-  width: 25%;
-  max-width: 25%;
+  width: 25vw;
   background: #133157;
   color: #fff;
   transition: all 0.3s;
@@ -12,7 +11,7 @@
 
   position: fixed;
   z-index: 1;
-  top: 75px;
+  top: 10vh;
   bottom: 0;
 }
 

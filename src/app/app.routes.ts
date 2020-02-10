@@ -51,7 +51,6 @@ const routes: Routes = [
   { path: 'promote', component: PromoteComponent, canActivate: [ AuthGuard ] },
   { path: 'login', component: LoginComponent },
   { path: 'login/linkedIn', component: LinkedInLoginComponent },
-  { path: 'qrcode', component: MyProfileComponent, canActivate: [ AuthGuard ] },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
   { path: 'downloads/download', component: DownloadsComponent, canActivate: [ AuthGuard ] },
@@ -65,7 +64,18 @@ const routes: Routes = [
   { path: 'workshops/workshops-status', component: WorkshopsStatusComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'scoreboard', component: ScoreboardComponent },
-  { path: 'user/:id', component: UserComponent },
+
+  /* user homepage */
+  {
+    path: 'user',
+    component: UserComponent,
+    children: [
+      { path: '', redirectTo: '/user/qrcode', pathMatch: 'full' },
+      { path: 'qrcode', component: MyProfileComponent, canActivate: [ AuthGuard ] },
+    ]
+  },
+
+
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'event/:id', component: EventComponent },
