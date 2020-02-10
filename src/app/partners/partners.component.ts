@@ -24,7 +24,9 @@ export class PartnersComponent implements OnInit {
 
   getPartners(): void {
     this.partnerService.getPartners()
-      .subscribe(partners => this.getImages(partners))
+      .subscribe(partners => {
+        this.getImages(partners)
+      })
   }
 
   getImages(partners: Partner[]) {
@@ -33,21 +35,11 @@ export class PartnersComponent implements OnInit {
       this.sponsorService.getSponsor(p.company).subscribe((sponsor: Sponsor) => {
         p.img = sponsor.img
         p.name = sponsor.name
-        p.flipped = false
       })
     })
 
     this.partners = partners
     this.isPartnersEmpty = this.partners.length === 0
-  }
-
-  flip(i: number) {
-    this.partners[i].flipped = !this.partners[i].flipped
-    if (this.partners[i].flipped) {
-      document.getElementById(i.toString()).style.transform = "rotateY(180deg)"
-    } else {
-      document.getElementById(i.toString()).style.transform = "rotateY(0deg)"
-    }
   }
 
   copy(event, str: string) {
