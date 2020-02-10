@@ -23,6 +23,11 @@
   }
 }
 
+.carousel-inner {
+  display: flex;
+  justify-content: center;
+}
+
 .carousel-inner img {
   background-color: white;
   max-height: 80vh;
@@ -50,4 +55,8 @@
 
 .carousel-control {
   background-image: none !important;
+}
+
+.carousel-control span {
+  color: black;
 }
