@@ -17,7 +17,7 @@ export class LandingPageComponent implements OnInit {
   begin: Date
   end: Date
   fragment: string
-  liveStream: boolean
+  isLive: boolean
 
   constructor(
     private router: Router,
@@ -61,6 +61,10 @@ export class LandingPageComponent implements OnInit {
   /* End of Dropdown tabs actions */
 
   checkLiveStream() {
-    this.liveStream = this.liveStreamService.isLive();
+    this.liveStreamService.getLivestreamInformation().subscribe(
+      data => {
+        this.isLive = data["up"];
+      }
+    )
   }
 }

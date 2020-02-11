@@ -8,16 +8,19 @@ import { LivestreamService } from './livestream.service';
 })
 export class LivestreamComponent implements OnInit {
 
-  constructor(private livestreamService: LivestreamService) { }
+  constructor(private liveStreamService: LivestreamService) { }
 
   ngOnInit() {
 
   }
 
   goToLivestream() {
-    var livestreamId = this.livestreamService.getLivestreamId();
-    if (livestreamId)
-      window.location.href = 'https://www.youtube.com/watch?v=' + livestreamId;
+    this.liveStreamService.getLivestreamInformation().subscribe(
+      data => {
+        if (data["url"])
+          window.location.href = data["url"];
+      }
+    );
   }
 
 }
