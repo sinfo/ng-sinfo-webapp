@@ -2,52 +2,48 @@
 
 <app-loading [content]="me"></app-loading>
 
-<div class="sidebar-wrapper" *ngIf="me">
-
-  <app-sidebar [user]="me"></app-sidebar>
-
-  <div id="content" class="container my-area-content">
-    <div class="align-center">
-      <div class="row">
-        <div class="col-sm-12">
-          <h3>Download CVs</h3>
-          <h6 *ngIf="company">{{company.name}}</h6>
-        </div>
+<div class="my-area-content" *ngIf="me">
+  <div class="align-center">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3>Download CVs</h3>
+        <h6 *ngIf="company">{{company.name}}</h6>
       </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="portrait-wrapper">
-            <img *ngIf="company" class="portrait" src="{{company.img}}">
-            <img *ngIf="me && me.role==='team'" class="portrait" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <h6 class="lead">
-            Bellow you will be able to download the CVs of all attendees
-            <br> including your company's links'.
-          </h6>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <a href="{{ cvsDownloadUrl }}" target="_blank" class="btn btn-info">
-            <span class="glyphicon glyphicon-cloud-download"></span>
-            Download CVs
-          </a>
-        </div>
-        <div *ngIf="me && me.role === 'company'" class="col-sm-12">
-          <a href="{{ linksCVsDownloadUrl }}" target="_blank" class="btn btn-info">
-            <span class="glyphicon glyphicon-link"></span>
-            Download Links' CVs
-          </a>
-        </div>
-      </div>
-
     </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="portrait-wrapper">
+          <img *ngIf="company" class="portrait" src="{{company.img}}">
+          <img *ngIf="me && me.role==='team'" class="portrait"
+            src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h6 class="lead">
+          Bellow you will be able to download the CVs of all attendees
+          <br> including your company's links'.
+        </h6>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <a href="{{ cvsDownloadUrl }}" target="_blank" class="btn btn-info">
+          <span class="glyphicon glyphicon-cloud-download"></span>
+          Download CVs
+        </a>
+      </div>
+      <div *ngIf="me && me.role === 'company'" class="col-sm-12">
+        <a href="{{ linksCVsDownloadUrl }}" target="_blank" class="btn btn-info">
+          <span class="glyphicon glyphicon-link"></span>
+          Download Links' CVs
+        </a>
+      </div>
+    </div>
+
   </div>
 </div>

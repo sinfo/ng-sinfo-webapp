@@ -4,6 +4,11 @@
     height: 90vh;
     top: 10vh;
 
-    width: 75vw;
+    width: 73vw;
     left: 25vw;
+
+    margin: 5vh 1vw 0 1vw;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

@@ -23,8 +23,8 @@ import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
 import { CardComponent } from './user/card/card.component'
-import { WorkshopsComponent } from './session/workshops/workshops.component'
-import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
+import { WorkshopsComponent } from './user/workshops/workshops.component'
+import { WorkshopsStatusComponent } from './user/workshops/workshops-status.component'
 import { SurveyComponent } from './user/survey/survey.component'
 import { ScoreboardComponent } from './scoreboard/scoreboard.component'
 import { CheckinComponent } from './user/checkin/checkin.component'
@@ -32,36 +32,26 @@ import { ValidateCardComponent } from './user/validate-card/validate-card.compon
 import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
 import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
-import { PickWinnerComponent } from './pick-winner/pick-winner.component'
+import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'signature', component: SignatureComponent, canActivate: [ AuthGuard ] },
-  { path: 'card', component: CardComponent, canActivate: [ AuthGuard ] },
-  { path: 'validate-card', component: ValidateCardComponent, canActivate: [ AuthGuard ] },
-  { path: 'checkin', component: CheckinComponent, canActivate: [ AuthGuard ] },
+  { path: 'signature', component: SignatureComponent, canActivate: [AuthGuard] },
+  { path: 'card', component: CardComponent, canActivate: [AuthGuard] },
+  { path: 'validate-card', component: ValidateCardComponent, canActivate: [AuthGuard] },
   { path: 'achievements', component: AchievementsComponent },
   { path: 'redeem', component: RedeemComponent },
-  { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [ AuthGuard ] },
+  { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [AuthGuard] },
   { path: 'achievement/:id', component: AchievementComponent },
   { path: 'live', component: LiveComponent },
-  { path: 'promote', component: PromoteComponent, canActivate: [ AuthGuard ] },
+  { path: 'promote', component: PromoteComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'login/linkedIn', component: LinkedInLoginComponent },
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
-  { path: 'downloads/download', component: DownloadsComponent, canActivate: [ AuthGuard ] },
-  { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [ AuthGuard ] },
-  { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [ AuthGuard ] },
-  { path: 'pick-winner', component: PickWinnerComponent, canActivate: [ AuthGuard ] },
-  { path: 'cv', component: CvComponent, canActivate: [ AuthGuard ] },
-  { path: 'links/link', component: LinkComponent, canActivate: [ AuthGuard ] },
-  { path: 'links/my-links', component: MyLinksComponent, canActivate: [ AuthGuard ] },
-  { path: 'workshops', component: WorkshopsComponent },
-  { path: 'workshops/workshops-status', component: WorkshopsStatusComponent },
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'scoreboard', component: ScoreboardComponent },
 
@@ -71,7 +61,21 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: '', redirectTo: '/user/qrcode', pathMatch: 'full' },
-      { path: 'qrcode', component: MyProfileComponent, canActivate: [ AuthGuard ] },
+
+      { path: 'qrcode', component: MyProfileComponent, canActivate: [AuthGuard] },
+      { path: 'checkin', component: CheckinComponent, canActivate: [AuthGuard] },
+      { path: 'pick-winner', component: PickWinnerComponent, canActivate: [AuthGuard] },
+      { path: 'cv', component: CvComponent, canActivate: [AuthGuard] },
+
+      { path: 'links/link', component: LinkComponent, canActivate: [AuthGuard] },
+      { path: 'links/my-links', component: MyLinksComponent, canActivate: [AuthGuard] },
+
+      { path: 'workshops', component: WorkshopsComponent },
+      { path: 'workshops/workshops-status', component: WorkshopsStatusComponent },
+
+      { path: 'downloads/download', component: DownloadsComponent, canActivate: [AuthGuard] },
+      { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [AuthGuard] },
+      { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [AuthGuard] },
     ]
   },
 

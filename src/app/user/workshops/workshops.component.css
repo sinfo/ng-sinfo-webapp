@@ -19,9 +19,6 @@ h4.weekDay {
   margin-top: 25px;
   font-weight: 200;
 }
-section > div.container {
-  width: 100%;
-}
 
 @media (max-width: 767px) {
   h4.weekDay {
