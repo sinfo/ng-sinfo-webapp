@@ -22,16 +22,18 @@ div.mini-portrait-wrapper {
   bottom: 0;
   right: 0;
   border-radius: 50%;
-  background-color: rgba(255,255,255, 1);
+  background-color: rgba(255, 255, 255, 1);
   border: 3px solid #048ae6;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 div.mini-portrait-wrapper h2 {
   margin: 0;
 }
+
 div.mini-portrait-wrapper span.lead {
   margin-bottom: 0px;
 }
@@ -70,7 +72,8 @@ div.achivements-wrapper img.achievement {
   margin: 5px;
 }
 
-.allSignatures, .allSignatures i {
+.allSignatures,
+.allSignatures i {
   color: green;
 }
 
@@ -92,6 +95,10 @@ div.achivements-wrapper img.achievement {
   border-radius: 15px;
 }
 
+.qrcodeimg {
+  display: inline-block;
+}
+
 .name {
   color: white;
 }
@@ -104,19 +111,18 @@ div.achivements-wrapper img.achievement {
 .show-message {
   color: grey;
   font-size: 18px
-
 }
 
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
-.inputfile + label {
+.inputfile+label {
   font-size: 11px;
   font-weight: 700;
   color: white;
@@ -124,11 +130,13 @@ div.achivements-wrapper img.achievement {
   line-height: 17px;
   letter-spacing: 3px;
 }
-.inputfile + label span {
+
+.inputfile+label span {
   font-size: 17px;
 }
-.inputfile:focus + label,
-.inputfile + label:hover {
+
+.inputfile:focus+label,
+.inputfile+label:hover {
   background-color: red;
 }
 
@@ -142,10 +150,12 @@ div.achivements-wrapper img.achievement {
   background-color: #449d44 !important;
   border-color: #398439 !important;
 }
+
 .btn-info {
   background-color: #428bca;
   border-color: #357ebd;
 }
+
 #deleteFile {
   width: 100%;
   background-color: #d9534f !important;
@@ -162,23 +172,26 @@ div.achivements-wrapper img.achievement {
   max-width: 50px;
 }
 
-@media (max-width: 990px){
+@media (max-width: 990px) {
   .qrcode-wrapper {
     flex-flow: column;
   }
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
   div.user {
     background-size: 150%;
   }
+
   div.user h5 {
     text-align: center;
   }
+
   div.mini-portrait-wrapper h2 {
     font-size: 25px;
     line-height: 20px;
   }
+
   div.mini-portrait-wrapper span.lead {
     font-size: 13px;
   }
