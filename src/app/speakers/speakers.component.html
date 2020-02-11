@@ -9,32 +9,6 @@
     <br />
     <br />
 
-    <!-- <div class="col-sm-3">
-      <div class="speaker hacky">
-        <div class="photo-wrapper square">
-          <div class="view view-first">
-            <img src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png" alt="hacky" class="img-responsive">
-            <ul class="speaker-socials">
-              <li>
-                <a href="https://www.instagram.com/sinfoist/">
-                  <span class="fa fa-instagram"></span>
-                </a>
-              </li>
-              <li>
-                <a href="https://facebook.com/sinfoist">
-                  <span class="fa fa-facebook"></span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <h3 class="name">Know the next one</h3>
-        <p class="text-alt">
-          <small>Stay tuned to our social networks</small>
-        </p>
-      </div>
-    </div> -->
-
     <span *ngIf="speakers.length > 0">
       <div class="col-sm-12">
         <app-loading [content]="speakers">
@@ -47,7 +21,7 @@
           <div class="speaker">
             <div class="photo-wrapper square">
               <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
-                <img src="{{ speaker.img }}" alt="{{ speaker.name }}" title="{{ speaker.name }}" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                <img appImage [src]="speaker.img" alt="{{ speaker.name }}" title="{{ speaker.name }}" class="img-responsive">
               </div>
             </div>
             <h3 class="name">{{ speaker.name }}</h3>

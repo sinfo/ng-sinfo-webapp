@@ -76,6 +76,8 @@ import { PickWinnerComponent } from './pick-winner/pick-winner.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 import { RedeemService } from './user/redeem/redeem.service';
 import { LivestreamComponent } from './landing-page/livestream/livestream.component';
+import { StandsComponent } from './landing-page/stands/stands.component';
+import { ImageDirective } from './partials/image.directive'
 
 @NgModule({
   declarations: [
@@ -126,6 +128,8 @@ import { LivestreamComponent } from './landing-page/livestream/livestream.compon
     CvComponent,
     RedeemComponent,
     LivestreamComponent
+    StandsComponent,
+    ImageDirective
   ],
   imports: [
     BrowserModule,
