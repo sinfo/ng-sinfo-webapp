@@ -40,11 +40,12 @@ img.portrait {
 }
 
 
-.allSignatures, .allSignatures i {
-    color: green;
+.allSignatures,
+.allSignatures i {
+  color: green;
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
   div.user {
     background-size: 150%;
   }
@@ -52,4 +53,12 @@ img.portrait {
   div.user h5 {
     text-align: center;
   }
+}
+
+.refreshbuttondiv {
+  margin-top: 50px;
+}
+
+.refreshbutton {
+  display: inline-block;
 }
