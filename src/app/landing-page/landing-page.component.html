@@ -1,219 +1,225 @@
-<section id="hero" class="hero-section light-text">
-  <div class="video-bg">
-  </div>
-  <ul class="socials-nav">
-    <li class="socials-nav-item">
-      <a href="https://twitter.com/sinfoist" target="_blank" aria-label="Twitter">
-        <span class="fa fa-twitter"></span>
+<div class="content">
+  <section id="hero" class="hero-section light-text">
+    <div class="video-bg">
+    </div>
+    <ul class="socials-nav">
+      <li class="socials-nav-item">
+        <a href="https://twitter.com/sinfoist" target="_blank" aria-label="Twitter">
+          <span class="fa fa-twitter"></span>
+        </a>
+      </li>
+      <li class="socials-nav-item">
+        <a href="https://www.facebook.com/sinfoist/" target="_blank" aria-label="Facebook">
+          <span class="fa fa-facebook"></span>
+        </a>
+      </li>
+      <li class="socials-nav-item">
+        <a href="https://github.com/sinfo" target="_blank" aria-label="Github">
+          <span class="fa fa-github"></span>
+        </a>
+      </li>
+      <li class="socials-nav-item">
+        <a href="https://www.instagram.com/sinfoist/" target="_blank" aria-label="Instagram">
+          <span class="fa fa-instagram"></span>
+        </a>
+      </li>
+      <li class="socials-nav-item">
+        <a href="https://www.youtube.com/user/sinfoist" target="_blank" aria-label="Youtube">
+          <span class="fa fa-youtube"></span>
+        </a>
+      </li>
+      <li class="socials-nav-item">
+        <a href="https://www.linkedin.com/company/2760221" target="_blank" aria-label="Linkedin">
+          <span class="fa fa-linkedin"></span>
+        </a>
+      </li>
+    </ul>
+    <div class="sinfo-intro-wrapper heading-block">
+      <div class="container">
+        <h5 class="heading-alt">
+          <span>
+            <span class="fa fa-map-marker base-clr-txt" style="margin-left: 14px;"></span>
+            Técnico, Lisbon
+          </span>
+
+          <span *ngIf="begin && end">
+            <br class="visible-xs">
+            <span class="fa fa-calendar-o base-clr-txt"></span>
+            {{begin | date:'d MMM':'+0000'}} - {{end | date:'d MMM':'+0000'}}
+          </span>
+        </h5>
+        <img class="logo-hero" src="assets/img/logo-branco2.png" alt="SINFO logo">
+        <h6 class="thin base-font align-center">Biggest
+          <strong>free tech conference</strong> in Portugal</h6>
+      </div>
+    </div>
+    <div class="intro ">
+      <a href="#speakers">
+        <i class="fa fa-chevron-down" aria-hidden="true" aria-label="Scroll down"></i>
       </a>
-    </li>
-    <li class="socials-nav-item">
-      <a href="https://www.facebook.com/sinfoist/" target="_blank" aria-label="Facebook">
-        <span class="fa fa-facebook"></span>
-      </a>
-    </li>
-    <li class="socials-nav-item">
-      <a href="https://github.com/sinfo" target="_blank" aria-label="Github">
-        <span class="fa fa-github"></span>
-      </a>
-    </li>
-    <li class="socials-nav-item">
-      <a href="https://www.instagram.com/sinfoist/" target="_blank" aria-label="Instagram">
-        <span class="fa fa-instagram"></span>
-      </a>
-    </li>
-    <li class="socials-nav-item">
-      <a href="https://www.youtube.com/user/sinfoist" target="_blank" aria-label="Youtube">
-        <span class="fa fa-youtube"></span>
-      </a>
-    </li>
-    <li class="socials-nav-item">
-      <a href="https://www.linkedin.com/company/2760221" target="_blank" aria-label="Linkedin">
-        <span class="fa fa-linkedin"></span>
-      </a>
-    </li>
-  </ul>
-  <div class="sinfo-intro-wrapper heading-block">
+    </div>
+  </section>
+
+  <app-menu></app-menu>
+
+  <app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
+
+  <app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
+
+  <app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
+
+  <!-- STANDS -->
+
+  <section id="upload-cv" class="section bg-cover overlay newsletterbg light-text align-center">
     <div class="container">
-      <h5 class="heading-alt">
-        <span>
-          <span class="fa fa-map-marker base-clr-txt" style="margin-left: 14px;"></span>
-          Técnico, Lisbon
-        </span>
+      <h2>
+        <span class="highlight">Upload your CV</span> now!
+      </h2>
+      <h6 class="lead">Are you new to the job market? Or maybe looking for a new challenge? Well, send us your
+        curriculum
+        vitae and every company present at SINFO will receive it!</h6>
 
-        <span *ngIf="begin && end">
-          <br class="visible-xs">
-          <span class="fa fa-calendar-o base-clr-txt"></span>
-          {{begin | date:'d MMM':'+0000'}} - {{end | date:'d MMM':'+0000'}}
-        </span>
-      </h5>
-      <img class="logo-hero" src="assets/img/logo-branco2.png" alt="SINFO logo">
-      <h6 class="thin base-font align-center">Biggest
-        <strong>free tech conference</strong> in Portugal</h6>
+      <a routerLink="/cv" class="btn btn btn-md">
+        Upload here
+      </a>
     </div>
-  </div>
-  <div class="intro ">
-    <a href="#speakers">
-      <i class="fa fa-chevron-down" aria-hidden="true" aria-label="Scroll down"></i>
-    </a>
-  </div>
-</section>
+  </section>
 
-<app-menu></app-menu>
+  <app-team *ngIf="eventId" [eventId]="eventId"></app-team>
 
-<app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
+  <section id="newsletter" class="section bg-cover overlay newsletterbg light-text align-center">
+    <div class="container">
+      <h2>
+        <span class="highlight">Newsletter</span> Sign Up
+      </h2>
 
-<app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
+      <h6 class="lead">Be the first to receive the latest updates from SINFO!</h6>
 
-<app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
+      <a class="btn btn btn-md"
+        href="https://sinfo.us8.list-manage.com/subscribe?u=de57247db0922adf365af7eef&id=107b5bbe53"
+        target="_blank">Subscribe</a>
 
-<!-- STANDS -->
+    </div>
+  </section>
 
-<section id="upload-cv" class="section bg-cover overlay newsletterbg light-text align-center">
-  <div class="container">
-    <h2>
-      <span class="highlight">Upload your CV</span> now!
-    </h2>
-    <h6 class="lead">Are you new to the job market? Or maybe looking for a new challenge? Well, send us your curriculum
-      vitae and every company present at SINFO will receive it!</h6>
+  <app-sponsors *ngIf="eventId" [eventId]="eventId"></app-sponsors>
 
-    <a routerLink="/cv" class="btn btn btn-md">
-      Upload here
-    </a>
-  </div>
-</section>
-
-<app-team *ngIf="eventId" [eventId]="eventId"></app-team>
-
-<section id="newsletter" class="section bg-cover overlay newsletterbg light-text align-center">
-  <div class="container">
-    <h2>
-      <span class="highlight">Newsletter</span> Sign Up
-    </h2>
-
-    <h6 class="lead">Be the first to receive the latest updates from SINFO!</h6>
-
-    <a class="btn btn btn-md"
-      href="https://sinfo.us8.list-manage.com/subscribe?u=de57247db0922adf365af7eef&id=107b5bbe53"
-      target="_blank">Subscribe</a>
-
-  </div>
-</section>
-
-<app-sponsors *ngIf="eventId" [eventId]="eventId"></app-sponsors>
-
-<!-- <section id="about" class="section align-center">
-  <div class="container">
-
-    <div class="tabs-wrapper tabs-horizontal">
-      <div class="nav-wrapper" (window:resize)="showOrHideDropdown()" (click)="updateMenuClick()">
-        <span class="nav-current">
-          <h6>{{ selectedAboutText }}</h6>
-        </span>
-        <ul *ngIf="displayAboutDropdown || dropdown()" class="nav nav-tabs">
-          <li [ngClass]="{'active': selectedAboutText === 'About Us'}">
-            <a href="#horizontal_tab1" data-toggle="tab" (click)="updatedSelectedText('About Us')">
-              <h6 class="heading-alt">
-                <span class="fa fa-code"></span> About Us </h6>
-            </a>
-          </li>
-          <li [ngClass]="{'active': selectedAboutText === 'Mission'}">
-            <a href="#horizontal_tab2" data-toggle="tab" (click)="updatedSelectedText('Mission')">
-              <h6 class="heading-alt">
-                <span class="fa fa-rocket"></span> Mission </h6>
-            </a>
-          </li>
-          <li [ngClass]="{'active': selectedAboutText === 'Vision & Target'}">
-            <a href="#horizontal_tab3" data-toggle="tab" (click)="updatedSelectedText('Vision & Target')">
-              <h6 class="heading-alt">
-                <span class="fa fa-external-link"></span> Vision & Target </h6>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="tab-content">
-        <div id="horizontal_tab1" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'About Us'}">
-          <div class="col-sm-5 img-column">
-            <img src="assets/img/aboutUs-min.jpg" alt="" class="img-responsive" />
-          </div>
-          <div class="col-sm-7 align-left">
-            <h6>About</h6>
-            <p>
-              SINFO is a college student and non-profitable organization responsible for the planning of one of the
-              biggest Tech events
-              in Portugal. It’s an annual conference that takes place at the Alameda Campus of Técnico Lisboa, in the
-              capital
-              city of Portugal, Lisbon. We had a record breaking attendance of participants last year, achievement we
-              hope
-              to repeat next year, from <b>February 17th to 21st 2020</b>.
-            </p>
-          </div>
+  <!-- <section id="about" class="section align-center">
+    <div class="container">
+  
+      <div class="tabs-wrapper tabs-horizontal">
+        <div class="nav-wrapper" (window:resize)="showOrHideDropdown()" (click)="updateMenuClick()">
+          <span class="nav-current">
+            <h6>{{ selectedAboutText }}</h6>
+          </span>
+          <ul *ngIf="displayAboutDropdown || dropdown()" class="nav nav-tabs">
+            <li [ngClass]="{'active': selectedAboutText === 'About Us'}">
+              <a href="#horizontal_tab1" data-toggle="tab" (click)="updatedSelectedText('About Us')">
+                <h6 class="heading-alt">
+                  <span class="fa fa-code"></span> About Us </h6>
+              </a>
+            </li>
+            <li [ngClass]="{'active': selectedAboutText === 'Mission'}">
+              <a href="#horizontal_tab2" data-toggle="tab" (click)="updatedSelectedText('Mission')">
+                <h6 class="heading-alt">
+                  <span class="fa fa-rocket"></span> Mission </h6>
+              </a>
+            </li>
+            <li [ngClass]="{'active': selectedAboutText === 'Vision & Target'}">
+              <a href="#horizontal_tab3" data-toggle="tab" (click)="updatedSelectedText('Vision & Target')">
+                <h6 class="heading-alt">
+                  <span class="fa fa-external-link"></span> Vision & Target </h6>
+              </a>
+            </li>
+          </ul>
         </div>
-
-        <div id="horizontal_tab2" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'Mission'}">
-          <div class="col-sm-7 align-left">
-            <h6>Mission</h6>
-            <p>
-              At SINFO, our mission is to give students and general attendants the opportunity to interact and get
-              closer to influential
-              and thriving people in the fields of Information Technology and Computer Science. We also bring tech
-              companies
-              of major relevance to our attendants so they can communicate with those companies’ employees, share
-              experiences
-              and maybe find a future position. We try to make it happen every day with dedication, by continuously
-              improving
-              the quality of our event, not only by bringing new speakers for every edition but also innovativing
-              companies
-              and startups that share our love for technology.
-            </p>
+        <div class="tab-content">
+          <div id="horizontal_tab1" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'About Us'}">
+            <div class="col-sm-5 img-column">
+              <img src="assets/img/aboutUs-min.jpg" alt="" class="img-responsive" />
+            </div>
+            <div class="col-sm-7 align-left">
+              <h6>About</h6>
+              <p>
+                SINFO is a college student and non-profitable organization responsible for the planning of one of the
+                biggest Tech events
+                in Portugal. It’s an annual conference that takes place at the Alameda Campus of Técnico Lisboa, in the
+                capital
+                city of Portugal, Lisbon. We had a record breaking attendance of participants last year, achievement we
+                hope
+                to repeat next year, from <b>February 17th to 21st 2020</b>.
+              </p>
+            </div>
           </div>
-          <div class="col-sm-5 img-column">
-            <img src="assets/img/mission-min.jpg" alt="" class="img-responsive" />
+  
+          <div id="horizontal_tab2" class="tab-pane fade" [ngClass]="{'active in': selectedAboutText === 'Mission'}">
+            <div class="col-sm-7 align-left">
+              <h6>Mission</h6>
+              <p>
+                At SINFO, our mission is to give students and general attendants the opportunity to interact and get
+                closer to influential
+                and thriving people in the fields of Information Technology and Computer Science. We also bring tech
+                companies
+                of major relevance to our attendants so they can communicate with those companies’ employees, share
+                experiences
+                and maybe find a future position. We try to make it happen every day with dedication, by continuously
+                improving
+                the quality of our event, not only by bringing new speakers for every edition but also innovativing
+                companies
+                and startups that share our love for technology.
+              </p>
+            </div>
+            <div class="col-sm-5 img-column">
+              <img src="assets/img/mission-min.jpg" alt="" class="img-responsive" />
+            </div>
           </div>
-        </div>
-
-        <div id="horizontal_tab3" class="tab-pane fade"
-          [ngClass]="{'active in': selectedAboutText === 'Vision & Target'}">
-          <div class="col-sm-5 img-column">
-            <img src="assets/img/vision-min.jpg" alt="" class="img-responsive" />
-          </div>
-          <div class="col-sm-7 align-left justify">
-            <h6>Vision</h6>
-            <p>
-              We live in an increasingly technological world in constant and swirling motion, where Computer Science and
-              IT play fundamental
-              roles. For the last 25 editions SINFO has been the bridge between that world and the student community.
-              Every
-              single one of them sums up several months of dedication and hard work laid out by its members, who are
-              driven
-              by the rewarding smiles of SINFO’s participants and the desire to surpass themselves every year. We like
-              to
-              think we’ve managed to do both hitherto. Our goal is to inspire and be inspired.
-            </p>
-          </div>
-          <div class="col-sm-7 align-right justify">
-            <h6>Target</h6>
-            <p>
-              We are mainly focused on bringing the ultimate technological experience to the student community.
-              Nonetheless, everyone fascinated
-              by IT or seeking a new career opportunity is welcome to join us.
-            </p>
+  
+          <div id="horizontal_tab3" class="tab-pane fade"
+            [ngClass]="{'active in': selectedAboutText === 'Vision & Target'}">
+            <div class="col-sm-5 img-column">
+              <img src="assets/img/vision-min.jpg" alt="" class="img-responsive" />
+            </div>
+            <div class="col-sm-7 align-left justify">
+              <h6>Vision</h6>
+              <p>
+                We live in an increasingly technological world in constant and swirling motion, where Computer Science and
+                IT play fundamental
+                roles. For the last 25 editions SINFO has been the bridge between that world and the student community.
+                Every
+                single one of them sums up several months of dedication and hard work laid out by its members, who are
+                driven
+                by the rewarding smiles of SINFO’s participants and the desire to surpass themselves every year. We like
+                to
+                think we’ve managed to do both hitherto. Our goal is to inspire and be inspired.
+              </p>
+            </div>
+            <div class="col-sm-7 align-right justify">
+              <h6>Target</h6>
+              <p>
+                We are mainly focused on bringing the ultimate technological experience to the student community.
+                Nonetheless, everyone fascinated
+                by IT or seeking a new career opportunity is welcome to join us.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section> -->
+  </section> -->
 
 
-<!-- <section id="sponsors-program" class="section bg-cover overlay newsletterbg light-text align-center">
-  <div class="container">
-    <h2>
-      <span class="highlight">Sponsors' Program</span>
-    </h2>
-    <h6 class="lead">Are you a tech company looking to recruit the most talented students in Portugal? SINFO is for you! Contact us to grant your place in the biggest free tech conference in Portugal!</h6>
-    <a class="btn btn btn-md" href="mailto:geral@sinfo.org">Contact us</a>
-  </div>
-</section> -->
+  <!-- <section id="sponsors-program" class="section bg-cover overlay newsletterbg light-text align-center">
+    <div class="container">
+      <h2>
+        <span class="highlight">Sponsors' Program</span>
+      </h2>
+      <h6 class="lead">Are you a tech company looking to recruit the most talented students in Portugal? SINFO is for you! Contact us to grant your place in the biggest free tech conference in Portugal!</h6>
+      <a class="btn btn btn-md" href="mailto:geral@sinfo.org">Contact us</a>
+    </div>
+  </section> -->
 
-<!-- <app-feedback></app-feedback> -->
+  <!-- <app-feedback></app-feedback> -->
+
+</div>
+
+<app-footer></app-footer>

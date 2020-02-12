@@ -1,10 +1,10 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core'
-import { Session } from '../session.model'
+import { Session } from '../../session/session.model'
 import { Ticket } from './ticket.model'
-import { User } from '../../user/user.model'
+import { User } from '../user.model'
 import { TicketService } from './ticket.service'
 import { AuthService } from '../../auth/auth.service'
-import { UserService } from '../../user/user.service'
+import { UserService } from '../user.service'
 
 @Component({
   selector: 'app-workshop-status-element',
@@ -22,13 +22,13 @@ export class WorkshopStatusElementComponent implements OnInit {
   count: number
   private userMails = []
 
-  constructor (
+  constructor(
     private ticketService: TicketService,
     private userService: UserService,
     private authService: AuthService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
         if (ticket === undefined) return
@@ -43,7 +43,7 @@ export class WorkshopStatusElementComponent implements OnInit {
     }
   }
 
-  onRegistrationClosed (isRegistrationClosed: boolean) {
+  onRegistrationClosed(isRegistrationClosed: boolean) {
     this.isRegistrationClosed = isRegistrationClosed
   }
 }

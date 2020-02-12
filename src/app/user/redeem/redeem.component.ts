@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
 import { RedeemService } from './redeem.service'
-import { AchievementService } from '../../achievements/achievement.service'
+import { AchievementService } from '../achievements/achievement.service'
 import { EventService } from '../../events/event.service'
-import { Achievement } from '../../achievements/achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 
@@ -24,7 +24,7 @@ export class RedeemComponent implements OnInit {
 
   myAchievements: Achievement[]
 
-  constructor (
+  constructor(
     private redeemService: RedeemService,
     private achievementService: AchievementService,
     private userService: UserService,
@@ -32,7 +32,7 @@ export class RedeemComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Redeem')
     })
@@ -44,14 +44,14 @@ export class RedeemComponent implements OnInit {
     this.updateMyAchievements()
   }
 
-  updateMyAchievements () {
+  updateMyAchievements() {
     this.achievementService.getMyAchievements().subscribe(achievements => {
       this.myAchievements = achievements
       this.scannerActive = true
     })
   }
 
-  receiveRedeemCode (code: string) {
+  receiveRedeemCode(code: string) {
     this.redeemCode = code
     this.redeemService.redeem(code, this.myAchievements)
     this.updateMyAchievements()

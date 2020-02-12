@@ -2,6 +2,9 @@ FROM node:10-alpine as builder
 
 COPY package.json package-lock.json ./
 
+# we have python dependencies
+RUN apk add --update python make g++ && rm -rf /var/cache/apk/*
+
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
 
 RUN npm ci && mkdir /app && mv ./node_modules ./app

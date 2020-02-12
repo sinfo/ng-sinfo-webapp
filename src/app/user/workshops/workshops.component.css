@@ -1,14 +1,9 @@
-.wrapper {
-  display: flex;
-  align-items: stretch;
-  min-height: 87vh;
+.title {
+  text-align: center;
 }
+
 h3.title {
   margin-top: 30px;
-}
-.workshop-wrapper {
-  margin-left: 40px;
-  padding-right: 35px;
 }
   
 h6.lead {
@@ -19,9 +14,6 @@ h4.weekDay {
   margin-top: 25px;
   font-weight: 200;
 }
-section > div.container {
-  width: 100%;
-}
 
 @media (max-width: 767px) {
   h4.weekDay {
@@ -30,7 +22,6 @@ section > div.container {
   .workshop-wrapper {
     width: 100%;
     margin-left: auto;
-    padding-right: 15px;
     font-size: 10px;
   }
 }

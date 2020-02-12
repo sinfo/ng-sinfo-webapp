@@ -1,71 +1,59 @@
-<app-menu></app-menu>
-
 <app-loading [content]="sessions"></app-loading>
 
-<div class="user sidebar-wrapper" *ngIf="sessions">
-
-  <app-sidebar [user]="me"></app-sidebar>
-
-  <div id="content" class="container-fluid my-area-content">
-    <div class="align-center">
-
-      <div class="row">
-        <h3>
-          Check in
-        </h3>
-      </div>
-
-      <div *ngIf="selectedSession">
-        <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title"
-          [buttonLabel]="submitLabel" (buttonAction)="submit($event)" [insideScannerMsg]="insideScannerMsg">
-        </app-qrcode-scanner>
-
-        <div class="row destroy">
-          <button class="btn btn-button" (click)="delete()">Delete saved users</button>
-        </div>
-
-      </div>
-
-      <div class="container align-center user" *ngIf="!selectedSession">
-
-        <div class="sessions-wrapper">
-          <div *ngFor="let session of sessions" class="row session">
-            <div class="col-sm-12">
-              <div class="row well well-sm workshop-wrapper">
-                <div class="img-wrapper col-sm-2">
-                  <img src="{{session.session.img}}" alt="{{session.session.name}}">
-                </div>
-                <div class="info-wrapper col-sm-7">
-                  <h4 class="name">{{session.name}}</h4>
-                  <div class="session-details">
-                    <div *ngIf="session.begin" class="padded">
-                      <p>
-                        <i class="fa fa-calendar"></i> {{session.begin | date:'fullDate':'+0000'}} </p>
-                    </div>
-                    <div *ngIf="session.begin" class="padded">
-                      <p>
-                        <i class="fa fa-clock-o"></i> {{session.begin | date:'shortTime':'+0000'}} -
-                        {{session.end | date:'shortTime':'+0000'}}</p>
-                    </div>
-                    <div *ngIf="session.place">
-                      <p>
-                        <i class="fa fa-map-marker"></i> {{session.session.place}} </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-sm-3 checkin">
-                  <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check in</button>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-    </div>
+<div class="align-center" *ngIf="sessions">
+  <div class="row">
+    <h3>
+      Check in
+    </h3>
   </div>
 
+  <div *ngIf="selectedSession">
+    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title"
+      [buttonLabel]="submitLabel" (buttonAction)="submit($event)" [insideScannerMsg]="insideScannerMsg">
+    </app-qrcode-scanner>
+
+    <div class="row destroy">
+      <button class="btn btn-button" (click)="delete()">Delete saved users</button>
+    </div>
+
+  </div>
+
+  <div class="container align-center user" *ngIf="!selectedSession">
+
+    <div class="sessions-wrapper">
+      <div *ngFor="let session of sessions" class="row session">
+        <div class="col-sm-12">
+          <div class="row well well-sm workshop-wrapper">
+            <div class="img-wrapper col-sm-2">
+              <img src="{{session.session.img}}" alt="{{session.session.name}}">
+            </div>
+            <div class="info-wrapper col-sm-7">
+              <h4 class="name">{{session.name}}</h4>
+              <div class="session-details">
+                <div *ngIf="session.begin" class="padded">
+                  <p>
+                    <i class="fa fa-calendar"></i> {{session.begin | date:'fullDate':'+0000'}} </p>
+                </div>
+                <div *ngIf="session.begin" class="padded">
+                  <p>
+                    <i class="fa fa-clock-o"></i> {{session.begin | date:'shortTime':'+0000'}} -
+                    {{session.end | date:'shortTime':'+0000'}}</p>
+                </div>
+                <div *ngIf="session.place">
+                  <p>
+                    <i class="fa fa-map-marker"></i> {{session.session.place}} </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 checkin">
+              <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check in</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>

@@ -2861,14 +2861,6 @@ body>.container {
   padding-top: 65px;
 }
 
-.my-area-content {
-  margin-left: 100px;
-  margin-right: 0px !important;
-  width: calc(100% - 100px) !important;
-}
-
-
-
 img {
   max-width: 100%;
 }
@@ -7927,6 +7919,7 @@ div.clear input.btn:hover {
   min-height: 87vh;
   width: 100%;
   background-color: white;
+  overflow-y: scroll;
 }
 
 #content {
@@ -8116,3 +8109,15 @@ div.clear input.btn:hover {
 }
 
 /* manage-downloads end */
+html, body {
+  position: relative;
+  
+  padding: 0 !important;
+  margin: 0 !important;
+
+  height: 100vh;
+  width: 100vw;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+}

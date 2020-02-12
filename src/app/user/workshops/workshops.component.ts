@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core'
 import { Router, Params } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
-import { SessionService } from '../session.service'
-import { Session } from '../session.model'
-import { UserService } from '../../user/user.service'
-import { User } from '../../user/user.model'
+import { SessionService } from '../../session/session.service'
+import { Session } from '../../session/session.model'
+import { UserService } from '../user.service'
+import { User } from '../user.model'
 import { AuthService } from '../../auth/auth.service'
 import { EventService } from '../../events/event.service'
 import { Event } from '../../events/event.model'
@@ -32,7 +32,7 @@ export class WorkshopsComponent implements OnInit {
   user: User
   event: Event
 
-  constructor (
+  constructor(
     private sessionService: SessionService,
     private userService: UserService,
     private authService: AuthService,
@@ -41,7 +41,7 @@ export class WorkshopsComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
 
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login'])
@@ -70,7 +70,7 @@ export class WorkshopsComponent implements OnInit {
                 return Date.parse(wsA.date) - Date.parse(wsB.date)
               })
 
-              // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
+            // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
             this.allWorkshops.forEach((a) => {
               a.duration = '2010' + a.duration.slice(4)
             })
@@ -86,7 +86,7 @@ export class WorkshopsComponent implements OnInit {
     })
   }
 
-  updateWorkhopsFrontend () {
+  updateWorkhopsFrontend() {
     this.myWorkshopsFrontend = this.myWorkshops
       .reduce((accumulator, session, index, array) => {
         let lastIndex = accumulator.length - 1
@@ -148,7 +148,7 @@ export class WorkshopsComponent implements OnInit {
   }
 
   // TODO refactor me
-  isReserved (isReserved: boolean, workshop: Session) {
+  isReserved(isReserved: boolean, workshop: Session) {
 
     // se foi adicionado o ticket
     if (isReserved) {
@@ -165,7 +165,7 @@ export class WorkshopsComponent implements OnInit {
         return Date.parse(wsA.date) - Date.parse(wsB.date)
       })
 
-    // se foi removido o ticket
+      // se foi removido o ticket
     } else {
 
       // tira na minha lista
