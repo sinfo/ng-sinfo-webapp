@@ -22,33 +22,31 @@ export class CardComponent implements OnInit {
     companies: []
   }
 
-  constructor (
+  constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private eventService: EventService,
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Card')
-    })
 
-    this.userService.getMe()
-      .subscribe(user => {
+      this.userService.getMe().subscribe(user => {
         this.user = user
+
         if (!this.user.signatures) {
           return
         }
 
         let day = this.signatures.day.getDate().toString()
         let userSignatures = this.user.signatures.find(s => {
-          return s.day === day
-        })
+          return s.day === day && s.edition === event.id
+        }) || { day: day, edition: event.id, redeemed: false, signatures: [] }
 
         userSignatures.signatures = userSignatures.signatures.slice(0, this.signatures.capacity)
 
-        if (!userSignatures) return
         this.signatures.redeemed = userSignatures.redeemed
 
         userSignatures.signatures.forEach(company => {
@@ -61,9 +59,11 @@ export class CardComponent implements OnInit {
             })
         })
       })
+    })
+
   }
 
-  getArray (n: number): any[] {
+  getArray(n: number): any[] {
     return Array(n)
   }
 
