@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.isLoggedIn = this.authService.isLoggedIn()
 
     if (this.isLoggedIn) {
-      this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
+      this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
       return
     }
 
@@ -125,7 +125,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.submitting = true
     this.authService.fenix(fenixCode).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
-      this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
+      this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
     })
   }
 
@@ -139,7 +139,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.authService.google(userId, token)
         .subscribe(cannonToken => {
           this.authService.setToken(cannonToken)
-          this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
+          this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
         })
     })
   }
@@ -157,7 +157,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.authService.facebook(resp.authResponse.userID, resp.authResponse.accessToken)
         .subscribe(cannonToken => {
           this.authService.setToken(cannonToken)
-          this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
+          this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
         })
     } else if (resp.status === 'not_authorized') {
       this.messageService.add({

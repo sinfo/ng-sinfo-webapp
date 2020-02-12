@@ -3,17 +3,21 @@
 }
 
 #sidebar {
-  width: 25%;
-  max-width: 25%;
-  background: #133157;
-  color: #fff;
-  transition: all 0.3s;
-  height: 100%;
-
   position: fixed;
   z-index: 1;
-  top: 75px;
+
+  width: 25vw;
+
+  background: #133157;
+  color: #fff;
+
+  transition: all 0.3s;
+  
+  height: 90vh;
+  top: 10vh;
   bottom: 0;
+
+  overflow-y: scroll;;
 }
 
 #sidebar ul{

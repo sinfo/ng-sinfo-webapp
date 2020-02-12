@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
-import { Session } from '../../session.model'
+import { Session } from '../../../session/session.model'
 import { Ticket } from '../ticket.model'
-import { User } from '../../../user/user.model'
+import { User } from '../../user.model'
 import { TicketService } from '../ticket.service'
 import { AuthService } from '../../../auth/auth.service'
 
@@ -20,12 +20,12 @@ export class WorkshopComponent implements OnInit {
   ticket: Ticket
   isRegistrationClosed: boolean
 
-  constructor (
+  constructor(
     private ticketService: TicketService,
     private authService: AuthService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
         this.ticket = ticket
@@ -33,11 +33,11 @@ export class WorkshopComponent implements OnInit {
     }
   }
 
-  onRegistrationClosed (isRegistrationClosed: boolean) {
+  onRegistrationClosed(isRegistrationClosed: boolean) {
     this.isRegistrationClosed = isRegistrationClosed
   }
 
-  hasTicket (isReserved: boolean) {
+  hasTicket(isReserved: boolean) {
     this.isReserved.emit(isReserved)
   }
 }

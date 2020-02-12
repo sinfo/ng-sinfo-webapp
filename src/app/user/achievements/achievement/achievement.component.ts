@@ -4,10 +4,10 @@ import { Title } from '@angular/platform-browser'
 
 import { Achievement } from '../achievement.model'
 import { AchievementService } from '../achievement.service'
-import { AuthService } from '../../auth/auth.service'
-import { UserService } from '../../user/user.service'
-import { EventService } from '../../events/event.service'
-import { User } from '../../user/user.model'
+import { AuthService } from '../../../auth/auth.service'
+import { UserService } from '../../user.service'
+import { EventService } from '../../../events/event.service'
+import { User } from '../../user.model'
 
 @Component({
   selector: 'app-achievement',
@@ -20,7 +20,7 @@ export class AchievementComponent implements OnInit {
   winner: User
   users: User[]
 
-  constructor (
+  constructor(
     private achievementService: AchievementService,
     private authService: AuthService,
     private userService: UserService,
@@ -29,7 +29,7 @@ export class AchievementComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Achievement')
     })
@@ -54,7 +54,7 @@ export class AchievementComponent implements OnInit {
     }
   }
 
-  pickWinner () {
+  pickWinner() {
     const winnerId = this.achievement.users[Math.floor(Math.random() * this.achievement.users.length)]
     this.userService.getUser(winnerId).subscribe(user => {
       this.winner = user

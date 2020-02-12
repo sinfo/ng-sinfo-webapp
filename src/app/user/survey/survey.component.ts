@@ -7,7 +7,7 @@ import { Session } from '../../session/session.model'
 import { SurveyService } from './survey.service'
 import { SessionService } from '../../session/session.service'
 import { EventService } from '../../events/event.service'
-import { Achievement } from '../../achievements/achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { SurveyResponse } from './response.model'
@@ -50,7 +50,7 @@ export class SurveyComponent implements OnInit {
     'Very Unsatisfied'
   ]
 
-  constructor (
+  constructor(
     private route: ActivatedRoute,
     private surveyService: SurveyService,
     private sessionService: SessionService,
@@ -59,7 +59,7 @@ export class SurveyComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Survey')
     })
@@ -73,7 +73,7 @@ export class SurveyComponent implements OnInit {
       })
   }
 
-  onSubmit (form: any) {
+  onSubmit(form: any) {
     this.submitting = true
     const surveyResponse = {
       age: form.age,

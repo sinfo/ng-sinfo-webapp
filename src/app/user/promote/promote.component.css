@@ -1,3 +1,14 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+}
+
 .align-center {
     width: 100%;
 }

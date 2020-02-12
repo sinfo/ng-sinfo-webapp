@@ -1,47 +1,14 @@
-div.loading-wrapper {
-  margin: 30px auto;
-}
+#profile-content {
+    position: absolute;
 
-div.user {
-  padding-bottom: 20px;
-}
+    height: 87vh;
+    top: 10vh;
 
-div.portrait-wrapper {
-  margin: 10px auto;
-}
+    width: 73vw;
+    left: 25vw;
 
-h3 {
-  margin: 20px auto;
-}
+    margin: 3vh 1vw 0 1vw;
 
-h5 {
-  margin-top: 10px;
-}
-
-p {
-  font-size: 15px;
-}
-
-img.portrait {
-  border-radius: 50%;
-  border: 3px solid #048ae6;
-}
-
-div.achivements-wrapper {
-  margin: 20px auto;
-}
-
-div.achivements-wrapper img.achievement {
-  width: 100px;
-  margin: 5px;
-}
-
-@media (max-width: 425px){
-  div.user {
-    background-size: 150%;
-  }
-
-  div.user h5 {
-    text-align: center;
-  }
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

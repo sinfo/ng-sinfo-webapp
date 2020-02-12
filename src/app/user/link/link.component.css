@@ -1,9 +1,10 @@
-#content {
-    height: auto;
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
-.align-center {
-    width: 100%;
-}
+
 .form-control {
     width: 95%;
     margin: 5px auto;

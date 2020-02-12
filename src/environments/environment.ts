@@ -8,18 +8,27 @@ export const environment = {
   deckUrl: 'http://localhost:8080',
   cannonUrl: 'http://localhost:8090',
   url_to_id: {
+    '27-sinfo': '27-sinfo',
     '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
     '23-sinfo': '23-sinfo-conf'
   },
   id_to_url: {
+    '27-sinfo': '27-sinfo',
     '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '27-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'Cybersecurity',
+      'Games',
+      'Web & UX'
+    ],
     '26-sinfo': [
       'Software',
       'Multimedia',
