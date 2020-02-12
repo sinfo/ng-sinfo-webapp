@@ -22,7 +22,7 @@ export class DownloadsStatusComponent implements OnInit {
   hasCompanies: boolean
   me: User
 
-  constructor (
+  constructor(
     private eventService: EventService,
     private endpointService: EndpointService,
     private router: Router,
@@ -31,7 +31,7 @@ export class DownloadsStatusComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Download Status')
     })
@@ -40,7 +40,7 @@ export class DownloadsStatusComponent implements OnInit {
       this.me = user
 
       if (user.role !== 'team') {
-        this.router.navigate(['/qrcode'])
+        this.router.navigate(['/user/qrcode'])
       }
 
       this.endpointService.getEndpoints().subscribe(endpoints => {
@@ -68,7 +68,7 @@ export class DownloadsStatusComponent implements OnInit {
     this.endpoints.forEach(c => {
       this.endpoints = []
       this.endpointService.deleteEndpoint(c.company).subscribe(e => {
-      // tslint:disable-next-line:handle-callback-err
+        // tslint:disable-next-line:handle-callback-err
       }, (err) => {
         this.endpoints.push(c)
       })

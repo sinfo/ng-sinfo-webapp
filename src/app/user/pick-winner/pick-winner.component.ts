@@ -66,7 +66,7 @@ export class PickWinnerComponent implements OnInit {
       this.me = user
 
       if (user.role !== 'team') {
-        this.router.navigate(['/qrcode'])
+        this.router.navigate(['/user/qrcode'])
       }
 
       this.eventService.getCurrent().subscribe(event => {
