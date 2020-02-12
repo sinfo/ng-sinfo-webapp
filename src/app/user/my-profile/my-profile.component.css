@@ -175,3 +175,7 @@ div.achivements-wrapper img.achievement {
     font-size: 13px;
   }
 }
+
+.qrcodeimg {
+  display: inline-block;
+}

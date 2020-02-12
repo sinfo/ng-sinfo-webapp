@@ -13,7 +13,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm run build-dev
+ARG NODE_ENV
+RUN if [ "$NODE_ENV" = "development" ] ; then npm run build-dev ; else npm run build ; fi
 
 FROM nginx:alpine
 
