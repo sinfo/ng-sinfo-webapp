@@ -9,14 +9,46 @@
   <div id="content" class="container-fluid my-area-content">
     <div class="align-center">
 
-      <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
+      <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title"
+        [info]="info">
       </app-qrcode-scanner>
 
       <div *ngIf="userRead">
 
         <div class="row">
           <div class="col-xs-12">
-            <textarea [(ngModel)]="notes" class="form-control" placeholder="Insert your notes here">
+            <textarea [(ngModel)]="email" class="form-control" placeholder="Attendee email">
+          </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="phone" class="form-control" placeholder="Attendee phone number">
+          </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="interestedIn" class="form-control" placeholder="Attendee's interests">
+          </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="degree" class="form-control" placeholder="Attendee's degree">
+          </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="avaliability" class="form-control" placeholder="Attendee's avaliability">
+          </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="otherObservations" class="form-control"
+              placeholder="Insert your other observations here">
           </textarea>
           </div>
         </div>

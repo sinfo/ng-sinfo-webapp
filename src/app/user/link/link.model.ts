@@ -1,3 +1,14 @@
+export class Note {
+  contacts: {
+    email: String
+    phone: String
+  }
+  interestedIn: String
+  degree: String
+  avaliability: String
+  otherObservations: String
+}
+
 export class Link {
   company: string
   edition: string
@@ -5,5 +16,5 @@ export class Link {
   created: Date
   updated: Date
   user: string
-  note: string
+  notes: Note
 }

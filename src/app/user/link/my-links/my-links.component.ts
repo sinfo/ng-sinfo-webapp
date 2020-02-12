@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
-import { Link } from '../link.model'
+import { Link, Note } from '../link.model'
 import { User } from '../../user.model'
 import { UserService } from '../../user.service'
 import { Company } from '../../../company/company.model'
@@ -22,11 +22,11 @@ export class MyLinksComponent implements OnInit {
   processedLinks: Array<{
     attendee: User
     user: User
-    note: string
+    note: Note
   }>
   gotLinks: boolean
 
-  constructor (
+  constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
@@ -34,7 +34,7 @@ export class MyLinksComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.processedLinks = []
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - My Links')
@@ -59,7 +59,7 @@ export class MyLinksComponent implements OnInit {
     })
   }
 
-  processLink (link: Link) {
+  processLink(link: Link) {
     this.userService.getUser(link.attendee)
       .subscribe(attendee => {
         this.userService.getUser(link.user)
@@ -67,7 +67,7 @@ export class MyLinksComponent implements OnInit {
             this.processedLinks.push({
               attendee: attendee,
               user: user,
-              note: link.note
+              note: link.notes
             })
           })
       })
