@@ -75,7 +75,7 @@ import { CvComponent } from './user/cv/cv.component'
 import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 import { RedeemService } from './user/redeem/redeem.service';
-import { PartnersComponent } from './partners/partners.component'
+import { PartnersComponent } from './user/partners/partners.component'
 import { StandsComponent } from './landing-page/stands/stands.component';
 import { ImageDirective } from './partials/image.directive'
 

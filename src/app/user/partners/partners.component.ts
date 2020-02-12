@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Sponsor } from '../sponsors/sponsor.model';
-import { SponsorService } from '../sponsors/sponsor.service';
+import { Sponsor } from '../../sponsors/sponsor.model';
+import { SponsorService } from '../../sponsors/sponsor.service';
 import { Partner } from './partner.model';
 import { PartnersService } from './partners.service';
 
