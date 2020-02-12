@@ -1,16 +1,33 @@
-#content {
-    height: 100%;
-  padding-bottom: 10vh;
-  flex-direction: column;
-}
-.lead {
-  margin-top: 20px;
-}
-.select-companies-wrapper {
+.wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
+
+.wrapper div {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper h3, .wrapper h6 {
+  text-align: center;
+}
+
+.endpoints-wrapper {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-companies-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .select-companies.btn-group,
 .select-companies label.btn-primary,
 .create-endpoints button.btn {
@@ -73,4 +90,12 @@ ul.selected-list li .label span{
 }
 ul.selected-list li .label:hover span{
   font-weight: 700;
+}
+
+.select-companies label, .submit button {
+  width: 100%;
+}
+
+.period {
+  margin-top: 5vh;
 }

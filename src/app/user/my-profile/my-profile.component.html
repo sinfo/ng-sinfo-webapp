@@ -1,114 +1,37 @@
-<app-menu></app-menu>
-
 <app-loading [content]="user"></app-loading>
 
-<div class="user sidebar-wrapper" *ngIf="user">
+<div class="align-center" *ngIf="user">
+  <div class="row">
+    <h3 class="qr-code-title">
+      QR Code
+    </h3>
 
-  <app-sidebar [user]="user"></app-sidebar>
+    <h5 *ngIf="user.role === 'team'">
+      <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
+    </h5>
+  </div>
 
-  <div id="content" class="content container-fluid my-area-content">
-    <div class="align-center">
-      <div class="row">
-        <h3 class="qr-code-title">
-          QR Code
+  <div class="row qrcode-wrapper">
+
+    <div class="qrcode">
+      <qrcode [qrdata]="user.id" [level]="'M'"></qrcode>
+      <h3 class="name">
+        {{user.name}}
+      </h3>
+      <h5 *ngIf="user.role === 'company' && company" class="name">
+        {{company.name}}
+      </h5>
+
+      <div *ngIf="presentationRole" class="role">
+        <h3>
+          {{presentationRole}}
         </h3>
-
-        <h5 *ngIf="user.role === 'team'">
-          <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
-        </h5>
       </div>
-
-      <div class="row qrcode-wrapper">
-
-        <div class="qrcode">
-          <qrcode [qrdata]="user.id" [level]="'M'"></qrcode>
-          <h3 class="name">
-            {{user.name}}
-          </h3>
-          <h5 *ngIf="user.role === 'company' && company" class="name">
-            {{company.name}}
-          </h5>
-
-          <div *ngIf="presentationRole" class="role">
-            <h3>
-              {{presentationRole}}
-            </h3>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <h5 class="show-message">
-          Show this QR Code to a SINFO member!
-        </h5>
-      </div>
-
-      <!--div class="row" *ngIf="user.role !== 'company'">
-        <div class="col-sm-12 align-center">
-          <div *ngIf="submitedCV" class="alert-message cv-alert">
-            <div class="alert alert-success" role="alert">
-              Your CV has already been submitted
-            </div>
-          </div>
-
-          <div *ngIf="!submitedCV" class="alert-message cv-alert">
-            <div class="alert alert-info" role="alert">
-              You have not yet submitted your CV
-            </div>
-          </div>
-
-          <a *ngIf="submitedCV" href="{{ cvDownloadUrl }}" target="_blank" class="btn btn-info">
-            <span class="glyphicon glyphicon-cloud-download"></span>
-            Download your CV
-          </a>
-
-          <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
-          <label class="btn" [ngClass]="{'btn-success': submitedCV, 'btn-info': !submitedCV}" for="file">
-            <span class="glyphicon glyphicon-cloud-upload"></span>
-            {{ submitedCV ? 'Update' : 'Upload' }} your CV
-          </label>
-
-          <button *ngIf="submitedCV" class="btn" id="deleteFile" (click)="deleteCV()">
-            <span class="glyphicon glyphicon-remove"></span>
-            Delete your CV
-          </button>
-
-        </div>
-      </div>
-
-      <div class="row" *ngIf="user.area && user.role !== 'company' ">
-        <h5>Area </h5>
-        <p>{{user.area}}</p>
-      </div>
-
-      <div class="row" *ngIf="user.skills.length && user.role !== 'company'">
-        <h5>Skills </h5>
-        <p>{{user.skills.join(', ')}}</p>
-      </div>
-
-      <div class="row" *ngIf="redeemCodes && redeemCodes.length > 0 && user.role !== 'company'">
-        <div class="col-sm-12 align-center">
-          <div class="alert-message cv-alert">
-            <div class="alert alert-info" role="alert">
-              You have pending surveys. Fill the surveys to obtain the achievements.
-
-              <div class="mini-achivements">
-                <span *ngFor="let redeemCode of redeemCodes">
-                  <img class="mini-achievement" routerLink="/survey/{{redeemCode.id}}" src="{{redeemCode.achievement.img}}" alt="{{redeemCode.achievement.name}}"
-                    title="{{redeemCode.achievement.name}}">
-                </span>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row" *ngIf="achievements && achievements.length > 0  && user.role !== 'company'">
-        <h5>Achievements earned </h5>
-        <div class="achivements-wrapper">
-          <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}" *ngFor="let achievement of achievements">
-        </div>
-      </div-->
     </div>
+  </div>
+  <div class="row">
+    <h5 class="show-message">
+      Show this QR Code to a SINFO member!
+    </h5>
   </div>
 </div>

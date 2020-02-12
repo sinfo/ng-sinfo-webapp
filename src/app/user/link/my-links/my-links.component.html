@@ -1,63 +1,53 @@
-<app-menu></app-menu>
-
 <app-loading [content]="me && company"></app-loading>
 
-<div class="sidebar-wrapper" *ngIf="me && company">
+<div class="wrapper" *ngIf="me && company">
+  <div *ngIf="company">
+    <div class="wrapper">
+      <h3>{{company.name}}</h3>
+      <h6>Links</h6>
+    </div>
+  </div>
 
-  <app-sidebar [user]="me"></app-sidebar>
-
-  <div class="container container-fluid my-area-content">
-    <div class="align-center">
-
-      <div *ngIf="company" class="row">
-        <div class="col-sm-12">
-          <h3>{{company.name}}</h3>
-          <h6>Links</h6>
-        </div>
+  <div *ngIf="company" class="row">
+    <div class="col-sm-12">
+      <div class="portrait-wrapper">
+        <img class="portrait" src="{{company.img}}">
       </div>
+    </div>
+  </div>
 
-      <div *ngIf="company" class="row">
-        <div class="col-sm-12">
-          <div class="portrait-wrapper">
-            <img class="portrait" src="{{company.img}}">
-          </div>
-        </div>
-      </div>
+  <div *ngIf="!processedLinks" class="row">
+    <div class="col-sm-12">
+      <h6 class="lead">
+        Looks like you have not made any links yet.
+        <br> You can link with attendees
+        <a routerLink="/links/link">here</a>.
+      </h6>
+    </div>
+  </div>
 
-      <div *ngIf="!processedLinks" class="row">
-        <div class="col-sm-12">
-          <h6 class="lead">
-            Looks like you have not made any links yet.
-            <br> You can link with attendees
-            <a routerLink="/links/link">here</a>.
-          </h6>
-        </div>
-      </div>
+  <div id="links" *ngIf="company && processedLinks">
 
-      <div id="links" *ngIf="company && processedLinks">
+    <div *ngFor="let link of processedLinks" class="link">
 
-          <div *ngFor="let link of processedLinks" class="link">
-              
-            <h6>{{link.attendee.name}}</h6>
-            
-            <div class="link-note">
-              <p>
-                <span class="panel-content-strong">Company employee: </span>
-                {{link.user.name}}
-              </p>
-              <p>
-                <span class="panel-content-strong">Note: </span>
-                {{link.note}}
-              </p>
-              <p class="lead small tip">
-                Tip: To edit this link's note rescan the QR code
-              </p>
-            </div>
+      <h6>{{link.attendee.name}}</h6>
 
-          </div>
-
+      <div class="link-note">
+        <p>
+          <span class="panel-content-strong">Company employee: </span>
+          {{link.user.name}}
+        </p>
+        <p>
+          <span class="panel-content-strong">Note: </span>
+          {{link.note}}
+        </p>
+        <p class="lead small tip">
+          Tip: To edit this link's note rescan the QR code
+        </p>
       </div>
 
     </div>
+
   </div>
+
 </div>

@@ -1,0 +1,36 @@
+<div class="align-center">
+  <div class="row">
+    <div class="col-sm-12 align-center">
+      <h3>Pick Winner</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 align-center">
+      <div *ngIf="!achievements && achievements.length === 0">
+        No sessions yet
+      </div>
+
+      <div *ngIf="achievements && achievements.length > 0 && !achievement" class="btn-group-vertical">
+        <button *ngFor="let element of achievements" (click)=showUsers(element.achievement) type="button"
+          class="btn btn-secondary">{{element.name}}</button>
+      </div>
+
+      <div *ngIf="achievement && users.length > 0 && !winner">
+        <div *ngFor="let user of users">{{user.name}}</div>
+        <button (click)=chooseWinner() type="button" class="btn btn-secondary">Pick Winner</button>
+        <button (click)=changeSession() type="button" class="btn btn-secondary">Change Session</button>
+      </div>
+
+      <div *ngIf="winner">
+        <div class="portrait-wrapper">
+          <img class="portrait" src="{{winner.img}}"
+            onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+          <p>{{winner.name}}</p>
+          <button (click)=chooseWinner() type="button" class="btn btn-secondary">Reroll</button>
+          <button (click)=changeSession() type="button" class="btn btn-secondary">Change Session</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

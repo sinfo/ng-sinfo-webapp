@@ -1,9 +1,29 @@
+.wrapper {
+  margin-top: 10vh;
+}
+
+.sponsors {
+  padding: 0 4vw 0 4vw;
+}
+
+.title {
+  text-align: center;
+}
+
 div.sponsors {
   display: flex;
   justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
 }
+
+.sponsor {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap; 
+}
+
 div.sponsor.diamond {
   width: 300px;
   margin: 0 auto;
