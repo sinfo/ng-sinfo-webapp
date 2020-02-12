@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core'
 import { Router, Params, RouterStateSnapshot } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
-import { SessionService } from '../session.service'
-import { Session } from '../session.model'
-import { UserService } from '../../user/user.service'
-import { User } from '../../user/user.model'
+import { SessionService } from '../../session/session.service'
+import { Session } from '../../session/session.model'
+import { UserService } from '../user.service'
+import { User } from '../user.model'
 import { AuthService } from '../../auth/auth.service'
 import { EventService } from '../../events/event.service'
 
@@ -24,7 +24,7 @@ export class WorkshopsStatusComponent implements OnInit {
   }>
   user: User
 
-  constructor (
+  constructor(
     private sessionService: SessionService,
     private userService: UserService,
     private authService: AuthService,
@@ -35,7 +35,7 @@ export class WorkshopsStatusComponent implements OnInit {
     this.snapshot = router.routerState.snapshot
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Workshop Status')
     })

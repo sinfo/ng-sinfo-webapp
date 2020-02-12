@@ -3,10 +3,10 @@ import { Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
 import { ScoreboardService } from './scoreboard.service'
-import { User } from '../user/user.model'
-import { AuthService } from '../auth/auth.service'
-import { UserService } from '../user/user.service'
-import { EventService } from '../events/event.service'
+import { User } from '../user.model'
+import { AuthService } from '../../auth/auth.service'
+import { UserService } from '../user.service'
+import { EventService } from '../../events/event.service'
 
 @Component({
   selector: 'app-scoreboard',
@@ -21,7 +21,7 @@ export class ScoreboardComponent implements OnInit {
   days: Date[] = []
   isScoreboardEmpty: boolean
 
-  constructor (
+  constructor(
     private scoreboardService: ScoreboardService,
     private authService: AuthService,
     private userService: UserService,
@@ -30,7 +30,7 @@ export class ScoreboardComponent implements OnInit {
     private eventService: EventService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Scoreboard')
       let dayLength = 1000 * 60 * 60 * 24 // A day worth of miliseconds
@@ -39,7 +39,7 @@ export class ScoreboardComponent implements OnInit {
       this.begin.setMinutes(59)
       this.begin.setSeconds(59)
       this.begin.setMilliseconds(999)
-      for (let day = this.begin.getTime() ; day < this.current.getTime() ; day += dayLength) {
+      for (let day = this.begin.getTime(); day < this.current.getTime(); day += dayLength) {
         let temp = new Date(day)
         this.days.push(temp)
       }
@@ -66,19 +66,19 @@ export class ScoreboardComponent implements OnInit {
     })
   }
 
-  isCurrentUser (id: string): boolean {
+  isCurrentUser(id: string): boolean {
     return this.currentUser && this.currentUser.id === id
   }
 
-  isUserInTop20 (): boolean {
+  isUserInTop20(): boolean {
     return this.scoreboard.filter(user => user.id === this.currentUser.id).length === 1
   }
 
-  redirectToUser (id: string): void {
+  redirectToUser(id: string): void {
     this.router.navigate(['/user', id])
   }
 
-  setScoreboard (date: string) {
+  setScoreboard(date: string) {
     this.scoreboardService.getUsersPoints(date).subscribe(users => {
       // Find current user with user.points format
       let user = users.find((a) => {
@@ -94,7 +94,7 @@ export class ScoreboardComponent implements OnInit {
     })
   }
 
-  getDay (day: Date): number {
+  getDay(day: Date): number {
     let diff = day.getTime() - this.begin.getTime()
     return diff / (1000 * 60 * 60 * 24) + 1
   }

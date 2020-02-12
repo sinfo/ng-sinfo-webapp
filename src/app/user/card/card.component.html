@@ -3,38 +3,29 @@
 <app-loading [content]="signatures"></app-loading>
 
 <div class="wrapper" *ngIf="signatures && signatures.companies">
-
-  <app-sidebar [user]="user"></app-sidebar>
-
-  <div id="content" class="content container-fluid my-area-content">
-    <div class="align-center">
-      <div class="row">
-        <div class="col-sm-12">
-          <h3 class="name">
-            {{signatures.day | date:'EEEE':'+0000'}}'s card
-          </h3>
-          <h6 *ngIf="signatures.redeemed" class="lead">
-            Already redeemed your prize.
-            <br> Come back tomorrow for more prizes
-          </h6>
+  <div class="row">
+    <h3 class="title">
+      {{signatures.day | date:'EEEE':'+0000'}}'s card
+    </h3>
+    <h6 *ngIf="signatures.redeemed" class="title">
+      Already redeemed your prize.
+      <br> Come back tomorrow for more prizes
+    </h6>
+    <div *ngIf="!signatures.redeemed" class="title">
+      <h5 [ngClass]="{allSignatures: signatures.companies.length === signatures.capacity}">
+        {{signatures.companies.length}}/{{signatures.capacity}}
+        <i *ngIf="signatures.companies.length === signatures.capacity" class="fa fa-check"></i>
+      </h5>
+    </div>
+  </div>
+  <div *ngIf="!signatures.redeemed" class="row">
+    <div class="col-sm-12">
+      <div class="signatures">
+        <div class="card-portrait-wrapper" *ngFor="let company of signatures.companies">
+          <img class="portrait" src="{{company.img}}">
         </div>
-        <div *ngIf="!signatures.redeemed" class="col-sm-12">
-          <h5 [ngClass]="{allSignatures: signatures.companies.length === signatures.capacity}">
-            {{signatures.companies.length}}/{{signatures.capacity}}
-            <i *ngIf="signatures.companies.length === signatures.capacity" class="fa fa-check"></i>
-          </h5>
-        </div>
-      </div>
-      <div *ngIf="!signatures.redeemed" class="row">
-        <div class="col-sm-12">
-          <div class="signatures">
-            <div class="card-portrait-wrapper" *ngFor="let company of signatures.companies">
-              <img class="portrait" src="{{company.img}}">
-            </div>
-            <div class="card-portrait-wrapper missing"
-              *ngFor="let missing of getArray(signatures.capacity - signatures.companies.length)">
-            </div>
-          </div>
+        <div class="card-portrait-wrapper missing"
+          *ngFor="let missing of getArray(signatures.capacity - signatures.companies.length)">
         </div>
       </div>
     </div>

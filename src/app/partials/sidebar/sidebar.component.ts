@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
 
   @Input() user: User
   eventOcurring: Boolean
-  // @Input() showSidebar = true
+
   url: String
   private snapshot: RouterStateSnapshot
   isCvUpdated: Boolean = true
@@ -32,10 +32,7 @@ export class SidebarComponent implements OnInit {
     this.eventService.getCurrent().subscribe(event => this.eventOcurring = event.isOcurring)
     this.url = this.snapshot.url.toString()
 
-    if (this.authService.isLoggedIn()) {
-      this.userService.getMe().subscribe(user => {
-        this.user = user
-      })
+    if (this.user) {
       this.userService.isCvUpdated().subscribe(isCvUpdated => this.isCvUpdated = isCvUpdated, () => {
         this.isCvUpdated = false
       })
@@ -45,12 +42,6 @@ export class SidebarComponent implements OnInit {
   detectLocation (location: string): boolean {
     return this.url.indexOf(location) !== -1
   }
-
-  /*showOrHideBar () {
-    if (window.innerWidth > 975) {
-      this.showSidebar = true
-    }
-  }*/
 
   onLogout (): void {
     this.authService.logout()

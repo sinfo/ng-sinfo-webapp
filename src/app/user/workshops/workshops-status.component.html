@@ -1,0 +1,22 @@
+<app-menu></app-menu>
+
+<app-loading [content]="workshops"></app-loading>
+
+<div class="workshop-wrapper" *ngIf="workshops">
+
+  <div class="row align-center">
+    <h3 class="title">Workshops Status</h3>
+    <h6 class="lead">
+      You are awesome because you belong to the SINFO team.
+      <br> This page is cool. It allows you to see how many tickets are left.
+    </h6>
+  </div>
+
+  <div class="row" *ngFor="let workshops of _workshops">
+    <div class="col-sm-12" *ngIf="workshops.date">
+      <h4 class="weekDay">{{workshops.date | date:'EEEE':'+0000'}}</h4>
+    </div>
+    <app-workshop-status-element *ngFor="let workshop of workshops.workshops" [user]="user" [workshop]="workshop">
+    </app-workshop-status-element>
+  </div>
+</div>
