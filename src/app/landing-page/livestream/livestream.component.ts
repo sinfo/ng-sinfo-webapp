@@ -18,7 +18,7 @@ export class LivestreamComponent implements OnInit {
     this.liveStreamService.getLivestreamInformation().subscribe(
       data => {
         if (data["url"])
-          window.location.href = data["url"];
+          window.open(data["url"], "_blank");
       }
     );
   }
