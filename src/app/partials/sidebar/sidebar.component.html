@@ -111,6 +111,12 @@
           My card
         </a>
       </li>
+      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/user/partners')}">
+        <a routerLink="/user/partners">
+          <img src="assets/img/icons/sidebar/discount-coupon-white.png">
+          Promo Codes
+        </a>
+      </li>
       <li *ngIf="user && user.role == 'team'" [ngClass]="{'active': detectLocation('/user/validate-card')}">
         <a routerLink="/user/validate-card">
           <i class="glyphicon glyphicon-search"></i>

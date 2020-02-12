@@ -24,14 +24,14 @@ export class SponsorsComponent implements OnInit, OnChanges {
   showAll = false
   isAllSponsors = false
 
-  constructor (
+  constructor(
     private router: Router,
     private titleService: Title,
     private sponsorService: SponsorService,
     private eventService: EventService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     /**
      * Check if this component is being initited from main page (/)
      * or sponsors page (/sponsors)
@@ -49,13 +49,13 @@ export class SponsorsComponent implements OnInit, OnChanges {
     this.getSponsors()
   }
 
-  ngOnChanges () {
+  ngOnChanges() {
     this.getSponsors()
     this.showAll = this.router.url !== '/'
     this.isAllSponsors = this.router.url === '/sponsors'
   }
 
-  getSponsors (): void {
+  getSponsors(): void {
     if (this.eventId) {
       this.sponsorService.getSponsors(this.eventId)
         .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
@@ -67,7 +67,7 @@ export class SponsorsComponent implements OnInit, OnChanges {
     }
   }
 
-  displaySponsors (sponsors: Sponsor[]): Sponsor[] {
+  displaySponsors(sponsors: Sponsor[]): Sponsor[] {
     this.diamond = null
     this.platinums = []
     this.golds = []

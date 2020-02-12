@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         appId: environment.facebook.appId,
         cookie: false,
         xfbml: true,
-        version: 'v2.12'
+        version: 'v5.0'
       })
     }
   }

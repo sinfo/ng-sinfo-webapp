@@ -1,4 +1,3 @@
-
 <div class="content">
   <section id="hero" class="hero-section light-text">
     <div class="video-bg">
@@ -42,7 +41,7 @@
             <span class="fa fa-map-marker base-clr-txt" style="margin-left: 14px;"></span>
             Técnico, Lisbon
           </span>
-  
+
           <span *ngIf="begin && end">
             <br class="visible-xs">
             <span class="fa fa-calendar-o base-clr-txt"></span>
@@ -60,50 +59,51 @@
       </a>
     </div>
   </section>
-  
+
   <app-menu></app-menu>
-  
+
   <app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
-  
+
   <app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
-  
+
   <app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
-  
+
   <!-- STANDS -->
-  
+
   <section id="upload-cv" class="section bg-cover overlay newsletterbg light-text align-center">
     <div class="container">
       <h2>
         <span class="highlight">Upload your CV</span> now!
       </h2>
-      <h6 class="lead">Are you new to the job market? Or maybe looking for a new challenge? Well, send us your curriculum
+      <h6 class="lead">Are you new to the job market? Or maybe looking for a new challenge? Well, send us your
+        curriculum
         vitae and every company present at SINFO will receive it!</h6>
-  
+
       <a routerLink="/cv" class="btn btn btn-md">
         Upload here
       </a>
     </div>
   </section>
-  
+
   <app-team *ngIf="eventId" [eventId]="eventId"></app-team>
-  
+
   <section id="newsletter" class="section bg-cover overlay newsletterbg light-text align-center">
     <div class="container">
       <h2>
         <span class="highlight">Newsletter</span> Sign Up
       </h2>
-  
+
       <h6 class="lead">Be the first to receive the latest updates from SINFO!</h6>
-  
+
       <a class="btn btn btn-md"
         href="https://sinfo.us8.list-manage.com/subscribe?u=de57247db0922adf365af7eef&id=107b5bbe53"
         target="_blank">Subscribe</a>
-  
+
     </div>
   </section>
-  
+
   <app-sponsors *ngIf="eventId" [eventId]="eventId"></app-sponsors>
-  
+
   <!-- <section id="about" class="section align-center">
     <div class="container">
   
@@ -206,8 +206,8 @@
       </div>
     </div>
   </section> -->
-  
-  
+
+
   <!-- <section id="sponsors-program" class="section bg-cover overlay newsletterbg light-text align-center">
     <div class="container">
       <h2>
@@ -217,9 +217,9 @@
       <a class="btn btn btn-md" href="mailto:geral@sinfo.org">Contact us</a>
     </div>
   </section> -->
-  
+
   <!-- <app-feedback></app-feedback> -->
-  
+
 </div>
 
 <app-footer></app-footer>
