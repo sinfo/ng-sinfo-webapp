@@ -67,8 +67,4 @@ export class CardComponent implements OnInit {
     return Array(n)
   }
 
-  refreshPage() {
-    location.reload();
-  }
-
 }
