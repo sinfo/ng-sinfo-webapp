@@ -2667,6 +2667,7 @@ small {
   display: inline-block;
   font-size: 13px;
 }
+
 a {
   -webkit-transition: color 0.2s ease;
   -moz-transition: color 0.2s ease;
@@ -3274,10 +3275,6 @@ div.intro i.fa-chevron-down:hover {
 
 .list {
   padding: 5px 0;
-}
-
-.list>li {
-  margin: 15px 0;
 }
 
 .list>li .icon:first-child,
@@ -8109,9 +8106,10 @@ div.clear input.btn:hover {
 }
 
 /* manage-downloads end */
-html, body {
+html,
+body {
   position: relative;
-  
+
   padding: 0 !important;
   margin: 0 !important;
 
