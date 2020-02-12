@@ -8,9 +8,9 @@ import { environment } from './../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 import { AuthService } from '../../auth/auth.service'
-import { Achievement } from '../../achievements/achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 import { SurveyService } from '../survey/survey.service'
-import { AchievementService } from '../../achievements/achievement.service'
+import { AchievementService } from '../achievements/achievement.service'
 import { EventService } from '../../events/event.service'
 
 @Component({

@@ -5,8 +5,8 @@ import { Title } from '@angular/platform-browser'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { SessionService } from '../../session/session.service'
-import { AchievementService } from '../../achievements/achievement.service'
-import { Achievement } from '../../achievements/achievement.model'
+import { AchievementService } from '../achievements/achievement.service'
+import { Achievement } from '../achievements/achievement.model'
 import { EventService } from '../../events/event.service'
 
 @Component({

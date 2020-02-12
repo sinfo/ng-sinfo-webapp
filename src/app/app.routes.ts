@@ -16,8 +16,8 @@ import { IsTeamGuard } from './auth/is-team.guard'
 import { UserComponent } from './user/user.component'
 import { LinkComponent } from './user/link/link.component'
 import { PromoteComponent } from './user/promote/promote.component'
-import { AchievementsComponent } from './achievements/achievements.component'
-import { AchievementComponent } from './achievements/achievement/achievement.component'
+import { AchievementsComponent } from './user/achievements/achievements.component'
+import { AchievementComponent } from './user/achievements/achievement/achievement.component'
 import { SessionComponent } from './session/session.component'
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
@@ -26,7 +26,7 @@ import { CardComponent } from './user/card/card.component'
 import { WorkshopsComponent } from './user/workshops/workshops.component'
 import { WorkshopsStatusComponent } from './user/workshops/workshops-status.component'
 import { SurveyComponent } from './user/survey/survey.component'
-import { ScoreboardComponent } from './scoreboard/scoreboard.component'
+import { ScoreboardComponent } from './user/scoreboard/scoreboard.component'
 import { CheckinComponent } from './user/checkin/checkin.component'
 import { ValidateCardComponent } from './user/validate-card/validate-card.component'
 import { DownloadsComponent } from './user/downloads/downloads.component'
@@ -39,21 +39,14 @@ import { RedeemComponent } from './user/redeem/redeem.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'signature', component: SignatureComponent, canActivate: [AuthGuard] },
-  { path: 'card', component: CardComponent, canActivate: [AuthGuard] },
-  { path: 'validate-card', component: ValidateCardComponent, canActivate: [AuthGuard] },
-  { path: 'achievements', component: AchievementsComponent },
-  { path: 'redeem', component: RedeemComponent },
-  { path: 'survey/:redeemCode', component: SurveyComponent, canActivate: [AuthGuard] },
-  { path: 'achievement/:id', component: AchievementComponent },
+
   { path: 'live', component: LiveComponent },
-  { path: 'promote', component: PromoteComponent, canActivate: [AuthGuard] },
+
   { path: 'login', component: LoginComponent },
   { path: 'login/linkedIn', component: LinkedInLoginComponent },
+
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
-  { path: 'sponsors', component: SponsorsComponent },
-  { path: 'scoreboard', component: ScoreboardComponent },
 
   /* user homepage */
   {
@@ -76,6 +69,19 @@ const routes: Routes = [
       { path: 'downloads/download', component: DownloadsComponent, canActivate: [AuthGuard] },
       { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [AuthGuard] },
       { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [AuthGuard] },
+
+      { path: 'achievements', component: AchievementsComponent },
+      { path: 'achievement/:id', component: AchievementComponent },
+
+      { path: 'redeem', component: RedeemComponent },
+      { path: 'scoreboard', component: ScoreboardComponent },
+
+      { path: 'card', component: CardComponent, canActivate: [AuthGuard] },
+      { path: 'validate-card', component: ValidateCardComponent, canActivate: [AuthGuard] },
+
+      { path: 'promote', component: PromoteComponent, canActivate: [IsTeamGuard] },
+      { path: 'signature', component: SignatureComponent, canActivate: [AuthGuard] },
+      { path: 'sponsors', component: SponsorsComponent },
     ]
   },
 

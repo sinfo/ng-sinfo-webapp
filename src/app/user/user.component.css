@@ -1,13 +1,13 @@
 #profile-content {
     position: absolute;
 
-    height: 90vh;
+    height: 87vh;
     top: 10vh;
 
     width: 73vw;
     left: 25vw;
 
-    margin: 5vh 1vw 0 1vw;
+    margin: 3vh 1vw 0 1vw;
 
     overflow-y: scroll;
     overflow-x: hidden;
