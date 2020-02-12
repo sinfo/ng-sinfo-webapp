@@ -2,11 +2,10 @@
 
 <app-loading [content]="sponsors"></app-loading>
 
-<section *ngIf="sponsors && sponsors.length > 0" id="sponsors" class="section align-center">
-
-  <div class="container">
+<div *ngIf="sponsors && sponsors.length > 0" class="wrapper">
+  <div class="sponsors">
     <span class="icon section-icon icon-documents-bookmarks-12"></span>
-    <h2>Sponsors</h2>
+    <h2 class="title">Sponsors</h2>
     <br />
 
     <app-loading [content]="sponsors"></app-loading>
@@ -14,7 +13,8 @@
     <div *ngIf="sponsors">
 
       <div class="sponsor diamond" *ngIf="diamond">
-        <img appImage [src]="diamond.img" alt="{{ diamond.name }}" title="{{ diamond.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+        <img appImage [src]="diamond.img" alt="{{ diamond.name }}" title="{{ diamond.name }}"
+          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
       </div>
 
       <hr>
@@ -22,7 +22,8 @@
       <div class="row" *ngIf="platinums.length">
         <div class="sponsors platinum">
           <div class="sponsor" *ngFor="let platinum of platinums">
-            <img appImage [src]="platinum.img" alt="{{ platinum.name }}" title="{{ platinum.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+            <img appImage [src]="platinum.img" alt="{{ platinum.name }}" title="{{ platinum.name }}"
+              onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
           </div>
         </div>
       </div>
@@ -33,7 +34,8 @@
         <div class="row" *ngIf="golds.length">
           <div class="sponsors gold">
             <div class="sponsor" *ngFor="let gold of golds">
-              <img appImage [src]="gold.img" alt="{{ gold.name }}" title="{{ gold.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+              <img appImage [src]="gold.img" alt="{{ gold.name }}" title="{{ gold.name }}"
+                onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
             </div>
           </div>
         </div>
@@ -43,7 +45,8 @@
         <div class="row" *ngIf="silvers.length">
           <div class="sponsors silver">
             <div class="sponsor" *ngFor="let silver of silvers">
-              <img appImage [src]="silver.img" alt="{{ silver.name }}" title="{{ silver.name }}" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+              <img appImage [src]="silver.img" alt="{{ silver.name }}" title="{{ silver.name }}"
+                onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
             </div>
           </div>
         </div>
@@ -65,15 +68,14 @@
     </div>
 
   </div>
-</section>
 
-<section *ngIf="!sponsors || sponsors.length == 0" id="sponsors" class="section align-center">
+  <div *ngIf="!sponsors || sponsors.length == 0" class="sponsors">
 
-  <div class="container">
-    <span class="icon section-icon icon-documents-bookmarks-12"></span>
-    <h3>We are still looking for sponsors for our next edition!</h3>
-    <h5>If you want to participate, contact us through <a href="mailto:geral@sinfo.org">geral@sinfo.org</a></h5>
-    <br />
+    <div class="container">
+      <span class="icon section-icon icon-documents-bookmarks-12"></span>
+      <h3>We are still looking for sponsors for our next edition!</h3>
+      <h5>If you want to participate, contact us through <a href="mailto:geral@sinfo.org">geral@sinfo.org</a></h5>
+      <br />
+    </div>
   </div>
-
-</section>
+</div>

@@ -48,6 +48,8 @@ const routes: Routes = [
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
 
+  { path: 'sponsors', component: SponsorsComponent },
+
   /* user homepage */
   {
     path: 'user',
@@ -81,7 +83,6 @@ const routes: Routes = [
 
       { path: 'promote', component: PromoteComponent, canActivate: [IsTeamGuard] },
       { path: 'signature', component: SignatureComponent, canActivate: [AuthGuard] },
-      { path: 'sponsors', component: SponsorsComponent },
     ]
   },
 
