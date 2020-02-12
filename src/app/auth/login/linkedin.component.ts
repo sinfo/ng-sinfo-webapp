@@ -11,17 +11,17 @@ export class LinkedInLoginComponent implements OnInit {
   private isLoggedIn = false
   submitting = true
 
-  constructor (
+  constructor(
     private authService: AuthService,
     private route: ActivatedRoute,
     public router: Router
-  ) {}
+  ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn()
 
     if (this.isLoggedIn) {
-      this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
+      this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
       return
     }
 
@@ -33,10 +33,10 @@ export class LinkedInLoginComponent implements OnInit {
     })
   }
 
-  onLinkedInLogin (code) {
+  onLinkedInLogin(code) {
     this.authService.linkedIn(code).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
-      this.router.navigate([ `${this.authService.redirectUrl || '/qrcode'}` ])
+      this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
     })
   }
 }
