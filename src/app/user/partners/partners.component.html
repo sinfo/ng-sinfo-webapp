@@ -19,7 +19,7 @@
             <div class='code-description'>
               <span class='text-box'>{{p.description}}</span>
             </div>
-            <div class='card-text' (click)='copy($event, p.code)'>
+            <div class='card-text' (click)='copy($event, p.code)' *ngIf='p.code'>
               <span class='text-box'><b>{{p.code}}</b></span>
             </div>
             <div id='tooltip-{{p.code}}' class='tooltip' style='opacity: 0;'>Copied!</div>
