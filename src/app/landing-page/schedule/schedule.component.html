@@ -74,7 +74,7 @@
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" class="panel schedule-item">
 
                   <div class="lecture-icon-wrapper">
-                    <img src="{{session.img}}" alt="" class="img-responsive"
+                    <img appImage [src]="session.img" alt="" class="img-responsive"
                       onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                   </div>
 
