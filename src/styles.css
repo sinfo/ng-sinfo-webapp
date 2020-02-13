@@ -8120,3 +8120,7 @@ body {
   overflow-y: scroll;
   scrollbar-width: none;
 }
+
+body::-webkit-scrollbar {
+  width: 0px;
+}
