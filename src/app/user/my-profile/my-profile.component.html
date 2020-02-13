@@ -14,7 +14,10 @@
   <div class="row qrcode-wrapper">
 
     <div class="qrcode">
-      <qrcode class="qrcodeimg" [qrdata]="user.id" [level]="'M'"></qrcode>
+
+      <div class="qrcode-wrapper">
+        <qrcode class="qrcodeimg" [qrdata]="user.id" [level]="'M'"></qrcode>
+      </div>
 
       <h3 class="name">
         {{user.name}}
