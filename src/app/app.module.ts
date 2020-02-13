@@ -25,7 +25,7 @@ import { UserComponent } from './user/user.component'
 import { UserService } from './user/user.service'
 import { ScheduleComponent } from './landing-page/schedule/schedule.component'
 import { LoginComponent } from './auth/login/login.component'
-import { LinkedInLoginComponent } from './auth/login/linkedin.component'
+import { LinkedinLoginComponent } from './auth/login/linkedin.component'
 import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
 import { AuthGuard } from './auth/auth.guard'
@@ -97,7 +97,7 @@ import { ImageDirective } from './partials/image.directive'
     QrcodeScannerComponent,
     LoadingComponent,
     LoginComponent,
-    LinkedInLoginComponent,
+    LinkedinLoginComponent,
     MyProfileComponent,
     UserComponent,
     SessionComponent,

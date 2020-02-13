@@ -64,8 +64,8 @@ export const environment = {
     clientId: '1132965128044545',
     redirectUrl: 'https://sinfo.org/login'
   },
-  linkedIn: {
+  linkedin: {
     clientId: '78k3k77vq56igl',
-    redirectUrl: 'https://sinfo.org/login/linkedIn'
+    redirectUrl: 'https://sinfo.org/login/linkedin'
   }
 }
