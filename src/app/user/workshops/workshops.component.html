@@ -7,7 +7,7 @@
 
   <div class="row" *ngFor="let workshopsOfTheDay of myWorkshopsFrontend">
     <div class="col-sm-12" *ngIf="workshopsOfTheDay.date">
-      <h4 class="weekDay">{{workshopsOfTheDay.date | date:'EEEE':'+0000'}}</h4>
+      <h4 class="weekDay">{{workshopsOfTheDay.date | date:'EEEE'}}</h4>
     </div>
     <app-workshop *ngFor="let workshop of workshopsOfTheDay.workshops" [user]="user" [workshop]="workshop"
       (isReserved)="isReserved($event, workshop)"></app-workshop>
@@ -17,7 +17,7 @@
 
   <div class="row" *ngFor="let workshopsOfTheDay of allWorkshopsFrontend">
     <div class="col-sm-12" *ngIf="workshopsOfTheDay.date">
-      <h4 class="weekDay">{{workshopsOfTheDay.date | date:'EEEE':'+0000'}}</h4>
+      <h4 class="weekDay">{{workshopsOfTheDay.date | date:'EEEE'}}</h4>
     </div>
     <app-workshop *ngFor="let workshop of workshopsOfTheDay.workshops" [user]="user" [workshop]="workshop"
       (isReserved)="isReserved($event, workshop)"></app-workshop>

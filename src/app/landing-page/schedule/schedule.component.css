@@ -133,3 +133,7 @@
 .nav.nav-schedule.nav-day {
   z-index: 100;
 }
+
+#subtitle {
+  color:#008ae6;
+}
