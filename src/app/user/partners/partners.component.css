@@ -1,140 +1,143 @@
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
 }
 
-.wrapper h3, .wrapper h6, .text-box {
-    text-align: center;
+.wrapper h3,
+.wrapper h6,
+.text-box {
+  text-align: center;
 }
 
 .cards {
-    display: flex;
-    flex-flow: wrap;
-    justify-content: flex-start;
-    max-width: 66vw;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: flex-start;
+  max-width: 66vw;
 }
 
 .card-wrapper {
-    margin: 1vw;
-    width: 20vw;
-    perspective: 1000px;
+  margin: 1vw;
+  width: 20vw;
+  perspective: 1000px;
 }
 
-.card{
-    background: #2C49A6;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    padding: 5%;
+.card {
+  background: #2C49A6;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding: 5%;
 }
 
-.card-img-wrapper, .code-description{
-    background: white;
-    width: 100%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 5%;
-    border-radius: 15px;
-    display: flex;
-    flex-grow: 2;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.card-img-wrapper,
+.code-description {
+  background: white;
+  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  border-radius: 15px;
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.code-description{
-    color: black;
-    font-size: 2vw;
-    padding: 10% 5% 10% 5%;
+.code-description {
+  color: black;
+  font-size: 2vw;
+  padding: 10% 5% 10% 5%;
 }
 
-.card-img-wrapper{
-    height: 10vw;
+.card-img-wrapper {
+  height: 10vw;
 }
 
-.card-img{
-    max-width: 90%;
-    max-height: 75%;
+.card-img {
+  max-width: 90%;
+  max-height: 75%;
 }
 
-.tooltip{
-    width:40%;
-    background-color: black;
-    color: white;
+.tooltip {
+  width: 40%;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  font-size: 1vw;
+  transition: 0.1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.card-text {
+  width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-radius: 15px;
+  background: white;
+  font-size: 2vw;
+  color: black;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  padding: 5%;
+}
+
+.card-text:hover {
+  cursor: pointer;
+}
+
+.text-box {
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 765px) {
+  .card-wrapper {
+    width: 50vw;
+    margin: 5vw;
+  }
+
+  .card-img-wrapper,
+  .code-description {
+    height: 35vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-bottom: 1vh;
+  }
+
+  .code-description {
+    font-size: 4vw;
+  }
+
+  .card-text {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-size: 4vw;
     border-radius: 10px;
-    display: block;
-    position: absolute;
-    bottom: 0;
-    font-size: 1vw;
-    transition: 0.1s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1000;
-}
+  }
 
-.card-text{
-    width: 100%;
-    margin-left: 5%;
-    margin-right: 5%;
-    border-radius: 15px;
-    background: white;
-    font-size: 2vw;
-    color: black;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    padding: 5%;
-}
+  .cards {
+    max-width: 60vw;
+  }
 
-.card-text:hover{
-    cursor: pointer;
-}
-
-.text-box{
-    width: 100%;
-    overflow-wrap: break-word;
-}
-
-@media (max-width: 765px){
-    .card-wrapper{
-        width: 50vw;
-        margin: 5vw;
-    }
-
-    .card-img-wrapper, .code-description{
-        height: 35vw;
-        margin-left: 5vw;
-        margin-right: 5vw;
-        margin-bottom: 1vh;
-    }
-
-    .code-description{
-        font-size: 4vw;
-    }
-
-    .card-text{
-        margin-left: 5vw;
-        margin-right: 5vw;
-        font-size: 4vw;
-        border-radius: 10px;
-    }
-
-    .cards{
-        max-width: 60vw;
-    }
-
-    .tooltip{
-        height: 5vw;
-        font-size: 3vw;
-    }
+  .tooltip {
+    height: 5vw;
+    font-size: 3vw;
+  }
 }
