@@ -34,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of scoreboard" (click)="redirectToUser(user.id)"
+          <tr *ngFor="let user of scoreboard"
             [ngClass]="{'currentUser': isCurrentUser(user.id)}">
             <td class="position">{{ scoreboard.indexOf(user) + 1}}</td>
             <td class="user">
