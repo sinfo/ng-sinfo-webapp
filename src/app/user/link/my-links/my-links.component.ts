@@ -23,6 +23,7 @@ export class MyLinksComponent implements OnInit {
     attendee: User
     user: User
     note: Note
+    noteEmpty: boolean
   }>
   gotLinks: boolean
 
@@ -54,6 +55,7 @@ export class MyLinksComponent implements OnInit {
             .subscribe(links => {
               this.links = links
               links.forEach(link => this.processLink(link))
+              console.log(this.processedLinks)
             })
         })
     })
@@ -67,7 +69,13 @@ export class MyLinksComponent implements OnInit {
             this.processedLinks.push({
               attendee: attendee,
               user: user,
-              note: link.notes
+              note: link.notes,
+              noteEmpty: (!link.notes.contacts.email &&
+                !link.notes.contacts.phone &&
+                !link.notes.degree &&
+                !link.notes.availability &&
+                !link.notes.interestedIn &&
+                !link.notes.otherObservations)
             })
           })
       })

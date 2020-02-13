@@ -15,67 +15,89 @@
 
       <div *ngIf="userRead">
 
-        <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="email" class="form-control" placeholder="Attendee email">
-          </textarea>
+        <div *ngIf='!yesToLink'>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-button rescan" (click)="toLink()">
+                Link to {{company.name}}
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="phone" class="form-control" placeholder="Attendee phone number">
-          </textarea>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-button btn-danger" (click)="reScan()">
+                Cancel
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="interestedIn" class="form-control" placeholder="Attendee's interests">
-          </textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="degree" class="form-control" placeholder="Attendee's degree">
-          </textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="avaliability" class="form-control" placeholder="Attendee's avaliability">
-          </textarea>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="otherObservations" class="form-control"
-              placeholder="Insert your other observations here">
-          </textarea>
-          </div>
+
         </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <button type="button" class="btn btn-button" (click)="link()">
-              <span class="glyphicon glyphicon-link"></span> Link to {{company.name}}
-            </button>
+        <div *ngIf='yesToLink'>
+          <div class="row">
+            <div class="col-xs-12">
+              <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email">
+          </textarea>
+            </div>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12">
-            <button class="btn btn-button rescan" (click)="reScan()">
-              Rescan QrCode
-              <span class="glyphicon glyphicon-qrcode"></span>
-            </button>
+          <div class="row">
+            <div class="col-xs-12">
+              <textarea [(ngModel)]="notes.contacts.phone" class="form-control" placeholder="Attendee phone number">
+          </textarea>
+            </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <textarea [(ngModel)]="notes.interestedIn" class="form-control" placeholder="Attendee's interests">
+          </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <textarea [(ngModel)]="notes.degree" class="form-control" placeholder="Attendee's degree">
+          </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <textarea [(ngModel)]="notes.availability" class="form-control" placeholder="Attendee's avaliability">
+          </textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <textarea [(ngModel)]="notes.otherObservations" class="form-control"
+                placeholder="Insert your other observations here">
+          </textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <button routerLink="/links/my-links" type="button" class="btn btn-button" (click)="link()">
+                <span class="glyphicon glyphicon-link"></span> Link to {{company.name}}
+              </button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12">
+              <button class="btn btn-button rescan" (click)="reScan()">
+                Rescan QrCode
+                <span class="glyphicon glyphicon-qrcode"></span>
+              </button>
+            </div>
+          </div>
 
 
-        <div class="row" *ngIf="currentLink">
-          <div class="col-xs-12">
-            <button class="btn btn-button btn-danger" (click)="deleteLink()">
-              Remove Link
-            </button>
+          <div class="row" *ngIf="currentLink">
+            <div class="col-xs-12">
+              <button class="btn btn-button btn-danger" (click)="deleteLink()">
+                Remove Link
+              </button>
+            </div>
           </div>
         </div>
 

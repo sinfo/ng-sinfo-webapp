@@ -19,7 +19,7 @@ import { EventService } from '../../events/event.service'
 export class LinkComponent implements OnInit {
 
   scannerActive: boolean
-  title = 'Link'
+  title = 'Sign and Link'
   info: string
 
   userRead: User
@@ -27,6 +27,7 @@ export class LinkComponent implements OnInit {
   me: User
   currentLink: Link
   notes: Note
+  yesToLink: Boolean
 
 
   constructor(
@@ -41,6 +42,7 @@ export class LinkComponent implements OnInit {
 
   ngOnInit() {
     this.scannerActive = false
+    this.yesToLink = false
     this.notes = {
       contacts: {
         email: null,
@@ -48,7 +50,7 @@ export class LinkComponent implements OnInit {
       },
       interestedIn: null,
       otherObservations: null,
-      avaliability: null,
+      availability: null,
       degree: null
     }
     this.eventService.getCurrent().subscribe(event => {
@@ -73,13 +75,18 @@ export class LinkComponent implements OnInit {
     })
   }
 
+  toLink() {
+    this.yesToLink = true
+    this.info = `Linking ${this.userRead.name} with ${this.company.name}`
+  }
+
   reScan() {
     this.userRead = null
     this.scannerActive = true
   }
 
   updateInfo() {
-    this.info = `Linked with ${this.company.name}`
+    this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
   }
 
@@ -95,19 +102,21 @@ export class LinkComponent implements OnInit {
   }
 
   buildNotes(_link) {
+    console.log(_link)
     if (_link) {
-      console.log(_link)
-      this.notes.contacts = _link.contacts
-      this.notes.avaliability = _link.avaliability
-      this.notes.degree = _link.degree
-      this.notes.interestedIn = _link.interestedIn
-      this.notes.otherObservations = _link.otherObservations
+      this.notes.contacts.email = _link.notes.contacts.email
+      this.notes.contacts.phone = _link.notes.contacts.phone
+      this.notes.availability = _link.notes.availability
+      this.notes.degree = _link.notes.degree
+      this.notes.interestedIn = _link.notes.interestedIn
+      this.notes.otherObservations = _link.notes.otherObservations
+      return
     }
     this.notes.contacts.email = null
     this.notes.contacts.phone = null
     this.notes.interestedIn = null
     this.notes.degree = null
-    this.notes.avaliability = null
+    this.notes.availability = null
     this.notes.otherObservations = null
   }
 
@@ -142,7 +151,16 @@ export class LinkComponent implements OnInit {
       .subscribe(_link => {
         this.currentLink = null
         this.info = ''
-        this.notes = null
+        this.notes = {
+          contacts: {
+            email: null,
+            phone: null
+          },
+          interestedIn: null,
+          otherObservations: null,
+          availability: null,
+          degree: null
+        }
       })
   }
 

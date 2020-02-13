@@ -61,19 +61,20 @@ export class CompanyCannonService {
   }
 
   createLink(companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
+    console.log(note)
     return this.http.post<Link>(`${this.companiesUrl}/${companyId}/link`, {
       userId: userId,
       attendeeId: attendeeId,
       editionId: this.event.id,
       notes: {
         contacts: {
-          email: note.contacts.email,
-          phone: note.contacts.phone
+          email: note.contacts.email ? note.contacts.email : '',
+          phone: note.contacts.phone ? note.contacts.phone : ''
         },
-        avaliability: note.avaliability,
-        degree: note.degree,
-        interestedIn: note.interestedIn,
-        otherObservations: note.otherObservations
+        interestedIn: note.interestedIn ? note.interestedIn : '',
+        degree: note.degree ? note.degree : '',
+        availability: note.availability ? note.availability : '',
+        otherObservations: note.otherObservations ? note.otherObservations : ''
       }
     }, { headers: this.headers })
       .pipe(

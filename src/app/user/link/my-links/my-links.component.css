@@ -11,6 +11,20 @@
   justify-content: space-between;
 }
 
+.link-title{
+  align-self: center;
+  text-align: center;
+}
+
+.link-data{
+  word-break: break-all;
+}
+
+.link-section{
+  display: flex;
+  flex-direction: column;
+}
+
 .link-note p {
   padding-left: 10px;
   padding-right: 10px;

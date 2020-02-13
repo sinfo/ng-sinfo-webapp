@@ -5,7 +5,7 @@ export class Note {
   }
   interestedIn: String
   degree: String
-  avaliability: String
+  availability: String
   otherObservations: String
 }
 
