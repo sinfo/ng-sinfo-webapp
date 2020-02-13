@@ -7,6 +7,7 @@
           <i class="glyphicon glyphicon-qrcode"></i>
           Check-in
         </a>
+      </li>
       <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/user/pick-winner')}">
         <a routerLink="/user/pick-winner">
           <i class="glyphicon glyphicon-flag"></i>
@@ -53,26 +54,17 @@
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/user/signature')}">
-        <a routerLink="/user/signature">
+      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/user/links/link')}">
+        <a routerLink="/user/links/link">
           <i class="fa fa-check"></i>
-          Sign Card
+          Sign and Link Card
         </a>
       </li>
-      <li *ngIf="user && user.role === 'company'">
-        <a href="#linksSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/user/links') }}">
+      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/user/links/my-links')}">
+        <a routerLink="/user/links/my-links">
           <i class="glyphicon glyphicon-duplicate"></i>
-          Links
+          My links
         </a>
-        <ul class="collapse list-unstyled" id="linksSubmenu"
-          [ngClass]="{'in': detectLocation('/user/links'), 'collapse': !detectLocation('/user/links')}">
-          <li [ngClass]="{'active': detectLocation('/user/links/link')}">
-            <a routerLink="/user/links/link">Link</a>
-          </li>
-          <li [ngClass]="{'active': detectLocation('/user/links/my-links')}">
-            <a routerLink="/user/links/my-links">My Links</a>
-          </li>
-        </ul>
       </li>
       <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/user/workshops')}">
         <a routerLink="/user/workshops">

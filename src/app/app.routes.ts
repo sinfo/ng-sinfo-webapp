@@ -88,6 +88,7 @@ const routes: Routes = [
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'event/:id', component: EventComponent },
+  { path: 'partners', component: PartnersComponent },
   { path: '**', component: PageNotFoundComponent }
 ]
 

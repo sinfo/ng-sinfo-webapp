@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
-import { Link } from '../user/link/link.model'
+import { Link, Note } from '../user/link/link.model'
 import { environment } from '../../environments/environment'
 import { User } from '../user/user.model'
 import { EventService } from '../events/event.service'
@@ -19,7 +19,7 @@ export class CompanyCannonService {
     'Authorization': `Bearer ${this.authService.getToken().token}`
   })
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private authService: AuthService,
@@ -28,7 +28,7 @@ export class CompanyCannonService {
     this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
-  getLink (companyId: string, attendeeId: string): Observable<Link> {
+  getLink(companyId: string, attendeeId: string): Observable<Link> {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -44,7 +44,7 @@ export class CompanyCannonService {
       )
   }
 
-  getLinks (companyId: string): Observable<Link[]> {
+  getLinks(companyId: string): Observable<Link[]> {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -60,19 +60,28 @@ export class CompanyCannonService {
       )
   }
 
-  createLink (companyId: string, userId: string, attendeeId: string, note: string): Observable<Link> {
+  createLink(companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
     return this.http.post<Link>(`${this.companiesUrl}/${companyId}/link`, {
       userId: userId,
       attendeeId: attendeeId,
       editionId: this.event.id,
-      note: note || ' '
+      notes: {
+        contacts: {
+          email: note.contacts.email ? note.contacts.email : '',
+          phone: note.contacts.phone ? note.contacts.phone : ''
+        },
+        interestedIn: note.interestedIn ? note.interestedIn : '',
+        degree: note.degree ? note.degree : '',
+        availability: note.availability ? note.availability : '',
+        otherObservations: note.otherObservations ? note.otherObservations : ''
+      }
     }, { headers: this.headers })
       .pipe(
         catchError(this.handleError<Link>('createLink'))
       )
   }
 
-  updateLink (companyId: string, userId: string, attendeeId: string, note: string): Observable<Link> {
+  updateLink(companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -84,14 +93,14 @@ export class CompanyCannonService {
 
     return this.http.patch<Link>(`${this.companiesUrl}/${companyId}/link/${attendeeId}`, {
       userId: userId,
-      note: note
+      notes: note
     }, httpOptions)
       .pipe(
         catchError(this.handleError<Link>('updateLink'))
       )
   }
 
-  deleteLink (companyId: string, attendeeId: string) {
+  deleteLink(companyId: string, attendeeId: string) {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -107,7 +116,7 @@ export class CompanyCannonService {
       )
   }
 
-  sign (companyId: string, attendeeId: string): Observable<User> {
+  sign(companyId: string, attendeeId: string): Observable<User> {
     const httpOptions = {
       headers: this.headers
     }
@@ -117,7 +126,7 @@ export class CompanyCannonService {
       day: new Date().getDate().toString() // current day
     }, httpOptions)
       .pipe(
-      catchError(this.handleError<User>('sign'))
+        catchError(this.handleError<User>('sign'))
       )
   }
 
@@ -127,7 +136,7 @@ export class CompanyCannonService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     var msg = {
       origin: `UserService: ${operation}`,
       showAlert: false,
