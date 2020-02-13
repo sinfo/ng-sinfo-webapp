@@ -55,7 +55,6 @@ export class MyLinksComponent implements OnInit {
             .subscribe(links => {
               this.links = links
               links.forEach(link => this.processLink(link))
-              console.log(this.processedLinks)
             })
         })
     })

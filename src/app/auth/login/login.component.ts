@@ -125,11 +125,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.submitting = true
     this.authService.fenix(fenixCode).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
-<<<<<<< HEAD
-      this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
-=======
       this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
->>>>>>> c0170e2386444e2d88c94f9222f505829bebcb4f
     })
   }
 
@@ -143,11 +139,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.authService.google(userId, token)
         .subscribe(cannonToken => {
           this.authService.setToken(cannonToken)
-<<<<<<< HEAD
-          this.router.navigate([`${this.authService.redirectUrl || '/qrcode'}`])
-=======
           this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
->>>>>>> c0170e2386444e2d88c94f9222f505829bebcb4f
         })
     })
   }

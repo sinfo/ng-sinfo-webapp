@@ -61,7 +61,6 @@ export class CompanyCannonService {
   }
 
   createLink(companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
-    console.log(note)
     return this.http.post<Link>(`${this.companiesUrl}/${companyId}/link`, {
       userId: userId,
       attendeeId: attendeeId,

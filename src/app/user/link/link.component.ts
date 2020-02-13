@@ -102,7 +102,6 @@ export class LinkComponent implements OnInit {
   }
 
   buildNotes(_link) {
-    console.log(_link)
     if (_link) {
       this.notes.contacts.email = _link.notes.contacts.email
       this.notes.contacts.phone = _link.notes.contacts.phone
