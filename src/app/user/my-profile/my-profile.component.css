@@ -1,11 +1,3 @@
-.content {
-  margin-bottom: 30px;
-}
-
-.align-center {
-  width: 100%;
-}
-
 div.loading-wrapper {
   margin: 30px auto;
 }
@@ -182,4 +174,8 @@ div.achivements-wrapper img.achievement {
   div.mini-portrait-wrapper span.lead {
     font-size: 13px;
   }
+}
+
+.qrcodeimg {
+  display: inline-block;
 }

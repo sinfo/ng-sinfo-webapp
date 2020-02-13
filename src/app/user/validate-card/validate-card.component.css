@@ -1,7 +1,6 @@
-.align-center {
-  width: 100%;
-}
-.row button {
-  width: 95%;
-  margin: 5px auto;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

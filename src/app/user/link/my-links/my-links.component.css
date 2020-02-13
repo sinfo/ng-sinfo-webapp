@@ -1,3 +1,10 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .accord.row button {
   width: 90%;
   left: 5%;

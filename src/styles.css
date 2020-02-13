@@ -2667,6 +2667,7 @@ small {
   display: inline-block;
   font-size: 13px;
 }
+
 a {
   -webkit-transition: color 0.2s ease;
   -moz-transition: color 0.2s ease;
@@ -2860,14 +2861,6 @@ body {
 body>.container {
   padding-top: 65px;
 }
-
-.my-area-content {
-  margin-left: 100px;
-  margin-right: 0px !important;
-  width: calc(100% - 100px) !important;
-}
-
-
 
 img {
   max-width: 100%;
@@ -3282,10 +3275,6 @@ div.intro i.fa-chevron-down:hover {
 
 .list {
   padding: 5px 0;
-}
-
-.list>li {
-  margin: 15px 0;
 }
 
 .list>li .icon:first-child,
@@ -8117,3 +8106,21 @@ div.clear input.btn:hover {
 }
 
 /* manage-downloads end */
+html,
+body {
+  position: relative;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  height: 100vh;
+  width: 100vw;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
+}

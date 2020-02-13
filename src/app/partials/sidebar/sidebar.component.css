@@ -3,26 +3,36 @@
 }
 
 #sidebar {
-  width: 25%;
-  max-width: 25%;
-  background: #133157;
-  color: #fff;
-  transition: all 0.3s;
-  height: 100%;
-
   position: fixed;
   z-index: 1;
-  top: 75px;
+
+  width: 25vw;
+
+  background: #133157;
+  color: #fff;
+
+  transition: all 0.3s;
+
+  height: 90vh;
+  top: 10vh;
   bottom: 0;
+
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
-#sidebar ul{
+#sidebar ul {
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 /* remove scroll bar*/
-#sidebar ul::-webkit-scrollbar { 
+#sidebar ul::-webkit-scrollbar {
   display: none;
+}
+
+#sidebar::-webkit-scrollbar {
+  width: 0px;
 }
 
 #sidebar.active {
@@ -50,7 +60,7 @@
 }
 
 #sidebar.active ul li a i {
-  margin-right:  0;
+  margin-right: 0;
   display: block;
   font-size: 1.8em;
   margin-bottom: 5px;
@@ -60,7 +70,8 @@
   padding: 10px !important;
 }
 
-#sidebar.active a[aria-expanded="false"]::before, #sidebar.active a[aria-expanded="true"]::before {
+#sidebar.active a[aria-expanded="false"]::before,
+#sidebar.active a[aria-expanded="true"]::before {
   top: auto;
   bottom: 5px;
   right: 50%;
@@ -98,7 +109,8 @@
   margin-right: 10px;
 }
 
-#sidebar ul li a i, #sidebar ul li a img {
+#sidebar ul li a i,
+#sidebar ul li a img {
   max-height: 40px;
 }
 
@@ -110,22 +122,26 @@
   color: #fff;
   background: #2C49A6;
 }
+
 #sidebar ul li a:hover i.fa::before {
   color: #2C49A6;
 }
 
-#sidebar a[aria-expanded="true"] ~ ul{
+#sidebar a[aria-expanded="true"]~ul {
   background: #037ac9;
 }
-#sidebar a[aria-expanded="true"] ~ ul li a{
+
+#sidebar a[aria-expanded="true"]~ul li a {
   border-bottom: 1px solid #eeeeee29;
 }
+
 #sidebar li.active,
-#sidebar li.active + a {
+#sidebar li.active+a {
   background: #2C49A6 !important;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
   color: #fff;
   background: #2C49A6;
   font-weight: 600;
@@ -150,10 +166,19 @@ button#sidebarCollapse {
 button#sidebarCollapse i {
   font-weight: 800;
 }
-@keyframes jump { 
-  0% { right: -55px; } 
-  50% { right: -58px; } 
-  100% { right: -55px; } 
+
+@keyframes jump {
+  0% {
+    right: -55px;
+  }
+
+  50% {
+    right: -58px;
+  }
+
+  100% {
+    right: -55px;
+  }
 }
 
 
@@ -164,8 +189,8 @@ button#sidebarCollapse i {
   color: #999;
 }
 
-#sidebar a, 
-#sidebar a:hover, 
+#sidebar a,
+#sidebar a:hover,
 #sidebar a:focus {
   color: inherit;
   text-decoration: none;
@@ -187,7 +212,8 @@ button#sidebarCollapse i {
   border: none;
 }
 
-#sidebar i, #sidebar span {
+#sidebar i,
+#sidebar span {
   display: inline-block;
 }
 
@@ -195,7 +221,8 @@ a[data-toggle="collapse"] {
   position: relative;
 }
 
-a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+a[aria-expanded="false"]::before,
+a[aria-expanded="true"]::before {
   content: '\e259';
   display: block;
   position: absolute;
@@ -205,6 +232,7 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
   font-weight: 600;
   line-height: 11px;
 }
+
 a[aria-expanded="true"]::before {
   content: '\e260';
 }
@@ -219,9 +247,11 @@ ul ul a {
     min-width: 80px;
     max-width: 97px;
     text-align: center;
-    margin-left: -97px !important ;
+    margin-left: -97px !important;
   }
-  a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+
+  a[aria-expanded="false"]::before,
+  a[aria-expanded="true"]::before {
     top: auto;
     bottom: 5px;
     right: 50%;
@@ -229,11 +259,13 @@ ul ul a {
     -ms-transform: translateX(50%);
     transform: translateX(50%);
   }
+
   #sidebar.active {
     margin-left: 0 !important;
   }
 
-  #sidebar .sidebar-header h3, #sidebar .CTAs {
+  #sidebar .sidebar-header h3,
+  #sidebar .CTAs {
     display: none;
   }
 
@@ -248,8 +280,9 @@ ul ul a {
   #sidebar ul li a span {
     font-size: 0.85em;
   }
+
   #sidebar ul li a i {
-    margin-right:  0;
+    margin-right: 0;
     display: block;
   }
 
@@ -260,6 +293,7 @@ ul ul a {
   #sidebar ul li a i {
     font-size: 1.3em;
   }
+
   #sidebar ul li a img {
     width: 40px;
     height: 40px;
@@ -274,6 +308,6 @@ ul ul a {
   align-items: center !important;
 }
 
-.lastOne{
+.lastOne {
   height: 500px;
 }

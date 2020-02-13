@@ -1,5 +1,3 @@
-<app-menu></app-menu>
-
 <app-loading [content]="!submitting"></app-loading>
 
 <div class="wrapper">
@@ -74,8 +72,7 @@
 
             <div class="form-group">
               <label for="logisticsLocation">Location</label>
-              <select class="form-control" id="logisticsLocation" required
-                      name="logisticsLocation" ngModel>
+              <select class="form-control" id="logisticsLocation" required name="logisticsLocation" ngModel>
                 <option value="" selected disabled hidden>Choose one</option>
                 <option *ngFor="let location of [5, 4, 3, 2, 1]" [value]="location">{{location}}</option>
               </select>
@@ -83,17 +80,15 @@
 
             <div class="form-group">
               <label for="logisticsOrganization">Organization</label>
-              <select class="form-control" id="logisticsOrganization" required
-                      name="logisticsOrganization" ngModel>
+              <select class="form-control" id="logisticsOrganization" required name="logisticsOrganization" ngModel>
                 <option value="" selected disabled hidden>Choose one</option>
                 <option *ngFor="let organization of [5, 4, 3, 2, 1]" [value]="organization">{{organization}}</option>
               </select>
             </div>
 
-              <div class="form-group">
+            <div class="form-group">
               <label for="logisticsCommunication">Communication</label>
-              <select class="form-control" id="logisticsCommunication" required
-                      name="logisticsCommunication" ngModel>
+              <select class="form-control" id="logisticsCommunication" required name="logisticsCommunication" ngModel>
                 <option value="" selected disabled hidden>Choose one</option>
                 <option *ngFor="let communication of [5, 4, 3, 2, 1]" [value]="communication">{{communication}}</option>
               </select>
@@ -103,8 +98,7 @@
 
             <div class="form-group">
               <label for="sessionOrganization">Was well organized</label>
-              <select class="form-control" id="sessionOrganization" required
-                      name="sessionOrganization" ngModel>
+              <select class="form-control" id="sessionOrganization" required name="sessionOrganization" ngModel>
                 <option value="" selected disabled hidden>Choose one</option>
                 <option *ngFor="let organization of [5, 4, 3, 2, 1]" [value]="organization">{{organization}}</option>
               </select>
@@ -112,8 +106,7 @@
 
             <div class="form-group">
               <label for="sessionContent">The content was interesting</label>
-              <select class="form-control" id="sessionContent" required
-                      name="sessionContent" ngModel>
+              <select class="form-control" id="sessionContent" required name="sessionContent" ngModel>
                 <option value="" selected disabled hidden>Choose one</option>
                 <option *ngFor="let content of [5, 4, 3, 2, 1]" [value]="content">{{content}}</option>
               </select>
@@ -121,8 +114,7 @@
 
             <div class="form-group">
               <label for="sessionSpeaker">Would reccomend this speaker</label>
-              <select class="form-control" id="sessionSpeaker" required
-                      name="sessionSpeaker" ngModel>
+              <select class="form-control" id="sessionSpeaker" required name="sessionSpeaker" ngModel>
                 <option value="" selected disabled hidden>Choose one</option>
                 <option *ngFor="let speaker of [5, 4, 3, 2, 1]" [value]="speaker">{{speaker}}</option>
               </select>
@@ -130,8 +122,7 @@
 
             <div class="form-group">
               <label for="sessionDuration">The duration was adequated to the content</label>
-              <select class="form-control" id="sessionDuration" required
-                      name="sessionDuration" ngModel>
+              <select class="form-control" id="sessionDuration" required name="sessionDuration" ngModel>
                 <option value="" selected disabled hidden>Choose one</option>
                 <option *ngFor="let duration of [5, 4, 3, 2, 1]" [value]="duration">{{duration}}</option>
               </select>
@@ -139,8 +130,7 @@
 
             <div class="form-group">
               <label for="sessionRecommend">Would recommend this session to my friend</label>
-              <select class="form-control" id="sessionRecommend" required
-                      name="sessionRecommend" ngModel>
+              <select class="form-control" id="sessionRecommend" required name="sessionRecommend" ngModel>
                 <option value="" selected disabled hidden>Choose one</option>
                 <option *ngFor="let recommend of [5, 4, 3, 2, 1]" [value]="recommend">{{recommend}}</option>
               </select>
@@ -149,8 +139,7 @@
             <h3>Any suggestions to SINFO?</h3>
 
             <div class="form-group">
-              <textarea rows="4" cols="50" class="form-control" id="suggestions"
-                        name="suggestions" ngModel></textarea>
+              <textarea rows="4" cols="50" class="form-control" id="suggestions" name="suggestions" ngModel></textarea>
             </div>
 
             <div class="align-center">
@@ -163,7 +152,7 @@
     </div>
     <div [hidden]="!submitted">
 
-      <section *ngIf="achievement"  class="section achievement-section align-center">
+      <section *ngIf="achievement" class="section achievement-section align-center">
         <div class="container">
           <h3>You won an achievement!</h3>
           <img class="achievement" src="{{achievement.img}}" alt="{{achievement.name}}" title="{{achievement.name}}">
