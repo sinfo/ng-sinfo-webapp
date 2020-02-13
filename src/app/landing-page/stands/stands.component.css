@@ -24,18 +24,19 @@
 }
 
 .carousel-inner {
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 .carousel-inner img {
   background-color: white;
   max-height: 80vh;
   width: auto;
+  display: inline-block;
 }
 
 .carousel-indicators {
-  top: 5%;;
+  top: 5%;
+  ;
   bottom: inherit;
 }
 

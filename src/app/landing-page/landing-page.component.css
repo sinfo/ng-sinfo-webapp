@@ -43,7 +43,7 @@
 }
 
 .content {
-    min-height: 90vh;
-    background-color: white;
-    /* overflow: overlay; */
+  min-height: 90vh;
+  background-color: white;
+  /* overflow: overlay; */
 }
