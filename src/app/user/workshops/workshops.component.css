@@ -2,10 +2,16 @@
   text-align: center;
 }
 
+.subtitle {
+  text-align: center;
+  font-style: italic;
+  font-size: 17px;
+}
+
 h3.title {
   margin-top: 30px;
 }
-  
+
 h6.lead {
   margin-top: 20px;
 }
