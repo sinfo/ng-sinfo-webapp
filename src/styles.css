@@ -8118,4 +8118,9 @@ body {
 
   overflow-x: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  width: 0px;
 }
