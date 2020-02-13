@@ -16,56 +16,56 @@ const httpOptions = {
 export class AuthService {
   private authUrl = environment.cannonUrl + '/auth'
   redirectUrl: string
-  linkedInState: string
+  linkedinState: string
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private storageService: StorageService,
     private jwtService: JwtService
   ) { }
 
-  facebook (id, token): Observable<CannonToken> {
+  facebook(id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/facebook`, { id, token }, httpOptions)
-    .pipe(
-      tap(cannonToken => cannonToken.loginWith = 'facebook'),
-      catchError(this.handleError<CannonToken>('Facebook Login'))
-    )
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'facebook'),
+        catchError(this.handleError<CannonToken>('Facebook Login'))
+      )
   }
 
-  google (id, token): Observable<CannonToken> {
+  google(id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/google`, { id, token }, httpOptions)
-    .pipe(
-      tap(cannonToken => cannonToken.loginWith = 'google'),
-      catchError(this.handleError<CannonToken>('Google Login'))
-    )
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'google'),
+        catchError(this.handleError<CannonToken>('Google Login'))
+      )
   }
 
-  fenix (code): Observable<CannonToken> {
+  fenix(code): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/fenix`, { code }, httpOptions)
-    .pipe(
-      tap(cannonToken => cannonToken.loginWith = 'fenix'),
-      catchError(this.handleError<CannonToken>('Fenix Login'))
-    )
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'fenix'),
+        catchError(this.handleError<CannonToken>('Fenix Login'))
+      )
   }
 
-  linkedIn (code): Observable<CannonToken> {
+  linkedin(code): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/linkedin`, { code }, httpOptions)
-    .pipe(
-      tap(cannonToken => cannonToken.loginWith = 'linkedIn'),
-      catchError(this.handleError<CannonToken>('LinkedIn Login'))
-    )
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'linkedin'),
+        catchError(this.handleError<CannonToken>('Linkedin Login'))
+      )
   }
 
-  getToken (): CannonToken | null | undefined {
+  getToken(): CannonToken | null | undefined {
     return this.storageService.getItem('cannon_token') as CannonToken
   }
 
-  setToken (token: CannonToken): void {
+  setToken(token: CannonToken): void {
     this.storageService.setItem('cannon_token', token)
   }
 
-  isLoggedIn (): boolean {
+  isLoggedIn(): boolean {
     const cannonToken = this.getToken()
     if (!cannonToken) {
       return false
@@ -78,7 +78,7 @@ export class AuthService {
     return !isTokenExpired
   }
 
-  logout (): void {
+  logout(): void {
     this.storageService.removeItem('cannon_token')
   }
 
@@ -88,7 +88,7 @@ export class AuthService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `AuthService: ${operation}`,

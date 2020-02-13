@@ -30,7 +30,7 @@ export class User {
   facebook: {
     id: string
   }
-  linkedIn: {
+  linkedin: {
     id: string
   }
   google: {
