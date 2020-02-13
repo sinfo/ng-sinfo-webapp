@@ -40,6 +40,9 @@ export class SidebarComponent implements OnInit {
   }
 
   detectLocation (location: string): boolean {
+
+    this.url = this.router.url.toString()
+
     return this.url.indexOf(location) !== -1
   }
 
