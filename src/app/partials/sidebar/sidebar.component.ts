@@ -43,11 +43,6 @@ export class SidebarComponent implements OnInit {
 
     this.url = this.router.url.toString()
 
-    if (location === '/user/achievements'){
-      console.log("testing" + location)
-      console.log(this.url.toString())
-      console.log(this.url.indexOf(location))
-    }
     return this.url.indexOf(location) !== -1
   }
 
