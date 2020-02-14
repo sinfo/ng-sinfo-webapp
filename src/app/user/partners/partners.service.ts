@@ -29,7 +29,6 @@ export class PartnersService {
       .pipe(
         tap(partners => {
           this.partners = partners
-          console.log(partners)
         }),
         catchError(this.handleError<Partner[]>('getPartners', []))
       )
