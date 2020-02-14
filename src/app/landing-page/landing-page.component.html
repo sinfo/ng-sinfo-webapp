@@ -104,7 +104,9 @@
     </div>
   </section>
 
-  <app-sponsors *ngIf="eventId" [eventId]="eventId"></app-sponsors>
+  <app-sponsors *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
+
+  <app-partners *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
 
   <!-- <section id="about" class="section align-center">
     <div class="container">

@@ -1,4 +1,4 @@
-export class Partner {
+export class Promocode {
     company: string
     event: string
     expire: Date

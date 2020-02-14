@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment'
-import { Partner } from './partner.model';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { Promocode } from './promocode.model';
+import { HttpClient } from '@angular/common/http';
 import { MessageService, Type } from '../../message.service';
 import { Observable, of } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
@@ -9,29 +9,28 @@ import { tap, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class PartnersService {
+export class PromocodesService {
   private partnerUrl = environment.cannonUrl + '/promo-code'
-  private partners: Partner[]
-  private eventId: string
+  private partners: Promocode[]
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getPartners(): Observable<Partner[]> {
+  getPartners(): Observable<Promocode[]> {
     if (this.partners) {
       return of(this.partners)
     }
 
 
-    return this.http.get<Partner[]>(this.partnerUrl)
+    return this.http.get<Promocode[]>(this.partnerUrl)
       .pipe(
         tap(partners => {
           this.partners = partners
           console.log(partners)
         }),
-        catchError(this.handleError<Partner[]>('getPartners', []))
+        catchError(this.handleError<Promocode[]>('getPartners', []))
       )
   }
 
