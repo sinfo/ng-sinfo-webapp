@@ -3,7 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    overflow-y: scroll;
+}
+
+.col-sm-12{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .wrapper h3, .wrapper h6, .text-box {

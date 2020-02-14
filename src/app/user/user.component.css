@@ -4,11 +4,19 @@
   height: 87vh;
   top: 10vh;
 
-  width: 73vw;
-  left: 25vw;
+  width: calc(100% - 100px);
+  left: 100px;
 
-  margin: 3vh 1vw 0 1vw;
+  margin: 3vh 1vw 2vw 1vw;
+  padding-right: 1vw;
 
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+@media(max-width: 975px){
+  #profile-content {
+    left: 25vw;
+    width: 73vw
+  }
 }

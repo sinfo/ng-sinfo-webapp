@@ -5,14 +5,14 @@
   <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
   </app-qrcode-scanner>
 
-  <div *ngIf="userRead">
+  <div *ngIf="userRead" class='wrapper'>
 
-    <div *ngIf='!yesToLink'>
+    <div *ngIf='!yesToLink' class='full-width'>
 
       <div class="row">
         <div class="col-xs-12">
           <button type="button" class="btn btn-button rescan" (click)="toLink()">
-            Link to {{company.name}}
+            <span>Link</span>
           </button>
         </div>
       </div>
@@ -27,7 +27,7 @@
 
     </div>
 
-    <div *ngIf='yesToLink'>
+    <div *ngIf='yesToLink' class='full-width'>
       <div class="row">
         <div class="col-xs-12">
           <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email">
@@ -68,26 +68,17 @@
 
       <div class="row">
         <div class="col-xs-12">
-          <button routerLink="/user/links/my-links" type="button" class="btn btn-button" (click)="link()">
-            <span class="glyphicon glyphicon-link"></span> Link to {{company.name}}
+          <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="link()">
+            <span class="glyphicon glyphicon-link"></span> Link
           </button>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-button rescan" (click)="reScan()">
+          <button class="btn btn-button" (click)="reScan()">
             Rescan QrCode
             <span class="glyphicon glyphicon-qrcode"></span>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="row" *ngIf="currentLink">
-        <div class="col-xs-12">
-          <button routerLink="/user/links/my-links" class="btn btn-button btn-danger" (click)="deleteLink()">
-            Remove Link
           </button>
         </div>
       </div>

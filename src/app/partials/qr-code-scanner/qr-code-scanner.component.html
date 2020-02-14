@@ -26,19 +26,19 @@
     <button *ngIf="buttonLabel" class="buttonAction btn btn-button" (click)="buttonClick()">{{buttonLabel}}</button>
   </div>
 
-  <div *ngIf="!camStarted && userRead !== undefined">
-    <div class="row">
-      <h3 class="name">
+  <div *ngIf="!camStarted && userRead !== undefined" class='vertical center'>
+    <div class="row limit-width">
+      <h3 class="name center">
         {{userRead.name}}
       </h3>
     </div>
 
-    <div class="row warning">
+    <div class="row limit-width">
       <h5 *ngIf="info === 'team'">
         <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
       </h5>
 
-      <h5 *ngIf="info && info.length > 0 && info !== 'team'">
+      <h5 *ngIf="info && info.length > 0 && info !== 'team'" class='name center'>
         {{info}}
       </h5>
     </div>

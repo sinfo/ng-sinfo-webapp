@@ -36,7 +36,7 @@ import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
-import { PartnersComponent } from './user/partners/partners.component'
+import { PromocodesComponent } from './user/promocodes/promocodes.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -66,7 +66,7 @@ const routes: Routes = [
       { path: 'achievements', component: AchievementsComponent, canActivate: [AuthGuard] },
       { path: 'achievement/:id', component: AchievementComponent, canActivate: [AuthGuard] },
       { path: 'signature', component: SignatureComponent, canActivate: [AuthGuard] },
-      { path: 'partners', component: PartnersComponent, canActivate: [AuthGuard] },
+      { path: 'promocodes', component: PromocodesComponent, canActivate: [AuthGuard] },
       { path: 'redeem', component: RedeemComponent, canActivate: [AuthGuard] },
       { path: 'scoreboard', component: ScoreboardComponent, canActivate: [AuthGuard] },
       { path: 'card', component: CardComponent, canActivate: [AuthGuard] },
@@ -88,7 +88,6 @@ const routes: Routes = [
   { path: 'coc', component: CodeOfConductComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'event/:id', component: EventComponent },
-  { path: 'partners', component: PartnersComponent },
   { path: '**', component: PageNotFoundComponent }
 ]
 

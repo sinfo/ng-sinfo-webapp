@@ -30,6 +30,15 @@
 .link-section{
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d9534f;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .link-note p {
@@ -41,6 +50,11 @@
 .link-note .tip {
   text-align: center;
 }
+
+.btn{
+  align-self: center;
+}
+
 .accord.row button:active {
   background-color: transparent;
 }
@@ -95,4 +109,9 @@ img.portrait {
 
   padding: 3%;
   background-color: #058ae629;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

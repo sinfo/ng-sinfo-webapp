@@ -55,7 +55,19 @@ export class MyLinksComponent implements OnInit {
             .subscribe(links => {
               this.links = links
               links.forEach(link => this.processLink(link))
+              console.log(this.processedLinks)
             })
+        })
+    })
+  }
+
+  deleteLink(id: string) {
+    this.companyCannonService.deleteLink(this.company.id, id).subscribe(() => {
+      this.companyCannonService.getLinks(this.company.id)
+        .subscribe(links => {
+          this.processedLinks = []
+          this.links = links
+          links.forEach(link => this.processLink(link))
         })
     })
   }

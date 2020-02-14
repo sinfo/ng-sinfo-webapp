@@ -97,8 +97,8 @@ export class LinkComponent implements OnInit {
       .subscribe(_link => {
         this.currentLink = _link
         this.buildNotes(_link)
-        if (_link) this.updateInfo()
       })
+    this.updateInfo()
   }
 
   buildNotes(_link) {
@@ -127,7 +127,6 @@ export class LinkComponent implements OnInit {
     this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
-        this.updateInfo()
       })
   }
 
@@ -144,23 +143,4 @@ export class LinkComponent implements OnInit {
         })
       })
   }
-
-  deleteLink() {
-    this.companyCannonService.deleteLink(this.company.id, this.userRead.id)
-      .subscribe(_link => {
-        this.currentLink = null
-        this.info = ''
-        this.notes = {
-          contacts: {
-            email: null,
-            phone: null
-          },
-          interestedIn: null,
-          otherObservations: null,
-          availability: null,
-          degree: null
-        }
-      })
-  }
-
 }
