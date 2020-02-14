@@ -1,6 +1,8 @@
-import { Directive, Attribute, Renderer2,
+import {
+  Directive, Attribute, Renderer2,
   ElementRef, HostListener, Input,
-  AfterContentInit, OnDestroy } from '@angular/core';
+  AfterContentInit, OnDestroy
+} from '@angular/core';
 
 @Directive({
   selector: '[appImage]'

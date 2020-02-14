@@ -71,6 +71,9 @@ div.achivements-wrapper img.achievement {
   flex-flow: row;
   justify-content: space-evenly;
   align-items: center;
+
+  border: 15px solid white;
+  background-color: white;
 }
 
 
@@ -152,12 +155,6 @@ div.achivements-wrapper img.achievement {
 
 .mini-achievement {
   max-width: 50px;
-}
-
-@media (max-width: 990px){
-  .qrcode-wrapper {
-    flex-flow: column;
-  }
 }
 
 @media (max-width: 425px){

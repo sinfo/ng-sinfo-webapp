@@ -16,8 +16,8 @@ import {
   LiveComponent
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
-import { SponsorsComponent } from './sponsors/sponsors.component'
-import { SponsorService } from './sponsors/sponsor.service'
+import { SponsorsComponent } from './landing-page/sponsors/sponsors.component'
+import { SponsorService } from './landing-page/sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { TeamService } from './team/team.service'
 import { LoadingComponent } from './partials/loading/loading.component'
@@ -25,7 +25,7 @@ import { UserComponent } from './user/user.component'
 import { UserService } from './user/user.service'
 import { ScheduleComponent } from './landing-page/schedule/schedule.component'
 import { LoginComponent } from './auth/login/login.component'
-import { LinkedInLoginComponent } from './auth/login/linkedin.component'
+import { LinkedinLoginComponent } from './auth/login/linkedin.component'
 import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
 import { AuthGuard } from './auth/auth.guard'
@@ -78,7 +78,8 @@ import { RedeemService } from './user/redeem/redeem.service';
 import { LivestreamComponent } from './landing-page/livestream/livestream.component';
 import { PromocodesComponent } from './user/promocodes/promocodes.component'
 import { StandsComponent } from './landing-page/stands/stands.component';
-import { ImageDirective } from './partials/image.directive'
+import { ImageDirective } from './partials/image.directive';
+import { PartnersComponent } from './landing-page/partners/partners.component'
 
 @NgModule({
   declarations: [
@@ -97,7 +98,7 @@ import { ImageDirective } from './partials/image.directive'
     QrcodeScannerComponent,
     LoadingComponent,
     LoginComponent,
-    LinkedInLoginComponent,
+    LinkedinLoginComponent,
     MyProfileComponent,
     UserComponent,
     SessionComponent,
@@ -131,7 +132,8 @@ import { ImageDirective } from './partials/image.directive'
     LivestreamComponent,
     PromocodesComponent,
     StandsComponent,
-    ImageDirective
+    ImageDirective,
+    PartnersComponent
   ],
   imports: [
     BrowserModule,

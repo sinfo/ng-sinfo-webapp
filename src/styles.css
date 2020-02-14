@@ -7944,7 +7944,7 @@ div.clear input.btn:hover {
   width: 50vw;
   max-width: 350px;
   background: white;
-  padding: 30px;
+  border: 30px solid white;
 }
 
 /* qrcode end */

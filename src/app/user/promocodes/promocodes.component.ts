@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Sponsor } from '../../sponsors/sponsor.model';
-import { SponsorService } from '../../sponsors/sponsor.service';
+import { Sponsor } from '../../landing-page/sponsors/sponsor.model';
+import { SponsorService } from '../../landing-page/sponsors/sponsor.service';
 import { Promocode } from './promocode.model';
 import { PromocodesService } from './promocodes.service';
 
@@ -54,9 +54,9 @@ export class PromocodesComponent implements OnInit {
     const ttp = document.getElementById('tooltip-' + str)
     ttp.style.opacity === '0' ? ttp.style.opacity = '0.8' : ttp.style.opacity = '0'
 
-    setTimeout((str) => {
-      const ttp = document.getElementById('tooltip-' + str)
-      ttp.style.opacity === '0' ? ttp.style.opacity = '0.8' : ttp.style.opacity = '0'
+    setTimeout((_str) => {
+      const _ttp = document.getElementById('tooltip-' + _str)
+      _ttp.style.opacity === '0' ? _ttp.style.opacity = '0.8' : _ttp.style.opacity = '0'
     }, 1500, str)
   }
 

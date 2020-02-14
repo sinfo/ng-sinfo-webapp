@@ -18,7 +18,7 @@
   justify-content: space-between;
 }
 
-.link-title{
+.link-title {
   align-self: center;
   text-align: center;
 }
@@ -47,6 +47,7 @@
   margin: 4px;
   text-align: left;
 }
+
 .link-note .tip {
   text-align: center;
 }
@@ -58,36 +59,46 @@
 .accord.row button:active {
   background-color: transparent;
 }
-.accord.row button, .accord.row div {
+
+.accord.row button,
+.accord.row div {
   border: 1px solid #0164a9;
   border-radius: .25rem;
   margin-top: 7px;
 }
+
 .accord.row button p {
   width: 95%;
   margin-bottom: 0;
   letter-spacing: 2px;
 }
+
 .card {
   width: 95%;
   margin-top: 10px auto !important;
 }
+
 .caret {
   float: right;
   color: #048ae6;
 }
+
 .panel-content-strong {
   font-weight: bold;
 }
+
 div.portrait-wrapper {
   margin: 10px auto;
 }
+
 img.portrait {
-  width: 150px;    
+  width: 150px;
 }
+
 h3 {
   margin: 20px auto;
 }
+
 img.portrait {
   border-radius: 50%;
   border: 3px solid #048ae6;
@@ -114,4 +125,9 @@ img.portrait {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+
+.attendee-name {
+  text-align: center;
 }

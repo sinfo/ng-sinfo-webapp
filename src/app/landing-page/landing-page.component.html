@@ -81,7 +81,7 @@
         curriculum
         vitae and every company present at SINFO will receive it!</h6>
 
-      <a routerLink="/cv" class="btn btn btn-md">
+      <a routerLink="/user/cv" class="btn btn btn-md">
         Upload here
       </a>
     </div>
@@ -104,7 +104,9 @@
     </div>
   </section>
 
-  <app-sponsors *ngIf="eventId" [eventId]="eventId"></app-sponsors>
+  <app-sponsors *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
+
+  <app-partners *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
 
   <!-- <section id="about" class="section align-center">
     <div class="container">

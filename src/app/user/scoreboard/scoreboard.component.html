@@ -8,7 +8,7 @@
       <h6 class="lead">
         Earn points by completing
         <strong>
-          <a routerLink="/achievements">achievements</a>
+          <a routerLink="/user/achievements">achievements</a>
         </strong>.
         <br> At the end of the day we will award the scoreboard leader.
       </h6>
@@ -34,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of scoreboard" (click)="redirectToUser(user.id)"
+          <tr *ngFor="let user of scoreboard"
             [ngClass]="{'currentUser': isCurrentUser(user.id)}">
             <td class="position">{{ scoreboard.indexOf(user) + 1}}</td>
             <td class="user">

@@ -1,0 +1,20 @@
+<app-loading [content]="partners"></app-loading>
+
+<div *ngIf="partners && partners.length > 0" class="wrapper">
+    <div class="sponsors">
+        <span class="icon section-icon icon-documents-bookmarks-12"></span>
+        <div class="title">
+            <h2>Partners</h2>
+        </div>
+        <br />
+
+        <app-loading [content]="partners"></app-loading>
+
+        <div *ngIf="partners" class="partners">
+            <div class="sponsor platinum" *ngFor="let partner of partners">
+                <img appImage [src]="partner.img" alt="{{ partner.name }}" title="{{ partner.name }}">
+            </div>
+        </div>
+
+    </div>
+</div>

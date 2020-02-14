@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { environment } from '../../../environments/environment'
-import { Promocode } from './promocode.model';
-import { HttpClient } from '@angular/common/http';
-import { MessageService, Type } from '../../message.service';
-import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { Promocode } from './promocode.model'
+import { HttpClient } from '@angular/common/http'
+import { MessageService, Type } from '../../message.service'
+import { Observable, of } from 'rxjs'
+import { tap, catchError } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'

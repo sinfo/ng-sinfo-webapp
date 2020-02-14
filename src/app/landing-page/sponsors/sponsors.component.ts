@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
 import { SponsorService } from './sponsor.service'
-import { EventService } from '../events/event.service'
+import { EventService } from '../../events/event.service'
 import { Sponsor } from './sponsor.model'
 
 @Component({
@@ -12,9 +12,8 @@ import { Sponsor } from './sponsor.model'
   styleUrls: ['./sponsors.component.css']
 })
 export class SponsorsComponent implements OnInit, OnChanges {
-  @Input() eventId: string
 
-  sponsors: Sponsor[]
+  @Input() sponsors: Sponsor[]
   diamond: Sponsor
   platinums: Sponsor[] = []
   golds: Sponsor[] = []
@@ -28,7 +27,6 @@ export class SponsorsComponent implements OnInit, OnChanges {
     private router: Router,
     private titleService: Title,
     private sponsorService: SponsorService,
-    private eventService: EventService
   ) { }
 
   ngOnInit() {
@@ -40,31 +38,12 @@ export class SponsorsComponent implements OnInit, OnChanges {
     this.showAll = this.router.url !== '/'
     this.isAllSponsors = this.router.url === '/sponsors'
 
-    if (this.isAllSponsors) {
-      this.eventService.getCurrent().subscribe(event => {
-        this.titleService.setTitle(event.name + ' - Sponsors')
-      })
-    }
-
-    this.getSponsors()
+    this.displaySponsors(this.sponsors)
   }
 
   ngOnChanges() {
-    this.getSponsors()
     this.showAll = this.router.url !== '/'
     this.isAllSponsors = this.router.url === '/sponsors'
-  }
-
-  getSponsors(): void {
-    if (this.eventId) {
-      this.sponsorService.getSponsors(this.eventId)
-        .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
-    } else {
-      this.eventService.getCurrent().subscribe(event => {
-        this.sponsorService.getSponsors(event.id)
-          .subscribe(sponsors => this.sponsors = this.displaySponsors(sponsors))
-      })
-    }
   }
 
   displaySponsors(sponsors: Sponsor[]): Sponsor[] {

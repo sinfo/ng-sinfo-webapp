@@ -62,8 +62,9 @@ export class ScoreboardComponent implements OnInit {
         return user.id
       }).splice(0, 20)
 
-      this.isScoreboardEmpty = this.scoreboard && this.scoreboard.length > 0 && !this.scoreboard[0].points
+      this.isScoreboardEmpty = !this.scoreboard || this.scoreboard.length <= 0 || !this.scoreboard[0].points
     })
+
   }
 
   isCurrentUser(id: string): boolean {

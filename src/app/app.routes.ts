@@ -8,9 +8,9 @@ import {
   LiveComponent
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
-import { SponsorsComponent } from './sponsors/sponsors.component'
+import { SponsorsComponent } from './landing-page/sponsors/sponsors.component'
 import { LoginComponent } from './auth/login/login.component'
-import { LinkedInLoginComponent } from './auth/login/linkedin.component'
+import { LinkedinLoginComponent } from './auth/login/linkedin.component'
 import { AuthGuard } from './auth/auth.guard'
 import { IsTeamGuard } from './auth/is-team.guard'
 import { UserComponent } from './user/user.component'
@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'live', component: LiveComponent },
 
   { path: 'login', component: LoginComponent },
-  { path: 'login/linkedIn', component: LinkedInLoginComponent },
+  { path: 'login/linkedin', component: LinkedinLoginComponent },
 
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },

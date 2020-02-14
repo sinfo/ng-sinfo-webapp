@@ -26,7 +26,7 @@ export class CheckinComponent implements OnInit {
   submitLabel: string
   insideScannerMsg: [{ title: string, msg: string }, { title: string, msg: string }]
 
-  constructor (
+  constructor(
     private sessionService: SessionService,
     private sessionCannonService: SessionCannonService,
     private userService: UserService,
@@ -35,12 +35,12 @@ export class CheckinComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Check In')
     })
 
-    this.scannerActive = false
+    this.scannerActive = false;
 
     this.userService.getMe()
       .subscribe(me => {
@@ -50,7 +50,7 @@ export class CheckinComponent implements OnInit {
       })
   }
 
-  getSessions () {
+  getSessions() {
     this.eventService.getCurrent().subscribe(event => {
       this.sessionService.getSessions(event.id)
         .subscribe(sessions => {
@@ -87,20 +87,20 @@ export class CheckinComponent implements OnInit {
     })
   }
 
-  beginCheckIn (session: Session) {
+  beginCheckIn(session: Session) {
     this.selectedSession = session
     this.scannerActive = true
     localStorage.setItem('selectedSession', JSON.stringify(this.selectedSession))
   }
 
-  receiveUser (user: User) {
+  receiveUser(user: User) {
     this.users.push(user)
     localStorage.setItem('users', JSON.stringify(this.users))
     this.submitLabel = `Submit ${this.users.length} users`
     this.updateInsideScannerMsg()
   }
 
-  submit () {
+  submit() {
     let ids = this.users.reduce((acc, cur) => {
       acc.push(cur.id)
       return acc
@@ -125,7 +125,7 @@ export class CheckinComponent implements OnInit {
       })
   }
 
-  checkLocalStorage (): boolean {
+  checkLocalStorage(): boolean {
     let selectedSession = JSON.parse(localStorage.getItem('selectedSession'))
     this.scannerActive = true
 
@@ -146,7 +146,7 @@ export class CheckinComponent implements OnInit {
     return true
   }
 
-  emptyLocalStorage () {
+  emptyLocalStorage() {
     localStorage.removeItem('users')
     localStorage.removeItem('selectedSession')
     this.scannerActive = false
@@ -156,7 +156,7 @@ export class CheckinComponent implements OnInit {
     this.submitLabel = undefined
   }
 
-  updateInsideScannerMsg () {
+  updateInsideScannerMsg() {
     this.insideScannerMsg = [
       {
         title: 'Last user:',
@@ -169,7 +169,7 @@ export class CheckinComponent implements OnInit {
     ]
   }
 
-  delete () {
+  delete() {
     let result = window.confirm('This will delete all the saved check-ins, are you sure?')
     if (!result) return
 
