@@ -1,9 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core'
-import { Router } from '@angular/router'
-import { Title } from '@angular/platform-browser'
-
-import { SponsorService } from './sponsor.service'
-import { EventService } from '../../events/event.service'
+import { Component, OnInit, Input } from '@angular/core'
 import { Sponsor } from './sponsor.model'
 
 @Component({
@@ -11,7 +6,7 @@ import { Sponsor } from './sponsor.model'
   templateUrl: './sponsors.component.html',
   styleUrls: ['./sponsors.component.css']
 })
-export class SponsorsComponent implements OnInit, OnChanges {
+export class SponsorsComponent implements OnInit {
 
   @Input() sponsors: Sponsor[]
   diamond: Sponsor
@@ -23,27 +18,10 @@ export class SponsorsComponent implements OnInit, OnChanges {
   showAll = false
   isAllSponsors = false
 
-  constructor(
-    private router: Router,
-    private titleService: Title,
-    private sponsorService: SponsorService,
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    /**
-     * Check if this component is being initited from main page (/)
-     * or sponsors page (/sponsors)
-     * If in Sponsors page show ALL sponsors (this.showAll = true)
-     */
-    this.showAll = this.router.url !== '/'
-    this.isAllSponsors = this.router.url === '/sponsors'
-
     this.displaySponsors(this.sponsors)
-  }
-
-  ngOnChanges() {
-    this.showAll = this.router.url !== '/'
-    this.isAllSponsors = this.router.url === '/sponsors'
   }
 
   displaySponsors(sponsors: Sponsor[]): Sponsor[] {
@@ -62,6 +40,10 @@ export class SponsorsComponent implements OnInit, OnChanges {
         || sponsor.advertisementLvl === 'media') this.others.push(sponsor)
     })
     return sponsors
+  }
+
+  show() {
+    this.showAll = !this.showAll
   }
 
 }

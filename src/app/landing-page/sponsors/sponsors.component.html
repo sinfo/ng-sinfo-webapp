@@ -51,20 +51,13 @@
           </div>
         </div>
 
-        <hr *ngIf="others.length">
-
-        <div class="row" *ngIf="others.length">
-          <div class="sponsors silver">
-            <div class="sponsor" *ngFor="let other of others">
-              <img appImage [src]="other.img" alt="{{ other.name }}" title="{{ other.name }}">
-            </div>
-          </div>
-        </div>
       </div>
 
-      <a *ngIf="!showAll" routerLink="/sponsors" class="btn btn-outline-clr btn-sm">
-        See more
-      </a>
+      <div class="show">
+        <button *ngIf="!showAll" class="btn btn-outline-clr btn-sm" (click)="show()">
+          See more
+        </button>
+      </div>
     </div>
 
   </div>

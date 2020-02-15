@@ -63,3 +63,10 @@ h1,
 h2 {
   margin: 0px;
 }
+
+.show {
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
