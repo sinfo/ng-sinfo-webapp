@@ -123,7 +123,7 @@
   background: #2C49A6;
 }
 
-#sidebar ul li a:hover i.fa::before {
+#sidebar ul li a:hover {
   color: #2C49A6;
 }
 
