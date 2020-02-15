@@ -1,20 +1,20 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { Sponsor } from '../../sponsors/sponsor.model';
-import { SponsorService } from '../../sponsors/sponsor.service';
-import { Partner } from './partner.model';
-import { PartnersService } from './partners.service';
+import { Sponsor } from '../../landing-page/sponsors/sponsor.model';
+import { SponsorService } from '../../landing-page/sponsors/sponsor.service';
+import { Promocode } from './promocode.model';
+import { PromocodesService } from './promocodes.service';
 
 @Component({
-  selector: 'app-partners',
-  templateUrl: './partners.component.html',
-  styleUrls: ['./partners.component.css']
+  selector: 'app-promocodes',
+  templateUrl: './promocodes.component.html',
+  styleUrls: ['./promocodes.component.css']
 })
-export class PartnersComponent implements OnInit {
-  partners: Partner[]
+export class PromocodesComponent implements OnInit {
+  partners: Promocode[]
   isPartnersEmpty: boolean
 
   constructor(
-    private partnerService: PartnersService,
+    private partnerService: PromocodesService,
     private sponsorService: SponsorService
   ) { }
 
@@ -29,7 +29,7 @@ export class PartnersComponent implements OnInit {
       })
   }
 
-  getImages(partners: Partner[]) {
+  getImages(partners: Promocode[]) {
 
     partners.forEach(p => {
       this.sponsorService.getSponsor(p.company).subscribe((sponsor: Sponsor) => {
