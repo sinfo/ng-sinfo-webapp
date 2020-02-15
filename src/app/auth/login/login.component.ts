@@ -10,6 +10,9 @@ import { EventService } from '../../events/event.service'
 declare let FB: any
 declare let gapi: any
 
+let GoogleAuth;
+let GOOGLE_SCOPE = 'profile email openid';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -28,7 +31,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   linkedinUrlAuth = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${environment.linkedin.clientId}&redirect_uri=${environment.linkedin.redirectUrl}&state=SINFO&scope=r_liteprofile%20r_emailaddress%20w_member_social`
 
   private isLoggedIn = false
-  private auth2: any
 
   constructor(
     private messageService: MessageService,
@@ -89,13 +91,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   initSocialSDKs() {
     if (this.isGoogleActive) {
+
       gapi.load('auth2', () => {
-        this.auth2 = gapi.auth2.init({
+        gapi.auth2.init({
           client_id: environment.google.clientId,
           cookiepolicy: 'single_host_origin',
-          scope: 'profile email openid'
+          scope: GOOGLE_SCOPE
+        }).then(() => {
+          GoogleAuth = gapi.auth2.getAuthInstance();
+
+          // Listen for sign-in state changes.
+          GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) });
         })
-        this.attachSignin(document.getElementById('google-signin'))
       })
     }
     if (this.isFacebookActive) {
@@ -108,19 +115,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  attachSignin(element) {
-    this.auth2.attachClickHandler(element, {}, (googleUser) => {
-    }, (error) => {
-      this.messageService.add({
-        origin: 'LoginComponent: Google attachSignin',
-        text: error.error,
-        errorObject: error,
-        type: Type.log,
-        showAlert: false
-      })
-    })
-  }
-
   onFenixLogin(fenixCode) {
     this.submitting = true
     this.authService.fenix(fenixCode).subscribe(cannonToken => {
@@ -129,19 +123,34 @@ export class LoginComponent implements OnInit, AfterViewInit {
     })
   }
 
+  onGoogleListen(isSignedIn: boolean) {
+    if (!isSignedIn) { GoogleAuth.signIn(); return; }
+
+    let googleUser = GoogleAuth.currentUser.get();
+
+    const profile = googleUser.getBasicProfile()
+    const userId = profile.getId()
+    const token = googleUser.getAuthResponse().id_token
+
+    this.authService.google(userId, token).subscribe(
+      cannonToken => {
+        this.authService.setToken(cannonToken)
+        this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
+      },
+      error => {
+        console.error(error)
+        this.router.navigate(['/login'])
+      })
+  }
+
   onGoogleLogin() {
     this.submitting = true
-    this.auth2.currentUser.listen(googleUser => {
-      const profile = googleUser.getBasicProfile()
-      const userId = profile.getId()
-      const token = googleUser.getAuthResponse().id_token
 
-      this.authService.google(userId, token)
-        .subscribe(cannonToken => {
-          this.authService.setToken(cannonToken)
-          this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
-        })
-    })
+    if (GoogleAuth.isSignedIn.get()) {
+      this.onGoogleListen(true)
+    } else {
+      GoogleAuth.signIn();
+    }
   }
 
   onFacebookLogin() {
