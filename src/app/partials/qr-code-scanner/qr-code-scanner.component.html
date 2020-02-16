@@ -1,55 +1,59 @@
-<div class="container align-center user">
-    <h3 class="title">
-        {{title}}
-    </h3>
+<div class="wrapper">
+  <h3 class="title">
+    {{title}}
+  </h3>
 
-    <div class="video-wrapper" [ngClass]="{'success': animation === true, 'error': animation === false}" *ngIf="camStarted">
+  <div class="video-wrapper" [ngClass]="{'success': animation === true, 'error': animation === false}"
+    *ngIf="camStarted">
 
-        <button  id="changeCamera" (click)="changeCamera()" *ngIf="availableDevices && availableDevices.cams && availableDevices.cams.length > 1"
-            type="button" class="btn btn-default btn-sm flip-camera">
-            <span class="glyphicon glyphicon-retweet"></span>
-        </button>
-        
-        <div class="scannerMsg alert alert-success" *ngIf="insideScannerMsg" [ngClass]="{'scannerMsgWhenCameraFlip': availableDevices && availableDevices.cams && availableDevices.cams.length > 1 }">
-            <span *ngFor="let msg of insideScannerMsg">
-                <strong>{{msg.title}}</strong> 
-                {{msg.msg.split(' ')[0]}} {{msg.msg.split(' ').length > 1 ? msg.msg.split(' ')[msg.msg.split(' ').length - 1] : ''}}
-            </span>
-        </div>
-        <zxing-scanner [scannerEnabled]="camStarted" [device]="selectedDevice" (camerasFound)="displayCameras($event)"
-            (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
-        
-        <button *ngIf="buttonLabel" class="buttonAction btn btn-button" (click)="buttonClick()">{{buttonLabel}}</button>
+    <button id="changeCamera" (click)="changeCamera()"
+      *ngIf="availableDevices && availableDevices.cams && availableDevices.cams.length > 1" type="button"
+      class="btn btn-default btn-sm flip-camera">
+      <span class="glyphicon glyphicon-retweet"></span>
+    </button>
+
+    <div class="scannerMsg alert alert-success" *ngIf="insideScannerMsg"
+      [ngClass]="{'scannerMsgWhenCameraFlip': availableDevices && availableDevices.cams && availableDevices.cams.length > 1 }">
+      <span *ngFor="let msg of insideScannerMsg">
+        <strong>{{msg.title}}</strong>
+        {{msg.msg.split(' ')[0]}}
+        {{msg.msg.split(' ').length > 1 ? msg.msg.split(' ')[msg.msg.split(' ').length - 1] : ''}}
+      </span>
+    </div>
+    <zxing-scanner [enable]="camStarted" [(device)]="desiredDevice" (camerasFound)="camerasFoundHandler($event)"
+      (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+
+    <button *ngIf="buttonLabel" class="buttonAction btn btn-button" (click)="buttonClick()">{{buttonLabel}}</button>
+  </div>
+
+  <div *ngIf="!camStarted && userRead !== undefined" class='vertical center'>
+    <div class="row limit-width">
+      <h3 class="name center">
+        {{userRead.name}}
+      </h3>
     </div>
 
-    <div *ngIf="!camStarted && userRead !== undefined">
-        <div class="row">
-            <h3 class="name">
-                {{userRead.name}}
-            </h3>
-        </div>
+    <div class="row limit-width">
+      <h5 *ngIf="info === 'team'">
+        <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
+      </h5>
 
-        <div class="row warning">
-            <h5 *ngIf="info === 'team'">
-                <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
-            </h5>
-
-            <h5 *ngIf="info && info.length > 0 && info !== 'team'">
-                {{info}}
-            </h5>
-        </div>
-
-        <div class="row" id="image-wrapper">
-            <div class="portrait-wrapper">
-                <img class="portrait" src="{{userRead.img}}">
-                <div class="mini-portrait-wrapper"
-                    *ngIf="userRead.role === 'team' || (userRead.role === 'company' && company)">
-                    <img *ngIf="userRead.role === 'team'" class="mini-image" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
-                    <img *ngIf="userRead.role === 'company' && company" class="mini-image" [src]="company.img">
-                </div>
-            </div>
-        </div>
-
+      <h5 *ngIf="info && info.length > 0 && info !== 'team'" class='name center'>
+        {{info}}
+      </h5>
     </div>
+
+    <div class="row" id="image-wrapper">
+      <div class="portrait-wrapper">
+        <img class="portrait" src="{{userRead.img}}">
+        <div class="mini-portrait-wrapper" *ngIf="userRead.role === 'team' || (userRead.role === 'company' && company)">
+          <img *ngIf="userRead.role === 'team'" class="mini-image"
+            src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
+          <img *ngIf="userRead.role === 'company' && company" class="mini-image" [src]="company.img">
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 </div>

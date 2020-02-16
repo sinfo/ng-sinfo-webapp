@@ -51,10 +51,10 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
     sessions.forEach((val, index) => {
       let date = new Date(Date.parse(val.date))
-      let day = date.getDate()
+      let day = date.getUTCDay()
 
       // check if day was already registered
-      if (!(registeredDays + 1) || tempSchedule[registeredDays].date.getDate() !== day) {
+      if (!(registeredDays + 1) || tempSchedule[registeredDays].date.getUTCDay() !== day) {
         tempSchedule.push({
           sessions: {
             Presentation: {

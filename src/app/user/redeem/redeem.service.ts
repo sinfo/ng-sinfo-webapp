@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../../environments/environment'
 import { Observable } from 'rxjs'
-import { Achievement } from '../../achievements/achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService, Type } from '../../message.service'
 

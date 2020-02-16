@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
 import { RedeemService } from './redeem.service'
-import { AchievementService } from '../../achievements/achievement.service'
+import { AchievementService } from '../achievements/achievement.service'
 import { EventService } from '../../events/event.service'
-import { Achievement } from '../../achievements/achievement.model'
+import { Achievement } from '../achievements/achievement.model'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 

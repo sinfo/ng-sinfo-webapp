@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, Params, RouterStateSnapshot } from '@angular/router'
+import { Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
 import { EventService } from '../../../events/event.service'
@@ -40,7 +40,7 @@ export class DownloadsStatusComponent implements OnInit {
       this.me = user
 
       if (user.role !== 'team') {
-        this.router.navigate(['/qrcode'])
+        this.router.navigate(['/user/qrcode'])
       }
 
       this.endpointService.getEndpoints().subscribe(endpoints => {
@@ -68,7 +68,7 @@ export class DownloadsStatusComponent implements OnInit {
     this.endpoints.forEach(c => {
       this.endpoints = []
       this.endpointService.deleteEndpoint(c.company).subscribe(e => {
-      // tslint:disable-next-line:handle-callback-err
+        // tslint:disable-next-line:handle-callback-err
       }, (err) => {
         this.endpoints.push(c)
       })

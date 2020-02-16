@@ -32,10 +32,10 @@ export class QrcodeScannerComponent implements OnInit {
   animation: boolean // true -> success, false -> error, undefined -> neither
   lastUser: User = undefined
   lastRaw: string
+  desiredDevice: MediaDeviceInfo = null
 
-  selectedDevice
   private availableDevices: {
-    cams: any[]
+    cams: MediaDeviceInfo[]
     selected: number
   }
 
@@ -52,14 +52,14 @@ export class QrcodeScannerComponent implements OnInit {
     }
   }
 
-  displayCameras (cams: any[]) {
+  camerasFoundHandler (cams: any[]) {
     this.availableDevices = {
       cams: cams,
       selected: -1
     }
 
     if (cams && cams.length > 0) {
-      this.selectedDevice = cams[0]
+      this.desiredDevice = cams[cams.length - 1]
       this.camStarted = true
       this.availableDevices.selected = cams.length - 1
     }
@@ -71,9 +71,9 @@ export class QrcodeScannerComponent implements OnInit {
     this.onChange(this.availableDevices.cams[selected])
   }
 
-  onChange (selectedValue: string) {
+  onChange (selectedValue: MediaDeviceInfo) {
     this.camStarted = false
-    this.selectedDevice = selectedValue
+    this.desiredDevice = selectedValue
     this.camStarted = true
   }
 

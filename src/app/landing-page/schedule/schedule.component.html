@@ -5,7 +5,9 @@
   <div class="container">
     <span class="icon section-icon icon-office-21"></span>
     <h3>Schedule</h3>
+    <strong id="subtitle">All times displayed in the schedule are relative to Lisbon's timezone, GMT+00:00</strong>
     <br />
+
     <br />
 
     <a class="btn btn-sm btn-outline-clr ics" href="https://deck.sinfo.org/calendar.ics" target="_blank">
@@ -23,13 +25,13 @@
       <div class="nav-wrapper" (window:resize)="showOrHideDropdown()">
         <span class="nav-current" (click)="toggleDayDropdown()">
           <h5 class="highlight"> {{ selectedTheme }}</h5>
-          <p class="text-alt">{{ selectedTime | date:'dd-MM-yyyy' }}</p>
+          <p class="text-alt">{{ selectedTime | date:'dd-MM-yyyy':'+0000'}}</p>
         </span>
         <ul *ngIf="displayDayDropdown" class="nav nav-schedule nav-day">
           <li *ngFor="let day of schedule; let i=index" [ngClass]="{'active': selectedTheme === day.theme}">
             <a (click)="updateSelectedDayText(day.theme, day.date)">
               <h5 class="highlight">{{day.theme}}</h5>
-              <p class="text-alt">{{day.date | date:'dd-MM-yyyy'}}</p>
+              <p class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0000'}}</p>
             </a>
           </li>
         </ul>
@@ -40,7 +42,8 @@
       <div class="tab-content">
 
         <!-- Day 1 content start -->
-        <div *ngFor="let day of schedule; let i=index" class="tab-pane fade in" [ngClass]="{'active': selectedTheme === day.theme}">
+        <div *ngFor="let day of schedule; let i=index" class="tab-pane fade in"
+          [ngClass]="{'active': selectedTheme === day.theme}">
 
           <!-- Navigation by session type start -->
           <div class="nav-wrapper">
@@ -71,13 +74,14 @@
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" class="panel schedule-item">
 
                   <div class="lecture-icon-wrapper">
-                    <img src="{{session.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                    <img appImage [src]="session.img" alt="" class="img-responsive"
+                      onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                   </div>
 
                   <a (click)="onSelect(session)" class="schedule-item-header">
                     <strong class="time highlight">
                       <span class="icon icon-office-24"></span>
-                      {{session.date | date:'shortTime'}}
+                      {{session.date | date:'shortTime':'+0000'}}
                       <span class="icon icon-office-47 place"></span>
                       {{session.place}}
                     </strong>
@@ -115,13 +119,14 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{presentation.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                        <img src="{{presentation.img}}" alt="" class="img-responsive"
+                          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{presentation.date | date:'shortTime'}}
+                          {{presentation.date | date:'shortTime':'+0000'}}
                           <span class="icon icon-office-47 place"></span>
                           {{presentation.place}}
                         </strong>
@@ -149,13 +154,14 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{presentation.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                        <img src="{{presentation.img}}" alt="" class="img-responsive"
+                          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{presentation.date | date:'shortTime'}}
+                          {{presentation.date | date:'shortTime':'+0000'}}
                           <span class="icon icon-office-47 place"></span>
                           {{presentation.place}}
                         </strong>
@@ -195,12 +201,13 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{workshop.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                        <img src="{{workshop.img}}" alt="" class="img-responsive"
+                          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                       </div>
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{workshop.date | date:'shortTime'}}
+                          {{workshop.date | date:'shortTime':'+0000'}}
                           <span class="icon icon-office-47 place"></span>
                           {{workshop.place}}
                         </strong>
@@ -228,12 +235,13 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{workshop.img}}" alt="" class="img-responsive" onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                        <img src="{{workshop.img}}" alt="" class="img-responsive"
+                          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                       </div>
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{workshop.date | date:'shortTime'}}
+                          {{workshop.date | date:'shortTime':'+0000'}}
                           <span class="icon icon-office-47 place"></span>
                           {{workshop.place}}
                         </strong>
@@ -242,7 +250,8 @@
                         </h6>
                       </a>
 
-                      <div id="{{i}}_workshops_sala2_{{iSession}}" class="panel-collapse collapse in schedule-item-body">
+                      <div id="{{i}}_workshops_sala2_{{iSession}}"
+                        class="panel-collapse collapse in schedule-item-body">
                         <article>
                           <p class="description">{{workshop.description}}</p>
                           <strong *ngFor="let speaker of workshop.speakers" class="highlight speaker-name">
@@ -266,7 +275,6 @@
 
         </div>
         <!-- Day 1 content end -->
-
       </div>
 
     </div>

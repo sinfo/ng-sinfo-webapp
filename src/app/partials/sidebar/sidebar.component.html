@@ -1,134 +1,139 @@
 <nav id="sidebar" class="active">
-  <!-- [ngClass]="{'active': showSidebar }" (window:resize)="showOrHideBar()">
-  <button type="button" class="hidden-lg hidden-md" (click)="showSidebar = !showSidebar" id="sidebarCollapse">
-    <i *ngIf="showSidebar" class="glyphicon glyphicon-menu-left"></i>
-    <i *ngIf="!showSidebar" class="glyphicon glyphicon-menu-right"></i>
-  </button-->
   <!-- Sidebar Links -->
   <ul class="list-unstyled components">
     <span id="sidebarSpan">
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/checkin')}">
-        <a routerLink="/checkin">
-          <i class="glyphicon glyphicon-qrcode"></i>
-          Check-in
-        </a>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/pick-winner')}">
-        <a routerLink="/pick-winner">
-          <i class="glyphicon glyphicon-flag"></i>
-          Pick Winner
-        </a>
-      </li>
-      <li [ngClass]="{'active': detectLocation('/qrcode')}">
-        <a routerLink="/qrcode">
+
+      <li>
+        <a routerLink="/user/qrcode" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/qrcode.png">
           QR Code
         </a>
       </li>
-      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/cv')}">
-        <a routerLink="/cv">
+
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/cv" routerLinkActive="active">
           <img *ngIf="isCvUpdated" src="assets/img/icons/sidebar/cv.png">
           <img *ngIf="!isCvUpdated" src="assets/img/icons/sidebar/cvnotification.png">
           Upload CV
-
         </a>
       </li>
 
-      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/downloads/download')}">
-        <a routerLink="/downloads/download">
+      <li *ngIf="user && user.role === 'team'">
+        <a routerLink="/user/checkin" routerLinkActive="active">
+          <i class="glyphicon glyphicon-qrcode"></i>
+          Check-in
+        </a>
+      </li>
+
+      <li *ngIf="user && user.role == 'team'">
+        <a routerLink="/user/validate-card" routerLinkActive="active">
+          <i class="glyphicon glyphicon-search"></i>
+          Validate Card
+        </a>
+      </li>
+
+      <li *ngIf="user && user.role === 'team'">
+        <a routerLink="/user/promote" routerLinkActive="active">
+          <i class="glyphicon glyphicon-king"></i>
+          Promote
+        </a>
+      </li>
+
+      <li *ngIf="user && user.role === 'team'">
+        <a routerLink="/user/pick-winner" routerLinkActive="active">
+          <i class="glyphicon glyphicon-flag"></i>
+          Pick Winner
+        </a>
+      </li>
+
+      <li *ngIf="user && user.role === 'company'">
+        <a routerLink="/user/downloads/download" routerLinkActive="active">
           <i class="glyphicon glyphicon-paperclip"></i>
           Download CVs
         </a>
       </li>
 
       <li *ngIf="user && user.role === 'team'">
-        <a href="#downloadsSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/downloads') }}">
+        <a href="#downloadsSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/user/downloads') }}">
           <i class="glyphicon glyphicon-paperclip"></i>
           Manage Downloads
         </a>
         <ul class="collapse list-unstyled" id="downloadsSubmenu"
-          [ngClass]="{'in': detectLocation('/downloads'), 'collapse': !detectLocation('/downloads')}">
-          <li [ngClass]="{'active': detectLocation('/downloads/download')}">
-            <a routerLink="/downloads/download">Download CVs</a>
+          [ngClass]="{'in': detectLocation('/user/downloads'), 'collapse': !detectLocation('/user/downloads')}">
+          <li [ngClass]="{'active': detectLocation('/user/downloads/download')}">
+            <a routerLink="/user/downloads/download">Download CVs</a>
           </li>
-          <li [ngClass]="{'active': detectLocation('/downloads/status')}">
-            <a routerLink="/downloads/status">Endpoints Status</a>
+          <li [ngClass]="{'active': detectLocation('/user/downloads/status')}">
+            <a routerLink="/user/downloads/status">Endpoints Status</a>
           </li>
-          <li [ngClass]="{'active': detectLocation('/downloads/manage')}">
-            <a routerLink="/downloads/manage">Create Endpoints</a>
+          <li [ngClass]="{'active': detectLocation('/user/downloads/manage')}">
+            <a routerLink="/user/downloads/manage">Create Endpoints</a>
           </li>
         </ul>
       </li>
-      <li *ngIf="user && user.role === 'company'" [ngClass]="{'active': detectLocation('/signature')}">
-        <a routerLink="/signature">
-          <i class="fa fa-check"></i>
-          Sign Card
-        </a>
-      </li>
+
       <li *ngIf="user && user.role === 'company'">
-        <a href="#linksSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/links') }}">
-          <i class="glyphicon glyphicon-duplicate"></i>
-          Links
+        <a routerLink="/user/links/link" routerLinkActive="active">
+          <i class="fa fa-check"></i>
+          Sign and Link Card
         </a>
-        <ul class="collapse list-unstyled" id="linksSubmenu"
-          [ngClass]="{'in': detectLocation('/links'), 'collapse': !detectLocation('/links')}">
-          <li [ngClass]="{'active': detectLocation('/links/link')}">
-            <a routerLink="/links/link">Link</a>
-          </li>
-          <li [ngClass]="{'active': detectLocation('/links/my-links')}">
-            <a routerLink="/links/my-links">My Links</a>
-          </li>
-        </ul>
       </li>
-      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/workshops')}">
-        <a routerLink="/workshops">
+
+      <li *ngIf="user && user.role === 'company'">
+        <a routerLink="/user/links/my-links" routerLinkActive="active">
+          <i class="glyphicon glyphicon-duplicate"></i>
+          My links
+        </a>
+      </li>
+
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/workshops" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <img src="assets/img/icons/sidebar/workshops.png">
           Workshops
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/workshops/workshops-status')}">
-        <a routerLink="/workshops/workshops-status">
+
+      <li *ngIf="user && user.role === 'team'">
+        <a routerLink="/user/workshops/workshops-status" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/workshops.png">
           Workshop Status
         </a>
       </li>
-      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/achievements')}">
-        <a routerLink="/achievements">
+
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/achievements" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/achievements.png">
           Achievements
         </a>
       </li>
-      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/redeem')}">
-        <a routerLink="/redeem">
+
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/redeem" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/qrcode-achievement.svg">
           Find achievements
         </a>
       </li>
-      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/scoreboard')}">
-        <a routerLink="/scoreboard">
+
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/scoreboard" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/scoreboard.png">
           Scoreboard
         </a>
       </li>
-      <li *ngIf="user && user.role !== 'company'" [ngClass]="{'active': detectLocation('/card')}">
-        <a routerLink="/card">
+
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/card" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/card.svg">
           My card
         </a>
       </li>
-      <li *ngIf="user && user.role == 'team'" [ngClass]="{'active': detectLocation('/validate-card')}">
-        <a routerLink="/validate-card">
-          <i class="glyphicon glyphicon-search"></i>
-          Validate Card
+
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/promocodes" routerLinkActive="active">
+          <img src="assets/img/icons/sidebar/discount-coupon-white.png">
+          Promo Codes
         </a>
       </li>
-      <li *ngIf="user && user.role === 'team'" [ngClass]="{'active': detectLocation('/promote')}">
-        <a routerLink="/promote">
-          <i class="glyphicon glyphicon-king"></i>
-          Promote
-        </a>
-      </li>
-      <!--li class="lastOne">
-      </li-->
 
     </span>
   </ul>

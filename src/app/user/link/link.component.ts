@@ -5,7 +5,7 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
-import { Link } from './link.model'
+import { Link, Note } from './link.model'
 import { MessageService, Type } from '../../message.service'
 import { CompanyCannonService } from '../../company/company-cannon.service'
 import { SignatureService } from '../signature/signature.service'
@@ -19,14 +19,15 @@ import { EventService } from '../../events/event.service'
 export class LinkComponent implements OnInit {
 
   scannerActive: boolean
-  title = 'Link'
+  title = 'Sign and Link'
   info: string
 
   userRead: User
   company: Company
   me: User
   currentLink: Link
-  notes: string
+  notes: Note
+  yesToLink: Boolean
 
   constructor (
     private userService: UserService,
@@ -40,7 +41,17 @@ export class LinkComponent implements OnInit {
 
   ngOnInit () {
     this.scannerActive = false
-    this.notes = ''
+    this.yesToLink = false
+    this.notes = {
+      contacts: {
+        email: null,
+        phone: null
+      },
+      interestedIn: null,
+      otherObservations: null,
+      availability: null,
+      degree: null
+    }
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Links')
       this.userService.getMe()
@@ -63,13 +74,18 @@ export class LinkComponent implements OnInit {
     })
   }
 
+  toLink () {
+    this.yesToLink = true
+    this.info = `Linking ${this.userRead.name} with ${this.company.name}`
+  }
+
   reScan () {
     this.userRead = null
     this.scannerActive = true
   }
 
   updateInfo () {
-    this.info = `Linked with ${this.company.name}`
+    this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
   }
 
@@ -79,9 +95,27 @@ export class LinkComponent implements OnInit {
     this.companyCannonService.getLink(this.company.id, this.userRead.id)
       .subscribe(_link => {
         this.currentLink = _link
-        this.notes = _link ? _link.note : null
-        if (_link) this.updateInfo()
+        this.buildNotes(_link)
       })
+    this.updateInfo()
+  }
+
+  buildNotes (_link) {
+    if (_link) {
+      this.notes.contacts.email = _link.notes.contacts.email
+      this.notes.contacts.phone = _link.notes.contacts.phone
+      this.notes.availability = _link.notes.availability
+      this.notes.degree = _link.notes.degree
+      this.notes.interestedIn = _link.notes.interestedIn
+      this.notes.otherObservations = _link.notes.otherObservations
+      return
+    }
+    this.notes.contacts.email = null
+    this.notes.contacts.phone = null
+    this.notes.interestedIn = null
+    this.notes.degree = null
+    this.notes.availability = null
+    this.notes.otherObservations = null
   }
 
   link () {
@@ -92,7 +126,6 @@ export class LinkComponent implements OnInit {
     this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
-        this.updateInfo()
       })
   }
 
@@ -107,15 +140,6 @@ export class LinkComponent implements OnInit {
           timeout: 4000,
           type: Type.success
         })
-      })
-  }
-
-  deleteLink () {
-    this.companyCannonService.deleteLink(this.company.id, this.userRead.id)
-      .subscribe(_link => {
-        this.currentLink = null
-        this.info = ''
-        this.notes = null
       })
   }
 

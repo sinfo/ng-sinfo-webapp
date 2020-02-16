@@ -1,0 +1,92 @@
+<app-loading [content]="scoreboard"></app-loading>
+
+<div class="scoreboard-section align-center" *ngIf="scoreboard">
+  <h3 class="title">Scoreboard</h3>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h6 class="lead">
+        Earn points by completing
+        <strong>
+          <a routerLink="/user/achievements">achievements</a>
+        </strong>.
+        <br> At the end of the day we will award the scoreboard leader.
+      </h6>
+    </div>
+  </div>
+
+  <div *ngIf="isScoreboardEmpty" class="row">
+    <div class="col-sm-12">
+      <h6 class="lead">
+        It looks like the scoreboard is still empty. ¯\_(ツ)_/¯
+      </h6>
+    </div>
+  </div>
+
+  <div *ngIf="scoreboard && !isScoreboardEmpty" class="row">
+    <div class="col-sm-12 table-wrapper">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of scoreboard" [ngClass]="{'currentUser': isCurrentUser(user.id)}">
+            <td class="position">{{ scoreboard.indexOf(user) + 1}}</td>
+            <td class="user">
+              <div class="user-wrapper">
+                <div class="img-wrapper">
+                  <img appImage [src]="user.img">
+                </div>
+                <div class="name">
+                  {{ user.name }}
+                </div>
+              </div>
+            </td>
+            <td class="points">
+              {{ user.points ? user.points : 0 }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <span *ngIf="currentUser && !isUserInTop20()" class="userNotInTop">...</span>
+      <table *ngIf="currentUser && !isUserInTop20()" class="userNotInTop" class="table">
+        <tbody>
+          <tr class="currentUser">
+            <td class="position">&infin;</td>
+            <td class="user">
+              <div class="user-wrapper">
+                <div class="img-wrapper">
+                  <img appImage [src]="currentUser.img">
+                </div>
+                <div class="name">
+                  {{ currentUser.name }}
+                </div>
+              </div>
+            </td>
+            <td class="points">
+              {{ currentUser.points ? currentUser.points : 0 }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="dropdown">
+        <button class="btn btn-outline-primary thisbtn" type="button" id="dropdownMenu1" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true">
+          Change day
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><a *ngFor="let day of days" class="dropdown-item" (click)="setScoreboard(day.toISOString())">Day
+              {{getDay(day)}}</a></li>
+          <li><a class="dropdown-item" (click)="setScoreboard(current .toISOString())">Today</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>

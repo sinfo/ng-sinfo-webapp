@@ -1,3 +1,37 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.vertical{
+    flex-direction: column;
+}
+
+.limit-width{
+    max-width: calc(100%-100px);
+}
+
+@media(max-width: 975px){
+    .limit-width{
+        max-width: 73vw;
+    }
+}
+
+.title {
+    text-align: center;
+}
+
 .video-wrapper {
     border: 14px solid;
     border-radius: 16px;

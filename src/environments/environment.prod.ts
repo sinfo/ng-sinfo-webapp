@@ -2,23 +2,35 @@ export const environment = {
   production: true,
   deckUrl: 'https://deck.sinfo.org',
   cannonUrl: 'https://cannon.sinfo.org',
-  url_to_id: {'26-sinfo': '26-sinfo',
+  url_to_id: {
+    '27-sinfo': '27-sinfo',
+    '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
     '23-sinfo': '23-sinfo-conf'
   },
-  id_to_url: {'26-sinfo': '26-sinfo',
+  id_to_url: {
+    '27-sinfo': '27-sinfo',
+    '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
     '23-sinfo-conf': '23-sinfo'
   },
-  themes: {'26-sinfo': [
-    'Software',
-    'Multimedia',
-    'Security',
-    'Games',
-    'AI'
-  ],
+  themes: {
+    '27-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'Cybersecurity',
+      'Games',
+      'Web & UX'
+    ],
+    '26-sinfo': [
+      'Software',
+      'Multimedia',
+      'Security',
+      'Games',
+      'AI'
+    ],
     '25-sinfo': [
       'Software',
       'VR',
@@ -52,8 +64,8 @@ export const environment = {
     clientId: '1132965128044545',
     redirectUrl: 'https://sinfo.org/login'
   },
-  linkedIn: {
+  linkedin: {
     clientId: '78k3k77vq56igl',
-    redirectUrl: 'https://sinfo.org/login/linkedIn'
+    redirectUrl: 'https://sinfo.org/login/linkedin'
   }
 }

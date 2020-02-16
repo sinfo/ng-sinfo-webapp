@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
-import { Link } from '../user/link/link.model'
+import { Link, Note } from '../user/link/link.model'
 import { environment } from '../../environments/environment'
 import { User } from '../user/user.model'
 import { EventService } from '../events/event.service'
@@ -60,19 +60,28 @@ export class CompanyCannonService {
       )
   }
 
-  createLink (companyId: string, userId: string, attendeeId: string, note: string): Observable<Link> {
+  createLink (companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
     return this.http.post<Link>(`${this.companiesUrl}/${companyId}/link`, {
       userId: userId,
       attendeeId: attendeeId,
       editionId: this.event.id,
-      note: note || ' '
+      notes: {
+        contacts: {
+          email: note.contacts.email ? note.contacts.email : '',
+          phone: note.contacts.phone ? note.contacts.phone : ''
+        },
+        interestedIn: note.interestedIn ? note.interestedIn : '',
+        degree: note.degree ? note.degree : '',
+        availability: note.availability ? note.availability : '',
+        otherObservations: note.otherObservations ? note.otherObservations : ''
+      }
     }, { headers: this.headers })
       .pipe(
         catchError(this.handleError<Link>('createLink'))
       )
   }
 
-  updateLink (companyId: string, userId: string, attendeeId: string, note: string): Observable<Link> {
+  updateLink (companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -84,7 +93,7 @@ export class CompanyCannonService {
 
     return this.http.patch<Link>(`${this.companiesUrl}/${companyId}/link/${attendeeId}`, {
       userId: userId,
-      note: note
+      notes: note
     }, httpOptions)
       .pipe(
         catchError(this.handleError<Link>('updateLink'))
@@ -117,7 +126,7 @@ export class CompanyCannonService {
       day: new Date().getDate().toString() // current day
     }, httpOptions)
       .pipe(
-      catchError(this.handleError<User>('sign'))
+        catchError(this.handleError<User>('sign'))
       )
   }
 
@@ -140,7 +149,7 @@ export class CompanyCannonService {
       this.messageService.add(msg)
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 }

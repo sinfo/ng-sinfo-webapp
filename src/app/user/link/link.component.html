@@ -1,52 +1,88 @@
-<app-menu></app-menu>
-
 <app-loading [content]="company"></app-loading>
 
-<div class="sidebar-wrapper" *ngIf="company">
+<div class="wrapper" *ngIf="company">
 
-  <app-sidebar [user]="me"></app-sidebar>
+  <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
+  </app-qrcode-scanner>
 
-  <div id="content" class="container-fluid my-area-content">
-    <div class="align-center">
+  <div *ngIf="userRead" class='wrapper'>
 
-      <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
-      </app-qrcode-scanner>
+    <div *ngIf='!yesToLink' class='full-width'>
 
-      <div *ngIf="userRead">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-button rescan" (click)="toLink()">
+            <span>Link</span>
+          </button>
+        </div>
+      </div>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="notes" class="form-control" placeholder="Insert your notes here">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-button btn-danger" (click)="reScan()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf='yesToLink' class='full-width'>
+      <div class="row">
+        <div class="col-xs-12">
+          <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email">
           </textarea>
-          </div>
         </div>
-
-        <div class="row">
-          <div class="col-xs-12">
-            <button type="button" class="btn btn-button" (click)="link()">
-              <span class="glyphicon glyphicon-link"></span> Link to {{company.name}}
-            </button>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <textarea [(ngModel)]="notes.contacts.phone" class="form-control" placeholder="Attendee phone number">
+          </textarea>
         </div>
-
-        <div class="row">
-          <div class="col-xs-12">
-            <button class="btn btn-button rescan" (click)="reScan()">
-              Rescan QrCode
-              <span class="glyphicon glyphicon-qrcode"></span>
-            </button>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <textarea [(ngModel)]="notes.interestedIn" class="form-control" placeholder="Attendee's interests">
+          </textarea>
         </div>
-
-
-        <div class="row" *ngIf="currentLink">
-          <div class="col-xs-12">
-            <button class="btn btn-button btn-danger" (click)="deleteLink()">
-              Remove Link
-            </button>
-          </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <textarea [(ngModel)]="notes.degree" class="form-control" placeholder="Attendee's degree">
+          </textarea>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <textarea [(ngModel)]="notes.availability" class="form-control" placeholder="Attendee's avaliability">
+          </textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <textarea [(ngModel)]="notes.otherObservations" class="form-control"
+            placeholder="Insert your other observations here">
+          </textarea>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-xs-12">
+          <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="link()">
+            <span class="glyphicon glyphicon-link"></span> Link
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-button" (click)="reScan()">
+            Rescan QrCode
+            <span class="glyphicon glyphicon-qrcode"></span>
+          </button>
+        </div>
       </div>
     </div>
+
   </div>
+</div>

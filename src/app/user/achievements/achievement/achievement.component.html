@@ -1,0 +1,44 @@
+<app-loading [content]="achievement">
+</app-loading>
+
+<div class="achievement-section" *ngIf="achievement">
+  <div class="container subsection">
+    <div class="row">
+      <div class="col-sm-12 align-center">
+        <span class="fa fa-star-o"></span>
+        <h3>Achievement</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 align-center">
+        <img appImage [src]="achievement.img" class="achievement" alt="{{achievement.name}}"
+          title="{{achievement.name}}">
+        <h5 class="name"> {{ achievement.name }}</h5>
+        <h4 class="lead">
+          <strong>Value</strong>: {{ achievement.value }} points</h4>
+      </div>
+    </div>
+
+
+    <div *ngIf="!users" class="row">
+      <div class="col-sm-12 align-center">
+        <h6 class="lead">
+          No users have yet claimed this achievement
+        </h6>
+      </div>
+    </div>
+
+    <div *ngIf="users" class="row">
+      <div class="col-sm-12 align-center users-wrapper">
+        <h6 class="lead">
+          {{ achievement.users.length }} user{{ achievement.users.length === 1 ? '' : 's' }} that have already claimed
+          this achievement
+        </h6>
+      </div>
+      <div class="col-sm-12 align-center users-wrapper">
+        <img appImage [src]="user.img" *ngFor="let user of users" class="portrait" alt="{{user.name}}"
+          title="{{user.name}}">
+      </div>
+    </div>
+  </div>
+</div>

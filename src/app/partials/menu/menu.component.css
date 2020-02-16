@@ -10,15 +10,6 @@
   align-items: center;
 }
 
-.navigation-header {
-  height: 75px;
-  padding-top: 20px;
-}
-
-.header-wrapper {
-  height: 75px;
-}
-
 .alert{
   width: 100%;
 }

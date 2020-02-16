@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Params } from '@angular/router'
+import { ActivatedRoute } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
 import { EventService } from './../events/event.service'
 import { UserService } from './user.service'
 import { User } from './user.model'
-import { Achievement } from '../achievements/achievement.model'
+import { Achievement } from './achievements/achievement.model'
 
 @Component({
   selector: 'app-user',
@@ -24,18 +24,9 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit () {
-    this.route.params.forEach((params: Params) => {
-      this.getUser(params['id'])
-      this.eventService.getCurrent().subscribe(event => {
-        this.titleService.setTitle(event.name + ' - ' + this.user.name)
-      })
-      this.getUserAchievements(params['id'])
+    this.userService.getMe().subscribe(me => {
+      this.user = me
     })
-  }
-
-  getUser (id: string): void {
-    this.userService.getUser(id)
-      .subscribe(user => this.user = user)
   }
 
   getUserAchievements (id: string): void {

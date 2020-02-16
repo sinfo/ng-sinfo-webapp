@@ -8,18 +8,27 @@ export const environment = {
   deckUrl: 'http://localhost:8080',
   cannonUrl: 'http://localhost:8090',
   url_to_id: {
+    '27-sinfo': '27-sinfo',
     '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
     '23-sinfo': '23-sinfo-conf'
   },
   id_to_url: {
+    '27-sinfo': '27-sinfo',
     '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
     '24-sinfo': '24-sinfo',
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '27-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'Cybersecurity',
+      'Games',
+      'Web & UX'
+    ],
     '26-sinfo': [
       'Software',
       'Multimedia',
@@ -54,14 +63,14 @@ export const environment = {
     appId: '1993609550676550' // development appId
   },
   google: {
-    clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
+    clientId: '744740842123-4fs8tbutopitaqpfsk3rnhkkdkut7q3d.apps.googleusercontent.com'
   },
   fenix: {
-    clientId: '1132965128044545',
-    redirectUrl: 'https://sinfo.org/login'
+    clientId: '1132965128044643',
+    redirectUrl: 'http://localhost:4201/login'
   },
-  linkedIn: {
+  linkedin: {
     clientId: '78k3k77vq56igl',
-    redirectUrl: 'http://localhost:4201/login/linkedIn'
+    redirectUrl: 'http://localhost:4201/login/linkedin'
   }
 }

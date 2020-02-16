@@ -11,7 +11,7 @@ export class IsTeamGuard implements CanActivate {
     private authService: AuthService,
     private userService: UserService,
     private router: Router
-  ) {}
+  ) { }
 
   canActivate (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (!this.authService.isLoggedIn()) {
@@ -19,7 +19,11 @@ export class IsTeamGuard implements CanActivate {
       return false
     }
 
-    // Store the attempted URL for redirecting
-    return this.userService.me && this.userService.me.role === 'team'
+    if (!this.userService.me || this.userService.me.role !== 'team') {
+      this.router.navigate(['/login'])
+      return false
+    }
+
+    return true
   }
 }

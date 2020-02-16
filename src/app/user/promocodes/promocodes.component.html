@@ -1,0 +1,36 @@
+<app-loading [content]="partners"></app-loading>
+
+<div class="wrapper">
+  <h3 class="partners-title">
+    Promocodes
+  </h3>
+  <h6 class='subtitle'> Click a card to view the code!
+  </h6>
+  <h6 class='subtitle'>Click the code to copy it!</h6>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="cards" *ngIf='!isPartnersEmpty'>
+        <div class="card-wrapper" *ngFor="let p of partners; let i = index">
+          <div class='card' id='{{i}}'>
+            <div class='card-img-wrapper'>
+              <img src='{{p.img}}' class='card-img'>
+            </div>
+            <div class='code-description'>
+              <span class='text-box'>{{p.description}}</span>
+            </div>
+            <div class='card-text' (click)='copy($event, p.code)' *ngIf='p.code'>
+              <span class='text-box'><b>{{p.code}}</b></span>
+            </div>
+            <div id='tooltip-{{p.code}}' class='tooltip' style='opacity: 0;'>Copied!</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf='isPartnersEmpty'>
+        <h6 class='subtitle'> No promo codes yet :(
+        </h6>
+      </div>
+    </div>
+  </div>
+</div>

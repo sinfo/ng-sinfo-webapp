@@ -16,7 +16,7 @@ const httpOptions = {
 export class AuthService {
   private authUrl = environment.cannonUrl + '/auth'
   redirectUrl: string
-  linkedInState: string
+  linkedinState: string
 
   constructor (
     private http: HttpClient,
@@ -27,34 +27,34 @@ export class AuthService {
 
   facebook (id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/facebook`, { id, token }, httpOptions)
-    .pipe(
-      tap(cannonToken => cannonToken.loginWith = 'facebook'),
-      catchError(this.handleError<CannonToken>('Facebook Login'))
-    )
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'facebook'),
+        catchError(this.handleError<CannonToken>('Facebook Login'))
+      )
   }
 
   google (id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/google`, { id, token }, httpOptions)
-    .pipe(
-      tap(cannonToken => cannonToken.loginWith = 'google'),
-      catchError(this.handleError<CannonToken>('Google Login'))
-    )
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'google'),
+        catchError(this.handleError<CannonToken>('Google Login'))
+      )
   }
 
   fenix (code): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/fenix`, { code }, httpOptions)
-    .pipe(
-      tap(cannonToken => cannonToken.loginWith = 'fenix'),
-      catchError(this.handleError<CannonToken>('Fenix Login'))
-    )
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'fenix'),
+        catchError(this.handleError<CannonToken>('Fenix Login'))
+      )
   }
 
-  linkedIn (code): Observable<CannonToken> {
+  linkedin (code): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/linkedin`, { code }, httpOptions)
-    .pipe(
-      tap(cannonToken => cannonToken.loginWith = 'linkedIn'),
-      catchError(this.handleError<CannonToken>('LinkedIn Login'))
-    )
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'linkedin'),
+        catchError(this.handleError<CannonToken>('Linkedin Login'))
+      )
   }
 
   getToken (): CannonToken | null | undefined {
@@ -100,7 +100,7 @@ export class AuthService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 }

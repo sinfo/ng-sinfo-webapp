@@ -16,8 +16,8 @@ import {
   LiveComponent
 } from './static/static.component'
 import { SpeakerComponent } from './speakers/speaker/speaker.component'
-import { SponsorsComponent } from './sponsors/sponsors.component'
-import { SponsorService } from './sponsors/sponsor.service'
+import { SponsorsComponent } from './landing-page/sponsors/sponsors.component'
+import { SponsorService } from './landing-page/sponsors/sponsor.service'
 import { TeamComponent } from './team/team.component'
 import { TeamService } from './team/team.service'
 import { LoadingComponent } from './partials/loading/loading.component'
@@ -25,7 +25,7 @@ import { UserComponent } from './user/user.component'
 import { UserService } from './user/user.service'
 import { ScheduleComponent } from './landing-page/schedule/schedule.component'
 import { LoginComponent } from './auth/login/login.component'
-import { LinkedInLoginComponent } from './auth/login/linkedin.component'
+import { LinkedinLoginComponent } from './auth/login/linkedin.component'
 import { AuthService } from './auth/auth.service'
 import { StorageService } from './storage.service'
 import { AuthGuard } from './auth/auth.guard'
@@ -34,14 +34,14 @@ import { FeedbackComponent } from './landing-page/feedback/feedback.component'
 import { MessageService } from './message.service'
 import { JwtService } from './auth/jwt.service'
 import { SidebarComponent } from './partials/sidebar/sidebar.component'
-import { AchievementsComponent } from './achievements/achievements.component'
-import { AchievementComponent } from './achievements/achievement/achievement.component'
-import { AchievementService } from './achievements/achievement.service'
+import { AchievementsComponent } from './user/achievements/achievements.component'
+import { AchievementComponent } from './user/achievements/achievement/achievement.component'
+import { AchievementService } from './user/achievements/achievement.service'
 import { SessionService } from './session/session.service'
-import { ScoreboardComponent } from './scoreboard/scoreboard.component'
-import { ScoreboardService } from './scoreboard/scoreboard.service'
+import { ScoreboardComponent } from './user/scoreboard/scoreboard.component'
+import { ScoreboardService } from './user/scoreboard/scoreboard.service'
 import { QrcodeScannerComponent } from './partials/qr-code-scanner/qr-code-scanner.component'
-import { NgxQRCodeModule } from 'ngx-qrcode3' // generate qrcode
+import { QRCodeModule } from 'angularx-qrcode'
 import { ZXingScannerModule } from '@zxing/ngx-scanner' // scan qrcode
 import { PromoteComponent } from './user/promote/promote.component'
 import { CompanyService } from './company/company.service'
@@ -52,13 +52,13 @@ import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
 import { CompanyCannonService } from './company/company-cannon.service'
 import { CardComponent } from './user/card/card.component'
-import { WorkshopsComponent } from './session/workshops/workshops.component'
-import { WorkshopComponent } from './session/workshops/workshop/workshop.component'
-import { TicketService } from './session/workshops/ticket.service'
-import { WorkshopRegisterButtonComponent } from './session/workshops/workshop/register-button.component'
+import { WorkshopsComponent } from './user/workshops/workshops.component'
+import { WorkshopComponent } from './user/workshops/workshop/workshop.component'
+import { TicketService } from './user/workshops/ticket.service'
+import { WorkshopRegisterButtonComponent } from './user/workshops/workshop/register-button.component'
 import { IsTeamGuard } from './auth/is-team.guard'
-import { WorkshopsStatusComponent } from './session/workshops/workshops-status.component'
-import { WorkshopStatusElementComponent } from './session/workshops/workshop-status-element.component'
+import { WorkshopsStatusComponent } from './user/workshops/workshops-status.component'
+import { WorkshopStatusElementComponent } from './user/workshops/workshop-status-element.component'
 import { SurveyComponent } from './user/survey/survey.component'
 import { SurveyService } from './user/survey/survey.service'
 import { SignatureService } from './user/signature/signature.service'
@@ -72,9 +72,14 @@ import { DownloadsStatusComponent } from './user/downloads/downloads-status/down
 import { EventService } from './events/event.service'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
-import { PickWinnerComponent } from './pick-winner/pick-winner.component'
+import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 import { RedeemService } from './user/redeem/redeem.service'
+import { LivestreamComponent } from './landing-page/livestream/livestream.component'
+import { PromocodesComponent } from './user/promocodes/promocodes.component'
+import { StandsComponent } from './landing-page/stands/stands.component'
+import { ImageDirective } from './partials/image.directive'
+import { PartnersComponent } from './landing-page/partners/partners.component'
 
 @NgModule({
   declarations: [
@@ -93,7 +98,7 @@ import { RedeemService } from './user/redeem/redeem.service'
     QrcodeScannerComponent,
     LoadingComponent,
     LoginComponent,
-    LinkedInLoginComponent,
+    LinkedinLoginComponent,
     MyProfileComponent,
     UserComponent,
     SessionComponent,
@@ -123,16 +128,21 @@ import { RedeemService } from './user/redeem/redeem.service'
     PickWinnerComponent,
     EventComponent,
     CvComponent,
-    RedeemComponent
+    RedeemComponent,
+    LivestreamComponent,
+    PromocodesComponent,
+    StandsComponent,
+    ImageDirective,
+    PartnersComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     Routing,
-    NgxQRCodeModule,
+    QRCodeModule,
     ZXingScannerModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule
   ],
   providers: [
     SpeakerService,

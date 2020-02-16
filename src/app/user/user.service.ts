@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { User } from './user.model'
-import { Observable , of } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
-import { Achievement } from '../achievements/achievement.model'
+import { Achievement } from './achievements/achievement.model'
 import { AuthService } from '../auth/auth.service'
 import { MessageService, Type } from '../message.service'
 import { EventService } from '../events/event.service'
@@ -40,7 +40,7 @@ export class UserService {
 
     return this.http.get<User>(`${this.usersUrl}/${id}`, { headers: new HttpHeaders(headers) })
       .pipe(
-      catchError(this.handleError<User>(`getting user profile`))
+        catchError(this.handleError<User>(`getting user profile`))
       )
   }
 
@@ -104,7 +104,7 @@ export class UserService {
         // if the current event hasn't started yet, a cv is updated if it has less than a year
         if (new Date(cv.updated).getTime() >= new Date(this.event.date).getTime()) return true
         if (curr.getTime() < new Date(this.event.date).getTime() &&
-        new Date(cv.updated).getTime() >= new Date(new Date(this.event.date).getTime() - year).getTime()) return true
+          new Date(cv.updated).getTime() >= new Date(new Date(this.event.date).getTime() - year).getTime()) return true
 
         return false
       })
@@ -137,7 +137,7 @@ export class UserService {
   getUserAchievements (id: string): Observable<Achievement[]> {
     return this.http.get<Achievement[]>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
-      catchError(this.handleError<Achievement[]>(`getting user achievements`))
+        catchError(this.handleError<Achievement[]>(`getting user achievements`))
       )
   }
 
@@ -164,12 +164,12 @@ export class UserService {
           company: company
         }
       }, httpOptions)
-          .pipe(
+        .pipe(
           catchError(this.handleError<User>('updating user'))
-          )
+        )
     } else {
       return this.http.put<User>(`${this.usersUrl}/${id}`, { role: role }, httpOptions)
-          .pipe(
+        .pipe(
           tap(user => {
             for (let i = 0; i < user.company.length; i++) {
               if (user.company[i].edition === this.event.id) {
@@ -179,7 +179,7 @@ export class UserService {
             }
           }),
           catchError(this.handleError<User>('updating user'))
-          )
+        )
     }
   }
 
@@ -207,15 +207,15 @@ export class UserService {
 
     return this.http.delete<User>(`${this.usersUrl}/${id}/company?editionId=${this.event.id}`,
       httpOptions).pipe(
-      catchError(this.handleError<User>('removing this events company from user'))
+        catchError(this.handleError<User>('removing this events company from user'))
       )
   }
 
   getUserSessions (id: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.usersUrl}/${id}/sessions`)
-    .pipe(
-      catchError(this.handleError<string[]>(`getting user session`))
-    )
+      .pipe(
+        catchError(this.handleError<string[]>(`getting user session`))
+      )
   }
 
   validateCard (id: string): Observable<User> {
@@ -249,7 +249,7 @@ export class UserService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 }

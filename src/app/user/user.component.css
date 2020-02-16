@@ -1,47 +1,39 @@
-div.loading-wrapper {
-  margin: 30px auto;
+.user-wrapper {
+  position: absolute;
+
+  display: flex;
+  flex-direction: row;
+  
+  width: 100vw;
+
+  top: 100px;
+  height: calc(100vh - 100px);
 }
 
-div.user {
-  padding-bottom: 20px;
-}
-
-div.portrait-wrapper {
-  margin: 10px auto;
-}
-
-h3 {
-  margin: 20px auto;
-}
-
-h5 {
-  margin-top: 10px;
-}
-
-p {
-  font-size: 15px;
-}
-
-img.portrait {
-  border-radius: 50%;
-  border: 3px solid #048ae6;
-}
-
-div.achivements-wrapper {
-  margin: 20px auto;
-}
-
-div.achivements-wrapper img.achievement {
-  width: 100px;
-  margin: 5px;
-}
-
-@media (max-width: 425px){
-  div.user {
-    background-size: 150%;
+@media (max-width: 767px) {
+  .user-wrapper {
+    height: calc(100vh - 71px);
+    top: 71px;
   }
+}
 
-  div.user h5 {
-    text-align: center;
+.sidebar {
+  height: 100%;
+  width: 20%;
+}
+
+.profile-content {
+  flex-grow: 1;
+
+  margin: 3% 1% 2% 1%;
+  padding-right: 1%;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+@media(min-width: 975px){
+  .sidebar {
+    width: 100px;
   }
 }

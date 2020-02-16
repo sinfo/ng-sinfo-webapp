@@ -1,94 +1,71 @@
-<app-menu></app-menu>
-
 <app-loading [content]="user"></app-loading>
 
-<div class="user sidebar-wrapper" *ngIf="user">
+<div class="align-center" *ngIf="user">
 
-  <app-sidebar [user]="user"></app-sidebar>
+  <div class="row">
+    <h3>Upload CV</h3>
+  </div>
 
-  <div id="content" class="content container-fluid my-area-content">
-    <div class="align-center">
-      
-      <div class="row">
-        <h3>Upload CV</h3>
-      </div>
-      
-      <div class="row">
-        <h6>Submit or update your CV and enable yourself to win prizes!</h6>
-      </div>
+  <div class="row">
+    <h6>Submit or update your CV and enable yourself to win prizes!</h6>
+  </div>
 
-      <div id="info">
+  <div id="info">
 
-        <div>
-          <h5>Last upload:</h5>
-        </div>
+    <div>
+      <h5>Last upload:</h5>
+    </div>
 
-        <div class="img" *ngIf="myCv && updated">
-          <img src="assets/img/icons/sidebar/updatedcv.png">
-        </div>
+    <div class="img" *ngIf="myCv && updated">
+      <img src="assets/img/icons/sidebar/updatedcv.png">
+    </div>
 
-        <div class="img" *ngIf="myCv && !updated">
-          <img src="assets/img/icons/sidebar/oldcv.png">
-        </div>
+    <div class="img" *ngIf="myCv && !updated">
+      <img src="assets/img/icons/sidebar/oldcv.png">
+    </div>
 
-        <div class="img" *ngIf="myCv === undefined">
-          <img src="assets/img/icons/sidebar/nocv.png">
-        </div>
-        
-        <div *ngIf="myCv">
-          <ul>
-            <li><a href="{{ cvDownloadUrl }}">{{myCv.name}}</a></li>
-            <li>({{ myCv.updated | date: 'dd/MM/yyyy' }})</li>
-          </ul>
-        </div>
-        <div *ngIf="myCv === undefined">
-          <h5>No uploads</h5>
-        </div>
+    <div class="img" *ngIf="myCv === undefined">
+      <img src="assets/img/icons/sidebar/nocv.png">
+    </div>
 
-      </div>
+    <div *ngIf="myCv">
+      <ul>
+        <li><a href="{{ cvDownloadUrl }}">{{myCv.name}}</a></li>
+        <li>({{ myCv.updated | date: 'dd/MM/yyyy':'+0000'}})</li>
+      </ul>
+    </div>
+    <div *ngIf="myCv === undefined">
+      <h5>No uploads</h5>
+    </div>
 
-      <div id="progress-bar">
-        <span *ngIf="upload_progress">
-          <ngb-progressbar type="info" [value]="upload_progress" [striped]="true"></ngb-progressbar>
-        </span>
-      </div>
+  </div>
 
-      <div id ="actions" class="row">
-        <div class="col-sm-12 align-center cv-buttons">
+  <div id="progress-bar">
+    <span *ngIf="upload_progress">
+      <ngb-progressbar type="info" [value]="upload_progress" [striped]="true"></ngb-progressbar>
+    </span>
+  </div>
 
-          <!--
-          <div *ngIf="submitedCV" class="alert-message cv-alert">
-            <div class="alert alert-success" role="alert">
-              Your CV has already been submitted
-            </div>
-          </div>
+  <div id="actions" class="row">
+    <div class="col-sm-12 align-center cv-buttons">
 
-          <div *ngIf="!submitedCV" class="alert-message cv-alert">
-            <div class="alert alert-info" role="alert">
-              You have not yet submitted your CV
-            </div>
-          </div>
-          -->
+      <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
+      <label for="file" class="btn cv-button upload" [ngClass]="{'btn-success': myCv, 'btn-info': !myCv}">
+        <span class="glyphicon glyphicon-cloud-upload"></span>
+        {{ myCv ? 'Update' : 'Upload' }}
+      </label>
 
-            <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
-            <label for="file" class="btn cv-button upload" [ngClass]="{'btn-success': myCv, 'btn-info': !myCv}">
-              <span class="glyphicon glyphicon-cloud-upload"></span>
-              {{ myCv ? 'Update' : 'Upload' }}
-            </label>
+      <a *ngIf="myCv" href="{{ cvDownloadUrl }}" target="_blank" class="btn cv-button download">
+        <span class="glyphicon glyphicon-cloud-download"></span>
+        Download
+      </a>
 
-            <a *ngIf="myCv" href="{{ cvDownloadUrl }}" target="_blank" class="btn cv-button download">
-              <span class="glyphicon glyphicon-cloud-download"></span>
-              Download
-            </a>
-
-            <button *ngIf="myCv" class="btn cv-button delete" id="deleteFile" (click)="deleteCV()">
-              <span class="glyphicon glyphicon-remove"></span>
-              Delete
-            </button>
-
-        </div>
-      </div>
+      <button *ngIf="myCv" class="btn cv-button delete" id="deleteFile" (click)="deleteCV()">
+        <span class="glyphicon glyphicon-remove"></span>
+        Delete
+      </button>
 
     </div>
   </div>
+
 </div>

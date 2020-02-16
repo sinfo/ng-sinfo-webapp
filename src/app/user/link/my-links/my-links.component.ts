@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
-import { Link } from '../link.model'
+import { Link, Note } from '../link.model'
 import { User } from '../../user.model'
 import { UserService } from '../../user.service'
 import { Company } from '../../../company/company.model'
@@ -22,7 +22,8 @@ export class MyLinksComponent implements OnInit {
   processedLinks: Array<{
     attendee: User
     user: User
-    note: string
+    note: Note
+    noteEmpty: boolean
   }>
   gotLinks: boolean
 
@@ -54,7 +55,19 @@ export class MyLinksComponent implements OnInit {
             .subscribe(links => {
               this.links = links
               links.forEach(link => this.processLink(link))
+              console.log(this.processedLinks)
             })
+        })
+    })
+  }
+
+  deleteLink (id: string) {
+    this.companyCannonService.deleteLink(this.company.id, id).subscribe(() => {
+      this.companyCannonService.getLinks(this.company.id)
+        .subscribe(links => {
+          this.processedLinks = []
+          this.links = links
+          links.forEach(link => this.processLink(link))
         })
     })
   }
@@ -67,7 +80,13 @@ export class MyLinksComponent implements OnInit {
             this.processedLinks.push({
               attendee: attendee,
               user: user,
-              note: link.note
+              note: link.notes,
+              noteEmpty: (!link.notes.contacts.email &&
+                !link.notes.contacts.phone &&
+                !link.notes.degree &&
+                !link.notes.availability &&
+                !link.notes.interestedIn &&
+                !link.notes.otherObservations)
             })
           })
       })

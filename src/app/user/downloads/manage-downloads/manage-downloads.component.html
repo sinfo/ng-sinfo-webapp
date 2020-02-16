@@ -1,99 +1,82 @@
-<app-menu></app-menu>
-
 <app-loading [content]="me"></app-loading>
 
-<div class="sidebar-wrapper" *ngIf="me">
+<div class="wrapper" *ngIf="me">
+  <div class="title">
+    <h3>Create Download Endpoints</h3>
+  </div>
 
-  <app-sidebar [user]="me"></app-sidebar>
+  <div class="description">
+    <h6 class="lead">
+      Sinfo members must create the enpoints to allow companies
+      <br> to download the CVs Zip files.
+    </h6>
+  </div>
 
-  <div id="content" class="container manage-downloads my-area-content">
-    <div class="row">
-      <div class="col-sm-12 align-center">
-        <h3>Create Download Endpoints</h3>
+  <div class="endpoints-wrapper">
+    <h6 class="title">
+      <b>First:</b> Select which companies you are creating endpoints to.
+    </h6>
+
+    <div class="select-companies-wrapper">
+
+      <div class="select-companies btn-group btn-group-toggle">
+        <label class="btn-primary" ngbButtonLabel>
+          <input type="checkbox" ngbButton [(ngModel)]="selectAllCompanies"> Select All Companies
+        </label>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-12 align-center">
-        <h6 class="lead">
-          Sinfo members must create the enpoints to allow companies
-          <br> to download the CVs Zip files.
-        </h6>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12 align-center">
-        <h6 class="lead">
-          <b>First:</b> Select which companies you are creating endpoints to.
-        </h6>
-      </div>
-      <div class="col-sm-12 select-companies-wrapper">
-        <div class="align-center select-companies btn-group btn-group-toggle">
-          <label class="btn-primary" ngbButtonLabel>
-            <input type="checkbox" ngbButton [(ngModel)]="selectAllCompanies"> Select All Companies
-          </label>
-        </div>
-        <div class="typeahead">
-          <input id="typeahead-template" #input type="text" class="form-control" 
-            #instance="ngbTypeahead" placeholder="Select multiple companies" 
-            (focus)="focus$.next($event.target.value)"
-            (click)="click$.next($event.target.value)" 
-            (selectItem)="selectedItem($event); input.value='' "
-            [(ngModel)]="searchedCompany" 
-            [ngbTypeahead]="search" 
-            [inputFormatter]="formatter"
-            [resultFormatter]="formatter" 
-            [resultTemplate]="rt"/>
-          <ng-template #rt let-r="result" let-t="term">
-            <p>{{r.name}}</p>
-            <span class="btn-primary glyphicon glyphicon-plus"></span>
-          </ng-template>
-        </div>
-      </div>
-      <div *ngIf="selectedCompanies.length > 0 && !selectAllCompanies" class="col-sm-12 align-center">
-        <h6 class="lead selected-list">
-          Selected Companies
-        </h6>
-        <ul class="selected-list">
-          <li *ngFor="let c of selectedCompanies">
-            <span class="label" (click)="removeSelected(c)">
-              {{c.name}}
-              <span class="glyphicon glyphicon-trash"></span>
-            </span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="row align-center">
-      <div class="col-sm-12">
-        <h6 class="lead">
-          <b>Second:</b> Select the period these endpoints will be open.
-        </h6>
-
-        <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
-        </ngb-datepicker>
-
-        <ng-template #t let-date="date" let-focused="focused">
-          <span class="custom-day" [class.focused]="focused" [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
-            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
-            {{ date.day }}
-          </span>
+      <div class="typeahead">
+        <input id="typeahead-template" #input type="text" class="form-control" #instance="ngbTypeahead"
+          placeholder="Select multiple companies" (focus)="focus$.next($event.target.value)"
+          (click)="click$.next($event.target.value)" (selectItem)="selectedItem($event); input.value='' "
+          [(ngModel)]="searchedCompany" [ngbTypeahead]="search" [inputFormatter]="formatter"
+          [resultFormatter]="formatter" [resultTemplate]="rt" />
+        <ng-template #rt let-r="result" let-t="term">
+          <p>{{r.name}}</p>
+          <span class="btn-primary glyphicon glyphicon-plus"></span>
         </ng-template>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-sm-12 create-endpoints align-center">
-        <button class="btn btn-success" (click)="createEndpoints()" 
-        [disabled]="loading || !fromDate || !toDate || ( !selectedCompanies.length > 0 && !selectAllCompanies )">
-          <span *ngIf="loading">
-            <i class="fa fa-circle-o-notch fa-spin"></i>
+    <div *ngIf="selectedCompanies.length > 0 && !selectAllCompanies" class="col-sm-12 align-center">
+      <h6 class="lead selected-list">
+        Selected Companies
+      </h6>
+      <ul class="selected-list">
+        <li *ngFor="let c of selectedCompanies">
+          <span class="label" (click)="removeSelected(c)">
+            {{c.name}}
+            <span class="glyphicon glyphicon-trash"></span>
           </span>
-          Create Endpoints
-        </button>
-      </div>
+        </li>
+      </ul>
     </div>
+  </div>
+
+  <div class="period">
+    <h6 class="title">
+      <b>Second:</b> Select the period these endpoints will be open.
+    </h6>
+
+    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
+    </ngb-datepicker>
+
+    <ng-template #t let-date="date" let-focused="focused">
+      <span class="custom-day" [class.focused]="focused"
+        [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+        [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+        (mouseleave)="hoveredDate = null">
+        {{ date.day }}
+      </span>
+    </ng-template>
+  </div>
+
+  <div class="submit">
+    <button class="btn btn-success" (click)="createEndpoints()"
+      [disabled]="loading || !fromDate || !toDate || ( !selectedCompanies.length > 0 && !selectAllCompanies )">
+      <span *ngIf="loading">
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+      </span>
+      Create Endpoints
+    </button>
   </div>
 </div>
