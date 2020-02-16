@@ -21,7 +21,8 @@
           <div class="speaker">
             <div class="photo-wrapper square">
               <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
-                <img appImage [src]="speaker.img" alt="{{ speaker.name }}" title="{{ speaker.name }}" class="img-responsive">
+                <img appImage [url]="speaker.img" alt="{{ speaker.name }}" title="{{ speaker.name }}"
+                  class="img-responsive">
               </div>
             </div>
             <h3 class="name">{{ speaker.name }}</h3>

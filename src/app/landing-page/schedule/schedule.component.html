@@ -74,7 +74,7 @@
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" class="panel schedule-item">
 
                   <div class="lecture-icon-wrapper">
-                    <img appImage [src]="session.img" alt="" class="img-responsive">
+                    <img appImage [url]="session.img" alt="" class="img-responsive">
                   </div>
 
                   <a (click)="onSelect(session)" class="schedule-item-header">
@@ -118,7 +118,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img appImage [src]="presentation.img" alt="" class="img-responsive">
+                        <img appImage [url]="presentation.img" alt="" class="img-responsive">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
@@ -152,7 +152,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img appImage [src]="presentation.img" alt="" class="img-responsive">
+                        <img appImage [url]="presentation.img" alt="" class="img-responsive">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
@@ -198,7 +198,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img appImage [src]="workshop.img" alt="" class="img-responsive">
+                        <img appImage [url]="workshop.img" alt="" class="img-responsive">
                       </div>
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
@@ -231,7 +231,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img appImage [src]="workshop.img" alt="" class="img-responsive">
+                        <img appImage [url]="workshop.img" alt="" class="img-responsive">
                       </div>
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
