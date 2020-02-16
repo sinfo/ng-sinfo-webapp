@@ -50,7 +50,7 @@ export class SurveyComponent implements OnInit {
     'Very Unsatisfied'
   ]
 
-  constructor(
+  constructor (
     private route: ActivatedRoute,
     private surveyService: SurveyService,
     private sessionService: SessionService,
@@ -59,7 +59,7 @@ export class SurveyComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Survey')
     })
@@ -73,7 +73,7 @@ export class SurveyComponent implements OnInit {
       })
   }
 
-  onSubmit(form: any) {
+  onSubmit (form: any) {
     this.submitting = true
     const surveyResponse = {
       age: form.age,

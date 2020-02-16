@@ -10,8 +10,8 @@ import { EventService } from '../../events/event.service'
 declare let FB: any
 declare let gapi: any
 
-let GoogleAuth;
-let GOOGLE_SCOPE = 'profile email openid';
+let GoogleAuth
+let GOOGLE_SCOPE = 'profile email openid'
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   private isLoggedIn = false
 
-  constructor(
+  constructor (
     private messageService: MessageService,
     private authService: AuthService,
     private eventService: EventService,
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private titleService: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Login')
     })
@@ -85,11 +85,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit () {
     this.initSocialSDKs()
   }
 
-  initSocialSDKs() {
+  initSocialSDKs () {
     if (this.isGoogleActive) {
 
       gapi.load('auth2', () => {
@@ -98,10 +98,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
           cookiepolicy: 'single_host_origin',
           scope: GOOGLE_SCOPE
         }).then(() => {
-          GoogleAuth = gapi.auth2.getAuthInstance();
+          GoogleAuth = gapi.auth2.getAuthInstance()
 
           // Listen for sign-in state changes.
-          GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) });
+          GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) })
         })
       })
     }
@@ -115,7 +115,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onFenixLogin(fenixCode) {
+  onFenixLogin (fenixCode) {
     this.submitting = true
     this.authService.fenix(fenixCode).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
@@ -123,10 +123,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
     })
   }
 
-  onGoogleListen(isSignedIn: boolean) {
-    if (!isSignedIn) { GoogleAuth.signIn(); return; }
+  onGoogleListen (isSignedIn: boolean) {
+    if (!isSignedIn) { GoogleAuth.signIn(); return }
 
-    let googleUser = GoogleAuth.currentUser.get();
+    let googleUser = GoogleAuth.currentUser.get()
 
     const profile = googleUser.getBasicProfile()
     const userId = profile.getId()
@@ -143,24 +143,24 @@ export class LoginComponent implements OnInit, AfterViewInit {
       })
   }
 
-  onGoogleLogin() {
+  onGoogleLogin () {
     this.submitting = true
 
     if (GoogleAuth.isSignedIn.get()) {
       this.onGoogleListen(true)
     } else {
-      GoogleAuth.signIn();
+      GoogleAuth.signIn()
     }
   }
 
-  onFacebookLogin() {
+  onFacebookLogin () {
     this.submitting = true
     FB.login(response => {
       this.facebookStatusChange(response)
     }, { scope: 'public_profile,email' })
   }
 
-  facebookStatusChange(resp) {
+  facebookStatusChange (resp) {
     if (resp.status === 'connected') {
       // connect here with your server for facebook login by passing access token given by facebook
       this.authService.facebook(resp.authResponse.userID, resp.authResponse.accessToken)

@@ -29,8 +29,7 @@ export class LinkComponent implements OnInit {
   notes: Note
   yesToLink: Boolean
 
-
-  constructor(
+  constructor (
     private userService: UserService,
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
@@ -40,7 +39,7 @@ export class LinkComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.scannerActive = false
     this.yesToLink = false
     this.notes = {
@@ -75,22 +74,22 @@ export class LinkComponent implements OnInit {
     })
   }
 
-  toLink() {
+  toLink () {
     this.yesToLink = true
     this.info = `Linking ${this.userRead.name} with ${this.company.name}`
   }
 
-  reScan() {
+  reScan () {
     this.userRead = null
     this.scannerActive = true
   }
 
-  updateInfo() {
+  updateInfo () {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
   }
 
-  receiveUser(user: User) {
+  receiveUser (user: User) {
     this.userRead = user
     this.scannerActive = false
     this.companyCannonService.getLink(this.company.id, this.userRead.id)
@@ -101,7 +100,7 @@ export class LinkComponent implements OnInit {
     this.updateInfo()
   }
 
-  buildNotes(_link) {
+  buildNotes (_link) {
     if (_link) {
       this.notes.contacts.email = _link.notes.contacts.email
       this.notes.contacts.phone = _link.notes.contacts.phone
@@ -119,18 +118,18 @@ export class LinkComponent implements OnInit {
     this.notes.otherObservations = null
   }
 
-  link() {
+  link () {
     this.currentLink ? this.updateLink() : this.createLink()
   }
 
-  createLink() {
+  createLink () {
     this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
       })
   }
 
-  updateLink() {
+  updateLink () {
     this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link

@@ -27,7 +27,7 @@ export class PickWinnerComponent implements OnInit {
     achievement: Achievement
   }> = []
 
-  constructor(
+  constructor (
     private router: Router,
     private userService: UserService,
     private sessionService: SessionService,
@@ -61,7 +61,7 @@ export class PickWinnerComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.userService.getMe().subscribe(user => {
       this.me = user
 
@@ -75,7 +75,7 @@ export class PickWinnerComponent implements OnInit {
     })
   }
 
-  showUsers(achievement: Achievement) {
+  showUsers (achievement: Achievement) {
     this.achievement = achievement
     this.users = []
     achievement.users.forEach(userId => {
@@ -87,11 +87,11 @@ export class PickWinnerComponent implements OnInit {
     })
   }
 
-  chooseWinner() {
+  chooseWinner () {
     this.winner = this.users[Math.floor(Math.random() * this.users.length)]
   }
 
-  changeSession() {
+  changeSession () {
     this.winner = null
     this.users = []
     this.achievement = null

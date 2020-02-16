@@ -11,13 +11,13 @@ export class LinkedinLoginComponent implements OnInit {
   private isLoggedIn = false
   submitting = true
 
-  constructor(
+  constructor (
     private authService: AuthService,
     private route: ActivatedRoute,
     public router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.isLoggedIn = this.authService.isLoggedIn()
 
     if (this.isLoggedIn) {
@@ -33,7 +33,7 @@ export class LinkedinLoginComponent implements OnInit {
     })
   }
 
-  onLinkedinLogin(code) {
+  onLinkedinLogin (code) {
     this.authService.linkedin(code).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
       this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])

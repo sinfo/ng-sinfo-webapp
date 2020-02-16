@@ -1,8 +1,8 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
-import { Sponsor } from '../../landing-page/sponsors/sponsor.model';
-import { SponsorService } from '../../landing-page/sponsors/sponsor.service';
-import { Promocode } from './promocode.model';
-import { PromocodesService } from './promocodes.service';
+import { Component, OnInit } from '@angular/core'
+import { Sponsor } from '../../landing-page/sponsors/sponsor.model'
+import { SponsorService } from '../../landing-page/sponsors/sponsor.service'
+import { Promocode } from './promocode.model'
+import { PromocodesService } from './promocodes.service'
 
 @Component({
   selector: 'app-promocodes',
@@ -13,23 +13,23 @@ export class PromocodesComponent implements OnInit {
   partners: Promocode[]
   isPartnersEmpty: boolean
 
-  constructor(
+  constructor (
     private partnerService: PromocodesService,
     private sponsorService: SponsorService
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.getPartners()
   }
 
-  getPartners(): void {
+  getPartners (): void {
     this.partnerService.getPartners()
       .subscribe(partners => {
         this.getImages(partners)
       })
   }
 
-  getImages(partners: Promocode[]) {
+  getImages (partners: Promocode[]) {
 
     partners.forEach(p => {
       this.sponsorService.getSponsor(p.company).subscribe((sponsor: Sponsor) => {
@@ -42,7 +42,7 @@ export class PromocodesComponent implements OnInit {
     this.isPartnersEmpty = this.partners.length === 0
   }
 
-  copy(event, str: string) {
+  copy (event, str: string) {
     const el = document.createElement('textarea')
     el.value = str
     document.body.appendChild(el)

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 import { Session } from '../../session/session.model'
 import { Ticket } from './ticket.model'
 import { User } from '../user.model'
@@ -22,13 +22,13 @@ export class WorkshopStatusElementComponent implements OnInit {
   count: number
   private userMails = []
 
-  constructor(
+  constructor (
     private ticketService: TicketService,
     private userService: UserService,
     private authService: AuthService
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     if (this.authService.isLoggedIn()) {
       this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
         if (ticket === undefined) return
@@ -43,7 +43,7 @@ export class WorkshopStatusElementComponent implements OnInit {
     }
   }
 
-  onRegistrationClosed(isRegistrationClosed: boolean) {
+  onRegistrationClosed (isRegistrationClosed: boolean) {
     this.isRegistrationClosed = isRegistrationClosed
   }
 }

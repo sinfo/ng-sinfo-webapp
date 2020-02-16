@@ -12,12 +12,12 @@ export class SponsorService {
   private sponsors: Sponsor[]
   private eventId: string
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getSponsors(eventId: string): Observable<Sponsor[]> {
+  getSponsors (eventId: string): Observable<Sponsor[]> {
     if (this.sponsors && this.eventId === eventId) {
       return of(this.sponsors)
     }
@@ -39,7 +39,7 @@ export class SponsorService {
       )
   }
 
-  getSponsor(id: string): Observable<Sponsor> {
+  getSponsor (id: string): Observable<Sponsor> {
     if (this.sponsors) {
       return of(this.sponsors.find(sponsor => sponsor.id === id))
     }
@@ -66,7 +66,7 @@ export class SponsorService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `SponsorService: ${operation}`,
@@ -78,7 +78,7 @@ export class SponsorService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 

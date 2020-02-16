@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { Sponsor } from '../sponsors/sponsor.model';
+import { Component, Input, OnInit, OnChanges } from '@angular/core'
+import { Sponsor } from '../sponsors/sponsor.model'
 
 @Component({
   selector: 'app-partners',
@@ -12,18 +12,18 @@ export class PartnersComponent implements OnInit, OnChanges {
 
   partners: Sponsor[] = []
 
-  constructor(
+  constructor (
   ) { }
 
-  ngOnInit() {
-    this.fillPartners();
+  ngOnInit () {
+    this.fillPartners()
   }
 
-  ngOnChanges() {
-    this.fillPartners();
+  ngOnChanges () {
+    this.fillPartners()
   }
 
-  fillPartners() {
+  fillPartners () {
     if (!this.sponsors || this.sponsors.length === 0) return
 
     this.partners = this.sponsors.filter((sponsor: Sponsor) => {

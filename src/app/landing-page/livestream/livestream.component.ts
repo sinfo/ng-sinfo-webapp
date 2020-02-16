@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LivestreamService } from './livestream.service';
+import { Component, OnInit } from '@angular/core'
+import { LivestreamService } from './livestream.service'
 
 @Component({
   selector: 'app-livestream',
@@ -8,19 +8,20 @@ import { LivestreamService } from './livestream.service';
 })
 export class LivestreamComponent implements OnInit {
 
-  constructor(private liveStreamService: LivestreamService) { }
+  constructor (private liveStreamService: LivestreamService) { }
 
-  ngOnInit() {
+  ngOnInit () {
 
   }
 
-  goToLivestream() {
+  goToLivestream () {
     this.liveStreamService.getLivestreamInformation().subscribe(
       data => {
-        if (data["url"])
-          window.open(data["url"], "_blank");
+        if (data['url']) {
+          window.open(data['url'], '_blank')
+        }
       }
-    );
+    )
   }
 
 }

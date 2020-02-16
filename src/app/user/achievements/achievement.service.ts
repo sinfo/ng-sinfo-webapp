@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { environment } from '../../../environments/environment'
@@ -14,13 +14,13 @@ export class AchievementService {
   private activeUrl = this.achievementsUrl + '/active'
   private achievements: Achievement[]
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private messageService: MessageService,
     private authService: AuthService
   ) { }
 
-  getAchievements(): Observable<Achievement[]> {
+  getAchievements (): Observable<Achievement[]> {
     if (this.achievements) {
       return of(this.achievements)
     }
@@ -32,7 +32,7 @@ export class AchievementService {
       )
   }
 
-  getActiveAchievements(): Observable<Achievement[]> {
+  getActiveAchievements (): Observable<Achievement[]> {
     return this.http.get<Achievement[]>(this.activeUrl)
       .pipe(
         tap(achievements => this.achievements = achievements),
@@ -40,7 +40,7 @@ export class AchievementService {
       )
   }
 
-  getAchievement(id: string): Observable<Achievement> {
+  getAchievement (id: string): Observable<Achievement> {
     if (this.achievements) {
       return of(this.achievements.find(achievement => achievement.id === id))
     } else {
@@ -51,7 +51,7 @@ export class AchievementService {
     }
   }
 
-  getMyAchievements(): Observable<Achievement[]> {
+  getMyAchievements (): Observable<Achievement[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -64,7 +64,7 @@ export class AchievementService {
       )
   }
 
-  deleteMyAchievements(): Observable<Achievement[]> {
+  deleteMyAchievements (): Observable<Achievement[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -83,7 +83,7 @@ export class AchievementService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `AchievementService: ${operation}`,
@@ -95,7 +95,7 @@ export class AchievementService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 

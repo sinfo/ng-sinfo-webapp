@@ -44,14 +44,14 @@ export class AchievementsComponent implements OnInit {
 
   cheat = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Others']
 
-  constructor(
+  constructor (
     private achievementService: AchievementService,
     private userService: UserService,
     private eventService: EventService,
     private titleService: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Achievements')
     })
@@ -74,7 +74,7 @@ export class AchievementsComponent implements OnInit {
     })
   }
 
-  updateActiveAchievements() {
+  updateActiveAchievements () {
     this.myPoints = 0
     this.myAchievements = 0
 
@@ -130,7 +130,7 @@ export class AchievementsComponent implements OnInit {
     })
   }
 
-  updateAchievements() {
+  updateAchievements () {
     this.achievementService.getAchievements().subscribe(achievements => {
       this.achievements = achievements
         .filter((a) => { return a.id })
@@ -170,20 +170,20 @@ export class AchievementsComponent implements OnInit {
     })
   }
 
-  isUnlocked(achievement: Achievement): boolean {
+  isUnlocked (achievement: Achievement): boolean {
     return this.user && achievement.users ? achievement.users.indexOf(this.user.id) !== -1 : false
   }
 
-  changeButton() {
+  changeButton () {
     this.show_hide = this.show ? 'Hide all achievements' : 'Show all achievements'
   }
 
-  showPrev() {
+  showPrev () {
     this.show = !this.show
     this.changeButton()
   }
 
-  deleteAchievements() {
+  deleteAchievements () {
     this.achievementService.deleteMyAchievements()
       .subscribe(() => this.updateActiveAchievements())
   }

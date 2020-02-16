@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { Router, RouterStateSnapshot } from '@angular/router'
 
 import { Session } from '../../../session/session.model'
@@ -32,7 +32,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
   loading = false
   position: number
 
-  constructor(
+  constructor (
     private ticketService: TicketService,
     private authService: AuthService,
     private userService: UserService,
@@ -41,7 +41,7 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     this.snapshot = router.routerState.snapshot
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
       this.ticket = ticket
       const now = Date.now()
@@ -60,14 +60,14 @@ export class WorkshopRegisterButtonComponent implements OnInit {
     })
   }
 
-  updateState(ticket) {
+  updateState (ticket) {
     this.isRegistered = ticket.users && ticket.users.indexOf(this.user.id) !== -1
     this.isWaiting = ticket.waiting && ticket.waiting.indexOf(this.user.id) !== -1
     this.hasTicket = (this.isRegistered || this.isWaiting)
     this.position = ticket.waiting.indexOf(this.user.id) + 1
   }
 
-  handleClick() {
+  handleClick () {
     if (!this.authService.isLoggedIn()) {
       this.authService.redirectUrl = this.snapshot.url
       this.router.navigate(['/login'])

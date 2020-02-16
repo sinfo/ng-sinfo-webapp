@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../../environments/environment'
 import { Observable } from 'rxjs'
 import { Achievement } from '../achievements/achievement.model'
@@ -10,14 +10,14 @@ import { MessageService, Type } from '../../message.service'
 export class RedeemService {
   private redeemUrl = environment.cannonUrl + '/redeem'
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private authService: AuthService,
     private messageService: MessageService
   ) {
   }
 
-  redeem(id: string, myAchievements: Achievement[]): void {
+  redeem (id: string, myAchievements: Achievement[]): void {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
