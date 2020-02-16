@@ -131,3 +131,7 @@ img.portrait {
 .attendee-name {
   text-align: center;
 }
+
+.warning{
+  color: #d9534f;
+}
