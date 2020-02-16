@@ -100,12 +100,14 @@ button.btn-danger:hover {
   width: 70px;
 }
 
-
-
-
-
 .flex-item:before {
     content:'';
     float:left;
     padding-top:100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

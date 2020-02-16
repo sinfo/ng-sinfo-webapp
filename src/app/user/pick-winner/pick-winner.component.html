@@ -16,8 +16,7 @@
         <button *ngFor="let element of achievements" (click)=showUsers(element.achievement) type="button"
           class="btn btn-secondary" class="flex-item">
 
-          <img class="portrait" src="{{element.img}}"
-            onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+          <img appImage [src]="element.img" class="portrait">
           <p>
             {{element.name}}
           </p>
@@ -27,22 +26,28 @@
       <div *ngIf="achievement && users.length > 0 && !winner">
         <div class="flex-container">
           <div *ngFor="let user of users" class="flex-item small">
-            <img class="portrait" src="{{user.img}}"
-              onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+            <img appImage [src]="user.img" class="portrait">
             <p>{{user.name}}</p>
           </div>
         </div>
-        <button (click)=chooseWinner() type="button" class="btn btn-secondary">Pick Winner</button>
-        <button (click)=changeSession() type="button" class="btn btn-secondary">Change Session</button>
+
+        <div class="actions">
+          <button (click)=chooseWinner() type="button" class="btn btn-secondary">Pick Winner</button>
+          <button (click)=changeSession() type="button" class="btn btn-secondary">Change Session</button>
+        </div>
+
       </div>
 
       <div *ngIf="winner">
         <div class="portrait-wrapper">
-          <img class="portrait" src="{{winner.img}}"
-            onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+          <img appImage [src]="winner.img" class="portrait">
           <p>{{winner.name}}</p>
-          <button (click)=chooseWinner() type="button" class="btn btn-secondary">Reroll</button>
-          <button (click)=changeSession() type="button" class="btn btn-secondary">Change Session</button>
+
+          <div class="actions">
+            <button (click)=chooseWinner() type="button" class="btn btn-secondary">Reroll</button>
+            <button (click)=changeSession() type="button" class="btn btn-secondary">Change Session</button>
+          </div>
+
         </div>
       </div>
     </div>

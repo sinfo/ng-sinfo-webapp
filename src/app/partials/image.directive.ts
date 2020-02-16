@@ -1,7 +1,7 @@
 import {
   Directive, Attribute, Renderer2,
   ElementRef, Input,
-  AfterContentInit, OnDestroy
+  AfterContentInit, OnDestroy, OnChanges
 } from '@angular/core'
 
 @Directive({
@@ -16,7 +16,18 @@ export class ImageDirective implements AfterContentInit, OnDestroy {
   private cancelOnError: Function
   private cancelOnLoad: Function
 
-  @Input() src: string
+  private original: string
+  private current: string
+
+  @Input('src')
+  set src(value: string) {
+    if (this.original === undefined || this.original !== value) {
+      this.original = value
+      this.current = value
+    }
+
+    this.load()
+  }
 
   constructor(
     @Attribute('loader') public loader: string,
@@ -27,6 +38,10 @@ export class ImageDirective implements AfterContentInit, OnDestroy {
   }
 
   ngAfterContentInit() {
+    this.load()
+  }
+
+  load() {
     this.nativeElement = this.el.nativeElement
     this.onError = this.onError.bind(this)
     this.onLoad = this.onLoad.bind(this)
@@ -36,17 +51,21 @@ export class ImageDirective implements AfterContentInit, OnDestroy {
 
   onLoad() {
     this.removeOnLoadEvent()
-    this.renderer.setAttribute(this.nativeElement, 'src', this.src)
+    this.renderer.setAttribute(this.nativeElement, 'src', this.current)
   }
 
   onError() {
-    const src = this.nativeElement.getAttribute('src')
+    let src = this.nativeElement.getAttribute('src')
+
     if (src.includes('.webp')) {
-      this.src = this.src.replace('.webp', '.png')
-      this.renderer.setAttribute(this.nativeElement, 'src', this.src)
+      this.current = src.replace('.webp', '.png')
+      this.renderer.setAttribute(this.nativeElement, 'src', this.current)
     } else if (src !== this.errorImage) {
       this.renderer.setAttribute(this.nativeElement, 'src', this.errorImage)
-    } else this.removeOnLoadEvent()
+      this.current = this.errorImage
+    } else {
+      this.removeOnLoadEvent()
+    }
   }
 
   private removeErrorEvent() {
