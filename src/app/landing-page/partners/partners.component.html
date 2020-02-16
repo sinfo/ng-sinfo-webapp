@@ -12,7 +12,7 @@
 
         <div *ngIf="partners" class="partners">
             <div class="sponsor platinum" *ngFor="let partner of partners">
-                <img appImage [src]="partner.img" alt="{{ partner.name }}" title="{{ partner.name }}">
+                <img appImage [url]="partner.img" alt="{{ partner.name }}" title="{{ partner.name }}">
             </div>
         </div>
 
