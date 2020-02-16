@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, Params } from '@angular/router'
+import { Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
 import { SessionService } from '../../session/session.service'
@@ -32,7 +32,7 @@ export class WorkshopsComponent implements OnInit {
   user: User
   event: Event
 
-  constructor(
+  constructor (
     private sessionService: SessionService,
     private userService: UserService,
     private authService: AuthService,
@@ -41,7 +41,7 @@ export class WorkshopsComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
 
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login'])
@@ -86,7 +86,7 @@ export class WorkshopsComponent implements OnInit {
     })
   }
 
-  updateWorkhopsFrontend() {
+  updateWorkhopsFrontend () {
     this.myWorkshopsFrontend = this.myWorkshops
       .reduce((accumulator, session, index, array) => {
         let lastIndex = accumulator.length - 1
@@ -148,7 +148,7 @@ export class WorkshopsComponent implements OnInit {
   }
 
   // TODO refactor me
-  isReserved(isReserved: boolean, workshop: Session) {
+  isReserved (isReserved: boolean, workshop: Session) {
 
     // se foi adicionado o ticket
     if (isReserved) {

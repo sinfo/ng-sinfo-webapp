@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { Observable , of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError, map } from 'rxjs/operators'
 
 import { Ticket } from './ticket.model'
 
@@ -71,7 +71,7 @@ export class TicketService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 }

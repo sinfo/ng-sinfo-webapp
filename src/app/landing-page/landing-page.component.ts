@@ -23,14 +23,14 @@ export class LandingPageComponent implements OnInit {
 
   sponsors: Sponsor[]
 
-  constructor(
+  constructor (
     private titleService: Title,
     private eventService: EventService,
     private liveStreamService: LivestreamService,
     private sponsorService: SponsorService
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.selectedAboutText = 'About Us'
     this.eventService.getCurrent().subscribe((event: Event) => {
       this.titleService.setTitle(event.name)
@@ -38,41 +38,41 @@ export class LandingPageComponent implements OnInit {
       this.begin = event.begin
       this.end = event.end
 
-      this.getSponsors(event);
+      this.getSponsors(event)
     })
 
-    this.showOrHideDropdown();
-    this.checkLiveStream();
+    this.showOrHideDropdown()
+    this.checkLiveStream()
   }
 
-  getSponsors(event: Event): void {
+  getSponsors (event: Event): void {
     this.sponsorService.getSponsors(event.id)
       .subscribe(sponsors => this.sponsors = sponsors)
   }
 
   /* Beggining of Dropdown tabs actions */
-  showOrHideDropdown(): void {
+  showOrHideDropdown (): void {
     this.displayAboutDropdown = window.innerWidth > 768 ? true : false
-    this.menuClick = false;
+    this.menuClick = false
   }
 
-  dropdown(): boolean {
-    return !this.displayAboutDropdown && this.menuClick;
+  dropdown (): boolean {
+    return !this.displayAboutDropdown && this.menuClick
   }
 
-  updateMenuClick(): void {
-    this.menuClick = !this.menuClick;
+  updateMenuClick (): void {
+    this.menuClick = !this.menuClick
   }
 
-  updatedSelectedText(text: string): void {
+  updatedSelectedText (text: string): void {
     this.selectedAboutText = text
   }
   /* End of Dropdown tabs actions */
 
-  checkLiveStream() {
+  checkLiveStream () {
     this.liveStreamService.getLivestreamInformation().subscribe(
       data => {
-        this.isLive = data["up"];
+        this.isLive = data['up']
       }
     )
   }

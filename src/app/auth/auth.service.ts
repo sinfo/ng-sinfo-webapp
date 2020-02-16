@@ -18,14 +18,14 @@ export class AuthService {
   redirectUrl: string
   linkedinState: string
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private messageService: MessageService,
     private storageService: StorageService,
     private jwtService: JwtService
   ) { }
 
-  facebook(id, token): Observable<CannonToken> {
+  facebook (id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/facebook`, { id, token }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'facebook'),
@@ -33,7 +33,7 @@ export class AuthService {
       )
   }
 
-  google(id, token): Observable<CannonToken> {
+  google (id, token): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/google`, { id, token }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'google'),
@@ -41,7 +41,7 @@ export class AuthService {
       )
   }
 
-  fenix(code): Observable<CannonToken> {
+  fenix (code): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/fenix`, { code }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'fenix'),
@@ -49,7 +49,7 @@ export class AuthService {
       )
   }
 
-  linkedin(code): Observable<CannonToken> {
+  linkedin (code): Observable<CannonToken> {
     return this.http.post<CannonToken>(`${this.authUrl}/linkedin`, { code }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'linkedin'),
@@ -57,15 +57,15 @@ export class AuthService {
       )
   }
 
-  getToken(): CannonToken | null | undefined {
+  getToken (): CannonToken | null | undefined {
     return this.storageService.getItem('cannon_token') as CannonToken
   }
 
-  setToken(token: CannonToken): void {
+  setToken (token: CannonToken): void {
     this.storageService.setItem('cannon_token', token)
   }
 
-  isLoggedIn(): boolean {
+  isLoggedIn (): boolean {
     const cannonToken = this.getToken()
     if (!cannonToken) {
       return false
@@ -78,7 +78,7 @@ export class AuthService {
     return !isTokenExpired
   }
 
-  logout(): void {
+  logout (): void {
     this.storageService.removeItem('cannon_token')
   }
 
@@ -88,7 +88,7 @@ export class AuthService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `AuthService: ${operation}`,
@@ -100,7 +100,7 @@ export class AuthService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 }

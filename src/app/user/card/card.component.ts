@@ -22,14 +22,14 @@ export class CardComponent implements OnInit {
     companies: []
   }
 
-  constructor(
+  constructor (
     private userService: UserService,
     private companyService: CompanyService,
     private eventService: EventService,
     private titleService: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Card')
 
@@ -63,7 +63,7 @@ export class CardComponent implements OnInit {
 
   }
 
-  getArray(n: number): any[] {
+  getArray (n: number): any[] {
     return Array(n)
   }
 

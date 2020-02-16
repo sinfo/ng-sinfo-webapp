@@ -18,13 +18,13 @@ export class SponsorsComponent implements OnInit {
   showAll = false
   isAllSponsors = false
 
-  constructor() { }
+  constructor () { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.displaySponsors(this.sponsors)
   }
 
-  displaySponsors(sponsors: Sponsor[]): Sponsor[] {
+  displaySponsors (sponsors: Sponsor[]): Sponsor[] {
     this.diamond = null
     this.platinums = []
     this.golds = []
@@ -42,7 +42,7 @@ export class SponsorsComponent implements OnInit {
     return sponsors
   }
 
-  show() {
+  show () {
     this.showAll = !this.showAll
   }
 

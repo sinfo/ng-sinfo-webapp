@@ -19,7 +19,7 @@ export class UserService {
   private event: Event
   private cv: CV
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private messageService: MessageService,
     private eventService: EventService,
@@ -28,7 +28,7 @@ export class UserService {
     this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
-  getUser(id: string): Observable<User> {
+  getUser (id: string): Observable<User> {
     let headers = {
       'Content-Type': 'application/json',
       'Authorization': ''
@@ -44,7 +44,7 @@ export class UserService {
       )
   }
 
-  getUsers(ids: Array<string>): Observable<User[]> {
+  getUsers (ids: Array<string>): Observable<User[]> {
     let headers = {
       'Content-Type': 'application/json',
       'Authorization': ''
@@ -60,7 +60,7 @@ export class UserService {
       )
   }
 
-  getMe(): Observable<User> {
+  getMe (): Observable<User> {
     if (this.me) {
       return of(this.me)
     }
@@ -80,7 +80,7 @@ export class UserService {
       )
   }
 
-  getCv(): Observable<CV> {
+  getCv (): Observable<CV> {
     if (this.cv) {
       return of(this.cv)
     }
@@ -93,7 +93,7 @@ export class UserService {
     return this.http.get<any>(`${this.filesUrl}/me`, httpOptions)
   }
 
-  isCvUpdated(): Observable<boolean> {
+  isCvUpdated (): Observable<boolean> {
     return this.getCv().pipe(
       map(cv => {
         const curr = new Date()
@@ -111,7 +111,7 @@ export class UserService {
     )
   }
 
-  uploadCV(formData: FormData): Observable<any> {
+  uploadCV (formData: FormData): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -123,7 +123,7 @@ export class UserService {
     return this.http.request(req)
   }
 
-  deleteCV(): Observable<any> {
+  deleteCV (): Observable<any> {
     this.cv = null
     const httpOptions = {
       headers: new HttpHeaders({
@@ -134,14 +134,14 @@ export class UserService {
     return this.http.delete<any>(`${this.filesUrl}/me`, httpOptions)
   }
 
-  getUserAchievements(id: string): Observable<Achievement[]> {
+  getUserAchievements (id: string): Observable<Achievement[]> {
     return this.http.get<Achievement[]>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
         catchError(this.handleError<Achievement[]>(`getting user achievements`))
       )
   }
 
-  updateUser(id: string, role: string, company?: string): Observable<User> {
+  updateUser (id: string, role: string, company?: string): Observable<User> {
     if (['user', 'team', 'company'].indexOf(role) === -1) {
       return of(null)
     }
@@ -183,7 +183,7 @@ export class UserService {
     }
   }
 
-  demoteSelf() {
+  demoteSelf () {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ export class UserService {
       )
   }
 
-  removeThisEventsCompanyFromUser(id: string): Observable<User> {
+  removeThisEventsCompanyFromUser (id: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -211,14 +211,14 @@ export class UserService {
       )
   }
 
-  getUserSessions(id: string): Observable<string[]> {
+  getUserSessions (id: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.usersUrl}/${id}/sessions`)
       .pipe(
         catchError(this.handleError<string[]>(`getting user session`))
       )
   }
 
-  validateCard(id: string): Observable<User> {
+  validateCard (id: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -238,7 +238,7 @@ export class UserService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `UserService: ${operation}`,
@@ -249,7 +249,7 @@ export class UserService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 }

@@ -74,11 +74,11 @@ import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
-import { RedeemService } from './user/redeem/redeem.service';
-import { LivestreamComponent } from './landing-page/livestream/livestream.component';
+import { RedeemService } from './user/redeem/redeem.service'
+import { LivestreamComponent } from './landing-page/livestream/livestream.component'
 import { PromocodesComponent } from './user/promocodes/promocodes.component'
-import { StandsComponent } from './landing-page/stands/stands.component';
-import { ImageDirective } from './partials/image.directive';
+import { StandsComponent } from './landing-page/stands/stands.component'
+import { ImageDirective } from './partials/image.directive'
 import { PartnersComponent } from './landing-page/partners/partners.component'
 
 @NgModule({
@@ -142,7 +142,7 @@ import { PartnersComponent } from './landing-page/partners/partners.component'
     QRCodeModule,
     ZXingScannerModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule
   ],
   providers: [
     SpeakerService,

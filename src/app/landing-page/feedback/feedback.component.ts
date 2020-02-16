@@ -10,19 +10,18 @@ import { EventService } from '../../events/event.service'
   providers: [NgbCarouselConfig]
 })
 
-
 export class FeedbackComponent implements OnInit {
 
   show: boolean
 
-  constructor(private eventService: EventService, config: NgbCarouselConfig) {
-    config.interval = 10000;
-    config.wrap = false;
-    config.keyboard = false;
-    config.pauseOnHover = false;
+  constructor (private eventService: EventService, config: NgbCarouselConfig) {
+    config.interval = 10000
+    config.wrap = false
+    config.keyboard = false
+    config.pauseOnHover = false
   }
 
-  ngOnInit() {
+  ngOnInit () {
     this.eventService.getCurrent().subscribe(event => {
       this.show = !event.isOcurring
     })

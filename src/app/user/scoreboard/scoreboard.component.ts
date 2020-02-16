@@ -21,7 +21,7 @@ export class ScoreboardComponent implements OnInit {
   days: Date[] = []
   isScoreboardEmpty: boolean
 
-  constructor(
+  constructor (
     private scoreboardService: ScoreboardService,
     private authService: AuthService,
     private userService: UserService,
@@ -30,7 +30,7 @@ export class ScoreboardComponent implements OnInit {
     private eventService: EventService
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Scoreboard')
       let dayLength = 1000 * 60 * 60 * 24 // A day worth of miliseconds
@@ -67,19 +67,19 @@ export class ScoreboardComponent implements OnInit {
 
   }
 
-  isCurrentUser(id: string): boolean {
+  isCurrentUser (id: string): boolean {
     return this.currentUser && this.currentUser.id === id
   }
 
-  isUserInTop20(): boolean {
+  isUserInTop20 (): boolean {
     return this.scoreboard.filter(user => user.id === this.currentUser.id).length === 1
   }
 
-  redirectToUser(id: string): void {
+  redirectToUser (id: string): void {
     this.router.navigate(['/user', id])
   }
 
-  setScoreboard(date: string) {
+  setScoreboard (date: string) {
     this.scoreboardService.getUsersPoints(date).subscribe(users => {
       // Find current user with user.points format
       let user = users.find((a) => {
@@ -95,7 +95,7 @@ export class ScoreboardComponent implements OnInit {
     })
   }
 
-  getDay(day: Date): number {
+  getDay (day: Date): number {
     let diff = day.getTime() - this.begin.getTime()
     return diff / (1000 * 60 * 60 * 24) + 1
   }

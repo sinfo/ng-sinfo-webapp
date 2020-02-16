@@ -27,7 +27,7 @@ export class MyLinksComponent implements OnInit {
   }>
   gotLinks: boolean
 
-  constructor(
+  constructor (
     private userService: UserService,
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
@@ -35,7 +35,7 @@ export class MyLinksComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.processedLinks = []
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - My Links')
@@ -61,7 +61,7 @@ export class MyLinksComponent implements OnInit {
     })
   }
 
-  deleteLink(id: string) {
+  deleteLink (id: string) {
     this.companyCannonService.deleteLink(this.company.id, id).subscribe(() => {
       this.companyCannonService.getLinks(this.company.id)
         .subscribe(links => {
@@ -72,7 +72,7 @@ export class MyLinksComponent implements OnInit {
     })
   }
 
-  processLink(link: Link) {
+  processLink (link: Link) {
     this.userService.getUser(link.attendee)
       .subscribe(attendee => {
         this.userService.getUser(link.user)

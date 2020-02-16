@@ -31,7 +31,7 @@ export class MyProfileComponent {
     id: string
   }> = new Array()
 
-  constructor(
+  constructor (
     private userService: UserService,
     private companyService: CompanyService,
     private authService: AuthService,
@@ -95,7 +95,7 @@ export class MyProfileComponent {
     })
   }
 
-  getPresentationRole(user: User) {
+  getPresentationRole (user: User) {
     if (user === undefined) {
       this.router.navigate(['/'])
     }
@@ -105,7 +105,7 @@ export class MyProfileComponent {
     if (user.role === 'admin') return 'Admin'
   }
 
-  uploadCV(event) {
+  uploadCV (event) {
     let fileList: FileList = event.target.files
     if (fileList.length > 0) {
       let file: File = fileList[0]
@@ -119,7 +119,7 @@ export class MyProfileComponent {
     }
   }
 
-  deleteCV() {
+  deleteCV () {
     this.userService.deleteCV().subscribe(res => {
       this.submitedCV = false
     })

@@ -2,10 +2,12 @@
 
 <app-loading [content]="user"></app-loading>
 
-<div *ngIf="user">
-  <app-sidebar [user]="user"></app-sidebar>
+<div *ngIf="user" class="user-wrapper">
+  <div class="sidebar">
+    <app-sidebar [user]="user"></app-sidebar>
+  </div>
 
-  <div id="profile-content">
+  <div class="profile-content">
     <router-outlet></router-outlet>
   </div>
 </div>

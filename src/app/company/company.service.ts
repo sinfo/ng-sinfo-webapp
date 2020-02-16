@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { Company } from './company.model'
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap } from 'rxjs/operators'
+import { catchError, tap } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
 import { EventService } from '../events/event.service'
@@ -77,7 +77,7 @@ export class CompanyService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 

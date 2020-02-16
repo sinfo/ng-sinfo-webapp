@@ -13,16 +13,15 @@ export class PromocodesService {
   private partnerUrl = environment.cannonUrl + '/promo-code'
   private partners: Promocode[]
 
-  constructor(
+  constructor (
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  getPartners(): Observable<Promocode[]> {
+  getPartners (): Observable<Promocode[]> {
     if (this.partners) {
       return of(this.partners)
     }
-
 
     return this.http.get<Promocode[]>(this.partnerUrl)
       .pipe(
@@ -40,7 +39,7 @@ export class PromocodesService {
   * @param operation - name of the operation that failed
   * @param result - optional value to return as the observable result
   */
-  private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `PartnerService: ${operation}`,
@@ -52,7 +51,7 @@ export class PromocodesService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 }

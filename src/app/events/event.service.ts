@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 import { Observable, of } from 'rxjs'
-import { catchError, map, tap, take, filter } from 'rxjs/operators'
+import { catchError, map, tap } from 'rxjs/operators'
 
 import { environment } from '../../environments/environment'
 
@@ -94,7 +94,7 @@ export class EventService {
       })
 
       // Let the app keep running by returning an empty result.
-      return of(result as T)
+      return of(result)
     }
   }
 
