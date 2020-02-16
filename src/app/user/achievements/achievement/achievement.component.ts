@@ -20,7 +20,7 @@ export class AchievementComponent implements OnInit {
   winner: User
   users: User[]
 
-  constructor (
+  constructor(
     private achievementService: AchievementService,
     private authService: AuthService,
     private userService: UserService,
@@ -29,7 +29,7 @@ export class AchievementComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Achievement')
     })
@@ -52,12 +52,5 @@ export class AchievementComponent implements OnInit {
         this.user = user
       })
     }
-  }
-
-  pickWinner () {
-    const winnerId = this.achievement.users[Math.floor(Math.random() * this.achievement.users.length)]
-    this.userService.getUser(winnerId).subscribe(user => {
-      this.winner = user
-    })
   }
 }

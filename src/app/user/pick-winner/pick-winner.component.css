@@ -56,3 +56,56 @@ button.btn-danger:hover {
   background-color: #d2322d;
   border-color: #ac2925;
 }
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    line-height:30px;
+}
+.flex-item {
+    background: #133157;
+    margin: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    flex: 1 0 auto;
+    height:300px;
+    width: 300px;
+    border: 0;
+}
+
+.flex-item img{
+  height: 80%;
+}
+
+
+.flex-container .small {
+  background: white;
+  color: black;
+  flex: 0;
+}
+
+.flex-container .small img {
+  height: 70px;
+  width: 70px;
+}
+
+
+
+
+
+.flex-item:before {
+    content:'';
+    float:left;
+    padding-top:100%;
+}

@@ -23,7 +23,8 @@ export class PickWinnerComponent implements OnInit {
 
   achievements: Array<{
     name: string,
-    start: string;
+    start: string,
+    img: string,
     achievement: Achievement
   }> = []
 
@@ -45,6 +46,7 @@ export class PickWinnerComponent implements OnInit {
             this.achievements.push({
               'name': session.companies.length ? session.companies[0] + ' - ' + session.kind : session.name,
               'start': session.date,
+              'img': session.img,
               'achievement': achievement
             })
             this.achievements.sort((a, b): number => {
