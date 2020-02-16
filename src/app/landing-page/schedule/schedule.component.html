@@ -74,8 +74,7 @@
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" class="panel schedule-item">
 
                   <div class="lecture-icon-wrapper">
-                    <img appImage [src]="session.img" alt="" class="img-responsive"
-                      onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                    <img appImage [src]="session.img" alt="" class="img-responsive">
                   </div>
 
                   <a (click)="onSelect(session)" class="schedule-item-header">
@@ -119,7 +118,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img appImage [src]="{{presentation.img}}" alt="" class="img-responsive">
+                        <img appImage [src]="presentation.img" alt="" class="img-responsive">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
@@ -153,7 +152,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img appImage [src]="{{presentation.img}}" alt="" class="img-responsive">
+                        <img appImage [src]="presentation.img" alt="" class="img-responsive">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
@@ -199,8 +198,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{workshop.img}}" alt="" class="img-responsive"
-                          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                        <img appImage [src]="workshop.img" alt="" class="img-responsive">
                       </div>
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
@@ -233,8 +231,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{workshop.img}}" alt="" class="img-responsive"
-                          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                        <img appImage [src]="workshop.img" alt="" class="img-responsive">
                       </div>
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
