@@ -119,8 +119,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{presentation.img}}" alt="" class="img-responsive"
-                          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                        <img appImage [src]="{{presentation.img}}" alt="" class="img-responsive">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
@@ -154,8 +153,7 @@
                     <div class="panel schedule-item">
 
                       <div class="lecture-icon-wrapper">
-                        <img src="{{presentation.img}}" alt="" class="img-responsive"
-                          onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
+                        <img appImage [src]="{{presentation.img}}" alt="" class="img-responsive">
                       </div>
 
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
