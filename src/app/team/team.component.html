@@ -14,7 +14,7 @@
 
         <div *ngIf="member.name !== 'ToolBot!'" class="speaker member">
           <div class="photo-wrapper rounded">
-            <img appImage [src]="member.img" alt="{{member.name}}" title="{{member.name}}" class="img-responsive">
+            <img appImage [url]="member.img" alt="{{member.name}}" title="{{member.name}}" class="img-responsive">
             <ul class="speaker-socials">
 
               <li *ngIf="member.mail">
