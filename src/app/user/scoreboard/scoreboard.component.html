@@ -34,13 +34,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let user of scoreboard"
-            [ngClass]="{'currentUser': isCurrentUser(user.id)}">
+          <tr *ngFor="let user of scoreboard" [ngClass]="{'currentUser': isCurrentUser(user.id)}">
             <td class="position">{{ scoreboard.indexOf(user) + 1}}</td>
             <td class="user">
               <div class="user-wrapper">
-                <div *ngIf="user.img" class="img-wrapper">
-                  <img src='{{ user.img }}'>
+                <div class="img-wrapper">
+                  <img appImage [src]="user.img">
                 </div>
                 <div class="name">
                   {{ user.name }}
@@ -61,8 +60,8 @@
             <td class="position">&infin;</td>
             <td class="user">
               <div class="user-wrapper">
-                <div *ngIf=" currentUser.img" class="img-wrapper">
-                  <img src='{{ currentUser.img }}'>
+                <div class="img-wrapper">
+                  <img appImage [src]="currentUser.img">
                 </div>
                 <div class="name">
                   {{ currentUser.name }}

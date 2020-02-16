@@ -18,7 +18,7 @@ export class ImageDirective implements AfterContentInit, OnDestroy {
 
   @Input() src: string
 
-  constructor (
+  constructor(
     @Attribute('loader') public loader: string,
     @Attribute('onErrorSrc') public onErrorSrc: string,
     private renderer: Renderer2,
@@ -26,7 +26,7 @@ export class ImageDirective implements AfterContentInit, OnDestroy {
     this.renderer.setAttribute(this.el.nativeElement, 'src', this.loadingImage)
   }
 
-  ngAfterContentInit () {
+  ngAfterContentInit() {
     this.nativeElement = this.el.nativeElement
     this.onError = this.onError.bind(this)
     this.onLoad = this.onLoad.bind(this)
@@ -34,14 +34,13 @@ export class ImageDirective implements AfterContentInit, OnDestroy {
     this.cancelOnLoad = this.renderer.listen(this.nativeElement, 'load', this.onLoad)
   }
 
-  onLoad () {
+  onLoad() {
     this.removeOnLoadEvent()
     this.renderer.setAttribute(this.nativeElement, 'src', this.src)
   }
 
-  onError () {
+  onError() {
     const src = this.nativeElement.getAttribute('src')
-
     if (src.includes('.webp')) {
       this.src = this.src.replace('.webp', '.png')
       this.renderer.setAttribute(this.nativeElement, 'src', this.src)
@@ -50,19 +49,19 @@ export class ImageDirective implements AfterContentInit, OnDestroy {
     } else this.removeOnLoadEvent()
   }
 
-  private removeErrorEvent () {
+  private removeErrorEvent() {
     if (this.cancelOnError) {
       this.cancelOnError()
     }
   }
 
-  private removeOnLoadEvent () {
+  private removeOnLoadEvent() {
     if (this.cancelOnLoad) {
       this.cancelOnLoad()
     }
   }
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     this.removeErrorEvent()
     this.removeOnLoadEvent()
   }
