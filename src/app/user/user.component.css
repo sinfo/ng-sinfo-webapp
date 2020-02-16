@@ -13,10 +13,3 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
-@media(max-width: 975px){
-  #profile-content {
-    left: 25vw;
-    width: 73vw
-  }
-}

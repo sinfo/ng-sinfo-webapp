@@ -53,11 +53,4 @@ export class AchievementComponent implements OnInit {
       })
     }
   }
-
-  pickWinner() {
-    const winnerId = this.achievement.users[Math.floor(Math.random() * this.achievement.users.length)]
-    this.userService.getUser(winnerId).subscribe(user => {
-      this.winner = user
-    })
-  }
 }
