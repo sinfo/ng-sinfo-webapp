@@ -17,4 +17,5 @@ export class Link {
   updated: Date
   user: string
   notes: Note
+  cv: boolean
 }

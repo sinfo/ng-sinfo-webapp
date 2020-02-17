@@ -11,9 +11,10 @@
     </div>
     <div class="row">
       <div class="col-sm-12 align-center">
-        <img appImage [src]="achievement.img" class="achievement" alt="{{achievement.name}}"
+        <img appImage [url]="achievement.img" class="achievement" alt="{{achievement.name}}"
           title="{{achievement.name}}">
         <h5 class="name"> {{ achievement.name }}</h5>
+        <h6 class="description" *ngIf="achievement.description">{{ achievement.description }}</h6>
         <h4 class="lead">
           <strong>Value</strong>: {{ achievement.value }} points</h4>
       </div>
@@ -36,7 +37,7 @@
         </h6>
       </div>
       <div class="col-sm-12 align-center users-wrapper">
-        <img appImage [src]="user.img" *ngFor="let user of users" class="portrait" alt="{{user.name}}"
+        <img appImage [url]="user.img" *ngFor="let user of users" class="portrait" alt="{{user.name}}"
           title="{{user.name}}">
       </div>
     </div>

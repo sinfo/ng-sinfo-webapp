@@ -31,7 +31,7 @@
 
     <div *ngFor="let link of processedLinks" class="link">
 
-      <h5>{{link.attendee.name}}</h5>
+      <h5 class='link-title'>{{link.attendee.name}}</h5>
 
       <div class="link-note">
         <p>
@@ -43,7 +43,8 @@
         <p>
           <span class='link-section'>
             <h6 class='link-title'>User information </h6>
-            <p class='lead small tip link-title' *ngIf='link.noteEmpty'>No information on this user</p>
+            <span class='link-data warning' *ngIf='!link.cv'>This attendee has not submitted his CV yet</span>
+            <p class='lead small tip link-title' *ngIf='link.noteEmpty && !link.cv'>No information on this user</p>
             <span class='link-data' *ngIf='link.note.contacts.email'><span class="panel-content-strong">Email:
               </span>{{link.note.contacts.email}}</span>
             <span class='link-data' *ngIf='link.note.contacts.phone'><span class="panel-content-strong">Phone:

@@ -41,7 +41,7 @@
         <h5>Workshops</h5>
         <h6>{{activeAchievements.workshops[0].value}} points each</h6>
         <a *ngFor="let achievement of activeAchievements.workshops" routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [src]="achievement.img" *ngIf="achievement.id && achievement.img"
+          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
             [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>
       </div>
@@ -51,7 +51,7 @@
         <h6>{{activeAchievements.presentations[0].value}} points each</h6>
         <a *ngFor="let achievement of activeAchievements.presentations"
           routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [src]="achievement.img" *ngIf="achievement.id && achievement.img"
+          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
             [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>
       </div>
@@ -60,7 +60,7 @@
         <h5>Stands</h5>
         <h6>{{activeAchievements.stands[0].value}} points each</h6>
         <a *ngFor="let achievement of activeAchievements.stands" routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [src]="achievement.img" *ngIf="achievement.id && achievement.img"
+          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
             [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>
       </div>
@@ -69,7 +69,7 @@
         <h5>Keynotes</h5>
         <h6>{{activeAchievements.keynotes[0].value}} points each</h6>
         <a *ngFor="let achievement of activeAchievements.keynotes" routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [src]="achievement.img" *ngIf="achievement.id && achievement.img"
+          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
             [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>
       </div>
@@ -79,7 +79,7 @@
 
         <span *ngIf="activeAchievements.cv">
           <a routerLink="/user/achievement/{{activeAchievements.cv.id}}">
-            <img appImage [src]="activeAchievements.cv.img"
+            <img appImage [url]="activeAchievements.cv.img"
               *ngIf="activeAchievements.cv.id && activeAchievements.cv.img"
               [ngClass]="{'unlocked': isUnlocked(activeAchievements.cv)}" alt="{{activeAchievements.cv.name}}"
               title="{{activeAchievements.cv.name}}">
@@ -88,7 +88,7 @@
 
         <span *ngIf="activeAchievements.other.length > 0">
           <a *ngFor="let achievement of activeAchievements.other" routerLink="/user/achievement/{{achievement.id}}">
-            <img appImage [src]="achievement.img" *ngIf="achievement.id && achievement.img"
+            <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
               [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
           </a>
         </span>
@@ -104,7 +104,7 @@
       <h4 class="title">{{day}}</h4>
       <div class="achievements-wrapper">
         <a *ngFor="let achievement of days[day.toLowerCase()]" routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [src]="achievement.img" *ngIf="achievement.id && achievement.img"
+          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
             [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
         </a>
       </div>
