@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from '../../../environments/environment'
-import { Observable } from 'rxjs'
 import { Achievement } from '../achievements/achievement.model'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService, Type } from '../../message.service'
+import { Router } from '@angular/router'
 
 @Injectable()
 export class RedeemService {
   private redeemUrl = environment.cannonUrl + '/redeem'
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {
   }
 
-  redeem (id: string, myAchievements: Achievement[]): void {
+  redeem(id: string, myAchievements: Achievement[]): void {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -41,30 +42,26 @@ export class RedeemService {
             return
           }
 
-          let found = myAchievements.filter(a => a.id === achievement.id).length > 0
-
-          !found
-            ? this.messageService.add({
+          this.router.navigate([`/user/achievement/${achievement.id}`])
+        },
+        err => {
+          if (err.status === 406) {
+            this.messageService.add({
               origin: 'Redeem',
               showAlert: true,
-              text: `Achievement unlocked! You won ${achievement.value} points!`,
-              type: Type.success,
-              timeout: 7000
-            })
-            : this.messageService.add({
-              origin: 'Redeem',
-              showAlert: true,
-              text: `You already have this achievement`,
+              text: `Already redeemed code`,
               type: Type.warning,
               timeout: 7000
             })
-        },
-        () => {
+
+            return
+          }
+
           this.messageService.add({
             origin: 'Redeem',
             showAlert: true,
             text: `Invalid redeem code`,
-            type: Type.warning,
+            type: Type.error,
             timeout: 7000
           })
         }

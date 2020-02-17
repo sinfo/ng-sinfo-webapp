@@ -14,6 +14,7 @@
         <img appImage [url]="achievement.img" class="achievement" alt="{{achievement.name}}"
           title="{{achievement.name}}">
         <h5 class="name"> {{ achievement.name }}</h5>
+        <h6 class="description" *ngIf="achievement.description">{{ achievement.description }}</h6>
         <h4 class="lead">
           <strong>Value</strong>: {{ achievement.value }} points</h4>
       </div>
