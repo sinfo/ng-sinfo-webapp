@@ -20,21 +20,23 @@ export class WorkshopStatusElementComponent implements OnInit {
   ticket: Ticket
   isRegistrationClosed: boolean
   count: number
-  private userMails = []
+  userMails = []
 
-  constructor (
+  constructor(
     private ticketService: TicketService,
     private userService: UserService,
     private authService: AuthService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     if (this.authService.isLoggedIn()) {
       this.ticketService.getTicket(this.workshop.id).subscribe(ticket => {
         if (ticket === undefined) return
 
         this.ticket = ticket
         this.count = ticket && ticket.users ? (ticket.users.length / this.workshop.tickets.max) * 100 : 0
+
+        console.log(ticket)
 
         this.userService.getUsers(ticket.users).subscribe(users => {
           this.userMails = users && users.map(user => { return user.mail })
@@ -43,7 +45,7 @@ export class WorkshopStatusElementComponent implements OnInit {
     }
   }
 
-  onRegistrationClosed (isRegistrationClosed: boolean) {
+  onRegistrationClosed(isRegistrationClosed: boolean) {
     this.isRegistrationClosed = isRegistrationClosed
   }
 }
