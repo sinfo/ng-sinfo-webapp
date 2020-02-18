@@ -1,3 +1,5 @@
+import { User } from '../user.model'
+
 export class Note {
   contacts: {
     email: String
@@ -17,5 +19,13 @@ export class Link {
   updated: Date
   user: string
   notes: Note
+  cv: boolean
+}
+
+export class ProcessedLink {
+  attendee: User
+  user: User
+  note: Note
+  noteEmpty: boolean
   cv: boolean
 }

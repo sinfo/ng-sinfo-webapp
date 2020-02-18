@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
-import { Link, Note } from '../link.model'
+import { Link, Note, ProcessedLink } from '../link.model'
 import { User } from '../../user.model'
 import { UserService } from '../../user.service'
 import { Company } from '../../../company/company.model'
@@ -16,16 +16,12 @@ import { EventService } from '../../../events/event.service'
 })
 export class MyLinksComponent implements OnInit {
 
+  private fetchedUsers: User[]
+
   me: User
   links: Link[]
   company: Company
-  processedLinks: Array<{
-    attendee: User
-    user: User
-    note: Note
-    noteEmpty: boolean
-    cv: boolean
-  }>
+  processedLinks: Array<ProcessedLink>
   gotLinks: boolean
 
   constructor(
@@ -38,6 +34,8 @@ export class MyLinksComponent implements OnInit {
 
   ngOnInit() {
     this.processedLinks = []
+    this.fetchedUsers = []
+
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - My Links')
       this.userService.getMe()
@@ -73,24 +71,42 @@ export class MyLinksComponent implements OnInit {
   }
 
   processLink(link: Link) {
-    this.userService.getUser(link.attendee)
-      .subscribe(attendee => {
-        this.userService.getUser(link.user)
-          .subscribe(user => {
-            this.processedLinks.push({
-              attendee: attendee,
-              user: user,
-              note: link.notes,
-              cv: link.cv,
-              noteEmpty: (!link.notes.contacts.email &&
-                !link.notes.contacts.phone &&
-                !link.notes.degree &&
-                !link.notes.availability &&
-                !link.notes.interestedIn &&
-                !link.notes.otherObservations)
-            })
-          })
-      })
+    const filtered = this.fetchedUsers.filter(u => u.id === link.user)
+    const savedUser = filtered.length > 0 ? filtered[0] : null
+
+    let processed = new ProcessedLink()
+
+    processed.cv = link.cv
+    processed.note = link.notes
+    processed.noteEmpty = (!link.notes.contacts.email &&
+      !link.notes.contacts.phone &&
+      !link.notes.degree &&
+      !link.notes.availability &&
+      !link.notes.interestedIn &&
+      !link.notes.otherObservations)
+
+    if (savedUser) {
+      processed.user = savedUser
+      this.fillAttendee(link, processed)
+    } else {
+      this.userService.getUser(link.user).subscribe(
+        user => {
+          if (user) {
+            processed.user = user
+            this.fetchedUsers.push(user)
+            this.fillAttendee(link, processed)
+          }
+        })
+    }
   }
 
+  fillAttendee(link: Link, processed: ProcessedLink) {
+    this.userService.getUser(link.attendee).subscribe(
+      attendee => {
+        if (attendee) {
+          processed.attendee = attendee
+          this.processedLinks.push(processed)
+        }
+      })
+  }
 }

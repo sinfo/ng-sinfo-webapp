@@ -31,7 +31,7 @@
 
     <div *ngFor="let link of processedLinks" class="link">
 
-      <h5 class='link-title'>{{link.attendee.name}}</h5>
+      <h5 class='link-title' *ngIf="link.attendee">{{link.attendee.name}}</h5>
 
       <div class="link-note">
         <p>
