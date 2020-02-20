@@ -128,7 +128,7 @@
         </a>
       </li>
 
-      <li *ngIf="user && user.role !== 'company'">
+      <li *ngIf="user">
         <a routerLink="/user/promocodes" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/discount-coupon-white.png">
           Promo Codes
