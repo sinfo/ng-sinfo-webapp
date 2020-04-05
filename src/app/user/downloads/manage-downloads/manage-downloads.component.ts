@@ -9,7 +9,7 @@ import { CompanyService } from '../../../company/company.service'
 import { EndpointService } from '../../../endpoints/endpoint.service'
 import { Router } from '@angular/router'
 import { NgbTypeahead, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap'
-import { Observable , Subject } from 'rxjs'
+import { Observable, Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged, merge, filter, map } from 'rxjs/operators'
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
@@ -40,7 +40,7 @@ export class ManageDownloadsComponent implements OnInit {
   toDate: NgbDateStruct
   loading = false
 
-  constructor (
+  constructor(
     private eventService: EventService,
     private userService: UserService,
     private companyService: CompanyService,
@@ -64,7 +64,7 @@ export class ManageDownloadsComponent implements OnInit {
       .pipe(map(term => (term === '' ? this.companies : this.companies
         .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1))))
 
-  onDateChange (date: NgbDateStruct) {
+  onDateChange(date: NgbDateStruct) {
     if (!this.fromDate && !this.toDate) {
       this.fromDate = date
     } else if (this.fromDate && !this.toDate && after(date, this.fromDate)) {
@@ -80,7 +80,7 @@ export class ManageDownloadsComponent implements OnInit {
   isFrom = date => equals(date, this.fromDate)
   isTo = date => equals(date, this.toDate)
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Manage Downloads')
     })
@@ -92,25 +92,25 @@ export class ManageDownloadsComponent implements OnInit {
       })
   }
 
-  getCompanies (): void {
+  getCompanies(): void {
     this.companyService.getCompanies()
       .subscribe(companies => {
         this.companies = companies
       })
   }
 
-  selectedItem ($event) {
+  selectedItem($event) {
     $event.preventDefault()
     if (!~this.selectedCompanies.indexOf($event.item)) {
       this.selectedCompanies.push($event.item)
     }
   }
 
-  removeSelected (c: Company) {
+  removeSelected(c: Company) {
     this.selectedCompanies = this.selectedCompanies.filter(company => { return company.id !== c.id })
   }
 
-  createEndpoints (): void {
+  createEndpoints(): void {
     if (!this.fromDate || !this.toDate) {
       return
     }
@@ -125,11 +125,11 @@ export class ManageDownloadsComponent implements OnInit {
       _companies,
       new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day),
       new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day, 23, 59, 59)
-     ).subscribe(endpoints => {
-       this.loading = false
-       this.router.navigate(['/downloads/status'])
-     }, () => {
-       this.loading = false
-     })
+    ).subscribe(endpoints => {
+      this.loading = false
+      this.router.navigate(['/user/downloads/status'])
+    }, () => {
+      this.loading = false
+    })
   }
 }
