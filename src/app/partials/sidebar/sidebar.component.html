@@ -18,7 +18,7 @@
         </a>
       </li>
 
-      <li *ngIf="user && user.role === 'team'">
+      <!--<li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/checkin" routerLinkActive="active">
           <i class="glyphicon glyphicon-qrcode"></i>
           Check-in
@@ -30,7 +30,7 @@
           <i class="glyphicon glyphicon-search"></i>
           Validate Card
         </a>
-      </li>
+      </li>-->
 
       <li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/promote" routerLinkActive="active">
@@ -107,12 +107,12 @@
         </a>
       </li>
 
-      <li *ngIf="user && user.role !== 'company'">
+      <!--<li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/redeem" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/qrcode-achievement.svg">
           Find achievements
         </a>
-      </li>
+      </li>-->
 
       <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/scoreboard" routerLinkActive="active">
@@ -121,12 +121,12 @@
         </a>
       </li>
 
-      <li *ngIf="user && user.role !== 'company'">
+      <!--<li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/card" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/card.svg">
           My card
         </a>
-      </li>
+      </li>-->
 
       <li *ngIf="user">
         <a routerLink="/user/promocodes" routerLinkActive="active">
