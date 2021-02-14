@@ -18,6 +18,13 @@
         </a>
       </li>
 
+      <li *ngIf="user && user.role === 'team'">
+        <a routerLink="/user/sessions" routerLinkActive="active">
+          <i class="glyphicon glyphicon-qrcode"></i>
+          Sessions
+        </a>
+      </li>
+
       <!--<li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/checkin" routerLinkActive="active">
           <i class="glyphicon glyphicon-qrcode"></i>
