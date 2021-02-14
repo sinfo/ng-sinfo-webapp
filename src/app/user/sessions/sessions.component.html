@@ -1,0 +1,26 @@
+<app-loading [content]="sessions"></app-loading>
+
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Kind</th>
+        <th>Date</th>
+        <th>Expiration</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let session of sessions">
+        <td>{{ session.name }}</td>
+        <td>{{ session.kind }}</td>
+        <td>{{ formatDate(session.date) }}</td>
+        <td *ngIf="getSessionCode(session.id) === undefined"><ngb-timepicker [(ngModel)]="time" [spinners]="false"></ngb-timepicker></td>
+        <td *ngIf="getSessionCode(session.id) !== undefined">{{ formatDate(getSessionCode(session.id).expiration) }}</td>
+        <td *ngIf="getSessionCode(session.id) !== undefined"><button type="button" class="btn btn-success" (click)="copyCode(getSessionCode(session.id).code)">Copy Code</button></td>
+        <td *ngIf="getSessionCode(session.id) === undefined"><button type="button" class="btn btn-primary" (click)="generateSessionCode(session)">Generate</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

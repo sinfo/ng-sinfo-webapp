@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService, Type } from '../../message.service'
-import { Router } from '@angular/router'
-import { User } from '../user.model'
 import { environment } from '../../../environments/environment'
 import { catchError } from 'rxjs/operators'
 import { Observable, of } from 'rxjs'
+import { Achievement } from '../achievements/achievement.model'
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SessionsService {
   constructor (
     private http: HttpClient,
     private authService: AuthService,
-    private messageService: MessageService,
+    private messageService: MessageService
   ) {}
 
   generateCode (sessionId: string, expirationDate: Date) {
@@ -24,13 +25,13 @@ export class SessionsService {
       })
     }
 
-    return this.http.post<User>(
+    return this.http.post<Achievement>(
       environment.cannonUrl + `/sessions/${sessionId}/generate`,
       {
         expiration: expirationDate
       }, httpOptions)
       .pipe(
-        catchError(this.handleError<any>('check-in'))
+        catchError(this.handleError<any>('generate-code'))
       )
   }
 
