@@ -1,6 +1,11 @@
 export class Achievement {
   id: string
   name: string
+  code: {
+    created: Date,
+    expiration: Date,
+    code: String
+  }
   validity: {
     from: Date,
     to: Date
