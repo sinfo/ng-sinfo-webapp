@@ -38,7 +38,8 @@ export class SessionsComponent implements OnInit {
     private achievementsService: AchievementService,
     private router: Router,
     private titleService: Title
-  ) {}
+  ) {
+  }
 
   ngOnInit (): void {
     this.eventService.getCurrent().subscribe(event => {
@@ -87,6 +88,10 @@ export class SessionsComponent implements OnInit {
 
   getSessionCode (sessionId: string): Code {
     return this.codes !== undefined ? this.codes.get(sessionId) : undefined
+  }
+
+  getCodeTitle (session: Session): string {
+    return 'Code: ' + this.getSessionCode(session.id).code
   }
 
   copyCode (code: string): void {

@@ -18,8 +18,12 @@
         <td>{{ formatDate(session.date) }}</td>
         <td *ngIf="getSessionCode(session.id) === undefined"><ngb-timepicker [(ngModel)]="time" [spinners]="false"></ngb-timepicker></td>
         <td *ngIf="getSessionCode(session.id) !== undefined">{{ formatDate(getSessionCode(session.id).expiration) }}</td>
-        <td *ngIf="getSessionCode(session.id) !== undefined"><button type="button" class="btn btn-success" (click)="copyCode(getSessionCode(session.id).code)">Copy Code</button></td>
-        <td *ngIf="getSessionCode(session.id) === undefined"><button type="button" class="btn btn-primary" (click)="generateSessionCode(session)">Generate</button></td>
+        <td *ngIf="getSessionCode(session.id) !== undefined">
+          <button type="button" class="btn btn-success" (click)="copyCode(getSessionCode(session.id).code)" [title]="getCodeTitle(session)">Copy Code</button>
+        </td>
+        <td *ngIf="getSessionCode(session.id) === undefined">
+          <button type="button" class="btn btn-primary" (click)="generateSessionCode(session)">Generate</button>
+        </td>
       </tr>
     </tbody>
   </table>
