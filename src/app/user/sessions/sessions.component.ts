@@ -47,7 +47,6 @@ export class SessionsComponent implements OnInit {
       this.titleService.setTitle(event.name + ' - Session Codes')
       this.codes = new Map<String, Code>()
       this.getSessions()
-      console.log(this.codes)
     })
   }
 
@@ -68,7 +67,6 @@ export class SessionsComponent implements OnInit {
   getSessions(): void {
     this.eventSessionService.getSessions(this.currentEvent.id).subscribe(sessions => {
       this.sessions = sessions
-      console.log(sessions)
       this.getAchievements()
     })
   }
@@ -79,7 +77,6 @@ export class SessionsComponent implements OnInit {
       new Date(new Date(this.currentEvent.begin).getTime() + new Date(this.currentEvent.duration).getTime())
     ).subscribe(achievements => {
       achievements.map(achievement => {
-        console.log(achievement)
         if (achievement.session) {
           this.codes.set(achievement.session, achievement.code)
         }
