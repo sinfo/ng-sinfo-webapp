@@ -30,7 +30,7 @@ export class SessionsComponent implements OnInit {
   currentEvent: Event
   time: NgbTimeStruct = { hour: 13, minute: 30, second: 30 }
 
-  constructor (
+  constructor(
     private sessionsService: SessionsService,
     private eventSessionService: SessionService,
     private userService: UserService,
@@ -41,16 +41,17 @@ export class SessionsComponent implements OnInit {
   ) {
   }
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.eventService.getCurrent().subscribe(event => {
       this.currentEvent = event
       this.titleService.setTitle(event.name + ' - Session Codes')
       this.codes = new Map<String, Code>()
       this.getSessions()
+      console.log(this.codes)
     })
   }
 
-  generateSessionCode (session: Session): void {
+  generateSessionCode(session: Session): void {
     if (!session) {
       return
     }
@@ -64,16 +65,21 @@ export class SessionsComponent implements OnInit {
       })
   }
 
-  getSessions (): void {
+  getSessions(): void {
     this.eventSessionService.getSessions(this.currentEvent.id).subscribe(sessions => {
       this.sessions = sessions
+      console.log(sessions)
       this.getAchievements()
     })
   }
 
-  getAchievements (): void {
-    this.achievementsService.getAchievements().subscribe(achievements => {
+  getAchievements(): void {
+    this.achievementsService.getAchievementsCode(
+      new Date(this.currentEvent.begin),
+      new Date(new Date(this.currentEvent.begin).getTime() + new Date(this.currentEvent.duration).getTime())
+    ).subscribe(achievements => {
       achievements.map(achievement => {
+        console.log(achievement)
         if (achievement.session) {
           this.codes.set(achievement.session, achievement.code)
         }
@@ -81,20 +87,20 @@ export class SessionsComponent implements OnInit {
     })
   }
 
-  formatDate (date: string | Date): string {
+  formatDate(date: string | Date): string {
     const newDate = typeof date === 'string' ? new Date(date) : date
     return newDate.toUTCString()
   }
 
-  getSessionCode (sessionId: string): Code {
+  getSessionCode(sessionId: string): Code {
     return this.codes !== undefined ? this.codes.get(sessionId) : undefined
   }
 
-  getCodeTitle (session: Session): string {
+  getCodeTitle(session: Session): string {
     return 'Code: ' + this.getSessionCode(session.id).code
   }
 
-  copyCode (code: string): void {
+  copyCode(code: string): void {
     const copyFunction = (e: ClipboardEvent) => {
       e.clipboardData.setData('text/plain', code)
       e.preventDefault()
