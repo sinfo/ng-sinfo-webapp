@@ -42,7 +42,7 @@ export class LandingPageComponent implements OnInit {
     })
 
     this.showOrHideDropdown()
-    this.checkLiveStream()
+    //this.checkLiveStream()
   }
 
   getSponsors (event: Event): void {

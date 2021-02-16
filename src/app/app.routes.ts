@@ -36,6 +36,7 @@ import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 import { PromocodesComponent } from './user/promocodes/promocodes.component'
+import { SessionsComponent } from './user/sessions/sessions.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -79,7 +80,8 @@ const routes: Routes = [
       { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [IsTeamGuard] },
       { path: 'workshops/workshops-status', component: WorkshopsStatusComponent, canActivate: [IsTeamGuard] },
       { path: 'validate-card', component: ValidateCardComponent, canActivate: [IsTeamGuard] },
-      { path: 'promote', component: PromoteComponent, canActivate: [IsTeamGuard] }
+      { path: 'promote', component: PromoteComponent, canActivate: [IsTeamGuard] },
+      { path: 'sessions', component: SessionsComponent, canActivate: [IsTeamGuard] }
     ]
   },
 

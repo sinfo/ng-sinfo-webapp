@@ -80,6 +80,7 @@ import { PromocodesComponent } from './user/promocodes/promocodes.component'
 import { StandsComponent } from './landing-page/stands/stands.component'
 import { ImageDirective } from './partials/image.directive'
 import { PartnersComponent } from './landing-page/partners/partners.component'
+import { SessionsComponent } from './user/sessions/sessions.component'
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { PartnersComponent } from './landing-page/partners/partners.component'
     SessionComponent,
     FeedbackComponent,
     PromoteComponent,
+    SessionsComponent,
     SidebarComponent,
     LinkComponent,
     MyLinksComponent,
