@@ -39,7 +39,7 @@ import { PromocodesComponent } from './user/promocodes/promocodes.component'
 import { SessionsComponent } from './user/sessions/sessions.component'
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
+  { path: '', component: LoginComponent },
 
   { path: 'live', component: LiveComponent },
 
