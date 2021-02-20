@@ -3,6 +3,7 @@ export const environment = {
   deckUrl: 'https://deck.sinfo.org',
   cannonUrl: 'https://cannon.sinfo.org',
   url_to_id: {
+    '28-sinfo': '28-sinfo',
     '27-sinfo': '27-sinfo',
     '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
@@ -10,6 +11,7 @@ export const environment = {
     '23-sinfo': '23-sinfo-conf'
   },
   id_to_url: {
+    '28-sinfo': '28-sinfo',
     '27-sinfo': '27-sinfo',
     '26-sinfo': '26-sinfo',
     '25-sinfo': '25-sinfo',
@@ -17,6 +19,13 @@ export const environment = {
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '28-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'Cybersecurity',
+      'Games',
+      'Web & AI'
+    ],
     '27-sinfo': [
       'Software Engineering',
       'Multimedia',
@@ -61,8 +70,8 @@ export const environment = {
     clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
   },
   fenix: {
-    clientId: '1132965128044545',
-    redirectUrl: 'https://sinfo.org/login'
+    clientId: '1695915081466129',
+    redirectUrl: 'https://app.sinfo.org'
   },
   linkedin: {
     clientId: '78k3k77vq56igl',

@@ -37,6 +37,7 @@ import { CvComponent } from './user/cv/cv.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 import { PromocodesComponent } from './user/promocodes/promocodes.component'
 import { SessionsComponent } from './user/sessions/sessions.component'
+import { SpeedDatesComponent } from './user/speed-dates/speed-dates.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -70,6 +71,8 @@ const routes: Routes = [
       { path: 'redeem', component: RedeemComponent, canActivate: [AuthGuard] },
       { path: 'scoreboard', component: ScoreboardComponent, canActivate: [AuthGuard] },
       { path: 'card', component: CardComponent, canActivate: [AuthGuard] },
+      { path: 'speed-dates', component: SpeedDatesComponent, canActivate: [AuthGuard] },
+
 
       { path: 'links/link', component: LinkComponent, canActivate: [AuthGuard] },
       { path: 'links/my-links', component: MyLinksComponent, canActivate: [AuthGuard] },

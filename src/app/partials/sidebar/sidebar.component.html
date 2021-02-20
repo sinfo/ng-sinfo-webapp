@@ -100,6 +100,13 @@
         </a>
       </li>
 
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/speed-dates" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <img src="assets/img/icons/sidebar/workshops.png">
+          Speed Dates
+        </a>
+      </li>
+
       <li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/workshops/workshops-status" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/workshops.png">
