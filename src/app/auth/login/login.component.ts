@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core'
+import { Component, OnInit, AfterViewInit, NgZone } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
@@ -32,16 +32,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   private isLoggedIn = false
 
-  constructor (
+  constructor(
     private messageService: MessageService,
     private authService: AuthService,
     private eventService: EventService,
     public router: Router,
     private route: ActivatedRoute,
+    private zone: NgZone,
     private titleService: Title
+
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Login')
     })
@@ -85,11 +87,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit () {
+  ngAfterViewInit() {
     this.initSocialSDKs()
   }
 
-  initSocialSDKs () {
+  initSocialSDKs() {
     if (this.isGoogleActive) {
 
       gapi.load('auth2', () => {
@@ -115,15 +117,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onFenixLogin (fenixCode) {
+  onFenixLogin(fenixCode) {
     this.submitting = true
     this.authService.fenix(fenixCode).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
-      this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
+      this.zone.run(() => this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`]))
     })
   }
 
-  onGoogleListen (isSignedIn: boolean) {
+  onGoogleListen(isSignedIn: boolean) {
     if (!isSignedIn) { GoogleAuth.signIn(); return }
 
     let googleUser = GoogleAuth.currentUser.get()
@@ -135,15 +137,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.authService.google(userId, token).subscribe(
       cannonToken => {
         this.authService.setToken(cannonToken)
-        this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
+        this.zone.run(() => this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`]))
       },
       error => {
         console.error(error)
-        this.router.navigate(['/login'])
+        this.zone.run(() => this.router.navigate(['/login']))
       })
   }
 
-  onGoogleLogin () {
+  onGoogleLogin() {
     this.submitting = true
 
     if (GoogleAuth.isSignedIn.get()) {
@@ -153,20 +155,20 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onFacebookLogin () {
+  onFacebookLogin() {
     this.submitting = true
     FB.login(response => {
       this.facebookStatusChange(response)
     }, { scope: 'public_profile,email' })
   }
 
-  facebookStatusChange (resp) {
+  facebookStatusChange(resp) {
     if (resp.status === 'connected') {
       // connect here with your server for facebook login by passing access token given by facebook
       this.authService.facebook(resp.authResponse.userID, resp.authResponse.accessToken)
         .subscribe(cannonToken => {
           this.authService.setToken(cannonToken)
-          this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
+          this.zone.run(() => this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`]))
         })
     } else if (resp.status === 'not_authorized') {
       this.messageService.add({

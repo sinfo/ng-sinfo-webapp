@@ -5,6 +5,7 @@ import { MessageService } from '../../message.service'
 import { EventService } from '../../events/event.service'
 import { Event } from '../../events/event.model'
 import { environment } from '../../../environments/environment.prod'
+import { HostListener } from "@angular/core";
 
 @Component({
   selector: 'app-menu',
@@ -17,20 +18,29 @@ export class MenuComponent implements OnInit {
   id_to_url = environment.id_to_url
   showDropDown: Boolean = false
   showEditionsDropDown: Boolean = false
+  screenWidth: number;
 
-  constructor (
+  constructor(
     private router: Router,
     public messageService: MessageService,
     public eventService: EventService,
     private authService: AuthService
-  ) { }
+  ) {
+    this.getScreenSize();
+  }
 
-  ngOnInit () {
+  ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn()
     this.getShortEventList()
   }
 
-  onLogout (): void {
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenWidth = window.innerWidth;
+    console.log(this.screenWidth);
+  }
+  onLogout(): void {
     this.authService.logout()
 
     this.router.url === '/'
@@ -38,7 +48,7 @@ export class MenuComponent implements OnInit {
       : this.router.navigate(['/'])
   }
 
-  getShortEventList (): void {
+  getShortEventList(): void {
     this.eventService.getCurrent().subscribe(event => {
       this.eventService.getEvents().subscribe(events => {
         this.shortEventList = events.filter(function (a) {
@@ -48,15 +58,15 @@ export class MenuComponent implements OnInit {
     })
   }
 
-  toggleDropdown () {
-    this.showDropDown = ! this.showDropDown
+  toggleDropdown() {
+    this.showDropDown = !this.showDropDown
   }
 
-  showEditionsDropdown () {
-    this.showEditionsDropDown = ! this.showEditionsDropDown
+  showEditionsDropdown() {
+    this.showEditionsDropDown = !this.showEditionsDropDown
   }
 
-  closeDropdown () {
+  closeDropdown() {
     this.showDropDown = false
   }
 }

@@ -15,7 +15,7 @@
 }
 
 #logo_white {
-  height: 20px;
+  height: 40px;
 }
 .logo{
   position: relative
@@ -28,9 +28,64 @@
   font-size: 54%;
 }
 
+.header-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+.header-extra{
+  display: flex;
+  justify-content: center;
+}
+
+.pull-left{
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 15;
+}
+
+.drawer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 5;
+}
+
 .dropdown-menu {
   margin: 0;
   text-align: center;
+}
+
+.navigation-container{
+  flex-grow: 9;
+}
+
+.navigation-header{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.header-row{
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-row:before,
+.header-row:after {
+  content: "";
+  display: table;
+}
+
+.header-row:after {
+  clear: both;
+}
+
+.navigation-link {
+  font-size: 1.5vh;
 }
 
 @media only screen and (max-width: 768px) {
