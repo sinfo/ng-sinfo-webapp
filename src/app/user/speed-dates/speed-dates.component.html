@@ -9,9 +9,9 @@
   </div>
 
   <div class='days'>
-    <p class="shifter">&lt;</p>
+    <p class="shifter" (click)="decreaseDay()">&lt;</p>
     <p class='day'>{{cheat[currentDay]}}</p>
-    <p class="shifter">&gt;</p>
+    <p class="shifter" (click)="increaseDay()">&gt;</p>
   </div>
 
   <div class='points'>
@@ -23,10 +23,14 @@
       <div class='logo'>
         <img [src]="speedDate.achievement.img">
       </div>
+      <div class="bar"></div>
       <div class="points">
-        <div [ngClass]="{'green': speedDate.frequence >= 1, 'grey': speedDate.frequence < 1}"></div>
-        <div [ngClass]="{'green': speedDate.frequence >= 2, 'grey': speedDate.frequence < 2}"></div>
-        <div [ngClass]="{'green': speedDate.frequence >= 3, 'grey': speedDate.frequence < 3}"></div>
+        <div [ngClass]="{'green': speedDate.frequence >= 1, 'grey': speedDate.frequence < 1}">
+        </div>
+        <div [ngClass]="{'green': speedDate.frequence >= 2, 'grey': speedDate.frequence < 2}">
+        </div>
+        <div [ngClass]="{'green': speedDate.frequence >= 3, 'grey': speedDate.frequence < 3}">
+        </div>
       </div>
     </div>
   </div>

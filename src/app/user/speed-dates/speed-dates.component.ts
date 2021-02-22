@@ -41,7 +41,7 @@ export class SpeedDatesComponent implements OnInit {
       const now = new Date()
       const diff = now.getTime() - event.begin.getTime()
       const duration = Math.ceil(new Date(event.duration).getTime() / (24 * 3600 * 1000))
-      for (let i = 0; i < duration; i++) {
+      for (let i = 0; i <= duration; i++) {
         this.days.push({ achievements: [], points: 0 })
       }
       this.currentDay = diff < 0 ? 0 : Math.floor(diff / (24 * 3600 * 1000))
@@ -55,6 +55,20 @@ export class SpeedDatesComponent implements OnInit {
         this.getAchievements()
       })
     })
+  }
+
+  increaseDay() {
+    if (this.currentDay >= this.days.length - 1) {
+      return
+    }
+    this.currentDay++
+  }
+
+  decreaseDay() {
+    if (this.currentDay <= 0) {
+      return
+    }
+    this.currentDay--
   }
 
   getAchievements() {

@@ -25,6 +25,7 @@
 
 .shifter{
   font-size: 5vh;
+  cursor: pointer;
 }
 
 .achievements {
@@ -35,13 +36,14 @@
 }
 
 .achievement{
+  margin: 2vh 2vw;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: center;
-  width: 30vw;
-  height: 15vh;
+  width: 25vw;
+  height: 18vh;
   border: solid 2px #2C49A6;
-  background-color: #92c5e7;
+  background-color: rgba(75, 153, 209, 0.13);
   border-radius: 15px;
 }
 
@@ -49,17 +51,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 33%;
-  border-right: 1px solid black;
   height: 100%;
 }
 
+.achievement .logo img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 .achievement .points {
-  width: 67%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 67%;
 }
 
 .achievement .points .green {
@@ -67,6 +72,12 @@
   border-radius: 50%;
   border: 2px solid darkgreen;
   background-color: lightgreen;
+}
+
+.achievement .bar {
+  height: 90%;
+  width: 1px;
+  background-color: gray;
 }
 
 .achievement .points .green:before {
@@ -91,3 +102,8 @@
 }
 
 
+@media (max-width: 767px) {
+  .achievement {
+    width: 100%;
+  }
+}
