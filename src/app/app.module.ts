@@ -80,7 +80,9 @@ import { PromocodesComponent } from './user/promocodes/promocodes.component'
 import { StandsComponent } from './landing-page/stands/stands.component'
 import { ImageDirective } from './partials/image.directive'
 import { PartnersComponent } from './landing-page/partners/partners.component'
-import { SessionsComponent } from './user/sessions/sessions.component'
+import { SessionsComponent } from './user/sessions/sessions.component';
+import { SpeedDatesComponent } from './user/speed-dates/speed-dates.component';
+import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.component'
 
 @NgModule({
   declarations: [
@@ -135,7 +137,9 @@ import { SessionsComponent } from './user/sessions/sessions.component'
     PromocodesComponent,
     StandsComponent,
     ImageDirective,
-    PartnersComponent
+    PartnersComponent,
+    SpeedDatesComponent,
+    SpeedDateSignComponent
   ],
   imports: [
     BrowserModule,

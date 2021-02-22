@@ -9,13 +9,13 @@ import { EventService } from '../../events/event.service'
 @Injectable()
 export class SignatureService {
 
-  constructor (
+  constructor(
     private companyCannonService: CompanyCannonService,
     private messageService: MessageService,
     private eventService: EventService
   ) { }
 
-  sign (user: User, company: Company): void {
+  sign(user: User, company: Company): void {
     this.companyCannonService.sign(company.id, user.id)
       .subscribe(_user => {
         if (!_user) return
@@ -29,7 +29,21 @@ export class SignatureService {
       })
   }
 
-  checkSignature (user: User, company: Company): void {
+  signSpeed(user: User, company: Company): void {
+    this.companyCannonService.signSpeedDate(company.id, user.id)
+      .subscribe(_user => {
+        if (!_user) return
+        this.messageService.add({
+          origin: 'Speed Date Signature',
+          showAlert: true,
+          text: `Signed ${user.name} a speed date`,
+          type: Type.success,
+          timeout: 7000
+        })
+      })
+  }
+
+  checkSignature(user: User, company: Company): void {
     let wantedSignature = -1
     let signatures
     this.eventService.getCurrent().subscribe(event => {

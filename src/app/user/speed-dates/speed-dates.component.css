@@ -1,0 +1,129 @@
+.title {
+  text-align: center;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.points {
+  margin: 2%;
+}
+
+.days {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  width: max-content;
+  font-size: 4vh;
+  width: 50vh;
+}
+
+.shifter{
+  font-size: 5vh;
+  cursor: pointer;
+}
+
+.achievements {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.achievement{
+  margin: 2vh 2vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 25vw;
+  height: 18vh;
+  border: solid 2px #2C49A6;
+  background-color: rgba(75, 153, 209, 0.13);
+  border-radius: 15px;
+}
+
+.complete{
+  margin: 2vh 2vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 25vw;
+  height: 18vh;
+  border: solid 2px rgb(17, 83, 17);
+  background-color: rgba(39, 204, 10, 0.192);
+  border-radius: 15px;
+}
+
+.achievement .logo, .complete .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.achievement .logo img, .complete .logo img{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.achievement .points, .complete .points {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 67%;
+}
+
+.achievement .points .green, .complete .points .green {
+  width: 30%;
+  border-radius: 50%;
+  border: solid 2px rgb(17, 83, 17);
+  background-color: rgba(44, 255, 7, 0.301);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vh;
+}
+
+.achievement .bar, .complete .bar {
+  height: 90%;
+  width: 1px;
+  background-color: gray;
+}
+
+.achievement .points .green:before, .complete .points .green:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+  /* initial ratio of 1:1*/
+}
+
+.achievement .points .grey, .complete .points .grey {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  border-radius: 50%;
+  border: 2px solid darkslategray;
+  background-color: rgba(128, 128, 128, 0.274);
+  font-size: 2vh;
+}
+
+.achievement .points .grey:before, .complete .points .grey:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+  /* initial ratio of 1:1*/
+}
+
+
+@media (max-width: 767px) {
+  .achievement, .complete {
+    width: 100%;
+  }
+}

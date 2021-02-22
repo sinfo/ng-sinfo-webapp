@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { environment } from '../../../environments/environment'
 
-import { Achievement } from './achievement.model'
+import { Achievement, SpeedDate } from './achievement.model'
 import { MessageService, Type } from '../../message.service'
 import { AuthService } from '../../auth/auth.service'
 
@@ -83,6 +83,19 @@ export class AchievementService {
     return this.http.get<Achievement[]>(`${this.achievementsUrl}/me`, httpOptions)
       .pipe(
         catchError(this.handleError<Achievement[]>('getMyAchievements'))
+      )
+  }
+
+  getMySpeedDates(): Observable<{ achievements: SpeedDate[], points: number }> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<{ achievements: SpeedDate[], points: number }>(`${this.achievementsUrl}/speed/me`, httpOptions)
+      .pipe(
+        catchError(this.handleError<{ achievements: SpeedDate[], points: number }>('getMySpeedDates'))
       )
   }
 
