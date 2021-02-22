@@ -19,7 +19,7 @@ export class CompanyCannonService {
     'Authorization': `Bearer ${this.authService.getToken().token}`
   })
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private authService: AuthService,
@@ -28,7 +28,7 @@ export class CompanyCannonService {
     this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
-  getLink (companyId: string, attendeeId: string): Observable<Link> {
+  getLink(companyId: string, attendeeId: string): Observable<Link> {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -44,7 +44,7 @@ export class CompanyCannonService {
       )
   }
 
-  getLinks (companyId: string): Observable<Link[]> {
+  getLinks(companyId: string): Observable<Link[]> {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -60,7 +60,7 @@ export class CompanyCannonService {
       )
   }
 
-  createLink (companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
+  createLink(companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
     return this.http.post<Link>(`${this.companiesUrl}/${companyId}/link`, {
       userId: userId,
       attendeeId: attendeeId,
@@ -81,7 +81,7 @@ export class CompanyCannonService {
       )
   }
 
-  updateLink (companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
+  updateLink(companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -100,7 +100,7 @@ export class CompanyCannonService {
       )
   }
 
-  deleteLink (companyId: string, attendeeId: string) {
+  deleteLink(companyId: string, attendeeId: string) {
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -116,7 +116,7 @@ export class CompanyCannonService {
       )
   }
 
-  sign (companyId: string, attendeeId: string): Observable<User> {
+  sign(companyId: string, attendeeId: string): Observable<User> {
     const httpOptions = {
       headers: this.headers
     }
@@ -130,13 +130,26 @@ export class CompanyCannonService {
       )
   }
 
+  signSpeedDate(companyId: string, attendeeId: string): Observable<User> {
+    const httpOptions = {
+      headers: this.headers
+    }
+
+    return this.http.post<User>(`${this.companiesUrl}/${companyId}/speed/${attendeeId}`, {
+      editionId: this.event.id
+    }, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('sign speed'))
+      )
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     var msg = {
       origin: `UserService: ${operation}`,
       showAlert: false,

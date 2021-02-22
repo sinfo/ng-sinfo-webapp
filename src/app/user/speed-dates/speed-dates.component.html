@@ -19,17 +19,30 @@
   </div>
 
   <div class='achievements'>
-    <div class='achievement' *ngFor='let speedDate of days[currentDay].achievements'>
+    <div [ngClass]="{'achievement': speedDate.frequence < 3, 'complete': speedDate.frequence === 3}"
+      *ngFor='let speedDate of days[currentDay].achievements'>
       <div class='logo'>
         <img [src]="speedDate.achievement.img">
       </div>
       <div class="bar"></div>
+      <ng-template #normal1>
+        {{speedDate.achievement.value}}
+      </ng-template>
+      <ng-template #normal2>
+        {{speedDate.achievement.value / 2}}
+      </ng-template>
+      <ng-template #normal3>
+        {{speedDate.achievement.value / 4}}
+      </ng-template>
       <div class="points">
         <div [ngClass]="{'green': speedDate.frequence >= 1, 'grey': speedDate.frequence < 1}">
+          <b *ngIf="speedDate.frequence >= 1; else normal1">{{speedDate.achievement.value}}</b>
         </div>
         <div [ngClass]="{'green': speedDate.frequence >= 2, 'grey': speedDate.frequence < 2}">
+          <b *ngIf="speedDate.frequence >= 2; else normal2">{{speedDate.achievement.value / 2 }}</b>
         </div>
         <div [ngClass]="{'green': speedDate.frequence >= 3, 'grey': speedDate.frequence < 3}">
+          <b *ngIf="speedDate.frequence >= 3; else normal3">{{speedDate.achievement.value / 4 }}</b>
         </div>
       </div>
     </div>

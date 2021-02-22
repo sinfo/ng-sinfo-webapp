@@ -82,6 +82,7 @@ export class SpeedDatesComponent implements OnInit {
           element = new SpeedDate(element)
           let from = new Date(element.achievement.validity.from)
           let day = Math.floor((from.getTime() - new Date(this.event.begin).getTime()) / (3600 * 1000 * 24))
+          if (day < 0) { day = 0 }
           this.days[day].achievements.push(element)
           this.days[day].points += element.getPoints()
         })

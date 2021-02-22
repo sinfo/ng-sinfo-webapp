@@ -93,6 +93,13 @@
         </a>
       </li>
 
+      <li *ngIf="user && user.role === 'company'">
+        <a routerLink="/user/speed-dates/sign" routerLinkActive="active">
+          <i class="fa fa-check"></i>
+          Sign Speed Date
+        </a>
+      </li>
+
       <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/workshops" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <img src="assets/img/icons/sidebar/workshops.png">
