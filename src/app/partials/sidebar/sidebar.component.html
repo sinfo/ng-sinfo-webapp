@@ -95,7 +95,7 @@
 
       <li *ngIf="user && user.role === 'company'">
         <a routerLink="/user/speed-dates/sign" routerLinkActive="active">
-          <i class="fa fa-check"></i>
+          <img src="assets/img/icons/sidebar/speeddating.png">
           Sign Speed Date
         </a>
       </li>
@@ -109,7 +109,7 @@
 
       <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/speed-dates" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <img src="assets/img/icons/sidebar/workshops.png">
+          <img src="assets/img/icons/sidebar/speeddating.png">
           Speed Dates
         </a>
       </li>
