@@ -41,7 +41,7 @@ import { SpeedDatesComponent } from './user/speed-dates/speed-dates.component'
 import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.component'
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
+  { path: '', component: LoginComponent },
 
   { path: 'live', component: LiveComponent },
 
