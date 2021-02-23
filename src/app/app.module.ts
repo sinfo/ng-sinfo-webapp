@@ -139,7 +139,7 @@ import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.c
     StandsComponent,
     ImageDirective,
     PartnersComponent,
-    SelfcheckinComponent
+    SelfcheckinComponent,
     SpeedDatesComponent,
     SpeedDateSignComponent
   ],
