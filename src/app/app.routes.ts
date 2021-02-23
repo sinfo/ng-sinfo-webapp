@@ -27,6 +27,7 @@ import { WorkshopsComponent } from './user/workshops/workshops.component'
 import { WorkshopsStatusComponent } from './user/workshops/workshops-status.component'
 import { ScoreboardComponent } from './user/scoreboard/scoreboard.component'
 import { CheckinComponent } from './user/checkin/checkin.component'
+import { SelfcheckinComponent } from './user/selfcheckin/selfcheckin.component'
 import { ValidateCardComponent } from './user/validate-card/validate-card.component'
 import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
@@ -75,6 +76,7 @@ const routes: Routes = [
       { path: 'links/my-links', component: MyLinksComponent, canActivate: [AuthGuard] },
 
       { path: 'checkin', component: CheckinComponent, canActivate: [IsTeamGuard] },
+      { path: 'selfcheckin', component: SelfcheckinComponent, canActivate: [AuthGuard] },
       { path: 'pick-winner', component: PickWinnerComponent, canActivate: [IsTeamGuard] },
       { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [IsTeamGuard] },
       { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [IsTeamGuard] },

@@ -1,0 +1,56 @@
+<app-loading [content]="sessions"></app-loading>
+
+<div class="align-center" *ngIf="sessions">
+  <div class="row">
+    <h3>
+      Check in
+    </h3>
+  </div>
+
+  <div class="container align-center user">
+
+    <div class="sessions-wrapper">
+      <div *ngFor="let session of sessions" class="row session">
+        <div class="col-sm-12">
+          <div class="row well well-sm workshop-wrapper">
+            <div class="img-wrapper col-sm-2">
+              <img src="{{session.session.img}}" alt="{{session.session.name}}">
+            </div>
+            <div class="info-wrapper col-sm-7">
+              <h4 class="name">{{session.name}}</h4>
+              <div class="session-details">
+                <div *ngIf="session.begin" class="padded">
+                  <p>
+                    <i class="fa fa-calendar"></i> {{session.begin | date:'fullDate':'+0000'}} </p>
+                </div>
+                <div *ngIf="session.begin" class="padded">
+                  <p>
+                    <i class="fa fa-clock-o"></i> {{session.begin | date:'shortTime':'+0000'}} -
+                    {{session.end | date:'shortTime':'+0000'}}</p>
+                </div>
+                <div *ngIf="session.place">
+                  <p>
+                    <i class="fa fa-map-marker"></i> {{session.session.place}} </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 checkin" *ngIf="!selectedSession || selectedSession!=session.session" >
+              <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check In</button>
+            </div>
+            <div class="col-sm-3 checkin"  *ngIf="selectedSession && selectedSession==session.session" >
+              <div class="selected-session">
+                <input #codeinput type="text">
+              </div>
+              <div class="selected-session">
+                <button class="btn btn-button"(click)="submit(codeinput.value)">Submit code</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

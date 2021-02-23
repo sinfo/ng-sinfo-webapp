@@ -22,7 +22,7 @@ export class SessionCannonService {
     private authService: AuthService
   ) { }
 
-  checkin (sessionId: string, usersId: string[]) {
+  checkin (sessionId: string, usersId: string[], code?: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export class SessionCannonService {
     }
 
     return this.http.post<User>(`${this.sessionsUrl}/${sessionId}/check-in`, {
-      users: usersId
+      users: usersId, code: code
     }, httpOptions)
       .pipe(
         catchError(this.handleError<any>('check-in'))
