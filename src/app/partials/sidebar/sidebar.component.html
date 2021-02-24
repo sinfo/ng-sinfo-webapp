@@ -25,14 +25,21 @@
         </a>
       </li>
 
-      <!--<li *ngIf="user && user.role === 'team'">
+      <!-- <li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/checkin" routerLinkActive="active">
           <i class="glyphicon glyphicon-qrcode"></i>
           Check-in
         </a>
+      </li> -->
+
+      <li *ngIf="user && user.role === 'user'">
+        <a routerLink="/user/selfcheckin" routerLinkActive="active">
+          <i class="glyphicon glyphicon-qrcode"></i>
+          Self Check-in
+        </a>
       </li>
 
-      <li *ngIf="user && user.role == 'team'">
+      <!--<li *ngIf="user && user.role == 'team'">
         <a routerLink="/user/validate-card" routerLinkActive="active">
           <i class="glyphicon glyphicon-search"></i>
           Validate Card
