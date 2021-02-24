@@ -39,20 +39,20 @@ export class QrcodeScannerComponent implements OnInit {
     selected: number
   }
 
-  constructor (
+  constructor(
     private messageService: MessageService,
     private userService: UserService,
     private companyService: CompanyService,
     private eventService: EventService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     if (this.processUser === undefined) {
       this.processUser = true
     }
   }
 
-  camerasFoundHandler (cams: any[]) {
+  camerasFoundHandler(cams: any[]) {
     this.availableDevices = {
       cams: cams,
       selected: -1
@@ -65,19 +65,19 @@ export class QrcodeScannerComponent implements OnInit {
     }
   }
 
-  changeCamera () {
+  changeCamera() {
     let selected = (this.availableDevices.selected + 1) % this.availableDevices.cams.length
     this.availableDevices.selected = selected
     this.onChange(this.availableDevices.cams[selected])
   }
 
-  onChange (selectedValue: MediaDeviceInfo) {
+  onChange(selectedValue: MediaDeviceInfo) {
     this.camStarted = false
     this.desiredDevice = selectedValue
     this.camStarted = true
   }
 
-  handleQrCodeResult (content): void {
+  handleQrCodeResult(content): void {
     this.company = undefined // flush previous info
 
     if (!content) {
@@ -141,7 +141,7 @@ export class QrcodeScannerComponent implements OnInit {
       })
   }
 
-  buttonClick () {
+  buttonClick() {
     this.buttonAction.emit()
   }
 }

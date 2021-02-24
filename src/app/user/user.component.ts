@@ -16,20 +16,20 @@ export class UserComponent implements OnInit {
   user: User
   achievements: Achievement[]
 
-  constructor (
+  constructor(
     private eventService: EventService,
     private userService: UserService,
     private route: ActivatedRoute,
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.userService.getMe().subscribe(me => {
       this.user = me
     })
   }
 
-  getUserAchievements (id: string): void {
+  getUserAchievements(id: string): void {
     this.userService.getUserAchievements(id)
       .subscribe(achievements => this.achievements = achievements)
   }

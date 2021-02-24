@@ -1,13 +1,12 @@
 .user-wrapper {
-  position: absolute;
+  position: relative;
 
   display: flex;
   flex-direction: row;
   
   width: 100vw;
 
-  top: 100px;
-  height: calc(100vh - 100px);
+  height: 100vh
 }
 
 @media (max-width: 767px) {
@@ -25,7 +24,6 @@
 .profile-content {
   flex-grow: 1;
 
-  margin: 3% 1% 2% 1%;
   padding-right: 1%;
 
   overflow-y: scroll;

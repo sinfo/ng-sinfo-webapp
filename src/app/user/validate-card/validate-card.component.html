@@ -1,4 +1,4 @@
-<div class="wrapper" *ngIf="user">
+<div class="wrapper pad" *ngIf="user">
   <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title">
   </app-qrcode-scanner>
 </div>

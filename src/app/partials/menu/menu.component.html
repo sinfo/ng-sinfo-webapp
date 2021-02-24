@@ -65,7 +65,7 @@
 
 <div *ngIf="messageService.messages.length">
   <div *ngFor="let message of messageService.messages" class="container alert-message">
-    <div [class]="message.messageClass" role="alert">
+    <div [class]="[message.messageClass, 'self-align']" role="alert">
       <button (click)="messageService.clear()" type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>

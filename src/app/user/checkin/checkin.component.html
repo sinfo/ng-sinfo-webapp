@@ -1,6 +1,6 @@
 <app-loading [content]="sessions"></app-loading>
 
-<div class="align-center" *ngIf="sessions">
+<div class="align-center pad" *ngIf="sessions">
   <div class="row">
     <h3>
       Check in
@@ -32,16 +32,19 @@
               <div class="session-details">
                 <div *ngIf="session.begin" class="padded">
                   <p>
-                    <i class="fa fa-calendar"></i> {{session.begin | date:'fullDate':'+0000'}} </p>
+                    <i class="fa fa-calendar"></i> {{session.begin | date:'fullDate':'+0000'}}
+                  </p>
                 </div>
                 <div *ngIf="session.begin" class="padded">
                   <p>
                     <i class="fa fa-clock-o"></i> {{session.begin | date:'shortTime':'+0000'}} -
-                    {{session.end | date:'shortTime':'+0000'}}</p>
+                    {{session.end | date:'shortTime':'+0000'}}
+                  </p>
                 </div>
                 <div *ngIf="session.place">
                   <p>
-                    <i class="fa fa-map-marker"></i> {{session.session.place}} </p>
+                    <i class="fa fa-map-marker"></i> {{session.session.place}}
+                  </p>
                 </div>
               </div>
             </div>
