@@ -34,7 +34,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 checkin" *ngIf="!selectedSession || selectedSession!=session.session" >
+            <div class="col-sm-3 checkin" *ngIf="!sessionsSignedin.includes(session.session.id) && (!selectedSession || selectedSession!=session.session)" >
               <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check In</button>
             </div>
             <div class="col-sm-3 checkin"  *ngIf="selectedSession && selectedSession==session.session" >
@@ -44,6 +44,9 @@
               <div class="selected-session">
                 <button class="btn btn-button"(click)="submit(codeinput.value)">Submit code</button>
               </div>
+            </div>
+            <div class="col-sm-3 checkin" *ngIf="sessionsSignedin.includes(session.session.id)" >
+              <button class="btn btn-button">Checked In!</button>
             </div>
           </div>
 

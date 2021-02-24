@@ -8,6 +8,7 @@ import { User } from '../user.model'
 import { UserService } from '../user.service'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
+import { Achievement } from '../achievements/achievement.model'
 
 @Component({
   selector: 'app-selfcheckin',
@@ -18,13 +19,9 @@ export class SelfcheckinComponent implements OnInit {
   sessions = []
 
   selectedSession: Session
-  users: User[]
+  sessionsSignedin: string[]
   me: User
   title: string
-
-  scannerActive: boolean
-  submitLabel: string
-  insideScannerMsg: [{ title: string, msg: string }, { title: string, msg: string }]
 
   constructor (
     private sessionService: SessionService,
@@ -40,13 +37,23 @@ export class SelfcheckinComponent implements OnInit {
       this.titleService.setTitle(event.name + ' - Check In')
     })
 
-    this.scannerActive = false
+    
 
     this.userService.getMe()
       .subscribe(me => {
         this.me = me
-        this.getSessions()
+        this.userService.getUserAchievements(this.me.id)
+          .subscribe(achievements => {
+            this.sessionsSignedin = achievements.reduce((acc, cur) => {
+              acc.push(cur.session)
+              return acc
+            }, [])
+            this.getSessions()
+          })
       })
+
+    
+
   }
 
   getSessions () {
@@ -69,8 +76,11 @@ export class SelfcheckinComponent implements OnInit {
             let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
             let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
+            console.log(this.sessionsSignedin.includes(s.id))
+            console.log(this.sessionsSignedin)
+            console.log(s.id)
             // today and before it ends
-            if (sessionDate.getDate() === new Date().getDate() || true) {
+            if (sessionDate.getDate() === new Date().getDate()) {
               _sessions.push({
                 begin: sessionDate,
                 end: sessionEnd,
@@ -81,7 +91,6 @@ export class SelfcheckinComponent implements OnInit {
 
           })
           this.sessions = _sessions
-          this.users = []
         })
     })
   }
@@ -97,7 +106,7 @@ export class SelfcheckinComponent implements OnInit {
           this.getSessions()
 
           this.messageService.add({
-            origin: `Check in component`,
+            origin: `Self check in component`,
             showAlert: true,
             text: `Done!`,
             type: Type.success
