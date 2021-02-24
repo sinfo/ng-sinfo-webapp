@@ -76,9 +76,6 @@ export class SelfcheckinComponent implements OnInit {
             let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
             let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
-            console.log(this.sessionsSignedin.includes(s.id))
-            console.log(this.sessionsSignedin)
-            console.log(s.id)
             // today and before it ends
             if (sessionDate.getDate() === new Date().getDate()) {
               _sessions.push({
