@@ -1,6 +1,6 @@
 <app-loading [content]="user"></app-loading>
 
-<div class="align-center" *ngIf="user">
+<div class="align-center pad" *ngIf="user">
   <div class="row">
     <h3 class="qr-code-title">
       QR Code
@@ -14,9 +14,24 @@
   <div class="row qrcode-wrapper">
 
     <div class="qrcode">
+      <h5 class="name">
+        Your ID:
+      </h5>
+      <h4 class="name">
+        {{user.id}}
+      </h4>
+      <h6 class="name">
+        (click QR code to copy!)
+      </h6>
 
-      <div class="qrcode-wrapper">
+      <div class="qrcode-grid " (click)="copyToClipboard(t1)" #t1="ngbTooltip" [ngbTooltip]="tipContent">
+
         <qrcode class="qrcodeimg" [qrdata]="user.id" [level]="'M'"></qrcode>
+        <div class="copy qrcode-animation">
+          <div class="copyIcon">
+            <fa-icon [icon]="['fas', 'copy']"></fa-icon>
+          </div>
+        </div>
       </div>
 
       <h3 class="name">

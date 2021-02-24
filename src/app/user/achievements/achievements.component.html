@@ -1,6 +1,6 @@
 <app-loading [content]="activeAchievements"></app-loading>
 
-<div class="achievement-section" *ngIf="activeAchievements">
+<div class="achievement-section pad" *ngIf="activeAchievements">
   <h3 class="title">Achievements</h3>
 
   <div class="row" *ngIf="user && user.role === 'team' && myPoints !== undefined && myPoints > 0">

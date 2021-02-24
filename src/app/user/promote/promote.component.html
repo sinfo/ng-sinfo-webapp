@@ -1,6 +1,6 @@
 <app-loading [content]="companies"></app-loading>
 
-<div class="wrapper" *ngIf="companies">
+<div class="wrapper pad" *ngIf="companies">
   <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info"
     [userRead]="userRead" [company]="userReadCompany">
   </app-qrcode-scanner>

@@ -84,6 +84,14 @@ import { SessionsComponent } from './user/sessions/sessions.component';
 import { SelfcheckinComponent } from './user/selfcheckin/selfcheckin.component'
 import { SpeedDatesComponent } from './user/speed-dates/speed-dates.component';
 import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.component'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { ClipboardModule } from 'ngx-clipboard';
+
+
+library.add(fas)
+
 
 @NgModule({
   declarations: [
@@ -150,7 +158,9 @@ import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.c
     QRCodeModule,
     ZXingScannerModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    FontAwesomeModule,
+    ClipboardModule
   ],
   providers: [
     SpeakerService,

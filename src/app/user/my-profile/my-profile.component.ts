@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core'
+import { Component, NgZone, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
@@ -12,6 +12,9 @@ import { Achievement } from '../achievements/achievement.model'
 import { SurveyService } from '../survey/survey.service'
 import { AchievementService } from '../achievements/achievement.service'
 import { EventService } from '../../events/event.service'
+import { ClipboardService } from 'ngx-clipboard'
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap'
+import { MessageService, Type } from '../../message.service'
 
 @Component({
   selector: 'app-my-profile',
@@ -19,7 +22,7 @@ import { EventService } from '../../events/event.service'
   styleUrls: ['./my-profile.component.css']
 })
 
-export class MyProfileComponent {
+export class MyProfileComponent implements OnInit {
   user: User
   presentationRole: string
   company: Company
@@ -31,7 +34,7 @@ export class MyProfileComponent {
     id: string
   }> = new Array()
 
-  constructor (
+  constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private authService: AuthService,
@@ -40,9 +43,15 @@ export class MyProfileComponent {
     private achievementService: AchievementService,
     private eventService: EventService,
     private router: Router,
-    private titleService: Title
-  ) {
+    private titleService: Title,
+    private clipboardService: ClipboardService,
+    private messageService: MessageService
 
+
+  ) {
+  }
+
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - QR Code')
     })
@@ -95,7 +104,7 @@ export class MyProfileComponent {
     })
   }
 
-  getPresentationRole (user: User) {
+  getPresentationRole(user: User) {
     if (user === undefined) {
       this.router.navigate(['/'])
     }
@@ -105,7 +114,7 @@ export class MyProfileComponent {
     if (user.role === 'admin') return 'Admin'
   }
 
-  uploadCV (event) {
+  uploadCV(event) {
     let fileList: FileList = event.target.files
     if (fileList.length > 0) {
       let file: File = fileList[0]
@@ -119,9 +128,21 @@ export class MyProfileComponent {
     }
   }
 
-  deleteCV () {
+  deleteCV() {
     this.userService.deleteCV().subscribe(res => {
       this.submitedCV = false
     })
+  }
+
+  copyToClipboard(tooltip: NgbTooltip) {
+    this.messageService.add({
+      origin: `My Profile`,
+      text: `Copied!`,
+      type: Type.success,
+      showAlert: true,
+      timeout: 2000
+    })
+
+    this.clipboardService.copyFromContent(this.user.id)
   }
 }
