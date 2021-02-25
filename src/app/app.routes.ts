@@ -32,7 +32,8 @@ import { ValidateCardComponent } from './user/validate-card/validate-card.compon
 import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
 import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
-import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
+import { PickWinnerComponent } from './user/pick-winner/pick-winner.component' 
+import { PickBestRestComponent } from './user/pick-best-rest/pick-best-rest.component'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
@@ -83,6 +84,7 @@ const routes: Routes = [
       { path: 'checkin', component: CheckinComponent, canActivate: [IsTeamGuard] },
       { path: 'selfcheckin', component: SelfcheckinComponent, canActivate: [AuthGuard] },
       { path: 'pick-winner', component: PickWinnerComponent, canActivate: [IsTeamGuard] },
+      { path: 'pick-best-rest', component: PickBestRestComponent, canActivate: [IsTeamGuard] },
       { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [IsTeamGuard] },
       { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [IsTeamGuard] },
       { path: 'workshops/workshops-status', component: WorkshopsStatusComponent, canActivate: [IsTeamGuard] },

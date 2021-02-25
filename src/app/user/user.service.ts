@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { User } from './user.model'
 import { Observable, of } from 'rxjs'
@@ -57,6 +57,22 @@ export class UserService {
     return this.http.post<User[]>(`${this.usersUrl}/users`, { users: ids }, { headers: new HttpHeaders(headers) })
       .pipe(
         catchError(this.handleError<User[]>(`getting user profile`))
+      )
+  }
+
+  getActiveUsers (): Observable<User[]> {
+    let headers = {
+      'Content-Type': 'application/json',
+      'Authorization': ''
+    }
+    
+    if (this.authService.isLoggedIn()) {
+      headers.Authorization = `Bearer ${this.authService.getToken().token}`
+    }
+
+    return this.http.get<User[]>(this.usersUrl, { headers: new HttpHeaders(headers)})
+      .pipe(
+        catchError(this.handleError<User[]>(`getting all users with achievements`))
       )
   }
 

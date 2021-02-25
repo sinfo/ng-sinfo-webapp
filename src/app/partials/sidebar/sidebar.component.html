@@ -54,11 +54,27 @@
       </li>
 
       <li *ngIf="user && user.role === 'team'">
+        <a href="#pickSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/user/pick') }}">
+          <i class="glyphicon glyphicon-flag"></i>
+          Pick Winner
+        </a>
+        <ul class="collapse list-unstyled" id="pickSubmenu"
+          [ngClass]="{'in': detectLocation('/user/pick'), 'collapse': !detectLocation('/user/pick')}">
+          <li [ngClass]="{'active': detectLocation('/user/pick-winner')}">
+            <a routerLink="/user/pick-winner">Sessions</a>
+          </li>
+          <li [ngClass]="{'active': detectLocation('/user/pick-best-rest')}">
+            <a routerLink="/user/pick-best-rest">Best of the Rest</a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- <li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/pick-winner" routerLinkActive="active">
           <i class="glyphicon glyphicon-flag"></i>
           Pick Winner
         </a>
-      </li>
+      </li> -->
 
       <li *ngIf="user && user.role === 'company'">
         <a routerLink="/user/downloads/download" routerLinkActive="active">

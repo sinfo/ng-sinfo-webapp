@@ -73,6 +73,7 @@ import { EventService } from './events/event.service'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
+import { PickBestRestComponent } from './user/pick-best-rest/pick-best-rest.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 import { RedeemService } from './user/redeem/redeem.service'
 import { LivestreamComponent } from './landing-page/livestream/livestream.component'
@@ -139,6 +140,7 @@ library.add(fas)
     ManageDownloadsComponent,
     DownloadsStatusComponent,
     PickWinnerComponent,
+    PickBestRestComponent,
     EventComponent,
     CvComponent,
     RedeemComponent,
