@@ -1,0 +1,40 @@
+<div class="align-center">
+  <div class="row">
+    <div class="col-sm-12 align-center">
+      <h3 class="title">Best of the Rest</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 align-center">
+      <p>{{eligibleUsers.length}} people are currently elligible</p>
+    </div>
+    <div class="col-sm-12 align-center">
+      <p>There are {{totalEntries}} total entries right now</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 align-center">
+
+      <div *ngIf="!winner">
+        <div class="actions">
+          <button (click)=chooseWinner() type="button" class="btn btn-secondary">Pick Winner</button>
+        </div>
+
+      </div>
+
+      <div *ngIf="winner">
+        <div class="portrait-wrapper">
+          <img appImage [url]="winner.img" class="portrait">
+          <p>{{winner.name}}</p>
+
+          <div class="actions">
+            <button (click)=chooseWinner() type="button" class="btn btn-secondary">Reroll</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+#content {
+  display: block;
+  height: 100%;
+
+  margin-bottom: 30px;
+}
+.endpoints-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.endpoint {
+  margin: 5px;
+  margin-bottom: 10px;
+  min-width: 200px;
+  -webkit-box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+  border: 1px solid #e9e9e9;
+  background-position: center;
+  background-size: 54%;
+  background-repeat: no-repeat;
+}
+.shade {
+  padding: 3px 7px;
+  padding-top: 7px;
+  background: #ffffffdb;
+  height: 100%;
+}
+.shade p {
+  margin: 0;
+  font-size: 13px;
+}
+.shade .visited {
+  margin-bottom: 5px;
+}
+.shade p.validaty {
+  font-size: 17px;
+  font-weight: 400;
+}
+.shade h6.company-name {
+  font-family: "PT Sans";
+  color: #008ae6;
+  font-weight: 600;
+}
+button.btn {
+  margin: 5px;
+  letter-spacing: 2px;
+  padding: 9px;
+  font-size: 12px;
+}
+button.btn-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+button.btn-danger:hover {
+  background-color: #d2322d;
+  border-color: #ac2925;
+}
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    line-height:30px;
+}
+.flex-item {
+    background: #133157;
+    margin: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    flex: 1 0 auto;
+    height:300px;
+    width: 300px;
+    border: 0;
+}
+
+.flex-item img{
+  height: 80%;
+}
+
+
+.flex-container .small {
+  background: white;
+  color: black;
+  flex: 0;
+}
+
+.flex-container .small img {
+  height: 70px;
+  width: 70px;
+}
+
+.flex-item:before {
+    content:'';
+    float:left;
+    padding-top:100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

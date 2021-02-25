@@ -86,6 +86,17 @@ export class AchievementService {
       )
   }
 
+  getMyAchievementsAndPoints(): Observable<Object> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get(`${this.activeUrl}/me`, {...httpOptions})
+
+  }
+
   getMySpeedDates(): Observable<{ achievements: SpeedDate[], points: number }> {
     const httpOptions = {
       headers: new HttpHeaders({
