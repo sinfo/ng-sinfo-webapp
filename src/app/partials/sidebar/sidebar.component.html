@@ -107,12 +107,12 @@
         </a>
       </li>
 
-      <li *ngIf="user && user.role !== 'company'">
+      <!--<li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/workshops" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <img src="assets/img/icons/sidebar/workshops.png">
           Workshops
         </a>
-      </li>
+      </li>-->
 
       <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/speed-dates" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -121,12 +121,12 @@
         </a>
       </li>
 
-      <li *ngIf="user && user.role === 'team'">
+      <!--<li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/workshops/workshops-status" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/workshops.png">
           Workshop Status
         </a>
-      </li>
+      </li>-->
 
       <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/achievements" routerLinkActive="active">
