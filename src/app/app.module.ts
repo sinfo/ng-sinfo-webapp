@@ -51,7 +51,7 @@ import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
 import { CompanyCannonService } from './company/company-cannon.service'
-import { CardComponent } from './user/card/card.component'
+import { MyCardComponent } from './user/my-card/my-card.component'
 import { WorkshopsComponent } from './user/workshops/workshops.component'
 import { WorkshopComponent } from './user/workshops/workshop/workshop.component'
 import { TicketService } from './user/workshops/ticket.service'
@@ -124,7 +124,7 @@ library.add(fas)
     AchievementsComponent,
     AchievementComponent,
     SignatureComponent,
-    CardComponent,
+    MyCardComponent,
     SidebarComponent,
     WorkshopsComponent,
     WorkshopsStatusComponent,

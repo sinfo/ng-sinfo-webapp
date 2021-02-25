@@ -53,7 +53,7 @@ export class SignatureService {
         })
 
         wantedSignature = (signatures && signatures.signatures)
-          ? signatures.signatures.indexOf(company.id) : -1
+          ? signatures.signatures.filter(s => s.companyId === company.id).length - 1 : -1
       }
 
       // signature not found

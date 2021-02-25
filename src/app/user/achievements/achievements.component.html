@@ -3,7 +3,7 @@
 <div class="achievement-section pad" *ngIf="activeAchievements">
   <h3 class="title">Achievements</h3>
 
-  <div class="row" *ngIf="user && user.role === 'team' && myPoints !== undefined && myPoints > 0">
+  <div class="row" *ngIf="user && user.role === 'team' && myAchievements !== undefined && myAchievements > 0">
     <div class="delete-achv col-sm-12">
       <button class="btn" (click)="deleteAchievements()">Clear my achievements</button>
     </div>
