@@ -116,7 +116,7 @@ export class AchievementsComponent implements OnInit {
           acc.total.value += curr.value
           acc.total.number += 1
 
-          if (curr.value !== undefined && curr.value > 0 &&
+          if (curr.value !== undefined && curr.users !== undefined &&
             curr.users.filter(userId => userId === this.user.id).length > 0) {
             this.myPoints += curr.value
             this.myAchievements += 1
