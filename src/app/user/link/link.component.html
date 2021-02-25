@@ -2,8 +2,27 @@
 
 <div class="wrapper pad" *ngIf="company">
 
-  <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info">
+  <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]="title" [info]="info">
   </app-qrcode-scanner>
+
+  <h3 class="title mb-1">Sign and Link Card</h3>
+
+  <div *ngIf="!userRead">
+    <p>Insert the ID of the attendee in the text box below or scan the QR code by switching input</p>
+  </div>
+
+  <div class="column" *ngIf="!cam && !yesToLink">
+    <h6>Attendee ID:</h6>
+    <div class="input-group mb-3">
+      <input [(ngModel)]="userId" type="text" class="form-control" placeholder="ID" aria-label="Attendee ID"
+        aria-describedby="basic-addon1">
+    </div>
+    <button *ngIf="!userRead" class="btn btn-success" [disabled]="userId.length === 0" (click)="submit()">Sign</button>
+  </div>
+
+  <div class="row" *ngIf="!userRead">
+    <div class="btn btn-primary" (click)="toggleCam()">Switch Input</div>
+  </div>
 
   <div *ngIf="userRead" class='wrapper'>
 
@@ -77,8 +96,8 @@
       <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-button" (click)="reScan()">
-            Rescan QrCode
-            <span class="glyphicon glyphicon-qrcode"></span>
+            <span class="glyphicon glyphicon-pencil"></span>
+            Insert new ID
           </button>
         </div>
       </div>
