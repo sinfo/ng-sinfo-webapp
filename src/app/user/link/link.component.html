@@ -2,106 +2,112 @@
 
 <div class="wrapper pad" *ngIf="company">
 
-  <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]="title" [info]="info">
-  </app-qrcode-scanner>
-
-  <h3 class="title mb-1">Sign and Link Card</h3>
-
-  <div *ngIf="!userRead">
-    <p>Insert the ID of the attendee in the text box below or scan the QR code by switching input</p>
+  <div>
+    <h3 class="title mb-1">Sign and Link Card</h3>
   </div>
 
-  <div class="column" *ngIf="!cam && !yesToLink">
-    <h6>Attendee ID:</h6>
-    <div class="input-group mb-3">
-      <input [(ngModel)]="userId" type="text" class="form-control" placeholder="ID" aria-label="Attendee ID"
-        aria-describedby="basic-addon1">
+  <div class="align-center">
+    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]="title" [info]="info">
+    </app-qrcode-scanner>
+  
+    <div *ngIf="!userRead">
+      <p>Insert the ID of the attendee in the text box below or scan the QR code by switching input</p>
     </div>
-    <button *ngIf="!userRead" class="btn btn-success" [disabled]="userId.length === 0" (click)="submit()">Sign</button>
-  </div>
-
-  <div class="row" *ngIf="!userRead">
-    <div class="btn btn-primary" (click)="toggleCam()">Switch Input</div>
-  </div>
-
-  <div *ngIf="userRead" class='wrapper'>
-
-    <div *ngIf='!yesToLink' class='full-width'>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <button type="button" class="btn btn-button rescan" (click)="toLink()">
-            <span>Link</span>
-          </button>
-        </div>
+  
+    <div class="column" *ngIf="!cam && !userRead">
+      <h6>Attendee ID:</h6>
+      <div class="input-group mb-3">
+        <input [(ngModel)]="userId" type="text" class="form-control" placeholder="ID" aria-label="Attendee ID"
+          aria-describedby="basic-addon1">
       </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <button type="button" class="btn btn-button btn-danger" (click)="reScan()">
-            Cancel
-          </button>
-        </div>
-      </div>
-
+      <button class="btn btn-success" [disabled]="userId.length === 0" (click)="submit()">Sign</button>
     </div>
-
-    <div *ngIf='yesToLink' class='full-width'>
-      <div class="row">
-        <div class="col-xs-12">
-          <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email">
-          </textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <textarea [(ngModel)]="notes.contacts.phone" class="form-control" placeholder="Attendee phone number">
-          </textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <textarea [(ngModel)]="notes.interestedIn" class="form-control" placeholder="Attendee's interests">
-          </textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <textarea [(ngModel)]="notes.degree" class="form-control" placeholder="Attendee's degree">
-          </textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <textarea [(ngModel)]="notes.availability" class="form-control" placeholder="Attendee's avaliability">
-          </textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <textarea [(ngModel)]="notes.otherObservations" class="form-control"
-            placeholder="Insert your other observations here">
-          </textarea>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="link()">
-            <span class="glyphicon glyphicon-link"></span> Link
-          </button>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12">
-          <button class="btn btn-button" (click)="reScan()">
-            <span class="glyphicon glyphicon-pencil"></span>
-            Insert new ID
-          </button>
-        </div>
-      </div>
+  
+    <div class="row" *ngIf="!userRead">
+      <div class="btn btn-primary" (click)="toggleCam()">Switch Input</div>
     </div>
-
+  
+    <div *ngIf="userRead" class='wrapper'>
+  
+      <div *ngIf='!yesToLink' class='full-width'>
+  
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-button rescan" (click)="toLink()">
+              <span>Link</span>
+            </button>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-button btn-danger" (click)="reScan()">
+              Cancel
+            </button>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div *ngIf='yesToLink' class='full-width'>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email">
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.contacts.phone" class="form-control" placeholder="Attendee phone number">
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.interestedIn" class="form-control" placeholder="Attendee's interests">
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.degree" class="form-control" placeholder="Attendee's degree">
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.availability" class="form-control" placeholder="Attendee's avaliability">
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.otherObservations" class="form-control"
+              placeholder="Insert your other observations here">
+            </textarea>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-xs-12">
+            <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="link()">
+              <span class="glyphicon glyphicon-link"></span> Link
+            </button>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button" (click)="reScan()">
+              <span class="glyphicon glyphicon-pencil"></span>
+              {{
+                cam ? 'Rescan' : 'Insert another ID'
+              }}
+            </button>
+          </div>
+        </div>
+      </div>
+  
+    </div>
   </div>
-</div>
+  </div>

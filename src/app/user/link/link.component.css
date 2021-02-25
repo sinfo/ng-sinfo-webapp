@@ -1,9 +1,10 @@
-.wrapper {
+.wrapper, .align-center {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
 }
 
 .form-control {
@@ -34,6 +35,7 @@
 
 .full-width{
     width: calc(100% - 100px);
+    height: 100% !important;
 }
 
 .form-control {
@@ -65,9 +67,6 @@ button {
     border-color: #449d44 ;
 }
 
-.align-center {
-    width: 100%;
-  }
   .row button {
     width: 95%;
     margin: 5px auto;
@@ -91,7 +90,6 @@ button {
   }
   
   .row{
-    flex-grow: 7;
     display: flex;
     justify-content: center;
     align-items: center;
