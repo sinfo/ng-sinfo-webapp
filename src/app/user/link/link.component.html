@@ -7,7 +7,7 @@
   </div>
 
   <div class="align-center">
-    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]="title" [info]="info">
+    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]="" [info]="info">
     </app-qrcode-scanner>
   
     <div *ngIf="!userRead">
@@ -24,7 +24,7 @@
     </div>
   
     <div class="row" *ngIf="!userRead">
-      <div class="btn btn-primary" (click)="toggleCam()">Switch Input</div>
+      <div class="btn btn-primary" (click)="toggleCam()">{{cam? 'write ID manually':'Read QR Code'}}</div>
     </div>
   
     <div *ngIf="userRead" class='wrapper'>
