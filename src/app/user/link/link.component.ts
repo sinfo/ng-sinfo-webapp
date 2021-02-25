@@ -129,7 +129,18 @@ export class LinkComponent implements OnInit {
   }
 
   link () {
-    this.currentLink ? this.updateLink() : this.createLink()
+    if(this.currentLink) {
+      this.updateLink()
+    } else {
+      this.createLink()
+      this.messageService.add({
+        origin: 'Link created',
+        showAlert: true,
+        text: 'Link created',
+        type: Type.success,
+        timeout: 6000
+      })
+    }
   }
 
   createLink () {
