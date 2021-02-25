@@ -1,7 +1,7 @@
 <app-loading [content]="achievement">
 </app-loading>
 
-<div class="achievement-section" *ngIf="achievement">
+<div class="achievement-section pad" *ngIf="achievement">
   <div class="container subsection">
     <div class="row">
       <div class="col-sm-12 align-center">
@@ -16,7 +16,8 @@
         <h5 class="name"> {{ achievement.name }}</h5>
         <h6 class="description" *ngIf="achievement.description">{{ achievement.description }}</h6>
         <h4 class="lead">
-          <strong>Value</strong>: {{ achievement.value }} points</h4>
+          <strong>Value</strong>: {{ achievement.value }} points
+        </h4>
       </div>
     </div>
 

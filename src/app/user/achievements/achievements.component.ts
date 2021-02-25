@@ -18,6 +18,8 @@ export class AchievementsComponent implements OnInit {
     presentations: Achievement[],
     keynotes: Achievement[],
     stands: Achievement[],
+    talks: Achievement[],
+    speedDates: Achievement[],
     cv: Achievement,
     other: Achievement[]
     total: {
@@ -84,6 +86,7 @@ export class AchievementsComponent implements OnInit {
         .sort((a, b) => { return a.id.localeCompare(b.id) }) // sort by id
         .reduce((acc, curr) => {
           switch (curr.kind) {
+            case 'standDay':
             case 'stand':
               acc.stands.push(curr)
               break
@@ -100,6 +103,10 @@ export class AchievementsComponent implements OnInit {
               acc.cv = curr
               break
             case 'speedDate':
+              acc.speedDates.push(curr)
+              break
+            case 'lunchTalk':
+              acc.talks.push(curr)
               break
             default:
               acc.other.push(curr)
@@ -121,6 +128,8 @@ export class AchievementsComponent implements OnInit {
           presentations: [],
           keynotes: [],
           stands: [],
+          talks: [],
+          speedDates: [],
           cv: null,
           other: [],
           total: {
@@ -128,7 +137,6 @@ export class AchievementsComponent implements OnInit {
             value: 0
           }
         })
-
     })
   }
 
