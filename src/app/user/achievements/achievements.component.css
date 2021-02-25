@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+h6.lead{
+  margin-bottom: 40px;
+  text-align: center;
+}
+
 .achievement-section {
   display: flex;
   flex-direction: column;
