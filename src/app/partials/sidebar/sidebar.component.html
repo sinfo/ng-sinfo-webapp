@@ -178,6 +178,12 @@
           My card
         </a>
       </li> -->
+      <li *ngIf="user && user.role !== 'company'">
+        <a routerLink="/user/card" routerLinkActive="active">
+          <img src="assets/img/icons/sidebar/card.svg">
+          My card
+        </a>
+      </li>
 
       <li *ngIf="user">
         <a routerLink="/user/promocodes" routerLinkActive="active">
