@@ -91,6 +91,7 @@ export class LinkComponent implements OnInit {
     this.userRead = null
     this.scannerActive = true
     this.userId = ''
+    this.yesToLink = false
   }
 
   updateInfo () {

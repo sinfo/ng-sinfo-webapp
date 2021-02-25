@@ -30,6 +30,8 @@
     <div *ngIf="userRead" class='wrapper'>
   
       <div *ngIf='!yesToLink' class='full-width'>
+
+        <p>User was signed with success! You can link the user to you or sign another one.</p>
   
         <div class="row">
           <div class="col-xs-12">
@@ -41,8 +43,8 @@
   
         <div class="row">
           <div class="col-xs-12">
-            <button type="button" class="btn btn-button btn-danger" (click)="reScan()">
-              Cancel
+            <button type="button" class="btn btn-button" (click)="reScan()">
+              Sign another user
             </button>
           </div>
         </div>
@@ -50,6 +52,9 @@
       </div>
   
       <div *ngIf='yesToLink' class='full-width'>
+
+        <p>You can store here user information.</p>
+
         <div class="row">
           <div class="col-xs-12">
             <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email">
