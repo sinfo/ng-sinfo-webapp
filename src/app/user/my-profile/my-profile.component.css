@@ -76,6 +76,15 @@ div.achivements-wrapper img.achievement {
   background-color: white;
 }
 
+.qrcode-grid{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+
+
+  border: 15px solid white;
+  background-color: white;
+}
 
 .qr-code-title {
   margin: 0 0 20px 0;
@@ -89,6 +98,56 @@ div.achivements-wrapper img.achievement {
 
 .name {
   color: white;
+}
+
+.qrcode-animation {
+  opacity: 0;
+
+  transition: opacity 0.2s ease-in; /* vendorless fallback */
+       -o-transition: opacity 0.2s ease-in; /* opera */
+      -ms-transition: opacity 0.2s ease-in; /* IE 10 betas, not needed in final build. */
+     -moz-transition: opacity  0.2s ease-in; /* Firefox */
+  -webkit-transition: opacity 0.2s ease-in; /*safari and chrome */
+}
+
+.qrcode-animation:hover {
+  opacity: 1;    
+          transition: opacity 0.2s ease-in; /* vendorless fallback */
+       -o-transition: opacity 0.2s ease-in; /* opera */
+      -ms-transition: opacity 0.2s ease-in; /* IE 10 betas, not needed in final build. */
+     -moz-transition: opacity  0.2s ease-in; /* Firefox */
+  -webkit-transition: opacity 0.2s ease-in; /*safari and chrome */
+
+  cursor: pointer;
+}
+
+
+.copy {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+  height: 100%;
+
+  padding: 1%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 15px;
+  background-color: #ffffffc2;
+}
+
+.copyIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 6rem;
+  color: #002448;
+}
+
+.tooltip{
+  position: relative
 }
 
 .role {
@@ -175,4 +234,6 @@ div.achivements-wrapper img.achievement {
 
 .qrcodeimg {
   display: inline-block;
+  grid-area: 1 / 1 / 2 / 2;
+  justify-self: center;
 }

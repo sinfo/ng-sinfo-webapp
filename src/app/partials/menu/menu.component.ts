@@ -38,7 +38,6 @@ export class MenuComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
     this.screenWidth = window.innerWidth;
-    console.log(this.screenWidth);
   }
   onLogout(): void {
     this.authService.logout()

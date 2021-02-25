@@ -18,6 +18,8 @@ export class AchievementsComponent implements OnInit {
     presentations: Achievement[],
     keynotes: Achievement[],
     stands: Achievement[],
+    talks: Achievement[],
+    speedDates: Achievement[],
     cv: Achievement,
     other: Achievement[]
     total: {
@@ -44,14 +46,14 @@ export class AchievementsComponent implements OnInit {
 
   cheat = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Others']
 
-  constructor (
+  constructor(
     private achievementService: AchievementService,
     private userService: UserService,
     private eventService: EventService,
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Achievements')
     })
@@ -74,7 +76,7 @@ export class AchievementsComponent implements OnInit {
     })
   }
 
-  updateActiveAchievements () {
+  updateActiveAchievements() {
     this.myPoints = 0
     this.myAchievements = 0
 
@@ -84,6 +86,7 @@ export class AchievementsComponent implements OnInit {
         .sort((a, b) => { return a.id.localeCompare(b.id) }) // sort by id
         .reduce((acc, curr) => {
           switch (curr.kind) {
+            case 'standDay':
             case 'stand':
               acc.stands.push(curr)
               break
@@ -99,6 +102,12 @@ export class AchievementsComponent implements OnInit {
             case 'cv':
               acc.cv = curr
               break
+            case 'speedDate':
+              acc.speedDates.push(curr)
+              break
+            case 'lunchTalk':
+              acc.talks.push(curr)
+              break
             default:
               acc.other.push(curr)
               break
@@ -107,7 +116,7 @@ export class AchievementsComponent implements OnInit {
           acc.total.value += curr.value
           acc.total.number += 1
 
-          if (curr.value !== undefined && curr.value > 0 &&
+          if (curr.value !== undefined && curr.users !== undefined &&
             curr.users.filter(userId => userId === this.user.id).length > 0) {
             this.myPoints += curr.value
             this.myAchievements += 1
@@ -119,6 +128,8 @@ export class AchievementsComponent implements OnInit {
           presentations: [],
           keynotes: [],
           stands: [],
+          talks: [],
+          speedDates: [],
           cv: null,
           other: [],
           total: {
@@ -126,11 +137,10 @@ export class AchievementsComponent implements OnInit {
             value: 0
           }
         })
-
     })
   }
 
-  updateAchievements () {
+  updateAchievements() {
     this.achievementService.getAchievements().subscribe(achievements => {
       this.achievements = achievements
         .filter((a) => { return a.id })
@@ -170,20 +180,20 @@ export class AchievementsComponent implements OnInit {
     })
   }
 
-  isUnlocked (achievement: Achievement): boolean {
+  isUnlocked(achievement: Achievement): boolean {
     return this.user && achievement.users ? achievement.users.indexOf(this.user.id) !== -1 : false
   }
 
-  changeButton () {
+  changeButton() {
     this.show_hide = this.show ? 'Hide all achievements' : 'Show all achievements'
   }
 
-  showPrev () {
+  showPrev() {
     this.show = !this.show
     this.changeButton()
   }
 
-  deleteAchievements () {
+  deleteAchievements() {
     this.achievementService.deleteMyAchievements()
       .subscribe(() => this.updateActiveAchievements())
   }

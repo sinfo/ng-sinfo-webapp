@@ -1,6 +1,6 @@
 <app-loading [content]="activeAchievements"></app-loading>
 
-<div class="achievement-section" *ngIf="activeAchievements">
+<div class="achievement-section pad" *ngIf="activeAchievements">
   <h3 class="title">Achievements</h3>
 
   <div class="row" *ngIf="user && user.role === 'team' && myPoints !== undefined && myPoints > 0">
@@ -35,64 +35,107 @@
 
   <div class="achievements-wrapper">
     <h4>Obtainable today</h4>
-    <span *ngIf="activeAchievements">
+    <span *ngIf="activeAchievements" class="active-achievements-wrapper">
 
-      <div *ngIf="activeAchievements.workshops.length > 0">
+      <div class='row'>
         <h5>Workshops</h5>
-        <h6>{{activeAchievements.workshops[0].value}} points each</h6>
-        <a *ngFor="let achievement of activeAchievements.workshops" routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
-            [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
-        </a>
-      </div>
-
-      <div *ngIf="activeAchievements.presentations.length > 0">
-        <h5>Presentations</h5>
-        <h6>{{activeAchievements.presentations[0].value}} points each</h6>
-        <a *ngFor="let achievement of activeAchievements.presentations"
-          routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
-            [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
-        </a>
-      </div>
-
-      <div *ngIf="activeAchievements.stands.length > 0">
-        <h5>Stands</h5>
-        <h6>{{activeAchievements.stands[0].value}} points each</h6>
-        <a *ngFor="let achievement of activeAchievements.stands" routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
-            [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
-        </a>
-      </div>
-
-      <div *ngIf="activeAchievements.keynotes.length > 0">
-        <h5>Keynotes</h5>
-        <h6>{{activeAchievements.keynotes[0].value}} points each</h6>
-        <a *ngFor="let achievement of activeAchievements.keynotes" routerLink="/user/achievement/{{achievement.id}}">
-          <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
-            [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
-        </a>
-      </div>
-
-      <div *ngIf="activeAchievements.cv || activeAchievements.other.length > 0">
-        <h5>Miscellaneous</h5>
-
-        <span *ngIf="activeAchievements.cv">
-          <a routerLink="/user/achievement/{{activeAchievements.cv.id}}">
-            <img appImage [url]="activeAchievements.cv.img"
-              *ngIf="activeAchievements.cv.id && activeAchievements.cv.img"
-              [ngClass]="{'unlocked': isUnlocked(activeAchievements.cv)}" alt="{{activeAchievements.cv.name}}"
-              title="{{activeAchievements.cv.name}}">
-          </a>
-        </span>
-
-        <span *ngIf="activeAchievements.other.length > 0">
-          <a *ngFor="let achievement of activeAchievements.other" routerLink="/user/achievement/{{achievement.id}}">
+        <div *ngIf="activeAchievements.workshops.length > 0; else noAchievements">
+          <h6>{{activeAchievements.workshops[0].value}} points each</h6>
+          <a *ngFor="let achievement of activeAchievements.workshops" routerLink="/user/achievement/{{achievement.id}}">
             <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
               [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
           </a>
-        </span>
+        </div>
 
+      </div>
+
+      <div class='row'>
+        <h5>Presentations</h5>
+        <div *ngIf="activeAchievements.presentations.length > 0; else noAchievements">
+
+          <h6>{{activeAchievements.presentations[0].value}} points each</h6>
+          <a *ngFor="let achievement of activeAchievements.presentations"
+            routerLink="/user/achievement/{{achievement.id}}">
+            <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
+              [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
+          </a>
+        </div>
+      </div>
+
+      <div class='row'>
+        <h5>Stands</h5>
+        <div *ngIf="activeAchievements.stands.length > 0; else noAchievements">
+
+          <h6>{{activeAchievements.stands[0].value}} points each</h6>
+          <a *ngFor="let achievement of activeAchievements.stands" routerLink="/user/achievement/{{achievement.id}}">
+            <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
+              [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
+          </a>
+        </div>
+      </div>
+
+      <div class='row'>
+        <h5>Keynotes</h5>
+        <div *ngIf="activeAchievements.keynotes.length > 0; else noAchievements">
+
+          <h6>{{activeAchievements.keynotes[0].value}} points each</h6>
+          <a *ngFor="let achievement of activeAchievements.keynotes" routerLink="/user/achievement/{{achievement.id}}">
+            <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
+              [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
+          </a>
+        </div>
+      </div>
+
+      <div class='row'>
+        <h5>Lunch Talks</h5>
+        <div *ngIf="activeAchievements.talks.length > 0; else noAchievements">
+
+          <h6>{{activeAchievements.talks[0].value}} points each</h6>
+          <a *ngFor="let achievement of activeAchievements.talks" routerLink="/user/achievement/{{achievement.id}}">
+            <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
+              [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
+          </a>
+        </div>
+      </div>
+
+      <div class='row'>
+        <h5>Speed Dates</h5>
+        <div *ngIf="activeAchievements.speedDates.length > 0; else noAchievements">
+
+          <h6>
+            {{activeAchievements.speedDates[0].value}}/{{activeAchievements.speedDates[0].value/2}}/{{activeAchievements.speedDates[0].value/4}}
+            points each</h6>
+          <a *ngFor="let achievement of activeAchievements.speedDates"
+            routerLink="/user/achievement/{{achievement.id}}">
+            <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
+              [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
+          </a>
+        </div>
+      </div>
+
+      <div class='row'>
+
+        <h5>Miscellaneous</h5>
+        <div *ngIf="activeAchievements.cv || activeAchievements.other.length > 0">
+
+          <div *ngIf="activeAchievements.cv">
+            <a routerLink="/user/achievement/{{activeAchievements.cv.id}}">
+              <img appImage [url]="activeAchievements.cv.img"
+                *ngIf="activeAchievements.cv.id && activeAchievements.cv.img"
+                [ngClass]="{'unlocked': isUnlocked(activeAchievements.cv)}" alt="{{activeAchievements.cv.name}}"
+                title="{{activeAchievements.cv.name}}">
+            </a>
+          </div>
+
+          <div *ngIf="activeAchievements.other.length > 0">
+            <a *ngFor="let achievement of activeAchievements.other" routerLink="/user/achievement/{{achievement.id}}">
+              <img appImage [url]="achievement.img" *ngIf="achievement.id && achievement.img"
+                [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}"
+                title="{{achievement.name}}">
+            </a>
+          </div>
+
+        </div>
       </div>
 
     </span>
@@ -111,3 +154,9 @@
     </div>
   </div> -->
 </div>
+
+<ng-template #noAchievements>
+  <div>
+    <h6 class='show-message'>No achievements of this kind today</h6>
+  </div>
+</ng-template>
