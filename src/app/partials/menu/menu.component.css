@@ -45,6 +45,13 @@
   flex-grow: 15;
 }
 
+.wide-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  margin: 0;
+}
+
 .drawer{
   display: flex;
   justify-content: space-between;
@@ -85,8 +92,23 @@
   clear: both;
 }
 
+.navigation-item{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .navigation-link {
   font-size: 1.5vh;
+}
+
+.wide{
+  display: flex !important;
+  align-items: stretch !important;
 }
 
 @media only screen and (max-width: 768px) {
@@ -94,6 +116,8 @@
   .navbar-collapse {
     max-height: none;
   }
+
+  .navigation-item{}
 
   .nav.nav-tabs {
     all: initial;

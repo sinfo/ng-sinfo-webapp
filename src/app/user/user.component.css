@@ -6,7 +6,7 @@
   
   width: 100vw;
 
-  height: calc(100vh - 100px);
+  height: calc(100vh - 100px)
 }
 
 @media (max-width: 767px) {
