@@ -13,7 +13,7 @@ import { EventService } from '../../events/event.service'
 
 export class PickBestRestComponent implements OnInit {
   me: User
-  users: User[] = []
+  eligibleUsers: User[] = []
   winner: User
   totalEntries: number = 0
 
@@ -28,16 +28,15 @@ export class PickBestRestComponent implements OnInit {
       this.me = user
 
       if (user.role !== 'team') {
-        console.log("get out thot")
         this.router.navigate(['/user/qrcode'])
       }
 
       this.eventService.getCurrent().subscribe(event => {
         this.userService.getActiveUsers().subscribe(users => {
-          this.users = users.filter((user) => {
-            return (user.role !== 'team')
+          this.eligibleUsers = users.filter((user) => {
+            return (user.role !== 'team' && user.points > 0)
           })
-          this.users.forEach((user) =>{
+          this.eligibleUsers.forEach((user) =>{
             this.totalEntries += user.points
           })
         })
@@ -48,7 +47,7 @@ export class PickBestRestComponent implements OnInit {
   chooseWinner () {
     this.winner = null
     let ticketChosen = Math.floor(Math.random() * this.totalEntries)
-    this.users.every((user) => {
+    this.eligibleUsers.every((user) => {
       ticketChosen -= user.points
       if (ticketChosen <= 0) {
         this.winner = user
@@ -56,7 +55,6 @@ export class PickBestRestComponent implements OnInit {
       } 
       return true
     })
-    this.winner = this.users[Math.floor(Math.random() * this.users.length)]
   }
 
 }
