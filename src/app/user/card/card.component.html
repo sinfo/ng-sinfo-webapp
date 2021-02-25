@@ -1,0 +1,30 @@
+<app-loading [content]="signatures"></app-loading>
+
+<div class="wrapper pad" *ngIf="signatures && signatures.companies">
+  <div class="row">
+    <!-- <h3 class="title">
+      {{signatures.day | date:'EEEE':'+0000'}}'s card
+    </h3> -->
+    <h3 class="title">
+      Recent Signatures.
+    </h3>
+ 
+    <h6 class="title">
+      These are your most recent signatures.
+      <br> Make sure the companies sign your card!
+    </h6>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="signatures">
+        <div *ngFor="let company of signatures.companies; let i = index" [attr.data-index]="i">
+          <div class="card-portrait-wrapper"  [style.opacity]="1 + 2/signatures.companies.length - (i+1)*(1/signatures.companies.length)" >
+            <img class="portrait" src="{{company.img}}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

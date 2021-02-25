@@ -15,7 +15,10 @@ export class User {
       day: string,
       edition: string,
       redeemed: boolean,
-      signatures: string[]
+      signatures: {
+        companyId: string,
+        date: Date
+      }[]
     }
   ]
   mail: string

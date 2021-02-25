@@ -41,7 +41,11 @@ import { SessionsComponent } from './user/sessions/sessions.component'
 import { SpeedDatesComponent } from './user/speed-dates/speed-dates.component'
 import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.component'
 import { MyCardComponent } from './user/my-card/my-card.component'
+<<<<<<< HEAD
 import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component'
+=======
+import { CardComponent } from './user/card/card.component'
+>>>>>>> 24125b1 (npm dependency added, card added again)
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -75,6 +79,7 @@ const routes: Routes = [
       { path: 'redeem', component: RedeemComponent, canActivate: [AuthGuard] },
       { path: 'scoreboard', component: ScoreboardComponent, canActivate: [AuthGuard] },
       { path: 'my-card', component: MyCardComponent, canActivate: [AuthGuard] },
+      { path: 'card', component: CardComponent, canActivate: [AuthGuard] },
       { path: 'speed-dates', component: SpeedDatesComponent, canActivate: [AuthGuard] },
       { path: 'secret-codes', component: SecretAchievementsComponent, canActivate: [AuthGuard] },
 
