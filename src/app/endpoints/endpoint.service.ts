@@ -73,7 +73,7 @@ export class EndpointService {
     return this.http.post<Endpoint[]>(`${this.endpointsUrl}`, {
       companies,
       edition: this.event.id,
-      validaty: {
+      validity: {
         from,
         to
       }
@@ -92,7 +92,7 @@ export class EndpointService {
     })
 
     return this.http.post<Endpoint>(`${this.endpointsUrl}/${companyId}`, {
-      validaty: {
+      validity: {
         from,
         to
       }
