@@ -2,7 +2,7 @@ export class Endpoint {
   company: string
   edition: string
   visited: number
-  validaty: {
+  validity: {
     from: Date
     to: Date
   }
