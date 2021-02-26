@@ -18,6 +18,8 @@ export class AchievementsComponent implements OnInit {
     presentations: Achievement[],
     keynotes: Achievement[],
     stands: Achievement[],
+    talks: Achievement[],
+    speedDates: Achievement[],
     cv: Achievement,
     other: Achievement[]
     total: {
@@ -100,6 +102,10 @@ export class AchievementsComponent implements OnInit {
               acc.cv = curr
               break
             case 'speedDate':
+              acc.speedDates.push(curr)
+              break
+            case 'lunchTalk':
+              acc.talks.push(curr)
               break
             default:
               acc.other.push(curr)
@@ -109,7 +115,7 @@ export class AchievementsComponent implements OnInit {
           acc.total.value += curr.value
           acc.total.number += 1
 
-          if (curr.value !== undefined && curr.value > 0 &&
+          if (curr.value !== undefined && curr.users !== undefined &&
             curr.users.filter(userId => userId === this.user.id).length > 0) {
             this.myPoints += curr.value
             this.myAchievements += 1
@@ -121,6 +127,8 @@ export class AchievementsComponent implements OnInit {
           presentations: [],
           keynotes: [],
           stands: [],
+          talks: [],
+          speedDates: [],
           cv: null,
           other: [],
           total: {
@@ -128,7 +136,6 @@ export class AchievementsComponent implements OnInit {
             value: 0
           }
         })
-
     })
   }
 
