@@ -19,7 +19,7 @@ export class RedeemComponent implements OnInit {
   redeemCode: string
   info: string
   scannerActive = false
-  title = 'Find achievements'
+  title = 'Secret Achievements'
   processUser = false
 
   myAchievements: Achievement[]
