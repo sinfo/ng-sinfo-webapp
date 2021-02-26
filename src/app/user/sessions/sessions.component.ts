@@ -10,6 +10,7 @@ import { Title } from '@angular/platform-browser'
 import { Event } from '../../events/event.model'
 import { AchievementService } from '../achievements/achievement.service'
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
+import {ClipboardService} from "ngx-clipboard";
 
 interface Code {
   created: Date,
@@ -36,6 +37,7 @@ export class SessionsComponent implements OnInit {
     private userService: UserService,
     private eventService: EventService,
     private achievementsService: AchievementService,
+    private clipboardService: ClipboardService,
     private router: Router,
     private titleService: Title
   ) {
@@ -87,7 +89,7 @@ export class SessionsComponent implements OnInit {
   formatDate(date: string | Date): string {
     const newDate = typeof date === 'string' ? new Date(date) : date
     return newDate.toUTCString()
-  }
+  }C
 
   getSessionCode(sessionId: string): Code {
     return this.codes !== undefined ? this.codes.get(sessionId) : undefined
@@ -98,12 +100,6 @@ export class SessionsComponent implements OnInit {
   }
 
   copyCode(code: string): void {
-    const copyFunction = (e: ClipboardEvent) => {
-      e.clipboardData.setData('text/plain', code)
-      e.preventDefault()
-      document.removeEventListener('copy', copyFunction)
-    }
-    document.addEventListener('copy', copyFunction)
-    document.execCommand('copy')
+    this.clipboardService.copyFromContent(code)
   }
 }
