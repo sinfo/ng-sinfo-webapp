@@ -8,6 +8,7 @@ import { Achievement } from '../achievements/achievement.model';
 import { AchievementService } from '../achievements/achievement.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
+import {ClipboardService} from "ngx-clipboard";
 
 @Component({
   selector: 'app-secret-achievements',
@@ -27,6 +28,7 @@ export class SecretAchievementsComponent implements OnInit {
     private userService: UserService,
     private eventService: EventService,
     private achievementsService: AchievementService,
+    private clipboardService: ClipboardService,
     private router: Router,
     private titleService: Title
   ) {
@@ -68,13 +70,7 @@ export class SecretAchievementsComponent implements OnInit {
   }
 
   copyCode(code: string): void {
-    const copyFunction = (e: ClipboardEvent) => {
-      e.clipboardData.setData('text/plain', code)
-      e.preventDefault()
-      document.removeEventListener('copy', copyFunction)
-    }
-    document.addEventListener('copy', copyFunction)
-    document.execCommand('copy')
+    this.clipboardService.copyFromContent(code)
   }
 
 }
