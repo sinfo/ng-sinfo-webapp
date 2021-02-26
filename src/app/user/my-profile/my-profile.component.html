@@ -14,6 +14,7 @@
   <div class="row qrcode-wrapper">
 
     <div class="qrcode">
+
       <h5 class="name">
         Your ID:
       </h5>
@@ -23,9 +24,11 @@
       <h6 class="name">
         (click QR code to copy!)
       </h6>
+      <h3 class='name'>
+        <div id='tooltip' class='name transition' style='opacity: 0;'>Copied!</div>
+      </h3>
 
-      <div class="qrcode-grid " (click)="copyToClipboard(t1)" #t1="ngbTooltip" [ngbTooltip]="tipContent">
-
+      <div class="qrcode-grid " (click)="copyToClipboard(t1)">
         <qrcode class="qrcodeimg" [qrdata]="user.id" [level]="'M'"></qrcode>
         <div class="copy qrcode-animation">
           <div class="copyIcon">
