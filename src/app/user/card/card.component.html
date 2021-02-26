@@ -1,6 +1,6 @@
-<app-loading [content]="signatures"></app-loading>
+<app-loading [content]="userSignatures"></app-loading>
 
-<div class="wrapper pad" *ngIf="signatures && signatures.companies">
+<div class="wrapper pad" *ngIf="userSignatures && companies">
   <div class="row">
     <!-- <h3 class="title">
       {{signatures.day | date:'EEEE':'+0000'}}'s card
@@ -19,10 +19,13 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="signatures">
-        <div *ngFor="let company of signatures.companies; let i = index" [attr.data-index]="i">
-          <div class="card-portrait-wrapper"  [style.opacity]="1 + 2/signatures.companies.length - (i+1)*(1/signatures.companies.length)" >
-            <img class="portrait" src="{{company.img}}">
-          </div>
+        <div *ngFor="let company of companies; let i = index" [attr.data-index]="i">
+          <div class="wrapper">
+            <div class="card-portrait-wrapper"  [style.opacity]="1 + 2/companies.length - (i+1)*(1/companies.length)" >
+              <img class="portrait" src="{{company.img}}">
+            </div>
+            <a [style.opacity]="1 + 2/companies.length - (i+1)*(1/companies.length)" class=info>{{company.howLongAgo}}</a>
+          </div>  
         </div>
       </div>
     </div>

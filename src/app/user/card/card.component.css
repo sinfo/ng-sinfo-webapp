@@ -27,8 +27,10 @@ div.card-portrait-wrapper {
   justify-content: center;
 }
 
-.missing {
-  background-color: #048adf57;
+.info {
+  text-align: center;
+  margin: auto;
+  color:#a0a0a0
 }
 
 img.portrait {
