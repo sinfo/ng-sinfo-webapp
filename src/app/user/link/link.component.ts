@@ -31,7 +31,7 @@ export class LinkComponent implements OnInit {
   cam: Boolean
   userId: string = ''
 
-  constructor (
+  constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
@@ -41,7 +41,7 @@ export class LinkComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.scannerActive = false
     this.yesToLink = false
     this.cam = false
@@ -72,7 +72,6 @@ export class LinkComponent implements OnInit {
             .subscribe(_company => {
               this.company = _company
               this.scannerActive = true
-              console.log(this.company)
             })
         })
     })
@@ -82,24 +81,24 @@ export class LinkComponent implements OnInit {
     this.cam = !this.cam
   }
 
-  toLink () {
+  toLink() {
     this.yesToLink = true
     this.info = `Linking ${this.userRead.name} with ${this.company.name}`
   }
 
-  reScan () {
+  reScan() {
     this.userRead = null
     this.scannerActive = true
     this.userId = ''
     this.yesToLink = false
   }
 
-  updateInfo () {
+  updateInfo() {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
   }
 
-  receiveUser (user: User) {
+  receiveUser(user: User) {
     this.userRead = user
     this.scannerActive = false
     this.companyCannonService.getLink(this.company.id, this.userRead.id)
@@ -110,7 +109,7 @@ export class LinkComponent implements OnInit {
     this.updateInfo()
   }
 
-  buildNotes (_link) {
+  buildNotes(_link) {
     if (_link) {
       this.notes.contacts.email = _link.notes.contacts.email
       this.notes.contacts.phone = _link.notes.contacts.phone
@@ -128,8 +127,8 @@ export class LinkComponent implements OnInit {
     this.notes.otherObservations = null
   }
 
-  link () {
-    if(this.currentLink) {
+  link() {
+    if (this.currentLink) {
       this.updateLink()
     } else {
       this.createLink()
@@ -143,14 +142,14 @@ export class LinkComponent implements OnInit {
     }
   }
 
-  createLink () {
+  createLink() {
     this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
       })
   }
 
-  updateLink () {
+  updateLink() {
     this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
