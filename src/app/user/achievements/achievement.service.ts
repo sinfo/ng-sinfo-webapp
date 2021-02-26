@@ -7,6 +7,8 @@ import { environment } from '../../../environments/environment'
 import { Achievement, SpeedDate } from './achievement.model'
 import { MessageService, Type } from '../../message.service'
 import { AuthService } from '../../auth/auth.service'
+import { EventService } from '../../events/event.service'
+import { Event } from '../../events/event.model'
 
 @Injectable()
 export class AchievementService {
@@ -14,12 +16,17 @@ export class AchievementService {
   private activeUrl = this.achievementsUrl + '/active'
   private codeUrl = this.achievementsUrl + '/code'
   private achievements: Achievement[]
+  private event: Event
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private eventService: EventService
+  ) {
+    this.eventService.getCurrent().subscribe(event => this.event = event)
+
+  }
 
   getAchievements(): Observable<Achievement[]> {
     if (this.achievements) {
@@ -33,8 +40,9 @@ export class AchievementService {
       )
   }
 
-  getAchievementsCode(start: Date, end: Date): Observable<Achievement[]> {
-    const query = `?start=${start ? start : new Date()}&end=${end ? end : new Date()}`
+  getAchievementsCode(start: Date, end: Date, kind?: string): Observable<Achievement[]> {
+    let query = `?start=${start ? start : new Date()}&end=${end ? end : new Date()}`
+    if (kind) { query += `&kind=${kind}` }
     return this.http.get<Achievement[]>(this.codeUrl + query)
       .pipe(
         tap(achievements => this.achievements = achievements),
@@ -93,7 +101,7 @@ export class AchievementService {
       })
     }
 
-    return this.http.get(`${this.activeUrl}/me`, {...httpOptions})
+    return this.http.get(`${this.activeUrl}/me`, { ...httpOptions })
 
   }
 
@@ -120,6 +128,22 @@ export class AchievementService {
     return this.http.delete<Achievement[]>(`${this.achievementsUrl}/me`, httpOptions)
       .pipe(
         catchError(this.handleError<Achievement[]>('deleteMyAchievements'))
+      )
+  }
+
+  createSecretAchievement(validity: Date): Observable<Achievement> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.post<Achievement>(`${this.achievementsUrl}/secret`, {
+      event: this.event.id,
+      validity: validity
+    }, httpOptions)
+      .pipe(
+        catchError(this.handleError<Achievement>('create secret'))
       )
   }
 

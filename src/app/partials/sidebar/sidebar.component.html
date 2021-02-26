@@ -54,6 +54,13 @@
       </li>
 
       <li *ngIf="user && user.role === 'team'">
+        <a routerLink="/user/secret-codes" routerLinkActive="active">
+          <i class="glyphicon glyphicon-upload"></i>
+          Secret Achievements
+        </a>
+      </li>
+
+      <li *ngIf="user && user.role === 'team'">
         <a href="#pickSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/user/pick') }}">
           <i class="glyphicon glyphicon-flag"></i>
           Pick Winner
