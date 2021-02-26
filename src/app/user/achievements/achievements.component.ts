@@ -86,7 +86,6 @@ export class AchievementsComponent implements OnInit {
         .sort((a, b) => { return a.id.localeCompare(b.id) }) // sort by id
         .reduce((acc, curr) => {
           switch (curr.kind) {
-            case 'standDay':
             case 'stand':
               acc.stands.push(curr)
               break

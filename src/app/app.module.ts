@@ -89,6 +89,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { ClipboardModule } from 'ngx-clipboard';
+import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component';
 
 
 library.add(fas)
@@ -151,7 +152,8 @@ library.add(fas)
     PartnersComponent,
     SelfcheckinComponent,
     SpeedDatesComponent,
-    SpeedDateSignComponent
+    SpeedDateSignComponent,
+    SecretAchievementsComponent
   ],
   imports: [
     BrowserModule,

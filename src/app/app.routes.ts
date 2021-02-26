@@ -41,6 +41,7 @@ import { SessionsComponent } from './user/sessions/sessions.component'
 import { SpeedDatesComponent } from './user/speed-dates/speed-dates.component'
 import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.component'
 import { MyCardComponent } from './user/my-card/my-card.component'
+import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -75,6 +76,7 @@ const routes: Routes = [
       { path: 'scoreboard', component: ScoreboardComponent, canActivate: [AuthGuard] },
       { path: 'my-card', component: MyCardComponent, canActivate: [AuthGuard] },
       { path: 'speed-dates', component: SpeedDatesComponent, canActivate: [AuthGuard] },
+      { path: 'secret-codes', component: SecretAchievementsComponent, canActivate: [AuthGuard] },
 
 
       { path: 'speed-dates/sign', component: SpeedDateSignComponent, canActivate: [AuthGuard] },
