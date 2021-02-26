@@ -28,6 +28,8 @@ export class LinkComponent implements OnInit {
   currentLink: Link
   notes: Note
   yesToLink: Boolean
+  cam: Boolean
+  userId: string = ''
 
   constructor (
     private userService: UserService,
@@ -42,6 +44,7 @@ export class LinkComponent implements OnInit {
   ngOnInit () {
     this.scannerActive = false
     this.yesToLink = false
+    this.cam = false
     this.notes = {
       contacts: {
         email: null,
@@ -69,9 +72,14 @@ export class LinkComponent implements OnInit {
             .subscribe(_company => {
               this.company = _company
               this.scannerActive = true
+              console.log(this.company)
             })
         })
     })
+  }
+
+  toggleCam() {
+    this.cam = !this.cam
   }
 
   toLink () {
@@ -82,6 +90,8 @@ export class LinkComponent implements OnInit {
   reScan () {
     this.userRead = null
     this.scannerActive = true
+    this.userId = ''
+    this.yesToLink = false
   }
 
   updateInfo () {
@@ -119,7 +129,18 @@ export class LinkComponent implements OnInit {
   }
 
   link () {
-    this.currentLink ? this.updateLink() : this.createLink()
+    if(this.currentLink) {
+      this.updateLink()
+    } else {
+      this.createLink()
+      this.messageService.add({
+        origin: 'Link created',
+        showAlert: true,
+        text: 'Link created',
+        type: Type.success,
+        timeout: 6000
+      })
+    }
   }
 
   createLink () {
@@ -140,6 +161,27 @@ export class LinkComponent implements OnInit {
           timeout: 4000,
           type: Type.success
         })
+      })
+  }
+
+  submit() {
+    this.userService.getUser(this.userId)
+      .subscribe(user => {
+        if (!user) {
+
+          this.messageService.add({
+            origin: 'Sign and Link',
+            showAlert: true,
+            text: 'User ID not found.',
+            type: Type.error,
+            timeout: 6000
+          })
+          return
+        }
+
+        this.userRead = user
+        this.receiveUser(user)
+
       })
   }
 

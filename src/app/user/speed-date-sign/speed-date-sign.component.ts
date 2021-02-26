@@ -68,7 +68,7 @@ export class SpeedDateSignComponent implements OnInit {
 
           this.messageService.add({
             origin: 'Sign Speed Date',
-            showAlert: false,
+            showAlert: true,
             text: 'User not found.',
             type: Type.error,
             timeout: 6000
@@ -76,6 +76,14 @@ export class SpeedDateSignComponent implements OnInit {
           return
         }
 
+        this.messageService.add({
+          origin: 'Sign Speed Date',
+          showAlert: false,
+          text: 'User selected',
+          type: Type.success,
+          timeout: 3000
+        })
+        
         this.userRead = user
         this.signatureService.signSpeed(this.userRead, this.myCompany)
 

@@ -1,8 +1,10 @@
-.wrapper {
+.wrapper, .align-center {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .form-control {
@@ -33,6 +35,7 @@
 
 .full-width{
     width: calc(100% - 100px);
+    height: 100% !important;
 }
 
 .form-control {
@@ -62,4 +65,37 @@ button {
 .rescan {
     background-color: #449d44 !important;
     border-color: #449d44 ;
+}
+
+.row button {
+  width: 95%;
+  margin: 5px auto;
+}
+
+.title{
+  flex-grow: 2;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-grow: 3;
+  width: 30vw;
+}
+
+.mb-3{
+  width: 100%;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d9534f;
 }
