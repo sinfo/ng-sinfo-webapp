@@ -8,7 +8,7 @@ import { Achievement } from '../achievements/achievement.model';
 import { AchievementService } from '../achievements/achievement.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
-import {ClipboardService} from "ngx-clipboard";
+import {ClipboardService} from 'ngx-clipboard';
 
 @Component({
   selector: 'app-secret-achievements',
