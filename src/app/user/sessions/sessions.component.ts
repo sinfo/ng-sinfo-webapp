@@ -53,15 +53,14 @@ export class SessionsComponent implements OnInit {
   }
 
   generateSessionCode(session: Session): void {
-    if (!session) {
-      return
-    }
+    if (!session || !session.date) return
 
     const expirationDate = new Date(session.date)
     expirationDate.setFullYear(2021)
     expirationDate.setHours(this.time.hour, this.time.minute, this.time.second)
     this.sessionsService.generateCode(session.id, expirationDate)
       .subscribe(achievement => {
+        if (!achievement) return
         this.codes.set(achievement.session, achievement.code)
       })
   }
@@ -79,7 +78,7 @@ export class SessionsComponent implements OnInit {
       new Date(new Date(this.currentEvent.begin).getTime() + new Date(this.currentEvent.duration).getTime())
     ).subscribe(achievements => {
       achievements.map(achievement => {
-        if (achievement.session) {
+        if (achievement.session && achievement.code && achievement.code.code) {
           this.codes.set(achievement.session, achievement.code)
         }
       })
@@ -89,7 +88,7 @@ export class SessionsComponent implements OnInit {
   formatDate(date: string | Date): string {
     const newDate = typeof date === 'string' ? new Date(date) : date
     return newDate.toUTCString()
-  }C
+  }
 
   getSessionCode(sessionId: string): Code {
     return this.codes !== undefined ? this.codes.get(sessionId) : undefined
