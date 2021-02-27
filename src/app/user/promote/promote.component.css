@@ -1,10 +1,3 @@
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .title {
     text-align: center;
 }
@@ -12,6 +5,7 @@
 .justify-center {
     width: 100%;
 }
+
 #content {
     height: auto;
 }
@@ -138,7 +132,7 @@ button {
 }
 
 .row button {
-  width: 95%;
+  width: 100%;
   margin: 5px auto;
 }
 
@@ -169,3 +163,70 @@ button {
   background-color: #d9534f;
   border-color: #d9534f;
 }
+
+
+.center{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.vertical{
+    flex-direction: column;
+}
+
+.limit-width{
+    max-width: calc(100%-100px);
+}
+
+@media(max-width: 975px){
+    .limit-width{
+        max-width: 73vw;
+    }
+}
+
+img.portrait {
+    border-radius: 50%;
+    border: 3px solid #048ae6;
+}
+
+#image-wrapper {
+    display: flex;
+}
+
+div.portrait-wrapper {
+    margin: 10px auto;
+    position: relative;
+}
+
+div.mini-portrait-wrapper {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    background-color: rgba(255,255,255, 1);
+    border: 3px solid #048ae6;
+    padding: 10px;
+}
+div.mini-portrait-wrapper img {
+    width: 100%;
+}
+
+.sinfo-logo {
+    height: 30px;
+}
+
+.mini-image{
+    border-radius: 50%;
+}
+
+.mini-image:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+

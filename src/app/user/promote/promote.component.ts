@@ -32,9 +32,9 @@ export class PromoteComponent implements OnInit {
 
   cam: Boolean
 
-  userId: string = ''
+  userId = ''
 
-  constructor (
+  constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private eventService: EventService,
@@ -55,14 +55,14 @@ export class PromoteComponent implements OnInit {
       .pipe(map(term => (term === '' ? this.companies : this.companies
         .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1))))
 
-  validCompany (): boolean {
+  validCompany(): boolean {
     if (!this.companies || !this.searchedCompany) return false
     return this.companies.find(c => {
       return c.id === this.searchedCompany.id
     }) !== undefined
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.cam = false
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Promote')
@@ -76,12 +76,12 @@ export class PromoteComponent implements OnInit {
       })
   }
 
-  reScan () {
+  reScan() {
     this.userRead = null
     this.scannerActive = true
   }
 
-  updateInfo (user: User, userCompany?: Company) {
+  updateInfo(user: User, userCompany?: Company) {
     let info = ''
 
     if (userCompany) {
@@ -93,7 +93,7 @@ export class PromoteComponent implements OnInit {
     this.info = info
   }
 
-  receiveUser (user: User) {
+  receiveUser(user: User) {
     this.userRead = user
     this.scannerActive = false
     this.updateInfo(user)
@@ -120,14 +120,15 @@ export class PromoteComponent implements OnInit {
     })
   }
 
-  getCompanies (): void {
+  getCompanies(): void {
     this.companyService.getCompanies()
       .subscribe(companies => {
         this.companies = companies
+        console.log(this.companies)
       })
   }
 
-  promoteToTeam () {
+  promoteToTeam() {
     if (!this.userRead) return
 
     this.userService.updateUser(this.userRead.id, 'team')
@@ -138,7 +139,7 @@ export class PromoteComponent implements OnInit {
       })
   }
 
-  promoteToCompany () {
+  promoteToCompany() {
     if (!this.userRead || !this.searchedCompany) return
 
     this.userService.updateUser(this.userRead.id, 'company', this.searchedCompany.id)
@@ -149,7 +150,7 @@ export class PromoteComponent implements OnInit {
       })
   }
 
-  demoteUser () {
+  demoteUser() {
     if (!this.userRead) return
 
     this.userService.updateUser(this.userRead.id, 'user')
