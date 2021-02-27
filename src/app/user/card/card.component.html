@@ -1,0 +1,38 @@
+<app-loading [content]="companiesReady"></app-loading>
+
+<div class="wrapper pad" *ngIf="companiesReady">
+  <div class="row">
+    <!-- <h3 class="title">
+      {{signatures.day | date:'EEEE':'+0000'}}'s card
+    </h3> -->
+    <h3 class="title">
+      Recent Signatures.
+    </h3>
+ 
+    <h6 class="title">
+      These are your most recent signatures.
+      <br> Make sure the companies sign your card!
+    </h6>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="signatures">
+        <div *ngFor="let company of companies; let i = index" [attr.data-index]="i">
+          <div class="wrapper">
+            <div class="card-portrait-wrapper"  [style.opacity]="1 + 2/companies.length - (i+1)*(1/companies.length)" >
+              <img class="portrait" src="{{company.img}}">
+            </div>
+            <a [style.opacity]="1 + 2/companies.length - (i+1)*(1/companies.length)" class=info>{{company.howLongAgo}} ago</a>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!autoUpdatePeriod" class="row">
+    <button class="btn btn-button" (click)="refreshCompanies()">
+      <span class ="glyphicon glyphicon-refresh"></span>
+    </button>
+  </div>
+</div>
