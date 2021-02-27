@@ -1,5 +1,20 @@
 <div class="wrapper pad">
-    <app-qrcode-scanner (rawOutput)="receiveRedeemCode($event)" [camStarted]="scannerActive" [title]="title"
-        [processUser]="processUser">
-    </app-qrcode-scanner>
+  <app-qrcode-scanner *ngIf="isCamOn" (rawOutput)="receiveRedeemCode($event)" [camStarted]="scannerActive" [title]="title"
+      [processUser]="processUser" class="camera">
+  </app-qrcode-scanner>
+
+  <div class="column" *ngIf="!isCamOn">
+    <h6>Achievement ID:</h6>
+    <div class="input-group mb-3">
+      <input [(ngModel)]="redeemCode" type="text" class="form-control" placeholder="ID" aria-label="Achievement ID"
+             aria-describedby="basic-addon1">
+    </div>
+
+    <button class="btn btn-success button" [disabled]="!redeemCode" (click)="receiveRedeemCode()">Submit</button>
+  </div>
+
+  <div class="row">
+    <div class="btn btn-danger button" *ngIf="!isCamOn" (click)="toggleInputMethod()">Use Camera</div>
+    <div class="btn btn-danger button" *ngIf="isCamOn" (click)="toggleInputMethod()">Enter ID</div>
+  </div>
 </div>

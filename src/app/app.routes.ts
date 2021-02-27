@@ -22,7 +22,6 @@ import { SessionComponent } from './session/session.component'
 import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
-import { CardComponent } from './user/card/card.component'
 import { WorkshopsComponent } from './user/workshops/workshops.component'
 import { WorkshopsStatusComponent } from './user/workshops/workshops-status.component'
 import { ScoreboardComponent } from './user/scoreboard/scoreboard.component'
@@ -33,6 +32,7 @@ import { DownloadsComponent } from './user/downloads/downloads.component'
 import { ManageDownloadsComponent } from './user/downloads/manage-downloads/manage-downloads.component'
 import { DownloadsStatusComponent } from './user/downloads/downloads-status/downloads-status.component'
 import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
+import { PickBestRestComponent } from './user/pick-best-rest/pick-best-rest.component'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
@@ -40,6 +40,8 @@ import { PromocodesComponent } from './user/promocodes/promocodes.component'
 import { SessionsComponent } from './user/sessions/sessions.component'
 import { SpeedDatesComponent } from './user/speed-dates/speed-dates.component'
 import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.component'
+import { MyCardComponent } from './user/my-card/my-card.component'
+import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -72,8 +74,9 @@ const routes: Routes = [
       { path: 'promocodes', component: PromocodesComponent, canActivate: [AuthGuard] },
       { path: 'redeem', component: RedeemComponent, canActivate: [AuthGuard] },
       { path: 'scoreboard', component: ScoreboardComponent, canActivate: [AuthGuard] },
-      { path: 'card', component: CardComponent, canActivate: [AuthGuard] },
+      { path: 'my-card', component: MyCardComponent, canActivate: [AuthGuard] },
       { path: 'speed-dates', component: SpeedDatesComponent, canActivate: [AuthGuard] },
+      { path: 'secret-codes', component: SecretAchievementsComponent, canActivate: [AuthGuard] },
 
 
       { path: 'speed-dates/sign', component: SpeedDateSignComponent, canActivate: [AuthGuard] },
@@ -83,6 +86,7 @@ const routes: Routes = [
       { path: 'checkin', component: CheckinComponent, canActivate: [IsTeamGuard] },
       { path: 'selfcheckin', component: SelfcheckinComponent, canActivate: [AuthGuard] },
       { path: 'pick-winner', component: PickWinnerComponent, canActivate: [IsTeamGuard] },
+      { path: 'pick-best-rest', component: PickBestRestComponent, canActivate: [IsTeamGuard] },
       { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [IsTeamGuard] },
       { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [IsTeamGuard] },
       { path: 'workshops/workshops-status', component: WorkshopsStatusComponent, canActivate: [IsTeamGuard] },

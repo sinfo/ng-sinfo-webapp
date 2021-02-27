@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+h6.lead{
+  margin-bottom: 40px;
+  text-align: center;
+}
+
 .achievement-section {
   display: flex;
   flex-direction: column;
@@ -79,4 +84,22 @@
 
 .delete-achv button {
   background-color: #dd0a0a;
+}
+.achievements-wrapper, .active-achievements-wrapper{
+  width: 100%;
+}
+
+.achievements-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.row{
+  margin-bottom: 2vh;
+}
+
+.show-message {
+  color: grey;
 }

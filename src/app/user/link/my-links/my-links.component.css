@@ -18,6 +18,13 @@
   justify-content: space-between;
 }
 
+.links {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .link-title {
   align-self: center;
   text-align: center;
@@ -46,6 +53,13 @@
   padding-right: 10px;
   margin: 4px;
   text-align: left;
+}
+
+.link-note{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
 }
 
 .link-note .tip {
@@ -104,14 +118,11 @@ img.portrait {
   border: 3px solid #048ae6;
 }
 
-#links {
-  display: flex;
-  flex-direction: column;
-}
 
-.link {
-  margin-top: 5%;
-  margin-bottom: 5%;
+/* .link {
+  margin: 0 1vw;
+  height: 30vh;
+  width: 20vw;
 
   border-color: #058ae6;
   border-style: solid;
@@ -125,8 +136,20 @@ img.portrait {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
+
+.link{
+  margin: 2vh 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: solid 2px #2C49A6;
+  background-color: rgba(75, 153, 209, 0.13);
+  border-radius: 15px;
+  padding: 1vh 1vw;
+}
 
 .attendee-name {
   text-align: center;
@@ -134,4 +157,10 @@ img.portrait {
 
 .warning{
   color: #d9534f;
+}
+
+@media (max-width: 767px) {
+  .link {
+    width: 100%;
+  }
 }

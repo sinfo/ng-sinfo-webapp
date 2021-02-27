@@ -51,7 +51,7 @@ import { MyLinksComponent } from './user/link/my-links/my-links.component'
 import { MyProfileComponent } from './user/my-profile/my-profile.component'
 import { SignatureComponent } from './user/signature/signature.component'
 import { CompanyCannonService } from './company/company-cannon.service'
-import { CardComponent } from './user/card/card.component'
+import { MyCardComponent } from './user/my-card/my-card.component'
 import { WorkshopsComponent } from './user/workshops/workshops.component'
 import { WorkshopComponent } from './user/workshops/workshop/workshop.component'
 import { TicketService } from './user/workshops/ticket.service'
@@ -73,6 +73,7 @@ import { EventService } from './events/event.service'
 import { EventComponent } from './events/event/event.component'
 import { CvComponent } from './user/cv/cv.component'
 import { PickWinnerComponent } from './user/pick-winner/pick-winner.component'
+import { PickBestRestComponent } from './user/pick-best-rest/pick-best-rest.component'
 import { RedeemComponent } from './user/redeem/redeem.component'
 import { RedeemService } from './user/redeem/redeem.service'
 import { LivestreamComponent } from './landing-page/livestream/livestream.component'
@@ -88,6 +89,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { ClipboardModule } from 'ngx-clipboard';
+import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component';
 
 
 library.add(fas)
@@ -123,7 +125,7 @@ library.add(fas)
     AchievementsComponent,
     AchievementComponent,
     SignatureComponent,
-    CardComponent,
+    MyCardComponent,
     SidebarComponent,
     WorkshopsComponent,
     WorkshopsStatusComponent,
@@ -139,6 +141,7 @@ library.add(fas)
     ManageDownloadsComponent,
     DownloadsStatusComponent,
     PickWinnerComponent,
+    PickBestRestComponent,
     EventComponent,
     CvComponent,
     RedeemComponent,
@@ -149,7 +152,8 @@ library.add(fas)
     PartnersComponent,
     SelfcheckinComponent,
     SpeedDatesComponent,
-    SpeedDateSignComponent
+    SpeedDateSignComponent,
+    SecretAchievementsComponent
   ],
   imports: [
     BrowserModule,

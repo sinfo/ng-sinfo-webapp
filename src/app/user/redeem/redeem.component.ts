@@ -19,8 +19,9 @@ export class RedeemComponent implements OnInit {
   redeemCode: string
   info: string
   scannerActive = false
-  title = 'Find achievements'
+  title = 'Secret Achievements'
   processUser = false
+  isCamOn: Boolean = false
 
   myAchievements: Achievement[]
 
@@ -51,10 +52,15 @@ export class RedeemComponent implements OnInit {
     })
   }
 
-  receiveRedeemCode(code: string) {
-    this.redeemCode = code
-    this.redeemService.redeem(code, this.myAchievements)
+  receiveRedeemCode(code?: string) {
+    if (code)
+      this.redeemCode = code;
+    this.redeemService.redeem(this.redeemCode, this.myAchievements)
     this.updateMyAchievements()
+  }
+
+  toggleInputMethod() {
+    this.isCamOn = !this.isCamOn
   }
 
 }

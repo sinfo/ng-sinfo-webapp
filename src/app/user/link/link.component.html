@@ -7,13 +7,13 @@
   </div>
 
   <div class="align-center">
-    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]="" [info]="info">
-    </app-qrcode-scanner>
-  
     <div *ngIf="!userRead">
       <p>Insert the ID of the attendee in the text box below or scan the QR code by switching input</p>
     </div>
-  
+    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]="title"
+      [info]="info">
+    </app-qrcode-scanner>
+
     <div class="column" *ngIf="!cam && !userRead">
       <h6>Attendee ID:</h6>
       <div class="input-group mb-3">
@@ -22,17 +22,17 @@
       </div>
       <button class="btn btn-success" [disabled]="userId.length === 0" (click)="submit()">Sign</button>
     </div>
-  
+
     <div class="row" *ngIf="!userRead">
       <div class="btn btn-primary" (click)="toggleCam()">{{cam? 'write ID manually':'Read QR Code'}}</div>
     </div>
-  
+
     <div *ngIf="userRead" class='wrapper'>
-  
+
       <div *ngIf='!yesToLink' class='full-width'>
 
         <p>User was signed with success! You can link the user to you or sign another one.</p>
-  
+
         <div class="row">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button rescan" (click)="toLink()">
@@ -40,7 +40,7 @@
             </button>
           </div>
         </div>
-  
+
         <div class="row">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button" (click)="reScan()">
@@ -48,9 +48,9 @@
             </button>
           </div>
         </div>
-  
+
       </div>
-  
+
       <div *ngIf='yesToLink' class='full-width'>
 
         <p>You can store here user information.</p>
@@ -92,7 +92,7 @@
             </textarea>
           </div>
         </div>
-  
+
         <div class="row">
           <div class="col-xs-12">
             <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="link()">
@@ -100,19 +100,19 @@
             </button>
           </div>
         </div>
-  
+
         <div class="row">
           <div class="col-xs-12">
             <button class="btn btn-button" (click)="reScan()">
               <span class="glyphicon glyphicon-pencil"></span>
               {{
-                cam ? 'Rescan' : 'Insert another ID'
+              cam ? 'Rescan' : 'Insert another ID'
               }}
             </button>
           </div>
         </div>
       </div>
-  
+
     </div>
   </div>
-  </div>
+</div>

@@ -54,11 +54,34 @@
       </li>
 
       <li *ngIf="user && user.role === 'team'">
+        <a routerLink="/user/secret-codes" routerLinkActive="active">
+          <i class="glyphicon glyphicon-upload"></i>
+          Secret Achievements
+        </a>
+      </li>
+
+      <li *ngIf="user && user.role === 'team'">
+        <a href="#pickSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/user/pick') }}">
+          <i class="glyphicon glyphicon-flag"></i>
+          Pick Winner
+        </a>
+        <ul class="collapse list-unstyled" id="pickSubmenu"
+          [ngClass]="{'in': detectLocation('/user/pick'), 'collapse': !detectLocation('/user/pick')}">
+          <li [ngClass]="{'active': detectLocation('/user/pick-winner')}">
+            <a routerLink="/user/pick-winner">Sessions</a>
+          </li>
+          <li [ngClass]="{'active': detectLocation('/user/pick-best-rest')}">
+            <a routerLink="/user/pick-best-rest">Best of the Rest</a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- <li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/pick-winner" routerLinkActive="active">
           <i class="glyphicon glyphicon-flag"></i>
           Pick Winner
         </a>
-      </li>
+      </li> -->
 
       <li *ngIf="user && user.role === 'company'">
         <a routerLink="/user/downloads/download" routerLinkActive="active">
@@ -107,12 +130,12 @@
         </a>
       </li>
 
-      <li *ngIf="user && user.role !== 'company'">
+      <!--<li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/workshops" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <img src="assets/img/icons/sidebar/workshops.png">
           Workshops
         </a>
-      </li>
+      </li>-->
 
       <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/speed-dates" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -121,12 +144,12 @@
         </a>
       </li>
 
-      <li *ngIf="user && user.role === 'team'">
+      <!--<li *ngIf="user && user.role === 'team'">
         <a routerLink="/user/workshops/workshops-status" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/workshops.png">
           Workshop Status
         </a>
-      </li>
+      </li>-->
 
       <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/achievements" routerLinkActive="active">
@@ -135,12 +158,12 @@
         </a>
       </li>
 
-      <!--<li *ngIf="user && user.role !== 'company'">
+      <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/redeem" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/qrcode-achievement.svg">
-          Find achievements
+          Secret Achievements
         </a>
-      </li>-->
+      </li>
 
       <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/scoreboard" routerLinkActive="active">
@@ -150,7 +173,7 @@
       </li>
 
       <!--<li *ngIf="user && user.role !== 'company'">
-        <a routerLink="/user/card" routerLinkActive="active">
+        <a routerLink="/user/my-card" routerLinkActive="active">
           <img src="assets/img/icons/sidebar/card.svg">
           My card
         </a>
