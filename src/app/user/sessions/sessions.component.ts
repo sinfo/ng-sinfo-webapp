@@ -53,15 +53,14 @@ export class SessionsComponent implements OnInit {
   }
 
   generateSessionCode(session: Session): void {
-    if (!session) {
-      return
-    }
+    if (!session || !session.date) return
 
     const expirationDate = new Date(session.date)
     expirationDate.setFullYear(2021)
     expirationDate.setHours(this.time.hour, this.time.minute, this.time.second)
     this.sessionsService.generateCode(session.id, expirationDate)
       .subscribe(achievement => {
+        if (!achievement) return
         this.codes.set(achievement.session, achievement.code)
       })
   }
