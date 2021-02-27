@@ -76,8 +76,8 @@ export class UserService {
       )
   }
 
-  getMe (): Observable<User> {
-    if (this.me) {
+  getMe (forceRefresh = false): Observable<User> {
+    if (this.me && !forceRefresh) {
       return of(this.me)
     }
     const httpOptions = {

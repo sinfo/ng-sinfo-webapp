@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
 import { UserService } from '../user.service'
@@ -14,11 +13,12 @@ import { EventService } from '../../events/event.service'
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnDestroy{
 
   user: User
   event: Event
   capacity = environment.signaturesCardCapacity
+  autoUpdate: NodeJS.Timer
   autoUpdatePeriod = environment.signaturesAutoUpdate
   day= new Date()
   companies = []
@@ -29,7 +29,6 @@ export class CardComponent implements OnInit {
   }[]
 
   constructor (
-    private router: Router,
     private userService: UserService,
     private companyService: CompanyService,
     private eventService: EventService,
@@ -38,10 +37,8 @@ export class CardComponent implements OnInit {
   }
   ngOnInit () {
     if (this.autoUpdatePeriod) {
-      setInterval(()=>{
-        if (this.router.routerState.snapshot.url === "/user/card"){
-          this.refreshCompanies()
-        }
+      this.autoUpdate = setInterval(()=>{
+        this.refreshCompanies()
       }, this.autoUpdatePeriod * 1000)
     }
     
@@ -49,7 +46,7 @@ export class CardComponent implements OnInit {
       this.event = event
       this.titleService.setTitle(event.name + ' - Card')
 
-      this.userService.getMe().subscribe(user => {
+      this.userService.getMe(true).subscribe(user => {
         this.user = user
 
         if (!this.user.signatures) {
@@ -76,11 +73,11 @@ export class CardComponent implements OnInit {
                 name: signature.companyId,
                 img: c.img,
                 signatureDate: signature.date,
-                howLongAgo: this.formatDuration((new Date().valueOf() - new Date(signature.date).valueOf())/1000)
+                howLongAgo: this.formatDuration((new Date().getTime() - new Date(signature.date).getTime())/1000)
               })
               this.companiesReady = this.companies.every((c) => {return c.img})
               if (this.companiesReady) {
-                this.companies.sort((a,b) => {return b.signatureDate.valueOf() - a.signatureDate.valueOf()})
+                this.companies = this.companies.sort((a,b) => {return new Date(b.signatureDate.valueOf()).getTime() - new Date(a.signatureDate.valueOf()).getTime()})
               }
           })
         })
@@ -92,8 +89,7 @@ export class CardComponent implements OnInit {
   }
   
   refreshCompanies () {
-    console.log("Refreshed")
-    this.userService.getMe().subscribe(user => {
+    this.userService.getMe(true).subscribe(user => {
       this.user = user
 
       if (!this.user.signatures) {
@@ -121,9 +117,15 @@ export class CardComponent implements OnInit {
                   signatureDate: signature.date,
                   howLongAgo: this.formatDuration((new Date().valueOf() - new Date(signature.date).valueOf())/1000)
                 })
-                this.companies.sort((a,b) => {return b.signatureDate.valueOf() - a.signatureDate.valueOf()})
+                this.companies = this.companies.sort((a,b) => {return new Date(b.signatureDate.valueOf()).getTime() - new Date(a.signatureDate.valueOf()).getTime()})
 
           })
+        } else {
+          let currentIndex = this.companies.findIndex( (company) => {
+            return company.name === signature.companyId
+          })
+          this.companies[currentIndex].howLongAgo = this.formatDuration((new Date().valueOf() - new Date(signature.date).valueOf())/1000)
+          this.companies = this.companies.sort((a,b) => {return new Date(b.signatureDate.valueOf()).getTime() - new Date(a.signatureDate.valueOf()).getTime()})
         }
       })
     })
@@ -168,4 +170,8 @@ export class CardComponent implements OnInit {
 
     return yearsFun() || daysFun() || hoursFun() || minutesFun() || secondsFun();
   }
+  ngOnDestroy() {
+    clearInterval(this.autoUpdate)
+  }
 }
+
