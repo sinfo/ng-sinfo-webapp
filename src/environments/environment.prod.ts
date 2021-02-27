@@ -63,7 +63,7 @@ export const environment = {
     ]
   },
   signaturesCardCapacity: 6,
-  signaturesCardCapacity: 5,
+  signaturesAutoUpdate: 5, //seconds, set to 0 to auto update
   facebook: {
     appId: '708252219264170'
   },
