@@ -91,6 +91,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component';
+import { NumberPickerModule } from 'ng-number-picker';
 
 
 library.add(fas)
@@ -166,7 +167,8 @@ library.add(fas)
     FormsModule,
     NgbModule,
     FontAwesomeModule,
-    ClipboardModule
+    ClipboardModule,
+    NumberPickerModule
   ],
   providers: [
     SpeakerService,

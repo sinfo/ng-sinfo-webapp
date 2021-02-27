@@ -37,6 +37,7 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.3",
     "@zxing/ngx-scanner": "^2.0.1",
     "angularx-qrcode": "^1.7.0-beta.5",
+    "ng-number-picker": "^1.1.9",
     "ngx-clipboard": "^12.0.1",
     "npm": "^7.5.6",
     "rxjs": "^6.4.0",
