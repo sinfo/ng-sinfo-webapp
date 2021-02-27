@@ -20,7 +20,7 @@ export class CompanyService {
     'Authorization': `Bearer ${this.authService.getToken().token}`
   })
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private authService: AuthService,
@@ -29,7 +29,7 @@ export class CompanyService {
     this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
-  getCompanies (): Observable<Company[]> {
+  getCompanies(): Observable<Company[]> {
     if (this.companies) {
       return of(this.companies)
     }
@@ -43,12 +43,12 @@ export class CompanyService {
 
     return this.http.get<Company[]>(this.companiesUrl, { params })
       .pipe(
-      tap(companies => this.companies = companies),
-      catchError(this.handleError<Company[]>('getCompanies', []))
+        tap(companies => this.companies = companies),
+        catchError(this.handleError<Company[]>('getCompanies', []))
       )
   }
 
-  getCompany (id: string): Observable<Company> {
+  getCompany(id: string): Observable<Company> {
     if (this.companies) {
       return of(this.companies.find(c => {
         return c.id === id
@@ -57,7 +57,7 @@ export class CompanyService {
 
     return this.http.get<Company>(`${this.companiesUrl}/${id}`)
       .pipe(
-      catchError(this.handleError<Company>('getCompany'))
+        catchError(this.handleError<Company>('getCompany'))
       )
   }
 
@@ -67,7 +67,7 @@ export class CompanyService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `CompanyService: ${operation}`,

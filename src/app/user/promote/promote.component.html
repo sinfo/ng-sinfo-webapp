@@ -1,14 +1,73 @@
 <app-loading [content]="companies"></app-loading>
 
 <div class="wrapper pad" *ngIf="companies">
-  <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title" [info]="info"
-    [userRead]="userRead" [company]="userReadCompany">
-  </app-qrcode-scanner>
 
-  <div class="container align-center user" *ngIf="userRead">
+  <div>
+    <h3 class="title mb-1">Promote</h3>
+  </div>
+
+  <div class="align-center" *ngIf="!userRead">
+    <div *ngIf="!cam">
+      <p>Insert the ID of the attendee in the text box below or scan the QR code by switching input</p>
+    </div>
+    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]=""
+      [info]="info" [userRead]="userRead" [company]="userReadCompany">
+    </app-qrcode-scanner>
+
+    <div class="column" *ngIf="!cam && !userRead">
+      <h6>Attendee ID:</h6>
+      <div class="input-group mb-3">
+        <input [(ngModel)]="userId" type="text" class="form-control" placeholder="ID" aria-label="Attendee ID"
+          aria-describedby="basic-addon1">
+      </div>
+      <button class="btn btn-success" [disabled]="userId.length === 0" (click)="submit()">Promote</button>
+    </div>
+
+    <div class="row" *ngIf="!userRead">
+      <div class="btn btn-primary" (click)="toggleCam()">{{cam? 'write ID manually':'Read QR Code'}}</div>
+    </div>
+
+  </div>
+
+
+
+  <div class="container justify-center user" *ngIf="userRead">
+
+    <div class='wrapper'>
+      <div *ngIf="userRead" class='vertical center'>
+        <div class="row limit-width">
+          <h3 class="name center">
+            {{userRead.name}}
+          </h3>
+        </div>
+
+        <div class="row limit-width">
+          <h5 *ngIf="info === 'team'">
+            <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
+          </h5>
+
+          <h5 *ngIf="info && info.length > 0 && info !== 'team'" class='name center'>
+            {{info}}
+          </h5>
+        </div>
+
+        <div class="row" id="image-wrapper">
+          <div class="portrait-wrapper">
+            <img class="portrait" src="{{userRead.img}}">
+            <div class="mini-portrait-wrapper"
+              *ngIf="userRead.role === 'team' || (userRead.role === 'company' && company)">
+              <img *ngIf="userRead.role === 'team'" class="mini-image"
+                src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
+              <img *ngIf="userRead.role === 'company' && company" class="mini-image" [src]="company.img">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <div class="row">
-      <div class="col-xs-12">
+      <div class='col-xs-12 promote typeahead'>
         <button class="btn btn-button promote-team" (click)="promoteToTeam()">Promote to team</button>
       </div>
     </div>
@@ -48,4 +107,5 @@
     </div>
 
   </div>
+
 </div>
