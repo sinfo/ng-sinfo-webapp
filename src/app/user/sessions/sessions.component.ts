@@ -78,7 +78,7 @@ export class SessionsComponent implements OnInit {
       new Date(new Date(this.currentEvent.begin).getTime() + new Date(this.currentEvent.duration).getTime())
     ).subscribe(achievements => {
       achievements.map(achievement => {
-        if (achievement.session) {
+        if (achievement.session && achievement.code && achievement.code.code) {
           this.codes.set(achievement.session, achievement.code)
         }
       })
@@ -88,7 +88,7 @@ export class SessionsComponent implements OnInit {
   formatDate(date: string | Date): string {
     const newDate = typeof date === 'string' ? new Date(date) : date
     return newDate.toUTCString()
-  }C
+  }
 
   getSessionCode(sessionId: string): Code {
     return this.codes !== undefined ? this.codes.get(sessionId) : undefined
