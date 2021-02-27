@@ -21,6 +21,10 @@
       </div>
     </div>
 
+    <div class="row" *ngIf="!userRead">
+      <div class="btn btn-primary" (click)="toggleCam()">{{cam? 'write ID manually':'Read QR Code'}}</div>
+    </div>
+
     <div class="row">
       <div class="col-xs-12 promote typeahead">
         <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany"

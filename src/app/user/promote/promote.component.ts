@@ -30,6 +30,10 @@ export class PromoteComponent implements OnInit {
 
   me: User
 
+  cam: Boolean
+
+  userId: string = ''
+
   constructor (
     private userService: UserService,
     private companyService: CompanyService,
@@ -59,6 +63,7 @@ export class PromoteComponent implements OnInit {
   }
 
   ngOnInit () {
+    this.cam = false
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Promote')
     })
@@ -152,6 +157,23 @@ export class PromoteComponent implements OnInit {
         this.userRead = user
         this.userReadCompany = undefined
         this.updateInfo(user)
+      })
+  }
+
+  toggleCam() {
+    this.cam = !this.cam
+  }
+
+  submit() {
+    this.userService.getUser(this.userId)
+      .subscribe(user => {
+        if (!user) {
+          return
+        }
+
+        this.userRead = user
+        this.receiveUser(user)
+
       })
   }
 
