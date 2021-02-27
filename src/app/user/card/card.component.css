@@ -9,6 +9,15 @@
   text-align: center;
 }
 
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.glyphicon {
+  font-size: 30px;
+}
+
 div.card-portrait-wrapper {
   margin: 10px;
   border-radius: 100%;
@@ -35,6 +44,10 @@ div.card-portrait-wrapper {
 
 img.portrait {
   height: 70%;
+}
+
+button.btn{
+  min-width: 0;
 }
 
 

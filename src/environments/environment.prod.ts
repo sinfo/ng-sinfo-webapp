@@ -63,6 +63,7 @@ export const environment = {
     ]
   },
   signaturesCardCapacity: 6,
+  signaturesCardCapacity: 5,
   facebook: {
     appId: '708252219264170'
   },
