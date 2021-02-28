@@ -7,6 +7,7 @@ import { Event } from '../../events/event.model'
 import { environment } from '../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
 import { EventService } from '../../events/event.service'
+import { interval, Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-card',
@@ -18,7 +19,7 @@ export class CardComponent implements OnInit, OnDestroy{
   user: User
   event: Event
   capacity = environment.signaturesCardCapacity
-  autoUpdate: NodeJS.Timer
+  autoUpdate: Subscription
   autoUpdatePeriod = environment.signaturesAutoUpdate
   day= new Date()
   companies = []
@@ -37,9 +38,9 @@ export class CardComponent implements OnInit, OnDestroy{
   }
   ngOnInit () {
     if (this.autoUpdatePeriod) {
-      this.autoUpdate = setInterval(()=>{
+      this.autoUpdate = interval(this.autoUpdatePeriod * 1000).subscribe(() => {
         this.refreshCompanies()
-      }, this.autoUpdatePeriod * 1000)
+      })
     }
     
     this.eventService.getCurrent().subscribe(event => {
@@ -170,8 +171,9 @@ export class CardComponent implements OnInit, OnDestroy{
 
     return yearsFun() || daysFun() || hoursFun() || minutesFun() || secondsFun();
   }
+
   ngOnDestroy() {
-    clearInterval(this.autoUpdate)
+    this.autoUpdate.unsubscribe()
   }
 }
 
