@@ -39,9 +39,9 @@ button {
 .promote-team {
   background: #018ae6 url(https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png) no-repeat;
   background-size: 73px;
-    text-align: center;
-    background-position-x: 98%;
-    background-position-y: 50%;
+  text-align: center;
+  background-position-x: 98%;
+  background-position-y: 50%;
 }
 
 .rescan span {
@@ -76,10 +76,10 @@ button {
     border-color: #ccc
 }
 
+
 .btn-warning {
-    color: #fff !important;
-    background-color: #f0ad4e !important;
-    border-color: #eea236 !important;
+  background-color: #eea236;
+  border-color: #eea236;
 }
 
 .full-width{
