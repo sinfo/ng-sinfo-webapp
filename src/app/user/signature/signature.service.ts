@@ -32,7 +32,6 @@ export class SignatureService {
   signSpeed(user: User, company: Company): void {
     this.companyCannonService.signSpeedDate(company.id, user.id)
       .subscribe(_user => {
-        console.log(company)
         if (!_user) return
         this.messageService.add({
           origin: 'Speed Date Signature',

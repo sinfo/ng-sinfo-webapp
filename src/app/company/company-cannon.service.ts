@@ -91,7 +91,7 @@ export class CompanyCannonService {
       headers: this.headers
     }
 
-    return this.http.patch<Link>(`${this.companiesUrl}/${companyId}/link/${attendeeId}`, {
+    return this.http.put<Link>(`${this.companiesUrl}/${companyId}/link/${attendeeId}`, {
       userId: userId,
       notes: note
     }, httpOptions)
