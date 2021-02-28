@@ -124,7 +124,6 @@ export class PromoteComponent implements OnInit {
     this.companyService.getCompanies()
       .subscribe(companies => {
         this.companies = companies
-        console.log(this.companies)
       })
   }
 
