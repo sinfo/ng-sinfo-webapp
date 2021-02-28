@@ -8,6 +8,7 @@
 .align-center {
   width: 100%;
 }
+
 .row button {
   width: 95%;
   margin: 5px auto;
@@ -37,11 +38,6 @@
   align-items: center;
 }
 
-.btn-danger {
-  background-color: #d9534f;
-  border-color: #d9534f;
-}
-
 h6 {
   padding-bottom: 10%;
   padding-top: 10%;
@@ -51,10 +47,24 @@ h6 {
   padding-bottom: 10%;
 }
 
-.button {
-  width: 250px;
-}
-
 .camera {
   padding-bottom: 5%;
+}
+
+button {
+  width: 100%;
+  letter-spacing: .15em;
+  padding: 13px;
+  margin: 10px auto 5px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.btn-warning {
+  background-color: #eea236;
+  border-color: #eea236;
+}
+
+.head-description {
+  text-align: center;
 }

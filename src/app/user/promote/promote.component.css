@@ -15,10 +15,7 @@
 }
 
 .col-xs-12 {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  margin: 5px 0;
 }
 
 .col-xs-12 button, .col-cs-12 input {
@@ -29,9 +26,7 @@ button {
     width: 100%;
     letter-spacing: .15em;
     padding: 13px;
-    margin: auto;
-    margin-bottom: 5px;
-    margin-top: 10px;
+    margin: 10px auto 5px;
     border: 1px solid transparent;
     border-radius: 4px;
 }
@@ -42,12 +37,11 @@ button {
 }
 
 .promote-team {
-    background: #018ae6 url(https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png);
-    background-repeat: no-repeat;
-    background-size: 73px;
-    text-align: center;
-    background-position-x: 98%;
-    background-position-y: 50%;
+  background: #018ae6 url(https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png) no-repeat;
+  background-size: 73px;
+  text-align: center;
+  background-position-x: 98%;
+  background-position-y: 50%;
 }
 
 .rescan span {
@@ -56,10 +50,6 @@ button {
     position: absolute;
     top: 27%;
     right: 10%;
-}
-
-.rescan {
-    background-color: #449d44 !important;
 }
 
 .wrapper, .align-center {
@@ -86,15 +76,10 @@ button {
     border-color: #ccc
 }
 
-.btn-warning {
-    color: #fff !important;
-    background-color: #f0ad4e !important;
-    border-color: #eea236 !important;
-}
 
-.btn-danger {
-    background-color: #d9534f;
-    border-color: #d9534f;
+.btn-warning {
+  background-color: #eea236;
+  border-color: #eea236;
 }
 
 .full-width{
@@ -109,22 +94,9 @@ button {
 }
 
 .col-xs-12 {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 5px;
-    margin-bottom: 5px;
+  margin: 5px 0;
 }
 
-button {
-    width: 100%;
-    letter-spacing: .15em;
-    padding: 13px;
-    margin: auto;
-    margin-bottom: 5px;
-    margin-top: 10px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-}
 
 .rescan {
     background-color: #449d44 !important;

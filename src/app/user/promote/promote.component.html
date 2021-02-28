@@ -3,7 +3,7 @@
 <div class="wrapper pad" *ngIf="companies">
 
   <div>
-    <h3 class="title mb-1">Promote</h3>
+    <h3 class="title mb-1">{{ title }}</h3>
   </div>
 
   <div class="align-center" *ngIf="!userRead">
@@ -20,11 +20,11 @@
         <input [(ngModel)]="userId" type="text" class="form-control" placeholder="ID" aria-label="Attendee ID"
           aria-describedby="basic-addon1">
       </div>
-      <button class="btn btn-success" [disabled]="userId.length === 0" (click)="submit()">Promote</button>
     </div>
 
-    <div class="row" *ngIf="!userRead">
-      <div class="btn btn-primary" (click)="toggleCam()">{{cam? 'write ID manually':'Read QR Code'}}</div>
+    <div class="column" *ngIf="!userRead">
+      <button class="btn btn-success" *ngIf="!cam" [disabled]="userId.length === 0" (click)="submit()">Promote</button>
+      <button class="btn btn-warning" (click)="toggleCam()">{{ cam ? 'Write ID manually':'Read QR Code' }}</button>
     </div>
 
   </div>
