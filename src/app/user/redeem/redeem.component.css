@@ -54,9 +54,7 @@ button {
   width: 100%;
   letter-spacing: .15em;
   padding: 13px;
-  margin: auto;
-  margin-bottom: 5px;
-  margin-top: 10px;
+  margin: 10px auto 5px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
