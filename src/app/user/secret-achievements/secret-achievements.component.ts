@@ -8,7 +8,7 @@ import { Achievement } from '../achievements/achievement.model';
 import { AchievementService } from '../achievements/achievement.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
-import {ClipboardService} from 'ngx-clipboard';
+import { ClipboardService } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-secret-achievements',
@@ -23,6 +23,7 @@ export class SecretAchievementsComponent implements OnInit {
   me: User
   currentEvent: Event
   time: NgbTimeStruct = { hour: 13, minute: 30, second: 30 }
+  points = 0
 
   constructor(
     private userService: UserService,
@@ -46,9 +47,12 @@ export class SecretAchievementsComponent implements OnInit {
     const expirationDate = new Date()
     expirationDate.setFullYear(2021)
     expirationDate.setHours(this.time.hour, this.time.minute, this.time.second)
-    this.achievementsService.createSecretAchievement(expirationDate)
+    this.achievementsService.createSecretAchievement(expirationDate, this.points)
       .subscribe(achievement => {
         this.secrets.push(achievement)
+        this.points = 0
+        this.time = { hour: 13, minute: 30, second: 30 }
+
       })
   }
 

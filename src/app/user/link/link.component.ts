@@ -28,8 +28,10 @@ export class LinkComponent implements OnInit {
   currentLink: Link
   notes: Note
   yesToLink: Boolean
+  cam: Boolean
+  userId: string = ''
 
-  constructor (
+  constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
@@ -39,9 +41,10 @@ export class LinkComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.scannerActive = false
     this.yesToLink = false
+    this.cam = false
     this.notes = {
       contacts: {
         email: null,
@@ -74,22 +77,28 @@ export class LinkComponent implements OnInit {
     })
   }
 
-  toLink () {
+  toggleCam() {
+    this.cam = !this.cam
+  }
+
+  toLink() {
     this.yesToLink = true
     this.info = `Linking ${this.userRead.name} with ${this.company.name}`
   }
 
-  reScan () {
+  reScan() {
     this.userRead = null
     this.scannerActive = true
+    this.userId = ''
+    this.yesToLink = false
   }
 
-  updateInfo () {
+  updateInfo() {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
   }
 
-  receiveUser (user: User) {
+  receiveUser(user: User) {
     this.userRead = user
     this.scannerActive = false
     this.companyCannonService.getLink(this.company.id, this.userRead.id)
@@ -100,7 +109,7 @@ export class LinkComponent implements OnInit {
     this.updateInfo()
   }
 
-  buildNotes (_link) {
+  buildNotes(_link) {
     if (_link) {
       this.notes.contacts.email = _link.notes.contacts.email
       this.notes.contacts.phone = _link.notes.contacts.phone
@@ -118,18 +127,29 @@ export class LinkComponent implements OnInit {
     this.notes.otherObservations = null
   }
 
-  link () {
-    this.currentLink ? this.updateLink() : this.createLink()
+  link() {
+    if (this.currentLink) {
+      this.updateLink()
+    } else {
+      this.createLink()
+      this.messageService.add({
+        origin: 'Link created',
+        showAlert: true,
+        text: 'Link created',
+        type: Type.success,
+        timeout: 6000
+      })
+    }
   }
 
-  createLink () {
+  createLink() {
     this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
       })
   }
 
-  updateLink () {
+  updateLink() {
     this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
@@ -140,6 +160,27 @@ export class LinkComponent implements OnInit {
           timeout: 4000,
           type: Type.success
         })
+      })
+  }
+
+  submit() {
+    this.userService.getUser(this.userId)
+      .subscribe(user => {
+        if (!user) {
+
+          this.messageService.add({
+            origin: 'Sign and Link',
+            showAlert: true,
+            text: 'User ID not found.',
+            type: Type.error,
+            timeout: 6000
+          })
+          return
+        }
+
+        this.userRead = user
+        this.receiveUser(user)
+
       })
   }
 

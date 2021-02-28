@@ -8,7 +8,9 @@
         "../node_modules/@angular/*"
       ]
     },
-    "types": []
+    "types": [
+      "node"
+    ]
   },
   "exclude": [
     "test.ts",

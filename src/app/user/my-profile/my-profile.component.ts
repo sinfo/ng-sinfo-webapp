@@ -135,13 +135,21 @@ export class MyProfileComponent implements OnInit {
   }
 
   copyToClipboard(tooltip: NgbTooltip) {
-    this.messageService.add({
-      origin: `My Profile`,
-      text: `Copied!`,
-      type: Type.success,
-      showAlert: true,
-      timeout: 2000
-    })
+    // this.messageService.add({
+    //   origin: `My Profile`,
+    //   text: `Copied!`,
+    //   type: Type.success,
+    //   showAlert: true,
+    //   timeout: 2000
+    // })
+
+    const ttp = document.getElementById('tooltip')
+    ttp.style.opacity === '0' ? ttp.style.opacity = '0.8' : ttp.style.opacity = '0'
+
+    setTimeout(() => {
+      const _ttp = document.getElementById('tooltip')
+      _ttp.style.opacity === '0' ? _ttp.style.opacity = '0.8' : _ttp.style.opacity = '0'
+    }, 1500)
 
     this.clipboardService.copyFromContent(this.user.id)
   }

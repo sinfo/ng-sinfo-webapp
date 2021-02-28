@@ -92,7 +92,7 @@ div.achivements-wrapper img.achievement {
 
 .qrcode {
   background: #2C49A6;
-  padding: 6vw;
+  padding: 3vh 3vw;
   border-radius: 15px;
 }
 
@@ -154,6 +154,9 @@ div.achivements-wrapper img.achievement {
   background: white
 }
 
+.transition{
+  transition: 0.3s;
+}
 
 .show-message {
   color: grey;

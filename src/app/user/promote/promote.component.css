@@ -1,17 +1,11 @@
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .title {
     text-align: center;
 }
 
-.align-center {
+.justify-center {
     width: 100%;
 }
+
 #content {
     height: auto;
 }
@@ -67,3 +61,172 @@ button {
 .rescan {
     background-color: #449d44 !important;
 }
+
+.wrapper, .align-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.form-control {
+    width: 95%;
+    margin: 5px auto;
+}
+
+.link-warning h6 {
+    color: #018ae6;
+}
+
+.btn-default:focus {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc
+}
+
+.btn-warning {
+    color: #fff !important;
+    background-color: #f0ad4e !important;
+    border-color: #eea236 !important;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border-color: #d9534f;
+}
+
+.full-width{
+    width: calc(100% - 100px);
+    height: 100% !important;
+}
+
+.form-control {
+    font-size: 20px;
+    width: 100%;
+    margin: auto;
+}
+
+.col-xs-12 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+button {
+    width: 100%;
+    letter-spacing: .15em;
+    padding: 13px;
+    margin: auto;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.rescan {
+    background-color: #449d44 !important;
+    border-color: #449d44 ;
+}
+
+.row button {
+  width: 100%;
+  margin: 5px auto;
+}
+
+.title{
+  flex-grow: 2;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-grow: 3;
+  width: 30vw;
+}
+
+.mb-3{
+  width: 100%;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d9534f;
+}
+
+
+.center{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.vertical{
+    flex-direction: column;
+}
+
+.limit-width{
+    max-width: calc(100%-100px);
+}
+
+@media(max-width: 975px){
+    .limit-width{
+        max-width: 73vw;
+    }
+}
+
+img.portrait {
+    border-radius: 50%;
+    border: 3px solid #048ae6;
+}
+
+#image-wrapper {
+    display: flex;
+}
+
+div.portrait-wrapper {
+    margin: 10px auto;
+    position: relative;
+}
+
+div.mini-portrait-wrapper {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    background-color: rgba(255,255,255, 1);
+    border: 3px solid #048ae6;
+    padding: 10px;
+}
+div.mini-portrait-wrapper img {
+    width: 100%;
+}
+
+.sinfo-logo {
+    height: 30px;
+}
+
+.mini-image{
+    border-radius: 50%;
+}
+
+.mini-image:before{
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+

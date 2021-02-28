@@ -131,7 +131,7 @@ export class AchievementService {
       )
   }
 
-  createSecretAchievement(validity: Date): Observable<Achievement> {
+  createSecretAchievement(validity: Date, points: number): Observable<Achievement> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -140,7 +140,8 @@ export class AchievementService {
 
     return this.http.post<Achievement>(`${this.achievementsUrl}/secret`, {
       event: this.event.id,
-      validity: validity
+      validity: validity,
+      points: points
     }, httpOptions)
       .pipe(
         catchError(this.handleError<Achievement>('create secret'))

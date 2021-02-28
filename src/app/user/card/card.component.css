@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.glyphicon {
+  font-size: 30px;
+}
+
+div.card-portrait-wrapper {
+  margin: 10px;
+  border-radius: 100%;
+  border: 1px solid #048ae6;
+  overflow: hidden;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signatures {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.info {
+  text-align: center;
+  margin: auto;
+  color:#a0a0a0
+}
+
+img.portrait {
+  height: 70%;
+}
+
+button.btn{
+  min-width: 0;
+}
+
+
+.allSignatures, .allSignatures i {
+    color: green;
+}
+
+@media (max-width: 425px){
+  div.user {
+    background-size: 150%;
+  }
+
+  div.user h5 {
+    text-align: center;
+  }
+}
