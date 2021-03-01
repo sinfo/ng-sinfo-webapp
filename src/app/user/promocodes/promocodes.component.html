@@ -17,11 +17,7 @@
               <img src='{{p.img}}' class='card-img'>
             </div>
             <div class='code-description'>
-<<<<<<< HEAD
-              <span class='text-box' [innerHTML]='p.description'></span>
-=======
               <span class='text-box'> <markdown>{{p.description}}</markdown> </span>
->>>>>>> 2121635 (Added Markdown support for promocode descriptions)
             </div>
             <div class='card-text' (click)='copy($event, p.code)' *ngIf='p.code'>
               <span class='text-box'><b>{{p.code}}</b></span>
