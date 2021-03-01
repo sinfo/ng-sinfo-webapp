@@ -33,7 +33,7 @@ export class PickBestRestComponent implements OnInit {
 
       this.eventService.getCurrent().subscribe(event => {
         this.userService.getActiveUsers().subscribe(users => {
-          this.eligibleUsers = users.filter((user) => {
+          this.eligibleUsers = users.slice(3).filter((user) => {
             return (user.role !== 'team' && user.points > 0)
           })
           this.eligibleUsers.forEach((user) =>{
