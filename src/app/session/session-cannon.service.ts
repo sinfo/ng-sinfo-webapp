@@ -16,13 +16,13 @@ export class SessionCannonService {
 
   private sessionsUrl = environment.cannonUrl + '/sessions'
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private authService: AuthService
   ) { }
 
-  checkin (sessionId: string, usersId: string[], code?: string) {
+  checkin(sessionId: string, usersId: string[], code?: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export class SessionCannonService {
       users: usersId, code: code
     }, httpOptions)
       .pipe(
-        catchError(this.handleError<any>('check-in'))
+        catchError(this.handleErrorCheckIn<any>('check-in'))
       )
   }
 
@@ -44,11 +44,27 @@ export class SessionCannonService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `SessionService: ${operation}`,
         text: 'When fetching session from server',
+        type: Type.error,
+        showAlert: true,
+        errorObject: error,
+        timeout: 4000
+      })
+
+      // Let the app keep running by returning an empty result.
+      return of(result)
+    }
+  }
+
+  private handleErrorCheckIn<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      this.messageService.add({
+        origin: `SessionService: ${operation}`,
+        text: 'Wrong code or code is already invalid.',
         type: Type.error,
         showAlert: true,
         errorObject: error,

@@ -51,7 +51,7 @@
               </div>
             </div>
             <div class="col-sm-3 checkin" *ngIf="sessionsSignedin.includes(session.session.id)">
-              <button class="btn btn-button">Checked In!</button>
+              <button class="btn btn-success">Checked In!</button>
             </div>
           </div>
 
@@ -59,7 +59,7 @@
 
       </div>
     </div>
-    <div *ngIf="sessions.length==0" >
+    <div *ngIf="sessions.length==0">
       <h6>
         There are no sessions taking place right now
       </h6>
