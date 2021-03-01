@@ -92,6 +92,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { ClipboardModule } from 'ngx-clipboard';
 import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component';
 import { NumberPickerModule } from 'ng-number-picker';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 library.add(fas)
@@ -168,7 +169,8 @@ library.add(fas)
     NgbModule,
     FontAwesomeModule,
     ClipboardModule,
-    NumberPickerModule
+    NumberPickerModule,
+    MarkdownModule.forRoot()
   ],
   providers: [
     SpeakerService,
