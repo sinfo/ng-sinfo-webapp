@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser'
 import { Event } from '../../events/event.model'
 import { AchievementService } from '../achievements/achievement.service'
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
-import {ClipboardService} from "ngx-clipboard";
+import { ClipboardService } from "ngx-clipboard";
 
 interface Code {
   created: Date,
@@ -81,6 +81,11 @@ export class SessionsComponent implements OnInit {
         if (achievement.session && achievement.code && achievement.code.code) {
           this.codes.set(achievement.session, achievement.code)
         }
+      })
+
+      this.sessions = this.sessions.filter(s => {
+        const code = this.getSessionCode(s.id)
+        return code !== undefined && code.expiration <= new Date() || code === undefined
       })
     })
   }
