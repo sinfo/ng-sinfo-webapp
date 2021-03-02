@@ -32,7 +32,7 @@
         </a>
       </li> -->
 
-      <li *ngIf="user && user.role === 'user'">
+      <li *ngIf="user && user.role !== 'company'">
         <a routerLink="/user/selfcheckin" routerLinkActive="active">
           <i class="glyphicon glyphicon-qrcode"></i>
           Self Check-in

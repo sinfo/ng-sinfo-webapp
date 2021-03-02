@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http'
 
 import { Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
@@ -61,14 +61,16 @@ export class SessionCannonService {
   }
 
   private handleErrorCheckIn<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+    return (error: HttpErrorResponse): Observable<T> => {
       this.messageService.add({
         origin: `SessionService: ${operation}`,
-        text: 'Wrong code or code is already invalid.',
+        text: error.status === 403 ?
+          `Overlapping workshops detected. You cannot attend multiple workshops at the same time. 
+        Your points for both workshops will be deducted.` : 'Wrong code or code is already invalid.',
         type: Type.error,
         showAlert: true,
         errorObject: error,
-        timeout: 4000
+        timeout: error.status === 403 ? null : 4000
       })
 
       // Let the app keep running by returning an empty result.

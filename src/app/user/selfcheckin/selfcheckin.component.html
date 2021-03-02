@@ -36,6 +36,11 @@
                   </p>
                 </div>
               </div>
+              <div class='padded' style='color: red;'
+                *ngIf='warning && !sessionsSignedin.includes(session.session.id) && selectedSession && selectedSession==session.session'>
+                <b>Warning:</b> Trying to check-in into simultaneous workshops will result in a
+                penalty
+              </div>
             </div>
             <div class="col-sm-3 checkin"
               *ngIf="!sessionsSignedin.includes(session.session.id) && (!selectedSession || selectedSession!=session.session)">
@@ -43,6 +48,7 @@
             </div>
             <div class="col-sm-3 checkin"
               *ngIf="!sessionsSignedin.includes(session.session.id) && selectedSession && selectedSession==session.session">
+
               <div class="selected-session">
                 <input #codeinput type="text">
               </div>

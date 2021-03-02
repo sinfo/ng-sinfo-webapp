@@ -96,6 +96,13 @@ div.achivements-wrapper img.achievement {
   border-radius: 15px;
 }
 
+.footer-nav-item{
+  color: grey;
+}
+
+.footer-nav>li a:not(:hover):not(:focus):not(:active) {
+  color:grey;
+}
 .name {
   color: white;
 }
