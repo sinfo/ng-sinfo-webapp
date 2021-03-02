@@ -22,8 +22,9 @@ export class SelfcheckinComponent implements OnInit {
   sessionsSignedin: string[]
   me: User
   title: string
+  warning = false
 
-  constructor (
+  constructor(
     private sessionService: SessionService,
     private sessionCannonService: SessionCannonService,
     private userService: UserService,
@@ -32,12 +33,12 @@ export class SelfcheckinComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Check In')
     })
 
-    
+
 
     this.userService.getMe()
       .subscribe(me => {
@@ -52,11 +53,11 @@ export class SelfcheckinComponent implements OnInit {
           })
       })
 
-    
+
 
   }
 
-  getSessions () {
+  getSessions() {
     this.eventService.getCurrent().subscribe(event => {
       this.sessionService.getSessions(event.id)
         .subscribe(sessions => {
@@ -92,11 +93,12 @@ export class SelfcheckinComponent implements OnInit {
     })
   }
 
-  beginCheckIn (session: Session) {
+  beginCheckIn(session: Session) {
+    this.warning = session.kind === 'Workshop'
     this.selectedSession = session
   }
 
-  submit (code) {
+  submit(code) {
     this.sessionCannonService.checkin(this.selectedSession.id, [this.me.id], code)
       .subscribe(msg => {
         if (msg) {
@@ -106,7 +108,8 @@ export class SelfcheckinComponent implements OnInit {
             origin: `Self check in component`,
             showAlert: true,
             text: `Done!`,
-            type: Type.success
+            type: Type.success,
+            timeout: 1000
           })
         }
 
