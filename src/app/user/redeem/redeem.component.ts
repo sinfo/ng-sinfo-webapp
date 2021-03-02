@@ -53,9 +53,10 @@ export class RedeemComponent implements OnInit {
   }
 
   receiveRedeemCode(code?: string) {
-    if (code)
+    if (code) {
       this.redeemCode = code;
-    this.redeemService.redeem(this.redeemCode, this.myAchievements)
+    }
+    this.redeemService.redeemSecret(this.redeemCode)
     this.updateMyAchievements()
   }
 

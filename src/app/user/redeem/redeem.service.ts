@@ -10,6 +10,8 @@ import { Router } from '@angular/router'
 export class RedeemService {
   private redeemUrl = environment.cannonUrl + '/redeem'
 
+  private secretUrl = environment.cannonUrl + '/achievements/redeem/secret'
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -54,6 +56,52 @@ export class RedeemService {
               timeout: 7000
             })
 
+            return
+          }
+
+          this.messageService.add({
+            origin: 'Redeem',
+            showAlert: true,
+            text: `Invalid redeem code`,
+            type: Type.error,
+            timeout: 7000
+          })
+        }
+      )
+  }
+
+  redeemSecret(code: string): void {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    this.http.post<Achievement>(`${this.secretUrl}`, { code: code }, httpOptions)
+      .subscribe(
+        achievement => {
+          this.router.navigate([`/user/achievement/${achievement.id}`])
+        },
+        err => {
+          if (err.status === 406) {
+            this.messageService.add({
+              origin: 'Redeem',
+              showAlert: true,
+              text: `Already redeemed code`,
+              type: Type.warning,
+              timeout: 7000
+            })
+
+            return
+          } else if (err.status === 404) {
+            this.messageService.add({
+              origin: 'Secret Codes',
+              showAlert: true,
+              text: `No valid secret achievements found with that code`,
+              type: Type.warning,
+              timeout: 7000
+            })
             return
           }
 

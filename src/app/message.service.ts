@@ -20,10 +20,10 @@ export interface Message {
 export class MessageService {
   messages: Message[] = []
 
-  add (message: Message) {
+  add(message: Message) {
     switch (message.type) {
       case Type.error:
-        message.errorObject ? console.error(message.errorObject) : console.error(message)
+        // message.errorObject ? console.error(message.errorObject) : console.error(message)
         if (message.showAlert) {
           message['messageClass'] = this.changeClass('danger')
           this.messages.push(message)
@@ -55,11 +55,11 @@ export class MessageService {
     }
   }
 
-  clear () {
+  clear() {
     this.messages = []
   }
 
-  clearTimeout (timeout: number, message: Message) {
+  clearTimeout(timeout: number, message: Message) {
     setTimeout((() => {
       const messageIndex = this.messages.indexOf(message)
       if (messageIndex > -1) {
@@ -73,7 +73,7 @@ export class MessageService {
    * https://getbootstrap.com/docs/3.3/components/#alerts
    * @param alertType default: `success`, `info`, `warning`, `danger`
    */
-  changeClass (alertType: string = 'info'): string {
+  changeClass(alertType: string = 'info'): string {
     return `alert alert-${alertType} alert-dismissible`
   }
 
