@@ -26,6 +26,8 @@ export class SpeedDateSignComponent implements OnInit {
   info: string
   cam = false
   userId = ''
+  descriptions: string[]
+  description: string
 
   userRead: User
   me: User
@@ -34,6 +36,7 @@ export class SpeedDateSignComponent implements OnInit {
   currentLink: Link
   notes: Note
   yesToLink: Boolean
+  yesToSign: Boolean
 
   constructor(
     private titleService: Title,
@@ -50,6 +53,7 @@ export class SpeedDateSignComponent implements OnInit {
   ngOnInit() {
     this.scannerActive = false
     this.yesToLink = false
+    this.yesToSign = false
     this.cam = false
     this.notes = {
       contacts: {
@@ -61,6 +65,12 @@ export class SpeedDateSignComponent implements OnInit {
       availability: null,
       degree: null
     }
+
+    this.descriptions = [
+      'Insert the ID of the attendee in the text box below or scan the QR code by switching input.',
+      'Sign a user\'s card after you have interacted with them.'
+    ]
+    this.description = this.descriptions[0]
 
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Speed Date Signature')
@@ -86,28 +96,27 @@ export class SpeedDateSignComponent implements OnInit {
   submit() {
     this.userService.getUser(this.userId)
       .subscribe(user => {
+        let message = ''
         if (!user) {
+          message = 'User ID not found.'
+        } else if (user && user.id === this.me.id) {
+          message = 'You cannot perform this action on yourself!'
+        }
 
+        if (message.length > 0) {
           this.messageService.add({
             origin: 'Sign Speed Date',
             showAlert: true,
-            text: 'User not found.',
-            type: Type.error,
-            timeout: 6000
+            text: message,
+            type: Type.warning,
+            timeout: 2000
           })
           return
         }
 
-        this.messageService.add({
-          origin: 'Sign Speed Date',
-          showAlert: false,
-          text: 'User selected',
-          type: Type.success,
-          timeout: 3000
-        })
-
         this.userRead = user
-        this.signatureService.signSpeed(this.userRead, this.myCompany)
+        this.description = this.descriptions[1]
+        this.receiveUser(user)
 
       })
   }
@@ -124,11 +133,21 @@ export class SpeedDateSignComponent implements OnInit {
     this.scannerActive = true
     this.userId = ''
     this.yesToLink = false
+    this.description = this.descriptions[0]
+    this.info = ''
+    this.yesToSign = false
   }
 
   updateInfo() {
     this.info = `Signed speed date ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.myCompany)
+    this.messageService.add({
+      origin: 'Sign and Link',
+      showAlert: true,
+      text: 'User was successfully signed!',
+      type: Type.success,
+      timeout: 2000
+    })
   }
 
   receiveUser(user: User) {
@@ -139,7 +158,12 @@ export class SpeedDateSignComponent implements OnInit {
         this.currentLink = _link
         this.buildNotes(_link)
       })
-    this.signatureService.signSpeed(this.userRead, this.myCompany)
+  }
+
+  signUser() {
+    this.yesToSign = true
+    this.info = `Signing ${this.userRead.name}'s card.`
+    this.updateInfo()
   }
 
   buildNotes(_link) {

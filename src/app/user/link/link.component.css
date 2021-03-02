@@ -23,9 +23,8 @@
 }
 
 .btn-warning {
-    color: #fff !important;
-    background-color: #f0ad4e !important;
-    border-color: #eea236 !important;
+  background-color: #eea236;
+  border-color: #eea236;
 }
 
 .btn-danger {
