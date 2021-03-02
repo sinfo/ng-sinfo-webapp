@@ -20,7 +20,9 @@ export class LinkComponent implements OnInit {
 
   scannerActive: boolean
   title = 'Sign and Link'
+  description: string
   info: string
+  descriptions: string[]
 
   userRead: User
   company: Company
@@ -28,6 +30,7 @@ export class LinkComponent implements OnInit {
   currentLink: Link
   notes: Note
   yesToLink: Boolean
+  yesToSign: Boolean
   cam: Boolean
   userId: string = ''
 
@@ -55,6 +58,12 @@ export class LinkComponent implements OnInit {
       availability: null,
       degree: null
     }
+    this.descriptions = [
+      'Insert the ID of the attendee in the text box below or scan the QR code by switching input.',
+      'Sign a user\'s card after you have interacted with them.'
+    ]
+    this.description = this.descriptions[0]
+
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Links')
       this.userService.getMe()
@@ -81,9 +90,16 @@ export class LinkComponent implements OnInit {
     this.cam = !this.cam
   }
 
+ signUser() {
+    this.yesToSign = true
+    this.info = `Signing ${this.userRead.name}'s card.`
+    this.updateInfo()
+  }
+
   toLink() {
     this.yesToLink = true
     this.info = `Linking ${this.userRead.name} with ${this.company.name}`
+    this.description = this.info
   }
 
   reScan() {
@@ -91,11 +107,21 @@ export class LinkComponent implements OnInit {
     this.scannerActive = true
     this.userId = ''
     this.yesToLink = false
+    this.description = this.descriptions[0]
+    this.info = ''
+    this.yesToSign = false
   }
 
   updateInfo() {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
+    this.messageService.add({
+      origin: 'Sign and Link',
+      showAlert: true,
+      text: 'User was successfully signed!',
+      type: Type.success,
+      timeout: 2000
+    })
   }
 
   receiveUser(user: User) {
@@ -106,7 +132,6 @@ export class LinkComponent implements OnInit {
         this.currentLink = _link
         this.buildNotes(_link)
       })
-    this.updateInfo()
   }
 
   buildNotes(_link) {
@@ -166,21 +191,28 @@ export class LinkComponent implements OnInit {
   submit() {
     this.userService.getUser(this.userId)
       .subscribe(user => {
-        if (!user) {
 
+        let message = ''
+        if (!user) {
+          message = 'User ID not found.'
+        } else if (user && user.id === this.me.id) {
+          message = 'You cannot perform this action on yourself!'
+        }
+
+        if (message.length > 0) {
           this.messageService.add({
             origin: 'Sign and Link',
             showAlert: true,
-            text: 'User ID not found.',
-            type: Type.error,
-            timeout: 6000
+            text: message,
+            type: Type.warning,
+            timeout: 2000
           })
           return
         }
 
         this.userRead = user
+        this.description = this.descriptions[1]
         this.receiveUser(user)
-
       })
   }
 
