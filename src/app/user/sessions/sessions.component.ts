@@ -11,6 +11,7 @@ import { Event } from '../../events/event.model'
 import { AchievementService } from '../achievements/achievement.service'
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
 import { ClipboardService } from "ngx-clipboard";
+import { MessageService, Type } from '../../message.service'
 
 interface Code {
   created: Date,
@@ -39,6 +40,7 @@ export class SessionsComponent implements OnInit {
     private achievementsService: AchievementService,
     private clipboardService: ClipboardService,
     private router: Router,
+    private messageService: MessageService,
     private titleService: Title
   ) {
   }
@@ -78,6 +80,7 @@ export class SessionsComponent implements OnInit {
       new Date(new Date(this.currentEvent.begin).getTime() + new Date(this.currentEvent.duration).getTime())
     ).subscribe(achievements => {
       achievements.map(achievement => {
+
         if (achievement.session && achievement.code && achievement.code.code) {
           this.codes.set(achievement.session, achievement.code)
         }
@@ -85,7 +88,8 @@ export class SessionsComponent implements OnInit {
 
       this.sessions = this.sessions.filter(s => {
         const code = this.getSessionCode(s.id)
-        return code !== undefined && code.expiration <= new Date() || code === undefined
+
+        return (code !== undefined && new Date(code.expiration) >= new Date()) || code === undefined
       })
     })
   }
@@ -105,5 +109,12 @@ export class SessionsComponent implements OnInit {
 
   copyCode(code: string): void {
     this.clipboardService.copyFromContent(code)
+    this.messageService.add({
+      origin: `Session code`,
+      showAlert: true,
+      text: `Copied`,
+      type: Type.success,
+      timeout: 3000
+    })
   }
 }

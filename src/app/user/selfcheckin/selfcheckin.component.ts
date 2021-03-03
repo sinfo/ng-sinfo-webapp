@@ -9,6 +9,7 @@ import { UserService } from '../user.service'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
 import { Achievement } from '../achievements/achievement.model'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-selfcheckin',
@@ -19,10 +20,11 @@ export class SelfcheckinComponent implements OnInit {
   sessions = []
 
   selectedSession: Session
-  sessionsSignedin: string[]
+  sessionsSignedin = new Set<string>()
   me: User
   title: string
   warning = false
+  code = ''
 
   constructor(
     private sessionService: SessionService,
@@ -30,7 +32,9 @@ export class SelfcheckinComponent implements OnInit {
     private userService: UserService,
     private messageService: MessageService,
     private eventService: EventService,
-    private titleService: Title
+    private titleService: Title,
+    private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -38,23 +42,17 @@ export class SelfcheckinComponent implements OnInit {
       this.titleService.setTitle(event.name + ' - Check In')
     })
 
-
-
     this.userService.getMe()
       .subscribe(me => {
         this.me = me
         this.userService.getUserAchievements(this.me.id)
           .subscribe(achievements => {
-            this.sessionsSignedin = achievements.reduce((acc, cur) => {
-              acc.push(cur.session)
-              return acc
-            }, [])
+            achievements.forEach(a => {
+              this.sessionsSignedin.add(a.session)
+            })
             this.getSessions()
           })
       })
-
-
-
   }
 
   getSessions() {
@@ -98,23 +96,26 @@ export class SelfcheckinComponent implements OnInit {
     this.selectedSession = session
   }
 
-  submit(code) {
-    this.sessionCannonService.checkin(this.selectedSession.id, [this.me.id], code)
-      .subscribe(msg => {
-        if (msg) {
-          this.getSessions()
-
+  submit() {
+    this.sessionCannonService.checkin(this.selectedSession.id, [this.me.id], this.code)
+      .subscribe((ach: Achievement) => {
+        this.code = ''
+        this.selectedSession = null
+        if (ach) {
+          this.sessionsSignedin.add(ach.session)
           this.messageService.add({
             origin: `Self check in component`,
             showAlert: true,
-            text: `Done!`,
+            text: `Checked in to session`,
             type: Type.success,
-            timeout: 1000
+            timeout: 7000
           })
+          this.router.navigate([`/user/achievement/${ach.id}`])
+
         }
 
       }, err => {
-        console.error('erro no check in', err)
+        console.error('erro no check in')
       })
   }
 
