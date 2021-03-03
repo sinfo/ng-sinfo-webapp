@@ -140,7 +140,7 @@ export class SpeedDateSignComponent implements OnInit {
 
   updateInfo() {
     this.info = `Signed speed date ${this.userRead.name}`
-    this.signatureService.checkSignature(this.userRead, this.myCompany)
+    this.signatureService.signSpeed(this.userRead, this.myCompany)
     this.messageService.add({
       origin: 'Sign and Link',
       showAlert: true,
