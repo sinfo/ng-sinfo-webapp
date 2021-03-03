@@ -4,12 +4,11 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
-import { Session } from './session.model'
-import { User } from '../user/user.model'
-
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
+import { Achievement } from '../user/achievements/achievement.model'
+import { Router } from '@angular/router'
 
 @Injectable()
 export class SessionCannonService {
@@ -19,7 +18,8 @@ export class SessionCannonService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   checkin(sessionId: string, usersId: string[], code?: string) {
@@ -30,7 +30,7 @@ export class SessionCannonService {
       })
     }
 
-    return this.http.post<User>(`${this.sessionsUrl}/${sessionId}/check-in`, {
+    return this.http.post<Achievement>(`${this.sessionsUrl}/${sessionId}/check-in`, {
       users: usersId, code: code
     }, httpOptions)
       .pipe(
@@ -72,6 +72,11 @@ export class SessionCannonService {
         errorObject: error,
         timeout: error.status === 403 ? null : 4000
       })
+
+      if (error.status === 403) {
+        this.router.navigate([`/`])
+      }
+
 
       // Let the app keep running by returning an empty result.
       return of(result)

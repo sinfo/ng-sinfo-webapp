@@ -37,26 +37,26 @@
                 </div>
               </div>
               <div class='padded' style='color: red;'
-                *ngIf='warning && !sessionsSignedin.includes(session.session.id) && selectedSession && selectedSession==session.session'>
+                *ngIf='warning && !sessionsSignedin.has(session.session.id) && selectedSession && selectedSession==session.session'>
                 <b>Warning:</b> Trying to check-in into simultaneous workshops will result in a
                 penalty
               </div>
             </div>
             <div class="col-sm-3 checkin"
-              *ngIf="!sessionsSignedin.includes(session.session.id) && (!selectedSession || selectedSession!=session.session)">
+              *ngIf="!sessionsSignedin.has(session.session.id) && (!selectedSession || selectedSession!=session.session)">
               <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check In</button>
             </div>
             <div class="col-sm-3 checkin"
-              *ngIf="!sessionsSignedin.includes(session.session.id) && selectedSession && selectedSession==session.session">
+              *ngIf="!sessionsSignedin.has(session.session.id) && selectedSession && selectedSession==session.session">
 
               <div class="selected-session">
-                <input #codeinput type="text">
+                <input [(ngModel)]="code" type="text">
               </div>
               <div class="selected-session">
-                <button class="btn btn-button" (click)="submit(codeinput.value)">Submit code</button>
+                <button class="btn btn-button" (click)="submit()">Submit code</button>
               </div>
             </div>
-            <div class="col-sm-3 checkin" *ngIf="sessionsSignedin.includes(session.session.id)">
+            <div class="col-sm-3 checkin" *ngIf="sessionsSignedin.has(session.session.id)">
               <button class="btn btn-success">Checked In!</button>
             </div>
           </div>
