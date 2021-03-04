@@ -17,6 +17,7 @@ import { EventService } from '../../events/event.service'
 export class PickWinnerComponent implements OnInit {
   me: User
   users: User[] = []
+  usersDone = false
   winner: User
 
   achievement: Achievement
@@ -80,14 +81,22 @@ export class PickWinnerComponent implements OnInit {
   showUsers(achievement: Achievement) {
     this.achievement = achievement
     this.users = []
+    const n = achievement.users.length
     achievement.users.forEach(userId => {
       this.userService.getUser(userId).subscribe(user => {
         if (user.role !== 'team') {
           this.users.push(user)
+          if (this.users.length === n) {
+            this.users.sort((a, b) => {
+              return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
+            })
+            this.usersDone = true
+          }
         }
       })
     })
   }
+
 
   chooseWinner() {
     this.winner = this.users[this.randomIntFromInterval(0, this.users.length - 1)]
@@ -100,6 +109,7 @@ export class PickWinnerComponent implements OnInit {
   changeSession() {
     this.winner = null
     this.users = []
+    this.usersDone = false
     this.achievement = null
   }
 

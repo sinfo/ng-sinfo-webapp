@@ -24,7 +24,7 @@
       </div>
 
       <div *ngIf="achievement && users.length > 0 && !winner">
-        <div class="flex-container">
+        <div class="flex-container" *ngIf="usersDone; else loading">
           <div *ngFor="let user of users" class="flex-item small">
             <img appImage [url]="user.img" class="portrait">
             <p>{{user.name}}</p>
@@ -35,6 +35,7 @@
           <button (click)=chooseWinner() type="button" class="btn btn-secondary">Pick Winner</button>
           <button (click)=changeSession() type="button" class="btn btn-secondary">Change Session</button>
         </div>
+        <ng-template #loading><img src='assets/img/logos/loading.gif'></ng-template>
 
       </div>
 
