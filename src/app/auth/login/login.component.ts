@@ -100,10 +100,14 @@ export class LoginComponent implements OnInit, AfterViewInit {
           cookiepolicy: 'single_host_origin',
           scope: GOOGLE_SCOPE
         }).then(() => {
-          GoogleAuth = gapi.auth2.getAuthInstance()
+          try {
+            GoogleAuth = gapi.auth2.getAuthInstance()
 
-          // Listen for sign-in state changes.
-          GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) })
+            // Listen for sign-in state changes.
+            GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) })
+          } catch (err) {
+            console.log(err)
+          }
         })
       })
     }
