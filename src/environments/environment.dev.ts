@@ -65,13 +65,13 @@ export const environment = {
     signaturesCardCapacity: 6,
     signaturesAutoUpdate: 5, //seconds, set to 0 to enable manual update
     facebook: {
-      appId: '1993609550676550' // development appId
+      appId: '708252219264170'
     },
     google: {
-      clientId: '744740842123-4fs8tbutopitaqpfsk3rnhkkdkut7q3d.apps.googleusercontent.com'
+      clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
     },
     fenix: {
-      clientId: '1132965128044831',
+      clientId: '1695915081466129',
       redirectUrl: 'https://app-staging.sinfo.org/login'
     },
     linkedin: {
