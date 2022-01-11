@@ -38,4 +38,4 @@ jobs:
       uses: nickgronow/kubectl@master
       with:
         config_data: ${{ secrets.KUBE_CONFIG_DATA }}
-        args: delete pod --selector="app=webapp-staging-app" --namespace=staging        
+        args: delete pod --selector="app=webapp-staging-app" --namespace=staging
