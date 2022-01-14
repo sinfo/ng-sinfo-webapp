@@ -2,14 +2,14 @@
   <div class="header-wrapper">
     <div [ngClass]="{'header-row': screenWidth >= 768, 'col-sm-2 col-xs-12 navigation-header': screenWidth < 768 }">
       <div class="drawer">
-        <a routerLink="/" class="logo">
-          <img id="logo_white" src="assets/img/logo-branco2.png" alt="Sinfo">
-        </a>
         <button *ngIf="screenWidth < 768" class="navbar-toggle collapsed" (click)="toggleDropdown()" aria-label="Menu">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a routerLink="/" class="logo_w">
+          <img id="logo_white" src="assets/img/PowerOn.png" alt="Sinfo">
+        </a>
       </div>
 
       <div class="col-sm-10 col-xs-12 navigation-container">
@@ -41,7 +41,7 @@
 
           </ul>
           <ul class="navigation-list pull-right light-text" [ngClass]="{'wide-right': screenWidth >= 768}">
-            <li *ngIf="!isLoggedIn" class="navigation-item" (click)="closeDropdown()">
+            <!-- <li *ngIf="!isLoggedIn" class="navigation-item" (click)="closeDropdown()">
               <a routerLink="/login" class="navigation-link">
                 <span class="fa fa-sign-in"></span> Login
               </a>
@@ -55,6 +55,167 @@
             <li *ngIf="isLoggedIn" class="navigation-item" (click)="closeDropdown()">
               <a (click)="onLogout()" class="navigation-link">
                 <span class="fa fa-sign-out"></span> Logout
+              </a>
+            </li> -->
+
+            <li *ngIf="isLoggedIn" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/qrcode" routerLinkActive="active" class="navigation-link">
+                <!-- <img src="assets/img/icons/sidebar/qrcode.png"> -->
+                QR Code
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role !== 'company'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/cv" routerLinkActive="active" class="navigation-link">
+                <!-- <img *ngIf="isCvUpdated" src="assets/img/icons/sidebar/cv.png"> -->
+                <!-- <img *ngIf="!isCvUpdated" src="assets/img/icons/sidebar/cvnotification.png"> -->
+                Upload CV
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role === 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/sessions" routerLinkActive="active" class="navigation-link">
+                <i class="glyphicon glyphicon-qrcode"></i>
+                Sessions
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role === 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/checkin" routerLinkActive="active" class="navigation-link">
+                <i class="glyphicon glyphicon-qrcode"></i>
+                Check-in
+              </a>
+            </li>
+
+
+            <li *ngIf="user && user.role == 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/validate-card" routerLinkActive="active" class="navigation-link">
+                <i class="glyphicon glyphicon-search"></i>
+                Validate Card
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role === 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/promote" routerLinkActive="active" class="navigation-link">
+                <i class="glyphicon glyphicon-king"></i>
+                Promote
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role === 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/secret-codes" routerLinkActive="active" class="navigation-link">
+                <i class="glyphicon glyphicon-upload"></i>
+                Secret Achievements
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role === 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a href="#pickSubmenu" data-toggle="collapse" attr.aria-expanded="{{ detectLocation('/user/pick') }}"
+                class="navigation-link">
+                <i class="glyphicon glyphicon-flag"></i>
+                Pick Winner
+              </a>
+              <!-- <ul class="collapse list-unstyled" id="pickSubmenu"
+                [ngClass]="{'in': detectLocation('/user/pick'), 'collapse': !detectLocation('/user/pick')}">
+                <li [ngClass]="{'active': detectLocation('/user/pick-winner')}">
+                  <a routerLink="/user/pick-winner">Sessions</a>
+                </li>
+                <li [ngClass]="{'active': detectLocation('/user/pick-best-rest')}">
+                  <a routerLink="/user/pick-best-rest">Best of the Rest</a>
+                </li>
+              </ul> -->
+            </li>
+
+            <li *ngIf="user && user.role === 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/pick-winner" routerLinkActive="active" class="navigation-link">
+                <i class="glyphicon glyphicon-flag"></i>
+                Pick Winner
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role === 'company'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/downloads/download" routerLinkActive="active" class="navigation-link">
+                <i class="glyphicon glyphicon-paperclip"></i>
+                Download CVs
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role === 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a href="#downloadsSubmenu" data-toggle="collapse"
+                attr.aria-expanded="{{ detectLocation('/user/downloads') }}" class="navigation-link">
+                <i class="glyphicon glyphicon-paperclip"></i>
+                Manage Downloads
+              </a>
+              <!-- <ul class="collapse list-unstyled" id="downloadsSubmenu"
+                [ngClass]="{'in': detectLocation('/user/downloads'), 'collapse': !detectLocation('/user/downloads')}">
+                <li [ngClass]="{'active': detectLocation('/user/downloads/download')}">
+                  <a routerLink="/user/downloads/download">Download CVs</a>
+                </li>
+                <li [ngClass]="{'active': detectLocation('/user/downloads/status')}">
+                  <a routerLink="/user/downloads/status">Endpoints Status</a>
+                </li>
+                <li [ngClass]="{'active': detectLocation('/user/downloads/manage')}">
+                  <a routerLink="/user/downloads/manage">Create Endpoints</a>
+                </li>
+              </ul> -->
+            </li>
+
+            <li *ngIf="user && user.role === 'company'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/links/link" routerLinkActive="active" class="navigation-link">
+                <i class="fa fa-check"></i>
+                Sign and Link Card
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role === 'company'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/links/my-links" routerLinkActive="active" class="navigation-link">
+                <i class="glyphicon glyphicon-duplicate"></i>
+                My links
+              </a>
+            </li>
+
+
+            <li *ngIf="user && user.role !== 'company'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/workshops" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                class="navigation-link">
+                <!-- <img src="assets/img/icons/sidebar/workshops.png"> -->
+                Workshops
+              </a>
+            </li>
+
+
+            <li *ngIf="user && user.role === 'team'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/workshops/workshops-status" routerLinkActive="active" class="navigation-link">
+                <!-- <img src="assets/img/icons/sidebar/workshops.png"> -->
+                Workshop Status
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role !== 'company'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/achievements" routerLinkActive="active" class="navigation-link">
+                <!-- <img src="assets/img/icons/sidebar/achievements.png"> -->
+                Achievements
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role !== 'company'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/redeem" routerLinkActive="active" class="navigation-link">
+                <!-- <img src="assets/img/icons/sidebar/qrcode-achievement.svg"> -->
+                Secret Achievements
+              </a>
+            </li>
+
+            <li *ngIf="user && user.role !== 'company'" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/card" routerLinkActive="active" class="navigation-link">
+                <!-- <img src="assets/img/icons/sidebar/card.svg"> -->
+                My card
+              </a>
+            </li>
+
+            <li *ngIf="user" class="navigation-item" (click)="closeDropdown()">
+              <a routerLink="/user/promocodes" routerLinkActive="active" class="navigation-link">
+                <!-- <img src="assets/img/icons/sidebar/discount-coupon-white.png"> -->
+                Promo Codes
               </a>
             </li>
           </ul>

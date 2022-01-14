@@ -1,11 +1,11 @@
-<app-menu></app-menu>
+<app-menu [user]="user"></app-menu>
 
 <app-loading [content]="user"></app-loading>
 
 <div *ngIf="user" class="user-wrapper">
-  <div class="sidebar">
+  <!-- <div class="sidebar">
     <app-sidebar [user]="user"></app-sidebar>
-  </div>
+  </div> -->
 
   <div class="profile-content">
     <router-outlet></router-outlet>

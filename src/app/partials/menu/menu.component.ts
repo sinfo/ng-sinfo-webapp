@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService } from '../../message.service'
 import { EventService } from '../../events/event.service'
 import { Event } from '../../events/event.model'
 import { environment } from '../../../environments/environment.prod'
-import { HostListener } from "@angular/core";
+import { HostListener } from "@angular/core"
+import { User } from '../../user/user.model'
 
 @Component({
   selector: 'app-menu',
@@ -13,6 +14,10 @@ import { HostListener } from "@angular/core";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+
+  @Input() user: User
+
+
   isLoggedIn = false
   shortEventList: Event[]
   id_to_url = environment.id_to_url

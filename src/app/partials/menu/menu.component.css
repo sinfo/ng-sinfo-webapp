@@ -17,8 +17,9 @@
 #logo_white {
   height: 40px;
 }
-.logo{
-  position: relative
+.logo_w{
+  position: relative;
+  padding: 0 12px;
 }
 .label {    
   position: absolute;
