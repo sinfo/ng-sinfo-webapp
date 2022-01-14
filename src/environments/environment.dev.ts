@@ -72,7 +72,7 @@ export const environment = {
     },
     fenix: {
       clientId: '851490151334170',
-      redirectUrl: 'https://app-staging.sinfo.org/login'
+      redirectUrl: 'https://app-staging.sinfo.org'
     },
     linkedin: {
       clientId: '78k3k77vq56igl',
