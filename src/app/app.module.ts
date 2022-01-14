@@ -93,7 +93,6 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component';
 import { NumberPickerModule } from 'ng-number-picker';
 import { MarkdownModule } from 'ngx-markdown';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 library.add(fas)
@@ -171,7 +170,6 @@ library.add(fas)
     FontAwesomeModule,
     ClipboardModule,
     NumberPickerModule,
-    MatToolbarModule,
     MarkdownModule.forRoot()
   ],
   providers: [
