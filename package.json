@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-hashing=all && gzipper --verbose ./dist",
-    "build-dev": "ng build --configuration staging --output-hashing=all && gzipper --verbose ./dist",
+    "build": "ng build --prod --output-hashing=all && gzipper compress --verbose ./dist",
+    "build-dev": "ng build --configuration staging --output-hashing=all && gzipper compress --verbose ./dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
