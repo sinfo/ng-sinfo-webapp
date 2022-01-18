@@ -150,7 +150,7 @@ button {
 }
 
 .limit-width{
-    max-width: calc(100%-100px);
+    max-width: calc(100% - 100px);
 }
 
 @media(max-width: 975px){
