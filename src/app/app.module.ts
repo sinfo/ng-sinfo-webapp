@@ -93,6 +93,13 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component';
 import { NumberPickerModule } from 'ng-number-picker';
 import { MarkdownModule } from 'ngx-markdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 
 library.add(fas)
@@ -170,7 +177,14 @@ library.add(fas)
     FontAwesomeModule,
     ClipboardModule,
     NumberPickerModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
   ],
   providers: [
     SpeakerService,
