@@ -1,13 +1,106 @@
-<app-menu [user]="user"></app-menu>
+<!-- <app-menu [user]="user"></app-menu> -->
+<mat-toolbar class='topbar'>
+  <button mat-icon-button style="color: white; background-color: black;" class="example-icon"
+    aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span><a routerLink="/" class="logo_w">
+      <img id="logo_white" src="assets/img/PowerOn.png" alt="Sinfo">
+    </a></span>
 
-<app-loading [content]="user"></app-loading>
+</mat-toolbar>
 
-<div *ngIf="user" class="user-wrapper">
-  <!-- <div class="sidebar">
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" class='sidenav'>
+    <mat-nav-list>
+      <a mat-list-item href="https://sinfo.org" target="_blank" (click)="sidenav.toggle()" class="navigation-link">Go to
+        website</a>
+      <a *ngIf="isLoggedIn" mat-list-item routerLink="/user/qrcode" routerLinkActive="active" (click)="sidenav.toggle()"
+        class="navigation-link">
+        <mat-icon>dashboard</mat-icon>
+        QR Code
+      </a>
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/cv" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <!-- <img *ngIf="isCvUpdated" src="assets/img/icons/sidebar/cv.png">
+        <img *ngIf="!isCvUpdated" src="assets/img/icons/sidebar/cvnotification.png"> -->
+        Upload CV
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/sessions" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>calendar_today</mat-icon>
+        Sessions
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/checkin" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>done_outline</mat-icon>
+        Check-in
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/validate-card" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>search</mat-icon>
+        Validate Card
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/promote" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>verified_user</mat-icon>
+        Promote
+      </a>
+      <a *ngIf="user && user.role === 'company'" mat-list-item routerLink="/user/downloads/download"
+        routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>get_app</mat-icon>
+        Download CVs
+      </a>
+      <a *ngIf="user && user.role === 'company'" mat-list-item routerLink="/user/links/link" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>done_outline</mat-icon>
+        Sign and Link Card
+      </a>
+      <a *ngIf="user && user.role === 'company'" mat-list-item routerLink="/user/links/my-links"
+        routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon> forum</mat-icon>
+        My links
+      </a>
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/workshops" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon> business</mat-icon>
+        Workshops
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/workshops/workshops-status"
+        routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>info</mat-icon>
+        Workshop Status
+      </a>
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/achievements" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>grade</mat-icon>
+        Achievements
+      </a>
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/card" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>school</mat-icon>
+        My card
+      </a>
+      <a *ngIf="user" mat-list-item routerLink="/user/promocodes" routerLinkActive="active" (click)="sidenav.toggle()"
+        class="navigation-link">
+        <mat-icon>receipt</mat-icon>
+        Promo Codes
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-loading [content]="user"></app-loading>
+
+    <div *ngIf="user" class="user-wrapper">
+      <!-- <div class="sidebar">
     <app-sidebar [user]="user"></app-sidebar>
   </div> -->
 
-  <div class="profile-content">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+      <div class="profile-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

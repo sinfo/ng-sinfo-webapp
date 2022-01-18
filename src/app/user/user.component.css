@@ -5,20 +5,24 @@
   flex-direction: row;
   
   width: 100vw;
-
-  height: calc(100vh - 100px)
 }
 
-@media (max-width: 767px) {
-  .user-wrapper {
-    height: calc(100vh - 71px);
-    top: 71px;
-  }
+.topbar{
+  background-color: black;
+  height: 6vh;
 }
 
-.sidebar {
-  height: 100%;
-  width: 20%;
+.sidenav{
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+}
+
+#logo_white {
+  height: 40px;
+}
+.logo_w{
+  position: relative;
+  padding: 0 12px;
 }
 
 .profile-content {
@@ -30,8 +34,21 @@
   overflow-x: hidden;
 }
 
-@media(min-width: 975px){
-  .sidebar {
-    width: 100px;
-  }
+.navigation-item{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation-link {
+  font-size: 1.5vh;
+}
+
+#sidenav ul li a i,
+#sidenav ul li a img {
+  max-height: 4vh;
 }
