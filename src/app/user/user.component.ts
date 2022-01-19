@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { Component, HostListener, OnInit } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
 
 import { UserService } from './user.service'
 import { User } from './user.model'
@@ -18,9 +18,11 @@ export class UserComponent implements OnInit {
   achievements: Achievement[]
   opened: boolean
   isLoggedIn = false
+  screenWidth: number
 
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private route: ActivatedRoute,
@@ -36,11 +38,23 @@ export class UserComponent implements OnInit {
       this.user = me
     })
     this.isLoggedIn = this.authService.isLoggedIn()
+  }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenWidth = window.innerWidth;
   }
 
   getUserAchievements(id: string): void {
     this.userService.getUserAchievements(id)
       .subscribe(achievements => this.achievements = achievements)
+  }
+
+  onLogout(): void {
+    this.authService.logout()
+
+    this.router.url === '/'
+      ? window.location.reload()
+      : this.router.navigate(['/'])
   }
 }
