@@ -7124,9 +7124,9 @@ div.clear input.btn:hover {
     border: none;
   }
 
-  .navigation-link:not(.active):not(:hover):not(:focus):not(:active) {
+  /* .navigation-link:not(.active):not(:hover):not(:focus):not(:active) {
     color: #262627;
-  }
+  } */
 }
 
 @media (max-width: 480px) {

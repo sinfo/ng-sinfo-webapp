@@ -9,21 +9,21 @@
 
 .topbar{
   background-color: black;
-  height: 6vh;
+  height: 7vh;
 }
 
 .sidenav{
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.85);
   color: white;
 }
 
 #logo_white {
-  height: 40px;
+  max-height: 7vh;
+  max-width: 7vh;
+  padding: 0.7vh 0 0 0;
+  margin-left: 1vw;
 }
-.logo_w{
-  position: relative;
-  padding: 0 12px;
-}
+
 
 .profile-content {
   flex-grow: 1;
@@ -46,9 +46,34 @@
 
 .navigation-link {
   font-size: 1.5vh;
+  margin-right: 1vw;
 }
 
 #sidenav ul li a i,
 #sidenav ul li a img {
   max-height: 4vh;
+}
+
+.list-item {
+  padding-left: 1vw;
+}
+
+.navlist{
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.gap{
+  height: 100%;
+  flex-grow: 10;
+}
+
+.fab{
+  box-shadow: black;
+  background-color:#2C49A6;
+  color: white;
+  position: fixed;
+  bottom: 3vh;
+  right: 3vh;
 }
