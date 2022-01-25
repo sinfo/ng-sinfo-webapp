@@ -6,7 +6,7 @@ This was generated with [Angular CLI](https://github.com/angular/angular-cli)
 
 ## Prerequisites
 
-Both the CLI and generated project have dependencies that require **Node 6.9.0** or higher, together with **NPM 3** or higher.
+Both the CLI and generated project have dependencies that require **Node 14.15.0** or higher, together with **NPM 6** or higher.
 
 You need to install Angular CLI globally
 
