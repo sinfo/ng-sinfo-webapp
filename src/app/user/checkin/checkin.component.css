@@ -13,15 +13,15 @@ button.btn {
   padding: 13px;
   letter-spacing: 2px;
   font-size: 14px;
-  font-family: "PT Sans";
   margin: 0;
 }
 .destroy {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 5%;
 }
-.destroy button {
+.destroy > button {
   margin-top: 8%;
   margin-bottom: 8%;
   width: 80%;
@@ -62,9 +62,6 @@ h4.name {
 }
 .session-details div.padded {
   padding-right: 10px;
-}
-.session-details span {
-  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 p.description {
   text-align: justify;
@@ -109,4 +106,38 @@ div.img-wrapper img {
   .workshop-wrapper {
     flex-direction: column;
   }
+}
+
+.unregistered{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unregistered button{
+  margin-top: 8%;
+  margin-bottom: 8%;
+  width: 30%;
+  font-size: 4vh;
+  min-width: none!important;
+}
+
+.unregistered .box {
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 10%;
+  font-size: 4vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+mat-slide-toggle{
+  transform: scale(1.5);
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }

@@ -38,6 +38,7 @@ export class UserComponent implements OnInit {
       this.user = me
     })
     this.isLoggedIn = this.authService.isLoggedIn()
+    this.screenWidth = window.innerWidth
   }
 
   @HostListener('window:resize', ['$event'])

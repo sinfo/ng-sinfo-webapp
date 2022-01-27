@@ -13,10 +13,7 @@
     <div class="col-sm-12">
       <h6 class="lead">
         Earn points by completing achievements.
-        <br> At the end of the day we will award the
-        <strong>
-          <a routerLink="/user/scoreboard">scoreboard</a>
-        </strong> leader.
+        <br> Each point increases your chance of being awarded a prize at the end of the day!
       </h6>
     </div>
   </div>
@@ -24,11 +21,6 @@
   <div class="alert alert-info col-sm-12">
     <span *ngIf="user && myAchievements !== undefined && activeAchievements && myPoints !== undefined">
       <strong>You have unlocked {{ myAchievements }} of {{ activeAchievements.total.number }} ({{myPoints}} points)
-      </strong>
-    </span>
-    <span class="scoreboard">
-      <strong>
-        <a routerLink="/user/scoreboard">See the Scoreboard</a>
       </strong>
     </span>
   </div>
@@ -98,7 +90,7 @@
         </div>
       </div>
 
-      <div class='row'>
+      <!-- <div class='row'>
         <h5>Speed Dates</h5>
         <div *ngIf="activeAchievements.speedDates.length > 0; else noAchievements">
 
@@ -111,12 +103,12 @@
               [ngClass]="{'unlocked': isUnlocked(achievement)}" alt="{{achievement.name}}" title="{{achievement.name}}">
           </a>
         </div>
-      </div>
+      </div> -->
 
       <div class='row'>
 
         <h5>Miscellaneous</h5>
-        <div *ngIf="activeAchievements.cv || activeAchievements.other.length > 0">
+        <div *ngIf="activeAchievements.cv || activeAchievements.other.length > 0; else noAchievements">
 
           <div *ngIf="activeAchievements.cv">
             <a routerLink="/user/achievement/{{activeAchievements.cv.id}}">

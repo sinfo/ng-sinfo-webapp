@@ -94,6 +94,10 @@ div.achivements-wrapper img.achievement {
   background: #2C49A6;
   padding: 3vh 3vw;
   border-radius: 15px;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .footer-nav-item{
@@ -107,29 +111,29 @@ div.achivements-wrapper img.achievement {
   color: white;
 }
 
-.qrcode-animation {
+/* .qrcode-animation {
   opacity: 0;
 
-  transition: opacity 0.2s ease-in; /* vendorless fallback */
-       -o-transition: opacity 0.2s ease-in; /* opera */
-      -ms-transition: opacity 0.2s ease-in; /* IE 10 betas, not needed in final build. */
-     -moz-transition: opacity  0.2s ease-in; /* Firefox */
-  -webkit-transition: opacity 0.2s ease-in; /*safari and chrome */
+  transition: opacity 0.2s ease-in; 
+       -o-transition: opacity 0.2s ease-in; 
+      -ms-transition: opacity 0.2s ease-in; 
+     -moz-transition: opacity  0.2s ease-in; 
+  -webkit-transition: opacity 0.2s ease-in; 
 }
 
 .qrcode-animation:hover {
   opacity: 1;    
-          transition: opacity 0.2s ease-in; /* vendorless fallback */
-       -o-transition: opacity 0.2s ease-in; /* opera */
-      -ms-transition: opacity 0.2s ease-in; /* IE 10 betas, not needed in final build. */
-     -moz-transition: opacity  0.2s ease-in; /* Firefox */
-  -webkit-transition: opacity 0.2s ease-in; /*safari and chrome */
+          transition: opacity 0.2s ease-in; 
+       -o-transition: opacity 0.2s ease-in; 
+      -ms-transition: opacity 0.2s ease-in; 
+     -moz-transition: opacity  0.2s ease-in; 
+  -webkit-transition: opacity 0.2s ease-in; 
 
   cursor: pointer;
-}
+} */
 
 
-.copy {
+/* .copy {
   grid-area: 1 / 1 / 2 / 2;
   width: 100%;
   height: 100%;
@@ -142,7 +146,7 @@ div.achivements-wrapper img.achievement {
 
   border-radius: 15px;
   background-color: #ffffffc2;
-}
+} */
 
 .copyIcon {
   display: flex;
