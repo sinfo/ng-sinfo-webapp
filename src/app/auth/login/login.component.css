@@ -40,3 +40,15 @@ a.btn i {
 .row .fa {
   color: white
 }
+
+
+.topbar{
+  background-color: black;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+}
+
+#logo_white {
+  max-height: 7vh;
+}

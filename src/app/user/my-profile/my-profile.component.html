@@ -21,15 +21,15 @@
       <h4 class="name">
         {{user.id}}
       </h4>
-      <h6 class="name">
+      <!-- <h6 class="name">
         (click QR code to copy!)
       </h6>
       <h3 class='name'>
         <div id='tooltip' class='name transition' style='opacity: 0;'>Copied!</div>
-      </h3>
+      </h3> -->
 
-      <div class="qrcode-grid " (click)="copyToClipboard(t1)">
-        <qrcode class="qrcodeimg" [qrdata]="user.id" [level]="'M'"></qrcode>
+      <div class="qrcode-grid ">
+        <qrcode class="qrcodeimg" [qrdata]="user.id" [level]="'L'"></qrcode>
         <div class="copy qrcode-animation">
           <div class="copyIcon">
             <fa-icon [icon]="['fas', 'copy']"></fa-icon>
@@ -60,14 +60,14 @@
         </small>
 
       </p>
-      <ul class="footer-nav">
+      <!-- <ul class="footer-nav">
         <li class="footer-nav-item">
-          <a routerLink="/privacy-policy">Privacy policy</a>
+          <a routerLink="/user/privacy-policy">Privacy policy</a>
         </li>
         <li class="footer-nav-item">
-          <a routerLink="/coc">Code of Conduct</a>
+          <a routerLink="/user/coc">Code of Conduct</a>
         </li>
-      </ul>
+      </ul> -->
     </div>
   </div>
 </div>

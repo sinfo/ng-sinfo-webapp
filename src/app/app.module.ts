@@ -100,6 +100,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { CommonModule } from '@angular/common';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 library.add(fas)
@@ -164,9 +166,11 @@ library.add(fas)
     SelfcheckinComponent,
     SpeedDatesComponent,
     SpeedDateSignComponent,
-    SecretAchievementsComponent
+    SecretAchievementsComponent,
   ],
   imports: [
+    MatSlideToggleModule,
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     Routing,

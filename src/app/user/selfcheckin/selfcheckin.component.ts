@@ -97,7 +97,7 @@ export class SelfcheckinComponent implements OnInit {
   }
 
   submit() {
-    this.sessionCannonService.checkin(this.selectedSession.id, [this.me.id], this.code)
+    this.sessionCannonService.checkin(this.selectedSession.id, [this.me.id], 0, this.code)
       .subscribe((ach: Achievement) => {
         this.code = ''
         this.selectedSession = null

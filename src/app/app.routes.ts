@@ -94,7 +94,9 @@ const routes: Routes = [
       { path: 'workshops/workshops-status', component: WorkshopsStatusComponent, canActivate: [IsTeamGuard] },
       { path: 'validate-card', component: ValidateCardComponent, canActivate: [IsTeamGuard] },
       { path: 'promote', component: PromoteComponent, canActivate: [IsTeamGuard] },
-      { path: 'sessions', component: SessionsComponent, canActivate: [IsTeamGuard] }
+      { path: 'sessions', component: SessionsComponent, canActivate: [IsTeamGuard] },
+      { path: 'coc', component: CodeOfConductComponent },
+      { path: 'privacy-policy', component: PrivacyPolicyComponent }
     ]
   },
 

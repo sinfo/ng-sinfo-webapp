@@ -10,7 +10,7 @@
 
 </mat-toolbar>
 
-<mat-sidenav-container style="height: 100%;">
+<mat-sidenav-container class='sidenav-container'>
   <mat-sidenav #sidenav mode="side" [(opened)]="opened" class='sidenav'>
     <mat-nav-list class='navlist'>
       <a mat-list-item href="https://sinfo.org" target="_blank" (click)="sidenav.toggle()" class="navigation-link">
@@ -26,11 +26,6 @@
         (click)="sidenav.toggle()" class="navigation-link">
         <mat-icon>account_box</mat-icon>
         <span class="list-item">Upload CV</span>
-      </a>
-      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/sessions" routerLinkActive="active"
-        (click)="sidenav.toggle()" class="navigation-link">
-        <mat-icon>calendar_today</mat-icon>
-        <span class="list-item">Sessions</span>
       </a>
       <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/checkin" routerLinkActive="active"
         (click)="sidenav.toggle()" class="navigation-link">
@@ -88,8 +83,18 @@
         <span class="list-item">Promo Codes</span>
       </a>
       <div class='gap'></div>
+      <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()" routerLink="/user/privacy-policy"
+        routerLinkActive="active" class="navigation-link">
+        <mat-icon>info</mat-icon>
+        <span class="list-item">Privacy Policy</span>
+      </a>
+      <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()" routerLink="/user/coc" routerLinkActive="active"
+        class="navigation-link">
+        <mat-icon>info</mat-icon>
+        <span class="list-item">Code of Conduct</span>
+      </a>
       <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()" (click)="onLogout()" class="navigation-link">
-        <mat-icon>arrow_back_ios</mat-icon>
+        <mat-icon>exit_to_app</mat-icon>
         <span class="list-item">Logout</span>
       </a>
 
@@ -100,10 +105,6 @@
     <app-loading [content]="user"></app-loading>
 
     <div *ngIf="user" class="user-wrapper">
-      <!-- <div class="sidebar">
-    <app-sidebar [user]="user"></app-sidebar>
-  </div> -->
-
       <div class="profile-content">
         <router-outlet></router-outlet>
         <button *ngIf="screenWidth < 768" mat-fab class='fab' routerLink="/user/qrcode"

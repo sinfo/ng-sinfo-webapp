@@ -22,7 +22,7 @@ export class SessionCannonService {
     private router: Router
   ) { }
 
-  checkin(sessionId: string, usersId: string[], code?: string) {
+  checkin(sessionId: string, usersId: string[], unregisteredUsers?: Number, code?: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export class SessionCannonService {
     }
 
     return this.http.post<Achievement>(`${this.sessionsUrl}/${sessionId}/check-in`, {
-      users: usersId, code: code
+      users: usersId, code: code, unregisteredUsers: unregisteredUsers ? unregisteredUsers : 0
     }, httpOptions)
       .pipe(
         catchError(this.handleErrorCheckIn<any>('check-in'))
