@@ -102,6 +102,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
+import { GdprDialogComponent } from './user/cv/gdpr-dialog/gdpr-dialog.component'
 
 
 library.add(fas)
@@ -167,10 +169,12 @@ library.add(fas)
     SpeedDatesComponent,
     SpeedDateSignComponent,
     SecretAchievementsComponent,
+    GdprDialogComponent
   ],
   imports: [
     MatSlideToggleModule,
     CommonModule,
+    MatDialogModule,
     BrowserModule,
     HttpClientModule,
     Routing,
@@ -189,6 +193,7 @@ library.add(fas)
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
+    MatDialogModule,
   ],
   providers: [
     SpeakerService,
