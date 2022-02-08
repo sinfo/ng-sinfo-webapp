@@ -68,8 +68,24 @@
                   "with": "src/environments/environment.dev.ts"
                 }
               ]
+            },
+            "development": {
+              "optimization": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
@@ -80,8 +96,12 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-sinfo-webapp:build:production"
+            },
+            "development": {
+              "browserTarget": "ng-sinfo-webapp:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
