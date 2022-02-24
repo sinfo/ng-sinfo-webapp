@@ -15,12 +15,12 @@
 
     <div class="qrcode">
 
-      <h5 class="name">
+      <!-- <h5 class="name">
         Your ID:
       </h5>
       <h4 class="name">
         {{user.id}}
-      </h4>
+      </h4> -->
       <!-- <h6 class="name">
         (click QR code to copy!)
       </h6>
@@ -30,11 +30,11 @@
 
       <div class="qrcode-grid ">
         <qrcode class="qrcodeimg" [qrdata]="user.id" [level]="'L'"></qrcode>
-        <div class="copy qrcode-animation">
+        <!-- <div class="copy qrcode-animation">
           <div class="copyIcon">
             <fa-icon [icon]="['fas', 'copy']"></fa-icon>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <h3 class="name">
