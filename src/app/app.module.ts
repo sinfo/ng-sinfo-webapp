@@ -104,6 +104,8 @@ import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GdprDialogComponent } from './user/cv/gdpr-dialog/gdpr-dialog.component'
+import { MatCardModule } from '@angular/material/card'
+import { MatTabsModule } from '@angular/material/tabs'
 
 
 library.add(fas)
@@ -194,6 +196,8 @@ library.add(fas)
     MatToolbarModule,
     MatListModule,
     MatDialogModule,
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [
     SpeakerService,

@@ -19,12 +19,12 @@
     <app-loading [content]="!submitting"></app-loading>
 
     <div class="row align-center" *ngIf="!submitting">
-      <div class="col-md-3 col-xs-12">
+      <!-- <div class="col-md-3 col-xs-12">
         <button class="btn btn-facebook" (click)="onFacebookLogin()" [disabled]="!isFacebookActive">
           <i class="fa fa-facebook"></i>
           Sign in with Facebook
         </button>
-      </div>
+      </div> -->
 
       <div class="col-md-3 col-xs-12">
         <button id="google-signin" (click)="onGoogleLogin()" class="btn btn-google" [disabled]="!isGoogleActive">

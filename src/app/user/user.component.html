@@ -62,6 +62,16 @@
         <mat-icon> business</mat-icon>
         <span class="list-item">Workshops</span>
       </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/pick-winner" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>cake</mat-icon>
+        <span class="list-item">Pick Winner</span>
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/pick-best-rest" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>cake</mat-icon>
+        <span class="list-item">Daily Prize</span>
+      </a>
       <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/workshops/workshops-status"
         routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
         <mat-icon>info</mat-icon>
@@ -108,7 +118,7 @@
       <div class="profile-content">
         <router-outlet></router-outlet>
         <button *ngIf="screenWidth < 768" mat-fab class='fab' routerLink="/user/qrcode"
-          aria-label="Example icon button with a home icon">
+          aria-label="Example icon button with a home icon" style="z-index: 99999;">
           <mat-icon>home</mat-icon>
         </button>
       </div>

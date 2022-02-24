@@ -1,7 +1,7 @@
 <div class="align-center pad">
   <div class="row">
     <div class="col-sm-12 align-center">
-      <h3 class="title">Best of the Rest</h3>
+      <h3 class="title">Daily Prize</h3>
     </div>
   </div>
 
@@ -28,6 +28,7 @@
         <div class="portrait-wrapper">
           <img appImage [url]="winner.img" class="portrait">
           <p>{{winner.name}}</p>
+          <p>{{winner.points}}</p>
 
           <div class="actions">
             <button (click)=chooseWinner() type="button" class="btn btn-secondary">Reroll</button>
