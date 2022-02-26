@@ -1,4 +1,4 @@
-<div class="col-sm-12" *ngIf="ticket && workshop">
+<div class="col-sm-12" *ngIf="workshop">
   <div class="well well-sm workshop-wrapper" [ngClass]="{'workshop-collapsed': isRegistrationClosed }">
     <div class="img-wrapper col-sm-2">
       <img src="{{workshop.img}}" alt="{{workshop.name}}" title="{{workshop.name}}">
@@ -8,26 +8,30 @@
       <div class="session-details">
         <div *ngIf="workshop.date" class="padded">
           <p>
-            <i class="fa fa-calendar"></i> {{workshop.date | date:'fullDate':'+0000'}} </p>
+            <i class="fa fa-calendar"></i> {{workshop.date | date:'fullDate':'+0000'}}
+          </p>
         </div>
         <div *ngIf="workshop.date" class="padded">
           <p>
-            <i class="fa fa-clock-o"></i> {{workshop.date | date:'shortTime':'+0000'}} </p>
+            <i class="fa fa-clock-o"></i> {{workshop.date | date:'shortTime':'+0000'}}
+          </p>
         </div>
         <div *ngIf="workshop.duration" class="padded">
           <p>
-            <i class="fa fa-clock-o"></i> {{workshop.duration | date:'h:mm':'+0000'}} </p>
+            <i class="fa fa-clock-o"></i> {{workshop.duration | date:'h:mm':'+0000'}}
+          </p>
         </div>
         <div *ngIf="workshop.place">
           <p>
-            <i class="fa fa-map-marker"></i> {{workshop.place}} </p>
+            <i class="fa fa-map-marker"></i> {{workshop.place}}
+          </p>
         </div>
       </div>
       <div class="hidden">
         <app-workshop-register-button (onRegistrationClosed)="onRegistrationClosed($event)" [user]="user"
           [workshop]="workshop"></app-workshop-register-button>
       </div>
-      <div class="col-sm-12">
+      <div class="col-sm-12" *ngIf="ticket">
         <p>
           <ngb-progressbar type="info" [value]="count">
             <b>{{ ticket.users.length }} of {{ workshop.tickets.max }}</b>
@@ -35,7 +39,7 @@
         </p>
       </div>
       <div class="col-sm-12 align-center">
-        <a class="btn btn-info" href="mailto:?bcc={{ userMails.toString() }}">
+        <a class="btn btn-info" style="font-family: 'PT Sans Caption'" href="mailto:?bcc={{ userMails.toString() }}">
           Email Attendees
         </a>
       </div>

@@ -66,7 +66,7 @@ export class SessionCannonService {
         origin: `SessionService: ${operation}`,
         text: error.status === 403 ?
           `Overlapping workshops detected. You cannot attend multiple workshops at the same time. 
-        Your points for both workshops will be deducted.` : 'Wrong code or code is already invalid.',
+        Your entries for both workshops will be deducted.` : 'Wrong code or code is already invalid.',
         type: Type.error,
         showAlert: true,
         errorObject: error,

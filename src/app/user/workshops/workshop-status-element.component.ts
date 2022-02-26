@@ -36,6 +36,7 @@ export class WorkshopStatusElementComponent implements OnInit {
         this.ticket = ticket
         this.count = ticket && ticket.users ? (ticket.users.length / this.workshop.tickets.max) * 100 : 0
 
+        console.log(this.workshop !== undefined && this.ticket !== undefined)
         this.userService.getUsers(ticket.users).subscribe(users => {
           this.userMails = users && users.map(user => { return user.mail })
         })
