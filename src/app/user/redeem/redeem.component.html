@@ -1,9 +1,9 @@
 <div class="wrapper pad">
-  <app-qrcode-scanner *ngIf="isCamOn" (rawOutput)="receiveRedeemCode($event)" [camStarted]="scannerActive" [title]="title"
-                      [processUser]="processUser" class="camera">
+  <app-qrcode-scanner (rawOutput)="receiveRedeemCode($event)" [camStarted]="scannerActive" [title]="title"
+    [processUser]="processUser" class="camera">
   </app-qrcode-scanner>
 
-  <div class="head-description" *ngIf="!isCamOn">
+  <!-- <div class="head-description" *ngIf="!isCamOn">
     <h3 class="title mb-1">{{ title }}</h3>
     <p>Insert the ID of the secret achievement in the text box below or scan the QR code by switching input</p>
   </div>
@@ -20,5 +20,5 @@
 
   <div class="column">
     <button class="btn btn-warning"  (click)="toggleInputMethod()">{{ isCamOn ? 'Write Achievement ID' : 'Use Camera' }}</button>
-  </div>
+  </div> -->
 </div>

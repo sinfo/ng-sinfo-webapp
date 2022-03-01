@@ -13,23 +13,40 @@ export class PromocodesComponent implements OnInit {
   partners: Promocode[]
   isPartnersEmpty: boolean
 
-  constructor (
+  constructor(
     private partnerService: PromocodesService,
     private sponsorService: SponsorService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.getPartners()
   }
 
-  getPartners (): void {
+  getPartners(): void {
     this.partnerService.getPartners()
       .subscribe(partners => {
         this.getImages(partners)
+        partners.forEach(p => {
+          if (this.isValidHttpUrl(p.code)) {
+            p.link = true
+          }
+        })
       })
   }
 
-  getImages (partners: Promocode[]) {
+  isValidHttpUrl(string) {
+    let url;
+
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;
+    }
+
+    return url.protocol === "http:" || url.protocol === "https:";
+  }
+
+  getImages(partners: Promocode[]) {
 
     partners.forEach(p => {
       this.sponsorService.getSponsor(p.company).subscribe((sponsor: Sponsor) => {
@@ -42,7 +59,7 @@ export class PromocodesComponent implements OnInit {
     this.isPartnersEmpty = this.partners.length === 0
   }
 
-  copy (event, str: string) {
+  copy(event, str: string) {
     const el = document.createElement('textarea')
     el.value = str
     document.body.appendChild(el)
@@ -52,11 +69,11 @@ export class PromocodesComponent implements OnInit {
     event.stopPropagation()
 
     const ttp = document.getElementById('tooltip-' + str)
-    ttp.style.opacity === '0' ? ttp.style.opacity = '0.8' : ttp.style.opacity = '0'
+    ttp.innerHTML = 'Copied!'
 
     setTimeout((_str) => {
       const _ttp = document.getElementById('tooltip-' + _str)
-      _ttp.style.opacity === '0' ? _ttp.style.opacity = '0.8' : _ttp.style.opacity = '0'
+      _ttp.innerHTML = 'Copy'
     }, 1500, str)
   }
 

@@ -66,6 +66,12 @@ div.achivements-wrapper img.achievement {
   color: green;
 }
 
+.card-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .qrcode-wrapper {
   display: flex;
   flex-flow: row;
@@ -74,6 +80,18 @@ div.achivements-wrapper img.achievement {
 
   border: 15px solid white;
   background-color: white;
+}
+
+.card{
+  margin: 5%;
+  height: 100%;
+  background-color: #2C49A6;
+  color: white;
+  max-width: 500px;
+}
+
+.card h5{
+  color: white
 }
 
 .qrcode-grid{

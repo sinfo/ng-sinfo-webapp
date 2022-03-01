@@ -11,30 +11,37 @@
     </h5>
   </div>
 
-  <div class="row qrcode-wrapper">
+  <div class="card-wrapper">
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
+        <div mat-card-avatar *ngIf="user.role === 'company' && company"> <img class="sinfo-logo" src="{{company.img}}">
+        </div>
+        <mat-card-title>
+          {{user.name}}
+        </mat-card-title>
+        <mat-card-subtitle *ngIf="user.role === 'company' && company">
+          <h6 style="color:white;">{{company.name}}</h6>
+        </mat-card-subtitle>
+      </mat-card-header>
+      <qrcode mat-card-image class="qrcodeimg" [qrdata]="user.id" [scale]="8"></qrcode>
+      <mat-card-content>
+        <h5>
+          {{presentationRole}}
+        </h5>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+
+
+  <!-- <div class="row qrcode-wrapper">
 
     <div class="qrcode">
 
-      <!-- <h5 class="name">
-        Your ID:
-      </h5>
-      <h4 class="name">
-        {{user.id}}
-      </h4> -->
-      <!-- <h6 class="name">
-        (click QR code to copy!)
-      </h6>
-      <h3 class='name'>
-        <div id='tooltip' class='name transition' style='opacity: 0;'>Copied!</div>
-      </h3> -->
 
       <div class="qrcode-grid ">
         <qrcode class="qrcodeimg" [qrdata]="user.id" [level]="'L'"></qrcode>
-        <!-- <div class="copy qrcode-animation">
-          <div class="copyIcon">
-            <fa-icon [icon]="['fas', 'copy']"></fa-icon>
-          </div>
-        </div> -->
       </div>
 
       <h3 class="name">
@@ -50,9 +57,9 @@
         </h3>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <!-- <div class="container">
+  <div class="container">
     <div class="col-md-12">
       <p class="text-alt" style="text-align: center">
         <small>Made with ♥ at SINFO - <a href="https://github.com/sinfo/ng-sinfo-webapp" target="_blank">Open source
@@ -60,14 +67,6 @@
         </small>
 
       </p>
-       <ul class="footer-nav">
-        <li class="footer-nav-item">
-          <a routerLink="/user/privacy-policy">Privacy policy</a>
-        </li>
-        <li class="footer-nav-item">
-          <a routerLink="/user/coc">Code of Conduct</a>
-        </li>
-      </ul> 
     </div>
-  </div> -->
+  </div>
 </div>
