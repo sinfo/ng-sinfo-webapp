@@ -19,7 +19,7 @@
       </a>
       <a *ngIf="isLoggedIn" mat-list-item routerLink="/user/qrcode" routerLinkActive="active" (click)="sidenav.toggle()"
         class="navigation-link">
-        <mat-icon>dashboard</mat-icon>
+        <mat-icon>qr_code</mat-icon>
         <span class="list-item">QR Code</span>
       </a>
       <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/cv" routerLinkActive="active"
@@ -119,7 +119,7 @@
         <router-outlet></router-outlet>
         <button *ngIf="screenWidth < 768" mat-fab class='fab' routerLink="/user/qrcode"
           aria-label="Example icon button with a home icon" style="z-index: 99999;">
-          <mat-icon>dashboard</mat-icon>
+          <mat-icon>qr_code</mat-icon>
         </button>
       </div>
     </div>
