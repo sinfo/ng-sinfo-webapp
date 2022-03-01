@@ -14,7 +14,7 @@ div.mini-portrait-wrapper {
   bottom: 0;
   right: 0;
   border-radius: 50%;
-  background-color: rgba(255,255,255, 1);
+  background-color: rgba(255, 255, 255, 1);
   border: 3px solid #048ae6;
   padding: 10px;
   display: flex;
@@ -62,7 +62,8 @@ div.achivements-wrapper img.achievement {
   margin: 5px;
 }
 
-.allSignatures, .allSignatures i {
+.allSignatures,
+.allSignatures i {
   color: green;
 }
 
@@ -78,8 +79,8 @@ div.achivements-wrapper img.achievement {
   justify-content: space-evenly;
   align-items: center;
 
-  border: 15px solid white;
-  background-color: white;
+  border: 15px solid #fafafa;
+  background-color: #fafafa;
 }
 
 .card{
@@ -99,7 +100,6 @@ div.achivements-wrapper img.achievement {
   grid-template-columns: 100%;
   grid-template-rows: 100%;
 
-
   border: 15px solid white;
   background-color: white;
 }
@@ -109,7 +109,7 @@ div.achivements-wrapper img.achievement {
 }
 
 .qrcode {
-  background: #2C49A6;
+  background: #2c49a6;
   padding: 3vh 3vw;
   border-radius: 15px;
   display: flex;
@@ -118,12 +118,12 @@ div.achivements-wrapper img.achievement {
   height: 60vh;
 }
 
-.footer-nav-item{
+.footer-nav-item {
   color: grey;
 }
 
-.footer-nav>li a:not(:hover):not(:focus):not(:active) {
-  color:grey;
+.footer-nav > li a:not(:hover):not(:focus):not(:active) {
+  color: grey;
 }
 .name {
   color: white;
@@ -150,7 +150,6 @@ div.achivements-wrapper img.achievement {
   cursor: pointer;
 } */
 
-
 /* .copy {
   grid-area: 1 / 1 / 2 / 2;
   width: 100%;
@@ -175,31 +174,30 @@ div.achivements-wrapper img.achievement {
   color: #002448;
 }
 
-.tooltip{
-  position: relative
+.tooltip {
+  position: relative;
 }
 
 .role {
-  background: white
+  background: white;
 }
 
-.transition{
+.transition {
   transition: 0.3s;
 }
 
 .show-message {
   color: grey;
-  font-size: 18px
-
+  font-size: 18px;
 }
 
 .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .inputfile + label {
@@ -248,7 +246,7 @@ div.achivements-wrapper img.achievement {
   max-width: 50px;
 }
 
-@media (max-width: 425px){
+@media (max-width: 425px) {
   div.user {
     background-size: 150%;
   }
