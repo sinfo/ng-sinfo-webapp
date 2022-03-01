@@ -67,6 +67,12 @@ div.achivements-wrapper img.achievement {
   color: green;
 }
 
+.card-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .qrcode-wrapper {
   display: flex;
   flex-flow: row;
@@ -77,7 +83,19 @@ div.achivements-wrapper img.achievement {
   background-color: #fafafa;
 }
 
-.qrcode-grid {
+.card{
+  margin: 5%;
+  height: 100%;
+  background-color: #2C49A6;
+  color: white;
+  max-width: 500px;
+}
+
+.card h5{
+  color: white
+}
+
+.qrcode-grid{
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 100%;
@@ -97,6 +115,7 @@ div.achivements-wrapper img.achievement {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  height: 60vh;
 }
 
 .footer-nav-item {

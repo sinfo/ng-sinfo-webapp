@@ -52,3 +52,8 @@ a.btn i {
 #logo_white {
   max-height: 7vh;
 }
+
+.buttons{
+  display: flex;
+  justify-content: space-around;
+}
