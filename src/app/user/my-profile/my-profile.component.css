@@ -97,6 +97,7 @@ div.achivements-wrapper img.achievement {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  height: 60vh;
 }
 
 .footer-nav-item{
