@@ -91,7 +91,7 @@ export class CheckinComponent implements OnInit {
                   end: sessionEnd,
                   countdown: countdown,
                   session: s,
-                  total: ach.unregisteredUsers + ach.users.length,
+                  total: (ach.unregisteredUsers !== undefined ? ach.unregisteredUsers : 0) + (ach.users !== undefined ? ach.users.length : 0),
                   canCheckIn: sessionDate.getDate() === new Date().getDate()
                 })
               }
