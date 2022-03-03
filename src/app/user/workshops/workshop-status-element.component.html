@@ -33,9 +33,16 @@
       </div>
       <div class="col-sm-12" *ngIf="ticket">
         <p>
-          <ngb-progressbar type="info" [value]="count">
-            <b>{{ ticket.users.length }} of {{ workshop.tickets.max }}</b>
-          </ngb-progressbar>
+          <b>{{ ticket.users.length }} of {{ workshop.tickets.max }}</b>
+          <mat-progress-bar mode="determinate" value="{{count}}">
+          </mat-progress-bar>
+        </p>
+      </div>
+      <div class="col-sm-12" *ngIf="!ticket">
+        <p>
+          <b>{{ 0 }} of {{ workshop.tickets.max }}</b>
+          <mat-progress-bar mode="determinate" value="0">
+          </mat-progress-bar>
         </p>
       </div>
       <div class="col-sm-12 align-center">

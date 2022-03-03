@@ -19,7 +19,7 @@ export class UserService {
   private event: Event
   private cv: CV
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private eventService: EventService,
@@ -28,7 +28,7 @@ export class UserService {
     this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
-  getUser (id: string): Observable<User> {
+  getUser(id: string): Observable<User> {
     let headers = {
       'Content-Type': 'application/json',
       'Authorization': ''
@@ -44,7 +44,7 @@ export class UserService {
       )
   }
 
-  getUsers (ids: Array<string>): Observable<User[]> {
+  getUsers(ids: Array<string>): Observable<User[]> {
     let headers = {
       'Content-Type': 'application/json',
       'Authorization': ''
@@ -60,23 +60,23 @@ export class UserService {
       )
   }
 
-  getActiveUsers (): Observable<User[]> {
+  getActiveUsers(): Observable<User[]> {
     let headers = {
       'Content-Type': 'application/json',
       'Authorization': ''
     }
-    
+
     if (this.authService.isLoggedIn()) {
       headers.Authorization = `Bearer ${this.authService.getToken().token}`
     }
 
-    return this.http.get<User[]>(this.usersUrl, { headers: new HttpHeaders(headers)})
+    return this.http.get<User[]>(this.usersUrl, { headers: new HttpHeaders(headers) })
       .pipe(
         catchError(this.handleError<User[]>(`getting all users with achievements`))
       )
   }
 
-  getMe (forceRefresh = false): Observable<User> {
+  getMe(forceRefresh = false): Observable<User> {
     if (this.me && !forceRefresh) {
       return of(this.me)
     }
@@ -96,7 +96,7 @@ export class UserService {
       )
   }
 
-  getCv (): Observable<CV> {
+  getCv(): Observable<CV> {
     if (this.cv) {
       return of(this.cv)
     }
@@ -109,25 +109,28 @@ export class UserService {
     return this.http.get<any>(`${this.filesUrl}/me`, httpOptions)
   }
 
-  isCvUpdated (): Observable<boolean> {
+  isCvUpdated(): Observable<boolean> {
     return this.getCv().pipe(
-      map(cv => {
+      map((cv: CV) => {
         const curr = new Date()
         const year = 1000 * 60 * 60 * 24 * 365 // 1 year
 
         // cvs get old once an event begins
         // if a cv is posted after the current event it is updated
         // if the current event hasn't started yet, a cv is updated if it has less than a year
-        if (new Date(cv.updated).getTime() >= new Date(this.event.date).getTime()) return true
+        if (new Date(cv.updated).getTime() >= new Date(this.event.date).getTime()) {
+          return true
+        }
         if (curr.getTime() < new Date(this.event.date).getTime() &&
-          new Date(cv.updated).getTime() >= new Date(new Date(this.event.date).getTime() - year).getTime()) return true
-
+          new Date(cv.updated).getTime() >= new Date(new Date(this.event.date).getTime() - year).getTime()) {
+          return true
+        }
         return false
       })
     )
   }
 
-  uploadCV (formData: FormData): Observable<any> {
+  uploadCV(formData: FormData): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -139,7 +142,7 @@ export class UserService {
     return this.http.request(req)
   }
 
-  deleteCV (): Observable<any> {
+  deleteCV(): Observable<any> {
     this.cv = null
     const httpOptions = {
       headers: new HttpHeaders({
@@ -150,14 +153,14 @@ export class UserService {
     return this.http.delete<any>(`${this.filesUrl}/me`, httpOptions)
   }
 
-  getUserAchievements (id: string): Observable<Achievement[]> {
+  getUserAchievements(id: string): Observable<Achievement[]> {
     return this.http.get<Achievement[]>(`${this.usersUrl}/${id}/achievements`)
       .pipe(
         catchError(this.handleError<Achievement[]>(`getting user achievements`))
       )
   }
 
-  updateUser (id: string, role: string, company?: string): Observable<User> {
+  updateUser(id: string, role: string, company?: string): Observable<User> {
     if (['user', 'team', 'company'].indexOf(role) === -1) {
       return of(null)
     }
@@ -199,7 +202,7 @@ export class UserService {
     }
   }
 
-  demoteSelf () {
+  demoteSelf() {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -213,7 +216,7 @@ export class UserService {
       )
   }
 
-  removeThisEventsCompanyFromUser (id: string): Observable<User> {
+  removeThisEventsCompanyFromUser(id: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -227,14 +230,14 @@ export class UserService {
       )
   }
 
-  getUserSessions (id: string): Observable<string[]> {
+  getUserSessions(id: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.usersUrl}/${id}/sessions`)
       .pipe(
         catchError(this.handleError<string[]>(`getting user session`))
       )
   }
 
-  validateCard (id: string): Observable<User> {
+  validateCard(id: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -254,7 +257,7 @@ export class UserService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.messageService.add({
         origin: `UserService: ${operation}`,

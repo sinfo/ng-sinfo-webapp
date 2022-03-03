@@ -29,23 +29,22 @@ export class UserComponent implements OnInit {
     private titleService: Title,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.userService.getMe().subscribe((me) => {
       this.user = me;
+      this.userService.isCvUpdated().subscribe(
+        (isCvUpdated) => {
+          this.isCvUpdated = isCvUpdated
+        },
+        () => {
+          this.isCvUpdated = false
+        }
+      );
     });
     this.isLoggedIn = this.authService.isLoggedIn();
     this.screenWidth = window.innerWidth;
-
-    if (this.user) {
-      this.userService.isCvUpdated().subscribe(
-        (isCvUpdated) => (this.isCvUpdated = isCvUpdated),
-        () => {
-          this.isCvUpdated = false;
-        }
-      );
-    }
   }
 
   @HostListener("window:resize", ["$event"])

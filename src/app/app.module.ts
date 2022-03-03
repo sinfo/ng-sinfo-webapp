@@ -107,6 +107,7 @@ import { GdprDialogComponent } from "./user/cv/gdpr-dialog/gdpr-dialog.component
 import { MatCardModule } from "@angular/material/card";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatBadgeModule } from "@angular/material/badge";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 library.add(fas);
 
@@ -198,6 +199,7 @@ library.add(fas);
     MatDialogModule,
     MatCardModule,
     MatTabsModule,
+    MatProgressBarModule
   ],
   providers: [
     SpeakerService,
@@ -225,4 +227,4 @@ library.add(fas);
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

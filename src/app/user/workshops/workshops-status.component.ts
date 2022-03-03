@@ -72,8 +72,6 @@ export class WorkshopsStatusComponent implements OnInit {
               accumulator.push({ date: session.date, workshops: [session] })
               return accumulator
             }, [])
-
-          console.log(this._workshops)
         })
       })
     })
