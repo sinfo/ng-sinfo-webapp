@@ -83,7 +83,7 @@
         <mat-icon>grade</mat-icon>
         <span class="list-item">Achievements</span>
       </a>
-      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/card" routerLinkActive="active"
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/my-card" routerLinkActive="active"
         (click)="sidenav.toggle()" class="navigation-link">
         <mat-icon>school</mat-icon>
         <span class="list-item">My card</span>

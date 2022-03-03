@@ -44,9 +44,9 @@ export class MyCardComponent implements OnInit {
           return s.day === day && s.edition === event.id
         }) || { day: day, edition: event.id, redeemed: false, signatures: [] }
 
-        userSignatures.signatures.sort((a,b) => {return b.date.valueOf() - a.date.valueOf()})
-        userSignatures.signatures = userSignatures.signatures.slice(0, this.signatures.capacity)
-        userSignatures.signatures = [{ companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}]
+        userSignatures.signatures.sort((a, b) => { return b.date.valueOf() - a.date.valueOf() })
+        // userSignatures.signatures = userSignatures.signatures.slice(0, this.signatures.capacity)
+        // userSignatures.signatures = [{ companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}]
 
         userSignatures.signatures.forEach(signature => {
           this.companyService.getCompany(signature.companyId)
