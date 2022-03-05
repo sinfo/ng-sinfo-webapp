@@ -7,4 +7,5 @@ export class Promocode {
   img: string
   flipped: Boolean
   name: string
+  link: Boolean
 }

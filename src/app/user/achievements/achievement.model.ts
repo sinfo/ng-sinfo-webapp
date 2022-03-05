@@ -10,6 +10,7 @@ export class Achievement {
     from: Date,
     to: Date
   }
+  unregisteredUsers: number
   session: string
   img: string
   kind: string

@@ -17,13 +17,14 @@ export class PickBestRestComponent implements OnInit {
   winner: User
   totalEntries: number = 0
 
-  constructor (
+  constructor(
     private router: Router,
     private userService: UserService,
     private eventService: EventService,
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
+
     this.userService.getMe().subscribe(user => {
       this.me = user
 
@@ -32,11 +33,12 @@ export class PickBestRestComponent implements OnInit {
       }
 
       this.eventService.getCurrent().subscribe(event => {
+        this.totalEntries = 0
         this.userService.getActiveUsers().subscribe(users => {
-          this.eligibleUsers = users.slice(3).filter((user) => {
+          this.eligibleUsers = users.filter((user) => {
             return (user.role !== 'team' && user.points > 0)
           })
-          this.eligibleUsers.forEach((user) =>{
+          this.eligibleUsers.forEach((user) => {
             this.totalEntries += user.points
           })
         })
@@ -44,15 +46,16 @@ export class PickBestRestComponent implements OnInit {
     })
   }
 
-  chooseWinner () {
+  chooseWinner() {
     this.winner = null
+
     let ticketChosen = Math.floor(Math.random() * this.totalEntries)
     this.eligibleUsers.every((user) => {
       ticketChosen -= user.points
       if (ticketChosen <= 0) {
         this.winner = user
         return false
-      } 
+      }
       return true
     })
   }

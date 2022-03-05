@@ -22,6 +22,16 @@ export class PickWinnerComponent implements OnInit {
 
   achievement: Achievement
 
+  achievementKinds: Array<{
+    kind: string,
+    achievements: Array<{
+      name: string,
+      start: string,
+      img: string,
+      achievement: Achievement
+    }>
+  }> = []
+
   achievements: Array<{
     name: string,
     start: string,
@@ -38,12 +48,33 @@ export class PickWinnerComponent implements OnInit {
     private titleService: Title
   ) {
     this.achievements = []
+    this.achievementKinds = []
     this.achievementService.getActiveAchievements().subscribe(achievements => {
       achievements.filter(achievement => {
         return achievement.users && achievement.users.length > 0 && achievement.session
       }).forEach(achievement => {
         this.sessionService.getSession(achievement.session).subscribe(session => {
           if (session) {
+            if (this.achievementKinds.filter(e => e.kind === achievement.kind).length === 0) {
+              this.achievementKinds.push({ kind: achievement.kind, achievements: [] })
+            }
+
+            this.achievementKinds.find(e => e.kind === achievement.kind).achievements.push({
+              'name': session.companies.length ? session.companies[0] + ' - ' + session.kind : session.name,
+              'start': session.date,
+              'img': session.img,
+              'achievement': achievement
+            })
+
+            this.achievementKinds.find(e => e.kind === achievement.kind).achievements.sort((a, b): number => {
+              if (a.start === b.start) {
+                return 0
+              }
+              let date1 = new Date(a.start)
+              let date2 = new Date(b.start)
+              return date1 > date2 ? 1 : -1
+            })
+
             this.achievements.push({
               'name': session.companies.length ? session.companies[0] + ' - ' + session.kind : session.name,
               'start': session.date,

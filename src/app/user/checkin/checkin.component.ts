@@ -8,6 +8,8 @@ import { User } from '../user.model'
 import { UserService } from '../user.service'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
+import { AchievementService } from '../achievements/achievement.service'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 
 @Component({
   selector: 'app-checkin',
@@ -21,12 +23,15 @@ export class CheckinComponent implements OnInit {
   users: User[]
   me: User
   title: string
+  unregistered: number
+  all: boolean
 
   scannerActive: boolean
   submitLabel: string
   insideScannerMsg: [{ title: string, msg: string }, { title: string, msg: string }]
 
-  constructor (
+  constructor(
+    private achievementService: AchievementService,
     private sessionService: SessionService,
     private sessionCannonService: SessionCannonService,
     private userService: UserService,
@@ -35,12 +40,14 @@ export class CheckinComponent implements OnInit {
     private titleService: Title
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Check In')
     })
 
     this.scannerActive = false
+    this.unregistered = 0
+    this.all = false
 
     this.userService.getMe()
       .subscribe(me => {
@@ -50,36 +57,46 @@ export class CheckinComponent implements OnInit {
       })
   }
 
-  getSessions () {
+  toggleAll() {
+    this.emptyLocalStorage()
+    this.unregistered = 0
+    this.getSessions()
+  }
+
+  getSessions() {
     this.eventService.getCurrent().subscribe(event => {
       this.sessionService.getSessions(event.id)
         .subscribe(sessions => {
           let _sessions = []
           sessions.forEach(s => {
-            let sessionDate = new Date(s.date)
-            // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
-            let duration = s.duration.slice(4)
-            duration = '2010' + duration
-            // End of fix
-            let sessionDuration = new Date(duration)
-            let durationInSeconds =
-              (sessionDuration.getHours() * 3600) +
-              (sessionDuration.getMinutes() * 60) +
-              sessionDuration.getSeconds()
+            this.achievementService.getAchievementSession(s.id).subscribe(ach => {
+              let sessionDate = new Date(s.date)
+              // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
+              let duration = s.duration.slice(4)
+              duration = '2010' + duration
+              // End of fix
+              let sessionDuration = new Date(duration)
+              let durationInSeconds =
+                (sessionDuration.getHours() * 3600) +
+                (sessionDuration.getMinutes() * 60) +
+                sessionDuration.getSeconds()
 
-            let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
-            let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
+              let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
+              let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
-            // today and before it ends
-            if (sessionDate.getDate() === new Date().getDate()) {
-              _sessions.push({
-                begin: sessionDate,
-                end: sessionEnd,
-                countdown: countdown,
-                session: s
-              })
-            }
+              // today and before it ends OR all sessions
+              if (sessionDate.getDate() === new Date().getDate() || this.all) {
+                _sessions.push({
+                  begin: sessionDate,
+                  end: sessionEnd,
+                  countdown: countdown,
+                  session: s,
+                  total: (ach.unregisteredUsers !== undefined ? ach.unregisteredUsers : 0) + (ach.users !== undefined ? ach.users.length : 0),
+                  canCheckIn: sessionDate.getDate() === new Date().getDate()
+                })
+              }
 
+            })
           })
           this.sessions = _sessions
           this.users = []
@@ -87,26 +104,34 @@ export class CheckinComponent implements OnInit {
     })
   }
 
-  beginCheckIn (session: Session) {
+  beginCheckIn(session: Session) {
     this.selectedSession = session
     this.scannerActive = true
     localStorage.setItem('selectedSession', JSON.stringify(this.selectedSession))
   }
 
-  receiveUser (user: User) {
+  receiveUser(user: User) {
     this.users.push(user)
     localStorage.setItem('users', JSON.stringify(this.users))
-    this.submitLabel = `Submit ${this.users.length} users`
+    this.submitLabel = `Submit ${this.users.length + this.unregistered} users`
     this.updateInsideScannerMsg()
   }
 
-  submit () {
+  updateUnregistered(amount) {
+    if (this.unregistered !== 0 || amount > 0) {
+      this.unregistered += amount
+      this.submitLabel = `Submit ${this.users.length + this.unregistered} users`
+      this.updateInsideScannerMsg()
+    }
+  }
+
+  submit() {
     let ids = this.users.reduce((acc, cur) => {
       acc.push(cur.id)
       return acc
     }, [])
 
-    this.sessionCannonService.checkin(this.selectedSession.id, ids)
+    this.sessionCannonService.checkin(this.selectedSession.id, ids, this.unregistered)
       .subscribe(msg => {
         if (msg) {
           this.emptyLocalStorage()
@@ -125,7 +150,7 @@ export class CheckinComponent implements OnInit {
       })
   }
 
-  checkLocalStorage (): boolean {
+  checkLocalStorage(): boolean {
     let selectedSession = JSON.parse(localStorage.getItem('selectedSession'))
     this.scannerActive = true
 
@@ -146,7 +171,7 @@ export class CheckinComponent implements OnInit {
     return true
   }
 
-  emptyLocalStorage () {
+  emptyLocalStorage() {
     localStorage.removeItem('users')
     localStorage.removeItem('selectedSession')
     this.scannerActive = false
@@ -156,7 +181,7 @@ export class CheckinComponent implements OnInit {
     this.submitLabel = undefined
   }
 
-  updateInsideScannerMsg () {
+  updateInsideScannerMsg() {
     this.insideScannerMsg = [
       {
         title: 'Last user:',
@@ -169,11 +194,12 @@ export class CheckinComponent implements OnInit {
     ]
   }
 
-  delete () {
+  delete() {
     let result = window.confirm('This will delete all the saved check-ins, are you sure?')
     if (!result) return
 
     this.emptyLocalStorage()
+    this.unregistered = 0
     this.getSessions()
   }
 

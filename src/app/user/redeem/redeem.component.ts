@@ -21,7 +21,7 @@ export class RedeemComponent implements OnInit {
   scannerActive = false
   title = 'Secret Achievements'
   processUser = false
-  isCamOn: Boolean = false
+  isCamOn: Boolean = true
 
   myAchievements: Achievement[]
 

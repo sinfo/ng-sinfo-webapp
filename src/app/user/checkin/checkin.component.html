@@ -13,12 +13,22 @@
     </app-qrcode-scanner>
 
     <div class="row destroy">
+      <h4>Unregistered Users</h4>
+      <div class='unregistered'>
+        <button class='btn btn-button' (click)="updateUnregistered(-1)">-</button>
+        <div class='box'>{{unregistered}}</div>
+        <button class='btn btn-button' (click)="updateUnregistered(1)">+</button>
+      </div>
       <button class="btn btn-button" (click)="delete()">Delete saved users</button>
     </div>
 
   </div>
 
   <div class="container align-center user" *ngIf="!selectedSession">
+
+    <div class='slider'>
+      <mat-slide-toggle [(ngModel)]="all" (change)='toggleAll()'>See all</mat-slide-toggle>
+    </div>
 
     <div class="sessions-wrapper">
       <div *ngFor="let session of sessions" class="row session">
@@ -28,7 +38,8 @@
               <img src="{{session.session.img}}" alt="{{session.session.name}}">
             </div>
             <div class="info-wrapper col-sm-7">
-              <h4 class="name">{{session.name}}</h4>
+              <h4 class="name">Session: {{session.session.name}}</h4>
+              <h4 class="name">Occupancy: {{session.total}}</h4>
               <div class="session-details">
                 <div *ngIf="session.begin" class="padded">
                   <p>
@@ -48,7 +59,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 checkin">
+            <div *ngIf='session.canCheckIn' class="col-sm-3 checkin">
               <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check in</button>
             </div>
           </div>

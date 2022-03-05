@@ -148,6 +148,19 @@ export class AchievementService {
       )
   }
 
+  getAchievementSession(sessionID: String): Observable<Achievement> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<Achievement>(`${this.achievementsUrl}/session/${sessionID}`, httpOptions)
+      .pipe(
+        catchError(this.handleError<Achievement>('get by session'))
+      )
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

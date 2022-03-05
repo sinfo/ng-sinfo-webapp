@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-hashing=all && gzipper --verbose ./dist",
-    "build-dev": "ng build --configuration staging --output-hashing=all && gzipper --verbose ./dist",
+    "build": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --prod --output-hashing=all && gzipper compress --verbose ./dist",
+    "build-dev": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --configuration staging --output-hashing=all && gzipper compress --verbose ./dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -20,11 +20,14 @@
     "url": "https://github.com/sinfo/ng-sinfo-webapp.git"
   },
   "dependencies": {
-    "@angular/animations": "13.1.2",
+    "@angular/animations": "^13.1.2",
+    "@angular/cdk": "^13.1.2",
     "@angular/common": "13.1.2",
     "@angular/compiler": "13.1.2",
     "@angular/core": "13.1.2",
+    "@angular/flex-layout": "^13.0.0-beta.36",
     "@angular/forms": "13.1.2",
+    "@angular/material": "^13.1.2",
     "@angular/platform-browser": "13.1.2",
     "@angular/platform-browser-dynamic": "13.1.2",
     "@angular/platform-server": "13.1.2",
@@ -49,7 +52,7 @@
   "devDependencies": {
     "@angular-builders/custom-webpack": "^13.0.0",
     "@angular-devkit/build-angular": "^13.1.3",
-    "@angular/cli": "^13.1.3",
+    "@angular/cli": "^13.2.3",
     "@angular/compiler-cli": "^13.1.2",
     "@angular/language-service": "13.1.2",
     "@types/jasmine": "^3.10.3",
@@ -57,10 +60,10 @@
     "@types/node": "^17.0.8",
     "codelyzer": "^6.0.2",
     "compression-webpack-plugin": "^9.2.0",
-    "gzipper": "^6.2.1",
+    "gzipper": "^7.0.0",
     "jasmine-core": "~4.0.0",
     "jasmine-spec-reporter": "~7.0.0",
-    "karma": "^6.3.11",
+    "karma": "^6.3.16",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-jasmine": "^4.0.1",

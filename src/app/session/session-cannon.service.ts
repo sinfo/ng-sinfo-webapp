@@ -22,7 +22,7 @@ export class SessionCannonService {
     private router: Router
   ) { }
 
-  checkin(sessionId: string, usersId: string[], code?: string) {
+  checkin(sessionId: string, usersId: string[], unregisteredUsers?: Number, code?: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export class SessionCannonService {
     }
 
     return this.http.post<Achievement>(`${this.sessionsUrl}/${sessionId}/check-in`, {
-      users: usersId, code: code
+      users: usersId, code: code, unregisteredUsers: unregisteredUsers ? unregisteredUsers : 0
     }, httpOptions)
       .pipe(
         catchError(this.handleErrorCheckIn<any>('check-in'))
@@ -66,7 +66,7 @@ export class SessionCannonService {
         origin: `SessionService: ${operation}`,
         text: error.status === 403 ?
           `Overlapping workshops detected. You cannot attend multiple workshops at the same time. 
-        Your points for both workshops will be deducted.` : 'Wrong code or code is already invalid.',
+        Your entries for both workshops will be deducted.` : 'Wrong code or code is already invalid.',
         type: Type.error,
         showAlert: true,
         errorObject: error,

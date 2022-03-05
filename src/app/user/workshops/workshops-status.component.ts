@@ -24,7 +24,7 @@ export class WorkshopsStatusComponent implements OnInit {
   }>
   user: User
 
-  constructor (
+  constructor(
     private sessionService: SessionService,
     private userService: UserService,
     private authService: AuthService,
@@ -35,7 +35,7 @@ export class WorkshopsStatusComponent implements OnInit {
     this.snapshot = router.routerState.snapshot
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Workshop Status')
     })
