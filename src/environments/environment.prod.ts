@@ -62,7 +62,7 @@ export const environment = {
       'Software Engineering'
     ]
   },
-  signaturesCardCapacity: 6,
+  signaturesCardCapacity: 10,
   signaturesAutoUpdate: 5, //seconds, set to 0 to enable manual update
   facebook: {
     appId: '708252219264170'
