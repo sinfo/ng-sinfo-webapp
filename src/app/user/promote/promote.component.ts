@@ -119,7 +119,13 @@ export class PromoteComponent implements OnInit {
 
   getCompanies(): void {
     this.companyService.getCompanies()
-      .subscribe(companies => {
+      .subscribe(companiesPartners => {
+
+        //Filtering companies from companies and partners array
+        let companies = companiesPartners.filter((company) => {
+          return company.advertisementLvl != "other";
+        });
+
         this.companies = companies
       })
   }
