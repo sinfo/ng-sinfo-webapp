@@ -118,7 +118,7 @@ export class LinkComponent implements OnInit {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
     this.snackBar.open( 'User was successfully signed!',"Ok", {
-      panelClass : ['mat-toolbar', 'mat-warn']
+      panelClass : ['mat-toolbar', 'mat-primary']
     })
     this.messageService.add({
       origin: 'Sign and Link',
@@ -163,7 +163,7 @@ export class LinkComponent implements OnInit {
     } else {
       this.createLink()
       this.snackBar.open( 'Link created',"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+        panelClass : ['mat-toolbar', 'mat-primary']
       })
       this.messageService.add({
         origin: 'Link created',
@@ -187,7 +187,7 @@ export class LinkComponent implements OnInit {
       .subscribe(_link => {
         this.currentLink = _link
         this.snackBar.open( 'Link updated',"Ok", {
-          panelClass : ['mat-toolbar', 'mat-warn']
+          panelClass : ['mat-toolbar', 'mat-primary']
         })
         this.messageService.add({
           origin: 'Link component',
