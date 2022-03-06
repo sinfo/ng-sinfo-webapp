@@ -108,6 +108,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatBadgeModule } from "@angular/material/badge";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 library.add(fas);
 
@@ -191,6 +192,7 @@ library.add(fas);
     BrowserAnimationsModule,
     FlexLayoutModule,
     MatIconModule,
+    MatSnackBarModule,
     MatButtonModule,
     MatBadgeModule,
     MatSidenavModule,
