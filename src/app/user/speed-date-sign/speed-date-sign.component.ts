@@ -8,6 +8,7 @@ import { CompanyService } from '../../company/company.service'
 import { EventService } from '../../events/event.service'
 import { SignatureService } from '../signature/signature.service'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Link, Note } from '../link/link.model'
 import { CompanyCannonService } from '../../company/company-cannon.service'
 
@@ -44,6 +45,7 @@ export class SpeedDateSignComponent implements OnInit {
     private userService: UserService,
     private signatureService: SignatureService,
     private eventService: EventService,
+    private snackBar: MatSnackBar,
     private messageService: MessageService,
     private companyCannonService: CompanyCannonService,
 
@@ -104,6 +106,9 @@ export class SpeedDateSignComponent implements OnInit {
         }
 
         if (message.length > 0) {
+          this.snackBar.open( message,"Ok", {
+            panelClass : ['mat-toolbar', 'mat-warn']
+          })
           this.messageService.add({
             origin: 'Sign Speed Date',
             showAlert: true,
@@ -141,6 +146,9 @@ export class SpeedDateSignComponent implements OnInit {
   updateInfo() {
     this.info = `Signed speed date ${this.userRead.name}`
     this.signatureService.signSpeed(this.userRead, this.myCompany)
+    this.snackBar.open( 'User was successfully signed!',"Ok", {
+        panelClass : ['mat-toolbar', 'mat-primary']
+      })
     this.messageService.add({
       origin: 'Sign and Link',
       showAlert: true,
@@ -189,6 +197,9 @@ export class SpeedDateSignComponent implements OnInit {
       this.updateLink()
     } else {
       this.createLink()
+      this.snackBar.open( 'Link created',"Ok", {
+        panelClass : ['mat-toolbar', 'mat-primary']
+      })
       this.messageService.add({
         origin: 'Link created',
         showAlert: true,
@@ -210,6 +221,9 @@ export class SpeedDateSignComponent implements OnInit {
     this.companyCannonService.updateLink(this.myCompany.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
+        this.snackBar.open( 'Link updated',"Ok", {
+          panelClass : ['mat-toolbar', 'mat-primary']
+        })
         this.messageService.add({
           origin: 'Link component',
           showAlert: true,

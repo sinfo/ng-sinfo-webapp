@@ -5,6 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class SponsorService {
@@ -14,6 +15,7 @@ export class SponsorService {
 
   constructor (
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
@@ -68,14 +70,17 @@ export class SponsorService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      /* this.messageService.add({
         origin: `SponsorService: ${operation}`,
         showAlert: false,
         text: 'When fetching sponsors from server',
         type: Type.error,
         errorObject: error,
         timeout: 4000
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)

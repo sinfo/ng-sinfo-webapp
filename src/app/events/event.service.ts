@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment'
 
 import { Event } from './event.model'
 import { MessageService, Type } from '../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,6 +25,7 @@ export class EventService {
 
   constructor (
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
@@ -84,7 +86,10 @@ export class EventService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      /* this.messageService.add({
         origin: `EventService: ${operation}`,
         text: 'When fetching events from server',
         showAlert: false,
@@ -92,7 +97,7 @@ export class EventService {
         timeout: 4000,
         errorObject: error
       })
-
+ */
       // Let the app keep running by returning an empty result.
       return of(result)
     }

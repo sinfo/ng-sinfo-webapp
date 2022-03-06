@@ -7,7 +7,9 @@ import { catchError, tap } from 'rxjs/operators'
 import { Session } from './session.model'
 
 import { environment } from '../../environments/environment'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { MessageService, Type } from '../message.service'
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,6 +23,7 @@ export class SessionService {
 
   constructor (
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
@@ -64,14 +67,17 @@ export class SessionService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      /* this.messageService.add({
         origin: `SessionService: ${operation}`,
         text: 'When fetching session from server',
         type: Type.error,
         showAlert: false,
         errorObject: error,
         timeout: 4000
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)

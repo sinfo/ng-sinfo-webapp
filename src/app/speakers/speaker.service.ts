@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators'
 import { Speaker } from './speaker.model'
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,6 +19,7 @@ export class SpeakerService {
 
   constructor (
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
@@ -61,14 +63,17 @@ export class SpeakerService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      /* this.messageService.add({
         origin: `SpeakerService: ${operation}`,
         showAlert: false,
         text: 'When fetching speakers from server',
         errorObject: error,
         type: Type.error,
         timeout: 4000
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)

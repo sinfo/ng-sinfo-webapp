@@ -10,6 +10,7 @@ import { MessageService, Type } from '../message.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
 import { File as CV } from './cv/file'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class UserService {
@@ -22,6 +23,7 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private eventService: EventService,
     private authService: AuthService
   ) {
@@ -259,13 +261,16 @@ export class UserService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      /* this.messageService.add({
         origin: `UserService: ${operation}`,
         showAlert: false,
         text: `When ${operation}`,
         errorObject: error,
         type: Type.error
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)
