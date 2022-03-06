@@ -5,6 +5,7 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-validate-card',
@@ -22,7 +23,8 @@ export class ValidateCardComponent implements OnInit {
     private userService: UserService,
     private messageService: MessageService,
     private eventService: EventService,
-    private titleService: Title
+    private titleService: Title,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit () {
@@ -41,31 +43,41 @@ export class ValidateCardComponent implements OnInit {
     this.userRead = user
     this.userService.validateCard(user.id).subscribe((_user) => {
       if (!_user) return
-      this.messageService.add({
+      this.snackbar.open(`Validated ${user.name}'s card`, "Nice!", {
+        panelClass : ['mat-toolbar', 'mat-primary']
+      })
+      /* this.messageService.add({
         origin: 'Validate card',
         showAlert: true,
         text: `Validated ${user.name}'s card`,
         type: Type.success,
         timeout: 7000
-      })
+      }) */
     }, error => {
 
       if (error.error.statusCode === 409) {
-        this.messageService.add({
+        this.snackbar.open(`${user.name}'s card is already validated`, "Oops", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+        /* this.messageService.add({
           origin: 'Validate card',
           showAlert: true,
           text: `${user.name}'s card is already validated`,
           type: Type.warning,
           timeout: 7000
-        })
+        }) */
       } else if (error.error.statusCode === 404 || error.error.statusCode === 422) {
-        this.messageService.add({
+        this.snackbar.open(`Not enough signatures on ${user.name}'s card`, "Yikes",{
+        panelClass : ['mat-toolbar', 'mat-warn']
+      }
+        )
+        /* this.messageService.add({
           origin: 'Validate card',
           showAlert: true,
           text: `Not enough signatures on ${user.name}'s card`,
           type: Type.warning,
           timeout: 7000
-        })
+        }) */
       }
 
     })
