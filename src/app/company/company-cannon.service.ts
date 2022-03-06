@@ -160,6 +160,9 @@ export class CompanyCannonService {
     }
 
     return (error: any): Observable<T> => {
+      if (error.status === 404 && operation === 'getLink'){
+        return of(result)
+      }
       msg.text = error.message
       this.snackBar.open(error.message,"Ok", {
         panelClass : ['mat-toolbar', 'mat-warn']
