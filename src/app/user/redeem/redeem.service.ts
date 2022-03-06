@@ -20,7 +20,7 @@ export class RedeemService {
   ) {
   }
 
-  redeem(id: string, myAchievements: Achievement[]): void {
+  redeem(id: string): void {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
