@@ -8,6 +8,7 @@ import { Member } from './member.model'
 
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,6 +22,7 @@ export class TeamService {
 
   constructor (
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
@@ -53,7 +55,10 @@ export class TeamService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open('When fetching team members from server',"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+/*       this.messageService.add({
         origin: `TeamService: ${operation}`,
         showAlert: false,
         text: 'When fetching team members from server',
@@ -61,7 +66,7 @@ export class TeamService {
         errorObject: error,
         timeout: 4000
       })
-
+ */
       // Let the app keep running by returning an empty result.
       return of(result)
     }

@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { environment } from '../../../environments/environment'
 
 import { User } from '../user.model'
@@ -15,6 +16,7 @@ export class ScoreboardService {
 
   constructor (
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
@@ -33,6 +35,9 @@ export class ScoreboardService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      this.snackBar.open( error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
       this.messageService.add({
         origin: `ScoreboardService: ${operation}`,
         text: error.message,

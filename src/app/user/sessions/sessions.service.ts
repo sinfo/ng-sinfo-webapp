@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { environment } from '../../../environments/environment'
 import { catchError } from 'rxjs/operators'
 import { Observable, of } from 'rxjs'
@@ -14,6 +15,7 @@ export class SessionsService {
   constructor (
     private http: HttpClient,
     private authService: AuthService,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) {}
 
@@ -43,6 +45,9 @@ export class SessionsService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      this.snackBar.open( 'When generating session code',"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
       this.messageService.add({
         origin: `SessionService: ${operation}`,
         text: 'When generating session code',

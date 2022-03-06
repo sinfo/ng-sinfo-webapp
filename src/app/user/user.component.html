@@ -2,10 +2,10 @@
 <mat-toolbar class='topbar'>
   <button mat-icon-button style="color: white; background-color: black;" class="example-icon"
     aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
-    <mat-icon *ngIf="!isCvUpdated && user && user.role !== 'company'" style="transform: scale(1.5);" matBadge="!"
-      matBadgeColor="warn" matBadgeSize="small">
+    <mat-icon *ngIf="!isCvUpdated && user && user.role !== 'company'" matBadge="!" matBadgeColor="warn"
+      matBadgeSize="small">
       menu</mat-icon>
-    <mat-icon *ngIf="isCvUpdated" style="transform: scale(1.5);">menu</mat-icon>
+    <mat-icon *ngIf="isCvUpdated || (user && user.role === 'company')" style="transform: scale(1.5);">menu</mat-icon>
   </button>
   <span>
     <a routerLink="/" class="logo_w">

@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment'
 import { AuthService } from '../auth.service'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 declare let FB: any
 declare let gapi: any
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     public router: Router,
     private route: ActivatedRoute,
     private zone: NgZone,
-    private titleService: Title
+    private titleService: Title,
+    private snackBar: MatSnackBar
 
   ) { }
 
@@ -66,24 +68,30 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.isGoogleActive = (typeof (gapi) !== 'undefined' && gapi !== null)
 
     if (!this.isFacebookActive) {
-      this.messageService.add({
+      this.snackBar.open(`You need to disable any ad blocker or tracking protection mechanism to be allowed to login with Google.`,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-primary']
+      })
+      /* this.messageService.add({
         origin: `LoginComponent: ngOnInit isFacebookActive=${this.isFacebookActive}`,
         text: `You need to disable any ad blocker or tracking protection mechanism to be
                 allowed to login with Facebook.`,
         showAlert: true,
         type: Type.log,
         timeout: 4000
-      })
+      }) */
     }
     if (!this.isGoogleActive) {
-      this.messageService.add({
+      this.snackBar.open(`You need to disable any ad blocker or tracking protection mechanism to be allowed to login with Facebook.`,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-primary']
+      })
+      /* this.messageService.add({
         origin: `LoginComponent: ngOnInit isGoogleActive=${this.isGoogleActive}`,
         text: `You need to disable any ad blocker or tracking protection mechanism to be
                 allowed to login with Google.`,
         type: Type.log,
         showAlert: true,
         timeout: 4000
-      })
+      }) */
     }
   }
 
@@ -175,21 +183,27 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.zone.run(() => this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`]))
         })
     } else if (resp.status === 'not_authorized') {
-      this.messageService.add({
+      this.snackBar.open(`You were not allowed to login with Facebook`,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      /* this.messageService.add({
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
         text: 'You were not allowed to login with Facebook',
         type: Type.error,
         showAlert: false,
         errorObject: resp
-      })
+      }) */
     } else {
-      this.messageService.add({
+      this.snackBar.open(`An error occurred by logging with Facebook`,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      /* this.messageService.add({
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
         text: 'An error occurred by logging with Facebook',
         type: Type.error,
         showAlert: false,
         errorObject: resp
-      })
+      }) */
     }
   }
 }
