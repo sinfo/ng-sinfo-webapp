@@ -7,6 +7,7 @@ import { SessionCannonService } from '../../session/session-cannon.service'
 import { User } from '../user.model'
 import { UserService } from '../user.service'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { EventService } from '../../events/event.service'
 import { Achievement } from '../achievements/achievement.model'
 import { Router } from '@angular/router'
@@ -31,6 +32,7 @@ export class SelfcheckinComponent implements OnInit {
     private sessionCannonService: SessionCannonService,
     private userService: UserService,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private eventService: EventService,
     private titleService: Title,
     private router: Router
@@ -103,6 +105,9 @@ export class SelfcheckinComponent implements OnInit {
         this.selectedSession = null
         if (ach) {
           this.sessionsSignedin.add(ach.session)
+          this.snackBar.open( `Checked in to session`,"Ok", {
+            panelClass : ['mat-toolbar', 'mat-primary']
+          })
           this.messageService.add({
             origin: `Self check in component`,
             showAlert: true,

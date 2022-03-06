@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment'
 
 import { Achievement, SpeedDate } from './achievement.model'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { AuthService } from '../../auth/auth.service'
 import { EventService } from '../../events/event.service'
 import { Event } from '../../events/event.model'
@@ -21,6 +22,7 @@ export class AchievementService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private authService: AuthService,
     private eventService: EventService
   ) {
@@ -169,14 +171,17 @@ export class AchievementService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      /* this.messageService.add({
         origin: `AchievementService: ${operation}`,
         text: 'When fetching achievements from server',
         showAlert: false,
         type: Type.error,
         timeout: 4000,
         errorObject: error
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)
