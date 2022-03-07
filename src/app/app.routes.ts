@@ -43,6 +43,7 @@ import { SpeedDateSignComponent } from './user/speed-date-sign/speed-date-sign.c
 import { MyCardComponent } from './user/my-card/my-card.component'
 import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component'
 import { CardComponent } from './user/card/card.component'
+import { WorkshopValidationComponent } from './user/workshop-validation/workshop-validation.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -86,6 +87,8 @@ const routes: Routes = [
       { path: 'links/my-links', component: MyLinksComponent, canActivate: [AuthGuard] },
 
       { path: 'checkin', component: CheckinComponent, canActivate: [IsTeamGuard] },
+      { path: 'validate-workshop', component: WorkshopValidationComponent, canActivate: [IsTeamGuard] },
+
       { path: 'selfcheckin', component: SelfcheckinComponent, canActivate: [AuthGuard] },
       { path: 'pick-winner', component: PickWinnerComponent, canActivate: [IsTeamGuard] },
       { path: 'pick-best-rest', component: PickBestRestComponent, canActivate: [IsTeamGuard] },

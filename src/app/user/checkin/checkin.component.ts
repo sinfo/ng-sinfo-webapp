@@ -80,7 +80,6 @@ export class CheckinComponent implements OnInit {
               let sessionDate = new Date(s.date)
               sessionDate = new Date(Date.UTC(sessionDate.getUTCFullYear(), sessionDate.getUTCMonth(), sessionDate.getUTCDate(),
                 sessionDate.getUTCHours(), sessionDate.getUTCMinutes(), sessionDate.getUTCSeconds()))
-              console.log(sessionDate)
               // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
               // let duration = s.duration.slice(4)
               // duration = '2010' + duration
@@ -89,7 +88,6 @@ export class CheckinComponent implements OnInit {
               sessionDuration = new Date(Date.UTC(sessionDuration.getUTCFullYear(),
                 sessionDuration.getUTCMonth(), sessionDuration.getUTCDate(),
                 sessionDuration.getUTCHours(), sessionDuration.getUTCMinutes(), sessionDuration.getUTCSeconds()))
-              console.log(sessionDuration)
               let durationInSeconds =
                 (sessionDuration.getUTCHours() * 3600) +
                 (sessionDuration.getUTCMinutes() * 60) +

@@ -1,0 +1,18 @@
+.img-wrapper{
+  margin: 20px;
+  width: 150px;
+  overflow: hidden;
+}
+.destroy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+.destroy > button {
+  margin-top: 8%;
+  margin-bottom: 8%;
+  width: 80%;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}

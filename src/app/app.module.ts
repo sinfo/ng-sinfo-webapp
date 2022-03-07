@@ -110,6 +110,7 @@ import { MatBadgeModule } from "@angular/material/badge";
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDividerModule } from '@angular/material/divider';
+import { WorkshopValidationComponent } from './user/workshop-validation/workshop-validation.component';
 
 library.add(fas);
 
@@ -174,6 +175,7 @@ library.add(fas);
     SpeedDateSignComponent,
     SecretAchievementsComponent,
     GdprDialogComponent,
+    WorkshopValidationComponent,
   ],
   imports: [
     MatSlideToggleModule,
