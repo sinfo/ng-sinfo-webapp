@@ -13,18 +13,18 @@
 
   <div class="card-wrapper">
     <mat-card class="card">
-      <mat-card-header>
+      <mat-card-header style="max-width: 298px;">
         <div mat-card-avatar *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
         <div mat-card-avatar *ngIf="user.role === 'company' && company"> <img class="sinfo-logo" src="{{company.img}}">
         </div>
-        <mat-card-title>
+        <mat-card-title style="overflow-wrap: anywhere;">
           {{user.name}}
         </mat-card-title>
         <mat-card-subtitle *ngIf="user.role === 'company' && company">
           <h6 style="color:white;">{{company.name}}</h6>
         </mat-card-subtitle>
       </mat-card-header>
-      <qrcode mat-card-image class="qrcodeimg" [qrdata]="user.id" [scale]="8"></qrcode>
+      <qrcode mat-card-image class="qrcodeimg" [qrdata]="user.id" [scale]="10"></qrcode>
       <mat-card-content>
         <h5>
           {{presentationRole}}
