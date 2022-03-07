@@ -20,6 +20,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 export class CheckinComponent implements OnInit {
   sessions = []
 
+
   selectedSession: Session
   users: User[]
   me: User
@@ -72,29 +73,45 @@ export class CheckinComponent implements OnInit {
           let _sessions = []
           sessions.forEach(s => {
             this.achievementService.getAchievementSession(s.id).subscribe(ach => {
+              if (_sessions.filter(e => e.kind === ach.kind).length === 0) {
+                _sessions.push({ kind: ach.kind, sessions: [] })
+              }
+
               let sessionDate = new Date(s.date)
+              sessionDate = new Date(Date.UTC(sessionDate.getUTCFullYear(), sessionDate.getUTCMonth(), sessionDate.getUTCDate(),
+                sessionDate.getUTCHours(), sessionDate.getUTCMinutes(), sessionDate.getUTCSeconds()))
+              console.log(sessionDate)
               // Fix for 1970 +1 hour on toDate conversion bug (javascript being dumb)
-              let duration = s.duration.slice(4)
-              duration = '2010' + duration
+              // let duration = s.duration.slice(4)
+              // duration = '2010' + duration
               // End of fix
-              let sessionDuration = new Date(duration)
+              let sessionDuration = new Date(s.duration)
+              sessionDuration = new Date(Date.UTC(sessionDuration.getUTCFullYear(),
+                sessionDuration.getUTCMonth(), sessionDuration.getUTCDate(),
+                sessionDuration.getUTCHours(), sessionDuration.getUTCMinutes(), sessionDuration.getUTCSeconds()))
+              console.log(sessionDuration)
               let durationInSeconds =
-                (sessionDuration.getHours() * 3600) +
-                (sessionDuration.getMinutes() * 60) +
-                sessionDuration.getSeconds()
+                (sessionDuration.getUTCHours() * 3600) +
+                (sessionDuration.getUTCMinutes() * 60) +
+                sessionDuration.getUTCSeconds()
 
               let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
               let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
               // today and before it ends OR all sessions
               if (sessionDate.getDate() === new Date().getDate() || this.all) {
-                _sessions.push({
+                _sessions.find(e => e.kind === ach.kind).sessions.push({
                   begin: sessionDate,
                   end: sessionEnd,
                   countdown: countdown,
                   session: s,
-                  total: (ach.unregisteredUsers !== undefined ? ach.unregisteredUsers : 0) + (ach.users !== undefined ? ach.users.length : 0),
+                  total: (ach.unregisteredUsers !== undefined ?
+                    ach.unregisteredUsers : 0) + (ach.users !== undefined ? ach.users.length : 0),
                   canCheckIn: sessionDate.getDate() === new Date().getDate()
+                })
+
+                _sessions.find(e => e.kind === ach.kind).achievements.sort((a, b): number => {
+                  return a.begin.toISOString() <= b.begin.toISOString() ? -1 : 1
                 })
               }
 
@@ -122,7 +139,11 @@ export class CheckinComponent implements OnInit {
   updateUnregistered(amount) {
     if (this.unregistered !== 0 || amount > 0) {
       this.unregistered += amount
-      this.submitLabel = `Submit ${this.users.length + this.unregistered} users`
+      if (this.users.length + this.unregistered === 0) {
+        this.submitLabel = null
+      } else {
+        this.submitLabel = `Submit ${this.users.length + this.unregistered} users`
+      }
       this.updateInsideScannerMsg()
     }
   }
@@ -139,8 +160,8 @@ export class CheckinComponent implements OnInit {
           this.emptyLocalStorage()
           this.getSessions()
 
-          this.snackBar.open(`Done!`,"Ok", {
-            panelClass : ['mat-toolbar', 'mat-warn']
+          this.snackBar.open(`Done!`, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn']
           })
           /* this.messageService.add({
             origin: `Check in component`,
