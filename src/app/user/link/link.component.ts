@@ -106,12 +106,12 @@ export class LinkComponent implements OnInit {
 
   reScan() {
     this.userRead = null
-    this.scannerActive = true
     this.userId = ''
     this.yesToLink = false
     this.description = this.descriptions[0]
     this.info = ''
     this.yesToSign = false
+    this.scannerActive = true
   }
 
   updateInfo() {
