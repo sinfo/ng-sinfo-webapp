@@ -7,12 +7,13 @@ import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
 import { Link, Note } from './link.model'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { CompanyCannonService } from '../../company/company-cannon.service'
 import { SignatureService } from '../signature/signature.service'
 import { EventService } from '../../events/event.service'
 
 @Component({
-  selector: 'app-link',
+  selector: 'MessageServiceapp-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.css']
 })
@@ -40,6 +41,7 @@ export class LinkComponent implements OnInit {
     private companyCannonService: CompanyCannonService,
     private signatureService: SignatureService,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private eventService: EventService,
     private titleService: Title
   ) { }
@@ -115,6 +117,9 @@ export class LinkComponent implements OnInit {
   updateInfo() {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
+    this.snackBar.open( 'User was successfully signed!',"Ok", {
+      panelClass : ['mat-toolbar', 'mat-primary']
+    })
     this.messageService.add({
       origin: 'Sign and Link',
       showAlert: true,
@@ -157,6 +162,9 @@ export class LinkComponent implements OnInit {
       this.updateLink()
     } else {
       this.createLink()
+      this.snackBar.open( 'Link created',"Ok", {
+        panelClass : ['mat-toolbar', 'mat-primary']
+      })
       this.messageService.add({
         origin: 'Link created',
         showAlert: true,
@@ -178,6 +186,9 @@ export class LinkComponent implements OnInit {
     this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         this.currentLink = _link
+        this.snackBar.open( 'Link updated',"Ok", {
+          panelClass : ['mat-toolbar', 'mat-primary']
+        })
         this.messageService.add({
           origin: 'Link component',
           showAlert: true,
@@ -200,6 +211,9 @@ export class LinkComponent implements OnInit {
         }
 
         if (message.length > 0) {
+          this.snackBar.open( message,"Ok", {
+            panelClass : ['mat-toolbar', 'mat-warn']
+          })
           this.messageService.add({
             origin: 'Sign and Link',
             showAlert: true,

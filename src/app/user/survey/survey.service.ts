@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable, of } from 'rxjs'
 import { RedeemCode } from './redeem-code.model'
 import { catchError } from 'rxjs/operators'
@@ -18,6 +19,7 @@ export class SurveyService {
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private authService: AuthService
   ) { }
 
@@ -40,6 +42,9 @@ export class SurveyService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      this.snackBar.open( error.error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
       this.messageService.add({
         origin: `SurveyService: ${operation}`,
         showAlert: false,

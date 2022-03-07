@@ -7,6 +7,7 @@ import { SessionCannonService } from '../../session/session-cannon.service'
 import { User } from '../user.model'
 import { UserService } from '../user.service'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { EventService } from '../../events/event.service'
 import { AchievementService } from '../achievements/achievement.service'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'
@@ -36,6 +37,7 @@ export class CheckinComponent implements OnInit {
     private sessionCannonService: SessionCannonService,
     private userService: UserService,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private eventService: EventService,
     private titleService: Title
   ) { }
@@ -137,12 +139,15 @@ export class CheckinComponent implements OnInit {
           this.emptyLocalStorage()
           this.getSessions()
 
-          this.messageService.add({
+          this.snackBar.open(`Done!`,"Ok", {
+            panelClass : ['mat-toolbar', 'mat-warn']
+          })
+          /* this.messageService.add({
             origin: `Check in component`,
             showAlert: true,
             text: `Done!`,
             type: Type.success
-          })
+          }) */
         }
 
       }, err => {

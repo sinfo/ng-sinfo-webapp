@@ -9,6 +9,7 @@ import { Ticket } from './ticket.model'
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class TicketService {
@@ -18,6 +19,7 @@ export class TicketService {
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private authService: AuthService
   ) { }
 
@@ -61,6 +63,9 @@ export class TicketService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      this.snackBar.open( 'When fetching tickets from server',"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
       this.messageService.add({
         origin: `TicketService: ${operation}`,
         showAlert: false,

@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment'
 import { User } from '../user/user.model'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class CompanyCannonService {
@@ -22,6 +23,7 @@ export class CompanyCannonService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private authService: AuthService,
     private eventService: EventService
   ) {
@@ -158,8 +160,14 @@ export class CompanyCannonService {
     }
 
     return (error: any): Observable<T> => {
+      if (error.status === 404 && operation === 'getLink'){
+        return of(result)
+      }
       msg.text = error.message
-      this.messageService.add(msg)
+      this.snackBar.open(error.message,"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
+      // this.messageService.add(msg)
 
       // Let the app keep running by returning an empty result.
       return of(result)

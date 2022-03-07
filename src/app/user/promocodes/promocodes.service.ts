@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment'
 import { Promocode } from './promocode.model'
 import { HttpClient } from '@angular/common/http'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable, of } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
 
@@ -15,6 +16,7 @@ export class PromocodesService {
 
   constructor (
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
@@ -40,6 +42,9 @@ export class PromocodesService {
   */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      this.snackBar.open( 'When fetching partners from server',"Ok", {
+        panelClass : ['mat-toolbar', 'mat-warn']
+      })
       this.messageService.add({
         origin: `PartnerService: ${operation}`,
         showAlert: false,
