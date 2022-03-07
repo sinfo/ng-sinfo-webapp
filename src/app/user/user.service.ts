@@ -253,6 +253,12 @@ export class UserService {
     return this.http.post<User>(`${this.usersUrl}/${id}/redeem-card`, payload, httpOptions)
   }
 
+  removeUserInfo() {
+    this.me = null
+    this.event = null
+    this.cv = null
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
