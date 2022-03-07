@@ -68,8 +68,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.isGoogleActive = (typeof (gapi) !== 'undefined' && gapi !== null)
 
     if (!this.isFacebookActive) {
-      this.snackBar.open(`You need to disable any ad blocker or tracking protection mechanism to be allowed to login with Google.`,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-primary']
+      this.snackBar.open(`You need to disable any ad blocker or tracking protection mechanism to be allowed to login with Google.`, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-primary']
       })
       /* this.messageService.add({
         origin: `LoginComponent: ngOnInit isFacebookActive=${this.isFacebookActive}`,
@@ -81,8 +81,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       }) */
     }
     if (!this.isGoogleActive) {
-      this.snackBar.open(`You need to disable any ad blocker or tracking protection mechanism to be allowed to login with Facebook.`,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-primary']
+      this.snackBar.open(`You need to disable any ad blocker or tracking protection mechanism to be allowed to login with Facebook.`, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-primary']
       })
       /* this.messageService.add({
         origin: `LoginComponent: ngOnInit isGoogleActive=${this.isGoogleActive}`,
@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
             GoogleAuth = gapi.auth2.getAuthInstance()
 
             // Listen for sign-in state changes.
-            GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) })
+            // GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) })
           } catch (err) {
             console.log(err)
           }
@@ -163,7 +163,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if (GoogleAuth.isSignedIn.get()) {
       this.onGoogleListen(true)
     } else {
-      GoogleAuth.signIn()
+      GoogleAuth.signIn().then(isSignedIn => { this.onGoogleListen(isSignedIn) })
     }
   }
 
@@ -183,8 +183,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.zone.run(() => this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`]))
         })
     } else if (resp.status === 'not_authorized') {
-      this.snackBar.open(`You were not allowed to login with Facebook`,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(`You were not allowed to login with Facebook`, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn']
       })
       /* this.messageService.add({
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
@@ -194,8 +194,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
         errorObject: resp
       }) */
     } else {
-      this.snackBar.open(`An error occurred by logging with Facebook`,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(`An error occurred by logging with Facebook`, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn']
       })
       /* this.messageService.add({
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
