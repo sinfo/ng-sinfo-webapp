@@ -98,6 +98,10 @@ export class UserService {
       )
   }
 
+  deleteMe() {
+    this.me = null
+  }
+
   getCv(): Observable<CV> {
     if (this.cv) {
       return of(this.cv)
@@ -141,7 +145,9 @@ export class UserService {
     }
     const req = new HttpRequest('POST', `${this.filesUrl}/me`, formData, httpOptions)
 
-    return this.http.request(req)
+    return this.http.request(req).pipe(
+      catchError(this.handleError<string[]>(`uploading user cv`))
+    )
   }
 
   deleteCV(): Observable<any> {
@@ -152,7 +158,9 @@ export class UserService {
       })
     }
 
-    return this.http.delete<any>(`${this.filesUrl}/me`, httpOptions)
+    return this.http.delete<any>(`${this.filesUrl}/me`, httpOptions).pipe(
+      catchError(this.handleError<string[]>(`deleting user cv`))
+    )
   }
 
   getUserAchievements(id: string): Observable<Achievement[]> {
@@ -267,8 +275,8 @@ export class UserService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open(error.message,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn']
       })
       /* this.messageService.add({
         origin: `UserService: ${operation}`,

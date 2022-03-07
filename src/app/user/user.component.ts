@@ -60,6 +60,7 @@ export class UserComponent implements OnInit {
 
   onLogout(): void {
     this.authService.logout();
+    this.userService.deleteMe()
 
     this.router.url === "/"
       ? window.location.reload()

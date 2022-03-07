@@ -10,6 +10,8 @@ import { JwtService } from './jwt.service'
 
 declare let gapi: any
 declare let FB: any
+let GOOGLE_SCOPE = 'profile email openid'
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -94,27 +96,41 @@ export class AuthService {
   }
 
   logout(): void {
-    const isGoogleActive = (typeof (gapi) !== 'undefined' && gapi !== null)
+    // const isGoogleActive = (typeof (gapi) !== 'undefined' && gapi !== null)
 
-    const cannonToken = this.getToken()
+
+    // const cannonToken = this.getToken()
     this.storageService.removeItem('cannon_token')
 
-    switch (cannonToken.loginWith) {
-      case 'facebook':
-        FB.logout();
-        break;
-      case 'google':
-        if (isGoogleActive) {
-          gapi.auth2.getAuthInstance().disconnect();
-        }
-        break;
-      case 'linkedin':
-        break;
-      case 'fenix':
-        break;
-      default:
-        break;
-    }
+    // switch (cannonToken.loginWith) {
+    //   case 'facebook':
+    //     FB.logout();
+    //     break;
+    //   case 'google':
+    //     if (isGoogleActive && !gapi.auth2) {
+    //       console.log(gapi)
+    //       await new Promise((resolve, reject) => {
+    //         gapi.load('auth2', resolve)
+    //       })
+    //       gapi.auth2.init({
+    //         client_id: environment.google.clientId,
+    //         cookiepolicy: 'single_host_origin',
+    //         scope: GOOGLE_SCOPE
+    //       })
+    //       console.log(gapi.auth2)
+    //       gapi.auth2.getAuthInstance().disconnect()
+    //     } else if (isGoogleActive && gapi.auth2) {
+    //       console.log('2')
+    //       gapi.auth2.getAuthInstance().disconnect()
+    //     }
+    //     break;
+    //   case 'linkedin':
+    //     break;
+    //   case 'fenix':
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
 
   /**

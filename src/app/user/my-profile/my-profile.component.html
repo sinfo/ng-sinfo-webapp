@@ -17,7 +17,7 @@
         <div mat-card-avatar *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
         <div mat-card-avatar *ngIf="user.role === 'company' && company"> <img class="sinfo-logo" src="{{company.img}}">
         </div>
-        <mat-card-title style="overflow-wrap: anywhere;">
+        <mat-card-title style="overflow-wrap: anywhere; width: 100%; text-align: center;">
           {{user.name}}
         </mat-card-title>
         <mat-card-subtitle *ngIf="user.role === 'company' && company">
