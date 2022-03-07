@@ -8,8 +8,18 @@ import { MessageService, Type } from '../message.service'
 import { CannonToken } from './cannon-token.model'
 import { JwtService } from './jwt.service'
 
+declare let gapi: any
+declare let FB: any
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+}
+
+enum LoginType {
+  GOOGLE,
+  FACEBOOK,
+  LINKEDIN,
+  FENIX
 }
 
 @Injectable()
@@ -17,15 +27,17 @@ export class AuthService {
   private authUrl = environment.cannonUrl + '/auth'
   redirectUrl: string
   linkedinState: string
+  loginType: LoginType
 
   constructor (
     private http: HttpClient,
     private messageService: MessageService,
     private storageService: StorageService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) { }
 
   facebook (id, token): Observable<CannonToken> {
+    this.loginType = LoginType.FACEBOOK
     return this.http.post<CannonToken>(`${this.authUrl}/facebook`, { id, token }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'facebook'),
@@ -34,6 +46,7 @@ export class AuthService {
   }
 
   google (id, token): Observable<CannonToken> {
+    this.loginType = LoginType.GOOGLE
     return this.http.post<CannonToken>(`${this.authUrl}/google`, { id, token }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'google'),
@@ -41,7 +54,8 @@ export class AuthService {
       )
   }
 
-  fenix (code): Observable<CannonToken> {
+  fenix(code): Observable<CannonToken> {
+    this.loginType = LoginType.FENIX
     return this.http.post<CannonToken>(`${this.authUrl}/fenix`, { code }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'fenix'),
@@ -50,6 +64,7 @@ export class AuthService {
   }
 
   linkedin (code): Observable<CannonToken> {
+    this.loginType = LoginType.LINKEDIN
     return this.http.post<CannonToken>(`${this.authUrl}/linkedin`, { code }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'linkedin'),
@@ -80,6 +95,25 @@ export class AuthService {
 
   logout (): void {
     this.storageService.removeItem('cannon_token')
+    
+    //TODO: finish log out
+    // switch (this.loginType) {
+    //   case LoginType.FACEBOOK:
+    //     FB.logout();
+    //     break;
+    //   case LoginType.GOOGLE:
+    //     let auth2 = gapi.auth2.getAuthInstance();
+    //     auth2.signOut().then(function () {
+    //       auth2.disconnect();
+    //     });
+    //     break;
+    //   case LoginType.LINKEDIN:
+    //     break;
+    //   case LoginType.FENIX:
+    //     break;
+    //   default:
+    //     break;
+    // }
   }
 
   /**
