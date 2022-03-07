@@ -92,7 +92,7 @@ export class LinkComponent implements OnInit {
     this.cam = !this.cam
   }
 
- signUser() {
+  signUser() {
     this.yesToSign = true
     this.info = `Signing ${this.userRead.name}'s card.`
     this.updateInfo()
@@ -117,16 +117,16 @@ export class LinkComponent implements OnInit {
   updateInfo() {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
-    this.snackBar.open( 'User was successfully signed!',"Ok", {
-      panelClass : ['mat-toolbar', 'mat-primary']
+    this.snackBar.open('User was successfully signed!', "Ok", {
+      panelClass: ['mat-toolbar', 'mat-primary']
     })
-    this.messageService.add({
-      origin: 'Sign and Link',
-      showAlert: true,
-      text: 'User was successfully signed!',
-      type: Type.success,
-      timeout: 2000
-    })
+    // this.messageService.add({
+    //   origin: 'Sign and Link',
+    //   showAlert: true,
+    //   text: 'User was successfully signed!',
+    //   type: Type.success,
+    //   timeout: 2000
+    // })
   }
 
   receiveUser(user: User) {
@@ -134,7 +134,9 @@ export class LinkComponent implements OnInit {
     this.scannerActive = false
     this.companyCannonService.getLink(this.company.id, this.userRead.id)
       .subscribe(_link => {
-        this.currentLink = _link
+        if (_link) {
+          this.currentLink = _link
+        }
         this.buildNotes(_link)
       })
   }
@@ -162,8 +164,8 @@ export class LinkComponent implements OnInit {
       this.updateLink()
     } else {
       this.createLink()
-      this.snackBar.open( 'Link created',"Ok", {
-        panelClass : ['mat-toolbar', 'mat-primary']
+      this.snackBar.open('Link created', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-primary']
       })
       this.messageService.add({
         origin: 'Link created',
@@ -178,24 +180,39 @@ export class LinkComponent implements OnInit {
   createLink() {
     this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
-        this.currentLink = _link
+        if (_link) {
+          this.currentLink = _link
+          this.snackBar.open('Link created', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary']
+          })
+        } else {
+          this.snackBar.open('Error creating link', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary']
+          })
+        }
       })
   }
 
   updateLink() {
     this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
-        this.currentLink = _link
-        this.snackBar.open( 'Link updated',"Ok", {
-          panelClass : ['mat-toolbar', 'mat-primary']
-        })
-        this.messageService.add({
-          origin: 'Link component',
-          showAlert: true,
-          text: 'Link updated',
-          timeout: 4000,
-          type: Type.success
-        })
+        if (_link) {
+          this.currentLink = _link
+          this.snackBar.open('Link updated', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary']
+          })
+        } else {
+          this.snackBar.open('Error updating link', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary']
+          })
+        }
+        // this.messageService.add({
+        //   origin: 'Link component',
+        //   showAlert: true,
+        //   text: 'Link updated',
+        //   timeout: 4000,
+        //   type: Type.success
+        // })
       })
   }
 
@@ -211,16 +228,16 @@ export class LinkComponent implements OnInit {
         }
 
         if (message.length > 0) {
-          this.snackBar.open( message,"Ok", {
-            panelClass : ['mat-toolbar', 'mat-warn']
+          this.snackBar.open(message, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn']
           })
-          this.messageService.add({
-            origin: 'Sign and Link',
-            showAlert: true,
-            text: message,
-            type: Type.warning,
-            timeout: 2000
-          })
+          // this.messageService.add({
+          //   origin: 'Sign and Link',
+          //   showAlert: true,
+          //   text: message,
+          //   type: Type.warning,
+          //   timeout: 2000
+          // })
           return
         }
 
