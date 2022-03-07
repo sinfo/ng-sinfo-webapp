@@ -143,4 +143,5 @@ div.mini-portrait-wrapper img {
 zxing-scanner {
     display: flex;
     justify-content: stretch;
+    z-index: -1;
 }
