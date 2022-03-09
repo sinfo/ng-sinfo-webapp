@@ -5,6 +5,8 @@
     <mat-icon *ngIf="!isCvUpdated && user && user.role !== 'company'" matBadge="!" matBadgeColor="warn"
       matBadgeSize="small">
       menu</mat-icon>
+    <mat-icon *ngIf="!user">
+      menu</mat-icon>
     <mat-icon *ngIf="isCvUpdated || (user && user.role === 'company')" style="transform: scale(1.5);">menu</mat-icon>
   </button>
   <span>

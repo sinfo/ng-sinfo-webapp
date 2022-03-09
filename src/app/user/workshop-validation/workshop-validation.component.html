@@ -1,14 +1,21 @@
-<app-loading [content]="workshops"></app-loading>
+<app-loading [content]="workshops || (ticket && session) "></app-loading>
 
-<div class="align-center pad" *ngIf="workshops">
-  <div class="row">
+<div class="align-center pad wrapper" *ngIf="workshops || (ticket && session)">
+  <div class="row" *ngIf="workshops">
     <h3>
       Validate Workshop Ticket
     </h3>
     <h6 *ngIf="!ticket" class='subtitle'>All dates are in UTC format</h6>
   </div>
 
-  <div *ngIf="ticket">
+  <div *ngIf="(ticket && session)">
+    <div class="row col-sm-1">
+      <img src="{{session.img}}" alt="{{session.name}}">
+    </div>
+    <h5>
+      Workshop: {{session.name}}
+    </h5>
+
     <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive">
     </app-qrcode-scanner>
 
@@ -17,7 +24,7 @@
     </div>
   </div>
 
-  <div class="container align-center user" *ngIf="!ticket">
+  <div class="container align-center user" *ngIf="!ticket && workshops">
 
     <div *ngFor="let workshop of workshops" class="session">
       <mat-card style="margin: 5px; display: flex; flex-direction: column; align-items: center;">

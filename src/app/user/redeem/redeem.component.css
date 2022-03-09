@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 .align-center {
@@ -49,6 +50,7 @@ h6 {
 
 .camera {
   padding-bottom: 5%;
+  height: 100%;
 }
 
 button {
