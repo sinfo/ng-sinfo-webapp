@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { Endpoint } from './endpoint.model'
-import { Observable , of } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
@@ -21,7 +21,7 @@ export class EndpointService {
     'Authorization': `Bearer ${this.authService.getToken().token}`
   })
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private messageService: MessageService,
     private snackBar: MatSnackBar,
@@ -31,7 +31,7 @@ export class EndpointService {
     this.eventService.getCurrent().subscribe(event => this.event = event)
   }
 
-  getEndpoints (): Observable<Endpoint[]> {
+  getEndpoints(): Observable<Endpoint[]> {
     if (this.endpoints) {
       return of(this.endpoints)
     }
@@ -44,12 +44,12 @@ export class EndpointService {
 
     return this.http.get<Endpoint[]>(this.endpointsUrl, { params: params, headers: this.headers })
       .pipe(
-      tap(endpoints => this.endpoints = endpoints),
-      catchError(this.handleError<Endpoint[]>('getEndpoints', []))
+        tap(endpoints => this.endpoints = endpoints),
+        catchError(this.handleError<Endpoint[]>('getEndpoints', []))
       )
   }
 
-  getEndpoint (companyId: string): Observable<Endpoint> {
+  getEndpoint(companyId: string): Observable<Endpoint> {
     if (this.endpoints) {
       return of(this.endpoints.find(c => {
         return c.company === companyId && c.edition === this.event.id
@@ -66,12 +66,12 @@ export class EndpointService {
       headers: this.headers,
       params: params
     })
-    .pipe(
-      catchError(this.handleError<Endpoint>('getEndpoint'))
-    )
+      .pipe(
+        catchError(this.handleError<Endpoint>('getEndpoint'))
+      )
   }
 
-  createEndpoints (companies: string[], from: Date, to: Date): Observable<Endpoint[]> {
+  createEndpoints(companies: string[], from: Date, to: Date): Observable<Endpoint[]> {
     return this.http.post<Endpoint[]>(`${this.endpointsUrl}`, {
       companies,
       edition: this.event.id,
@@ -80,13 +80,13 @@ export class EndpointService {
         to
       }
     }, { headers: this.headers })
-    .pipe(
-      tap(endpoints => this.endpoints = endpoints),
-      catchError(this.handleError<Endpoint[]>('createEndpoints'))
-    )
+      .pipe(
+        tap(endpoints => this.endpoints = endpoints),
+        catchError(this.handleError<Endpoint[]>('createEndpoints'))
+      )
   }
 
-  updateEndpoint (companyId: string, from: Date, to: Date): Observable<Endpoint> {
+  updateEndpoint(companyId: string, from: Date, to: Date): Observable<Endpoint> {
     let params = new HttpParams({
       fromObject: {
         'edition': this.event.id
@@ -102,12 +102,12 @@ export class EndpointService {
       headers: this.headers,
       params: params
     })
-    .pipe(
-      catchError(this.handleError<Endpoint>('updateEndpoints'))
-    )
+      .pipe(
+        catchError(this.handleError<Endpoint>('updateEndpoints'))
+      )
   }
 
-  deleteEndpoint (companyId: string): Observable<Endpoint> {
+  deleteEndpoint(companyId: string): Observable<Endpoint> {
 
     let params = new HttpParams({
       fromObject: {
@@ -119,12 +119,12 @@ export class EndpointService {
       headers: this.headers,
       params: params
     })
-    .pipe(
-      tap(endpoint => this.endpoints = this.endpoints.filter(e => {
-        return e.company !== endpoint.company && e.edition !== endpoint.edition
-      })),
-      catchError(this.handleError<Endpoint>('deleteEndpoints'))
-    )
+      .pipe(
+        tap(endpoint => this.endpoints = this.endpoints.filter(e => {
+          return e.company !== endpoint.company && e.edition !== endpoint.edition
+        })),
+        catchError(this.handleError<Endpoint>('deleteEndpoints'))
+      )
   }
 
   /**
@@ -133,10 +133,11 @@ export class EndpointService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open(error.message,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `CompanyService: ${operation}`,

@@ -14,13 +14,13 @@ export class PromocodesService {
   private partnerUrl = environment.cannonUrl + '/promo-code'
   private partners: Promocode[]
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getPartners (): Observable<Promocode[]> {
+  getPartners(): Observable<Promocode[]> {
     if (this.partners) {
       return of(this.partners)
     }
@@ -40,10 +40,11 @@ export class PromocodesService {
   * @param operation - name of the operation that failed
   * @param result - optional value to return as the observable result
   */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open( 'When fetching partners from server',"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open('When fetching partners from server', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       this.messageService.add({
         origin: `PartnerService: ${operation}`,

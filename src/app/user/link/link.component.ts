@@ -118,7 +118,8 @@ export class LinkComponent implements OnInit {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
     this.snackBar.open('User was successfully signed!', "Ok", {
-      panelClass: ['mat-toolbar', 'mat-primary']
+      panelClass: ['mat-toolbar', 'mat-primary'],
+      duration: 2000
     })
     // this.messageService.add({
     //   origin: 'Sign and Link',
@@ -165,7 +166,8 @@ export class LinkComponent implements OnInit {
     } else {
       this.createLink()
       this.snackBar.open('Link created', "Ok", {
-        panelClass: ['mat-toolbar', 'mat-primary']
+        panelClass: ['mat-toolbar', 'mat-primary'],
+        duration: 2000
       })
       this.messageService.add({
         origin: 'Link created',
@@ -183,11 +185,13 @@ export class LinkComponent implements OnInit {
         if (_link) {
           this.currentLink = _link
           this.snackBar.open('Link created', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary']
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
           })
         } else {
           this.snackBar.open('Error creating link', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary']
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
           })
         }
       })
@@ -199,11 +203,13 @@ export class LinkComponent implements OnInit {
         if (_link) {
           this.currentLink = _link
           this.snackBar.open('Link updated', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary']
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
           })
         } else {
           this.snackBar.open('Error updating link', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary']
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
           })
         }
         // this.messageService.add({
@@ -229,7 +235,8 @@ export class LinkComponent implements OnInit {
 
         if (message.length > 0) {
           this.snackBar.open(message, "Ok", {
-            panelClass: ['mat-toolbar', 'mat-warn']
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
           })
           // this.messageService.add({
           //   origin: 'Sign and Link',

@@ -36,8 +36,9 @@ export class RedeemService {
           let achievement = response.achievement
 
           if (!response.success || !achievement || achievement.id === undefined) {
-            this.snackBar.open( `Invalid redeem code`,"Ok", {
-              panelClass : ['mat-toolbar', 'mat-warn']
+            this.snackBar.open(`Invalid redeem code`, "Ok", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 2000
             })
             this.messageService.add({
               origin: 'Redeem',
@@ -53,8 +54,9 @@ export class RedeemService {
         },
         err => {
           if (err.status === 406) {
-            this.snackBar.open( `Already redeemed code`,"Ok", {
-              panelClass : ['mat-toolbar', 'mat-warn']
+            this.snackBar.open(`Already redeemed code`, "Ok", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 2000
             })
             this.messageService.add({
               origin: 'Redeem',
@@ -67,8 +69,9 @@ export class RedeemService {
             return
           }
 
-          this.snackBar.open( `Invalid redeem code`,"Ok", {
-            panelClass : ['mat-toolbar', 'mat-warn']
+          this.snackBar.open(`Invalid redeem code`, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn'],
+            duration: 2000
           })
           this.messageService.add({
             origin: 'Redeem',
@@ -96,8 +99,9 @@ export class RedeemService {
         },
         err => {
           if (err.status === 406) {
-            this.snackBar.open( `Already redeemed code`,"Ok", {
-              panelClass : ['mat-toolbar', 'mat-warn']
+            this.snackBar.open(`Already redeemed code`, "Ok", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 2000
             })
             this.messageService.add({
               origin: 'Redeem',
@@ -109,8 +113,9 @@ export class RedeemService {
 
             return
           } else if (err.status === 404) {
-            this.snackBar.open( `No valid secret achievements found with that code`,"Ok", {
-              panelClass : ['mat-toolbar', 'mat-warn']
+            this.snackBar.open(`No valid secret achievements found with that code`, "Ok", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 2000
             })
             this.messageService.add({
               origin: 'Secret Codes',
@@ -122,8 +127,9 @@ export class RedeemService {
             return
           }
 
-          this.snackBar.open( `Invalid redeem code`,"Ok", {
-            panelClass : ['mat-toolbar', 'mat-warn']
+          this.snackBar.open(`Invalid redeem code`, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn'],
+            duration: 2000
           })
           this.messageService.add({
             origin: 'Redeem',

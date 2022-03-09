@@ -113,12 +113,12 @@ export class WorkshopValidationComponent implements OnInit {
     if (this.ticket.users.includes(user.id)) {
       this.snackBar.open(`User is registered!`, "Ok", {
         panelClass: ['mat-toolbar', 'mat-primary'],
-        duration: 3000
+        duration: 2000
       })
     } else {
       this.snackBar.open(`User is not registered!`, "Ok", {
         panelClass: ['mat-toolbar', 'mat-warn'],
-        duration: 3000
+        duration: 2000
       })
     }
   }

@@ -21,8 +21,9 @@ export class SignatureService {
     this.companyCannonService.sign(company.id, user.id)
       .subscribe(_user => {
         if (!_user) return
-        this.snackBar.open( `Signed ${user.name}'s card`,"Ok", {
-          panelClass : ['mat-toolbar', 'mat-primary']
+        this.snackBar.open(`Signed ${user.name}'s card`, "Ok", {
+          panelClass: ['mat-toolbar', 'mat-primary'],
+          duration: 2000
         })
         this.messageService.add({
           origin: 'Signatures',
@@ -38,8 +39,9 @@ export class SignatureService {
     this.companyCannonService.signSpeedDate(company.id, user.id)
       .subscribe(_user => {
         if (!_user) return
-        this.snackBar.open( `Signed ${user.name} a speed date`,"Ok", {
-          panelClass : ['mat-toolbar', 'mat-primary']
+        this.snackBar.open(`Signed ${user.name} a speed date`, "Ok", {
+          panelClass: ['mat-toolbar', 'mat-primary'],
+          duration: 2000
         })
         this.messageService.add({
           origin: 'Speed Date Signature',
@@ -71,8 +73,9 @@ export class SignatureService {
       }
 
       // signature found
-      this.snackBar.open( `Already signed ${user.name}'s card for today`,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(`Already signed ${user.name}'s card for today`, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       this.messageService.add({
         origin: 'Signatures',

@@ -23,13 +23,13 @@ export class EventService {
   private current: Event
   private previous: Event
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getEvents (): Observable<Event[]> {
+  getEvents(): Observable<Event[]> {
     if (this.events) {
       return of(this.events)
     }
@@ -41,7 +41,7 @@ export class EventService {
       )
   }
 
-  getEvent (id: string): Observable<Event> {
+  getEvent(id: string): Observable<Event> {
     if (this.events) {
       return of(this.events.find(event => event.id === id))
     } else {
@@ -52,12 +52,12 @@ export class EventService {
     }
   }
 
-  getCurrent (): Observable<Event> {
+  getCurrent(): Observable<Event> {
     if (this.current) {
       return of(this.current)
     } else {
       return this.http.get<Event>(`${this.currentEventUrl}`)
-      .pipe(
+        .pipe(
           map(events => new Event(events[0])),
           tap(event => this.current = event),
           catchError(this.handleError<Event>('getCurrentEvent'))
@@ -65,7 +65,7 @@ export class EventService {
     }
   }
 
-  getPrevious (): Observable<Event> {
+  getPrevious(): Observable<Event> {
     if (this.previous) {
       return of(this.previous)
     } else {
@@ -84,10 +84,11 @@ export class EventService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open(error.message,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `EventService: ${operation}`,

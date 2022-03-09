@@ -11,13 +11,13 @@ import { environment } from '../../../environments/environment'
 })
 export class LivestreamService {
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getLivestreamInformation () {
+  getLivestreamInformation() {
 
     var livestreamUrl = environment.cannonUrl + '/google/livestream'
 
@@ -33,10 +33,11 @@ export class LivestreamService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open(error.message,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `LiveStream Service: ${operation}`,

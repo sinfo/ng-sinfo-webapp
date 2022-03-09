@@ -276,7 +276,8 @@ export class UserService {
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       this.snackBar.open(error.message, "Ok", {
-        panelClass: ['mat-toolbar', 'mat-warn']
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `UserService: ${operation}`,

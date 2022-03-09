@@ -13,13 +13,13 @@ export class SponsorService {
   private sponsors: Sponsor[]
   private eventId: string
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getSponsors (eventId: string): Observable<Sponsor[]> {
+  getSponsors(eventId: string): Observable<Sponsor[]> {
     if (this.sponsors && this.eventId === eventId) {
       return of(this.sponsors)
     }
@@ -41,7 +41,7 @@ export class SponsorService {
       )
   }
 
-  getSponsor (id: string): Observable<Sponsor> {
+  getSponsor(id: string): Observable<Sponsor> {
     if (this.sponsors) {
       return of(this.sponsors.find(sponsor => sponsor.id === id))
     }
@@ -68,10 +68,11 @@ export class SponsorService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open(error.message,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `SponsorService: ${operation}`,

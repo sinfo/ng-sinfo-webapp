@@ -69,7 +69,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     if (!this.isFacebookActive) {
       this.snackBar.open(`You need to disable any ad blocker or tracking protection mechanism to be allowed to login with Google.`, "Ok", {
-        panelClass: ['mat-toolbar', 'mat-primary']
+        panelClass: ['mat-toolbar', 'mat-primary'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `LoginComponent: ngOnInit isFacebookActive=${this.isFacebookActive}`,
@@ -82,7 +83,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
     if (!this.isGoogleActive) {
       this.snackBar.open(`You need to disable any ad blocker or tracking protection mechanism to be allowed to login with Facebook.`, "Ok", {
-        panelClass: ['mat-toolbar', 'mat-primary']
+        panelClass: ['mat-toolbar', 'mat-primary'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `LoginComponent: ngOnInit isGoogleActive=${this.isGoogleActive}`,
@@ -184,7 +186,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
         })
     } else if (resp.status === 'not_authorized') {
       this.snackBar.open(`You were not allowed to login with Facebook`, "Ok", {
-        panelClass: ['mat-toolbar', 'mat-warn']
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,
@@ -195,7 +198,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       }) */
     } else {
       this.snackBar.open(`An error occurred by logging with Facebook`, "Ok", {
-        panelClass: ['mat-toolbar', 'mat-warn']
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `LoginComponent: facebookStatusChange: ${resp.status}`,

@@ -5,7 +5,7 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
-import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-validate-card',
@@ -19,7 +19,7 @@ export class ValidateCardComponent implements OnInit {
   userRead: User
   user: User
 
-  constructor (
+  constructor(
     private userService: UserService,
     private messageService: MessageService,
     private eventService: EventService,
@@ -27,24 +27,25 @@ export class ValidateCardComponent implements OnInit {
     private snackbar: MatSnackBar
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Validate Card')
     })
 
     this.scannerActive = true
     this.userService.getMe()
-    .subscribe(user => {
-      this.user = user
-    })
+      .subscribe(user => {
+        this.user = user
+      })
   }
 
-  receiveUser (user: User) {
+  receiveUser(user: User) {
     this.userRead = user
     this.userService.validateCard(user.id).subscribe((_user) => {
       if (!_user) return
       this.snackbar.open(`Validated ${user.name}'s card`, "Nice!", {
-        panelClass : ['mat-toolbar', 'mat-primary']
+        panelClass: ['mat-toolbar', 'mat-primary'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: 'Validate card',
@@ -57,8 +58,9 @@ export class ValidateCardComponent implements OnInit {
 
       if (error.error.statusCode === 409) {
         this.snackbar.open(`${user.name}'s card is already validated`, "Oops", {
-        panelClass : ['mat-toolbar', 'mat-warn']
-      })
+          panelClass: ['mat-toolbar', 'mat-warn'],
+          duration: 2000
+        })
         /* this.messageService.add({
           origin: 'Validate card',
           showAlert: true,
@@ -67,9 +69,10 @@ export class ValidateCardComponent implements OnInit {
           timeout: 7000
         }) */
       } else if (error.error.statusCode === 404 || error.error.statusCode === 422) {
-        this.snackbar.open(`Not enough signatures on ${user.name}'s card`, "Yikes",{
-        panelClass : ['mat-toolbar', 'mat-warn']
-      }
+        this.snackbar.open(`Not enough signatures on ${user.name}'s card`, "Yikes", {
+          panelClass: ['mat-toolbar', 'mat-warn'],
+          duration: 2000
+        }
         )
         /* this.messageService.add({
           origin: 'Validate card',

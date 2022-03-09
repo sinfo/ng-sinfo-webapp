@@ -21,13 +21,13 @@ export class SessionService {
   private sessions: Session[]
   private eventId: string
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getSessions (eventId: string): Observable<Session[]> {
+  getSessions(eventId: string): Observable<Session[]> {
     if (this.sessions && this.eventId === eventId) {
       return of(this.sessions)
     }
@@ -48,7 +48,7 @@ export class SessionService {
       )
   }
 
-  getSession (id: string): Observable<Session> {
+  getSession(id: string): Observable<Session> {
     if (this.sessions) {
       return of(this.sessions.find(session => session.id === id))
     } else {
@@ -65,10 +65,11 @@ export class SessionService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open(error.message,"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       /* this.messageService.add({
         origin: `SessionService: ${operation}`,

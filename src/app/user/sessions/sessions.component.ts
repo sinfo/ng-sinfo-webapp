@@ -111,8 +111,9 @@ export class SessionsComponent implements OnInit {
 
   copyCode(code: string): void {
     this.clipboardService.copyFromContent(code)
-    this.snackBar.open( `Copied`,"Ok", {
-      panelClass : ['mat-toolbar', 'mat-primary']
+    this.snackBar.open(`Copied`, "Ok", {
+      panelClass: ['mat-toolbar', 'mat-primary'],
+      duration: 2000
     })
     this.messageService.add({
       origin: `Session code`,

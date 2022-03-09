@@ -160,7 +160,8 @@ export class CheckinComponent implements OnInit {
           this.getSessions()
 
           this.snackBar.open(`Done!`, "Ok", {
-            panelClass: ['mat-toolbar', 'mat-warn']
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
           })
           /* this.messageService.add({
             origin: `Check in component`,

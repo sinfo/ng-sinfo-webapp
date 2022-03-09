@@ -12,14 +12,14 @@ import { Achievement } from '../achievements/achievement.model'
   providedIn: 'root'
 })
 export class SessionsService {
-  constructor (
+  constructor(
     private http: HttpClient,
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private messageService: MessageService
-  ) {}
+  ) { }
 
-  generateCode (sessionId: string, expirationDate: Date) {
+  generateCode(sessionId: string, expirationDate: Date) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -43,10 +43,11 @@ export class SessionsService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open( 'When generating session code',"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open('When generating session code', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
       this.messageService.add({
         origin: `SessionService: ${operation}`,

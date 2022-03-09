@@ -105,8 +105,9 @@ export class SelfcheckinComponent implements OnInit {
         this.selectedSession = null
         if (ach) {
           this.sessionsSignedin.add(ach.session)
-          this.snackBar.open( `Checked in to session`,"Ok", {
-            panelClass : ['mat-toolbar', 'mat-primary']
+          this.snackBar.open(`Checked in to session`, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
           })
           this.messageService.add({
             origin: `Self check in component`,
