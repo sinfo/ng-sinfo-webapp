@@ -81,10 +81,12 @@ export class QrcodeScannerComponent implements OnInit {
 
   handleQrCodeResult(content): void {
     this.company = undefined // flush previous info
+    this.lastUser = undefined
+    this.userRead = undefined
 
     if (!content) {
-      this.snackBar.open('Reading the QRCode, try again.',"Ok", {
-        panelClass : ['mat-toolbar', 'mat-warn']
+      this.snackBar.open('Reading the QRCode, try again.', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn']
       })
       /* this.messageService.add({
         origin: 'QrcodeScannerComponent processContent()',
@@ -114,8 +116,8 @@ export class QrcodeScannerComponent implements OnInit {
             this.animation = undefined
           }, 500)
 
-          this.snackBar.open('User not found',"Ok", {
-            panelClass : ['mat-toolbar', 'mat-warn']
+          this.snackBar.open('User not found', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn']
           })
           /* this.messageService.add({
             origin: 'QrcodeScannerComponent processContent()',

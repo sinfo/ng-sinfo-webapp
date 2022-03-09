@@ -124,6 +124,7 @@ export class CheckinComponent implements OnInit {
   beginCheckIn(session: Session) {
     this.selectedSession = session
     this.scannerActive = true
+    this.unregistered = 0
     localStorage.setItem('selectedSession', JSON.stringify(this.selectedSession))
   }
 
