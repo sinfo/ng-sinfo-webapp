@@ -126,8 +126,8 @@ export class WorkshopValidationComponent implements OnInit {
   checkLocalStorage(): boolean {
     let ticketS = localStorage.getItem('ticket')
     console.log(!ticketS || ticketS === undefined)
-    if (!ticketS) {
-      return
+    if (!ticketS || ticketS === undefined) {
+      return false
     }
     let ticket = JSON.parse(ticketS)
 
