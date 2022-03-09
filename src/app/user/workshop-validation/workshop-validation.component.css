@@ -16,3 +16,11 @@
   background-color: #d9534f;
   border-color: #d43f3a;
 }
+
+.wrapper{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}

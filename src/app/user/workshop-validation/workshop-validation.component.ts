@@ -24,6 +24,7 @@ export class WorkshopValidationComponent implements OnInit {
   eventId: string
   workshops: any
   ticket: Ticket
+  session: Session
 
 
   constructor(
@@ -43,6 +44,9 @@ export class WorkshopValidationComponent implements OnInit {
 
       this.userService.getMe()
         .subscribe(me => {
+          if (!me) {
+            this.router.navigate(['/login'])
+          }
           if (me.role !== 'team') {
             this.router.navigate(['/user/qrcode'])
           }
@@ -96,8 +100,10 @@ export class WorkshopValidationComponent implements OnInit {
   beginCheck(workshop: Session) {
     this.ticketService.getTicket(workshop.id).subscribe((ticket) => {
       if (ticket) {
+        localStorage.setItem('session', JSON.stringify(workshop))
         localStorage.setItem('ticket', JSON.stringify(ticket))
         this.ticket = ticket
+        this.session = workshop
         this.scannerActive = true
       }
     })
@@ -119,19 +125,29 @@ export class WorkshopValidationComponent implements OnInit {
 
   cancel() {
     localStorage.removeItem('ticket')
+    localStorage.removeItem('session')
     this.ticket = null
     this.scannerActive = false
+    if (!this.workshops) {
+      this.getWorkshops()
+    }
   }
 
   checkLocalStorage(): boolean {
     let ticketS = localStorage.getItem('ticket')
-    console.log(!ticketS || ticketS === undefined)
-    if (!ticketS || ticketS === undefined) {
+    let sessionS = localStorage.getItem('session')
+
+    if (!ticketS || !sessionS) {
       return false
     }
     let ticket = JSON.parse(ticketS)
+    let session = JSON.parse(sessionS)
 
-    if (!ticket) return false
+
+    if (!ticket || !session) return false
+
+    this.ticket = ticket
+    this.session = session
     this.scannerActive = true
 
     return true
