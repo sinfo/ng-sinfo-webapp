@@ -120,7 +120,7 @@
         <mat-icon>get_app</mat-icon>
         <span class="list-item">Create Endpoints</span>
       </a>
-      <a *ngIf="user && user.role !== 'team'" mat-list-item routerLink="/user/downloads/status"
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/downloads/status"
         routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
         <mat-icon>get_app</mat-icon>
         <span class="list-item">Endpoints Status</span>
