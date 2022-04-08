@@ -110,7 +110,7 @@
         <mat-icon>receipt</mat-icon>
         <span class="list-item">Promo Codes</span>
       </a>
-      <a *ngIf="user && user.role === 'company'" mat-list-item routerLink="/user/downloads/download"
+      <a *ngIf="user && user.role !== 'user'" mat-list-item routerLink="/user/downloads/download"
         routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
         <mat-icon>get_app</mat-icon>
         <span class="list-item">Download CVs</span>
