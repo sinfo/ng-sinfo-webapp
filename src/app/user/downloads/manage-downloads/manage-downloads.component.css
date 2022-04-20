@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 100%;
+  padding: 2%;
 }
 
 .wrapper div {
@@ -11,7 +13,8 @@
   align-items: center;
 }
 
-.wrapper h3, .wrapper h6 {
+.wrapper h3,
+.wrapper h6 {
   text-align: center;
 }
 
@@ -30,6 +33,7 @@
 
 .select-companies.btn-group,
 .select-companies label.btn-primary,
+.select-companies label.btn-danger,
 .create-endpoints button.btn {
   margin: 0;
   margin-bottom: 10px;
@@ -39,18 +43,22 @@
   padding: 13px;
   font-size: 12px;
 }
+
 button.btn-success {
   background-color: #449d44 !important;
   border-color: #398439 !important;
 }
+
 .select-companies.btn-group {
   padding: 0;
   margin: 0;
-  margin-right: 10px; 
+  margin-right: 10px;
 }
-.select-companies.btn-group input{
+
+.select-companies.btn-group input {
   display: none;
 }
+
 .btn-primary {
   margin-top: 5px !important;
   margin-bottom: 5px !important;
@@ -58,23 +66,35 @@ button.btn-success {
   background-color: #007bff;
   border-color: #007bff;
 }
+
 .btn-primary:not(:disabled):not(.disabled).active {
   color: #fff;
   background-color: #0062cc;
   border-color: #005cbf;
 }
+
+.btn-danger {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+
+
 h6.selected-list {
   margin-bottom: 10px;
 }
+
 ul.selected-list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 }
+
 ul.selected-list {
   margin: 5px;
 }
-ul.selected-list li .label{
+
+ul.selected-list li .label {
   padding: 0.4em .7em .4em;
   font-size: 13px;
   background-color: #0062cc;
@@ -82,20 +102,44 @@ ul.selected-list li .label{
   font-weight: 600;
   cursor: pointer;
 }
-ul.selected-list li .label:hover{
+
+ul.selected-list li .label:hover {
   box-shadow: inset 0 65px 0 rgba(255, 255, 255, 0.16);
 }
-ul.selected-list li .label span{
+
+ul.selected-list li .label span {
   margin-left: 2px;
 }
-ul.selected-list li .label:hover span{
+
+ul.selected-list li .label:hover span {
   font-weight: 700;
 }
 
-.select-companies label, .submit button {
+.select-companies label,
+.submit button {
   width: 100%;
 }
 
+
 .period {
   margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+}
+
+.reset {
+  height: auto !important;
+  padding: auto !important;
+  line-height: normal !important;
+  transition: none !important;
+  margin: auto !important;
+  vertical-align: auto !important;
+  width: auto !important;
+  font-size: unset !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
 }

@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
 import { NgbTypeahead, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap'
 import { Observable, Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged, merge, filter, map } from 'rxjs/operators'
+import { FormGroup, FormControl } from '@angular/forms'
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
   one && two && two.year === one.year && two.month === one.month && two.day === one.day
@@ -30,6 +31,11 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
 })
 
 export class ManageDownloadsComponent implements OnInit {
+
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl(),
+  });
 
   companies: Company[]
   selectedCompanies: Company[] = []
@@ -101,7 +107,7 @@ export class ManageDownloadsComponent implements OnInit {
 
   selectedItem($event) {
     $event.preventDefault()
-    if (!~this.selectedCompanies.indexOf($event.item)) {
+    if (!!this.selectedCompanies.indexOf($event.item)) {
       this.selectedCompanies.push($event.item)
     }
   }
@@ -111,9 +117,11 @@ export class ManageDownloadsComponent implements OnInit {
   }
 
   createEndpoints(): void {
-    if (!this.fromDate || !this.toDate) {
+    if (!this.range.get('start').value || !this.range.get('end').value) {
       return
     }
+    let start = new Date(this.range.get('start').value)
+    let end = new Date(this.range.get('end').value)
 
     this.loading = true
 
@@ -123,8 +131,8 @@ export class ManageDownloadsComponent implements OnInit {
 
     this.enpointService.createEndpoints(
       _companies,
-      new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day),
-      new Date(this.toDate.year, this.toDate.month - 1, this.toDate.day, 23, 59, 59)
+      start,
+      end
     ).subscribe(endpoints => {
       this.loading = false
       this.router.navigate(['/user/downloads/status'])

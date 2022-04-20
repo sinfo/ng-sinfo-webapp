@@ -20,8 +20,9 @@
     <div class="select-companies-wrapper">
 
       <div class="select-companies btn-group btn-group-toggle">
-        <label class="btn-primary" ngbButtonLabel>
-          <input type="checkbox" ngbButton [(ngModel)]="selectAllCompanies"> Select All Companies
+        <label [ngClass]="{'btn-primary': !selectAllCompanies, 'btn-danger': selectAllCompanies}" ngbButtonLabel>
+          <input type="checkbox" ngbButton [(ngModel)]="selectAllCompanies"> {{selectAllCompanies? "Deselect All
+          Companies" : "Select All Companies"}}
         </label>
       </div>
 
@@ -30,7 +31,8 @@
           placeholder="Select multiple companies" (focus)="focus$.next($event.target.value)"
           (click)="click$.next($event.target.value)" (selectItem)="selectedItem($event); input.value='' "
           [(ngModel)]="searchedCompany" [ngbTypeahead]="search" [inputFormatter]="formatter"
-          [resultFormatter]="formatter" [resultTemplate]="rt" />
+          [resultFormatter]="formatter" [resultTemplate]="rt"
+          [attr.disabled]="selectAllCompanies === true ? 'disabled' : null" />
         <ng-template #rt let-r="result" let-t="term">
           <p>{{r.name}}</p>
           <span class="btn-primary glyphicon glyphicon-plus"></span>
@@ -57,7 +59,7 @@
       <b>Second:</b> Select the period these endpoints will be open.
     </h6>
 
-    <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
+    <!-- <ngb-datepicker #dp ngModel (ngModelChange)="onDateChange($event)" [displayMonths]="2" [dayTemplate]="t">
     </ngb-datepicker>
 
     <ng-template #t let-date="date" let-focused="focused">
@@ -67,12 +69,25 @@
         (mouseleave)="hoveredDate = null">
         {{ date.day }}
       </span>
-    </ng-template>
+    </ng-template> -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input class="reset" matStartDate formControlName="start" placeholder="Start date">
+        <input class="reset" matEndDate formControlName="end" placeholder="End date">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
   </div>
 
   <div class="submit">
     <button class="btn btn-success" (click)="createEndpoints()"
-      [disabled]="loading || !fromDate || !toDate || ( !selectedCompanies.length > 0 && !selectAllCompanies )">
+      [disabled]="loading || !range.get('start').value || !range.get('end').value || ( !selectedCompanies.length > 0 && !selectAllCompanies )">
       <span *ngIf="loading">
         <i class="fa fa-circle-o-notch fa-spin"></i>
       </span>

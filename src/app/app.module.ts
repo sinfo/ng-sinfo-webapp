@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { SpeakersComponent } from "./speakers/speakers.component";
@@ -111,6 +111,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDividerModule } from '@angular/material/divider';
 import { WorkshopValidationComponent } from './user/workshop-validation/workshop-validation.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MaterialExampleModule } from '../material.module';
+
+
 
 library.add(fas);
 
@@ -205,7 +210,11 @@ library.add(fas);
     MatCardModule,
     MatTabsModule,
     MatProgressBarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MaterialExampleModule
   ],
   providers: [
     SpeakerService,
