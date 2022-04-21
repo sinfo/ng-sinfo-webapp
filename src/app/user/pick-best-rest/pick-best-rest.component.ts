@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { EventService } from '../../events/event.service'
+import { AchievementService } from '../achievements/achievement.service'
 
 @Component({
   selector: 'app-pick-best.rest',
@@ -14,13 +15,16 @@ import { EventService } from '../../events/event.service'
 export class PickBestRestComponent implements OnInit {
   me: User
   eligibleUsers: User[] = []
+  cvUsers: string[]
   winner: User
+  cvWinner: User
   totalEntries: number = 0
 
   constructor(
     private router: Router,
     private userService: UserService,
     private eventService: EventService,
+    private achievementService: AchievementService,
   ) { }
 
   ngOnInit() {
@@ -42,6 +46,10 @@ export class PickBestRestComponent implements OnInit {
             this.totalEntries += user.points
           })
         })
+
+        this.achievementService.getActiveAchievements().subscribe(achievements => {
+          this.cvUsers = achievements.find((ach) => ach.kind === 'cv').users
+        })
       })
     })
   }
@@ -57,6 +65,15 @@ export class PickBestRestComponent implements OnInit {
         return false
       }
       return true
+    })
+  }
+
+  chooseCVWinner() {
+    this.cvWinner = null
+
+    let user = this.cvUsers[Math.floor(Math.random() * this.cvUsers.length)]
+    this.userService.getUser(user).subscribe(u => {
+      this.cvWinner = u
     })
   }
 

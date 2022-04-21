@@ -1,7 +1,7 @@
 <div class="align-center pad">
   <div class="row">
     <div class="col-sm-12 align-center">
-      <h3 class="title">Daily Prize</h3>
+      <h3 class="title">Prizes</h3>
     </div>
   </div>
 
@@ -32,6 +32,37 @@
 
           <div class="actions">
             <button (click)=chooseWinner() type="button" class="btn btn-secondary">Reroll</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 align-center">
+      <p>{{cvUsers.length}} people are currently elligible</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 align-center">
+
+      <div *ngIf="!cvWinner">
+        <div class="actions">
+          <button (click)=chooseCVWinner() type="button" class="btn btn-secondary">Pick Winner</button>
+        </div>
+
+      </div>
+
+      <div *ngIf="cvWinner">
+        <div class="portrait-wrapper">
+          <img appImage [url]="cvWinner.img" class="portrait">
+          <p>{{cvWinner.name}}</p>
+          <p>{{cvWinner.points}}</p>
+
+          <div class="actions">
+            <button (click)=chooseCVWinner() type="button" class="btn btn-secondary">Reroll</button>
           </div>
 
         </div>
