@@ -15,7 +15,7 @@ import { AchievementService } from '../achievements/achievement.service'
 export class PickBestRestComponent implements OnInit {
   me: User
   eligibleUsers: User[] = []
-  cvUsers: string[]
+  cvUsers: string[] = []
   winner: User
   cvWinner: User
   totalEntries: number = 0

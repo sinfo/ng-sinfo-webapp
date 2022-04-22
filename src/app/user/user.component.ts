@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from "@angular/core";
+import { Component, HostListener, OnInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { UserService } from "./user.service";
@@ -66,4 +66,5 @@ export class UserComponent implements OnInit {
       ? window.location.reload()
       : this.router.navigate(["/"]);
   }
+
 }

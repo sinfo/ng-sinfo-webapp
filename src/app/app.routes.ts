@@ -91,7 +91,7 @@ const routes: Routes = [
 
       { path: 'selfcheckin', component: SelfcheckinComponent, canActivate: [AuthGuard] },
       { path: 'pick-winner', component: PickWinnerComponent, canActivate: [IsTeamGuard] },
-      { path: 'pick-best-rest', component: PickBestRestComponent, canActivate: [IsTeamGuard] },
+      { path: 'prizes', component: PickBestRestComponent, canActivate: [IsTeamGuard] },
       { path: 'downloads/manage', component: ManageDownloadsComponent, canActivate: [IsTeamGuard] },
       { path: 'downloads/status', component: DownloadsStatusComponent, canActivate: [IsTeamGuard] },
       { path: 'workshops/workshops-status', component: WorkshopsStatusComponent, canActivate: [IsTeamGuard] },
