@@ -1,10 +1,11 @@
 <app-loading [content]="sessions"></app-loading>
 
-<div class="align-center pad" *ngIf="sessions">
+<div class="align-center pad wrapper" *ngIf="sessions" style="height: 100%">
   <div class="row">
     <h3>
       Check in
     </h3>
+    <h6 class='subtitle'>All dates are in UTC format</h6>
   </div>
 
   <div *ngIf="selectedSession">
@@ -13,22 +14,33 @@
     </app-qrcode-scanner>
 
     <div class="row destroy">
-      <button class="btn btn-button" (click)="delete()">Delete saved users</button>
+      <h4>Unregistered Users</h4>
+      <div class='unregistered'>
+        <button class='btn btn-button' (click)="updateUnregistered(-1)">-</button>
+        <div class='box'>{{unregistered}}</div>
+        <button class='btn btn-button' (click)="updateUnregistered(1)">+</button>
+      </div>
+      <button class="btn btn-button" (click)="delete()">Cancel</button>
     </div>
 
   </div>
 
   <div class="container align-center user" *ngIf="!selectedSession">
 
-    <div class="sessions-wrapper">
-      <div *ngFor="let session of sessions" class="row session">
-        <div class="col-sm-12">
-          <div class="row well well-sm workshop-wrapper">
-            <div class="img-wrapper col-sm-2">
+    <div class='slider'>
+      <mat-slide-toggle [(ngModel)]="all" (change)='toggleAll()'>See all</mat-slide-toggle>
+    </div>
+
+    <mat-tab-group mat-align-tabs="center">
+      <mat-tab *ngFor="let kind of sessions" label="{{kind.kind}}">
+        <div *ngFor="let session of kind.sessions" class="session">
+          <mat-card style="margin: 5px; display: flex; flex-direction: column; align-items: center;">
+            <div class="img-wrapper col-sm-1">
               <img src="{{session.session.img}}" alt="{{session.session.name}}">
             </div>
             <div class="info-wrapper col-sm-7">
-              <h4 class="name">{{session.name}}</h4>
+              <h4 class="name">Session: {{session.session.name}}</h4>
+              <h4 class="name">Occupancy: {{session.total}}</h4>
               <div class="session-details">
                 <div *ngIf="session.begin" class="padded">
                   <p>
@@ -48,15 +60,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-3 checkin">
+            <div *ngIf='session.canCheckIn' class="col-sm-3 checkin">
               <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check in</button>
             </div>
-          </div>
-
+          </mat-card>
         </div>
+      </mat-tab>
 
-      </div>
-    </div>
+    </mat-tab-group>
 
   </div>
 </div>

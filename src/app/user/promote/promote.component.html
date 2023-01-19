@@ -7,25 +7,9 @@
   </div>
 
   <div class="align-center" *ngIf="!userRead">
-    <div *ngIf="!cam">
-      <p>Insert the ID of the attendee in the text box below or scan the QR code by switching input</p>
-    </div>
-    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" *ngIf="cam" [camStarted]="scannerActive" [title]=""
-      [info]="info" [userRead]="userRead" [company]="userReadCompany">
+    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="" [info]="info"
+      [userRead]="userRead" [company]="userReadCompany" style="height: 100%">
     </app-qrcode-scanner>
-
-    <div class="column" *ngIf="!cam && !userRead">
-      <h6>Attendee ID:</h6>
-      <div class="input-group mb-3">
-        <input [(ngModel)]="userId" type="text" class="form-control" placeholder="ID" aria-label="Attendee ID"
-          aria-describedby="basic-addon1">
-      </div>
-    </div>
-
-    <div class="column" *ngIf="!userRead">
-      <button class="btn btn-success" *ngIf="!cam" [disabled]="userId.length === 0" (click)="submit()">Promote</button>
-      <button class="btn btn-warning" (click)="toggleCam()">{{ cam ? 'Write ID manually':'Read QR Code' }}</button>
-    </div>
   </div>
 
 

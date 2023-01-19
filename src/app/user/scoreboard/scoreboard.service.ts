@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { environment } from '../../../environments/environment'
 
 import { User } from '../user.model'
@@ -13,12 +14,13 @@ import { User } from '../user.model'
 export class ScoreboardService {
   private usersUrl = environment.cannonUrl + '/users?date='
 
-  constructor (
+  constructor(
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getUsersPoints (date: string): Observable<User[]> {
+  getUsersPoints(date: string): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl + date)
       .pipe(
         catchError(this.handleError<User[]>('getUsersPoints', []))
@@ -31,8 +33,12 @@ export class ScoreboardService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
+      })
       this.messageService.add({
         origin: `ScoreboardService: ${operation}`,
         text: error.message,

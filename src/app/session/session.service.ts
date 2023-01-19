@@ -7,7 +7,9 @@ import { catchError, tap } from 'rxjs/operators'
 import { Session } from './session.model'
 
 import { environment } from '../../environments/environment'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { MessageService, Type } from '../message.service'
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,12 +21,13 @@ export class SessionService {
   private sessions: Session[]
   private eventId: string
 
-  constructor (
+  constructor(
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getSessions (eventId: string): Observable<Session[]> {
+  getSessions(eventId: string): Observable<Session[]> {
     if (this.sessions && this.eventId === eventId) {
       return of(this.sessions)
     }
@@ -45,7 +48,7 @@ export class SessionService {
       )
   }
 
-  getSession (id: string): Observable<Session> {
+  getSession(id: string): Observable<Session> {
     if (this.sessions) {
       return of(this.sessions.find(session => session.id === id))
     } else {
@@ -62,16 +65,20 @@ export class SessionService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
+      })
+      /* this.messageService.add({
         origin: `SessionService: ${operation}`,
         text: 'When fetching session from server',
         type: Type.error,
         showAlert: false,
         errorObject: error,
         timeout: 4000
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)

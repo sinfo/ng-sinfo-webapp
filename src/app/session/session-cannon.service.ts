@@ -9,6 +9,7 @@ import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
 import { Achievement } from '../user/achievements/achievement.model'
 import { Router } from '@angular/router'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class SessionCannonService {
@@ -18,11 +19,12 @@ export class SessionCannonService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private authService: AuthService,
     private router: Router
   ) { }
 
-  checkin(sessionId: string, usersId: string[], code?: string) {
+  checkin(sessionId: string, usersId: string[], unregisteredUsers?: Number, code?: string) {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -31,7 +33,7 @@ export class SessionCannonService {
     }
 
     return this.http.post<Achievement>(`${this.sessionsUrl}/${sessionId}/check-in`, {
-      users: usersId, code: code
+      users: usersId, code: code, unregisteredUsers: unregisteredUsers ? unregisteredUsers : 0
     }, httpOptions)
       .pipe(
         catchError(this.handleErrorCheckIn<any>('check-in'))
@@ -46,14 +48,18 @@ export class SessionCannonService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open('When fetching session from server', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
+      })
+      /* this.messageService.add({
         origin: `SessionService: ${operation}`,
         text: 'When fetching session from server',
         type: Type.error,
         showAlert: true,
         errorObject: error,
         timeout: 4000
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)
@@ -62,17 +68,23 @@ export class SessionCannonService {
 
   private handleErrorCheckIn<T>(operation = 'operation', result?: T) {
     return (error: HttpErrorResponse): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.status === 403 ?
+        `Overlapping workshops detected. You cannot attend multiple workshops at the same time.
+        Your entries for both workshops will be deducted.` : 'Wrong code or code is already invalid.', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
+      })
+      /* this.messageService.add({
         origin: `SessionService: ${operation}`,
         text: error.status === 403 ?
-          `Overlapping workshops detected. You cannot attend multiple workshops at the same time. 
-        Your points for both workshops will be deducted.` : 'Wrong code or code is already invalid.',
+          `Overlapping workshops detected. You cannot attend multiple workshops at the same time.
+        Your entries for both workshops will be deducted.` : 'Wrong code or code is already invalid.',
         type: Type.error,
         showAlert: true,
         errorObject: error,
         timeout: error.status === 403 ? null : 4000
       })
-
+ */
       if (error.status === 403) {
         this.router.navigate([`/`])
       }

@@ -1,13 +1,216 @@
-<app-menu [user]="user"></app-menu>
+<!-- <app-menu [user]="user"></app-menu> -->
+<mat-toolbar class='topbar'>
+  <button mat-icon-button style="color: white; background-color: black;" class="example-icon"
+    aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!isCvUpdated && user && user.role !== 'company'" matBadge="!" matBadgeColor="warn"
+      matBadgeSize="small">
+      menu</mat-icon>
+    <mat-icon *ngIf="!user">
+      menu</mat-icon>
+    <mat-icon *ngIf="isCvUpdated || (user && user.role === 'company')" style="transform: scale(1.5);">menu</mat-icon>
+  </button>
+  <span>
+    <a routerLink="/" class="logo_w">
+      <img id="logo_white" src="assets/img/PowerOn.png" alt="Sinfo">
+    </a>
+  </span>
 
-<app-loading [content]="user"></app-loading>
+</mat-toolbar>
 
-<div *ngIf="user" class="user-wrapper">
-  <!-- <div class="sidebar">
-    <app-sidebar [user]="user"></app-sidebar>
-  </div> -->
+<mat-sidenav-container class='sidenav-container'>
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened" class='sidenav'>
+    <mat-nav-list class='navlist'>
+      <a mat-list-item href="https://sinfo.org" target="_blank" (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>computer</mat-icon>
+        <span class="list-item">Go to website</span>
+      </a>
+      <a *ngIf="isLoggedIn" mat-list-item routerLink="/user/qrcode" routerLinkActive="active" (click)="sidenav.toggle()"
+        class="navigation-link">
+        <mat-icon>qr_code</mat-icon>
+        <span class="list-item">QR Code</span>
+      </a>
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/cv" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon *ngIf="!isCvUpdated" matBadge="!" matBadgeColor="warn" matBadgeSize="small">account_box</mat-icon>
+        <mat-icon *ngIf="isCvUpdated">account_box</mat-icon>
+        <span class="list-item">Upload CV</span>
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/checkin" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>done_outline</mat-icon>
+        <span class="list-item">Check-in</span>
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/validate-card" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>search</mat-icon>
+        <span class="list-item">Validate Card</span>
+      </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/promote" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>verified_user</mat-icon>
+        <span class="list-item">Promote</span>
+      </a>
+      <a *ngIf="user && user.role === 'company'" mat-list-item routerLink="/user/links/link" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>done_outline</mat-icon>
+        <span class="list-item">Sign and Link Card</span>
+      </a>
+      <a *ngIf="user && user.role === 'company'" mat-list-item routerLink="/user/links/my-links"
+        routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon> forum</mat-icon>
+        <span class="list-item">My links</span>
+      </a>
 
-  <div class="profile-content">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+      <a *ngIf="user && user.role === 'user'" mat-list-item routerLink="/user/workshops" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}" (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon> business</mat-icon>
+        <span class="list-item">Workshops</span>
+      </a>
+
+      <mat-accordion *ngIf="user && user.role === 'team'">
+        <mat-expansion-panel style="background-color: transparent!important;">
+          <mat-expansion-panel-header class="specific-class">
+            <a mat-list-item class="navigation-link">
+              <mat-icon> business</mat-icon>
+              <span class="list-item">Workshops</span>
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </a>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/workshops"
+              routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="sidenav.toggle()"
+              class="navigation-link">
+              <mat-icon> business</mat-icon>
+              <span class="list-item">Workshops</span>
+            </a>
+            <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/workshops/workshops-status"
+              routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+              <mat-icon>info</mat-icon>
+              <span class="list-item">Workshop Status</span>
+            </a>
+            <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/validate-workshop"
+              routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+              <mat-icon>event</mat-icon>
+              <span class="list-item">Validate Workshop</span>
+            </a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="background-color: transparent!important;">
+          <mat-expansion-panel-header class="specific-class">
+            <a mat-list-item class="navigation-link">
+              <mat-icon>cake</mat-icon>
+              <span class="list-item">Pick Winner</span>
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </a>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/prizes" routerLinkActive="active"
+              (click)="sidenav.toggle()" class="navigation-link">
+              <mat-icon>cake</mat-icon>
+              <span class="list-item">Prizes</span>
+            </a>
+            <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/pick-winner"
+              routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+              <mat-icon>cake</mat-icon>
+              <span class="list-item">Pick Winner</span>
+            </a>
+          </mat-nav-list>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel style="background-color: transparent!important;">
+          <mat-expansion-panel-header class="specific-class">
+            <a mat-list-item class="navigation-link">
+              <mat-icon>get_app</mat-icon>
+              <span class="list-item">CV Downloads </span>
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </a>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+            <a *ngIf="user && user.role !== 'user'" mat-list-item routerLink="/user/downloads/download"
+              routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+              <mat-icon>get_app</mat-icon>
+              <span class="list-item">Download CVs</span>
+            </a>
+            <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/downloads/manage"
+              routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+              <mat-icon>get_app</mat-icon>
+              <span class="list-item">Create Endpoints</span>
+            </a>
+            <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/downloads/status"
+              routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+              <mat-icon>get_app</mat-icon>
+              <span class="list-item">Endpoints Status</span>
+            </a>
+
+          </mat-nav-list>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+      <a *ngIf="user && user.role === 'company'" mat-list-item routerLink="/user/downloads/download"
+        routerLinkActive="active" (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>get_app</mat-icon>
+        <span class="list-item">Download CVs</span>
+      </a>
+
+
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/achievements" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>grade</mat-icon>
+        <span class="list-item">Achievements</span>
+      </a>
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/my-card" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>school</mat-icon>
+        <span class="list-item">My card</span>
+      </a>
+      <!-- <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/secret-codes" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>stars</mat-icon>
+        <span class="list-item">Secret Codes</span>
+      </a> -->
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/redeem" routerLinkActive="active"
+        (click)="sidenav.toggle()" class="navigation-link">
+        <mat-icon>stars</mat-icon>
+        <span class="list-item">Redeem Achievement</span>
+      </a>
+      <a *ngIf="user" mat-list-item routerLink="/user/promocodes" routerLinkActive="active" (click)="sidenav.toggle()"
+        class="navigation-link">
+        <mat-icon>receipt</mat-icon>
+        <span class="list-item">Promo Codes</span>
+      </a>
+
+      <div class='gap'></div>
+      <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()" routerLink="/user/privacy-policy"
+        routerLinkActive="active" class="navigation-link">
+        <mat-icon>info</mat-icon>
+        <span class="list-item">Privacy Policy</span>
+      </a>
+      <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()" routerLink="/user/coc" routerLinkActive="active"
+        class="navigation-link">
+        <mat-icon>info</mat-icon>
+        <span class="list-item">Code of Conduct</span>
+      </a>
+      <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()" (click)="onLogout()" class="navigation-link">
+        <mat-icon>exit_to_app</mat-icon>
+        <span class="list-item">Logout</span>
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-loading [content]="user"></app-loading>
+
+    <div *ngIf="user" class="user-wrapper">
+      <div class="profile-content">
+        <router-outlet></router-outlet>
+        <button *ngIf="screenWidth < 768" mat-fab class='fab' routerLink="/user/qrcode"
+          aria-label="Example icon button with a home icon" style="z-index: 99999;">
+          <mat-icon>qr_code</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

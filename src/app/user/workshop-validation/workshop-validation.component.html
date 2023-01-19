@@ -1,0 +1,62 @@
+<app-loading [content]="workshops || (ticket && session) "></app-loading>
+
+<div class="align-center pad wrapper" *ngIf="workshops || (ticket && session)">
+  <div class="row" *ngIf="workshops">
+    <h3>
+      Validate Workshop Ticket
+    </h3>
+    <h6 *ngIf="!ticket" class='subtitle'>All dates are in UTC format</h6>
+  </div>
+
+  <div *ngIf="(ticket && session)">
+    <div class="row col-sm-1">
+      <img src="{{session.img}}" alt="{{session.name}}">
+    </div>
+    <h5>
+      Workshop: {{session.name}}
+    </h5>
+
+    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive">
+    </app-qrcode-scanner>
+
+    <div class="row destroy">
+      <button class="btn btn-button" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="container align-center user" *ngIf="!ticket && workshops">
+
+    <div *ngFor="let workshop of workshops" class="session">
+      <mat-card style="margin: 5px; display: flex; flex-direction: column; align-items: center;">
+        <div class="img-wrapper col-sm-1">
+          <img src="{{workshop.img}}" alt="{{workshop.name}}">
+        </div>
+        <div class="info-wrapper col-sm-7">
+          <h4 class="name">Workshop: {{workshop.name}}</h4>
+          <div class="session-details">
+            <div *ngIf="workshop.date" class="padded">
+              <p>
+                <i class="fa fa-calendar"></i> {{toUTCDate(workshop.date) | date:'fullDate':'+0000'}}
+              </p>
+            </div>
+            <div *ngIf="workshop.date" class="padded">
+              <p>
+                <i class="fa fa-clock-o"></i> {{toUTCDate(workshop.date) | date:'shortTime':'+0000'}} -
+                {{getEndDate(workshop) | date:'shortTime':'+0000'}}
+              </p>
+            </div>
+            <div *ngIf="workshop.place">
+              <p>
+                <i class="fa fa-map-marker"></i> {{workshop.place}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 checkin">
+          <button class="btn btn-button" (click)="beginCheck(workshop)">Validate</button>
+        </div>
+      </mat-card>
+    </div>
+
+  </div>
+</div>

@@ -9,6 +9,15 @@
  */
 /* FONT PATH
  * -------------------------- */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+.mat-expansion-panel-header-description,
+.mat-expansion-indicator::after {
+  color: white !important;
+}
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -3490,7 +3499,7 @@ div.intro i.fa-chevron-down:hover {
   background-color: #008ae6;
 }
 
-.style-switcher .template-animations-switch input[type="checkbox"] {
+/* .style-switcher .template-animations-switch input[type="checkbox"] {
   display: none;
 }
 
@@ -3573,7 +3582,7 @@ div.intro i.fa-chevron-down:hover {
 
 .style-switcher .template-animations-switch input[type="checkbox"]:checked+label>i {
   right: 35px;
-}
+} */
 
 /* ----------------------------------------------------------------------------
     Preloader
@@ -5520,6 +5529,7 @@ select option {
   padding: 2px 10px;
 }
 
+/* 
 input[type=checkbox] {
   -webkit-transition: border 0.15s ease;
   -moz-transition: border 0.15s ease;
@@ -5585,7 +5595,7 @@ input[type=file]:focus,
 input[type=radio]:focus,
 input[type=checkbox]:focus {
   outline: none;
-}
+} */
 
 input.btn {
   margin: 0 auto;
@@ -7124,9 +7134,9 @@ div.clear input.btn:hover {
     border: none;
   }
 
-  .navigation-link:not(.active):not(:hover):not(:focus):not(:active) {
+  /* .navigation-link:not(.active):not(:hover):not(:focus):not(:active) {
     color: #262627;
-  }
+  } */
 }
 
 @media (max-width: 480px) {
@@ -8125,6 +8135,6 @@ body::-webkit-scrollbar {
   width: 0px;
 }
 
-.pad{
+.pad {
   padding: 2.5% 1%;
 }

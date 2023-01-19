@@ -12,6 +12,7 @@ import { AchievementService } from '../achievements/achievement.service'
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
 import { ClipboardService } from "ngx-clipboard";
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 interface Code {
   created: Date,
@@ -37,6 +38,7 @@ export class SessionsComponent implements OnInit {
     private eventSessionService: SessionService,
     private userService: UserService,
     private eventService: EventService,
+    private snackBar: MatSnackBar,
     private achievementsService: AchievementService,
     private clipboardService: ClipboardService,
     private router: Router,
@@ -109,6 +111,10 @@ export class SessionsComponent implements OnInit {
 
   copyCode(code: string): void {
     this.clipboardService.copyFromContent(code)
+    this.snackBar.open(`Copied`, "Ok", {
+      panelClass: ['mat-toolbar', 'mat-primary'],
+      duration: 2000
+    })
     this.messageService.add({
       origin: `Session code`,
       showAlert: true,

@@ -7,12 +7,13 @@ import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
 import { Link, Note } from './link.model'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { CompanyCannonService } from '../../company/company-cannon.service'
 import { SignatureService } from '../signature/signature.service'
 import { EventService } from '../../events/event.service'
 
 @Component({
-  selector: 'app-link',
+  selector: 'MessageServiceapp-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.css']
 })
@@ -40,6 +41,7 @@ export class LinkComponent implements OnInit {
     private companyCannonService: CompanyCannonService,
     private signatureService: SignatureService,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private eventService: EventService,
     private titleService: Title
   ) { }
@@ -90,7 +92,7 @@ export class LinkComponent implements OnInit {
     this.cam = !this.cam
   }
 
- signUser() {
+  signUser() {
     this.yesToSign = true
     this.info = `Signing ${this.userRead.name}'s card.`
     this.updateInfo()
@@ -104,24 +106,28 @@ export class LinkComponent implements OnInit {
 
   reScan() {
     this.userRead = null
-    this.scannerActive = true
     this.userId = ''
     this.yesToLink = false
     this.description = this.descriptions[0]
     this.info = ''
     this.yesToSign = false
+    this.scannerActive = true
   }
 
   updateInfo() {
     this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
-    this.messageService.add({
-      origin: 'Sign and Link',
-      showAlert: true,
-      text: 'User was successfully signed!',
-      type: Type.success,
-      timeout: 2000
+    this.snackBar.open('User was successfully signed!', "Ok", {
+      panelClass: ['mat-toolbar', 'mat-primary'],
+      duration: 2000
     })
+    // this.messageService.add({
+    //   origin: 'Sign and Link',
+    //   showAlert: true,
+    //   text: 'User was successfully signed!',
+    //   type: Type.success,
+    //   timeout: 2000
+    // })
   }
 
   receiveUser(user: User) {
@@ -129,7 +135,9 @@ export class LinkComponent implements OnInit {
     this.scannerActive = false
     this.companyCannonService.getLink(this.company.id, this.userRead.id)
       .subscribe(_link => {
-        this.currentLink = _link
+        if (_link) {
+          this.currentLink = _link
+        }
         this.buildNotes(_link)
       })
   }
@@ -157,6 +165,10 @@ export class LinkComponent implements OnInit {
       this.updateLink()
     } else {
       this.createLink()
+      this.snackBar.open('Link created', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-primary'],
+        duration: 2000
+      })
       this.messageService.add({
         origin: 'Link created',
         showAlert: true,
@@ -170,21 +182,43 @@ export class LinkComponent implements OnInit {
   createLink() {
     this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
-        this.currentLink = _link
+        if (_link) {
+          this.currentLink = _link
+          this.snackBar.open('Link created', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        } else {
+          this.snackBar.open('Error creating link', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        }
       })
   }
 
   updateLink() {
     this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
-        this.currentLink = _link
-        this.messageService.add({
-          origin: 'Link component',
-          showAlert: true,
-          text: 'Link updated',
-          timeout: 4000,
-          type: Type.success
-        })
+        if (_link) {
+          this.currentLink = _link
+          this.snackBar.open('Link updated', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        } else {
+          this.snackBar.open('Error updating link', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        }
+        // this.messageService.add({
+        //   origin: 'Link component',
+        //   showAlert: true,
+        //   text: 'Link updated',
+        //   timeout: 4000,
+        //   type: Type.success
+        // })
       })
   }
 
@@ -200,13 +234,17 @@ export class LinkComponent implements OnInit {
         }
 
         if (message.length > 0) {
-          this.messageService.add({
-            origin: 'Sign and Link',
-            showAlert: true,
-            text: message,
-            type: Type.warning,
-            timeout: 2000
+          this.snackBar.open(message, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
           })
+          // this.messageService.add({
+          //   origin: 'Sign and Link',
+          //   showAlert: true,
+          //   text: message,
+          //   type: Type.warning,
+          //   timeout: 2000
+          // })
           return
         }
 

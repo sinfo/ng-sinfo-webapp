@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    height: 100%;
 }
 
 .center{
@@ -19,7 +20,7 @@
 }
 
 .limit-width{
-    max-width: calc(100%-100px);
+    max-width: calc(100% - 100px);
 }
 
 @media(max-width: 975px){
@@ -39,7 +40,7 @@
     align-items: stretch;
     position: relative;
     width: 100%;
-    height: 77vh;
+    height: 100%;
     overflow: hidden;
     justify-content: center;
 
@@ -71,7 +72,7 @@ button.btn {
     margin: auto;
     margin-top: 10px;
     bottom: 0;
-    z-index: 10;
+    z-index: 9999;
     left: 0;
 }
 .scannerMsg{
@@ -88,7 +89,7 @@ button.btn {
     font-size: 90%;
 }
 .flip-camera {
-    z-index: 100;
+    z-index: 9999;
 }
 img.portrait {
     border-radius: 50%;
@@ -132,7 +133,7 @@ div.mini-portrait-wrapper img {
     margin: 0;
     right: 0;
     top: 0;
-    z-index: 10;
+    z-index: 9998;
     min-width: 0;
     width: 47px;
     border-radius: 0;
@@ -143,4 +144,5 @@ div.mini-portrait-wrapper img {
 zxing-scanner {
     display: flex;
     justify-content: stretch;
+    z-index: -1;
 }

@@ -8,19 +8,24 @@
 
   <div class="row">
     <div class="col-sm-12 align-center">
-      <div *ngIf="!achievements && achievements.length === 0">
+      <div *ngIf="!achievements || achievements.length === 0">
         No sessions yet
       </div>
 
-      <div *ngIf="achievements && achievements.length > 0 && !achievement" class="flex-container">
-        <button *ngFor="let element of achievements" (click)=showUsers(element.achievement) type="button"
-          class="btn btn-secondary" class="flex-item">
-
-          <img appImage [url]="element.img" class="portrait">
-          <p>
-            {{element.name}}
-          </p>
-        </button>
+      <div *ngIf="achievements && achievements.length > 0 && !achievement">
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab *ngFor="let kind of achievementKinds" label="{{kind.kind}}">
+            <mat-card *ngFor="let element of kind.achievements" (click)=showUsers(element.achievement)
+              style="margin: 2%;">
+              <mat-card-header>
+                <img mat-card-avatar src="{{element.img}}">
+              </mat-card-header>
+              <p>
+                {{element.name}}
+              </p>
+            </mat-card>
+          </mat-tab>
+        </mat-tab-group>
       </div>
 
       <div *ngIf="achievement && users.length > 0 && !winner">

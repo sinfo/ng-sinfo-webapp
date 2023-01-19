@@ -8,6 +8,11 @@ import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { File as CV } from './file'
+import { MatDialog } from '@angular/material/dialog'
+import { GdprDialogComponent } from './gdpr-dialog/gdpr-dialog.component'
+
+const GRPD_PERMISSIONS_KEY = "grpd-permissions"
+
 
 @Component({
   selector: 'app-cv',
@@ -27,7 +32,8 @@ export class CvComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private zone: NgZone,
-    private titleService: Title
+    private titleService: Title,
+    public dialog: MatDialog
   ) {
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     this.zone.run(() => {
@@ -45,6 +51,30 @@ export class CvComponent implements OnInit {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Curriculum')
     })
+    let permissions = this.hasGrpdPermissions()
+    if(!permissions){
+      this.showDialog()
+    }
+  }
+
+
+  hasGrpdPermissions(){
+    let permissions = localStorage.getItem(GRPD_PERMISSIONS_KEY)
+    if(permissions == undefined){
+      localStorage.setItem(GRPD_PERMISSIONS_KEY,"false")
+      return false
+    } else {
+       return permissions == "true" 
+    } 
+  }
+
+  showDialog(){
+    const dialogRef = this.dialog.open(GdprDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      // Check here and change permissions
+      console.log(`Dialog result: ${result}`);
+      localStorage.setItem(GRPD_PERMISSIONS_KEY,"true") 
+     });
   }
 
   uploadCV (event) {

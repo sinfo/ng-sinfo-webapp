@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 
-import { Observable ,  of } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
 
 import { Member } from './member.model'
 
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,12 +20,13 @@ export class TeamService {
   private team: Member[]
   private eventId: string
 
-  constructor (
+  constructor(
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getTeam (eventId: string): Observable<Member[]> {
+  getTeam(eventId: string): Observable<Member[]> {
     if (this.team && this.eventId === eventId) {
       return of(this.team)
     }
@@ -51,17 +53,21 @@ export class TeamService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
-        origin: `TeamService: ${operation}`,
-        showAlert: false,
-        text: 'When fetching team members from server',
-        type: Type.error,
-        errorObject: error,
-        timeout: 4000
+      this.snackBar.open('When fetching team members from server', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
       })
-
+      /*       this.messageService.add({
+              origin: `TeamService: ${operation}`,
+              showAlert: false,
+              text: 'When fetching team members from server',
+              type: Type.error,
+              errorObject: error,
+              timeout: 4000
+            })
+       */
       // Let the app keep running by returning an empty result.
       return of(result)
     }

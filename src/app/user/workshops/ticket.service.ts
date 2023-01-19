@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
-import { Observable , of } from 'rxjs'
+import { Observable, of } from 'rxjs'
 import { catchError, map } from 'rxjs/operators'
 
 import { Ticket } from './ticket.model'
@@ -9,15 +9,17 @@ import { Ticket } from './ticket.model'
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class TicketService {
 
   private ticketsUrl = environment.cannonUrl + '/tickets'
 
-  constructor (
+  constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private authService: AuthService
   ) { }
 
@@ -26,14 +28,14 @@ export class TicketService {
     'Content-Type': 'application/json'
   })
 
-  getTicket (sessionId: string): Observable<Ticket> {
+  getTicket(sessionId: string): Observable<Ticket> {
     return this.http.get<Ticket>(`${this.ticketsUrl}/${sessionId}`, { headers: this.httpHeader })
       .pipe(
         catchError(this.handleError<Ticket>('getTicket'))
       )
   }
 
-  registerTicket (sessionId: string) {
+  registerTicket(sessionId: string) {
     let httpOptions = {
       headers: this.httpHeader.append('Authorization', `Bearer ${this.authService.getToken().token}`)
     }
@@ -43,7 +45,7 @@ export class TicketService {
       )
   }
 
-  voidTicket (sessionId: string) {
+  voidTicket(sessionId: string) {
     let httpOptions = {
       headers: this.httpHeader.append('Authorization', `Bearer ${this.authService.getToken().token}`)
     }
@@ -59,8 +61,12 @@ export class TicketService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      this.snackBar.open('When fetching tickets from server', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
+      })
       this.messageService.add({
         origin: `TicketService: ${operation}`,
         showAlert: false,

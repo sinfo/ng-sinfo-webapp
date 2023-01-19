@@ -4,6 +4,7 @@ import { User } from '../../user/user.model'
 import { UserService } from '../../user/user.service'
 import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 import { EventService } from '../../events/event.service'
 import { last } from 'rxjs/operators'
@@ -41,6 +42,7 @@ export class QrcodeScannerComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private userService: UserService,
     private companyService: CompanyService,
     private eventService: EventService
@@ -79,15 +81,21 @@ export class QrcodeScannerComponent implements OnInit {
 
   handleQrCodeResult(content): void {
     this.company = undefined // flush previous info
+    this.lastUser = undefined
+    this.userRead = undefined
 
     if (!content) {
-      this.messageService.add({
+      this.snackBar.open('Reading the QRCode, try again.', "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
+      })
+      /* this.messageService.add({
         origin: 'QrcodeScannerComponent processContent()',
         showAlert: false,
         text: 'Reading the QRCode, try again.',
         type: Type.error,
         timeout: 6000
-      })
+      }) */
       return
     }
 
@@ -109,13 +117,17 @@ export class QrcodeScannerComponent implements OnInit {
             this.animation = undefined
           }, 500)
 
-          this.messageService.add({
+          this.snackBar.open('User not found', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn'],
+            duration: 2000
+          })
+          /* this.messageService.add({
             origin: 'QrcodeScannerComponent processContent()',
             showAlert: false,
             text: 'User not found.',
             type: Type.error,
             timeout: 6000
-          })
+          }) */
           return
         }
         if (this.lastUser === undefined || this.lastUser.id !== user.id) {

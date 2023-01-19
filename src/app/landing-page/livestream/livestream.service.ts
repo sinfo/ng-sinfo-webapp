@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { environment } from '../../../environments/environment'
@@ -10,12 +11,13 @@ import { environment } from '../../../environments/environment'
 })
 export class LivestreamService {
 
-  constructor (
+  constructor(
     private http: HttpClient,
+    private snackBar: MatSnackBar,
     private messageService: MessageService
   ) { }
 
-  getLivestreamInformation () {
+  getLivestreamInformation() {
 
     var livestreamUrl = environment.cannonUrl + '/google/livestream'
 
@@ -31,14 +33,18 @@ export class LivestreamService {
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
+      })
+      /* this.messageService.add({
         origin: `LiveStream Service: ${operation}`,
         showAlert: true,
         text: error.message,
         type: Type.error
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)

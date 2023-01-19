@@ -8,6 +8,7 @@ import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class CompanyService {
@@ -23,6 +24,7 @@ export class CompanyService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private authService: AuthService,
     private eventService: EventService
   ) {
@@ -69,12 +71,16 @@ export class CompanyService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.messageService.add({
+      this.snackBar.open(error.message, "Ok", {
+        panelClass: ['mat-toolbar', 'mat-warn'],
+        duration: 2000
+      })
+      /* this.messageService.add({
         origin: `CompanyService: ${operation}`,
         showAlert: false,
         text: error.message,
         type: Type.error
-      })
+      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)

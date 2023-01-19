@@ -36,6 +36,14 @@ export class SecretAchievementsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.getMe().subscribe(user => {
+
+      if (user.role !== 'team') {
+        this.router.navigate(['/user/qrcode'])
+      }
+
+      this.me = user
+    })
     this.eventService.getCurrent().subscribe(event => {
       this.currentEvent = event
       this.titleService.setTitle(event.name + ' - Session Codes')
@@ -58,7 +66,7 @@ export class SecretAchievementsComponent implements OnInit {
 
 
   getAchievements(): void {
-
+    this.secrets = []
     this.achievementsService.getAchievementsCode(
       new Date(Math.min.apply(null, [this.currentEvent.begin, new Date(0)])),
       new Date(new Date(this.currentEvent.begin).getTime() + new Date(this.currentEvent.duration).getTime()),

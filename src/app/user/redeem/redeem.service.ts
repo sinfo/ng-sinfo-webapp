@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment'
 import { Achievement } from '../achievements/achievement.model'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService, Type } from '../../message.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Router } from '@angular/router'
 
 @Injectable()
@@ -16,11 +17,12 @@ export class RedeemService {
     private http: HttpClient,
     private authService: AuthService,
     private messageService: MessageService,
+    private snackBar: MatSnackBar,
     private router: Router
   ) {
   }
 
-  redeem(id: string, myAchievements: Achievement[]): void {
+  redeem(id: string): void {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -34,6 +36,10 @@ export class RedeemService {
           let achievement = response.achievement
 
           if (!response.success || !achievement || achievement.id === undefined) {
+            this.snackBar.open(`Invalid redeem code`, "Ok", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 2000
+            })
             this.messageService.add({
               origin: 'Redeem',
               showAlert: true,
@@ -48,6 +54,10 @@ export class RedeemService {
         },
         err => {
           if (err.status === 406) {
+            this.snackBar.open(`Already redeemed code`, "Ok", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 2000
+            })
             this.messageService.add({
               origin: 'Redeem',
               showAlert: true,
@@ -59,6 +69,10 @@ export class RedeemService {
             return
           }
 
+          this.snackBar.open(`Invalid redeem code`, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn'],
+            duration: 2000
+          })
           this.messageService.add({
             origin: 'Redeem',
             showAlert: true,
@@ -85,6 +99,10 @@ export class RedeemService {
         },
         err => {
           if (err.status === 406) {
+            this.snackBar.open(`Already redeemed code`, "Ok", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 2000
+            })
             this.messageService.add({
               origin: 'Redeem',
               showAlert: true,
@@ -95,6 +113,10 @@ export class RedeemService {
 
             return
           } else if (err.status === 404) {
+            this.snackBar.open(`No valid secret achievements found with that code`, "Ok", {
+              panelClass: ['mat-toolbar', 'mat-warn'],
+              duration: 2000
+            })
             this.messageService.add({
               origin: 'Secret Codes',
               showAlert: true,
@@ -105,6 +127,10 @@ export class RedeemService {
             return
           }
 
+          this.snackBar.open(`Invalid redeem code`, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn'],
+            duration: 2000
+          })
           this.messageService.add({
             origin: 'Redeem',
             showAlert: true,
