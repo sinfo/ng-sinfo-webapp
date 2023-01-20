@@ -93,21 +93,20 @@ import { ClipboardModule } from "ngx-clipboard";
 import { SecretAchievementsComponent } from "./user/secret-achievements/secret-achievements.component";
 import { MarkdownModule } from "ngx-markdown";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
-import { MatLegacyButtonModule as MatButtonModule } from "@angular/material/legacy-button";
+import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatLegacyListModule as MatListModule } from "@angular/material/legacy-list";
+import { MatListModule } from "@angular/material/list";
 import { CommonModule } from "@angular/common";
-import { MatLegacySlideToggleModule as MatSlideToggleModule } from "@angular/material/legacy-slide-toggle";
-import { MatLegacyDialogModule as MatDialogModule } from "@angular/material/legacy-dialog";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatDialogModule } from "@angular/material/dialog";
 import { GdprDialogComponent } from "./user/cv/gdpr-dialog/gdpr-dialog.component";
-import { MatLegacyCardModule as MatCardModule } from "@angular/material/legacy-card";
-import { MatLegacyTabsModule as MatTabsModule } from "@angular/material/legacy-tabs";
+import { MatCardModule } from "@angular/material/card";
+import { MatTabsModule } from "@angular/material/tabs";
 import { MatBadgeModule } from "@angular/material/badge";
-import { MatLegacyProgressBarModule as MatProgressBarModule } from '@angular/material/legacy-progress-bar';
-import { MatLegacySnackBarModule as MatSnackBarModule } from "@angular/material/legacy-snack-bar";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDividerModule } from '@angular/material/divider';
 import { WorkshopValidationComponent } from './user/workshop-validation/workshop-validation.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -196,7 +195,6 @@ library.add(fas);
     ClipboardModule,
     MarkdownModule.forRoot(),
     BrowserAnimationsModule,
-    FlexLayoutModule,
     MatIconModule,
     MatSnackBarModule,
     MatButtonModule,
