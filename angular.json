@@ -166,7 +166,6 @@
       }
     }
   },
-  "defaultProject": "ng-sinfo-webapp",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",

@@ -11,7 +11,7 @@ import { Router } from '@angular/router'
 import { NgbTypeahead, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap'
 import { Observable, Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged, merge, filter, map } from 'rxjs/operators'
-import { FormGroup, FormControl } from '@angular/forms'
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms'
 
 const equals = (one: NgbDateStruct, two: NgbDateStruct) =>
   one && two && two.year === one.year && two.month === one.month && two.day === one.day
@@ -32,9 +32,9 @@ const after = (one: NgbDateStruct, two: NgbDateStruct) =>
 
 export class ManageDownloadsComponent implements OnInit {
 
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
+  range = new UntypedFormGroup({
+    start: new UntypedFormControl(),
+    end: new UntypedFormControl(),
   });
 
   companies: Company[]
