@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@angular/animations": "^13.1.2",
-    "@angular/cdk": "^13.1.2",
+    "@angular/cdk": "^13.3.9",
     "@angular/common": "13.1.2",
     "@angular/compiler": "13.1.2",
     "@angular/core": "13.1.2",
@@ -45,6 +45,7 @@
     "ng-number-picker": "^1.1.9",
     "ngx-clipboard": "^15.0.1",
     "ngx-markdown": "^13.0.0",
+    "ngx-scrollbar": "^10.0.1",
     "npm": "^8.3.1",
     "rxjs": "^7.5.2",
     "zone.js": "~0.11.4"

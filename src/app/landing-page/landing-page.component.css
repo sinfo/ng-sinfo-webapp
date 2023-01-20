@@ -2,6 +2,137 @@
   animation: jump 1s infinite;
 }
 
+.socials-nav-item {
+  margin: 0;
+  display: inline-block;
+}
+
+
+
+.socials-nav-item a:not(:hover):not(:active):not(:focus) {
+  color: lightgray;
+}
+
+.topbar {
+  display: flex;
+  background-color: black;
+  position: absolute;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  min-height: 64px;
+  height: fit-content;
+}
+
+.sidenav-container {
+  height: calc(100% - 7vh);
+}
+
+.sidenav {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  height: min-content;
+  width: max-content;
+}
+
+.sidenav::-webkit-scrollbar {
+  display: none;
+}
+
+.navigation-item {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-list-item:not(.active):not(:hover) {
+  color: white !important;
+}
+
+#sidenav ul li a i,
+#sidenav ul li a img {
+  max-height: 4vh;
+}
+
+.list-item {
+  margin-left: 1vw;
+}
+
+.navlist {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-menu {
+  display: auto;
+  margin-left: auto;
+}
+
+.socials {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+}
+
+@media (min-width: 926px) {
+
+  .second-row,
+  .option-menu {
+    display: none;
+  }
+
+
+}
+
+@media (max-width: 925px) {
+  .first-row {
+    display: none;
+  }
+
+  .socials {
+    justify-content: space-between;
+    flex-grow: 2;
+  }
+
+  .socials-nav-item {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .navigation-link {
+    font-size: 1vw;
+    text-align: center;
+    font-family: 'Montserrat';
+  }
+
+  .option-menu {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+}
+
+#logo_white {
+  max-height: 7vh;
+  max-width: 7vh;
+  padding: 0.7vh 0 0 0;
+  margin-left: 1vw;
+}
+
 .video-bg {
   background-image: url("https://sinfo.ams3.cdn.digitaloceanspaces.com/static/27-sinfo/webapp/sinfo-tent.jpg");
   background-size: cover;
@@ -36,14 +167,57 @@
   }
 }
 
+.navigation-link {
+  font-size: 1.5vh;
+  font-family: 'Montserrat';
+}
+
 @media only screen and (max-width: 768px) {
   #about .nav.nav-tabs {
     position: absolute;
   }
 }
 
+.tool-row {
+  display: flex;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: space-between;
+}
+
 .content {
   min-height: 90vh;
   background-color: white;
-  /* overflow: overlay; */
+  overflow: hidden;
+}
+
+/* .dropdown {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+} */
+
+.dropdown-content {
+  background-color: black;
+  color: lightgrey;
+  font-size: 1.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.expandable {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -48,6 +48,7 @@ import { WorkshopValidationComponent } from './user/workshop-validation/workshop
 const routes: Routes = [
   { path: '', component: LoginComponent },
 
+  { path: 'home', component: LandingPageComponent },
   { path: 'live', component: LiveComponent },
 
   { path: 'login', component: LoginComponent },

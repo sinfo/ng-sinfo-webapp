@@ -59,6 +59,8 @@
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:400,500,300,300italic,400italic,500italic&subset=latin,latin-ext" />
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" />
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -88,8 +90,9 @@
 </head>
 
 <body data-spy="scroll" data-offset="100">
-
-  <app-root></app-root>
+  <ng-scrollbar autoHeightDisabled="false">
+    <app-root></app-root>
+  </ng-scrollbar>
 
   <script type="text/javascript" src="https://app.sinfo.org/assets/js/jquery-2.1.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

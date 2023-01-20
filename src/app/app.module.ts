@@ -114,7 +114,7 @@ import { WorkshopValidationComponent } from './user/workshop-validation/workshop
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
-
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 
 library.add(fas);
@@ -214,7 +214,8 @@ library.add(fas);
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MaterialExampleModule
+    MaterialExampleModule,
+    NgScrollbarModule
   ],
   providers: [
     SpeakerService,
