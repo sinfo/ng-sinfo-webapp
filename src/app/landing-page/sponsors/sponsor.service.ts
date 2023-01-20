@@ -5,7 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
 import { MessageService, Type } from '../../message.service'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 
 @Injectable()
 export class SponsorService {

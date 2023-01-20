@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { MessageService, Type } from '../../message.service'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 import { Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 import { environment } from '../../../environments/environment'

@@ -9,7 +9,7 @@ import { Ticket } from './ticket.model'
 import { environment } from '../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { MessageService, Type } from '../../message.service'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 
 @Injectable()
 export class TicketService {

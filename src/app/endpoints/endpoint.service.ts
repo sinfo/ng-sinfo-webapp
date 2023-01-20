@@ -8,7 +8,7 @@ import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 
 @Injectable()
 export class EndpointService {

@@ -8,7 +8,7 @@ import { CompanyService } from '../../company/company.service'
 import { EventService } from '../../events/event.service'
 import { SignatureService } from '../signature/signature.service'
 import { MessageService, Type } from '../../message.service'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 import { Link, Note } from '../link/link.model'
 import { CompanyCannonService } from '../../company/company-cannon.service'
 

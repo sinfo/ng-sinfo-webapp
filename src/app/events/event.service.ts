@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment'
 
 import { Event } from './event.model'
 import { MessageService, Type } from '../message.service'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

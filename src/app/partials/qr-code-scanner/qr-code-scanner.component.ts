@@ -4,7 +4,7 @@ import { User } from '../../user/user.model'
 import { UserService } from '../../user/user.service'
 import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 
 import { EventService } from '../../events/event.service'
 import { last } from 'rxjs/operators'

@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment'
 import { User } from '../user/user.model'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
 
 @Injectable()
 export class CompanyCannonService {
