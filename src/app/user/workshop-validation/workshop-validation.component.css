@@ -1,15 +1,17 @@
-.img-wrapper{
+.img-wrapper {
   margin: 20px;
   width: 150px;
   overflow: hidden;
 }
+
 .destroy {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 5%;
 }
-.destroy > button {
+
+.destroy>button {
   margin-top: 8%;
   margin-bottom: 8%;
   width: 80%;
@@ -17,10 +19,10 @@
   border-color: #d43f3a;
 }
 
-.wrapper{
+.wrapper {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }

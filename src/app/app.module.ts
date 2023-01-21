@@ -113,6 +113,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { marked } from 'marked'
 
 
 library.add(fas);
