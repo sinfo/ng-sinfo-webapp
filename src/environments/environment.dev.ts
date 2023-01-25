@@ -71,7 +71,7 @@ export const environment = {
     clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
   },
   fenix: {
-    clientId: '851490151334170',
+    clientId: '1132965128044878',
     redirectUrl: 'https://app-staging.sinfo.org/login'
   },
   linkedin: {
