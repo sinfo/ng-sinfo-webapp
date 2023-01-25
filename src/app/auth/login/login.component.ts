@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     `https://fenix.tecnico.ulisboa.pt/oauth/userdialog?client_id=${environment.fenix.clientId}&redirect_uri=${environment.fenix.redirectUrl}`
 
   // tslint:disable-next-line:max-line-length
-  linkedinUrlAuth = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${environment.linkedin.clientId}&redirect_uri=${environment.linkedin.redirectUrl}&state=SINFO&scope=r_liteprofile%20r_emailaddress%20w_member_social`
+  linkedinUrlAuth = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${environment.linkedin.clientId}&redirect_uri=${environment.linkedin.redirectUrl}&state=SINFO&scope=r_liteprofile%20r_emailaddress`
 
   private isLoggedIn = false
 
