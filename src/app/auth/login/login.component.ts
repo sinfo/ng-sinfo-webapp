@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
             GoogleAuth = gapi.auth2.getAuthInstance()
 
             // Listen for sign-in state changes.
-            GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) })
+            // GoogleAuth.isSignedIn.listen(isSignedIn => { this.onGoogleListen(isSignedIn) })
           } catch (err) {
             console.log(err)
           }
