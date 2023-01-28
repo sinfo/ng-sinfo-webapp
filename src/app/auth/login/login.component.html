@@ -1,10 +1,9 @@
 <!-- <app-menu></app-menu> -->
 
-<mat-toolbar class='topbar'>
+<mat-toolbar class="topbar">
   <span>
-    <img id="logo_white" src="assets/img/logo-branco.png" alt="Sinfo">
+    <img id="logo_white" src="assets/img/logo-branco.png" alt="Sinfo" />
   </span>
-
 </mat-toolbar>
 
 <section class="section">
@@ -19,53 +18,23 @@
     <app-loading [content]="!submitting"></app-loading>
 
     <div class="row align-center" *ngIf="!submitting">
-
-      <div class="col-md-4 ">
-        <button id="google-signin" (click)="onGoogleLogin()" class="btn btn-google" [disabled]="!isGoogleActive">
-          <i class="fa fa-google"></i>
-          Sign in with Google
-        </button>
+      <div class="col-md-4">
+        <div id="google-button"></div>
       </div>
 
-      <!-- <div class="col-md-4">
-        <div
-          id="g_id_onload"
-          data-client_id="744740842123-4fs8tbutopitaqpfsk3rnhkkdkut7q3d.apps.googleusercontent.com"
-          data-login_uri="https://your.domain/your_login_endpoint"
-          data-auto_prompt="false"
-        ></div>
-        <div
-          class="g_id_signin"
-          data-type="standard"
-          data-size="large"
-          data-theme="outline"
-          data-text="sign_in_with"
-          data-shape="rectangular"
-          data-logo_alignment="left"
-        >
-          <button
-            id="google-signin"
-          >
-            <i class="fa fa-google"></i>
-            Sign in with Google
-          </button>
-        </div>
-      </div> -->
-
-      <div class="col-md-4 ">
+      <div class="col-md-4">
         <a href="{{ linkedinUrlAuth }}" class="btn btn-linkedin">
           <i class="fa fa-linkedin"></i>
           Sign in with Linkedin
         </a>
       </div>
 
-      <div class="col-md-4 ">
+      <div class="col-md-4">
         <a href="{{ fenixUrlAuth }}" class="btn btn-fenix">
           <i class="fa fa-graduation-cap"></i>
           Sign in with Fenix
         </a>
       </div>
     </div>
-
   </div>
 </section>
