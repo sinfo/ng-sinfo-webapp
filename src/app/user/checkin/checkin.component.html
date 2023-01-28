@@ -2,13 +2,15 @@
 
 <div class="align-center pad wrapper" *ngIf="sessions" style="height: 100%">
   <div class="row">
-    <h3>
-      Check in
-    </h3>
-    <h6 class='subtitle'>All dates are in UTC format</h6>
+    <h3>Check in {{(selectedSession ? " to " + selectedSession.kind : "" )}}</h3>
+    <h6 class='subtitle' *ngIf="!selectedSession">All dates are in UTC format</h6>
   </div>
 
   <div *ngIf="selectedSession">
+    <div>
+      <h4 class="name">Session: {{selectedSession.name}}</h4>
+    </div>
+
     <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="title"
       [buttonLabel]="submitLabel" (buttonAction)="submit($event)" [insideScannerMsg]="insideScannerMsg">
     </app-qrcode-scanner>
@@ -22,7 +24,6 @@
       </div>
       <button class="btn btn-button" (click)="delete()">Cancel</button>
     </div>
-
   </div>
 
   <div class="container align-center user" *ngIf="!selectedSession">
