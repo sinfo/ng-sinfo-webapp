@@ -112,6 +112,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         callback: this.handleGoogleCredentialResponse.bind(this),
         auto_select: false,
         cancel_on_tap_outside: true,
+        ux_mode: "redirect"
       });
       google.accounts.id.renderButton(
         document.getElementById("google-button"),
@@ -125,7 +126,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         }
       );
       // google.accounts.id.prompt((notification: PromptMomentNotification) => {});
-      google.accounts.id.prompt();
+      // google.accounts.id.prompt();
 
 
       // gapi.load('auth2', () => {
