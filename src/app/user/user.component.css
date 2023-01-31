@@ -30,11 +30,21 @@
   display: none;
 }
 
+.logo_w {
+  position: absolute;
+  right: 2.5vh;
+}
+
 #logo_white {
-  max-height: 7vh;
-  max-width: 7vh;
-  padding: 0.7vh 0 0 0;
-  margin-left: 1vw;
+  max-height: 3vh;
+  display: flex;
+}
+
+.promo-code {
+  color: white;
+  display: flex;
+  appearance: none;
+  margin-left: 2vw;
 }
 
 .profile-content {
@@ -120,29 +130,4 @@
   justify-content: space-between;
   width: 100%;
   height: 100%;
-}
-
-.bottom-toolbar {
-  position: fixed;
-  bottom: 0;
-  z-index: 1000;
-  padding: 0 2em 0 2em;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: black;
-  height: 7vh;
-}
-
-.bottom-toolbar-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: white;
-}
-
-.bottom-toolbar-item span {
-  font-size: 12px;
-  margin-top: -10px;
 }

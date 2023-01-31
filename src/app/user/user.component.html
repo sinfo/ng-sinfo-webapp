@@ -22,11 +22,17 @@
       >menu</mat-icon
     >
   </button>
-  <span>
-    <a routerLink="/" class="logo_w">
-      <img id="logo_white" src="assets/img/PowerOn.png" alt="Sinfo" />
-    </a>
-  </span>
+  
+  <a
+    routerLink="/user/promocodes"
+    class="promo-code"
+  >
+    <mat-icon>receipt</mat-icon>
+  </a>
+
+  <a routerLink="/" class="logo_w">
+    <img id="logo_white" src="assets/img/logo-branco2.png" alt="Sinfo" />
+  </a>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -371,31 +377,16 @@
     <div *ngIf="user" class="user-wrapper">
       <div class="profile-content">
         <router-outlet></router-outlet>
-      </div>
-    </div>
-    <mat-toolbar class="bottom-toolbar">
-      <div class="bottom-toolbar-item">
-        <button
-          *ngIf="user"
-          mat-icon-button
-          routerLink="/user/promocodes"
-          routerLinkActive="active-bottom-toolbar-item"
-        >
-          <mat-icon>receipt</mat-icon>
-        </button>
-        <span>Promo Codes</span>
-      </div>
-      <div class="bottom-toolbar-item">
-        <button
-          *ngIf="user"
-          mat-icon-button
+        <button 
+          *ngIf="screenWidth < 768"
+          mat-fab class='fab'
           routerLink="/user/qrcode"
-          routerLinkActive="active-bottom-toolbar-item"
+          aria-label="Example icon button with a home icon"
+          style="z-index: 99999;"
         >
           <mat-icon>qr_code</mat-icon>
         </button>
-        <span>QR Code</span>
       </div>
-    </mat-toolbar>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
