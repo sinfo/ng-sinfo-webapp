@@ -1,3 +1,5 @@
+import { Speaker } from "../speakers/speaker.model"
+
 export class Session {
   id: string
   name: string
@@ -5,7 +7,7 @@ export class Session {
   img: string
   place: string
   description: string
-  speakers: Array<object>
+  speakers: Array<Speaker>
   companies: Array<string>
   date: string
   duration: string

@@ -10,7 +10,6 @@ import { MessageService, Type } from '../../message.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { EventService } from '../../events/event.service'
 import { AchievementService } from '../achievements/achievement.service'
-import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 
 @Component({
   selector: 'app-checkin',
@@ -96,7 +95,7 @@ export class CheckinComponent implements OnInit {
               let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
               let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
-              // today and before it ends OR all sessions
+              //today and before it ends OR all sessions
               if (sessionDate.getDate() === new Date().getDate() || this.all) {
                 _sessions.find(e => e.kind === ach.kind).sessions.push({
                   begin: sessionDate,
@@ -229,4 +228,22 @@ export class CheckinComponent implements OnInit {
     this.getSessions()
   }
 
+  idToName(session: Session): string {
+    let id
+    if (session.kind === "Presentation" || 
+        session.kind === "Workshop") {
+      id = session.companies[0]
+    }
+    else {
+      id = session.speakers[0].id
+    }
+
+    var splitted = id.split("-");
+    for(let i=0; i<splitted.length; i++){
+      let result = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1);
+      splitted[i] = result
+    }
+    let name = splitted.join(" ");
+    return name
+  }
 }
