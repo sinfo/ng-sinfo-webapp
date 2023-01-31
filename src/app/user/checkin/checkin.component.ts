@@ -10,7 +10,6 @@ import { MessageService, Type } from '../../message.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { EventService } from '../../events/event.service'
 import { AchievementService } from '../achievements/achievement.service'
-import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 
 @Component({
   selector: 'app-checkin',
@@ -72,12 +71,10 @@ export class CheckinComponent implements OnInit {
         .subscribe(sessions => {
           let _sessions = []
           sessions.forEach(s => {
-            //this.achievementService.getAchievementSession(s.id).subscribe(ach => {
-              // if (_sessions.filter(e => e.kind === ach.kind).length === 0) {
-              //   _sessions.push({ kind: ach.kind, sessions: [] })
-              // }
-
-              _sessions.push({ kind: "presentation", sessions: [] })
+            this.achievementService.getAchievementSession(s.id).subscribe(ach => {
+              if (_sessions.filter(e => e.kind === ach.kind).length === 0) {
+                _sessions.push({ kind: ach.kind, sessions: [] })
+              }
 
               let sessionDate = new Date(s.date)
               sessionDate = new Date(Date.UTC(sessionDate.getUTCFullYear(), sessionDate.getUTCMonth(), sessionDate.getUTCDate(),
@@ -98,33 +95,24 @@ export class CheckinComponent implements OnInit {
               let sessionEnd = new Date(sessionDate.getTime() + durationInSeconds * 1000)
               let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
-              // today and before it ends OR all sessions
-              // if (sessionDate.getDate() === new Date().getDate() || this.all) {
-              //   _sessions.find(e => e.kind === ach.kind).sessions.push({
-              //     begin: sessionDate,
-              //     end: sessionEnd,
-              //     countdown: countdown,
-              //     session: s,
-              //     total: (ach.unregisteredUsers !== undefined ?
-              //       ach.unregisteredUsers : 0) + (ach.users !== undefined ? ach.users.length : 0),
-              //     canCheckIn: sessionDate.getDate() === new Date().getDate()
-              //   })
+              //today and before it ends OR all sessions
+              if (sessionDate.getDate() === new Date().getDate() || this.all) {
+                _sessions.find(e => e.kind === ach.kind).sessions.push({
+                  begin: sessionDate,
+                  end: sessionEnd,
+                  countdown: countdown,
+                  session: s,
+                  total: (ach.unregisteredUsers !== undefined ?
+                    ach.unregisteredUsers : 0) + (ach.users !== undefined ? ach.users.length : 0),
+                  canCheckIn: sessionDate.getDate() === new Date().getDate()
+                })
 
-              _sessions.find(e => true).sessions.push({
-                begin: sessionDate,
-                end: sessionEnd,
-                countdown: countdown,
-                session: s,
-                total: 5,
-                canCheckIn: sessionDate.getDate() === new Date().getDate()
-              })
+                _sessions.find(e => e.kind === ach.kind).achievements.sort((a, b): number => {
+                  return a.begin.toISOString() <= b.begin.toISOString() ? -1 : 1
+                })
+              }
 
-              //   _sessions.find(e => e.kind === ach.kind).achievements.sort((a, b): number => {
-              //     return a.begin.toISOString() <= b.begin.toISOString() ? -1 : 1
-              //   })
-              // }
-
-            //})
+            })
           })
           this.sessions = _sessions
           this.users = []
