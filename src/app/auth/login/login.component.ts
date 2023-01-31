@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, NgZone } from "@angular/core";
+import { Component, OnInit, AfterViewInit, NgZone, HostListener } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 
@@ -73,6 +73,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.renderGoogleButton();
+  }
+
   ngAfterViewInit() {
     this.initSocialSDKs();
   }
@@ -86,18 +91,23 @@ export class LoginComponent implements OnInit, AfterViewInit {
         cancel_on_tap_outside: true,
         ux_mode: "popup",
       });
-      google.accounts.id.renderButton(
-        document.getElementById("google-button"),
-        {
-          theme: "outline",
-          size: "large",
-          type: "standard",
-          shape: "rectangular",
-          text: "signin_with",
-          logo_alignment: "left",
-        }
-      );
+      this.renderGoogleButton();
     }
+  }
+
+  private renderGoogleButton() {
+    google.accounts.id.renderButton(
+      document.getElementById("google-button"),
+      {
+        theme: "outline",
+        size: "medium",
+        type: "standard",
+        shape: "rectangular",
+        text: "signin_with",
+        logo_alignment: "left",
+        width: window.innerWidth < 400 ? window.innerWidth - 16 : 400
+      }
+    );
   }
 
   async handleGoogleCredentialResponse(response: any) {
