@@ -72,10 +72,12 @@ export class CheckinComponent implements OnInit {
         .subscribe(sessions => {
           let _sessions = []
           sessions.forEach(s => {
-            this.achievementService.getAchievementSession(s.id).subscribe(ach => {
-              if (_sessions.filter(e => e.kind === ach.kind).length === 0) {
-                _sessions.push({ kind: ach.kind, sessions: [] })
-              }
+            //this.achievementService.getAchievementSession(s.id).subscribe(ach => {
+              // if (_sessions.filter(e => e.kind === ach.kind).length === 0) {
+              //   _sessions.push({ kind: ach.kind, sessions: [] })
+              // }
+
+              _sessions.push({ kind: "presentation", sessions: [] })
 
               let sessionDate = new Date(s.date)
               sessionDate = new Date(Date.UTC(sessionDate.getUTCFullYear(), sessionDate.getUTCMonth(), sessionDate.getUTCDate(),
@@ -97,23 +99,32 @@ export class CheckinComponent implements OnInit {
               let countdown = new Date(sessionEnd.getTime() - new Date().getTime())
 
               // today and before it ends OR all sessions
-              if (sessionDate.getDate() === new Date().getDate() || this.all) {
-                _sessions.find(e => e.kind === ach.kind).sessions.push({
-                  begin: sessionDate,
-                  end: sessionEnd,
-                  countdown: countdown,
-                  session: s,
-                  total: (ach.unregisteredUsers !== undefined ?
-                    ach.unregisteredUsers : 0) + (ach.users !== undefined ? ach.users.length : 0),
-                  canCheckIn: sessionDate.getDate() === new Date().getDate()
-                })
+              // if (sessionDate.getDate() === new Date().getDate() || this.all) {
+              //   _sessions.find(e => e.kind === ach.kind).sessions.push({
+              //     begin: sessionDate,
+              //     end: sessionEnd,
+              //     countdown: countdown,
+              //     session: s,
+              //     total: (ach.unregisteredUsers !== undefined ?
+              //       ach.unregisteredUsers : 0) + (ach.users !== undefined ? ach.users.length : 0),
+              //     canCheckIn: sessionDate.getDate() === new Date().getDate()
+              //   })
 
-                _sessions.find(e => e.kind === ach.kind).achievements.sort((a, b): number => {
-                  return a.begin.toISOString() <= b.begin.toISOString() ? -1 : 1
-                })
-              }
+              _sessions.find(e => true).sessions.push({
+                begin: sessionDate,
+                end: sessionEnd,
+                countdown: countdown,
+                session: s,
+                total: 5,
+                canCheckIn: sessionDate.getDate() === new Date().getDate()
+              })
 
-            })
+              //   _sessions.find(e => e.kind === ach.kind).achievements.sort((a, b): number => {
+              //     return a.begin.toISOString() <= b.begin.toISOString() ? -1 : 1
+              //   })
+              // }
+
+            //})
           })
           this.sessions = _sessions
           this.users = []
@@ -229,4 +240,22 @@ export class CheckinComponent implements OnInit {
     this.getSessions()
   }
 
+  idToName(session: Session): string {
+    let id
+    if (session.kind === "Presentation" || 
+        session.kind === "Workshop") {
+      id = session.companies[0]
+    }
+    else {
+      id = session.speakers[0].id
+    }
+
+    var splitted = id.split("-");
+    for(let i=0; i<splitted.length; i++){
+      let result = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1);
+      splitted[i] = result
+    }
+    let name = splitted.join(" ");
+    return name
+  }
 }
