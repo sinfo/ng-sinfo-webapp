@@ -7,6 +7,7 @@ import { AuthService } from '../auth.service'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { MsalService } from '@azure/msal-angular'
 
 declare let FB: any
 declare let gapi: any
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private messageService: MessageService,
     private authService: AuthService,
     private eventService: EventService,
+    private mslaAuthService: MsalService,
     public router: Router,
     private route: ActivatedRoute,
     private zone: NgZone,
@@ -129,6 +131,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
         version: 'v5.0'
       })
     }
+  }
+
+  loginWithMicrosoft() {
+    this.mslaAuthService.loginPopup().subscribe({
+      error: (error) => console.log(error)
+    })
   }
 
   onFenixLogin(fenixCode) {

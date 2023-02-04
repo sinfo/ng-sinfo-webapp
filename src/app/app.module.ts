@@ -26,6 +26,7 @@ import { UserService } from "./user/user.service";
 import { ScheduleComponent } from "./landing-page/schedule/schedule.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { LinkedinLoginComponent } from "./auth/login/linkedin.component";
+import { MicrosoftLoginComponent } from "./auth/login/microsoft.component";
 import { AuthService } from "./auth/auth.service";
 import { StorageService } from "./storage.service";
 import { AuthGuard } from "./auth/auth.guard";
@@ -115,7 +116,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
 
+import { MsalModule } from '@azure/msal-angular';
+import { PublicClientApplication } from '@azure/msal-browser';
 
+import { environment } from '../environments/environment'
 
 library.add(fas);
 
@@ -137,6 +141,7 @@ library.add(fas);
     LoadingComponent,
     LoginComponent,
     LinkedinLoginComponent,
+    MicrosoftLoginComponent,
     MyProfileComponent,
     UserComponent,
     SessionComponent,
@@ -214,7 +219,17 @@ library.add(fas);
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MaterialExampleModule
+    MaterialExampleModule,
+    MsalModule.forRoot(new PublicClientApplication({
+      auth: {
+        clientId: environment.microsoft.clientId,
+        authority: environment.microsoft.authority,
+        redirectUri: environment.microsoft.redirectUrl
+      },
+      cache: {
+        cacheLocation: 'localStorage',
+      }
+    }), null, null)
   ],
   providers: [
     SpeakerService,
