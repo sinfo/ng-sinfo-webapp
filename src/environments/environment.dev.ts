@@ -77,5 +77,10 @@ export const environment = {
   linkedin: {
     clientId: '77i6uer5luxghl',
     redirectUrl: 'https://app-staging.sinfo.org/login/linkedin'
+  },
+  microsoft: {
+    clientId: '',
+    redirectUrl: 'http://app-staging.sinfo.org/login/microsoft',
+    authority: 'common'
   }
 }

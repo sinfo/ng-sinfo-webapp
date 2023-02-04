@@ -73,5 +73,10 @@ export const environment = {
   linkedin: {
     clientId: '77i6uer5luxghl',
     redirectUrl: 'http://localhost:4201/login/linkedin'
+  },
+  microsoft: {
+    clientId: '',
+    redirectUrl: 'http://localhost:4201/login/microsoft',
+    authority: 'common'
   }
 }
