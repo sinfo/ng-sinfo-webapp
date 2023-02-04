@@ -1,3 +1,4 @@
+import { Company } from '../../company/company.model'
 import { User } from '../user.model'
 
 export class Note {
@@ -24,6 +25,7 @@ export class Link {
 
 export class ProcessedLink {
   attendee: User
+  company: Company
   user: User
   note: Note
   noteEmpty: boolean

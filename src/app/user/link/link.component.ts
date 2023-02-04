@@ -19,6 +19,10 @@ import { EventService } from '../../events/event.service'
 })
 export class LinkComponent implements OnInit {
 
+  author: string
+  linkReady: boolean
+  eventId: string
+
   scannerActive: boolean
   title = 'Sign and Link'
   description: string
@@ -67,23 +71,33 @@ export class LinkComponent implements OnInit {
     this.description = this.descriptions[0]
 
     this.eventService.getCurrent().subscribe(event => {
+      this.eventId = event.id
       this.titleService.setTitle(event.name + ' - Links')
       this.userService.getMe()
         .subscribe(user => {
           this.me = user
-          if (user.role !== 'company') return
+          if (user.role === 'company'){
+            this.author = 'company'
 
-          let company = user.company.find(c => {
-            return c.edition === event.id
-          })
-
-          if (!company) return
-
-          this.companyService.getCompany(company.company)
-            .subscribe(_company => {
-              this.company = _company
-              this.scannerActive = true
+            let company = user.company.find(c => {
+              return c.edition === event.id
             })
+  
+            if (!company) return
+  
+            this.companyService.getCompany(company.company)
+              .subscribe(_company => {
+                this.company = _company
+                this.scannerActive = true
+                this.linkReady = true
+              })
+          }
+
+          else {
+            this.author = 'attendee'
+            this.scannerActive = true
+            this.linkReady = true
+          }
         })
     })
   }
@@ -133,13 +147,35 @@ export class LinkComponent implements OnInit {
   receiveUser(user: User) {
     this.userRead = user
     this.scannerActive = false
-    this.companyCannonService.getLink(this.company.id, this.userRead.id)
+    if (this.me.role === 'company') {
+      this.companyCannonService.getLink(this.company.id, this.userRead.id)
       .subscribe(_link => {
         if (_link) {
           this.currentLink = _link
         }
         this.buildNotes(_link)
       })
+    }
+    else {
+      //FIXME use output of qrcode reader to get company
+      let company = this.userRead.company.find(c => c.edition === this.eventId)
+
+      if (!company) return
+
+      this.companyService.getCompany(company.company)
+        .subscribe(_company => {
+          this.company = _company
+          console.log(_company)
+        })
+      
+      this.userService.getLink(this.me.id, company.company)
+        .subscribe(_link => {
+          if (_link) {
+            this.currentLink = _link
+          }
+          this.buildNotes(_link)
+        })
+    }
   }
 
   buildNotes(_link) {
@@ -180,7 +216,8 @@ export class LinkComponent implements OnInit {
   }
 
   createLink() {
-    this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
+    if (this.me.role === 'company') {
+      this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         if (_link) {
           this.currentLink = _link
@@ -195,10 +232,30 @@ export class LinkComponent implements OnInit {
           })
         }
       })
+    }
+    else{
+      this.userService.createLink(this.me.id, this.company.id, this.userRead.id, this.notes)
+      .subscribe(_link => {
+        if (_link) {
+          this.currentLink = _link
+          this.snackBar.open('Link created', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        } else {
+          this.snackBar.open('Error creating link', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        }
+      })
+    }
+    
   }
 
   updateLink() {
-    this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
+    if (this.me.role === 'company') {
+      this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         if (_link) {
           this.currentLink = _link
@@ -220,6 +277,25 @@ export class LinkComponent implements OnInit {
         //   type: Type.success
         // })
       })
+    }
+    else {
+      this.userService.updateLink(this.me.id, this.company.id, this.userRead.id, this.notes)
+      .subscribe(_link => {
+        if (_link) {
+          this.currentLink = _link
+          this.snackBar.open('Link updated', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        } else {
+          this.snackBar.open('Error updating link', "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        }
+      })
+    }
+    
   }
 
   submit() {

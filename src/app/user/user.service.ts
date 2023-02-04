@@ -11,6 +11,7 @@ import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
 import { File as CV } from './cv/file'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { Link, Note } from './link/link.model'
 
 @Injectable()
 export class UserService {
@@ -100,6 +101,109 @@ export class UserService {
 
   deleteMe() {
     this.me = null
+  }
+
+  getLink(attendeeId: string, companyId: string): Observable<Link> {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<Link>(`${this.usersUrl}/${attendeeId}/link/${companyId}`, httpOptions)
+      .pipe(
+        catchError(this.handleError<Link>('getLink'))
+      )
+  }
+
+  createLink(attendeeId: string, companyId: string, userId: string, note: Note): Observable<Link> {
+    return this.http.post<Link>(`${this.usersUrl}/${attendeeId}/link`, {
+      userId: userId,
+      companyId: companyId,
+      editionId: this.event.id,
+      notes: {
+        contacts: {
+          email: note.contacts.email ? note.contacts.email : '',
+          phone: note.contacts.phone ? note.contacts.phone : ''
+        },
+        interestedIn: note.interestedIn ? note.interestedIn : '',
+        degree: note.degree ? note.degree : '',
+        availability: note.availability ? note.availability : '',
+        otherObservations: note.otherObservations ? note.otherObservations : ''
+      }
+    }, { headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getToken().token}`
+    })})
+      .pipe(
+        catchError(this.handleError<Link>('createLink'))
+      )
+  }
+
+  updateLink(attendeeId: string, companyId: string, userId: string, note: Note): Observable<Link> {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.put<Link>(`${this.usersUrl}/${attendeeId}/link/${companyId}`, {
+      userId: userId,
+      notes: note
+    }, httpOptions)
+      .pipe(
+        catchError(this.handleError<Link>('updateLink'))
+      )
+  }
+
+  getLinks(attendeeId: string): Observable<Link[]> {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<Link[]>(`${this.usersUrl}/${attendeeId}/link`, httpOptions)
+      .pipe(
+        catchError(this.handleError<Link[]>('getLinks', []))
+      )
+  }
+
+  deleteLink(attendeeId: string, companyId: string) {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.delete<Link>(`${this.usersUrl}/${attendeeId}/link/${companyId}`, httpOptions)
+      .pipe(
+        catchError(this.handleError<Link>('deleteLink'))
+      )
   }
 
   getCv(): Observable<CV> {

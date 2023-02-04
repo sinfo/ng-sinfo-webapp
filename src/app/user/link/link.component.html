@@ -1,9 +1,9 @@
-<app-loading [content]="company"></app-loading>
+<app-loading [content]="linkReady"></app-loading>
 
-<div class="wrapper pad" *ngIf="company">
+<div class="wrapper pad" *ngIf="linkReady">
 
   <div>
-    <h3 class="title mb-1">Sign and Link Card</h3>
+    <h3 class="title mb-1">{{(me.role === 'company' ? "Sign and ": "" )}}Link Card </h3>
   </div>
 
   <div class="align-center">
@@ -56,10 +56,10 @@
           </div>
         </div> -->
 
-        <p *ngIf="!yesToSign"><b>When signing a user's card please make sure to confirm their
+        <p *ngIf="!yesToSign && author==='company'"><b>When signing a user's card please make sure to confirm their
             name and avatar (if one is available).</b></p>
 
-        <div class="row" *ngIf="!yesToSign">
+        <div class="row" *ngIf="!yesToSign && author==='company'">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button rescan" (click)="signUser()">
               <span>Confirm Sign</span>
@@ -67,7 +67,7 @@
           </div>
         </div>
 
-        <div class="row" *ngIf="!yesToSign">
+        <div class="row" *ngIf="!yesToSign && author==='company'">
           <div class="col-xs-12">
             <button type="button" class="btn btn-danger" (click)="reScan()">
               <span>Cancel Sign</span>
@@ -75,7 +75,7 @@
           </div>
         </div>
 
-        <div class="row" *ngIf="yesToSign">
+        <div class="row" *ngIf="yesToSign || author==='attendee'">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button rescan" (click)="toLink()">
               <span>Link</span>
@@ -142,7 +142,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div *ngIf="author === 'company'" class="row">
           <div class="col-xs-12">
             <button class="btn btn-button" (click)="reScan()">
               <span class="glyphicon glyphicon-pencil"></span>

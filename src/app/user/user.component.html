@@ -111,7 +111,7 @@
         <span class="list-item">Promote</span>
       </a>
       <a
-        *ngIf="user && user.role === 'company'"
+        *ngIf="user"
         mat-list-item
         routerLink="/user/links/link"
         routerLinkActive="active"
@@ -119,10 +119,10 @@
         class="navigation-link"
       >
         <mat-icon>done_outline</mat-icon>
-        <span class="list-item">Sign and Link Card</span>
+        <span class="list-item">{{(user.role === 'company' ? "Sign and ": "" )}}Link Card </span>
       </a>
       <a
-        *ngIf="user && user.role === 'company'"
+        *ngIf="user"
         mat-list-item
         routerLink="/user/links/my-links"
         routerLinkActive="active"
