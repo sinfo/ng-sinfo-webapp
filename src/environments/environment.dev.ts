@@ -81,6 +81,6 @@ export const environment = {
   microsoft: {
     clientId: '',
     redirectUrl: 'http://app-staging.sinfo.org/login/microsoft',
-    authority: 'common'
+    authority: 'https://login.microsoftonline.com/common'
   }
 }
