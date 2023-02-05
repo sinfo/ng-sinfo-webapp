@@ -133,7 +133,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     }
   }
 
-  loginWithMicrosoft() {
+  onMicrosoftLogin() {
     this.mslaAuthService.loginPopup().subscribe({
       error: (error) => console.log(error)
     })
