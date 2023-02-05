@@ -21,7 +21,8 @@ enum LoginType {
   GOOGLE,
   FACEBOOK,
   LINKEDIN,
-  FENIX
+  FENIX,
+  MICROSOFT
 }
 
 @Injectable()
@@ -71,6 +72,15 @@ export class AuthService {
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'linkedin'),
         catchError(this.handleError<CannonToken>('Linkedin Login'))
+      )
+  }
+
+  microsoft(token): Observable<CannonToken> {
+    this.loginType = LoginType.MICROSOFT
+    return this.http.post<CannonToken>(`${this.authUrl}/microsoft`,  { token }, httpOptions)
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'microsoft'),
+        catchError(this.handleError<CannonToken>('Microsoft Login'))
       )
   }
 
