@@ -53,7 +53,7 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'login/linkedin', component: LinkedinLoginComponent },
-  { path: 'login/microsoft', component: MicrosoftLoginComponent }
+  { path: 'login/microsoft', component: MicrosoftLoginComponent },
 
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
