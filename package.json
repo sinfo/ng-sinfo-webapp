@@ -32,8 +32,6 @@
     "@angular/platform-browser-dynamic": "13.1.2",
     "@angular/platform-server": "13.1.2",
     "@angular/router": "13.1.2",
-    "@azure/msal-angular": "^2.5.2",
-    "@azure/msal-browser": "^2.32.2",
     "@fortawesome/angular-fontawesome": "^0.10.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
