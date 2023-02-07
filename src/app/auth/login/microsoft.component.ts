@@ -26,15 +26,15 @@ export class MicrosoftLoginComponent implements OnInit {
     }
 
     this.route.queryParams.subscribe(params => {
-      const microsoftToken = params['access_token']
-      if (microsoftToken) {
-        this.onMicrosoftLogin(microsoftToken)
+      const microsoftCode = params['code']
+      if (microsoftCode) {
+        this.onMicrosoftLogin(microsoftCode)
       }
     })
   }
 
-  onMicrosoftLogin(token) {
-    this.authService.microsoft(token).subscribe(cannonToken => {
+  onMicrosoftLogin (code) {
+    this.authService.microsoft(code).subscribe(cannonToken => {
       this.authService.setToken(cannonToken)
       this.router.navigate([`${this.authService.redirectUrl || '/user/qrcode'}`])
     })
