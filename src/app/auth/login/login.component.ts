@@ -7,7 +7,6 @@ import { AuthService } from '../auth.service'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { MsalService } from '@azure/msal-angular'
 
 declare let FB: any
 declare let gapi: any
@@ -31,6 +30,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   // tslint:disable-next-line:max-line-length
   linkedinUrlAuth = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${environment.linkedin.clientId}&redirect_uri=${environment.linkedin.redirectUrl}&state=SINFO&scope=r_liteprofile%20r_emailaddress`
+
+  microsoftUrlAuth = `${environment.microsoft.authority}/oauth2/v2.0/authorize?client_id=${environment.microsoft.clientId}&response_type=code&redirect_uri=${environment.microsoft.redirectUrl}&response_mode=query&scope=user.read%20openid%20email&state=12345`
 
   private isLoggedIn = false
 
@@ -131,12 +132,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
         version: 'v5.0'
       })
     }
-  }
-
-  onMicrosoftLogin() {
-    this.mslaAuthService.loginPopup().subscribe({
-      error: (error) => console.log(error)
-    })
   }
 
   onFenixLogin(fenixCode) {
