@@ -75,9 +75,9 @@ export class AuthService {
       )
   }
 
-  microsoft(token): Observable<CannonToken> {
+  microsoft(code): Observable<CannonToken> {
     this.loginType = LoginType.MICROSOFT
-    return this.http.post<CannonToken>(`${this.authUrl}/microsoft`,  { token }, httpOptions)
+    return this.http.post<CannonToken>(`${this.authUrl}/microsoft`,  { code }, httpOptions)
       .pipe(
         tap(cannonToken => cannonToken.loginWith = 'microsoft'),
         catchError(this.handleError<CannonToken>('Microsoft Login'))
