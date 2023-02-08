@@ -19,7 +19,6 @@ import { AchievementService } from '../achievements/achievement.service'
 export class CheckinComponent implements OnInit {
   sessions = []
 
-
   selectedSession: Session
   users: User[]
   me: User
@@ -72,6 +71,7 @@ export class CheckinComponent implements OnInit {
           let _sessions = []
           sessions.forEach(s => {
             this.achievementService.getAchievementSession(s.id).subscribe(ach => {
+              if (!ach) return
               if (_sessions.filter(e => e.kind === ach.kind).length === 0) {
                 _sessions.push({ kind: ach.kind, sessions: [] })
               }
@@ -229,13 +229,18 @@ export class CheckinComponent implements OnInit {
   }
 
   idToName(session: Session): string {
-    let id
+    let id: string
     if (session.kind === "Presentation" || 
         session.kind === "Workshop") {
+      if(session.companies[0] === undefined) return null
       id = session.companies[0]
     }
-    else {
+    else if (session.kind === "Keynote"){
+      if(session.speakers[0] === undefined) return null
       id = session.speakers[0].id
+    }
+    else {
+      return null
     }
 
     var splitted = id.split("-");
