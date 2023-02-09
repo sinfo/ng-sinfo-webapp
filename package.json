@@ -43,7 +43,6 @@
     "@zxing/browser": "0.0.10",
     "@zxing/library": "^0.19.1",
     "@zxing/ngx-scanner": "^3.4.0",
-    "Buffer": "0.0.0",
     "angularx-qrcode": "^13.0.3",
     "ng-number-picker": "^1.1.9",
     "ngx-clipboard": "^15.0.1",
