@@ -65,7 +65,9 @@ export class SpeedDateSignComponent implements OnInit {
       interestedIn: null,
       otherObservations: null,
       availability: null,
-      degree: null
+      degree: null,
+      //fixme: not used in speed date links (?)
+      internships: null
     }
 
     this.descriptions = [

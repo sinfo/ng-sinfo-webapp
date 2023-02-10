@@ -9,7 +9,7 @@
   <div class="align-center">
     <!-- <p *ngIf="!cam">{{ description }}</p> -->
 
-    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="" [info]=""
+    <app-qrcode-scanner (readData)="receiveUser($event)" [camStarted]="scannerActive" [title]="" [info]=""
       style="height: 100%">
     </app-qrcode-scanner>
 
@@ -56,26 +56,26 @@
           </div>
         </div> -->
 
-        <p *ngIf="!yesToSign && author==='company'"><b>When signing a user's card please make sure to confirm their
-            name and avatar (if one is available).</b></p>
+        <!-- <p *ngIf="!yesToSign && author==='company'"><b>When signing a user's card please make sure to confirm their
+            name and avatar (if one is available).</b></p> -->
 
-        <div class="row" *ngIf="!yesToSign && author==='company'">
+        <!-- <div class="row" *ngIf="!yesToSign && author==='company'">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button rescan" (click)="signUser()">
               <span>Confirm Sign</span>
             </button>
           </div>
-        </div>
+        </div> -->
 
-        <div class="row" *ngIf="!yesToSign && author==='company'">
+        <!-- <div class="row" *ngIf="!yesToSign && author==='company'">
           <div class="col-xs-12">
             <button type="button" class="btn btn-danger" (click)="reScan()">
               <span>Cancel Sign</span>
             </button>
           </div>
-        </div>
+        </div> -->
 
-        <div class="row" *ngIf="yesToSign || author==='attendee'">
+        <div class="row" *ngIf="userRead">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button rescan" (click)="toLink()">
               <span>Link</span>
@@ -83,18 +83,17 @@
           </div>
         </div>
 
-        <div class="row" *ngIf="yesToSign">
+        <div class="row" *ngIf="userRead">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button" (click)="reScan()">
-              Sign another user
+              {{me.role === 'company' ? "Sign another user" : "Cancel"}}
             </button>
           </div>
         </div>
-
       </div>
-      <div *ngIf='yesToLink' class='full-width'>
+      <div *ngIf="yesToLink && me.role ==='company'" class='full-width'>
 
-        <p>You can store here user information.</p>
+        <p>You can store user information here.</p>
 
         <div class="row">
           <div class="col-xs-12">
@@ -133,7 +132,32 @@
             </textarea>
           </div>
         </div>
+      </div>
+      <div *ngIf="yesToLink && me.role !=='company'" class='full-width'>
 
+        <p>You can store company information here.</p>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Employee email" autocapitalize="off">
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.internships" class="form-control" placeholder="Internships details">
+            </textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <textarea [(ngModel)]="notes.otherObservations" class="form-control"
+              placeholder="Insert your other observations here">
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="yesToLink" class='full-width'>
         <div class="row">
           <div class="col-xs-12">
             <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="link()">
@@ -142,7 +166,7 @@
           </div>
         </div>
 
-        <div *ngIf="author === 'company'" class="row">
+        <div class="row">
           <div class="col-xs-12">
             <button class="btn btn-button" (click)="reScan()">
               <span class="glyphicon glyphicon-pencil"></span>

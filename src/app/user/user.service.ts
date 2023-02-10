@@ -41,7 +41,16 @@ export class UserService {
       headers.Authorization = `Bearer ${this.authService.getToken().token}`
     }
 
-    return this.http.get<User>(`${this.usersUrl}/${id}`, { headers: new HttpHeaders(headers) })
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders(headers)
+    }
+
+    return this.http.get<User>(`${this.usersUrl}/${id}`, httpOptions)
       .pipe(
         catchError(this.handleError<User>(`getting user profile`))
       )
@@ -129,13 +138,10 @@ export class UserService {
       editionId: this.event.id,
       notes: {
         contacts: {
-          email: note.contacts.email ? note.contacts.email : '',
-          phone: note.contacts.phone ? note.contacts.phone : ''
+          email: note.contacts.email ?? '',
         },
-        interestedIn: note.interestedIn ? note.interestedIn : '',
-        degree: note.degree ? note.degree : '',
-        availability: note.availability ? note.availability : '',
-        otherObservations: note.otherObservations ? note.otherObservations : ''
+        internships: note.internships ?? '',
+        otherObservations: note.otherObservations ?? ''
       }
     }, { headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -379,6 +385,10 @@ export class UserService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      if (error.status === 404 && operation === 'getLink') {
+        return of(result)
+      }
+
       this.snackBar.open(error.message, "Ok", {
         panelClass: ['mat-toolbar', 'mat-warn'],
         duration: 2000

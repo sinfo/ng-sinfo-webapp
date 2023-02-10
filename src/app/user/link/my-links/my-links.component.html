@@ -13,7 +13,7 @@
     <div class="col-sm-12">
       <div class="portrait-wrapper">
         <img *ngIf="company" class="portrait" src="{{company.img}}">
-        <img *ngIf="!company" class="portrait" src="{{me.img}}">
+        <img *ngIf="!company" class="portrait" src="{{me.img}}" referrerpolicy="no-referrer">
       </div>
     </div>
   </div>
@@ -79,17 +79,8 @@
               <span class='link-data' *ngIf='link.note.contacts.email'><span class="panel-content-strong">Email:
                 </span>{{link.note.contacts.email}}</span>
 
-              <span class='link-data' *ngIf='link.note.contacts.phone'><span class="panel-content-strong">Phone:
-                </span>{{link.note.contacts.phone}}</span>
-
-              <span class='link-data' *ngIf='link.note.availability'><span class="panel-content-strong">Availability:
-                </span>{{link.note.availability}}</span>
-
-              <span class='link-data' *ngIf='link.note.degree'><span class="panel-content-strong">Degree:
-                </span>{{link.note.degree}}</span>
-
-              <span class='link-data' *ngIf='link.note.interestedIn'><span class="panel-content-strong">Interested in:
-                </span>{{link.note.interestedIn}}</span>
+              <span class='link-data' *ngIf='link.note.internships'><span class="panel-content-strong">Internships:
+                </span>{{link.note.internships}}</span>
 
               <span class='link-data' *ngIf='link.note.otherObservations'><span class="panel-content-strong">Other
                   Notes:

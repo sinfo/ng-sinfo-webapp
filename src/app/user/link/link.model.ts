@@ -6,10 +6,15 @@ export class Note {
     email: String
     phone: String
   }
+  otherObservations: String
+
+  //company links
   interestedIn: String
   degree: String
   availability: String
-  otherObservations: String
+
+  //attendee links
+  internships: String
 }
 
 export class Link {

@@ -19,7 +19,6 @@ import { EventService } from '../../events/event.service'
 })
 export class LinkComponent implements OnInit {
 
-  author: string
   linkReady: boolean
   eventId: string
 
@@ -35,7 +34,7 @@ export class LinkComponent implements OnInit {
   currentLink: Link
   notes: Note
   yesToLink: Boolean
-  yesToSign: Boolean
+  //yesToSign: Boolean
   cam: Boolean
   userId: string = ''
 
@@ -53,7 +52,7 @@ export class LinkComponent implements OnInit {
   ngOnInit() {
     this.scannerActive = false
     this.yesToLink = false
-    this.cam = false
+    this.cam = true
     this.notes = {
       contacts: {
         email: null,
@@ -62,7 +61,8 @@ export class LinkComponent implements OnInit {
       interestedIn: null,
       otherObservations: null,
       availability: null,
-      degree: null
+      degree: null,
+      internships: null
     }
     this.descriptions = [
       'Insert the ID of the attendee in the text box below or scan the QR code by switching input.',
@@ -77,8 +77,6 @@ export class LinkComponent implements OnInit {
         .subscribe(user => {
           this.me = user
           if (user.role === 'company'){
-            this.author = 'company'
-
             let company = user.company.find(c => {
               return c.edition === event.id
             })
@@ -94,7 +92,6 @@ export class LinkComponent implements OnInit {
           }
 
           else {
-            this.author = 'attendee'
             this.scannerActive = true
             this.linkReady = true
           }
@@ -106,16 +103,16 @@ export class LinkComponent implements OnInit {
     this.cam = !this.cam
   }
 
-  signUser() {
-    this.yesToSign = true
-    this.info = `Signing ${this.userRead.name}'s card.`
-    this.updateInfo()
-  }
+  // signUser() {
+  //   this.yesToSign = true
+  //   this.info = `Signing ${this.userRead.name}'s card.`
+  //   this.updateInfo()
+  // }
 
   toLink() {
     this.yesToLink = true
-    this.info = `Linking ${this.userRead.name} with ${this.company.name}`
-    this.description = this.info
+    //this.info = `Linking ${this.userRead.name} with ${this.company.name}`
+    //this.description = this.info
   }
 
   reScan() {
@@ -123,13 +120,15 @@ export class LinkComponent implements OnInit {
     this.userId = ''
     this.yesToLink = false
     this.description = this.descriptions[0]
-    this.info = ''
-    this.yesToSign = false
+    //this.info = ''
+    //this.yesToSign = false
+    this.linkReady = true
+
     this.scannerActive = true
   }
 
-  updateInfo() {
-    this.info = `Signed ${this.userRead.name}`
+  signUser() {
+    //this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
     this.snackBar.open('User was successfully signed!', "Ok", {
       panelClass: ['mat-toolbar', 'mat-primary'],
@@ -144,31 +143,33 @@ export class LinkComponent implements OnInit {
     // })
   }
 
-  receiveUser(user: User) {
-    this.userRead = user
+  receiveUser(data: {user:User,company:Company}) {
+    this.userRead = data.user
     this.scannerActive = false
     if (this.me.role === 'company') {
-      this.companyCannonService.getLink(this.company.id, this.userRead.id)
-      .subscribe(_link => {
-        if (_link) {
-          this.currentLink = _link
-        }
-        this.buildNotes(_link)
-      })
+      if (data.user.role !== 'company') {
+        this.signUser()
+        this.companyCannonService.getLink(this.company.id, this.userRead.id)
+          .subscribe(_link => {
+            if (_link) {
+              this.currentLink = _link
+            }
+            this.buildNotes(_link)
+          })
+      }
+      else {
+        this.scannerActive = true
+        this.userRead = null
+        this.snackBar.open(`You are not allowed to read a company member's QR code`, "Ok", {
+          panelClass: ['mat-toolbar', 'mat-warn'],
+          duration: 4000
+        })
+      }
     }
     else {
-      //FIXME use output of qrcode reader to get company
-      let company = this.userRead.company.find(c => c.edition === this.eventId)
-
-      if (!company) return
-
-      this.companyService.getCompany(company.company)
-        .subscribe(_company => {
-          this.company = _company
-          console.log(_company)
-        })
-      
-      this.userService.getLink(this.me.id, company.company)
+      // if a normal user is read, share notes instead of creating a link
+      this.company = data.company
+      this.userService.getLink(this.me.id, data.company.id)
         .subscribe(_link => {
           if (_link) {
             this.currentLink = _link
@@ -186,6 +187,7 @@ export class LinkComponent implements OnInit {
       this.notes.degree = _link.notes.degree
       this.notes.interestedIn = _link.notes.interestedIn
       this.notes.otherObservations = _link.notes.otherObservations
+      this.notes.internships = _link.notes.internships
       return
     }
     this.notes.contacts.email = null
@@ -194,6 +196,7 @@ export class LinkComponent implements OnInit {
     this.notes.degree = null
     this.notes.availability = null
     this.notes.otherObservations = null
+    this.notes.internships = null
   }
 
   link() {
@@ -298,36 +301,36 @@ export class LinkComponent implements OnInit {
     
   }
 
-  submit() {
-    this.userService.getUser(this.userId)
-      .subscribe(user => {
+  // submit() {
+  //   this.userService.getUser(this.userId)
+  //     .subscribe(user => {
 
-        let message = ''
-        if (!user) {
-          message = 'User ID not found.'
-        } else if (user && user.id === this.me.id) {
-          message = 'You cannot perform this action on yourself!'
-        }
+  //       let message = ''
+  //       if (!user) {
+  //         message = 'User ID not found.'
+  //       } else if (user && user.id === this.me.id) {
+  //         message = 'You cannot perform this action on yourself!'
+  //       }
 
-        if (message.length > 0) {
-          this.snackBar.open(message, "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-          // this.messageService.add({
-          //   origin: 'Sign and Link',
-          //   showAlert: true,
-          //   text: message,
-          //   type: Type.warning,
-          //   timeout: 2000
-          // })
-          return
-        }
+  //       if (message.length > 0) {
+  //         this.snackBar.open(message, "Ok", {
+  //           panelClass: ['mat-toolbar', 'mat-primary'],
+  //           duration: 2000
+  //         })
+  //         // this.messageService.add({
+  //         //   origin: 'Sign and Link',
+  //         //   showAlert: true,
+  //         //   text: message,
+  //         //   type: Type.warning,
+  //         //   timeout: 2000
+  //         // })
+  //         return
+  //       }
 
-        this.userRead = user
-        this.description = this.descriptions[1]
-        this.receiveUser(user)
-      })
-  }
+  //       this.userRead = user
+  //       this.description = this.descriptions[1]
+  //       this.receiveUser(user)
+  //     })
+  // }
 
 }

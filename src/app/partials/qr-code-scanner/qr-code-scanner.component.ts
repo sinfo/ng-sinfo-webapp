@@ -16,7 +16,7 @@ import { last } from 'rxjs/operators'
 })
 export class QrcodeScannerComponent implements OnInit {
 
-  @Output() userReadOutput: EventEmitter<User> = new EventEmitter()
+  @Output() readData: EventEmitter<{user: User, company: Company}> = new EventEmitter()
   @Output() rawOutput: EventEmitter<string> = new EventEmitter()
   @Input() title: string
   @Input() info: string
@@ -136,19 +136,24 @@ export class QrcodeScannerComponent implements OnInit {
             this.animation = undefined
           }, 500)
 
-          this.userReadOutput.emit(user)
-          this.userRead = user
-
           if (user.role === 'company') {
             this.eventService.getCurrent().subscribe(event => {
               let company = user.company.find(c => c.edition === event.id)
               if (!company) return
 
               this.companyService.getCompany(company.company)
-                .subscribe(_company => this.company = _company)
+                .subscribe(_company => {
+                  this.company = _company
+                  this.readData.emit({user:user, company:_company})
+                })
             })
           }
+          else{
+            this.readData.emit({user:user, company:null})
+          }
+          this.userRead = user
           this.lastUser = user
+          this.lastRaw = undefined
         }
       })
   }
