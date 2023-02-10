@@ -1,0 +1,14 @@
+<div class="promocodes-dialog">
+  <h6 mat-dialog-title>{{ promocode.name }}</h6>
+
+  <mat-dialog-content class="mat-typography">
+    <p><b>Company:</b> {{ promocode.company }}</p>
+    <p><b>Expires on:</b> {{ promocode.expirationDate }}</p>
+    <p><b>Code:</b> {{ promocode.code }}</p>
+    <p><b>Description:</b> {{ promocode.description }}</p>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+  </mat-dialog-actions>
+</div>

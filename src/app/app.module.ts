@@ -114,6 +114,7 @@ import { WorkshopValidationComponent } from './user/workshop-validation/workshop
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
+import { PromocodesDialogComponent } from "./user/promocodes/promocodes-dialog/promocodes-dialog.component";
 
 
 
@@ -180,6 +181,7 @@ library.add(fas);
     SpeedDateSignComponent,
     SecretAchievementsComponent,
     GdprDialogComponent,
+    PromocodesDialogComponent,
     WorkshopValidationComponent,
   ],
   imports: [

@@ -3,7 +3,7 @@
 <div id="promocodes">
   <h3 class="promocode-title">Promocodes</h3>
 
-  <div class="promocode-row">
+  <div class="row promocode-row">
     <div class="no-promocodes" *ngIf="isPartnersEmpty">
       <h6 class="subtitle">No promo codes yet :(</h6>
     </div>
@@ -12,14 +12,6 @@
       <div *ngFor="let p of partners; let i = index">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 promocode-column">
           <mat-card class="padding-margin-0">
-            <mat-card-header class="promocode-header">
-              <mat-card-title class="promocode-title">{{
-                p.name
-              }}</mat-card-title>
-              <mat-card-subtitle class="promocode-subtitle"
-                >Expires on: {{ p.expirationDate }}</mat-card-subtitle
-              >
-            </mat-card-header>
             <img
               mat-card-image
               src="{{ p.img }}"
@@ -27,14 +19,16 @@
               class="promocode-image"
             />
             <mat-card-content class="padding-margin-0">
-              <p class="description">
-                {{ p.description }}
+              <p class="description" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden;">
+                {{ p.name }}
               </p>
             </mat-card-content>
             <mat-card-actions class="padding-margin-0">
+              <button mat-button (click)="openDialog(p)">
+                More Information
+              </button>
               <button
                 id="tooltip-{{ p.code }}"
-                class="copy-button"
                 mat-button
                 (click)="copy($event, p.code)"
               >

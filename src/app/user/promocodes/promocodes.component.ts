@@ -5,6 +5,8 @@ import { Promocode } from "./promocode.model";
 import { PromocodesService } from "./promocodes.service";
 import { DatePipe } from "@angular/common";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { PromocodesDialogComponent } from "./promocodes-dialog/promocodes-dialog.component";
 
 @Component({
   selector: "app-promocodes",
@@ -20,6 +22,7 @@ export class PromocodesComponent implements OnInit {
     private partnerService: PromocodesService,
     private sponsorService: SponsorService,
     private snackBar: MatSnackBar,
+    public dialog: MatDialog,
     private datePipe: DatePipe
   ) {}
 
@@ -75,8 +78,16 @@ export class PromocodesComponent implements OnInit {
     event.stopPropagation();
 
     this.snackBar.open(`Copied!`, "Ok", {
-      panelClass: ['mat-toolbar', 'mat-primary'],
-      duration: 2000
-    })
+      panelClass: ["mat-toolbar", "mat-primary"],
+      duration: 2000,
+    });
+  }
+
+  openDialog(promocode) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.data = promocode;    
+
+    this.dialog.open(PromocodesDialogComponent, dialogConfig);
   }
 }
