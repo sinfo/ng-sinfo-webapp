@@ -1,4 +1,4 @@
-.wrapper {
+/* .wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -155,4 +155,58 @@
         height: 5vw;
         font-size: 3vw;
     }
+} */
+
+.promocode-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.25rem 0;
+}
+
+.promocode-row {
+  margin-left: 0.5rem;
+  margin-right: 0;
+  text-align: center;
+}
+
+.promocode-column {
+  padding: 0 0.5rem 0.5rem 0;
+  margin: 0;
+}
+
+.no-promocodes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30vh;
+}
+
+.padding-margin-0 {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.promocode-image {
+  margin: 0;
+  width: auto;
+}
+
+.copy-button {
+  padding-bottom: 0.5rem;
+}
+
+.promocode-header {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
 }

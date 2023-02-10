@@ -1,11 +1,59 @@
 <app-loading [content]="partners"></app-loading>
 
-<div class="wrapper pad">
+<div id="promocodes">
+  <h3 class="promocode-title">Promocodes</h3>
+
+  <div class="promocode-row">
+    <div class="no-promocodes" *ngIf="isPartnersEmpty">
+      <h6 class="subtitle">No promo codes yet :(</h6>
+    </div>
+
+    <div *ngIf="!isPartnersEmpty">
+      <div *ngFor="let p of partners; let i = index">
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 promocode-column">
+          <mat-card class="padding-margin-0">
+            <mat-card-header class="promocode-header">
+              <mat-card-title class="promocode-title">{{
+                p.name
+              }}</mat-card-title>
+              <mat-card-subtitle class="promocode-subtitle"
+                >Expires on: {{ p.expirationDate }}</mat-card-subtitle
+              >
+            </mat-card-header>
+            <img
+              mat-card-image
+              src="{{ p.img }}"
+              alt="Promocode image"
+              class="promocode-image"
+            />
+            <mat-card-content class="padding-margin-0">
+              <p class="description">
+                {{ p.description }}
+              </p>
+            </mat-card-content>
+            <mat-card-actions class="padding-margin-0">
+              <button
+                id="tooltip-{{ p.code }}"
+                class="copy-button"
+                mat-button
+                (click)="copy($event, p.code)"
+              >
+                Copy Code
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="wrapper pad">
   <h3 class="partners-title">
     Promocodes
   </h3>
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-6">
       <div class="cards" *ngIf='!isPartnersEmpty'>
         <div class="card-wrapper" *ngFor="let p of partners; let i = index">
           <!-- <div class='card' id='{{i}}'>
@@ -19,7 +67,7 @@
               <span class='text-box'><b>{{p.code}}</b></span>
             </div>
             <div id='tooltip-{{p.code}}' class='tooltip' style='opacity: 0;'>Copied!</div>
-          </div> -->
+          </div>
 
           <mat-card class="mat-card" id="{{i}}">
             <mat-card-header class="mat-card-header">
@@ -46,4 +94,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
