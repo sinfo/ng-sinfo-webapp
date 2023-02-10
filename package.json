@@ -38,6 +38,8 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@ng-bootstrap/ng-bootstrap": "^11.0.0",
+    "@types/google-one-tap": "^1.2.2",
+    "@types/google.accounts": "0.0.5",
     "@zxing/browser": "0.0.10",
     "@zxing/library": "^0.19.1",
     "@zxing/ngx-scanner": "^3.4.0",
