@@ -1,4 +1,9 @@
 .promocodes-dialog {
   background-color: white;
   padding: 2em;
+  overflow-wrap: break-word;
+}
+
+.copy-icon {
+  font-size: 24px;
 }

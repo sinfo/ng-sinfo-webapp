@@ -77,7 +77,7 @@ export class PromocodesComponent implements OnInit {
     document.body.removeChild(el);
     event.stopPropagation();
 
-    this.snackBar.open(`Copied!`, "Ok", {
+    this.snackBar.open(`Code copied!`, "Ok", {
       panelClass: ["mat-toolbar", "mat-primary"],
       duration: 2000,
     });
@@ -86,7 +86,7 @@ export class PromocodesComponent implements OnInit {
   openDialog(promocode) {
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.data = promocode;    
+    dialogConfig.data = promocode;
 
     this.dialog.open(PromocodesDialogComponent, dialogConfig);
   }
