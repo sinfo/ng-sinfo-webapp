@@ -57,9 +57,7 @@ export class LandingPageComponent implements OnInit {
     this.sponsorService.getSponsors(event.id)
       .subscribe(sponsors => {
         this.sponsors = sponsors
-        console.log("sponsors")
 
-        console.log(sponsors)
       }
       )
   }

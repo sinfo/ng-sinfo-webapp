@@ -8,7 +8,7 @@ import { User } from '../user.model'
 import { environment } from './../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { File as CV } from './file'
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog'
+import { MatDialog } from '@angular/material/dialog'
 import { GdprDialogComponent } from './gdpr-dialog/gdpr-dialog.component'
 
 const GRPD_PERMISSIONS_KEY = "grpd-permissions"

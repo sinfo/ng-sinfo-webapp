@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment'
 import { Promocode } from './promocode.model'
 import { HttpClient } from '@angular/common/http'
 import { MessageService, Type } from '../../message.service'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable, of } from 'rxjs'
 import { tap, catchError } from 'rxjs/operators'
 

@@ -9,7 +9,7 @@ import { MessageService, Type } from '../message.service'
 import { AuthService } from '../auth/auth.service'
 import { Achievement } from '../user/achievements/achievement.model'
 import { Router } from '@angular/router'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class SessionCannonService {

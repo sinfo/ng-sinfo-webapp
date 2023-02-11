@@ -16,7 +16,7 @@
 .topbar {
   display: flex;
   background-color: black;
-  position: absolute;
+  position: sticky;
   position: -webkit-sticky;
   top: 0;
   z-index: 1000;
@@ -50,7 +50,7 @@
   align-items: center;
 }
 
-.mat-list-item:not(.active):not(:hover) {
+.mat-mdc-list-item:not(.active):not(:hover) {
   color: white !important;
 }
 
@@ -190,6 +190,7 @@
 }
 
 .content {
+  margin-top: 64px;
   min-height: 90vh;
   background-color: white;
   overflow: hidden;

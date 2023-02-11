@@ -63,7 +63,7 @@
   margin-right: 1vw;
 }
 
-.mat-list-item:not(.active):not(:hover) {
+.mat-mdc-list-item:not(.active):not(:hover) {
   color: white !important;
 }
 

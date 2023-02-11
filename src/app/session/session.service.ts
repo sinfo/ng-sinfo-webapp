@@ -7,7 +7,7 @@ import { catchError, tap } from 'rxjs/operators'
 import { Session } from './session.model'
 
 import { environment } from '../../environments/environment'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { MessageService, Type } from '../message.service'
 
 

@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators'
 import { Speaker } from './speaker.model'
 import { environment } from '../../environments/environment'
 import { MessageService, Type } from '../message.service'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

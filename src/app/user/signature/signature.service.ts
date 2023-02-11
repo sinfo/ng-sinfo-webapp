@@ -4,7 +4,7 @@ import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { environment } from '../../../environments/environment'
 import { MessageService, Type } from '../../message.service'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { EventService } from '../../events/event.service'
 
 @Injectable()

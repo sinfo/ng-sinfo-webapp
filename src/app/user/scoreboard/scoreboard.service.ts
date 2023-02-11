@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs'
 import { catchError } from 'rxjs/operators'
 
 import { MessageService, Type } from '../../message.service'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { environment } from '../../../environments/environment'
 
 import { User } from '../user.model'

@@ -12,7 +12,7 @@ import { AchievementService } from '../achievements/achievement.service'
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap'
 import { ClipboardService } from "ngx-clipboard";
 import { MessageService, Type } from '../../message.service'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 interface Code {
   created: Date,

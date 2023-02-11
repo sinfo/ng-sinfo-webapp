@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment'
 import { AuthService } from '../auth.service'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
-import { MatLegacySnackBar as MatSnackBar } from '@angular/material/legacy-snack-bar'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 declare let FB: any
 declare let gapi: any

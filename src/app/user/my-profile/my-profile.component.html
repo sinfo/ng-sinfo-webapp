@@ -12,7 +12,7 @@
   </div>
 
   <div class="card-wrapper">
-    <mat-card class="card">
+    <mat-card appearance="outlined" class="card">
       <mat-card-header style="max-width: 298px;">
         <div mat-card-avatar *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
         <div mat-card-avatar *ngIf="user.role === 'company' && company"> <img class="sinfo-logo" src="{{company.img}}">

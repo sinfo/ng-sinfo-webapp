@@ -5,7 +5,7 @@ import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { MessageService, Type } from '../../message.service'
 import { EventService } from '../../events/event.service'
-import { MatLegacySnackBar as MatSnackBar, MatLegacySnackBarModule as MatSnackBarModule } from '@angular/material/legacy-snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-validate-card',

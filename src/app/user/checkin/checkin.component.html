@@ -34,7 +34,7 @@
     <mat-tab-group mat-align-tabs="center">
       <mat-tab *ngFor="let kind of sessions" label="{{kind.kind}}">
         <div *ngFor="let session of kind.sessions" class="session">
-          <mat-card style="margin: 5px; display: flex; flex-direction: column; align-items: center;">
+          <mat-card appearance="outlined" style="margin: 5px; display: flex; flex-direction: column; align-items: center;">
             <div class="img-wrapper col-sm-1">
               <img src="{{session.session.img}}" alt="{{session.session.name}}">
             </div>

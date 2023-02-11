@@ -23,21 +23,21 @@ export class ScheduleComponent implements OnInit, OnChanges {
   sessions: Session[]
   private schedule
 
-  constructor (
+  constructor(
     private sessionService: SessionService,
     private router: Router
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.getSessions()
     this.showOrHideDropdown()
   }
 
-  ngOnChanges () {
+  ngOnChanges() {
     this.getSessions()
   }
 
-  getSessions (): void {
+  getSessions(): void {
     this.sessionService.getSessions(this.eventId)
       .subscribe(sessions => {
         this.sessions = sessions
@@ -45,7 +45,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
       })
   }
 
-  createSchedule (sessions: Session[]): void {
+  createSchedule(sessions: Session[]): void {
     let tempSchedule = []
     let registeredDays = -1
 
@@ -67,7 +67,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
               sala2: []
             }
           },
-          theme: environment.themes[this.eventId][registeredDays + 1],
+          theme: environment.themes[this.eventId] ? environment.themes[this.eventId][registeredDays + 1] : "",
           date: date
         })
         registeredDays += 1
@@ -91,30 +91,30 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   }
 
-  showOrHideDropdown () {
+  showOrHideDropdown() {
     this.displayDayDropdown = window.innerWidth > 768
     this.displaySessionDropdown = window.innerWidth > 768
   }
 
-  toggleDayDropdown () {
+  toggleDayDropdown() {
     this.displayDayDropdown = !this.displayDayDropdown || window.innerWidth > 768
   }
 
-  toggleSessionDropdown () {
+  toggleSessionDropdown() {
     this.displaySessionDropdown = !this.displaySessionDropdown || window.innerWidth > 768
   }
 
-  onSelect (session: Session): void {
+  onSelect(session: Session): void {
     this.router.navigate(['/sessions', session.id])
   }
 
-  updateSelectedDayText (theme: string, day: string): void {
+  updateSelectedDayText(theme: string, day: string): void {
     this.selectedTheme = theme
     this.selectedTime = day
     this.toggleDayDropdown()
   }
 
-  updateSelectedSessionText (session: string) {
+  updateSelectedSessionText(session: string) {
     this.selectedSession = session
     this.toggleSessionDropdown()
   }
