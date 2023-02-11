@@ -2,3 +2,8 @@ ul {
   list-style-type: disc;
   list-style-position: inside;
 }
+
+.gpdr-dialog {
+  background-color: white;
+  padding: 2em;
+}
