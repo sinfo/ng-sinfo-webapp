@@ -114,6 +114,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { PromocodesDialogComponent } from "./user/promocodes/promocodes-dialog/promocodes-dialog.component";
 
 import { marked } from 'marked'
 
@@ -181,6 +182,7 @@ library.add(fas);
     SpeedDateSignComponent,
     SecretAchievementsComponent,
     GdprDialogComponent,
+    PromocodesDialogComponent,
     WorkshopValidationComponent,
   ],
   imports: [
