@@ -6,37 +6,37 @@
       </span>
       <ul class="first-row socials">
         <li class="socials-nav-item">
-          <a href="#schedule" class="navigation-link" aria-label="Schedule">
+          <a (click)="scroll(schedule)" class="navigation-link" aria-label="Schedule">
             Schedule
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" href="#speakers" class="navigation-link" aria-label="Speakers">
+          <a (click)="scroll(speakers)" class="navigation-link" aria-label="Speakers">
             Speakers
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" href="#stands" class="navigation-link" aria-label="Venue">
+          <a (click)="scroll(stands)" class="navigation-link" aria-label="Venue">
             Venue
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Event">
+          <a (click)="scroll(event)" class="navigation-link" aria-label="Event">
             Event
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" href="#sponsors" class="navigation-link" aria-label="Sponsors">
+          <a (click)="scroll(sponsors)" class="navigation-link" aria-label="Sponsors">
             Sponsors
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" href="#about" class="navigation-link" aria-label="About Us">
+          <a (click)="scroll(about)" class="navigation-link" aria-label="About Us">
             About Us
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="FAQ">
+          <a (click)="scroll(faq)" class="navigation-link" aria-label="FAQ">
             FAQ
           </a>
         </li>
@@ -55,37 +55,37 @@
     <div #collapse="ngbCollapse" [(ngbCollapse)]="!dropdownNav">
       <ul class="dropdown-content">
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Schedule">
+          <a (click)="scroll(schedule);toggleDropdown()" class="navigation-link" aria-label="Schedule">
             Schedule
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Speakers">
+          <a (click)="scroll(speakers);toggleDropdown()" class="navigation-link" aria-label="Speakers">
             Speakers
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Venue">
+          <a (click)="scroll(stands);toggleDropdown()" class="navigation-link" aria-label="Venue">
             Venue
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Event">
+          <a (click)="scroll(event);toggleDropdown()" class="navigation-link" aria-label="Event">
             Event
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Sponsors">
+          <a (click)="scroll(sponsors);toggleDropdown()" class="navigation-link" aria-label="Sponsors">
             Sponsors
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="About Us">
+          <a (click)="scroll(about);toggleDropdown()" class="navigation-link" aria-label="About Us">
             About Us
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="FAQ">
+          <a (click)="scroll(faq);toggleDropdown()" class="navigation-link" aria-label="FAQ">
             FAQ
           </a>
         </li>
@@ -160,21 +160,131 @@
           </div>
         </div>
         <div class="intro ">
-          <a href="#speakers">
+          <a (click)="scroll(speakers)">
             <i class="fa fa-chevron-down" aria-hidden="true" aria-label="Scroll down"></i>
           </a>
         </div>
       </section>
 
-      <app-speakers id="speakers" *ngIf="eventId" [eventId]="eventId"></app-speakers>
 
-      <app-schedule id="schedule" *ngIf="eventId" [eventId]="eventId"></app-schedule>
+      <div #schedule>
+        <app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
+      </div>
 
-      <app-stands id="stands" *ngIf="eventId" [eventId]="eventId"></app-stands>
+      <div #speakers>
+        <app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
+      </div>
+
+
+      <div #stands>
+        <app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
+      </div>
 
       <!-- STANDS -->
 
-      <section id="upload-cv" class="section bg-cover overlay newsletterbg light-text align-center">
+      <section #event class="price-area section-padding" id="the-event">
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <div class="page-title">
+                <h2 class="text-center">The Event</h2>
+                <p class="wh">
+                  Not sure why you should attend SINFO 30? We'll give you <b>six
+                    great reasons</b> to not miss out on the biggest free tech
+                  conference in Portugal:
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-content">
+
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title class="card-title">
+                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/keynotes.svg"
+                    height="152" width="152" alt="" />
+                  <h5>Speaker Keynotes</h5>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="card-content">
+                <p>
+                  Get to learn from the best local and international speakers of
+                  the most prestigious IT companies!
+                </p>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title class="card-title">
+                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/presentations.svg"
+                    height="152" width="152" alt="" />
+                  <h5>Company Presentations</h5>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="card-content">
+                <p>
+                  Get to know more about the top IT companies that are looking for
+                  your super-powers!
+                </p>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title class="card-title">
+                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/workshops.svg"
+                    height="152" width="152" alt="" />
+                  <h5>Workshops</h5>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="card-content">
+                <p>
+                  Move your hard and soft skills to the next level with our
+                  top-notch workshops.
+                </p>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title class="card-title">
+                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/networking.svg"
+                    height="152" width="152" alt="" />
+                  <h5>Networking</h5>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="card-content">
+                <p>
+                  Meet, greet, and exchange knowledge with recruiters, fellow
+                  colleagues, and even our speakers!
+                </p>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title class="card-title">
+                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/giveaways.svg"
+                    height="152" width="152" alt="" />
+                  <h5>Giveaways</h5>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="card-content">
+                <p>
+                  Get a great chance to win the most desired gadgets and prizes by
+                  attending the event's sessions!
+                </p>
+              </mat-card-content>
+            </mat-card>
+
+
+          </div>
+        </div>
+      </section>
+
+      <section #uploadCv class="section bg-cover overlay newsletterbg light-text align-center">
         <div class="container">
           <h2>
             <span class="highlight">Upload your CV</span> now!
@@ -191,7 +301,7 @@
 
       <app-team *ngIf="eventId" [eventId]="eventId"></app-team>
 
-      <section id="newsletter" class="section bg-cover overlay newsletterbg light-text align-center">
+      <section #newsletter class="section bg-cover overlay newsletterbg light-text align-center">
         <div class="container">
           <h2>
             <span class="highlight">Newsletter</span> Sign Up
@@ -206,11 +316,13 @@
         </div>
       </section>
 
-      <app-sponsors id="sponsors" *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
+      <div #sponsors>
+        <app-sponsors *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
+      </div>
+      <app-partners #partners *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
 
-      <app-partners id="partners" *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
 
-      <section id="about" class="section align-center">
+      <section #about class="section align-center">
         <div class="container">
 
           <div class="tabs-wrapper tabs-horizontal">
@@ -243,7 +355,7 @@
               </ul>
             </div>
             <div class="tab-content">
-              <div id="horizontal_tab1" class="tab-pane fade"
+              <div id="horizontal_tab1" class="tab-pane fade-in"
                 [ngClass]="{'active in': selectedAboutText === 'About Us'}">
                 <div class="col-sm-5 img-column">
                   <img src="assets/img/aboutUs-min.jpg" alt="" class="img-responsive" />
@@ -260,12 +372,12 @@
                     city of Portugal, Lisbon. We had a record breaking attendance of participants last year, achievement
                     we
                     hope
-                    to repeat next year, from <b>February 17th to 21st 2020</b>.
+                    to repeat next year, from <b>February 27th to March 3rd 2023</b>.
                   </p>
                 </div>
               </div>
 
-              <div id="horizontal_tab2" class="tab-pane fade"
+              <div id="horizontal_tab2" class="tab-pane fade-in"
                 [ngClass]="{'active in': selectedAboutText === 'Mission'}">
                 <div class="col-sm-7 align-left">
                   <h6>Mission</h6>
@@ -289,7 +401,7 @@
                 </div>
               </div>
 
-              <div id="horizontal_tab3" class="tab-pane fade"
+              <div id="horizontal_tab3" class="tab-pane fade-in"
                 [ngClass]="{'active in': selectedAboutText === 'Vision & Target'}">
                 <div class="col-sm-5 img-column">
                   <img src="assets/img/vision-min.jpg" alt="" class="img-responsive" />
@@ -301,7 +413,7 @@
                     Science
                     and
                     IT play fundamental
-                    roles. For the last 25 editions SINFO has been the bridge between that world and the student
+                    roles. For the last 29 editions SINFO has been the bridge between that world and the student
                     community.
                     Every
                     single one of them sums up several months of dedication and hard work laid out by its members, who
@@ -327,8 +439,107 @@
         </div>
       </section>
 
+      <section #faq class="price-area section-padding" style="margin-bottom: 5%;" id="the-event">
+        <div class="container">
+          <div class="row">
+            <div class="text-center">
+              <div class="page-title">
+                <h2 class="text-center">Frequently Asked Questions</h2>
+                <p class="wh">
+                  Do you still have questions regarding our event? Check out our frequently asked questions or shoot us
+                  an e-mail!
+                </p>
+              </div>
+            </div>
+          </div>
+          <mat-accordion>
 
-      <section id="sponsors-program" class="section bg-cover overlay newsletterbg light-text align-center">
+            <mat-expansion-panel #panel1 hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon class="faq-chev">{{panel1.expanded ? 'keyboard_arrow_up' :
+                    'keyboard_arrow_down'}}</mat-icon>
+                  <span class="faq-title">Is SINFO really free?</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>Yes! SINFO is — and always will be — free for everyone to attend and experience, no questions asked.
+              </p>
+            </mat-expansion-panel>
+
+
+            <mat-expansion-panel #panel2 hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon class="faq-chev">{{panel2.expanded ? 'keyboard_arrow_up' :
+                    'keyboard_arrow_down'}}</mat-icon>
+                  <span class="faq-title">How can I attend SINFO 30?</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>We're back to our venue! From the 27th of February to the 3rd of March, 2023, pay a visit to the
+                Alameda Campus of Instituto Superior Técnico, in Lisbon, and you'll surely spot our venue!
+              </p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel #panel3 hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon class="faq-chev">{{panel3.expanded ? 'keyboard_arrow_up' :
+                    'keyboard_arrow_down'}}</mat-icon>
+                  <span class="faq-title">I'm not a student. Can I attend the event?</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>
+                Of course! SINFO is free and open to all the community. Everyone can enroll and participate in our
+                sessions and even win magnificent prizes!
+              </p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel #panel4 hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon class="faq-chev">{{panel4.expanded ? 'keyboard_arrow_up' :
+                    'keyboard_arrow_down'}}</mat-icon>
+                  <span class="faq-title">We want to be sponsors. How can we proceed?</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>We have already sold out all sponsorship packages for this edition. Nevertheless, send us an e-mail to
+                geral@sinfo.org to be notified of next year's edition sponsorship packages!
+              </p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel #panel5 hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon class="faq-chev">{{panel5.expanded ? 'keyboard_arrow_up' :
+                    'keyboard_arrow_down'}}</mat-icon>
+                  <span class="faq-title">How can I join the SINFO team?</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>We'd love to have you on our team! If you're a student and want to help organize one of the country's
+                biggest tech conferences, send us an e-mail to rh@sinfo.org with your name, contact, degree & year,
+                university, and motivation!
+              </p>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel #panel6 hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon class="faq-chev">{{panel6.expanded ? 'keyboard_arrow_up' :
+                    'keyboard_arrow_down'}}</mat-icon>
+                  <span class="faq-title">I need help. How can I contact the SINFO team?</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <p>You can reach out to us by sending an e-mail to geral@sinfo.org or contact us through any of our social
+                networks, @sinfoist !
+              </p>
+            </mat-expansion-panel>
+
+          </mat-accordion>
+        </div>
+      </section>
+
+
+      <section #sponsorsProgram class="section bg-cover overlay newsletterbg light-text align-center">
         <div class="container">
           <h2>
             <span class="highlight">Sponsors' Program</span>

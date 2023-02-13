@@ -3,11 +3,30 @@ import { Router } from '@angular/router'
 import { Speaker } from './speaker.model'
 import { SpeakerService } from './speaker.service'
 import { EventService } from '../events/event.service'
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  AUTO_STYLE
+} from '@angular/animations';
 
 @Component({
   selector: 'app-speakers',
   templateUrl: './speakers.component.html',
-  styleUrls: ['./speakers.component.css']
+  styleUrls: ['./speakers.component.css'],
+  animations: [
+    trigger('myInsertRemoveTrigger', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ]),
+  ]
 })
 export class SpeakersComponent implements OnInit, OnChanges {
   @Input() eventId: string

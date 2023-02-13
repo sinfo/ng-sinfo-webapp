@@ -7,6 +7,35 @@
   display: inline-block;
 }
 
+.example-card {
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+  /* align horizontal */
+  align-items: center;
+  /* align vertical */
+  max-width: 30vw;
+}
+
+.card-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 
 
 .socials-nav-item a:not(:hover):not(:active):not(:focus) {
@@ -74,6 +103,16 @@
   margin-left: auto;
 }
 
+.mat-accordion .mat-expansion-panel:not(.mat-expanded),
+.mat-accordion .mat-expansion-panel:not(.mat-expansion-panel-spacing) {
+  margin-bottom: 20px;
+}
+
+.faq-title {
+  font-weight: bold;
+}
+
+
 .socials {
   position: absolute;
   left: 50%;
@@ -95,6 +134,21 @@
 }
 
 @media (max-width: 925px) {
+  .faq-chev {
+    margin-right: 8%;
+    margin-left: -2%;
+  }
+
+  .event-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .example-card {
+    max-width: 100vw;
+  }
+
   .first-row {
     display: none;
   }
@@ -175,6 +229,11 @@
 @media only screen and (max-width: 768px) {
   #about .nav.nav-tabs {
     position: absolute;
+  }
+
+  .faq-chev {
+    margin-right: 8%;
+    margin-left: -2%;
   }
 }
 

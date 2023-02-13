@@ -113,6 +113,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+
 import { marked } from 'marked'
 
 
@@ -212,7 +214,8 @@ library.add(fas);
     MatNativeDateModule,
     ReactiveFormsModule,
     MaterialExampleModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    NgxPageScrollModule,
   ],
   providers: [
     SpeakerService,

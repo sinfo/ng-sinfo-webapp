@@ -6,7 +6,6 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { Sponsor } from './sponsors/sponsor.model'
 import { Event } from '../events/event.model'
 import { environment } from '../../environments/environment'
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-landing-page',
@@ -87,5 +86,9 @@ export class LandingPageComponent implements OnInit {
         this.isLive = data['up']
       }
     )
+  }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({ behavior: 'smooth' });
   }
 }
