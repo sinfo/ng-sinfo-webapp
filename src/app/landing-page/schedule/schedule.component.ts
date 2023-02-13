@@ -58,11 +58,13 @@ export class ScheduleComponent implements OnInit, OnChanges {
         tempSchedule.push({
           sessions: {
             Presentation: {
+              all: [],
               sala1: [],
               sala2: []
             },
             Keynote: [],
             Workshop: {
+              all: [],
               sala1: [],
               sala2: []
             }
@@ -78,7 +80,17 @@ export class ScheduleComponent implements OnInit, OnChanges {
       } else {
         let place = (val.place === 'Room 2') ? 'sala2' : 'sala1'
         tempSchedule[registeredDays].sessions[val.kind][place].push(val)
+        tempSchedule[registeredDays].sessions[val.kind].all.push(val)
       }
+    })
+
+    tempSchedule.forEach(day => {
+      day.sessions.Workshop.all.sort((a, b) => {
+        a.date < b.date
+      })
+      day.sessions.Presentation.all.sort((a, b) => {
+        a.date < b.date
+      })
     })
 
     this.schedule = tempSchedule

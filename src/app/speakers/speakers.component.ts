@@ -14,21 +14,21 @@ export class SpeakersComponent implements OnInit, OnChanges {
   speakers: Speaker[]
   previousSpeakers: Boolean
 
-  constructor (
+  constructor(
     private router: Router,
     private speakerService: SpeakerService,
     private eventService: EventService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.getSpeakers()
   }
 
-  ngOnChanges () {
+  ngOnChanges() {
     this.getSpeakers()
   }
 
-  getSpeakers (): void {
+  getSpeakers(): void {
     this.speakerService.getSpeakers(this.eventId)
       .subscribe(speakers => {
         if (speakers.length !== 0) {
@@ -45,13 +45,13 @@ export class SpeakersComponent implements OnInit, OnChanges {
       })
   }
 
-  setCompanyImg (speaker) {
+  setCompanyImg(speaker) {
     return {
-      'background-image': `url('https://sinfo.ams3.cdn.digitaloceanspaces.com/static/${this.eventId}/speakersCompanies/${speaker.id}.png')`
+      'background-image': `url('https://sinfo.ams3.cdn.digitaloceanspaces.com/static/${this.eventId}/speakersPhotos/${speaker.id}.png')`
     }
   }
 
-  onSelect (speaker: Speaker): void {
+  onSelect(speaker: Speaker): void {
     this.router.navigate(['/speakers', speaker.id])
   }
 }

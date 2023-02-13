@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  deckUrl: 'https://deck-staging.sinfo.org',
+  deckUrl: 'http://localhost:8080',
   cannonUrl: 'https://cannon-staging.sinfo.org',
   url_to_id: {
     '27-sinfo': '27-sinfo',
@@ -22,6 +22,13 @@ export const environment = {
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '30-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'AI & ML',
+      'Game Dev',
+      'Tech Trends'
+    ],
     '27-sinfo': [
       'Software Engineering',
       'Multimedia',

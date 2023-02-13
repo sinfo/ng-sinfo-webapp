@@ -110,4 +110,6 @@ const routes: Routes = [
   { path: '**', component: PageNotFoundComponent }
 ]
 
-export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes)
+export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes, {
+  anchorScrolling: 'enabled',
+})

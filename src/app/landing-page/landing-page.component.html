@@ -6,17 +6,17 @@
       </span>
       <ul class="first-row socials">
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Schedule">
+          <a href="#schedule" class="navigation-link" aria-label="Schedule">
             Schedule
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Speakers">
+          <a target="_blank" href="#speakers" class="navigation-link" aria-label="Speakers">
             Speakers
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Venue">
+          <a target="_blank" href="#stands" class="navigation-link" aria-label="Venue">
             Venue
           </a>
         </li>
@@ -26,12 +26,12 @@
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="Sponsors">
+          <a target="_blank" href="#sponsors" class="navigation-link" aria-label="Sponsors">
             Sponsors
           </a>
         </li>
         <li class="socials-nav-item">
-          <a target="_blank" class="navigation-link" aria-label="About Us">
+          <a target="_blank" href="#about" class="navigation-link" aria-label="About Us">
             About Us
           </a>
         </li>
@@ -168,9 +168,9 @@
 
       <app-speakers id="speakers" *ngIf="eventId" [eventId]="eventId"></app-speakers>
 
-      <app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
+      <app-schedule id="schedule" *ngIf="eventId" [eventId]="eventId"></app-schedule>
 
-      <app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
+      <app-stands id="stands" *ngIf="eventId" [eventId]="eventId"></app-stands>
 
       <!-- STANDS -->
 
@@ -206,9 +206,9 @@
         </div>
       </section>
 
-      <app-sponsors *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
+      <app-sponsors id="sponsors" *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
 
-      <app-partners *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
+      <app-partners id="partners" *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
 
       <section id="about" class="section align-center">
         <div class="container">
