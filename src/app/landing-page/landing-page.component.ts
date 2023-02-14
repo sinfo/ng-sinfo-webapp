@@ -6,11 +6,31 @@ import { SponsorService } from './sponsors/sponsor.service'
 import { Sponsor } from './sponsors/sponsor.model'
 import { Event } from '../events/event.model'
 import { environment } from '../../environments/environment'
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  AUTO_STYLE
+} from '@angular/animations';
+
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.css'],
+  animations: [
+    trigger('myInsertRemoveTrigger', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('0ms', style({ opacity: 0 }))
+      ])
+    ]),
+  ]
 
 })
 export class LandingPageComponent implements OnInit {
@@ -56,6 +76,7 @@ export class LandingPageComponent implements OnInit {
     this.sponsorService.getSponsors(event.id)
       .subscribe(sponsors => {
         this.sponsors = sponsors
+        console.log("landing", sponsors)
 
       }
       )

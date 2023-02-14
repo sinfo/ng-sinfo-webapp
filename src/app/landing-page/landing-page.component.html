@@ -11,7 +11,7 @@
           </a>
         </li>
         <li class="socials-nav-item">
-          <a (click)="scroll(speakers)" class="navigation-link" aria-label="Speakers">
+          <a (click)="scroll(speakerstab)" class="navigation-link" aria-label="Speakers">
             Speakers
           </a>
         </li>
@@ -26,7 +26,7 @@
           </a>
         </li>
         <li class="socials-nav-item">
-          <a (click)="scroll(sponsors)" class="navigation-link" aria-label="Sponsors">
+          <a (click)="scroll(sponsorstab)" class="navigation-link" aria-label="Sponsors">
             Sponsors
           </a>
         </li>
@@ -60,7 +60,7 @@
           </a>
         </li>
         <li class="socials-nav-item">
-          <a (click)="scroll(speakers);toggleDropdown()" class="navigation-link" aria-label="Speakers">
+          <a (click)="scroll(speakerstab);toggleDropdown()" class="navigation-link" aria-label="Speakers">
             Speakers
           </a>
         </li>
@@ -75,7 +75,7 @@
           </a>
         </li>
         <li class="socials-nav-item">
-          <a (click)="scroll(sponsors);toggleDropdown()" class="navigation-link" aria-label="Sponsors">
+          <a (click)="scroll(sponsorstab);toggleDropdown()" class="navigation-link" aria-label="Sponsors">
             Sponsors
           </a>
         </li>
@@ -160,7 +160,7 @@
           </div>
         </div>
         <div class="intro ">
-          <a (click)="scroll(speakers)">
+          <a (click)="scroll(speakerstab)">
             <i class="fa fa-chevron-down" aria-hidden="true" aria-label="Scroll down"></i>
           </a>
         </div>
@@ -171,7 +171,7 @@
         <app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
       </div>
 
-      <div #speakers>
+      <div #speakerstab>
         <app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
       </div>
 
@@ -316,7 +316,7 @@
         </div>
       </section>
 
-      <div #sponsors>
+      <div #sponsorstab>
         <app-sponsors *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
       </div>
       <app-partners #partners *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
@@ -355,8 +355,7 @@
               </ul>
             </div>
             <div class="tab-content">
-              <div id="horizontal_tab1" class="tab-pane fade-in"
-                [ngClass]="{'active in': selectedAboutText === 'About Us'}">
+              <div id="horizontal_tab1" @myInsertRemoveTrigger *ngIf="selectedAboutText === 'About Us'">
                 <div class="col-sm-5 img-column">
                   <img src="assets/img/aboutUs-min.jpg" alt="" class="img-responsive" />
                 </div>
@@ -377,8 +376,7 @@
                 </div>
               </div>
 
-              <div id="horizontal_tab2" class="tab-pane fade-in"
-                [ngClass]="{'active in': selectedAboutText === 'Mission'}">
+              <div id="horizontal_tab2" @myInsertRemoveTrigger *ngIf="selectedAboutText === 'Mission'">
                 <div class="col-sm-7 align-left">
                   <h6>Mission</h6>
                   <p>
@@ -401,8 +399,7 @@
                 </div>
               </div>
 
-              <div id="horizontal_tab3" class="tab-pane fade-in"
-                [ngClass]="{'active in': selectedAboutText === 'Vision & Target'}">
+              <div id="horizontal_tab3" @myInsertRemoveTrigger *ngIf="selectedAboutText == 'Vision & Target'">
                 <div class="col-sm-5 img-column">
                   <img src="assets/img/vision-min.jpg" alt="" class="img-responsive" />
                 </div>

@@ -25,7 +25,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   constructor(
     private sessionService: SessionService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -94,6 +94,7 @@ export class ScheduleComponent implements OnInit, OnChanges {
     })
 
     this.schedule = tempSchedule
+    console.log(this.schedule)
 
     if (this.schedule.length > 0) {
       this.selectedTheme = this.schedule[0].theme
