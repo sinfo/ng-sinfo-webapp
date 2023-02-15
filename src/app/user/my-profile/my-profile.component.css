@@ -84,7 +84,7 @@ div.achivements-wrapper img.achievement {
 }
 
 .card{
-  margin: 5%;
+  margin: 0rem 1.5rem 1.5rem 1.5rem;
   height: 100%;
   background-color: #2C49A6;
   color: white;
@@ -200,7 +200,7 @@ div.achivements-wrapper img.achievement {
   z-index: -1;
 }
 
-.inputfile + label {
+/* .inputfile + label {
   font-size: 11px;
   font-weight: 700;
   color: white;
@@ -214,7 +214,7 @@ div.achivements-wrapper img.achievement {
 .inputfile:focus + label,
 .inputfile + label:hover {
   background-color: red;
-}
+} */
 
 .btn {
   margin: 0;

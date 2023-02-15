@@ -6,7 +6,7 @@ h5 {
     font-weight: 400;
 }
 
-.cv-buttons {
+/* .cv-buttons {
     display: flex;
     flex-direction: column;
 }
@@ -17,13 +17,13 @@ h5 {
     padding-top: 15px;
     padding-bottom: 15px;
     margin-bottom: 5%;
-}
+} */
 
 input[type="file"] {
     display: none;
 }
 
-.delete {
+/* .delete {
     background-color: #e26562;
     font-size: 0.5rem;
 }
@@ -36,14 +36,14 @@ input[type="file"] {
 .upload {
     background-color: #09df98;
     font-size: 0.5rem;
-}
+} */
 
 #info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 45%;
-    margin-bottom: 10%;
+    margin-bottom: 1.5rem;
 }
 
 .img {
@@ -66,4 +66,42 @@ input[type="file"] {
 .row {
     margin-left: 0px !important;
     margin-right: 0px !important;
+}
+
+.upload-button {
+    background-color: #14A44D;
+    color: white;
+}
+
+.download-button {
+    background-color: #3f50b4;
+    color: white;
+}
+
+.text-no-format {
+    text-decoration: none;
+}
+
+.mat-icon {
+    vertical-align: middle;
+}
+
+.action-button {
+    margin-bottom: 1.5rem;
+}
+
+.center-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.mat-raised-button {
+    width: 200px;
+}
+
+/* Medium devices (tablets, 768px and down) */
+@media (max-width: 768px) {
+    .center-buttons {
+        flex-direction: column;
+    }
 }
