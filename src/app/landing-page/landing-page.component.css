@@ -83,13 +83,15 @@
   color: white !important;
 }
 
-#sidenav ul li a i,
-#sidenav ul li a img {
+#sidenav1 ul li a i,
+#sidenav1 ul li a img {
   max-height: 4vh;
 }
 
 .list-item {
   margin-left: 1vw;
+  color: white;
+  font-family: 'Montserrat';
 }
 
 .navlist {
@@ -280,4 +282,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.social-link {
+  font-size: 1vw;
+  text-align: center;
+  font-family: 'Montserrat' !important;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-left: -10%;
+  margin-right: -5%;
 }
