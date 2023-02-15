@@ -54,7 +54,6 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit() {
     this.selectedAboutText = 'About Us'
-    console.log(environment.deckUrl)
     this.eventService.getCurrent().subscribe((event: Event) => {
       this.titleService.setTitle(event.name)
       this.eventId = event.id
@@ -76,8 +75,6 @@ export class LandingPageComponent implements OnInit {
     this.sponsorService.getSponsors(event.id)
       .subscribe(sponsors => {
         this.sponsors = sponsors
-        console.log("landing", sponsors)
-
       }
       )
   }

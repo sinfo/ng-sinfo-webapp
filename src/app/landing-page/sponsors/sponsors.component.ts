@@ -21,8 +21,6 @@ export class SponsorsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("here")
-    console.log("sponsors", this.sponsors)
     this.displaySponsors(this.sponsors)
   }
 
