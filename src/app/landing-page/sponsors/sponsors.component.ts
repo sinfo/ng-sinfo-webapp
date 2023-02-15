@@ -1,10 +1,29 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Sponsor } from './sponsor.model'
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  AUTO_STYLE
+} from '@angular/animations';
 
 @Component({
   selector: 'app-sponsors',
   templateUrl: './sponsors.component.html',
-  styleUrls: ['./sponsors.component.css']
+  styleUrls: ['./sponsors.component.css'],
+  animations: [
+    trigger('myInsertRemoveTrigger', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ]),
+  ]
 })
 export class SponsorsComponent implements OnInit {
 
