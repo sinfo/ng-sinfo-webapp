@@ -48,6 +48,7 @@ import { WorkshopValidationComponent } from './user/workshop-validation/workshop
 const routes: Routes = [
   { path: '', component: LoginComponent },
 
+  { path: 'home', component: LandingPageComponent },
   { path: 'live', component: LiveComponent },
 
   { path: 'login', component: LoginComponent },
@@ -109,4 +110,6 @@ const routes: Routes = [
   { path: '**', component: PageNotFoundComponent }
 ]
 
-export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes)
+export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes, {
+  anchorScrolling: 'enabled',
+})

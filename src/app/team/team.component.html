@@ -1,7 +1,10 @@
 <section id="team" class="section align-center">
   <div class="container">
     <span class="icon section-icon icon-faces-users-04"></span>
-    <h3>The Team</h3>
+    <h3 (click)=" isCollapsed=!isCollapsed">The Team <mat-icon [class.chev-open]="!isCollapsed"
+        [class.chev-close]="isCollapsed">
+        expand_more
+      </mat-icon></h3>
 
     <br />
     <br />
@@ -9,7 +12,7 @@
     <app-loading [content]="team">
     </app-loading>
 
-    <div *ngIf="team">
+    <div *ngIf="team && !isCollapsed" @myInsertRemoveTrigger>
       <div *ngFor="let member of team" class="col-sm-2">
 
         <div *ngIf="member.name !== 'ToolBot!'" class="speaker member">

@@ -15,7 +15,7 @@
       <div *ngIf="achievements && achievements.length > 0 && !achievement">
         <mat-tab-group mat-align-tabs="center">
           <mat-tab *ngFor="let kind of achievementKinds" label="{{kind.kind}}">
-            <mat-card *ngFor="let element of kind.achievements" (click)=showUsers(element.achievement)
+            <mat-card appearance="outlined" *ngFor="let element of kind.achievements" (click)=showUsers(element.achievement)
               style="margin: 2%;">
               <mat-card-header>
                 <img mat-card-avatar src="{{element.img}}">
