@@ -16,7 +16,7 @@ const httpOptions = {
 
 @Injectable()
 export class TeamService {
-  private memberUrl = environment.deckUrl + '/api/members'
+  private memberUrl = environment.cannonUrl + '/member'
   private team: Member[]
   private eventId: string
 
