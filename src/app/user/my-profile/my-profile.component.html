@@ -2,38 +2,47 @@
 
 <div class="align-center pad" *ngIf="user">
   <div class="row">
-    <h3 class="qr-code-title">
-      QR Code
-    </h3>
+    <h3 class="qr-code-title">QR Code</h3>
 
-    <h5 *ngIf="user.role === 'team'">
-      <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
-    </h5>
+    <div class="alert alert-info promocode-info">
+      <b>Promocodes: </b> Check promocodes page
+      <a routerLink="/user/promocodes">here</a> or by clicking the icon
+      <span><mat-icon>receipt</mat-icon></span> to obtain discounts and offers
+      in our partners!
+    </div>
   </div>
 
   <div class="card-wrapper">
     <mat-card class="card">
-      <mat-card-header style="max-width: 298px;">
-        <div mat-card-avatar *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
-        <div mat-card-avatar *ngIf="user.role === 'company' && company"> <img class="sinfo-logo" src="{{company.img}}">
+      <mat-card-header style="max-width: 298px">
+        <div mat-card-avatar *ngIf="user.role === 'team'">
+          <img class="sinfo-logo" src="assets/img/PowerOn.png" />
         </div>
-        <mat-card-title style="overflow-wrap: anywhere; width: 100%; text-align: center;">
-          {{user.name}}
+        <div mat-card-avatar *ngIf="user.role === 'company' && company">
+          <img class="sinfo-logo" src="{{ company.img }}" />
+        </div>
+        <mat-card-title
+          style="overflow-wrap: anywhere; width: 100%; text-align: center"
+        >
+          {{ user.name }}
         </mat-card-title>
         <mat-card-subtitle *ngIf="user.role === 'company' && company">
-          <h6 style="color:white;">{{company.name}}</h6>
+          <h6 style="color: white">{{ company.name }}</h6>
         </mat-card-subtitle>
       </mat-card-header>
-      <qrcode mat-card-image class="qrcodeimg" [qrdata]="user.id" [scale]="10"></qrcode>
+      <qrcode
+        mat-card-image
+        class="qrcodeimg"
+        [qrdata]="user.id"
+        [scale]="10"
+      ></qrcode>
       <mat-card-content>
         <h5>
-          {{presentationRole}}
+          {{ presentationRole }}
         </h5>
       </mat-card-content>
     </mat-card>
   </div>
-
-
 
   <!-- <div class="row qrcode-wrapper">
 
@@ -62,10 +71,12 @@
   <div class="container">
     <div class="col-md-12">
       <p class="text-alt" style="text-align: center">
-        <small>Made with ♥ at SINFO - <a href="https://github.com/sinfo/ng-sinfo-webapp" target="_blank">Open source
-            code</a>
+        <small
+          >Made with ♥ at SINFO -
+          <a href="https://github.com/sinfo/ng-sinfo-webapp" target="_blank"
+            >Open source code</a
+          >
         </small>
-
       </p>
     </div>
   </div>

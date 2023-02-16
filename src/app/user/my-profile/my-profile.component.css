@@ -105,7 +105,7 @@ div.achivements-wrapper img.achievement {
 }
 
 .qr-code-title {
-  margin: 0 0 20px 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .qrcode {
@@ -127,6 +127,11 @@ div.achivements-wrapper img.achievement {
 }
 .name {
   color: white;
+}
+
+.promocode-info {
+  margin: 0px 15px 0.5rem 15px;
+  font-size: 14px;
 }
 
 /* .qrcode-animation {
