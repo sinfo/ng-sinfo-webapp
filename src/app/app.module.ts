@@ -113,8 +113,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { PromocodesDialogComponent } from "./user/promocodes/promocodes-dialog/promocodes-dialog.component";
+import { RouterModule } from '@angular/router';
 
 import { marked } from 'marked'
 
@@ -217,7 +217,7 @@ library.add(fas);
     ReactiveFormsModule,
     MaterialExampleModule,
     NgScrollbarModule,
-    NgxPageScrollModule,
+    RouterModule,
   ],
   providers: [
     SpeakerService,
