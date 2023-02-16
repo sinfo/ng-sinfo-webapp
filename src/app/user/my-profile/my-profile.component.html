@@ -1,14 +1,14 @@
 <app-loading [content]="user"></app-loading>
 
 <div class="align-center pad" *ngIf="user">
-  <div class="row">
+  <div class="row qrcode-margin">
     <h3 class="qr-code-title">QR Code</h3>
-
-    <div class="alert alert-info promocode-info">
+    
+    <div *ngIf="promocodesInfo" class="alert alert-info promocode-info">
       <b>Promocodes: </b> Check promocodes page
       <a routerLink="/user/promocodes">here</a> or by clicking the icon
-      <span><mat-icon>receipt</mat-icon></span> to obtain discounts and offers
-      in our partners!
+      <span><mat-icon class="icon-alert">receipt</mat-icon></span> to obtain discounts and offers
+      in our partners!<a (click)="closePromocodesInfo()"><mat-icon color="warn" class="icon-alert">close</mat-icon></a>
     </div>
   </div>
 

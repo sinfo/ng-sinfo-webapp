@@ -272,3 +272,21 @@ div.achivements-wrapper img.achievement {
   grid-area: 1 / 1 / 2 / 2;
   justify-self: center;
 }
+
+.alert {
+  width: fit-content !important;
+  margin: 0px auto 0.5rem auto;
+}
+
+.icon-alert {
+  vertical-align: middle;
+}
+
+.close-icon {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.qrcode-margin {
+  margin: 0 0.25rem;
+}
