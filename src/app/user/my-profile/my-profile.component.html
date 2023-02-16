@@ -12,17 +12,23 @@
   </div>
 
   <div class="card-wrapper">
-    <mat-card appearance="outlined" class="card">
-      <mat-card-header style="max-width: 298px;">
-        <div mat-card-avatar *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
-        <div mat-card-avatar *ngIf="user.role === 'company' && company"> <img class="sinfo-logo" src="{{company.img}}">
+    <mat-card appearance="outlined" class="card title_center">
+      <mat-card-header
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 16px;">
+        <div>
+          <div mat-card-avatar *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
+          <div mat-card-avatar *ngIf="user.role === 'company' && company"> <img class="sinfo-logo"
+              src="{{company.img}}">
+          </div>
+          <mat-card-title>
+            <div>
+              {{user.name}}
+            </div>
+          </mat-card-title>
+          <mat-card-subtitle *ngIf="user.role === 'company' && company">
+            <h6 style="color:white;">{{company.name}}</h6>
+          </mat-card-subtitle>
         </div>
-        <mat-card-title style="overflow-wrap: anywhere; width: 100%; text-align: center;">
-          {{user.name}}
-        </mat-card-title>
-        <mat-card-subtitle *ngIf="user.role === 'company' && company">
-          <h6 style="color:white;">{{company.name}}</h6>
-        </mat-card-subtitle>
       </mat-card-header>
       <qrcode mat-card-image class="qrcodeimg" [qrdata]="user.id" [scale]="10"></qrcode>
       <mat-card-content>
