@@ -41,6 +41,15 @@
   max-height: 0;
 }
 
+.speakers {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .show {
   transition: all 0.5s ease-in;
   max-height: 100vh;

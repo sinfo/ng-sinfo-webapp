@@ -7,11 +7,13 @@
     <h3 (click)="isCollapsed = !isCollapsed" *ngIf="!previousSpeakers && speakers.length > 0">Speakers<mat-icon
         [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
         expand_more
-      </mat-icon></h3>
+      </mat-icon>
+    </h3>
     <h3 (click)="isCollapsed = !isCollapsed" *ngIf="previousSpeakers && speakers.length > 0">Previous Speakers<mat-icon
         [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
         expand_more
-      </mat-icon></h3>
+      </mat-icon>
+    </h3>
     <br />
     <br />
 
@@ -32,7 +34,7 @@
               </div>
             </div>
             <h3 class="name">{{ speaker.name }}</h3>
-            <p class="text-alt">
+            <p class="text-alt" style="word-wrap:anywhere">
               <small>{{ speaker.title }}</small>
             </p>
           </div>
