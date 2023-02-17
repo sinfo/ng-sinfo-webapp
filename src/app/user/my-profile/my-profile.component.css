@@ -7,6 +7,16 @@ div.portrait-wrapper {
   position: relative;
 }
 
+
+.title_center {
+  display: flex;
+  justify-content: center;
+  /* align horizontal */
+  align-items: center;
+  /* align vertical */
+}
+
+
 div.mini-portrait-wrapper {
   position: absolute;
   width: 40%;
@@ -21,9 +31,11 @@ div.mini-portrait-wrapper {
   flex-direction: column;
   justify-content: center;
 }
+
 div.mini-portrait-wrapper h2 {
   margin: 0;
 }
+
 div.mini-portrait-wrapper span.lead {
   margin-bottom: 0px;
 }
@@ -67,7 +79,7 @@ div.achivements-wrapper img.achievement {
   color: green;
 }
 
-.card-wrapper{
+.card-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,11 +103,11 @@ div.achivements-wrapper img.achievement {
   max-width: 500px;
 }
 
-.card h5{
+.card h5 {
   color: white
 }
 
-.qrcode-grid{
+.qrcode-grid {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 100%;
@@ -122,9 +134,10 @@ div.achivements-wrapper img.achievement {
   color: grey;
 }
 
-.footer-nav > li a:not(:hover):not(:focus):not(:active) {
+.footer-nav>li a:not(:hover):not(:focus):not(:active) {
   color: grey;
 }
+
 .name {
   color: white;
 }
@@ -213,11 +226,13 @@ div.achivements-wrapper img.achievement {
   line-height: 17px;
   letter-spacing: 3px;
 }
-.inputfile + label span {
+
+.inputfile+label span {
   font-size: 17px;
 }
-.inputfile:focus + label,
-.inputfile + label:hover {
+
+.inputfile:focus+label,
+.inputfile+label:hover {
   background-color: red;
 } */
 
@@ -231,10 +246,12 @@ div.achivements-wrapper img.achievement {
   background-color: #449d44 !important;
   border-color: #398439 !important;
 }
+
 .btn-info {
   background-color: #428bca;
   border-color: #357ebd;
 }
+
 #deleteFile {
   width: 100%;
   background-color: #d9534f !important;
@@ -255,13 +272,16 @@ div.achivements-wrapper img.achievement {
   div.user {
     background-size: 150%;
   }
+
   div.user h5 {
     text-align: center;
   }
+
   div.mini-portrait-wrapper h2 {
     font-size: 25px;
     line-height: 20px;
   }
+
   div.mini-portrait-wrapper span.lead {
     font-size: 13px;
   }

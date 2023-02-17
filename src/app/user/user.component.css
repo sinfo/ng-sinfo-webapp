@@ -30,7 +30,6 @@
 
 .sidenav {
   background-color: rgba(0, 0, 0, 0.85);
-  color: white;
 }
 
 .sidenav::-webkit-scrollbar {
@@ -79,14 +78,26 @@
   align-items: center;
 }
 
+
 .navigation-link {
   font-size: 1.5vh;
   margin-right: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
 }
 
-.mat-list-item:not(.active):not(:hover) {
-  color: white !important;
+
+.mat-mdc-list-item {
+  flex-shrink: 0;
+  padding-top: 1%;
 }
+
+.mat-mdc-list-item:not(.active):not(:hover) {
+  flex-shrink: 0;
+}
+
 
 #sidenav ul li a i,
 #sidenav ul li a img {
@@ -103,9 +114,18 @@
   flex-direction: column;
 }
 
+.no-shrink {
+  flex-shrink: 0;
+}
+
 .gap {
-  height: 100%;
   flex-grow: 10;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 .fab {

@@ -4,18 +4,24 @@
 
   <div class="container">
     <span class="icon section-icon icon-faces-users-03"></span>
-    <h3 *ngIf="!previousSpeakers && speakers.length > 0">Speakers</h3>
-    <h3 *ngIf="previousSpeakers && speakers.length > 0">Previous Speakers</h3>
+    <h3 (click)="isCollapsed = !isCollapsed" *ngIf="!previousSpeakers && speakers.length > 0">Speakers<mat-icon
+        [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
+        expand_more
+      </mat-icon></h3>
+    <h3 (click)="isCollapsed = !isCollapsed" *ngIf="previousSpeakers && speakers.length > 0">Previous Speakers<mat-icon
+        [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
+        expand_more
+      </mat-icon></h3>
     <br />
     <br />
 
-    <span *ngIf="speakers.length > 0">
+    <span *ngIf="speakers.length > 0 && !isCollapsed" @myInsertRemoveTrigger>
       <div class="col-sm-12">
         <app-loading [content]="speakers">
         </app-loading>
       </div>
 
-      <div>
+      <div class="speakers">
 
         <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
           <div class="speaker">

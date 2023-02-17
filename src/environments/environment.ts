@@ -22,6 +22,13 @@ export const environment = {
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '30-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'AI & ML',
+      'Game Dev',
+      'Tech Trends'
+    ],
     '27-sinfo': [
       'Software Engineering',
       'Multimedia',
