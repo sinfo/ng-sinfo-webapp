@@ -24,9 +24,9 @@
 }
 
 .promocode-image {
-  margin: 0 !important;
+  margin: 0 auto;
   height: 100px;
-  width: auto;
+  width: max-content;
 }
 
 .promocode-name {
