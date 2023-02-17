@@ -19,7 +19,7 @@
     <mat-icon *ngIf="isCvUpdated || (user && user.role === 'company')" style="transform: scale(1.5)">menu</mat-icon>
   </button>
 
-  <a routerLink="/" class="logo-sinfo">
+  <a routerLink="/user" class="logo-sinfo">
     <img id="logo_white" src="assets/img/logo-branco2.png" alt="Sinfo" />
   </a>
 
@@ -35,7 +35,7 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="over" [(opened)]="opened" class="sidenav">
     <mat-nav-list class="navlist">
-      <a mat-list-item href="https://sinfo.org" target="_blank" (click)="sidenav.toggle()">
+      <a mat-list-item href="/" target="_blank" (click)="sidenav.toggle()">
         <div class="navigation-link">
           <mat-icon>computer</mat-icon>
           <span class="list-item">Go to website</span>

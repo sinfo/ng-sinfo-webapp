@@ -6,37 +6,9 @@ h5 {
     font-weight: 400;
 }
 
-/* .cv-buttons {
-    display: flex;
-    flex-direction: column;
-}
-
-.cv-button {
-    width: 100%;
-    border-radius: 2rem;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin-bottom: 5%;
-} */
-
 input[type="file"] {
     display: none;
 }
-
-/* .delete {
-    background-color: #e26562;
-    font-size: 0.5rem;
-}
-
-.download {
-    background-color: #0b5ba7;
-    font-size: 0.5rem;
-}
-
-.upload {
-    background-color: #09df98;
-    font-size: 0.5rem;
-} */
 
 #info {
     display: flex;
@@ -69,8 +41,21 @@ input[type="file"] {
 }
 
 .upload-button {
-    background-color: #14A44D;
-    color: white;
+    background-color: #14A44D !important;
+    color: white !important;
+}
+
+.upload-icon {
+    font-size: 1.125rem;
+    margin-top: 0.25rem;
+}
+
+.upload-text {
+    font-weight: 500 !important;
+}
+
+.label-height {
+    height: 1.125rem;
 }
 
 .download-button {
@@ -95,7 +80,7 @@ input[type="file"] {
     justify-content: space-evenly;
 }
 
-.mat-raised-button {
+.cv-buttons {
     width: 200px;
 }
 

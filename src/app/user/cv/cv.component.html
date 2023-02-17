@@ -51,41 +51,48 @@
 
   <div class="center-buttons">
     <div *ngIf="!myCv" class="action-button">
-      <input
-        *ngIf="!myCv"
-        (change)="uploadCV($event)"
-        class="inputfile"
-        type="file"
-        id="file"
-        name="file"
-        accept=".pdf,.doc,.docx"
-      />
-      <label for="file" class="mat-raised-button upload-button">
-        <mat-icon>cloud_upload</mat-icon>
-        <span> Upload CV</span>
-      </label>
+      <button mat-raised-button class="cv-buttons upload-button">
+        <input
+          *ngIf="!myCv"
+          (change)="uploadCV($event)"
+          class="inputfile"
+          type="file"
+          id="file"
+          name="file"
+          accept=".pdf,.doc,.docx"
+        />
+        <label for="file" class="label-height">
+          <mat-icon class="upload-icon">cloud_upload</mat-icon>
+          <span class="upload-text"> Upload CV</span>
+        </label>
+      </button>
     </div>
 
     <div *ngIf="myCv" class="action-button">
-      <input
-        (change)="uploadCV($event)"
-        class="inputfile"
-        type="file"
-        id="file"
-        name="file"
-        accept=".pdf,.doc,.docx"
-      />
-      <label for="file" class="mat-raised-button upload-button">
-        <mat-icon>cloud_upload</mat-icon>
-        <span> Update CV</span>
-      </label>
+      <button mat-raised-button class="cv-buttons upload-button">
+        <input
+          *ngIf="!myCv"
+          (change)="uploadCV($event)"
+          class="inputfile"
+          type="file"
+          id="file"
+          name="file"
+          accept=".pdf,.doc,.docx"
+        />
+        <label for="file" class="label-height">
+          <mat-icon class="upload-icon">cloud_upload</mat-icon>
+          <span class="upload-text"> Update CV</span>
+        </label>
+      </button>
     </div>
 
     <div *ngIf="myCv" class="action-button">
       <a
+        mat-raised-button
         href="{{ cvDownloadUrl }}"
         target="_blank"
-        class="mat-raised-button download-button text-no-format"
+        class="download-button text-no-format cv-buttons"
+        color="primary"
       >
         <mat-icon>cloud_download</mat-icon>
         <span> Download CV</span>
@@ -93,7 +100,12 @@
     </div>
 
     <div *ngIf="myCv" class="action-button">
-      <button mat-raised-button color="warn" (click)="deleteCV()">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="deleteCV()"
+        class="cv-buttons"
+      >
         <mat-icon>delete_forever</mat-icon>
         <span> Delete CV</span>
       </button>
