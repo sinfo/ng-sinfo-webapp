@@ -15,10 +15,9 @@
     <mat-card appearance="outlined" class="card title_center">
       <mat-card-header
         style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 16px;">
-        <div>
-          <div mat-card-avatar *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
-          <div mat-card-avatar *ngIf="user.role === 'company' && company"> <img class="sinfo-logo"
-              src="{{company.img}}">
+        <div style="display: flex; justify-content: space-between; align-items: center; ">
+          <div *ngIf="user.role === 'team'"> <img class="sinfo-logo" src="assets/img/PowerOn.png"></div>
+          <div *ngIf="user.role === 'company' && company"> <img class="sinfo-logo" src="{{company.img}}">
           </div>
           <mat-card-title>
             <div>
