@@ -253,12 +253,8 @@ export class UserService {
         'Authorization': `Bearer ${this.authService.getToken().token}`
       })
     }
-    const payload = {
-      editionId: this.event.id,
-      day: new Date().getDate().toString()
-    }
 
-    return this.http.post<User>(`${this.usersUrl}/${id}/redeem-card`, payload, httpOptions)
+    return this.http.post<User>(`${this.usersUrl}/${id}/redeem-card`, null, httpOptions)
   }
 
   removeUserInfo() {

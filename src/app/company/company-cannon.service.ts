@@ -66,7 +66,6 @@ export class CompanyCannonService {
     return this.http.post<Link>(`${this.companiesUrl}/${companyId}/link`, {
       userId: userId,
       attendeeId: attendeeId,
-      editionId: this.event.id,
       notes: {
         contacts: {
           email: note.contacts.email ? note.contacts.email : '',
@@ -123,10 +122,7 @@ export class CompanyCannonService {
       headers: this.headers
     }
 
-    return this.http.post<User>(`${this.companiesUrl}/${companyId}/sign/${attendeeId}`, {
-      editionId: this.event.id,
-      day: new Date().getDate().toString() // current day
-    }, httpOptions)
+    return this.http.post<User>(`${this.companiesUrl}/${companyId}/sign/${attendeeId}`, null, httpOptions)
       .pipe(
         catchError(this.handleError<User>('sign'))
       )
@@ -137,9 +133,7 @@ export class CompanyCannonService {
       headers: this.headers
     }
 
-    return this.http.post<User>(`${this.companiesUrl}/${companyId}/speed/${attendeeId}`, {
-      editionId: this.event.id
-    }, httpOptions)
+    return this.http.post<User>(`${this.companiesUrl}/${companyId}/speed/${attendeeId}`, null, httpOptions)
       .pipe(
         catchError(this.handleError<User>('sign speed'))
       )
