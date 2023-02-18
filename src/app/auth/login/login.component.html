@@ -17,19 +17,21 @@
 
     <app-loading [content]="!submitting"></app-loading>
 
-    <div class="row align-center" *ngIf="!submitting">
+    <div class="align-center" *ngIf="!submitting">
       <div class="col-md-4 button-google">
         <div id="google-button"></div>
       </div>
-
-      <div class="col-md-4">
+      <br>
+      <div class="align-center">
         <a href="{{ linkedinUrlAuth }}" class="btn btn-linkedin">
           <i class="fa fa-linkedin"></i>
           Sign in with Linkedin
         </a>
       </div>
 
-      <div class="col-md-4">
+      <br>
+
+      <div class="align-center">
         <a href="{{ fenixUrlAuth }}" class="btn btn-fenix">
           <i class="fa fa-graduation-cap"></i>
           Sign in with Fenix
