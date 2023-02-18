@@ -243,6 +243,13 @@
           <span class="list-item">Promo Codes</span>
         </div>
       </a>
+      <a *ngIf="user && user.role === 'team'" mat-list-item routerLink="/user/add-achievement"
+        routerLinkActive="navigation-link active" (click)="sidenav.toggle()" class="mat-list-item-custom">
+        <div class="navigation-link">
+          <mat-icon>star_border</mat-icon>
+          <span class="list-item">Add achievement</span>
+        </div>
+      </a>
       <div class="gap"></div>
       <div class="bottom">
         <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()" routerLink="/user/privacy-policy"
