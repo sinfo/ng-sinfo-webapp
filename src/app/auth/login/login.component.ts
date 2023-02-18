@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         type: "standard",
         shape: "rectangular",
         text: "signin_with",
-        logo_alignment: "left",
+        logo_alignment: "center",
         width: window.innerWidth < 400 ? window.innerWidth - 16 : 400
       }
     );

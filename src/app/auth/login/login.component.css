@@ -66,10 +66,10 @@ a.btn i {
 .butn-fenix{
   border: 2px solid black;
   border-color: #d8d8d8;
+  font-weight: bold;
 
   flex-grow: 1;
   font-family: "Google Sans",arial,sans-serif;
-  font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: top;
@@ -81,7 +81,7 @@ a.btn i {
   font-size: 14px;
   /* background: #ffffff; */
   width: 60px;
-  padding: 7px 110px;
+  padding: 7px 102px;
   text-align: center;
   text-decoration: none;
   color: #ffffff;
@@ -100,7 +100,7 @@ a.btn i {
 
   flex-grow: 1;
   font-family: "Google Sans",arial,sans-serif;
-  font-weight: 500;
+  font-weight: bold;
   /* font-weight: bold; */
 
   overflow: hidden;
@@ -114,7 +114,7 @@ a.btn i {
   font-size: 14px;
   /* background: #ffffff; */
   width: 60px;
-  padding: 7px 103px;
+  padding: 7px 95px;
   text-align: center;
   text-decoration: none;
   color: #ffffff;
