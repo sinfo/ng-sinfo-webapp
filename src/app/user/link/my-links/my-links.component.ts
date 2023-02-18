@@ -23,6 +23,7 @@ export class MyLinksComponent implements OnInit {
   company: Company
   processedLinks: Array<ProcessedLink>
   gotLinks: boolean
+  selectedLink: ProcessedLink
 
   constructor(
     private userService: UserService,
@@ -68,9 +69,9 @@ export class MyLinksComponent implements OnInit {
     })
   }
 
-  deleteLink(id: string) {
-    if (this.me.role === "company") {
-      this.companyCannonService.deleteLink(this.company.id, id).subscribe(() => {
+  deleteLink(link: ProcessedLink) {
+    if (link.author === "company") {
+      this.companyCannonService.deleteLink(this.company.id, link.attendee.id).subscribe(() => {
         this.companyCannonService.getLinks(this.company.id)
           .subscribe(links => {
             this.processedLinks = []
@@ -80,7 +81,7 @@ export class MyLinksComponent implements OnInit {
       })
     }
     else {
-      this.userService.deleteLink(this.me.id, id).subscribe(() => {
+      this.userService.deleteLink(this.me.id, link.company.id).subscribe(() => {
         this.userService.getLinks(this.me.id)
           .subscribe(links => {
             this.processedLinks = []
@@ -89,7 +90,22 @@ export class MyLinksComponent implements OnInit {
           })
       })
     }
+  }
+
+  editLink(link: ProcessedLink) {
+    this.selectedLink = link
+  }
+
+  receiveEditedLink(editedLink: ProcessedLink) {
+    if(editedLink) {
+      this.processedLinks.forEach(link => {
+        if(this.selectedLink === link) {
+          link = editedLink
+        } 
+      })
+    } 
     
+    this.selectedLink = null
   }
 
   processLink(link: Link, author: string) {
@@ -100,12 +116,14 @@ export class MyLinksComponent implements OnInit {
 
     processed.cv = link.cv
     processed.note = link.notes
+    processed.author = link.author
     processed.noteEmpty = (!link.notes.contacts.email &&
       !link.notes.contacts.phone &&
       !link.notes.degree &&
       !link.notes.availability &&
       !link.notes.interestedIn &&
-      !link.notes.otherObservations)
+      !link.notes.otherObservations &&
+      !link.notes.internships)
 
     if (savedUser) {
       processed.user = savedUser

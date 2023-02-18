@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
 import { UserService } from '../user.service'
 import { User } from '../user.model'
 import { Company } from '../../company/company.model'
 import { CompanyService } from '../../company/company.service'
-import { Link, Note } from './link.model'
+import { Link, Note, ProcessedLink } from './link.model'
 import { MessageService, Type } from '../../message.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { CompanyCannonService } from '../../company/company-cannon.service'
@@ -13,11 +13,14 @@ import { SignatureService } from '../signature/signature.service'
 import { EventService } from '../../events/event.service'
 
 @Component({
-  selector: 'MessageServiceapp-link',
+  selector: 'app-link',
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.css']
 })
 export class LinkComponent implements OnInit {
+
+  @Input() linkToEdit?: ProcessedLink;
+  @Output() updatedLink: EventEmitter<ProcessedLink> = new EventEmitter<ProcessedLink>()
 
   linkReady: boolean
   eventId: string
@@ -64,11 +67,6 @@ export class LinkComponent implements OnInit {
       degree: null,
       internships: null
     }
-    this.descriptions = [
-      'Insert the ID of the attendee in the text box below or scan the QR code by switching input.',
-      'Sign a user\'s card after you have interacted with them.'
-    ]
-    this.description = this.descriptions[0]
 
     this.eventService.getCurrent().subscribe(event => {
       this.eventId = event.id
@@ -86,17 +84,38 @@ export class LinkComponent implements OnInit {
             this.companyService.getCompany(company.company)
               .subscribe(_company => {
                 this.company = _company
-                this.scannerActive = true
                 this.linkReady = true
+
+                if (this.linkToEdit) {
+                  this.userRead = this.linkToEdit.attendee
+                  this.receiveUser({user:this.userRead,company:this.company})
+                  this.yesToLink = true
+                }
+                else{
+                  this.scannerActive = true
+                }
               })
           }
-
           else {
-            this.scannerActive = true
             this.linkReady = true
+            if (this.linkToEdit) {
+              this.userRead = this.linkToEdit.user 
+              this.company = this.linkToEdit.company
+              this.receiveUser({user:this.userRead,company:this.company})
+              this.yesToLink = true
+            }
+            else{
+              this.scannerActive = true
+            }
           }
         })
     })
+    
+    // this.descriptions = [
+    //   'Insert the ID of the attendee in the text box below or scan the QR code by switching input.',
+    //   'Sign a user\'s card after you have interacted with them.'
+    // ]
+    // this.description = this.descriptions[0]
   }
 
   toggleCam() {
@@ -119,7 +138,7 @@ export class LinkComponent implements OnInit {
     this.userRead = null
     this.userId = ''
     this.yesToLink = false
-    this.description = this.descriptions[0]
+    //this.description = this.descriptions[0]
     //this.info = ''
     //this.yesToSign = false
     this.linkReady = true
@@ -266,11 +285,18 @@ export class LinkComponent implements OnInit {
             panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 2000
           })
+          if (this.linkToEdit) {
+            this.linkToEdit.note = this.currentLink.notes
+            this.updatedLink.emit(this.linkToEdit)
+          }
         } else {
           this.snackBar.open('Error updating link', "Ok", {
             panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 2000
           })
+          if (this.linkToEdit) {
+            this.updatedLink.emit(null)
+          }
         }
         // this.messageService.add({
         //   origin: 'Link component',
@@ -290,15 +316,27 @@ export class LinkComponent implements OnInit {
             panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 2000
           })
+          if (this.linkToEdit) {
+            this.linkToEdit.note = this.currentLink.notes
+            this.updatedLink.emit(this.linkToEdit)
+          }
         } else {
           this.snackBar.open('Error updating link', "Ok", {
             panelClass: ['mat-toolbar', 'mat-primary'],
             duration: 2000
           })
+          if (this.linkToEdit) {
+            this.updatedLink.emit(null)
+          }
         }
       })
     }
-    
+  }
+
+  cancelEdit() {
+    if (this.linkToEdit) {
+      this.updatedLink.emit(null)
+    }
   }
 
   // submit() {

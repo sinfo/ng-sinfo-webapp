@@ -166,13 +166,21 @@
           </div>
         </div>
 
-        <div class="row">
+        <div *ngIf="!linkToEdit" class="row">
           <div class="col-xs-12">
             <button class="btn btn-button" (click)="reScan()">
               <span class="glyphicon glyphicon-pencil"></span>
               {{
               cam ? 'Rescan' : 'Insert another ID'
               }}
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="linkToEdit" class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button" (click)="cancelEdit()">
+              <span class="glyphicon glyphicon-pencil"></span> Cancel
             </button>
           </div>
         </div>

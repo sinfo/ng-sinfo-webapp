@@ -20,6 +20,7 @@ export class UserService {
   public me: User
   private event: Event
   private cv: CV
+  private links = new Map<string,Link>();
 
   constructor(
     private http: HttpClient,
@@ -112,7 +113,11 @@ export class UserService {
     this.me = null
   }
 
-  getLink(attendeeId: string, companyId: string): Observable<Link> {
+  getLink(attendeeId: string, companyId: string, forceRefresh = false): Observable<Link> {
+    if (this.links.has(companyId) && !forceRefresh) {
+      return of(this.links.get(companyId))
+    }
+
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -127,6 +132,9 @@ export class UserService {
 
     return this.http.get<Link>(`${this.usersUrl}/${attendeeId}/link/${companyId}`, httpOptions)
       .pipe(
+        tap(link => {
+          this.links.set(link.company, link)
+        }),
         catchError(this.handleError<Link>('getLink'))
       )
   }
@@ -148,6 +156,9 @@ export class UserService {
       'Authorization': `Bearer ${this.authService.getToken().token}`
     })})
       .pipe(
+        tap(link => {
+          this.links.set(link.company, link)
+        }),
         catchError(this.handleError<Link>('createLink'))
       )
   }
@@ -170,11 +181,17 @@ export class UserService {
       notes: note
     }, httpOptions)
       .pipe(
+        tap(link => {
+          this.links.set(link.company, link)
+        }),
         catchError(this.handleError<Link>('updateLink'))
       )
   }
 
-  getLinks(attendeeId: string): Observable<Link[]> {
+  getLinks(attendeeId: string, forceRefresh = false): Observable<Link[]> {
+    if (!forceRefresh && this.links.size !== 0) {
+      return of(Array.from(this.links.values()))
+    }
     const httpOptions = {
       params: new HttpParams({
         fromObject: {
@@ -189,6 +206,11 @@ export class UserService {
 
     return this.http.get<Link[]>(`${this.usersUrl}/${attendeeId}/link`, httpOptions)
       .pipe(
+        tap(links => {
+          links.forEach(link => {
+            this.links.set(link.company, link)
+          })
+        }),
         catchError(this.handleError<Link[]>('getLinks', []))
       )
   }
@@ -208,6 +230,9 @@ export class UserService {
 
     return this.http.delete<Link>(`${this.usersUrl}/${attendeeId}/link/${companyId}`, httpOptions)
       .pipe(
+        tap(link => {
+          this.links.delete(link.company)
+        }),
         catchError(this.handleError<Link>('deleteLink'))
       )
   }

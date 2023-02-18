@@ -18,6 +18,7 @@ export class Note {
 }
 
 export class Link {
+  author: string
   company: string
   edition: string
   attendee: string
@@ -29,6 +30,7 @@ export class Link {
 }
 
 export class ProcessedLink {
+  author: string
   attendee: User
   company: Company
   user: User

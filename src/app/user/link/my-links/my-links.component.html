@@ -1,7 +1,7 @@
 <app-loading [content]="links"></app-loading>
 
 <div class="wrapper pad" *ngIf="me">
-  <div>
+  <div *ngIf="!selectedLink">
     <div class="wrapper">
       <h3 *ngIf="company">{{company.name}}</h3>
       <h6 *ngIf="company">Links</h6>
@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="!selectedLink">
     <div class="col-sm-12">
       <div class="portrait-wrapper">
         <img *ngIf="company" class="portrait" src="{{company.img}}">
@@ -18,18 +18,18 @@
     </div>
   </div>
 
-  <div *ngIf="!processedLinks" class="row">
+  <div *ngIf="!processedLinks?.length" class="row">
     <div class="col-sm-12">
       <h6 class="lead">
         Looks like you have not made any links yet.
         <br> You can link with {{me.role === "company" ? "attendees" : "companies"}}
-        <a routerLink="/links/link">here</a>.
+        <a routerLink="/user/links/link">here</a>.
       </h6>
     </div>
   </div>
 
 
-  <div id="links" *ngIf="processedLinks" class='links'>
+  <div id="links" *ngIf="processedLinks && !selectedLink" class='links'>
 
     <div *ngFor="let link of processedLinks" class="link">
 
@@ -90,24 +90,18 @@
         </div>
         <div>
           <span class='link-section'>
-            <button *ngIf="me.role === 'company'" type="button" class="btn btn-button btn-danger center" (click)="deleteLink(link.attendee.id)">
-              Delete Link
+            <button type="button" class="btn btn-button center" (click)="editLink(link)">
+              Edit Link
             </button>
-            <button *ngIf="me.role !== 'company'" type="button" class="btn btn-button btn-danger center" (click)="deleteLink(link.company.id)">
+            <button type="button" class="btn btn-button btn-danger center" (click)="deleteLink(link)">
               Delete Link
             </button>
           </span>
-          <p *ngIf="me.role === 'company'" class="lead small tip">
-            Tip: To edit this link's note reinsert the attendee's ID
-          </p>
-          <p *ngIf="me.role !== 'company'" class="lead small tip">
-            Tip: To edit this link's note reinsert the company's ID
-          </p>
         </div>
       </div>
-
     </div>
-
   </div>
+    
+  <app-link *ngIf="selectedLink" [linkToEdit]="selectedLink" (updatedLink)="receiveEditedLink($event)"></app-link>
 
 </div>
