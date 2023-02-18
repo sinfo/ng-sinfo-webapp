@@ -19,14 +19,13 @@ const httpOptions = {
 
 @Injectable()
 export class SessionService {
-  private sessionsUrl = environment.deckUrl + '/api/sessions'
+  private sessionsUrl = environment.cannonUrl + '/session'
   private sessions: Session[]
   private eventId: string
 
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private messageService: MessageService,
     private speakerService: SpeakerService
 
   ) { }
@@ -38,14 +37,7 @@ export class SessionService {
 
     this.eventId = eventId
 
-    const params = new HttpParams({
-      fromObject: {
-        'sort': 'date',
-        'event': eventId
-      }
-    })
-
-    return this.http.get<Session[]>(this.sessionsUrl, { params })
+    return this.http.get<Session[]>(this.sessionsUrl)
       .pipe(
         tap(sessions => {
           this.sessions = sessions
