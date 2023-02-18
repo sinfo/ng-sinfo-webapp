@@ -61,3 +61,8 @@ a.btn i {
   display: flex;
   justify-content: space-around;
 }
+
+.button-google {
+  display: flex;
+  justify-content: center;
+}

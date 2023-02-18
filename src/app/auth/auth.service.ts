@@ -118,7 +118,6 @@ export class AuthService {
     //     break;
     //   case 'google':
     //     if (isGoogleActive && !gapi.auth2) {
-    //       console.log(gapi)
     //       await new Promise((resolve, reject) => {
     //         gapi.load('auth2', resolve)
     //       })
@@ -127,10 +126,8 @@ export class AuthService {
     //         cookiepolicy: 'single_host_origin',
     //         scope: GOOGLE_SCOPE
     //       })
-    //       console.log(gapi.auth2)
     //       gapi.auth2.getAuthInstance().disconnect()
     //     } else if (isGoogleActive && gapi.auth2) {
-    //       console.log('2')
     //       gapi.auth2.getAuthInstance().disconnect()
     //     }
     //     break;

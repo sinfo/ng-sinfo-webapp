@@ -47,8 +47,9 @@ import { WorkshopValidationComponent } from './user/workshop-validation/workshop
 import { MicrosoftLoginComponent } from './auth/login/microsoft.component'
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: LandingPageComponent },
 
+  { path: 'home', component: LandingPageComponent },
   { path: 'live', component: LiveComponent },
 
   { path: 'login', component: LoginComponent },
@@ -111,4 +112,6 @@ const routes: Routes = [
   { path: '**', component: PageNotFoundComponent }
 ]
 
-export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes)
+export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes, {
+  anchorScrolling: 'enabled',
+})

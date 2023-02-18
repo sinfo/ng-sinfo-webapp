@@ -2,6 +2,10 @@
   line-height: 20px !important;
 }
 
+.carousel-indicators {
+  width: auto;
+}
+
 .title {
   color: white;
 }

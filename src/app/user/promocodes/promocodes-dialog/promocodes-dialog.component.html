@@ -1,0 +1,23 @@
+<div class="promocodes-dialog">
+  <h6 mat-dialog-title>{{ promocode.name }}</h6>
+
+  <mat-dialog-content class="mat-typography">
+    <p><b>Company:</b> {{ promocode.company }}</p>
+    <p><b>Expires on:</b> {{ promocode.expirationDate }}</p>
+    <div class="row">
+      <div class="col-xs-6">
+        <p><b>Code:</b> {{ promocode.code }}</p>
+      </div>
+      <div class="col-xs-6">
+        <button mat-button color="primary" (click)="copy($event, promocode.code)">
+          <mat-icon class="copy-icon">content_copy</mat-icon>
+        </button>
+      </div>
+    </div>
+    <p><b>Description:</b> {{ promocode.description }}</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+  </mat-dialog-actions>
+</div>

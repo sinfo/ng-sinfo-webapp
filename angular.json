@@ -27,8 +27,15 @@
               "src/browserconfig.xml",
               "src/_redirects"
             ],
-            "styles": ["src/styles.css"],
-            "scripts": ["node_modules/marked/lib/marked.js"]
+            "styles": [
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/marked/marked.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -79,7 +86,7 @@
           "defaultConfiguration": "development"
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "ng-sinfo-webapp:build",
             "port": 4201
@@ -87,8 +94,12 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-sinfo-webapp:build:production"
+            },
+            "development": {
+              "browserTarget": "ng-sinfo-webapp:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -103,8 +114,12 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": ["node_modules/marked/lib/marked.js"],
-            "styles": ["src/styles.css"],
+            "scripts": [
+              "node_modules/marked/marked.min.js"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "assets": [
               "src/assets",
               "src/favicon.ico",
@@ -117,8 +132,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -138,14 +158,17 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
     }
   },
-  "defaultProject": "ng-sinfo-webapp",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
