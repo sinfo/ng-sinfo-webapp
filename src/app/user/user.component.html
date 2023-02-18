@@ -1,27 +1,41 @@
 <!-- <app-menu [user]="user"></app-menu> -->
 <mat-toolbar class="topbar">
-  <button mat-icon-button style="color: white; background-color: black" class="example-icon"
-    aria-label="Example icon-button with menu icon" (click)="sidenav.toggle()">
-    <mat-icon *ngIf="!isCvUpdated && user && user.role !== 'company'" matBadge="!" matBadgeColor="warn"
-      matBadgeSize="small">
-      menu</mat-icon>
+  <button
+    mat-icon-button
+    style="color: white; background-color: black"
+    class="menu-icon"
+    aria-label="Menu icon"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon
+      *ngIf="!isCvUpdated && user && user.role !== 'company'"
+      matBadge="!"
+      matBadgeColor="warn"
+      matBadgeSize="small"
+    >
+      menu</mat-icon
+    >
     <mat-icon *ngIf="!user"> menu</mat-icon>
     <mat-icon *ngIf="isCvUpdated || (user && user.role === 'company')" style="transform: scale(1.5)">menu</mat-icon>
   </button>
 
-  <a routerLink="/user/promocodes" class="promo-code">
+  <a routerLink="/user" class="logo-sinfo">
+    <img id="logo_white" src="assets/img/logo-branco2.png" alt="Sinfo" />
+  </a>
+
+  <a routerLink="/user/promocodes" class="promo-code logo_w">
     <mat-icon>receipt</mat-icon>
   </a>
 
-  <a routerLink="/" class="logo_w">
-    <img id="logo_white" src="assets/img/logo-branco2.png" alt="Sinfo" />
+  <a (click)="reloadApp()" class="refresh-button">
+    <mat-icon>refresh</mat-icon>
   </a>
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="over" [(opened)]="opened" class="sidenav">
     <mat-nav-list class="navlist">
-      <a mat-list-item href="https://sinfo.org" target="_blank" (click)="sidenav.toggle()">
+      <a mat-list-item href="/" target="_blank" (click)="sidenav.toggle()">
         <div class="navigation-link">
           <mat-icon>computer</mat-icon>
           <span class="list-item">Go to website</span>
@@ -261,8 +275,14 @@
     <div *ngIf="user" class="user-wrapper">
       <div class="profile-content">
         <router-outlet></router-outlet>
-        <button *ngIf="screenWidth < 768" mat-fab class='fab' routerLink="/user/qrcode"
-          aria-label="Example icon button with a home icon" style="z-index: 99999;">
+        <button
+          *ngIf="screenWidth < 768"
+          mat-fab
+          class="fab"
+          routerLink="/user/qrcode"
+          aria-label="Example icon button with a home icon"
+          style="z-index: 99999"
+        >
           <mat-icon>qr_code</mat-icon>
         </button>
       </div>
