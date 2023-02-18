@@ -13,7 +13,7 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 * {
-  font-family: 'Montserrat';
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .mat-expansion-panel-header-description,
@@ -2515,7 +2515,7 @@ table {
 }
 
 body {
-  font-family: "Montserrat", "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 15px;
   font-weight: 400;
   color: #51545b;
@@ -2535,11 +2535,11 @@ body {
 }
 
 .base-font {
-  font-family: "Montserrat", "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .heading-font {
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .uppercase {
@@ -2593,7 +2593,7 @@ h4,
 h5,
 h6,
 .h7 {
-  font-family: "Montserrat", "Roboto", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 450;
 }
 
@@ -2606,7 +2606,7 @@ h5 {
 
 h3,
 .h8 {
-  font-family: "Montserrat", "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 
@@ -2696,7 +2696,7 @@ a:focus {
 
 .link-btn {
   display: inline-block;
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -3886,7 +3886,7 @@ div.intro i.fa-chevron-down:hover {
   min-width: 144px;
   max-width: 100%;
   padding: 21px 25px 19px;
-  font-family: "Monteserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 13px;
   text-align: center;
   text-transform: uppercase;
@@ -4324,7 +4324,7 @@ button.btn.btn-block {
 .schedule .tab-content .nav.nav-schedule>li>a {
   margin: 0;
   padding: 16px 45px 14px;
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -4486,7 +4486,7 @@ button.btn.btn-block {
 }
 
 .schedule.schedule-light .nav-current {
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   color: #262627;
@@ -4517,7 +4517,7 @@ button.btn.btn-block {
 
 .schedule.schedule-light .nav.nav-schedule>li>a {
   padding: 24px 15px 19px;
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   color: #ffffff;
@@ -5326,7 +5326,7 @@ button.btn.btn-block {
   transition: color 0.2s ease, background 0.2s ease;
   display: block;
   padding: 12px 20px;
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.22em;
@@ -5842,7 +5842,7 @@ button[type="submit"] .loading {
 
 .table>thead>tr>th,
 .table>thead>tr>td {
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: #ffffff;
   border: none !important;
@@ -6150,7 +6150,7 @@ section#feedback {
 }
 
 .counter-block.counter-block-no-border .counter-box .counter-content .title {
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -6181,7 +6181,7 @@ section#feedback {
 .counter-box .counter-content>.count {
   display: inline-block;
   width: 100%;
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 80px;
   font-weight: 700;
   line-height: 100px;
@@ -6572,7 +6572,7 @@ div.clear input.btn:hover {
 }
 
 .balloon .name {
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 15px;
   font-weight: 700;
   line-height: 20px;
@@ -6765,7 +6765,7 @@ div.clear input.btn:hover {
 .navigation-header .logo {
   display: inline-block;
   padding: 3px 0;
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 23px;
   font-weight: 700;
   text-transform: uppercase;
@@ -6881,7 +6881,7 @@ div.clear input.btn:hover {
   transition: color 0.15s ease, background 0.15s ease, border 0.15s ease, opacity 0.15s ease;
   display: inline-block;
   padding: 7px 0;
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -7169,7 +7169,7 @@ div.clear input.btn:hover {
 }
 
 .footer-nav>li a {
-  font-family: "Montserrat", "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-weight: 700;
   text-decoration: none;
@@ -7983,7 +7983,7 @@ div.clear input.btn:hover {
   padding: 20px;
   line-height: 2px;
   font-weight: 400;
-  font-family: "Montserrat", "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 /* promote-company-content end */
@@ -8052,7 +8052,7 @@ div.clear input.btn:hover {
 
 .manage-downloads .typeahead input {
   font-size: 14px;
-  font-family: "Montserrat", "PT Sans";
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .manage-downloads .dropdown-menu {
@@ -8080,7 +8080,7 @@ div.clear input.btn:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Montserrat", "PT Sans";
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   border: 0;
   border-bottom: 1px solid;
   border-color: #018ae6;

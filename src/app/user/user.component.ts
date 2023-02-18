@@ -1,4 +1,9 @@
-import { Component, HostListener, OnInit, ViewEncapsulation } from "@angular/core";
+import {
+  Component,
+  HostListener,
+  OnInit,
+  ViewEncapsulation,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { UserService } from "./user.service";
@@ -29,22 +34,26 @@ export class UserComponent implements OnInit {
     private titleService: Title,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.userService.getMe().subscribe((me) => {
       this.user = me;
       this.userService.isCvUpdated().subscribe(
         (isCvUpdated) => {
-          this.isCvUpdated = isCvUpdated
+          this.isCvUpdated = isCvUpdated;
         },
         () => {
-          this.isCvUpdated = false
+          this.isCvUpdated = false;
         }
       );
     });
     this.isLoggedIn = this.authService.isLoggedIn();
     this.screenWidth = window.innerWidth;
+  }
+
+  reloadApp() {
+    window.location.reload();
   }
 
   @HostListener("window:resize", ["$event"])
@@ -60,11 +69,10 @@ export class UserComponent implements OnInit {
 
   onLogout(): void {
     this.authService.logout();
-    this.userService.deleteMe()
+    this.userService.deleteMe();
 
     this.router.url === "/"
       ? window.location.reload()
       : this.router.navigate(["/"]);
   }
-
 }
