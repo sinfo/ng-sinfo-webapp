@@ -1032,6 +1032,7 @@
 
 .fa-linkedin:before {
   content: "\f0e1";
+  color: #ffffff;
 }
 
 .fa-rotate-left:before,
@@ -1762,6 +1763,7 @@
 .fa-mortar-board:before,
 .fa-graduation-cap:before {
   content: "\f19d";
+  color: #ffffff;
 }
 
 .fa-yahoo:before {

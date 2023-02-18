@@ -63,7 +63,7 @@ a.btn i {
   justify-content: center;
 }
 
-.butn{
+.butn-fenix{
   border: 2px solid black;
   border-color: #d8d8d8;
 
@@ -79,13 +79,46 @@ a.btn i {
   justify-content: center;
   /* font-family: "Montserrat"; */
   font-size: 14px;
-  background: #ffffff;
+  /* background: #ffffff; */
   width: 60px;
-  padding: 7px 132px;
+  padding: 7px 110px;
   text-align: center;
   text-decoration: none;
-  color: #3c4043;
+  color: #ffffff;
   border-radius: 3px;
+  cursor: pointer;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+
+.butn-linkedin{
+  border: 2px solid black;
+  border-color: #d8d8d8;
+
+  flex-grow: 1;
+  font-family: "Google Sans",arial,sans-serif;
+  font-weight: 500;
+  /* font-weight: bold; */
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  letter-spacing: 0.25px;
+
+  align-items: center;
+  justify-content: center;
+  /* font-family: "Montserrat"; */
+  font-size: 14px;
+  /* background: #ffffff; */
+  width: 60px;
+  padding: 7px 103px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 4px;
   cursor: pointer;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   -webkit-transition-duration: 0.3s;
