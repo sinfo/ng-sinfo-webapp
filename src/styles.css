@@ -1625,6 +1625,7 @@
 
 .fa-windows:before {
   content: "\f17a";
+  color: #ffffff;
 }
 
 .fa-android:before {
