@@ -5,14 +5,12 @@
     <p><b>Company:</b> {{ promocode.company }}</p>
     <p><b>Expires on:</b> {{ promocode.expirationDate }}</p>
     <div class="row">
-      <div class="col-xs-6">
-        <p><b>Code:</b> {{ promocode.code }}</p>
-      </div>
-      <div class="col-xs-6">
+      <span>
+        <b>Code:</b> {{ promocode.code }}
         <button mat-button color="primary" (click)="copy($event, promocode.code)">
-          <mat-icon class="copy-icon">content_copy</mat-icon>
+          <mat-icon class="copy-icon" style="height: 24px; width: 24px;">content_copy</mat-icon>
         </button>
-      </div>
+      </span>
     </div>
     <p><b>Description:</b> {{ promocode.description }}</p>
   </mat-dialog-content>

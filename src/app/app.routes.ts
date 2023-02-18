@@ -44,6 +44,7 @@ import { MyCardComponent } from './user/my-card/my-card.component'
 import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component'
 import { CardComponent } from './user/card/card.component'
 import { WorkshopValidationComponent } from './user/workshop-validation/workshop-validation.component'
+import { MicrosoftLoginComponent } from './auth/login/microsoft.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -53,6 +54,7 @@ const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'login/linkedin', component: LinkedinLoginComponent },
+  { path: 'login/microsoft', component: MicrosoftLoginComponent },
 
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },

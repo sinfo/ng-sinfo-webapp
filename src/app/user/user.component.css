@@ -19,6 +19,13 @@
   position: -webkit-sticky;
   top: 0;
   z-index: 1000;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-icon {
+  position: absolute;
+  left: 12px;
 }
 
 .sidenav {
@@ -29,21 +36,26 @@
   display: none;
 }
 
-.logo_w {
-  position: absolute;
-  right: 2.5vh;
-}
-
 #logo_white {
   max-height: 3vh;
   display: flex;
+}
+
+.refresh-button {
+  color: white;
+  display: flex;
+  appearance: none;
+  position: absolute;
+  right: 2.5vh;
+  cursor: pointer;
 }
 
 .promo-code {
   color: white;
   display: flex;
   appearance: none;
-  margin-left: 2vw;
+  position: absolute;
+  right: 7vh;
 }
 
 .profile-content {
