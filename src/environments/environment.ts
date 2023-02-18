@@ -80,5 +80,10 @@ export const environment = {
   linkedin: {
     clientId: '77i6uer5luxghl',
     redirectUrl: 'http://localhost:4201/login/linkedin'
+  },
+  microsoft: {
+    clientId: 'c572d99a-8c82-47aa-89b4-01dc934858fc',
+    redirectUrl: 'http://localhost:4201/login/microsoft',
+    authority: 'https://login.microsoftonline.com/common'
   }
 }
