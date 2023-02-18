@@ -82,11 +82,11 @@ a.btn i {
   /* font-weight: bold; */
   background: #ffffff;
   width: 60px;
-  padding: 10px 165px;
+  padding: 7px 176px;
   text-align: center;
   text-decoration: none;
   color: #3c4043;
-  border-radius: 8px;
+  border-radius: 3px;
   cursor: pointer;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   -webkit-transition-duration: 0.3s;
