@@ -21,10 +21,11 @@ import { AuthService } from "../auth/auth.service";
 export class UserComponent implements OnInit {
   user: User;
   achievements: Achievement[];
-  opened: boolean;
+  opened = true;
   isLoggedIn = false;
   screenWidth: number;
   isCvUpdated: Boolean = false;
+  messages = ['message1'];
 
   constructor(
     private router: Router,
