@@ -5,7 +5,7 @@
     <div class="wrapper">
       <h3 *ngIf="company">{{company.name}}</h3>
       <h6 *ngIf="company">Links</h6>
-      <h3>My Links</h3>
+      <h3 *ngIf="!company">My Links</h3>
     </div>
   </div>
 

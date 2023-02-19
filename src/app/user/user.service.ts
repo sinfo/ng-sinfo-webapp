@@ -119,11 +119,6 @@ export class UserService {
     }
 
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -143,7 +138,6 @@ export class UserService {
     return this.http.post<Link>(`${this.usersUrl}/${attendeeId}/link`, {
       userId: userId,
       companyId: companyId,
-      editionId: this.event.id,
       notes: {
         contacts: {
           email: note.contacts.email ?? '',
@@ -165,11 +159,6 @@ export class UserService {
 
   updateLink(attendeeId: string, companyId: string, userId: string, note: Note): Observable<Link> {
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -193,11 +182,6 @@ export class UserService {
       return of(Array.from(this.links.values()))
     }
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -217,11 +201,6 @@ export class UserService {
 
   deleteLink(attendeeId: string, companyId: string) {
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.getToken().token}`
