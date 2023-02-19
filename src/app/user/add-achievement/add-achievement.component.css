@@ -22,3 +22,19 @@
   font-size: 1.4rem;
   margin-bottom: -0.35rem;
 }
+
+.field {
+  width: 100%;
+}
+
+.upload-image-btn {
+  margin-bottom: 1rem;
+}
+
+.upload-image-input {
+  display: none;
+}
+
+.check-icon {
+  color: green;
+}
