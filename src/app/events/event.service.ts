@@ -16,17 +16,14 @@ const httpOptions = {
 
 @Injectable()
 export class EventService {
-  private eventsUrl = environment.deckUrl + '/api/events?sort=-date'
-  private currentEventUrl = environment.deckUrl + '/api/events?sort=-date&limit=1'
-  private previousEventUrl = environment.deckUrl + '/api/events?sort=-date&limit=1&skip=1'
+  private eventsUrl = environment.cannonUrl + '/event'
+  private currentEventUrl = environment.cannonUrl + '/event/latest'
   private events: Event[]
   private current: Event
-  private previous: Event
 
   constructor(
     private http: HttpClient,
-    private snackBar: MatSnackBar,
-    private messageService: MessageService
+    private snackBar: MatSnackBar
   ) { }
 
   getEvents(): Observable<Event[]> {
@@ -58,22 +55,8 @@ export class EventService {
     } else {
       return this.http.get<Event>(`${this.currentEventUrl}`)
         .pipe(
-          map(events => new Event(events[0])),
           tap(event => this.current = event),
           catchError(this.handleError<Event>('getCurrentEvent'))
-        )
-    }
-  }
-
-  getPrevious(): Observable<Event> {
-    if (this.previous) {
-      return of(this.previous)
-    } else {
-      return this.http.get<Event>(`${this.previousEventUrl}`)
-        .pipe(
-          map(events => events[0]),
-          tap(event => this.previous = event),
-          catchError(this.handleError<Event>('getPreviousEvent'))
         )
     }
   }
