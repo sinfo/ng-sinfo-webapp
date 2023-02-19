@@ -11,42 +11,25 @@
     <div *ngIf="!isPartnersEmpty">
       <div *ngFor="let p of partners; let i = index">
         <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 promocode-column">
-          <mat-card class="padding-margin-0">
-            <img
-              mat-card-image
-              src="{{ p.img }}"
-              alt="Promocode image"
-              class="promocode-image"
-            />
-            <mat-card-content class="padding-margin-0">
+          <mat-card>
+            <img mat-card-image src="{{ p.img }}" alt="Promocode image" class="promocode-image" />
+            <mat-card-content>
               <p class="promocode-name">
                 {{ p.name }}
               </p>
             </mat-card-content>
-            <mat-card-actions class="padding-margin-0">
+            <mat-card-actions style="margin: 0 auto;">
               <div class="row">
-                <div class="col-xs-6" style="padding-right: 0">
-                  <button
-                    mat-button
-                    class="padding-margin-0"
-                    (click)="openDialog(p)"
-                    color="primary"
-                  >
-                    <mat-icon class="padding-margin-0 copy-icon">info</mat-icon>
+                <div class="col-6" style="padding-right: 0;">
+                  <button mat-button (click)="openDialog(p)" color="primary">
+                    <mat-icon class="copy-icon">info</mat-icon>
                     <span>Info</span>
                   </button>
                 </div>
-                <div class="col-xs-4 padding-margin-0">
-                  <button
-                    id="tooltip-{{ p.code }}"
-                    mat-button
-                    color="primary"
-                    class="padding-margin-0"
-                    (click)="copy($event, p.code)"
-                  >
-                    <mat-icon class="padding-margin-0 copy-icon"
-                      >content_copy</mat-icon
-                    >
+                <div class="col-6"  style="padding-left: 0;">
+                  <button id="tooltip-{{ p.code }}" mat-button color="primary"
+                    (click)="copy($event, p.code)">
+                    <mat-icon class="copy-icon">content_copy</mat-icon>
                     <span>Copy</span>
                   </button>
                 </div>

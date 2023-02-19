@@ -91,10 +91,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { ClipboardModule } from "ngx-clipboard";
 import { SecretAchievementsComponent } from "./user/secret-achievements/secret-achievements.component";
-import { NumberPickerModule } from "ng-number-picker";
 import { MarkdownModule } from "ngx-markdown";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatIconModule, MatIconRegistry } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -114,9 +112,10 @@ import { WorkshopValidationComponent } from './user/workshop-validation/workshop
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
+import { MicrosoftLoginComponent } from "./auth/login/microsoft.component";
+import { NgScrollbarModule } from 'ngx-scrollbar';
 import { PromocodesDialogComponent } from "./user/promocodes/promocodes-dialog/promocodes-dialog.component";
-
-
+import { RouterModule } from '@angular/router';
 
 library.add(fas);
 
@@ -138,6 +137,7 @@ library.add(fas);
     LoadingComponent,
     LoginComponent,
     LinkedinLoginComponent,
+    MicrosoftLoginComponent,
     MyProfileComponent,
     UserComponent,
     SessionComponent,
@@ -197,10 +197,8 @@ library.add(fas);
     NgbModule,
     FontAwesomeModule,
     ClipboardModule,
-    NumberPickerModule,
     MarkdownModule.forRoot(),
     BrowserAnimationsModule,
-    FlexLayoutModule,
     MatIconModule,
     MatSnackBarModule,
     MatButtonModule,
@@ -216,7 +214,9 @@ library.add(fas);
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MaterialExampleModule
+    MaterialExampleModule,
+    NgScrollbarModule,
+    RouterModule,
   ],
   providers: [
     SpeakerService,

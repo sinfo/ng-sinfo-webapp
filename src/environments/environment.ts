@@ -22,6 +22,13 @@ export const environment = {
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '30-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'AI & ML',
+      'Game Dev',
+      'Tech Trends'
+    ],
     '27-sinfo': [
       'Software Engineering',
       'Multimedia',
@@ -73,5 +80,10 @@ export const environment = {
   linkedin: {
     clientId: '77i6uer5luxghl',
     redirectUrl: 'http://localhost:4201/login/linkedin'
+  },
+  microsoft: {
+    clientId: 'c572d99a-8c82-47aa-89b4-01dc934858fc',
+    redirectUrl: 'http://localhost:4201/login/microsoft',
+    authority: 'https://login.microsoftonline.com/common'
   }
 }

@@ -5,7 +5,9 @@
 <div *ngIf="sponsors && sponsors.length > 0" class="wrapper">
   <div class="overallSponsors">
     <span class="icon section-icon icon-documents-bookmarks-12"></span>
-    <h2>Sponsors</h2>
+    <h3 (click)="show()">Sponsors<mat-icon [class.chev-open]="showAll" [class.chev-close]="!showAll">
+        expand_more
+      </mat-icon></h3>
     <br />
 
     <app-loading [content]="sponsors"></app-loading>
@@ -28,7 +30,7 @@
         </div>
       </div>
 
-      <div *ngIf="showAll">
+      <div *ngIf="showAll" @myInsertRemoveTrigger>
         <hr>
 
         <div class="row" *ngIf="golds.length">
@@ -53,22 +55,22 @@
 
       </div>
 
-      <div class="show">
+      <!-- <div class="show">
         <button *ngIf="!showAll" class="btn btn-outline-clr btn-sm" (click)="show()">
           See more
         </button>
       </div>
+    </div> -->
+
     </div>
 
-  </div>
+    <div *ngIf="!sponsors || sponsors.length == 0" class="sponsors">
 
-  <div *ngIf="!sponsors || sponsors.length == 0" class="sponsors">
-
-    <div class="container">
-      <span class="icon section-icon icon-documents-bookmarks-12"></span>
-      <h3>We are still looking for sponsors for our next edition!</h3>
-      <h5>If you want to participate, contact us through <a href="mailto:geral@sinfo.org">geral@sinfo.org</a></h5>
-      <br />
+      <div class="container">
+        <span class="icon section-icon icon-documents-bookmarks-12"></span>
+        <h3>We are still looking for sponsors for our next edition!</h3>
+        <h5>If you want to participate, contact us through <a href="mailto:geral@sinfo.org">geral@sinfo.org</a></h5>
+        <br />
+      </div>
     </div>
   </div>
-</div>

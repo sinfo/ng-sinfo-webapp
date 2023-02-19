@@ -9,6 +9,8 @@ import { Session } from './session.model'
 import { environment } from '../../environments/environment'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MessageService, Type } from '../message.service'
+import { SpeakerService } from '../speakers/speaker.service'
+
 
 
 const httpOptions = {
@@ -24,7 +26,9 @@ export class SessionService {
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private speakerService: SpeakerService
+
   ) { }
 
   getSessions(eventId: string): Observable<Session[]> {
@@ -43,7 +47,18 @@ export class SessionService {
 
     return this.http.get<Session[]>(this.sessionsUrl, { params })
       .pipe(
-        tap(sessions => this.sessions = sessions),
+        tap(sessions => {
+          this.sessions = sessions
+          sessions.forEach(s => {
+            if (s.speakers.length > 0) {
+              s.speakers.forEach((sSpe, i) => {
+                this.speakerService.getSpeaker(sSpe.id).subscribe(val => {
+                  s.speakers[i] = val
+                })
+              })
+            }
+          })
+        }),
         catchError(this.handleError<Session[]>('getSessions', []))
       )
   }

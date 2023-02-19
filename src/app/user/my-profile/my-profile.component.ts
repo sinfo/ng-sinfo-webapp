@@ -16,6 +16,8 @@ import { ClipboardService } from 'ngx-clipboard'
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap'
 import { MessageService, Type } from '../../message.service'
 
+const PROMOCODES_INFO_KEY = "promocodes-info"
+
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -28,6 +30,7 @@ export class MyProfileComponent implements OnInit {
   company: Company
   submitedCV: boolean
   cvDownloadUrl: string
+  promocodesInfo: boolean
   achievements: Achievement[]
   redeemCodes: Array<{
     achievement: Achievement
@@ -55,6 +58,14 @@ export class MyProfileComponent implements OnInit {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - QR Code')
     })
+
+    let promocodesInfoLocalStorage = localStorage.getItem(PROMOCODES_INFO_KEY)
+    if(promocodesInfoLocalStorage == undefined){
+      localStorage.setItem(PROMOCODES_INFO_KEY, "true")
+      this.promocodesInfo = true
+    } else {
+       this.promocodesInfo = promocodesInfoLocalStorage == "true" 
+    }
 
     this.cvDownloadUrl = `${environment.cannonUrl}/files/me/download?access_token=${this.authService.getToken().token}`
     /**
@@ -152,5 +163,10 @@ export class MyProfileComponent implements OnInit {
     }, 1500)
 
     this.clipboardService.copyFromContent(this.user.id)
+  }
+
+  closePromocodesInfo() {
+    localStorage.setItem(PROMOCODES_INFO_KEY,"false")
+    this.promocodesInfo = false
   }
 }
