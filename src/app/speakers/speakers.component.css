@@ -3,7 +3,63 @@
 }
 
 .speaker img {
-  width: 180px;
-  height: 180px;
+  width: 10vw;
+  height: 10vw;
   object-fit: cover;
+}
+
+
+.chev-open {
+  position: absolute;
+  line-height: 1.2;
+  font-size: 50px;
+  width: auto;
+  height: auto;
+  transition: 0.3s transform ease-in-out;
+  transform: rotate(180deg);
+}
+
+.h3 {
+  display: flex;
+  justify-content: center;
+}
+
+.chev-close {
+  line-height: 1.2;
+  position: absolute;
+  font-size: 50px;
+  width: auto;
+  height: auto;
+  transition: 0.3s transform ease-in-out;
+  transform: rotate(0);
+}
+
+.collapse:not(.show) {
+  transition: all 0.3s ease-out;
+  display: block !important;
+  overflow: hidden !important;
+  max-height: 0;
+}
+
+.show {
+  transition: all 0.5s ease-in;
+  max-height: 100vh;
+  /*any number which is lager than a height of any of your elements*/
+}
+
+
+@media (max-width: 925px) {
+
+
+  .chev-open,
+  .chev-close {
+    font-size: 9vw;
+  }
+
+  .speaker img {
+    width: 10vh;
+    height: 10vh;
+    object-fit: cover;
+  }
+
 }

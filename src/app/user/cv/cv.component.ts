@@ -72,7 +72,6 @@ export class CvComponent implements OnInit {
     const dialogRef = this.dialog.open(GdprDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       // Check here and change permissions
-      console.log(`Dialog result: ${result}`);
       localStorage.setItem(GRPD_PERMISSIONS_KEY,"true") 
      });
   }

@@ -12,6 +12,9 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+* {
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
 
 .mat-expansion-panel-header-description,
 .mat-expansion-indicator::after {
@@ -2536,7 +2539,7 @@ body {
 }
 
 .heading-font {
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .uppercase {
@@ -2590,7 +2593,7 @@ h4,
 h5,
 h6,
 .h7 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 450;
 }
 
@@ -2693,7 +2696,7 @@ a:focus {
 
 .link-btn {
   display: inline-block;
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -3883,14 +3886,12 @@ div.intro i.fa-chevron-down:hover {
   min-width: 144px;
   max-width: 100%;
   padding: 21px 25px 19px;
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-size: 13px;
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
   line-height: 1;
-  letter-spacing: 0.59em;
   border: none;
   border-radius: 4px;
   overflow: hidden;
@@ -4323,7 +4324,7 @@ button.btn.btn-block {
 .schedule .tab-content .nav.nav-schedule>li>a {
   margin: 0;
   padding: 16px 45px 14px;
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -4485,7 +4486,7 @@ button.btn.btn-block {
 }
 
 .schedule.schedule-light .nav-current {
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   color: #262627;
@@ -4516,7 +4517,7 @@ button.btn.btn-block {
 
 .schedule.schedule-light .nav.nav-schedule>li>a {
   padding: 24px 15px 19px;
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   color: #ffffff;
@@ -5325,7 +5326,7 @@ button.btn.btn-block {
   transition: color 0.2s ease, background 0.2s ease;
   display: block;
   padding: 12px 20px;
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.22em;
@@ -5841,7 +5842,7 @@ button[type="submit"] .loading {
 
 .table>thead>tr>th,
 .table>thead>tr>td {
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 600;
   color: #ffffff;
   border: none !important;
@@ -6149,7 +6150,7 @@ section#feedback {
 }
 
 .counter-block.counter-block-no-border .counter-box .counter-content .title {
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -6180,7 +6181,7 @@ section#feedback {
 .counter-box .counter-content>.count {
   display: inline-block;
   width: 100%;
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 80px;
   font-weight: 700;
   line-height: 100px;
@@ -6571,7 +6572,7 @@ div.clear input.btn:hover {
 }
 
 .balloon .name {
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 15px;
   font-weight: 700;
   line-height: 20px;
@@ -6764,7 +6765,7 @@ div.clear input.btn:hover {
 .navigation-header .logo {
   display: inline-block;
   padding: 3px 0;
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 23px;
   font-weight: 700;
   text-transform: uppercase;
@@ -6863,7 +6864,7 @@ div.clear input.btn:hover {
 .dropdown-menu .navigation-link {
   padding: 15px 40px;
   font-weight: 700;
-  color: #262627;
+  color: lightgray;
   border: none;
 }
 
@@ -6880,12 +6881,12 @@ div.clear input.btn:hover {
   transition: color 0.15s ease, background 0.15s ease, border 0.15s ease, opacity 0.15s ease;
   display: inline-block;
   padding: 7px 0;
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.26em;
-  color: #262627;
+  color: lightgray;
   border-style: solid;
   border-width: 0 0 2px;
   border-color: transparent;
@@ -7130,7 +7131,6 @@ div.clear input.btn:hover {
     display: block;
     padding: 18px 0 18px;
     font-size: 15px;
-    text-transform: none;
     border: none;
   }
 
@@ -7151,7 +7151,7 @@ div.clear input.btn:hover {
 .footer {
   padding: 0 0 0;
   color: #ffffff;
-  background-color: #262627;
+  background-color: black;
 }
 
 .footer-base {
@@ -7169,7 +7169,7 @@ div.clear input.btn:hover {
 }
 
 .footer-nav>li a {
-  font-family: "PT Sans Caption", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 11px;
   font-weight: 700;
   text-decoration: none;
@@ -8052,7 +8052,7 @@ div.clear input.btn:hover {
 
 .manage-downloads .typeahead input {
   font-size: 14px;
-  font-family: "PT Sans";
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .manage-downloads .dropdown-menu {
@@ -8080,7 +8080,7 @@ div.clear input.btn:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "PT Sans";
+  font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   border: 0;
   border-bottom: 1px solid;
   border-color: #018ae6;
@@ -8137,4 +8137,12 @@ body::-webkit-scrollbar {
 
 .pad {
   padding: 2.5% 1%;
+}
+
+ng-scrollbar {
+  --scrollbar-size: 8px;
+  --scrollbar-thumb-color: lightgray;
+  --scrollbar-thumb-hover-color: gray;
+  --scrollbar-border-radius: 4px;
+  border: 1px solid darkgray;
 }

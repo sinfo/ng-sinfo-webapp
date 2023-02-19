@@ -2,6 +2,193 @@
   animation: jump 1s infinite;
 }
 
+.socials-nav-item {
+  margin: 0;
+  display: inline-block;
+}
+
+.example-card {
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+  /* align horizontal */
+  align-items: center;
+  /* align vertical */
+  max-width: 30vw;
+}
+
+.card-title {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-content {
+  text-align: center;
+}
+
+.event-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+
+
+.socials-nav-item a:not(:hover):not(:active):not(:focus) {
+  color: lightgray;
+}
+
+.topbar {
+  display: flex;
+  background-color: black;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  min-height: 64px;
+  height: fit-content;
+}
+
+.sidenav-container {
+  height: calc(100% - 7vh);
+}
+
+.sidenav {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: white;
+  height: min-content;
+  width: max-content;
+}
+
+.sidenav::-webkit-scrollbar {
+  display: none;
+}
+
+.navigation-item {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mat-mdc-list-item:not(.active):not(:hover) {
+  color: white !important;
+}
+
+#sidenav1 ul li a i,
+#sidenav1 ul li a img {
+  max-height: 4vh;
+}
+
+.list-item {
+  margin-left: 1vw;
+  color: white;
+  font-family: 'Montserrat';
+}
+
+.navlist {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-menu {
+  display: auto;
+  margin-left: auto;
+}
+
+.mat-accordion .mat-expansion-panel:not(.mat-expanded),
+.mat-accordion .mat-expansion-panel:not(.mat-expansion-panel-spacing) {
+  margin-bottom: 20px;
+}
+
+.faq-title {
+  font-weight: bold;
+}
+
+
+.socials {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+}
+
+@media (min-width: 926px) {
+
+  .second-row,
+  .option-menu {
+    display: none;
+  }
+
+
+}
+
+@media (max-width: 925px) {
+  .faq-chev {
+    margin-right: 8%;
+    margin-left: -2%;
+  }
+
+  .event-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .example-card {
+    max-width: 100vw;
+  }
+
+  .first-row {
+    display: none;
+  }
+
+  .socials {
+    justify-content: space-between;
+    flex-grow: 2;
+  }
+
+  .socials-nav-item {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  .navigation-link {
+    font-size: 1vw;
+    text-align: center;
+    font-family: 'Montserrat';
+  }
+
+  .option-menu {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+}
+
+#logo_white {
+  max-height: 7vh;
+  max-width: 7vh;
+  padding: 0.7vh 0 0 0;
+  margin-left: 1vw;
+}
+
 .video-bg {
   background-image: url("https://sinfo.ams3.cdn.digitaloceanspaces.com/static/27-sinfo/webapp/sinfo-tent.jpg");
   background-size: cover;
@@ -36,14 +223,76 @@
   }
 }
 
+.navigation-link {
+  font-size: 1.5vh;
+  font-family: 'Montserrat';
+}
+
 @media only screen and (max-width: 768px) {
   #about .nav.nav-tabs {
     position: absolute;
   }
+
+  .faq-chev {
+    margin-right: 8%;
+    margin-left: -2%;
+  }
+}
+
+.tool-row {
+  display: flex;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: space-between;
 }
 
 .content {
+  margin-top: 64px;
   min-height: 90vh;
   background-color: white;
-  /* overflow: overlay; */
+  overflow: hidden;
+}
+
+/* .dropdown {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+} */
+
+.dropdown-content {
+  background-color: black;
+  color: lightgrey;
+  font-size: 1.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.expandable {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-link {
+  font-size: 1vw;
+  text-align: center;
+  font-family: 'Montserrat' !important;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-left: -10%;
+  margin-right: -5%;
 }

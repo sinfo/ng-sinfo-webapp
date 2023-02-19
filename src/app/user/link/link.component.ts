@@ -167,7 +167,7 @@ export class LinkComponent implements OnInit {
     this.scannerActive = false
     if (this.me.role === 'company') {
       if (data.user.role !== 'company') {
-        this.signUser()
+        if(!this.linkToEdit) this.signUser()
         this.companyCannonService.getLink(this.company.id, this.userRead.id)
           .subscribe(_link => {
             if (_link) {

@@ -1,37 +1,45 @@
-import { Component, OnInit } from '@angular/core'
-import { Sponsor } from '../../landing-page/sponsors/sponsor.model'
-import { SponsorService } from '../../landing-page/sponsors/sponsor.service'
-import { Promocode } from './promocode.model'
-import { PromocodesService } from './promocodes.service'
+import { Component, OnInit } from "@angular/core";
+import { Sponsor } from "../../landing-page/sponsors/sponsor.model";
+import { SponsorService } from "../../landing-page/sponsors/sponsor.service";
+import { Promocode } from "./promocode.model";
+import { PromocodesService } from "./promocodes.service";
+import { DatePipe } from "@angular/common";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { PromocodesDialogComponent } from "./promocodes-dialog/promocodes-dialog.component";
 
 @Component({
-  selector: 'app-promocodes',
-  templateUrl: './promocodes.component.html',
-  styleUrls: ['./promocodes.component.css']
+  selector: "app-promocodes",
+  templateUrl: "./promocodes.component.html",
+  styleUrls: ["./promocodes.component.css"],
+  providers: [DatePipe],
 })
 export class PromocodesComponent implements OnInit {
-  partners: Promocode[]
-  isPartnersEmpty: boolean
+  partners: Promocode[];
+  isPartnersEmpty: boolean;
 
   constructor(
     private partnerService: PromocodesService,
-    private sponsorService: SponsorService
-  ) { }
+    private sponsorService: SponsorService,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog,
+    private datePipe: DatePipe
+  ) {}
 
   ngOnInit() {
-    this.getPartners()
+    this.getPartners();
   }
 
   getPartners(): void {
-    this.partnerService.getPartners()
-      .subscribe(partners => {
-        this.getImages(partners)
-        partners.forEach(p => {
-          if (this.isValidHttpUrl(p.code)) {
-            p.link = true
-          }
-        })
-      })
+    this.partnerService.getPartners().subscribe((partners) => {
+      this.getImages(partners);
+      partners.forEach((p) => {
+        p.expirationDate = this.datePipe.transform(p.expire, "yyyy-MM-dd");
+        if (this.isValidHttpUrl(p.code)) {
+          p.link = true;
+        }
+      });
+    });
   }
 
   isValidHttpUrl(string) {
@@ -47,34 +55,39 @@ export class PromocodesComponent implements OnInit {
   }
 
   getImages(partners: Promocode[]) {
+    partners.forEach((p) => {
+      this.sponsorService
+        .getSponsor(p.company)
+        .subscribe((sponsor: Sponsor) => {
+          p.img = sponsor.img;
+          p.name = sponsor.name;
+        });
+    });
 
-    partners.forEach(p => {
-      this.sponsorService.getSponsor(p.company).subscribe((sponsor: Sponsor) => {
-        p.img = sponsor.img
-        p.name = sponsor.name
-      })
-    })
-
-    this.partners = partners
-    this.isPartnersEmpty = this.partners.length === 0
+    this.partners = partners;
+    this.isPartnersEmpty = this.partners.length === 0;
   }
 
   copy(event, str: string) {
-    const el = document.createElement('textarea')
-    el.value = str
-    document.body.appendChild(el)
-    el.select()
-    document.execCommand('copy')
-    document.body.removeChild(el)
-    event.stopPropagation()
+    const el = document.createElement("textarea");
+    el.value = str;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+    event.stopPropagation();
 
-    const ttp = document.getElementById('tooltip-' + str)
-    ttp.innerHTML = 'Copied!'
-
-    setTimeout((_str) => {
-      const _ttp = document.getElementById('tooltip-' + _str)
-      _ttp.innerHTML = 'Copy'
-    }, 1500, str)
+    this.snackBar.open(`Code copied!`, "Ok", {
+      panelClass: ["mat-toolbar", "mat-primary"],
+      duration: 2000,
+    });
   }
 
+  openDialog(promocode) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.data = promocode;
+
+    this.dialog.open(PromocodesDialogComponent, dialogConfig);
+  }
 }

@@ -21,7 +21,8 @@ enum LoginType {
   GOOGLE,
   FACEBOOK,
   LINKEDIN,
-  FENIX
+  FENIX,
+  MICROSOFT
 }
 
 @Injectable()
@@ -74,6 +75,15 @@ export class AuthService {
       )
   }
 
+  microsoft(code): Observable<CannonToken> {
+    this.loginType = LoginType.MICROSOFT
+    return this.http.post<CannonToken>(`${this.authUrl}/microsoft`,  { code }, httpOptions)
+      .pipe(
+        tap(cannonToken => cannonToken.loginWith = 'microsoft'),
+        catchError(this.handleError<CannonToken>('Microsoft Login'))
+      )
+  }
+
   getToken(): CannonToken | null | undefined {
     return this.storageService.getItem('cannon_token') as CannonToken
   }
@@ -108,7 +118,6 @@ export class AuthService {
     //     break;
     //   case 'google':
     //     if (isGoogleActive && !gapi.auth2) {
-    //       console.log(gapi)
     //       await new Promise((resolve, reject) => {
     //         gapi.load('auth2', resolve)
     //       })
@@ -117,10 +126,8 @@ export class AuthService {
     //         cookiepolicy: 'single_host_origin',
     //         scope: GOOGLE_SCOPE
     //       })
-    //       console.log(gapi.auth2)
     //       gapi.auth2.getAuthInstance().disconnect()
     //     } else if (isGoogleActive && gapi.auth2) {
-    //       console.log('2')
     //       gapi.auth2.getAuthInstance().disconnect()
     //     }
     //     break;

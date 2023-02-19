@@ -16,6 +16,7 @@ export class SpeakerService {
   private speakersUrl = environment.deckUrl + '/api/speakers'
   private speakers: Speaker[]
   private eventId: string
+  isCollapsed = false
 
   constructor(
     private http: HttpClient,

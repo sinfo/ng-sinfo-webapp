@@ -31,6 +31,10 @@ a.btn i {
   background-color: #0077B5;
 }
 
+.btn-microsoft {
+  background-color: #464646;
+}
+
 .btn {
   border: 0px;
   color: #fff;
@@ -56,4 +60,9 @@ a.btn i {
 .buttons{
   display: flex;
   justify-content: space-around;
+}
+
+.button-google {
+  display: flex;
+  justify-content: center;
 }

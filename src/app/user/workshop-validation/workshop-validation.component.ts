@@ -92,7 +92,6 @@ export class WorkshopValidationComponent implements OnInit {
       sessions.sort((a, b) => {
         return new Date(a.date).toISOString() <= new Date(b.date).toISOString() ? -1 : 1
       })
-      console.log(sessions)
       this.workshops = sessions
     })
   }
