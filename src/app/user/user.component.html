@@ -33,7 +33,7 @@
 </mat-toolbar>
 
 <mat-sidenav-container [hasBackdrop]="false" class="sidenav-container">
-  <mat-sidenav #sidenav mode="side" [opened]="opened" class="sidenav">
+  <mat-sidenav #sidenav mode="over" [opened]="opened" class="sidenav" [disableClose]="true">
     <mat-nav-list class="navlist">
       <a mat-list-item href="/" target="_blank" (click)="sidenav.toggle()">
         <div class="navigation-link">
