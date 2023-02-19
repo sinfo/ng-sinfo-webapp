@@ -7,6 +7,7 @@
 </mat-toolbar>
 
 <section class="section">
+  
   <div class="container">
     <div class="align-center">
       <i class="icon section-icon fa fa-sign-in"></i>
@@ -14,30 +15,31 @@
     </div>
     <br />
     <br />
-
     <app-loading [content]="!submitting"></app-loading>
-
-    <div class="row align-center" *ngIf="!submitting">
-      <div class="col-md-4 button-google">
+    <div class="align-center" *ngIf="!submitting">
+      <div class="button-google">
         <div id="google-button"></div>
       </div>
-
-      <div class="col-md-4">
-        <a href="{{ linkedinUrlAuth }}" class="btn btn-linkedin">
-          <i class="fa fa-linkedin"></i>
-          Sign in with Linkedin
-        </a>
-      </div>
-
-      <div class="col-md-4">
-        <a href="{{ fenixUrlAuth }}" class="btn btn-fenix">
+      <br>
+      <br>
+      <!-- <a href="#" class="butn">Button</a> -->
+      <a href="{{ linkedinUrlAuth }}" class="buttons btn-linkedin">
+        <i class="fa fa-linkedin"></i>
+        Sign in with LinkedIn
+      </a>
+      <br>
+      <br>
+      <br>
+      <div class="align-center">
+        <a href="{{ fenixUrlAuth }}" class="buttons btn-fenix">
           <i class="fa fa-graduation-cap"></i>
           Sign in with Fenix
         </a>
       </div>
-
-      <div class="col-md-4 ">
-        <a href="{{ microsoftUrlAuth }}" class="btn btn-microsoft">
+      <br>
+      <br>
+      <div class="align-center">
+        <a href="{{ microsoftUrlAuth }}" class="buttons btn-microsoft">
           <i class="fa fa-windows"></i>
           Sign in with Microsoft
         </a>
