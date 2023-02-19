@@ -1,14 +1,12 @@
 export class Achievement {
   constructor(
-    public id: string,
     public name: string,
     public event: string,
-    public validity: {
-      from: Date,
-      to: Date
-    },
+    public validFrom: Date,
+    public validTo: Date,
     public kind: string,
     public value: number,
+    public id?: string,
     public users?: [
       string
     ],

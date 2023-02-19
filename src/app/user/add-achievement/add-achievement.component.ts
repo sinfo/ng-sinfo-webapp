@@ -36,12 +36,7 @@ export class AddAchievementComponent implements OnInit {
       this.eventId = event.id;
     });
 
-    const validity = {
-      from: new Date(),
-      to: new Date(),
-    };
-
-    this.achievement = new Achievement("", "", this.eventId, validity, "", 0);
+    this.achievement = new Achievement("", this.eventId, new Date(), new Date(), "", 0);
   }
 
   ngOnInit(): void {}
@@ -55,10 +50,8 @@ export class AddAchievementComponent implements OnInit {
       event: this.eventId,
       session: form.session,
       value: Number(form.value),
-      validity: {
-        from: new Date(form.from),
-        to: new Date(form.to),
-      },
+      validFrom: new Date(form.from),
+      validTo: new Date(form.to),
       kind: form.kind,
       description: form.description,
       category: form.category,
@@ -66,11 +59,7 @@ export class AddAchievementComponent implements OnInit {
     };
 
     Object.keys(ach).forEach((key) => {
-      if (key == 'validity') {
-        formData.append(key, JSON.stringify(ach[key]));
-      } else {
-        formData.append(key, ach[key]);
-      }
+      formData.append(key, ach[key]);
     });
 
     this.achievementService.createAchievement(formData).subscribe(() => {

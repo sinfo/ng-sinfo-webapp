@@ -21,18 +21,6 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- <mat-form-field appearance="fill" class="field">
-      <mat-label>ID</mat-label>
-      <input
-        matInput
-        id="id"
-        required
-        name="id"
-        #id="ngModel"
-        [(ngModel)]="achievement.id"
-      />
-    </mat-form-field> -->
-
     <mat-form-field appearance="fill" class="field">
       <mat-label>Name</mat-label>
       <input
@@ -114,9 +102,9 @@
           <input
             matInput
             [matDatepicker]="from"
-            [(value)]="achievement.validity.from"
+            [(value)]="achievement.validFrom"
             name="from"
-            [(ngModel)]="achievement.validity.from"
+            [(ngModel)]="achievement.validFrom"
           />
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle
@@ -135,9 +123,9 @@
           <input
             matInput
             [matDatepicker]="to"
-            [(value)]="achievement.validity.to"
+            [(value)]="achievement.validTo"
             name="to"
-            [(ngModel)]="achievement.validity.to"
+            [(ngModel)]="achievement.validTo"
           />
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle
