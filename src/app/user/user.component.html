@@ -1,6 +1,6 @@
 <!-- <app-menu [user]="user"></app-menu> -->
 <mat-toolbar class="topbar">
-  <button
+  <!-- <button
     mat-icon-button
     style="color: white; background-color: black"
     class="menu-icon"
@@ -17,7 +17,7 @@
     >
     <mat-icon *ngIf="!user"> menu</mat-icon>
     <mat-icon *ngIf="isCvUpdated || (user && user.role === 'company')" style="transform: scale(1.5)">menu</mat-icon>
-  </button>
+  </button> -->
 
   <a routerLink="/user" class="logo-sinfo">
     <img id="logo_white" src="assets/img/logo-branco2.png" alt="Sinfo" />
@@ -32,7 +32,7 @@
   </a>
 </mat-toolbar>
 
-<mat-sidenav-container [hasBackdrop]="false" class="sidenav-container" autosize>
+<mat-sidenav-container [hasBackdrop]="false" class="sidenav-container" [autosize]="true">
   <mat-sidenav #sidenav mode="side" [opened]="opened" class="sidenav" [disableClose]="true">
     <mat-nav-list class="navlist">
       <a mat-list-item href="/" target="_blank" (click)="sidenav.toggle()">
