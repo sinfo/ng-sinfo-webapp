@@ -7,14 +7,11 @@ import { AuthService } from '../auth/auth.service'
 import { Link, Note } from '../user/link/link.model'
 import { environment } from '../../environments/environment'
 import { User } from '../user/user.model'
-import { EventService } from '../events/event.service'
-import { Event } from '../events/event.model'
 import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class CompanyCannonService {
   private companiesUrl = environment.cannonUrl + '/company'
-  private event: Event
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -25,18 +22,10 @@ export class CompanyCannonService {
     private messageService: MessageService,
     private snackBar: MatSnackBar,
     private authService: AuthService,
-    private eventService: EventService
-  ) {
-    this.eventService.getCurrent().subscribe(event => this.event = event)
-  }
+  ) {}
 
   getLink(companyId: string, attendeeId: string): Observable<Link> {
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: this.headers
     }
 
@@ -48,11 +37,6 @@ export class CompanyCannonService {
 
   getLinks(companyId: string): Observable<Link[]> {
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: this.headers
     }
 
@@ -84,11 +68,6 @@ export class CompanyCannonService {
 
   updateLink(companyId: string, userId: string, attendeeId: string, note: Note): Observable<Link> {
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: this.headers
     }
 
@@ -103,11 +82,6 @@ export class CompanyCannonService {
 
   deleteLink(companyId: string, attendeeId: string) {
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: this.headers
     }
 
