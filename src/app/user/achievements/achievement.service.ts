@@ -164,15 +164,15 @@ export class AchievementService {
       .pipe(catchError(this.handleError<Achievement>("create secret")));
   }
 
-  createAchievement(achievement: Achievement): Observable<Achievement> {
+  createAchievement(formData: FormData): Observable<Achievement> {
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Bearer ${this.authService.getToken().token}`,
+        Authorization: `Bearer ${this.authService.getToken().token}`
       }),
     };
 
     return this.http
-      .post<Achievement>(this.achievementsUrl, achievement, httpOptions)
+      .post<Achievement>(this.achievementsUrl, formData, httpOptions)
       .pipe(catchError(this.handleError<Achievement>("create achievement")));
   }
 

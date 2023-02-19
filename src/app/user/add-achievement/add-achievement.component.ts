@@ -47,8 +47,10 @@ export class AddAchievementComponent implements OnInit {
   ngOnInit(): void {}
 
   submitAchievement(form: any) {
+    const formData: FormData = new FormData();
+    formData.append("img", this.achievement.img, this.achievement.img.name);
+
     const ach = {
-      id: form.id,
       name: form.name,
       event: this.eventId,
       session: form.session,
@@ -61,21 +63,24 @@ export class AddAchievementComponent implements OnInit {
       description: form.description,
       category: form.category,
       instructions: form.instructions,
-      // img: this.achievement.img,
     };
 
-    console.log(ach);
+    Object.keys(ach).forEach((key) => {
+      if (key == 'validity') {
+        formData.append(key, JSON.stringify(ach[key]));
+      } else {
+        formData.append(key, ach[key]);
+      }
+    });
 
-    this.achievementService
-      .createAchievement(ach as Achievement)
-      .subscribe(() => {
-        this.submitted = true;
-      });
+    this.achievementService.createAchievement(formData).subscribe(() => {
+      this.submitted = true;
+    });
   }
 
   uploadImage(event) {
     if (event.target.files && event.target.files.length > 0) {
-      const file = (event.target.files[0] as File);
+      const file = event.target.files[0] as File;
       this.achievement.img = file;
     }
   }
