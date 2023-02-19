@@ -1,1 +1,24 @@
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.25rem 0;
+}
 
+.imageUpload {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.center {
+  text-align: center;
+}
+
+.upload-icon {
+  font-size: 1.4rem;
+  margin-bottom: -0.35rem;
+}
