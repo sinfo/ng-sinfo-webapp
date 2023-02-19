@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  deckUrl: 'https://deck.sinfo.org',
   cannonUrl: 'https://cannon.sinfo.org',
   url_to_id: {
     '28-sinfo': '28-sinfo',

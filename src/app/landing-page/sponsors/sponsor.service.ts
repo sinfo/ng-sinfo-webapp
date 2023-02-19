@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Injectable()
 export class SponsorService {
-  private sponsorUrl = environment.deckUrl + '/api/companies'
+  private sponsorUrl = environment.cannonUrl + '/company'
   private sponsors: Sponsor[]
   private eventId: string
 

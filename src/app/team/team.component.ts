@@ -34,7 +34,6 @@ export class TeamComponent implements OnInit, OnChanges {
   isCollapsed = false
 
   constructor(
-    private router: Router,
     private teamService: TeamService
   ) { }
 
