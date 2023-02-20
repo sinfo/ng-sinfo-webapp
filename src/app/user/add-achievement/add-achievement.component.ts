@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { DateAdapter } from "@angular/material/core";
 import { AchievementService } from "../achievements/achievement.service";
 import { EventService } from "../../events/event.service";
 import { Achievement } from "../achievements/achievement.model";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-add-achievement",
@@ -12,7 +13,10 @@ import { Achievement } from "../achievements/achievement.model";
 export class AddAchievementComponent implements OnInit {
   submitted: Boolean;
   eventId: string;
-  achievement: Achievement;
+  imageFile: File;
+  kind: string;
+
+  @ViewChild('achievementForm') achievementForm;
 
   kinds = [
     { value: "stand", viewValue: "Stand" },
@@ -28,22 +32,23 @@ export class AddAchievementComponent implements OnInit {
   constructor(
     private dateAdapter: DateAdapter<Date>,
     private achievementService: AchievementService,
-    private eventService: EventService
+    private eventService: EventService,
+    private snackBar: MatSnackBar
   ) {
     this.submitted = false;
     this.dateAdapter.setLocale("en-GB"); //dd/MM/yyyy
     this.eventService.getCurrent().subscribe((event) => {
       this.eventId = event.id;
     });
-
-    this.achievement = new Achievement("", this.eventId, new Date(), new Date(), "", 0);
   }
 
   ngOnInit(): void {}
 
   submitAchievement(form: any) {
+    this.submitted = true;
+
     const formData: FormData = new FormData();
-    formData.append("img", this.achievement.img, this.achievement.img.name);
+    formData.append("img", this.imageFile, this.imageFile.name);
 
     const ach = {
       name: form.name,
@@ -59,18 +64,28 @@ export class AddAchievementComponent implements OnInit {
     };
 
     Object.keys(ach).forEach((key) => {
-      formData.append(key, ach[key]);
+      if (ach[key])  {
+        formData.append(key, ach[key]);
+      }
     });
 
-    this.achievementService.createAchievement(formData).subscribe(() => {
-      this.submitted = true;
+    this.achievementService.createAchievement(formData).subscribe((msg) => {
+      if (msg) {
+        this.snackBar.open(`Done!`, "Ok", {
+          panelClass: ['mat-toolbar', 'mat-primary'],
+          duration: 2000
+        })  
+      }
     });
+
+    this.achievementForm.resetForm();
+    this.imageFile = null;
+    this.submitted = false;
   }
 
   uploadImage(event) {
     if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0] as File;
-      this.achievement.img = file;
+      this.imageFile = event.target.files[0] as File;
     }
   }
 }

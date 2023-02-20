@@ -8,12 +8,10 @@
       <mat-label>Kind</mat-label>
       <mat-select
         name="kind"
-        [(value)]="achievement.kind"
         id="kind"
         required
         name="kind"
-        #kind="ngModel"
-        [(ngModel)]="achievement.kind"
+        [(ngModel)]="kind"
       >
         <mat-option *ngFor="let kind of kinds" [value]="kind.value">
           {{ kind.viewValue }}
@@ -25,20 +23,18 @@
       <mat-label>Name</mat-label>
       <input
         matInput
-        [(value)]="achievement.name"
         id="name"
         required
         name="name"
-        #name="ngModel"
-        [(ngModel)]="achievement.name"
+        ngModel
       />
     </mat-form-field>
 
     <mat-form-field
       *ngIf="
-        achievement.kind === 'presentation' ||
-        achievement.kind === 'workshop' ||
-        achievement.kind === 'keynote'
+        kind === 'presentation' ||
+        kind === 'workshop' ||
+        kind === 'keynote'
       "
       appearance="fill"
       class="field"
@@ -46,12 +42,10 @@
       <mat-label>Session ID</mat-label>
       <input
         matInput
-        [(value)]="achievement.session"
         id="session"
         required
         name="session"
-        #session="ngModel"
-        [(ngModel)]="achievement.session"
+        ngModel
       />
     </mat-form-field>
 
@@ -75,21 +69,19 @@
         name="img"
       />
     </button>
-    <span *ngIf="achievement.img">
+    <span *ngIf="imageFile">
       <mat-icon class="check-icon">check_circle</mat-icon>
-      <p>{{ achievement.img.name }}</p>
+      <p>{{ imageFile.name }}</p>
     </span>
 
     <mat-form-field appearance="fill" class="field">
       <mat-label>Value</mat-label>
       <input
         matInput
-        [(value)]="achievement.value"
         id="value"
         required
         name="value"
-        #value="ngModel"
-        [(ngModel)]="achievement.value"
+        ngModel
       />
     </mat-form-field>
 
@@ -102,9 +94,8 @@
           <input
             matInput
             [matDatepicker]="from"
-            [(value)]="achievement.validFrom"
             name="from"
-            [(ngModel)]="achievement.validFrom"
+            ngModel
           />
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle
@@ -123,9 +114,8 @@
           <input
             matInput
             [matDatepicker]="to"
-            [(value)]="achievement.validTo"
             name="to"
-            [(ngModel)]="achievement.validTo"
+            ngModel
           />
           <mat-hint>DD/MM/YYYY</mat-hint>
           <mat-datepicker-toggle
@@ -141,11 +131,9 @@
       <mat-label>Description (optional)</mat-label>
       <input
         matInput
-        [(value)]="achievement.description"
         id="description"
         name="description"
-        #description="ngModel"
-        [(ngModel)]="achievement.description"
+        ngModel
       />
     </mat-form-field>
 
@@ -153,11 +141,9 @@
       <mat-label>Category (optional)</mat-label>
       <input
         matInput
-        [(value)]="achievement.category"
         id="category"
         name="category"
-        #category="ngModel"
-        [(ngModel)]="achievement.category"
+        ngModel
       />
     </mat-form-field>
 
@@ -165,11 +151,9 @@
       <mat-label>Instructions (optional)</mat-label>
       <input
         matInput
-        [(value)]="achievement.instructions"
         id="instructions"
         name="instructions"
-        #instructions="ngModel"
-        [(ngModel)]="achievement.instructions"
+        ngModel
       />
     </mat-form-field>
 
