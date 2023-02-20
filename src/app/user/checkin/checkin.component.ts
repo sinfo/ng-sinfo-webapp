@@ -127,8 +127,8 @@ export class CheckinComponent implements OnInit {
     localStorage.setItem('selectedSession', JSON.stringify(this.selectedSession))
   }
 
-  receiveUser(user: User) {
-    this.users.push(user)
+  receiveUser(data: {user:User,company}) {
+    this.users.push(data.user)
     localStorage.setItem('users', JSON.stringify(this.users))
     this.submitLabel = `Submit ${this.users.length + this.unregistered} users`
     this.updateInsideScannerMsg()

@@ -16,7 +16,7 @@
       Workshop: {{session.name}}
     </h5>
 
-    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive">
+    <app-qrcode-scanner (readData)="receiveUser($event)" [camStarted]="scannerActive">
     </app-qrcode-scanner>
 
     <div class="row destroy">

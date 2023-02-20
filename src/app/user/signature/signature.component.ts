@@ -50,8 +50,8 @@ export class SignatureComponent implements OnInit {
     })
   }
 
-  receiveUser (user: User) {
-    this.userRead = user
+  receiveUser (data:{user:User, company:Company}) {
+    this.userRead = data.user
     this.signatureService.checkSignature(this.userRead, this.myCompany)
   }
 }
