@@ -116,6 +116,7 @@ import { MicrosoftLoginComponent } from "./auth/login/microsoft.component";
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { PromocodesDialogComponent } from "./user/promocodes/promocodes-dialog/promocodes-dialog.component";
 import { RouterModule } from '@angular/router';
+import { AddAchievementComponent } from "./user/add-achievement/add-achievement.component";
 
 library.add(fas);
 
@@ -183,6 +184,7 @@ library.add(fas);
     GdprDialogComponent,
     PromocodesDialogComponent,
     WorkshopValidationComponent,
+    AddAchievementComponent
   ],
   imports: [
     MatSlideToggleModule,

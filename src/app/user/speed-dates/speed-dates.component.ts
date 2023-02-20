@@ -80,7 +80,7 @@ export class SpeedDatesComponent implements OnInit {
 
         this.achievements.forEach(element => {
           element = new SpeedDate(element)
-          let from = new Date(element.achievement.validity.from)
+          let from = new Date(element.achievement.validFrom)
           let day = Math.floor((from.getTime() - new Date(this.event.begin).getTime()) / (3600 * 1000 * 24))
           if (day < 0) { day = 0 }
           this.days[day].achievements.push(element)

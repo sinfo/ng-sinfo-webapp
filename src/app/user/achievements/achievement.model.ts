@@ -1,26 +1,27 @@
 export class Achievement {
-  id: string
-  name: string
-  code: {
-    created: Date,
-    expiration: Date,
-    code: String
-  }
-  validity: {
-    from: Date,
-    to: Date
-  }
-  unregisteredUsers: number
-  session: string
-  img: string
-  kind: string
-  description: string
-  category: string
-  users: [
-    string
-  ]
-  instructions: string
-  value: number
+  constructor(
+    public name: string,
+    public event: string,
+    public validFrom: Date,
+    public validTo: Date,
+    public kind: string,
+    public value: number,
+    public id?: string,
+    public users?: [
+      string
+    ],
+    public code?: {
+      created: Date,
+      expiration: Date,
+      code: String
+    },
+    public unregisteredUsers?: number,
+    public img?: File,
+    public session?: string,
+    public description?: string,
+    public category?: string,
+    public instructions?: string,
+  ) {}
 }
 
 export class SpeedDate {
