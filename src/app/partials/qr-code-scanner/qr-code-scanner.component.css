@@ -146,3 +146,9 @@ zxing-scanner {
     justify-content: stretch;
     z-index: -1;
 }
+
+.mini-image{
+    width: 100%;
+    border: none;
+    border-radius: 50%;
+}

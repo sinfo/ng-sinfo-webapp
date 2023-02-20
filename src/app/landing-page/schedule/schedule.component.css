@@ -183,3 +183,7 @@
 #subtitle {
   color: #008ae6;
 }
+
+* {
+  font-family: 'Montserrat' !important;
+}

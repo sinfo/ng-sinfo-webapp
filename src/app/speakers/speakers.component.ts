@@ -5,11 +5,9 @@ import { SpeakerService } from './speaker.service'
 import { EventService } from '../events/event.service'
 import {
   trigger,
-  state,
   style,
   animate,
-  transition,
-  AUTO_STYLE
+  transition
 } from '@angular/animations';
 
 @Component({
@@ -36,7 +34,6 @@ export class SpeakersComponent implements OnInit, OnChanges {
   constructor(
     private router: Router,
     private speakerService: SpeakerService,
-    private eventService: EventService
   ) { }
 
   ngOnInit() {
@@ -48,19 +45,11 @@ export class SpeakersComponent implements OnInit, OnChanges {
   }
 
   getSpeakers(): void {
-    this.speakerService.getSpeakers(this.eventId)
-      .subscribe(speakers => {
-        if (speakers.length !== 0) {
-          this.speakers = speakers
-          this.previousSpeakers = false
-        } else {
-          this.eventService.getPrevious().subscribe(event => {
-            this.eventId = event.id
-            this.speakerService.getSpeakers(this.eventId)
-              .subscribe(previousSpeakers => this.speakers = previousSpeakers)
-            this.previousSpeakers = true
-          })
-        }
+    this.speakerService.getSpeakers()
+      .subscribe(speakerData => {
+        this.eventId = speakerData.eventId
+        this.previousSpeakers = speakerData.previousEdition,
+        this.speakers = speakerData.speakers
       })
   }
 

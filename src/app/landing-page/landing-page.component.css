@@ -8,13 +8,12 @@
 }
 
 .example-card {
-  margin: 2%;
+  margin: 5%;
   display: flex;
   justify-content: center;
   /* align horizontal */
   align-items: center;
   /* align vertical */
-  max-width: 30vw;
 }
 
 .card-title {
@@ -30,10 +29,9 @@
 }
 
 .event-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
 }
 
 
@@ -312,4 +310,8 @@
 
 .example-card:hover {
   box-shadow: -1px 10px 29px 0px rgba(26, 11, 82, 0.4);
+}
+
+*:not(.intro, .fa, .fa-chevron-down, mat-icon) {
+  font-family: 'Montserrat' !important;
 }

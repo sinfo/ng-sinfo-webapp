@@ -142,7 +142,7 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content style=" overflow: overlay;">
+  <mat-sidenav-content style=" overflow: overlay; font-family: 'Montserrat:  !important;';">
     <div class="content">
       <section id="hero" class="hero-section light-text">
         <div class="video-bg">
@@ -181,20 +181,22 @@
       <div #schedule>
         <app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
       </div>
+      <mat-divider></mat-divider>
 
       <div #speakerstab>
         <app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
       </div>
-
+      <mat-divider></mat-divider>
 
       <div #stands>
         <app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
       </div>
+      <mat-divider></mat-divider>
 
       <!-- STANDS -->
 
       <section #event class="price-area section-padding" id="the-event">
-        <div class="container">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
           <div class="row">
             <div class="text-center">
               <div class="page-title">
@@ -305,6 +307,8 @@
         </div>
       </section>
 
+      <mat-divider></mat-divider>
+
       <section #uploadCv class="section bg-cover overlay newsletterbg light-text align-center">
         <div class="container">
           <h2>
@@ -324,9 +328,16 @@
       <div #sponsorstab>
         <app-sponsors *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
       </div>
+
+      <mat-divider></mat-divider>
+
+
       <app-partners #partners *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
 
+      <mat-divider></mat-divider>
+
       <app-team *ngIf="eventId" [eventId]="eventId"></app-team>
+
 
       <section #newsletter class="section bg-cover overlay newsletterbg light-text align-center">
         <div class="container">
@@ -457,6 +468,7 @@
           </div>
         </div>
       </section>
+      <mat-divider></mat-divider>
 
       <section #faq class="price-area section-padding" style="margin-bottom: 5%;" id="the-event">
         <div class="container">

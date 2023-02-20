@@ -112,6 +112,7 @@ import { WorkshopValidationComponent } from './user/workshop-validation/workshop
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialExampleModule } from '../material.module';
+import { MicrosoftLoginComponent } from "./auth/login/microsoft.component";
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { PromocodesDialogComponent } from "./user/promocodes/promocodes-dialog/promocodes-dialog.component";
 import { RouterModule } from '@angular/router';
@@ -140,6 +141,7 @@ library.add(fas);
     LoadingComponent,
     LoginComponent,
     LinkedinLoginComponent,
+    MicrosoftLoginComponent,
     MyProfileComponent,
     UserComponent,
     SessionComponent,

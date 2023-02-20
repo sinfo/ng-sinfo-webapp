@@ -23,15 +23,10 @@
   margin-top: 30vh;
 }
 
-.padding-margin-0 {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
 .promocode-image {
-  margin: 0 !important;
+  margin: 0 auto;
   height: 100px;
-  width: auto;
+  width: max-content;
 }
 
 .promocode-name {

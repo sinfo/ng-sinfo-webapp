@@ -25,7 +25,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   // tslint:disable-next-line:max-line-length
   linkedinUrlAuth = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${environment.linkedin.clientId}&redirect_uri=${environment.linkedin.redirectUrl}&state=SINFO&scope=r_liteprofile%20r_emailaddress`;
 
-  private isLoggedIn = false;
+  microsoftUrlAuth = `${environment.microsoft.authority}/oauth2/v2.0/authorize?client_id=${environment.microsoft.clientId}&response_type=code&redirect_uri=${environment.microsoft.redirectUrl}&response_mode=query&scope=user.read%20openid%20email&state=12345`
+
+  private isLoggedIn = false
 
   constructor(
     private authService: AuthService,
@@ -104,7 +106,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
         type: "standard",
         shape: "rectangular",
         text: "signin_with",
-        logo_alignment: "left",
+        logo_alignment: "center",
+        locale: "en_US",
         width: window.innerWidth < 400 ? window.innerWidth - 16 : 400
       }
     );

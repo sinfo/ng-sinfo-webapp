@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  deckUrl: 'https://deck.sinfo.org',
   cannonUrl: 'https://cannon-staging.sinfo.org',
   url_to_id: {
     '28-sinfo': '28-sinfo',
@@ -19,6 +18,13 @@ export const environment = {
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '30-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'AI & ML',
+      'Game Dev',
+      'Tech Trends'
+    ],
     '28-sinfo': [
       'Software Engineering',
       'Multimedia',
@@ -77,5 +83,10 @@ export const environment = {
   linkedin: {
     clientId: '77i6uer5luxghl',
     redirectUrl: 'https://app-staging.sinfo.org/login/linkedin'
+  },
+  microsoft: {
+    clientId: 'c572d99a-8c82-47aa-89b4-01dc934858fc',
+    redirectUrl: 'https://app-staging.sinfo.org/login/microsoft',
+    authority: 'https://login.microsoftonline.com/common'
   }
 }

@@ -1,5 +1,6 @@
 .wrapper {
-  margin-top: 10vh;
+  margin: 10vh 5vh 0;
+  width: 100%;
 }
 
 .sponsors {
@@ -135,4 +136,8 @@ h2 {
   .chev-close {
     font-size: 9vw;
   }
+}
+
+*:not(mat-icon) {
+  font-family: 'Montserrat' !important;
 }

@@ -9,6 +9,8 @@
         expand_more
       </mat-icon>
     </h3>
+    <p *ngIf="!previousSpeakers && speakers.length > 0">Check out our wonderful speakers, primed and ready to tell their
+      stories and give you their advice. Don't miss their keynotes!</p>
     <h3 (click)="isCollapsed = !isCollapsed" *ngIf="previousSpeakers && speakers.length > 0">Previous Speakers<mat-icon
         [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
         expand_more
@@ -17,7 +19,7 @@
     <br />
     <br />
 
-    <span *ngIf="speakers.length > 0 && !isCollapsed" @myInsertRemoveTrigger>
+    <span *ngIf="speakers.length > 0 && !isCollapsed" @myInsertRemoveTrigger class="align-center">
       <div class="col-sm-12">
         <app-loading [content]="speakers">
         </app-loading>
@@ -46,9 +48,10 @@
             [ngStyle]="{'background-image': speaker.img? 'url('+speaker.img+')' : 'url(https://static.sinfo.org/static/25-sinfo/speakers/hacky.png)' }">
 
           </mat-card>
-          <p class="text-alt" style="word-wrap:anywhere">
+          <p class="text-alt" style="word-wrap:anywhere; ">
             <small>{{ speaker.title }}</small>
           </p>
+          <p class="divider"></p>
         </div>
 
       </div>

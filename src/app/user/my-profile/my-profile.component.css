@@ -97,8 +97,8 @@ div.achivements-wrapper img.achievement {
   background-color: #fafafa;
 }
 
-.card {
-  margin: 5%;
+.card{
+  margin: 0rem 1.5rem 1.5rem 1.5rem;
   height: 100%;
   background-color: #2C49A6;
   color: white;
@@ -119,7 +119,7 @@ div.achivements-wrapper img.achievement {
 }
 
 .qr-code-title {
-  margin: 0 0 20px 0;
+  margin: 0 0 0.5rem 0;
 }
 
 .qrcode {
@@ -142,6 +142,11 @@ div.achivements-wrapper img.achievement {
 
 .name {
   color: white;
+}
+
+.promocode-info {
+  margin: 0px 15px 0.5rem 15px;
+  font-size: 14px;
 }
 
 /* .qrcode-animation {
@@ -215,7 +220,7 @@ div.achivements-wrapper img.achievement {
   z-index: -1;
 }
 
-.inputfile+label {
+/* .inputfile + label {
   font-size: 11px;
   font-weight: 700;
   color: white;
@@ -231,7 +236,7 @@ div.achivements-wrapper img.achievement {
 .inputfile:focus+label,
 .inputfile+label:hover {
   background-color: red;
-}
+} */
 
 .btn {
   margin: 0;
@@ -288,4 +293,22 @@ div.achivements-wrapper img.achievement {
   display: inline-block;
   grid-area: 1 / 1 / 2 / 2;
   justify-self: center;
+}
+
+.alert {
+  width: fit-content !important;
+  margin: 0px auto 0.5rem auto;
+}
+
+.icon-alert {
+  vertical-align: middle;
+}
+
+.close-icon {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.qrcode-margin {
+  margin: 0 0.25rem;
 }
