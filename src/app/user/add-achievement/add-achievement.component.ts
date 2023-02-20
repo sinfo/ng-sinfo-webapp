@@ -42,7 +42,7 @@ export class AddAchievementComponent implements OnInit {
     this.eventService.getCurrent().subscribe((event) => {
       this.eventId = event.id;
     });
-    this.sessionService.getSessions(this.eventId).subscribe((sessions) => {
+    this.sessionService.getSessions(this.eventId, true).subscribe((sessions) => {
       this.sessionIds = sessions.map(session => session.id);
     });
   }
@@ -83,6 +83,9 @@ export class AddAchievementComponent implements OnInit {
       }
     });
 
+    this.sessionIds = this.sessionIds.filter(function(session) {
+      return session !== form.session;
+    });
     this.achievementForm.resetForm();
     this.imageFile = null;
     this.submitted = false;

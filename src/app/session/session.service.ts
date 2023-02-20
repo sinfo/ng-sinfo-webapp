@@ -30,14 +30,14 @@ export class SessionService {
 
   ) { }
 
-  getSessions(eventId: string): Observable<Session[]> {
+  getSessions(eventId: string, withoutAchievement: boolean = false): Observable<Session[]> {
     if (this.sessions && this.eventId === eventId) {
       return of(this.sessions)
     }
 
     this.eventId = eventId
 
-    return this.http.get<Session[]>(this.sessionsUrl)
+    return this.http.get<Session[]>(this.sessionsUrl + '?withoutAchievements=' + withoutAchievement)
       .pipe(
         tap(sessions => {
           this.sessions = sessions
