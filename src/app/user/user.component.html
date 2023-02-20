@@ -257,6 +257,13 @@
       </a>
       <div class="gap"></div>
       <div class="bottom">
+        <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()"
+          routerLinkActive="navigation-link active" href="https://github.com/sinfo/ng-sinfo-webapp/issues" target="_blank">
+          <div class="navigation-link">
+            <mat-icon>feedback</mat-icon>
+            <span class="list-item">Report a Bug</span>
+          </div>
+        </a>
         <a *ngIf="isLoggedIn" mat-list-item (click)="sidenav.toggle()" routerLink="/user/privacy-policy"
           routerLinkActive="navigation-link active">
           <div class="navigation-link">
