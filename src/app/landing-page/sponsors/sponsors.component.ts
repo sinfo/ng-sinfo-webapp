@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { Sponsor } from './sponsor.model'
+import { ActivatedRoute, Router, Params } from '@angular/router'
+
 import {
   trigger,
   state,
@@ -8,6 +10,8 @@ import {
   transition,
   AUTO_STYLE
 } from '@angular/animations';
+
+import { Company } from '../../company/company.model';
 
 @Component({
   selector: 'app-sponsors',
@@ -37,7 +41,10 @@ export class SponsorsComponent implements OnInit {
   showAll = false
   isAllSponsors = false
 
-  constructor() { }
+  constructor(private router: Router,
+  ) {
+
+  }
 
   ngOnInit() {
     this.displaySponsors(this.sponsors)
@@ -63,6 +70,10 @@ export class SponsorsComponent implements OnInit {
 
   show() {
     this.showAll = !this.showAll
+  }
+
+  onSelect(sponsor: Company): void {
+    this.router.navigate(['/sponsors', sponsor.id])
   }
 
 }

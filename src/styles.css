@@ -8135,6 +8135,7 @@ body::-webkit-scrollbar {
   width: 0px;
 }
 
+
 .pad {
   padding: 2.5% 1%;
 }
@@ -8145,4 +8146,36 @@ ng-scrollbar {
   --scrollbar-thumb-hover-color: gray;
   --scrollbar-border-radius: 4px;
   border: 1px solid darkgray;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
+
+  height: 10vh !important;
+}
+
+.navigation-link.active {
+  color: #004ecc !important;
+  border-bottom: 10px #004ecc !important;
 }

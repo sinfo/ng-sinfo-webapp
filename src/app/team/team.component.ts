@@ -49,7 +49,8 @@ export class TeamComponent implements OnInit, OnChanges {
   getTeam(): void {
     this.teamService.getTeam(this.eventId)
       .subscribe(team => {
-        this.team = team
+        this.team = team.filter(member => member.name !== 'ToolBot!')
+        console.log(this.team)
       })
   }
 }

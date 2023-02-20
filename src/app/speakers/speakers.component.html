@@ -25,7 +25,7 @@
 
       <div class="speakers">
 
-        <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
+        <!-- <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
           <div class="speaker">
             <div class="photo-wrapper square">
               <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
@@ -38,6 +38,17 @@
               <small>{{ speaker.title }}</small>
             </p>
           </div>
+        </div> -->
+
+        <div *ngFor="let speaker of speakers" class="member-div">
+          <h6 class="name">{{ speaker.name }}</h6>
+          <mat-card class="example-card speaker-card member"
+            [ngStyle]="{'background-image': speaker.img? 'url('+speaker.img+')' : 'url(https://static.sinfo.org/static/25-sinfo/speakers/hacky.png)' }">
+
+          </mat-card>
+          <p class="text-alt" style="word-wrap:anywhere">
+            <small>{{ speaker.title }}</small>
+          </p>
         </div>
 
       </div>

@@ -25,9 +25,9 @@
         <mat-tab *ngFor="let day of schedule; let i=index">
           <!-- Tab Label -->
           <ng-template mat-tab-label>
-            <div>
-              <h5 class="highlight" style="font-size: small;">{{day.theme}}</h5>
-              <h5 class="text-alt" style="font-size: small;">{{day.date | date:'dd-MM-yyyy':'+0000'}}</h5>
+            <div style="height: 75px">
+              <h6 class="highlight">{{day.theme}}</h6>
+              <h6 class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0000'}}</h6>
             </div>
           </ng-template>
           <!-- Tab Content -->
@@ -37,7 +37,7 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 <div>
-                  <h5 class="highlight" style="font-size: small;">Presentations</h5>
+                  <h5 class="highlight">Presentations</h5>
                 </div>
               </ng-template>
               <div class="tab-content">
@@ -72,7 +72,7 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 <div>
-                  <h5 class="highlight" style="font-size: small;">Keynotes</h5>
+                  <h5 class="highlight">Keynotes</h5>
                 </div>
               </ng-template>
 
@@ -118,7 +118,7 @@
             <mat-tab>
               <ng-template mat-tab-label>
                 <div>
-                  <h5 class="highlight" style="font-size: small;">Workshops</h5>
+                  <h5 class="highlight">Workshops</h5>
                 </div>
               </ng-template>
               <div class="tab-content">
