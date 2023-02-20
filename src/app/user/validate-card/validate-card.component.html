@@ -5,6 +5,6 @@
     </h3>
 
   </div>
-  <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" style="height: 100%">
+  <app-qrcode-scanner (readData)="receiveUser($event)" [camStarted]="scannerActive" style="height: 100%">
   </app-qrcode-scanner>
 </div>

@@ -90,22 +90,22 @@ export class PromoteComponent implements OnInit {
     this.info = info
   }
 
-  receiveUser(user: User) {
-    this.userRead = user
+  receiveUser(data: {user: User, company: Company}) {
+    this.userRead = data.user
     this.scannerActive = false
-    this.updateInfo(user)
+    this.updateInfo(data.user)
 
-    if (!this.companies || user.role !== 'company') {
-      this.updateInfo(user)
+    if (!this.companies || data.user.role !== 'company') {
+      this.updateInfo(data.user)
       return
     }
     this.eventService.getCurrent().subscribe(event => {
-      let userCompany = user.company.find(c => {
+      let userCompany = data.user.company.find(c => {
         return c.edition === event.id
       })
 
       if (!userCompany) {
-        this.updateInfo(user)
+        this.updateInfo(data.user)
         return
       }
 
@@ -113,7 +113,7 @@ export class PromoteComponent implements OnInit {
         return c.id === userCompany.company
       })
 
-      this.updateInfo(user, this.userReadCompany)
+      this.updateInfo(data.user, this.userReadCompany)
     })
   }
 
@@ -171,7 +171,7 @@ export class PromoteComponent implements OnInit {
         }
 
         this.userRead = user
-        this.receiveUser(user)
+        this.receiveUser({user:user, company:null})
 
       })
   }

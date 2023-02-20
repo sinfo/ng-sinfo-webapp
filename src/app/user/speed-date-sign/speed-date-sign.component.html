@@ -9,7 +9,7 @@
 
   <div class='align-center'>
     <p *ngIf="!cam">{{ description }}</p>
-    <app-qrcode-scanner *ngIf="cam" (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="">
+    <app-qrcode-scanner *ngIf="cam" (readData)="receiveUser($event)" [camStarted]="scannerActive" [title]="">
     </app-qrcode-scanner>
 
     <div class="column" *ngIf="!cam && !userRead">
