@@ -6,3 +6,9 @@ export class Speaker {
   img: string
   updated: string
 }
+
+export class SpeakerData {
+  speakers: Speaker[]
+  previousEdition: boolean
+  eventId: string
+}

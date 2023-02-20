@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 @Injectable()
 export class CompanyService {
 
-  private companiesUrl = environment.deckUrl + '/api/companies'
+  private companiesUrl = environment.cannonUrl + '/company'
   private companies: Company[]
   private event: Event
   private headers = new HttpHeaders({

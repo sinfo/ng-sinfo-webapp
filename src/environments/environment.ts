@@ -5,7 +5,6 @@
 
 export const environment = {
   production: false,
-  deckUrl: 'http://localhost:8080',
   cannonUrl: 'http://localhost:8090',
   url_to_id: {
     '27-sinfo': '27-sinfo',
