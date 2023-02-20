@@ -31,15 +31,11 @@
     </mat-form-field>
 
     <mat-form-field
-      *ngIf="
-        kind === 'presentation' ||
-        kind === 'workshop' ||
-        kind === 'keynote'
-      "
+      *ngIf="kind === 'presentation'"
       appearance="fill"
       class="field"
     >
-      <mat-label>Session ID</mat-label>
+      <mat-label>Presentation session ID</mat-label>
       <mat-select
         name="session"
         id="session"
@@ -47,7 +43,45 @@
         name="session"
         ngModel
       >
-        <mat-option *ngFor="let session of sessionIds" [value]="session">
+        <mat-option *ngFor="let session of sessionPresentationIds" [value]="session">
+          {{ session }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="kind === 'workshop'"
+      appearance="fill"
+      class="field"
+    >
+      <mat-label>Workshop session ID</mat-label>
+      <mat-select
+        name="session"
+        id="session"
+        required
+        name="session"
+        ngModel
+      >
+        <mat-option *ngFor="let session of sessionWorkshopIds" [value]="session">
+          {{ session }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="kind === 'keynote'"
+      appearance="fill"
+      class="field"
+    >
+      <mat-label>Keynote session ID</mat-label>
+      <mat-select
+        name="session"
+        id="session"
+        required
+        name="session"
+        ngModel
+      >
+        <mat-option *ngFor="let session of sessionKeynoteIds" [value]="session">
           {{ session }}
         </mat-option>
       </mat-select>

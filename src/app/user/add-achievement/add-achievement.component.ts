@@ -15,7 +15,9 @@ export class AddAchievementComponent implements OnInit {
   eventId: string;
   imageFile: File;
   kind: string;
-  sessionIds: string[];
+  sessionPresentationIds: string[] = [];
+  sessionWorkshopIds: string[] = [];
+  sessionKeynoteIds: string[] = [];
 
   @ViewChild("achievementForm") achievementForm;
 
@@ -43,7 +45,15 @@ export class AddAchievementComponent implements OnInit {
       this.eventId = event.id;
     });
     this.sessionService.getSessions(this.eventId, true).subscribe((sessions) => {
-      this.sessionIds = sessions.map(session => session.id);
+      for (const session of sessions) {
+        if (session.kind == 'Presentation') {
+          this.sessionPresentationIds.push(session.id);
+        } else if (session.kind == 'Workshop') {
+          this.sessionWorkshopIds.push(session.id);
+        } else if (session.kind == 'Keynote') {
+          this.sessionKeynoteIds.push(session.id);
+        }
+      }
     });
   }
 
@@ -83,9 +93,20 @@ export class AddAchievementComponent implements OnInit {
       }
     });
 
-    this.sessionIds = this.sessionIds.filter(function(session) {
-      return session !== form.session;
-    });
+    if (form.kind.value == 'presentation') {
+      this.sessionPresentationIds = this.sessionPresentationIds.filter(function(session) {
+        return session !== form.session;
+      });
+    } else if (form.kind.value == 'workshop') {
+      this.sessionWorkshopIds = this.sessionWorkshopIds.filter(function(session) {
+        return session !== form.session;
+      });
+    } else if (form.kind.value == 'keynote') {
+      this.sessionKeynoteIds = this.sessionKeynoteIds.filter(function(session) {
+        return session !== form.session;
+      });
+    }
+
     this.achievementForm.resetForm();
     this.imageFile = null;
     this.submitted = false;
