@@ -67,7 +67,7 @@ export const environment = {
     appId: '708252219264170'
   },
   google: {
-    clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
+    clientId: '475922911787-mj5hp1pcb00329tarno2bdeclmh7schr.apps.googleusercontent.com'
   },
   fenix: {
     clientId: '1695915081466129',
