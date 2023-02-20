@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { DateAdapter } from "@angular/material/core";
 import { AchievementService } from "../achievements/achievement.service";
 import { EventService } from "../../events/event.service";
-import { Achievement } from "../achievements/achievement.model";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { SessionService } from '../../session/session.service';
 
 @Component({
   selector: "app-add-achievement",
@@ -15,8 +15,9 @@ export class AddAchievementComponent implements OnInit {
   eventId: string;
   imageFile: File;
   kind: string;
+  sessionIds: string[];
 
-  @ViewChild('achievementForm') achievementForm;
+  @ViewChild("achievementForm") achievementForm;
 
   kinds = [
     { value: "stand", viewValue: "Stand" },
@@ -33,12 +34,16 @@ export class AddAchievementComponent implements OnInit {
     private dateAdapter: DateAdapter<Date>,
     private achievementService: AchievementService,
     private eventService: EventService,
+    private sessionService: SessionService,
     private snackBar: MatSnackBar
   ) {
     this.submitted = false;
     this.dateAdapter.setLocale("en-GB"); //dd/MM/yyyy
     this.eventService.getCurrent().subscribe((event) => {
       this.eventId = event.id;
+    });
+    this.sessionService.getSessions(this.eventId).subscribe((sessions) => {
+      this.sessionIds = sessions.map(session => session.id);
     });
   }
 
@@ -64,7 +69,7 @@ export class AddAchievementComponent implements OnInit {
     };
 
     Object.keys(ach).forEach((key) => {
-      if (ach[key])  {
+      if (ach[key]) {
         formData.append(key, ach[key]);
       }
     });
@@ -72,9 +77,9 @@ export class AddAchievementComponent implements OnInit {
     this.achievementService.createAchievement(formData).subscribe((msg) => {
       if (msg) {
         this.snackBar.open(`Done!`, "Ok", {
-          panelClass: ['mat-toolbar', 'mat-primary'],
-          duration: 2000
-        })  
+          panelClass: ["mat-toolbar", "mat-primary"],
+          duration: 2000,
+        });
       }
     });
 
