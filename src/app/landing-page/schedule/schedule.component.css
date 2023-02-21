@@ -184,7 +184,7 @@
   color: #008ae6;
 }
 
-* {
+*:not(.icon) {
   font-family: 'Montserrat' !important;
 }
 

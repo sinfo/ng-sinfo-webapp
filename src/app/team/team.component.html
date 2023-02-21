@@ -4,7 +4,8 @@
     <h3 (click)=" isCollapsed=!isCollapsed">The Team <mat-icon [class.chev-open]="!isCollapsed"
         [class.chev-close]="isCollapsed">
         expand_more
-      </mat-icon></h3>
+      </mat-icon>
+    </h3>
 
     <br />
     <br />
@@ -21,25 +22,25 @@
 
               <div *ngIf="member.mail" style="width: min-content; color: white;">
                 <a href='mailto:{{member.mail}}'>
-                  <span style="color: white;" class="fa fa-envelope"></span>
+                  <span style="color: white;" class="fa fa-envelope icon"></span>
                 </a>
               </div>
 
               <div *ngIf="member.twitter" style="width: min-content;">
                 <a href='https://twitter.com/{{member.twitter}}'>
-                  <span style="color: white;" class="fa fa-twitter"></span>
+                  <span style="color: white;" class="fa fa-twitter icon"></span>
                 </a>
               </div>
 
               <div *ngIf="member.facebook" style="width: min-content;">
                 <a href='https://facebook.com/{{member.facebook}}'>
-                  <span style="color: white;" class="fa fa-facebook"></span>
+                  <span style="color: white;" class="fa fa-facebook icon"></span>
                 </a>
               </div>
 
               <div *ngIf="member.github" style="width: min-content;">
                 <a href='https://github.com/{{member.github}}'>
-                  <span style="color: white;" class="fa fa-github"></span>
+                  <span style="color: white;" class="fa fa-github icon"></span>
                 </a>
               </div>
 

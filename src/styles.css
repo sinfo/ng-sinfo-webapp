@@ -3228,6 +3228,12 @@ li {
   min-height: 100%;
 }
 
+.video-bg {
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+}
+
 .heading-block .heading-alt {
   letter-spacing: 2px;
   margin-bottom: 8px;
