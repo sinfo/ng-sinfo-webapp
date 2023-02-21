@@ -286,6 +286,7 @@ export class UserService {
 
   updateUser(id: string, role: string, company?: string): Observable<User> {
     if (['user', 'team', 'company'].indexOf(role) === -1) {
+      console.log("ERROR")
       return of(null)
     }
 

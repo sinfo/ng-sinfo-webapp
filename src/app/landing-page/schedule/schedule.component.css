@@ -183,3 +183,20 @@
 #subtitle {
   color: #008ae6;
 }
+
+*:not(.icon) {
+  font-family: 'Montserrat' !important;
+}
+
+.mat-mdc-tab.mdc-tab {
+  height: 10vh;
+}
+
+.example-card {
+  transition: all .1s linear;
+  box-shadow: 0px 1px 2px 0px rgba(26, 11, 82, 0.4);
+}
+
+.example-card:hover {
+  box-shadow: -1px 10px 29px 0px rgba(26, 11, 82, 0.4);
+}

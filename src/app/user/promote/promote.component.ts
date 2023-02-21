@@ -45,13 +45,13 @@ export class PromoteComponent implements OnInit {
 
   formatter = (company: Company) => company.name
 
-  search = (text$: Observable<string>) =>
-    text$
-      .pipe(debounceTime(200)).pipe(distinctUntilChanged())
-      .pipe(merge(this.focus$))
-      .pipe(merge(this.click$.pipe(filter(() => !this.instance.isPopupOpen()))))
-      .pipe(map(term => (term === '' ? this.companies : this.companies
-        .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1))))
+  // search = (text$: Observable<string>) =>
+  //   text$
+  //     .pipe(debounceTime(200)).pipe(distinctUntilChanged())
+  //     .pipe(merge(this.focus$))
+  //     .pipe(merge(this.click$.pipe(filter(() => !this.instance.isPopupOpen()))))
+  //     .pipe(map(term => (term === '' ? this.companies : this.companies
+  //       .filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1))))
 
   validCompany(): boolean {
     if (!this.companies || !this.searchedCompany) return false

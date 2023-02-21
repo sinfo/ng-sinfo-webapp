@@ -1,5 +1,6 @@
 .wrapper {
-  margin-top: 10vh;
+  margin: 10vh 5vh 0;
+  width: 100%;
 }
 
 .sponsors {
@@ -12,6 +13,7 @@
   justify-content: flex-start;
   flex-direction: column;
   align-items: center;
+  margin-top: 2%;
 }
 
 div.sponsors {
@@ -23,43 +25,6 @@ div.sponsors {
   margin-bottom: 5%;
 }
 
-div.platinum {
-  min-width: 100%
-}
-
-.sponsor {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: wrap;
-}
-
-div.sponsor.diamond {
-  width: 300px;
-  margin: 0 auto;
-}
-
-div.sponsors.platinum div.sponsor {
-  margin: 0 15px;
-  width: 15%;
-  max-width: 200px;
-  min-width: 170px;
-}
-
-div.sponsors.gold div.sponsor {
-  margin: 0 10px;
-  width: 9%;
-  max-width: 150px;
-  min-width: 130px;
-}
-
-div.sponsors.silver div.sponsor {
-  margin: 0 10px;
-  width: 7%;
-  max-width: 110px;
-  min-width: 100px;
-}
-
 @media (max-width: 767px) {
 
   .chev-open,
@@ -67,17 +32,7 @@ div.sponsors.silver div.sponsor {
     font-size: 9vw;
   }
 
-  div.sponsors.platinum div.sponsor {
-    width: 20%;
-  }
 
-  div.sponsors.gold div.sponsor {
-    width: 15%;
-  }
-
-  div.sponsors.silver div.sponsor {
-    width: 10%;
-  }
 }
 
 @media (max-width: 480px) {
@@ -87,13 +42,7 @@ div.sponsors.silver div.sponsor {
     font-size: 9vw;
   }
 
-  div.sponsors.platinum div.sponsor {
-    width: 30%;
-  }
 
-  div.sponsors.silver div.sponsor {
-    width: 12%;
-  }
 }
 
 h1,
@@ -131,4 +80,65 @@ h2 {
   height: auto;
   transition: 0.3s transform ease-in-out;
   transform: rotate(0);
+}
+
+.speaker-card {
+  color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 2%;
+}
+
+.example-card {
+  transition: all .1s linear;
+  box-shadow: 0px 1px 2px 0px rgba(26, 11, 82, 0.4);
+}
+
+.example-card:hover {
+  box-shadow: -1px 7px 15px 0px rgba(26, 11, 82, 0.4);
+}
+
+.row {
+  display: flex;
+  margin-left: 0;
+  margin-right: 0;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.platinum {
+  height: 20vh;
+  width: 20vh;
+}
+
+.gold {
+  height: 15vh;
+  width: 15vh;
+}
+
+.silver {
+  height: 10vh;
+  width: 10vh;
+}
+
+.sponsor-level {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 925px) {
+
+  .chev-open,
+  .chev-close {
+    font-size: 9vw;
+  }
+}
+
+*:not(mat-icon) {
+  font-family: 'Montserrat' !important;
 }

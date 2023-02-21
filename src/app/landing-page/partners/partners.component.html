@@ -1,20 +1,26 @@
 <app-loading [content]="partners"></app-loading>
 
-<div *ngIf="partners && partners.length > 0" class="wrapper">
-    <div class="sponsors">
+<div *ngIf="partners && partners.length > 0 " style="margin-top: 10vh;">
+    <div class="overallSponsors">
         <span class="icon section-icon icon-documents-bookmarks-12"></span>
-        <div class="title">
-            <h2>Partners</h2>
-        </div>
+        <h3 (click)="showAll = !showAll">Partners<mat-icon [class.chev-open]="!showAll" [class.chev-close]="showAll">
+                expand_more
+            </mat-icon>
+        </h3>
+        <p style="text-align: center">Our partners help us make the event a better experience for everyone! Don't forget
+            to look for merch!</p>
         <br />
 
-        <app-loading [content]="partners"></app-loading>
+        <app-loading [content]="sponsors"></app-loading>
 
-        <div *ngIf="partners" class="partners">
-            <div class="sponsor platinum" *ngFor="let partner of partners">
-                <img appImage [url]="partner.img" alt="{{ partner.name }}" title="{{ partner.name }}">
+        <div class="sponsor-level" *ngIf="sponsors && showAll" @myInsertRemoveTrigger>
+
+
+            <div class="row" *ngIf="partners">
+                <mat-card class="example-card speaker-card platinum" *ngFor="let partner of partners"
+                    [ngStyle]="{'background-image': 'url(' + partner.img + ')' }">
+                </mat-card>
             </div>
         </div>
-
     </div>
 </div>

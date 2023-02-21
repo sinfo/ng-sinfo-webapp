@@ -45,7 +45,9 @@ div.mini-portrait-wrapper img {
 }
 
 .sinfo-logo {
-  height: 30px;
+  height: 3.5vh;
+  margin-top: 0.5vh;
+  margin-right: 1vh;
 }
 
 h3 {

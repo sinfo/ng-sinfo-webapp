@@ -1,63 +1,113 @@
-<app-menu></app-menu>
+<mat-toolbar class='topbar'>
+  <div class="expandable">
+    <div class="tool-row">
+      <span>
+        <a (click)="backClicked()" class="navigation-link">Back</a>
+      </span>
 
-<app-loading [content]="session">
-</app-loading>
 
-<section *ngIf="session" class="section session-section align-center">
-  <div class="container">
-    <div class="row">
-      <div class="session-icons col-sm-12">
-        <h3 class="title">{{session.kind}}</h3>
-      </div>
+      <span class="social-menu">
+        <a (click)=" sidenav1.toggle()" target="_blank" class="navigation-link ">Socials</a>
+      </span>
     </div>
-
-    <div class="row">
-      <div class="session-details col-sm-12">
-        <div class="padded">
-          <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate':'+0000'}} </p>
-        </div>
-
-        <div class="padded">
-          <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime':'+0000'}} </p>
-        </div>
-
-        <div *ngIf="session.place">
-          <p> <i class="fa fa-map-marker"></i> {{session.place}} </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="row speaker-section" *ngIf="session.kind === 'Keynote' && speaker">
-      <div class="col-sm-3 col-xs-12">
-        <a (click)="onSelect(speaker.id)">
-          <img src='{{speaker.img}}'>
-        </a>
-      </div>
-
-      <div class="col-sm-9 col-xs-12 align-left justify">
-        <a (click)="onSelect(speaker.id)">
-          <h5 class="name">{{speaker.name}}</h5>
-          <h5>{{speaker.title}}</h5>
-        </a>
-      </div>
-    </div>
-
-    <div *ngIf="session.kind !== 'Keynote'" class="row">
-      <div class="session">
-        <img src='{{session.img}}'>
-      </div>
-      <!--TODO Add the rest of the information-->
-    </div>
-
-    <div class="row">
-      <div class="col-sm-12 align-left">
-        <p>{{session.description}}</p>
-      </div>
-    </div>
-
-    <div *ngIf="session.kind === 'Workshop'" class="row">
-      <app-workshop-register-button [user]="user" [workshop]="session"></app-workshop-register-button>
-    </div>
-    <!--TODO Fetch users checked-in -->
   </div>
-</section>
+
+</mat-toolbar>
+<app-loading [content]="session"></app-loading>
+
+<mat-sidenav-container class='sidenav-container'>
+  <mat-sidenav #sidenav1 mode="over" class='sidenav' position="end">
+    <mat-nav-list class='navlist'>
+      <a mat-list-item href="https://twitter.com/sinfoist" target="_blank" aria-label="Twitter"
+        (click)="sidenav1.toggle()" class="navigation-link">
+        <span class="list-item">Twitter</span>
+        <span style="margin-left:auto" class="fa fa-twitter"></span>
+      </a>
+      <a mat-list-item href="https://www.facebook.com/sinfoist/" target="_blank" aria-label="Facebook"
+        (click)="sidenav1.toggle()" class="navigation-link">
+        <span class="list-item">Facebook</span>
+        <span style="margin-left:auto" class="fa fa-facebook"></span>
+      </a>
+      <a mat-list-item href="https://github.com/sinfo" target="_blank" aria-label="Github" (click)="sidenav1.toggle()"
+        class="navigation-link">
+        <span class="list-item">Github</span>
+        <span style="margin-left:auto" class="fa fa-github"></span>
+      </a>
+      <a mat-list-item href="https://www.instagram.com/sinfoist/" target="_blank" aria-label="Instagram"
+        (click)="sidenav1.toggle()" class="navigation-link">
+        <span class="list-item">Instagram</span>
+        <span style="margin-left:auto" class="fa fa-instagram"></span>
+      </a>
+      <a mat-list-item href="https://www.youtube.com/user/sinfoist" target="_blank" aria-label="Youtube"
+        (click)="sidenav1.toggle()" class="navigation-link">
+        <span class="list-item">Youtube</span>
+        <span style="margin-left:auto" class="fa fa-youtube"></span>
+      </a>
+      <a mat-list-item href="https://www.linkedin.com/company/2760221" target="_blank" aria-label="Linkedin"
+        (click)="sidenav1.toggle()" class="navigation-link">
+        <span class="list-item">Linkedin</span>
+        <span style="margin-left:auto" class="fa fa-linkedin"></span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <section *ngIf="session" class="section session-section align-center">
+      <div class="container">
+        <div class="row">
+          <div class="session-icons col-sm-12">
+            <h3 class="title">{{session.kind}}</h3>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="session-details col-sm-12">
+            <div class="padded">
+              <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate':'+0000'}} </p>
+            </div>
+
+            <div class="padded">
+              <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime':'+0000'}} </p>
+            </div>
+
+            <div *ngIf="session.place">
+              <p> <i class="fa fa-map-marker"></i> {{session.place}} </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row speaker-section" *ngIf="session.kind === 'Keynote' && speaker">
+          <div class="col-sm-3 col-xs-12">
+            <a (click)="onSelect(speaker.id)">
+              <img src='{{speaker.img}}'>
+            </a>
+          </div>
+
+          <div class="col-sm-9 col-xs-12 align-left justify">
+            <a (click)="onSelect(speaker.id)">
+              <h5 class="name">{{speaker.name}}</h5>
+              <h5>{{speaker.title}}</h5>
+            </a>
+          </div>
+        </div>
+
+        <div *ngIf="session.kind !== 'Keynote'" class="row">
+          <div class="session">
+            <img src='{{session.img}}'>
+          </div>
+          <!--TODO Add the rest of the information-->
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 align-left">
+            <p>{{session.description}}</p>
+          </div>
+        </div>
+
+        <div *ngIf="session.kind === 'Workshop'" class="row">
+          <app-workshop-register-button [user]="user" [workshop]="session"></app-workshop-register-button>
+        </div>
+        <!--TODO Fetch users checked-in -->
+      </div>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>

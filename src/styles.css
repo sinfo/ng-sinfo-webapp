@@ -3228,6 +3228,12 @@ li {
   min-height: 100%;
 }
 
+.video-bg {
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+}
+
 .heading-block .heading-alt {
   letter-spacing: 2px;
   margin-bottom: 8px;
@@ -3987,6 +3993,7 @@ div.intro i.fa-chevron-down:hover {
 .header .buy-btn.hovered,
 .header .buy-btn.pressed {
   color: #ffffff;
+  background-color: #008ae6;
 }
 
 .btn.btn-outline-clr:not(:hover):not(:hover):not(:active):not(.hovered):not(.pressed),
@@ -8138,6 +8145,7 @@ body::-webkit-scrollbar {
   width: 0px;
 }
 
+
 .pad {
   padding: 2.5% 1%;
 }
@@ -8148,4 +8156,36 @@ ng-scrollbar {
   --scrollbar-thumb-hover-color: gray;
   --scrollbar-border-radius: 4px;
   border: 1px solid darkgray;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
+
+  height: 10vh !important;
+}
+
+.navigation-link.active {
+  color: #004ecc !important;
+  border-bottom: 10px #004ecc !important;
 }
