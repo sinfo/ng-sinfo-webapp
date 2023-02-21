@@ -93,15 +93,15 @@ export class AddAchievementComponent implements OnInit {
       }
     });
 
-    if (form.kind.value == 'presentation') {
+    if (form.kind == 'presentation') {
       this.sessionPresentationIds = this.sessionPresentationIds.filter(function(session) {
         return session !== form.session;
       });
-    } else if (form.kind.value == 'workshop') {
+    } else if (form.kind == 'workshop') {
       this.sessionWorkshopIds = this.sessionWorkshopIds.filter(function(session) {
         return session !== form.session;
       });
-    } else if (form.kind.value == 'keynote') {
+    } else if (form.kind == 'keynote') {
       this.sessionKeynoteIds = this.sessionKeynoteIds.filter(function(session) {
         return session !== form.session;
       });
