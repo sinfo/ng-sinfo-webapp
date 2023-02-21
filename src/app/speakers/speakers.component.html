@@ -9,7 +9,8 @@
         expand_more
       </mat-icon>
     </h3>
-    <p *ngIf="!previousSpeakers && speakers.length > 0">Check out our wonderful speakers, primed and ready to tell their
+    <p *ngIf="!previousSpeakers && speakers.length > 0" style="text-align: center">Check out our wonderful speakers,
+      primed and ready to tell their
       stories and give you their advice. Don't miss their keynotes!</p>
     <h3 (click)="isCollapsed = !isCollapsed" *ngIf="previousSpeakers && speakers.length > 0">Previous Speakers<mat-icon
         [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
