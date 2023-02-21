@@ -8182,7 +8182,7 @@ ng-scrollbar {
 
 .mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
 
-  height: 10vh !important;
+  height: 100px !important;
 }
 
 .navigation-link.active {
