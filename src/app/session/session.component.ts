@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router, Params } from '@angular/router'
 import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser'
+import { Location } from '@angular/common';
+
 
 import { SessionService } from './session.service'
 import { Session } from './session.model'
@@ -19,17 +21,18 @@ export class SessionComponent implements OnInit {
   speaker: Speaker
   description: SafeHtml
 
-  constructor (
+  constructor(
     private sessionService: SessionService,
     private speakerService: SpeakerService,
     private activatedRoute: ActivatedRoute,
     private eventService: EventService,
     private sanitizer: DomSanitizer,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private _location: Location
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.activatedRoute.params.forEach((params: Params) => {
       const id = params['id']
       this.getSession(id)
@@ -39,8 +42,11 @@ export class SessionComponent implements OnInit {
       })
     })
   }
+  backClicked() {
+    this._location.back();
+  }
 
-  getSession (id: string): void {
+  getSession(id: string): void {
     this.sessionService.getSession(id)
       .subscribe(session => {
         this.description = this.sanitizer.bypassSecurityTrustHtml(session.description)
@@ -51,12 +57,12 @@ export class SessionComponent implements OnInit {
       })
   }
 
-  getSpeaker (session: Session): void {
+  getSpeaker(session: Session): void {
     this.speakerService.getSpeaker(session.speakers[0]['id'])
       .subscribe(speaker => this.speaker = speaker)
   }
 
-  onSelect (id: string): void {
+  onSelect(id: string): void {
     this.router.navigate(['/speakers', id])
   }
 

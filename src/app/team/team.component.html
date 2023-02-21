@@ -1,5 +1,5 @@
 <section id="team" class="section align-center">
-  <div class="container">
+  <div>
     <span class="icon section-icon icon-faces-users-04"></span>
     <h3 (click)=" isCollapsed=!isCollapsed">The Team <mat-icon [class.chev-open]="!isCollapsed"
         [class.chev-close]="isCollapsed">
@@ -12,45 +12,47 @@
     <app-loading [content]="team">
     </app-loading>
 
-    <div *ngIf="team && !isCollapsed" @myInsertRemoveTrigger>
-      <div *ngFor="let member of team" class="col-sm-2">
-
-        <div *ngIf="member.name !== 'ToolBot!'" class="speaker member">
+    <div *ngIf="team && !isCollapsed" @myInsertRemoveTrigger class="row">
+      <div *ngFor="let member of team" class="member-div">
+        <mat-card class="example-card speaker-card member"
+          [ngStyle]="{'background-image': (member.img !== '/static/default-profile.png')? 'url('+member.img+')' : 'url(https://static.sinfo.org/static/25-sinfo/speakers/hacky.png)' }">
           <div class="photo-wrapper rounded">
-            <img appImage [url]="member.img" alt="{{member.name}}" title="{{member.name}}" class="img-responsive">
-            <ul class="speaker-socials">
+            <div class="speaker-socials row">
 
-              <li *ngIf="member.mail">
+              <div *ngIf="member.mail" style="width: min-content; color: white;">
                 <a href='mailto:{{member.mail}}'>
-                  <span class="fa fa-envelope"></span>
+                  <span style="color: white;" class="fa fa-envelope"></span>
                 </a>
-              </li>
+              </div>
 
-              <li *ngIf="member.twitter">
+              <div *ngIf="member.twitter" style="width: min-content;">
                 <a href='https://twitter.com/{{member.twitter}}'>
-                  <span class="fa fa-twitter"></span>
+                  <span style="color: white;" class="fa fa-twitter"></span>
                 </a>
-              </li>
+              </div>
 
-              <li *ngIf="member.facebook">
+              <div *ngIf="member.facebook" style="width: min-content;">
                 <a href='https://facebook.com/{{member.facebook}}'>
-                  <span class="fa fa-facebook"></span>
+                  <span style="color: white;" class="fa fa-facebook"></span>
                 </a>
-              </li>
+              </div>
 
-              <li *ngIf="member.github">
+              <div *ngIf="member.github" style="width: min-content;">
                 <a href='https://github.com/{{member.github}}'>
-                  <span class="fa fa-github"></span>
+                  <span style="color: white;" class="fa fa-github"></span>
                 </a>
-              </li>
+              </div>
 
-            </ul>
+            </div>
           </div>
-          <h3 class="name">{{member.name}}</h3>
-        </div>
-
+        </mat-card>
+        <h6 class="name">
+          {{member.name}}
+        </h6>
       </div>
     </div>
+
+
 
   </div>
 </section>

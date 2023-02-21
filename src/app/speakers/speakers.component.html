@@ -7,15 +7,19 @@
     <h3 (click)="isCollapsed = !isCollapsed" *ngIf="!previousSpeakers && speakers.length > 0">Speakers<mat-icon
         [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
         expand_more
-      </mat-icon></h3>
+      </mat-icon>
+    </h3>
+    <p *ngIf="!previousSpeakers && speakers.length > 0">Check out our wonderful speakers, primed and ready to tell their
+      stories and give you their advice. Don't miss their keynotes!</p>
     <h3 (click)="isCollapsed = !isCollapsed" *ngIf="previousSpeakers && speakers.length > 0">Previous Speakers<mat-icon
         [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
         expand_more
-      </mat-icon></h3>
+      </mat-icon>
+    </h3>
     <br />
     <br />
 
-    <span *ngIf="speakers.length > 0 && !isCollapsed" @myInsertRemoveTrigger>
+    <span *ngIf="speakers.length > 0 && !isCollapsed" @myInsertRemoveTrigger class="align-center">
       <div class="col-sm-12">
         <app-loading [content]="speakers">
         </app-loading>
@@ -23,7 +27,7 @@
 
       <div class="speakers">
 
-        <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
+        <!-- <div *ngFor="let speaker of speakers" class="col-sm-3" (click)="onSelect(speaker)">
           <div class="speaker">
             <div class="photo-wrapper square">
               <div class="view view-first" [ngStyle]="setCompanyImg(speaker)">
@@ -32,10 +36,22 @@
               </div>
             </div>
             <h3 class="name">{{ speaker.name }}</h3>
-            <p class="text-alt">
+            <p class="text-alt" style="word-wrap:anywhere">
               <small>{{ speaker.title }}</small>
             </p>
           </div>
+        </div> -->
+
+        <div *ngFor="let speaker of speakers" class="member-div">
+          <h6 class="name">{{ speaker.name }}</h6>
+          <mat-card class="example-card speaker-card member"
+            [ngStyle]="{'background-image': speaker.img? 'url('+speaker.img+')' : 'url(https://static.sinfo.org/static/25-sinfo/speakers/hacky.png)' }">
+
+          </mat-card>
+          <p class="text-alt" style="word-wrap:anywhere; ">
+            <small>{{ speaker.title }}</small>
+          </p>
+          <p class="divider"></p>
         </div>
 
       </div>

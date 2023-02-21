@@ -117,6 +117,10 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { PromocodesDialogComponent } from "./user/promocodes/promocodes-dialog/promocodes-dialog.component";
 import { RouterModule } from '@angular/router';
 import { AddAchievementComponent } from "./user/add-achievement/add-achievement.component";
+import { SponsorComponent } from "./sponsor/sponsor.component";
+
+import { marked } from 'marked';
+
 
 library.add(fas);
 
@@ -185,6 +189,7 @@ library.add(fas);
     PromocodesDialogComponent,
     WorkshopValidationComponent,
     AddAchievementComponent
+    SponsorComponent,
   ],
   imports: [
     MatSlideToggleModule,
