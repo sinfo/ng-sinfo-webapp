@@ -3993,6 +3993,7 @@ div.intro i.fa-chevron-down:hover {
 .header .buy-btn.hovered,
 .header .buy-btn.pressed {
   color: #ffffff;
+  background-color: #008ae6;
 }
 
 .btn.btn-outline-clr:not(:hover):not(:hover):not(:active):not(.hovered):not(.pressed),
