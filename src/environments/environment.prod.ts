@@ -74,11 +74,11 @@ export const environment = {
     redirectUrl: 'https://sinfo.org/login'
   },
   linkedin: {
-    clientId: '78k3k77vq56igl',
+    clientId: '77i6uer5luxghl',
     redirectUrl: 'https://sinfo.org/login/linkedin'
   },
   microsoft: {
-    clientId: '',
+    clientId: 'c572d99a-8c82-47aa-89b4-01dc934858fc',
     redirectUrl: 'https://sinfo.org/login/microsoft',
     authority: 'https://login.microsoftonline.com/common'
   }
