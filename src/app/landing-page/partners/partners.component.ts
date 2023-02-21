@@ -47,7 +47,7 @@ export class PartnersComponent implements OnInit, OnChanges {
     if (!this.sponsors || this.sponsors.length === 0) return
 
     this.partners = this.sponsors.filter((sponsor: Sponsor) => {
-      return sponsor
+      return sponsor.advertisementLvl === 'other'
     })
   }
 }

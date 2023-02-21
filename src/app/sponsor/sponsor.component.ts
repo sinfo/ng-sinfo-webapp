@@ -42,7 +42,6 @@ export class SponsorComponent implements OnInit {
       const id = params['id']
       this.sponsorService.getCompany(id)
         .subscribe(sponsor => {
-          console.log(sponsor.id)
           this.sponsor = sponsor
 
 
