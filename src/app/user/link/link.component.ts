@@ -97,10 +97,12 @@ export class LinkComponent implements OnInit {
           }
         })
     })
+    console.log("ngOnInit")
   }
 
   toggleCam() {
     this.cam = !this.cam
+    console.log("toggleCam")
   }
 
   // signUser() {
@@ -113,6 +115,7 @@ export class LinkComponent implements OnInit {
     this.yesToLink = true
     //this.info = `Linking ${this.userRead.name} with ${this.company.name}`
     //this.description = this.info
+    console.log("toLink")
   }
 
   reScan() {
@@ -125,6 +128,7 @@ export class LinkComponent implements OnInit {
     this.linkReady = true
 
     this.scannerActive = true
+    console.log("reScan")
   }
 
   signUser() {
@@ -141,6 +145,7 @@ export class LinkComponent implements OnInit {
     //   type: Type.success,
     //   timeout: 2000
     // })
+    console.log("signUser")
   }
 
   receiveUser(data: {user:User,company:Company}) {
@@ -167,15 +172,23 @@ export class LinkComponent implements OnInit {
       }
     }
     else {
-      // if a normal user is read, share notes instead of creating a link
-      this.company = data.company
-      this.userService.getLink(this.me.id, data.company.id)
-        .subscribe(_link => {
-          if (_link) {
-            this.currentLink = _link
-          }
-          this.buildNotes(_link)
-        })
+      if(data.user.role === 'company'){
+      // if a company is read, create a link with the company
+        this.company = data.company
+        this.userService.getLink(this.me.id, data.company.id)
+          .subscribe(_link => {
+            if (_link) {
+              this.currentLink = _link
+            }
+            this.buildNotes(_link)
+            console.log("errado")
+          })
+      } else {
+      // if another role is read, share notes instead of creating a link
+        console.log("certo")  
+        this.userService.shareUserLinks(data.user.id)
+        .subscribe(_user => {})
+      }
     }
   }
 
@@ -197,6 +210,7 @@ export class LinkComponent implements OnInit {
     this.notes.availability = null
     this.notes.otherObservations = null
     this.notes.internships = null
+    console.log("buildNotes")
   }
 
   link() {
@@ -216,6 +230,7 @@ export class LinkComponent implements OnInit {
         timeout: 6000
       })
     }
+    console.log("link")
   }
 
   createLink() {
@@ -254,6 +269,7 @@ export class LinkComponent implements OnInit {
       })
     }
     
+    console.log("createLink")
   }
 
   updateLink() {
@@ -299,6 +315,7 @@ export class LinkComponent implements OnInit {
       })
     }
     
+    console.log("updateLink")
   }
 
   // submit() {

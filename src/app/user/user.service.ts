@@ -193,6 +193,24 @@ export class UserService {
       )
   }
 
+  shareUserLinks(attendeeId: string): Observable<User> {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+    console.log("Passou 1")
+    return this.http.get<User>(`${this.usersUrl}/${attendeeId}/shareLinks`, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('shareUserLinks'))
+      )
+  }
+
   deleteLink(attendeeId: string, companyId: string) {
     const httpOptions = {
       params: new HttpParams({
