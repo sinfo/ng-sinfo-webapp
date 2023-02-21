@@ -5,8 +5,10 @@
         <span class="icon section-icon icon-documents-bookmarks-12"></span>
         <h3 (click)="showAll = !showAll">Partners<mat-icon [class.chev-open]="!showAll" [class.chev-close]="showAll">
                 expand_more
-            </mat-icon></h3>
-        <p>Our partners help us make the event a better experience for everyone! Don't forget to look for merch!</p>
+            </mat-icon>
+        </h3>
+        <p style="text-align: center">Our partners help us make the event a better experience for everyone! Don't forget
+            to look for merch!</p>
         <br />
 
         <app-loading [content]="sponsors"></app-loading>
