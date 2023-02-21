@@ -12,7 +12,7 @@
 
     <a class="btn btn-sm btn-outline-clr ics" href="https://deck.sinfo.org/calendar.ics" target="_blank">
       Download calendar
-      <span class="fa fa-download"></span>
+      <span class="fa fa-download icon"></span>
     </a>
 
     <app-loading [content]="schedule">
@@ -21,7 +21,7 @@
     <!-- Schedule start -->
     <div *ngIf="schedule" class="schedule">
 
-      <mat-tab-group dynamicHeight style="padding-left: 5%; padding-right: 5%;">
+      <mat-tab-group dynamicHeight fitInkBarToContent style="padding-left: 5%; padding-right: 5%;">
         <mat-tab *ngFor="let day of schedule; let i=index">
           <!-- Tab Label -->
           <ng-template mat-tab-label>
@@ -44,7 +44,7 @@
                 <div *ngFor="let presentation of day.sessions.Presentation.sala1; let iSession=index"
                   style="margin: 2%;">
 
-                  <mat-card (click)="onSelect(presentation)">
+                  <mat-card class="example-card" (click)="onSelect(presentation)">
                     <mat-card-header>
                       <div mat-card-avatar> <img appImage [url]="presentation.img" alt=""> </div>
                       <mat-card-title><strong class="time highlight">
@@ -79,7 +79,7 @@
               <div class="tab-content">
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" style="margin: 2%;">
 
-                  <mat-card (click)="onSelect(session)">
+                  <mat-card class="example-card" (click)="onSelect(session)">
                     <mat-card-header>
                       <div mat-card-avatar> <img appImage [url]="session.img" alt="" class="img-responsive"> </div>
                       <mat-card-title>
@@ -91,7 +91,7 @@
                         </strong>
                       </mat-card-title>
                       <mat-card-subtitle *ngIf="session.speakers.length > 0 && session.speakers[0]">
-                        <p>{{session.speakers[0].id}}</p>
+                        <p>{{session.speakers[0].name}}</p>
                       </mat-card-subtitle>
                     </mat-card-header>
 
@@ -124,7 +124,7 @@
               <div class="tab-content">
                 <div *ngFor="let workshop of day.sessions.Workshop.all; let iSession=index" style="margin: 2%;">
 
-                  <mat-card (click)="onSelect(workshop)">
+                  <mat-card class="example-card" (click)="onSelect(workshop)">
                     <mat-card-header>
                       <div mat-card-avatar> <img appImage [url]="workshop.img" alt=""> </div>
                       <mat-card-title><strong class="time highlight">

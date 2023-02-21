@@ -27,6 +27,6 @@
   }
 }
 
-*:not(a) {
+*:not(.icon) {
   font-family: 'Montserrat' !important;
 }

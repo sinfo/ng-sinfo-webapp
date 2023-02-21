@@ -3228,6 +3228,12 @@ li {
   min-height: 100%;
 }
 
+.video-bg {
+  min-width: 100%;
+  min-height: 100%;
+  z-index: 0;
+}
+
 .heading-block .heading-alt {
   letter-spacing: 2px;
   margin-bottom: 8px;
@@ -3987,6 +3993,7 @@ div.intro i.fa-chevron-down:hover {
 .header .buy-btn.hovered,
 .header .buy-btn.pressed {
   color: #ffffff;
+  background-color: #008ae6;
 }
 
 .btn.btn-outline-clr:not(:hover):not(:hover):not(:active):not(.hovered):not(.pressed),

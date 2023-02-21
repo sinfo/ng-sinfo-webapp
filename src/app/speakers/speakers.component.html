@@ -42,7 +42,7 @@
           </div>
         </div> -->
 
-        <div *ngFor="let speaker of speakers" class="member-div">
+        <div *ngFor="let speaker of speakers" class="member-div" (click)="onSelect(speaker)">
           <h6 class="name">{{ speaker.name }}</h6>
           <mat-card class="example-card speaker-card member"
             [ngStyle]="{'background-image': speaker.img? 'url('+speaker.img+')' : 'url(https://static.sinfo.org/static/25-sinfo/speakers/hacky.png)' }">

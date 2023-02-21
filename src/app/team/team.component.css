@@ -167,6 +167,6 @@ img .speaker-socials {
   }
 }
 
-*:not(mat-icon) {
+*:not(mat-icon, .icon) {
   font-family: 'Montserrat' !important;
 }
