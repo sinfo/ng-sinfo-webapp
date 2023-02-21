@@ -52,7 +52,7 @@
     <div *ngIf="userRead.role !== 'team'" class="row">
       <div class='col-xs-12 promote typeahead'>
         <!-- <button class="btn btn-button promote-team" (click)="promoteToTeam()">Promote to team</button> -->
-        <button mat-raised-button color="primary" class="promote-team" (click)="promoteToTeam()">
+        <button mat-raised-button class="promote-team" (click)="promoteToTeam()">
           <mat-icon>person</mat-icon>
           <span>Promote to SINFO member</span>
         </button>
@@ -68,7 +68,7 @@
         <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>Search for company</mat-label>
           <mat-select name="searchCompany" id="searchCompany" name="searchCompany" [(ngModel)]="searchedCompany">
-            <mat-option *ngFor="let comp of companies" [value]="comp.name">
+            <mat-option *ngFor="let comp of companies" [value]="comp">
               {{ comp.name }}
             </mat-option>
           </mat-select>
