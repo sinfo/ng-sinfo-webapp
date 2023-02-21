@@ -27,6 +27,6 @@
   }
 }
 
-* {
+*:not(a) {
   font-family: 'Montserrat' !important;
 }

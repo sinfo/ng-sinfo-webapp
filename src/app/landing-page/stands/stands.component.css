@@ -66,6 +66,6 @@
   color: black;
 }
 
-* {
+*:not(a) {
   font-family: 'Montserrat' !important;
 }
