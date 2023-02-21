@@ -4,9 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng serve",
-    "build": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --configuration production --output-hashing=all && gzipper compress --verbose ./dist",
-    "build-dev": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build --configuration staging --output-hashing=all && gzipper compress --verbose ./dist",
+    "start": "node --max_old_space_size=8192./node_modules/@angular/cli/bin/ng serve",
+    "build": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --configuration production --output-hashing=all && gzipper compress --verbose ./dist",
+    "build-dev": "node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --configuration staging --output-hashing=all && gzipper compress --verbose ./dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
