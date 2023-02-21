@@ -188,7 +188,7 @@ library.add(fas);
     GdprDialogComponent,
     PromocodesDialogComponent,
     WorkshopValidationComponent,
-    AddAchievementComponent
+    AddAchievementComponent,
     SponsorComponent,
   ],
   imports: [
