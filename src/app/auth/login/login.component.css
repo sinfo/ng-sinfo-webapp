@@ -26,16 +26,47 @@ a.btn i {
 .btn-fenix {
   background-color: #19ACCD;
   padding: 7px 125px;
+  /* padding: 7px 20%; */
 }
 
 .btn-linkedin {
-  background-color: #0077B5;
-  padding: 7px 117px;
+  background-color: #36434a;
+  padding: 7px 118px;
+  /* padding: 7px 22%; */
+  /* padding: 7px 13vw; */
+  /* max-width: 50%; */
+  /* margin-left: 1%;
+  margin-right: 1%; */
+  /* max-width: 118px;
+  width: 300px;
+  box-sizing: border-box; */
 }
 
 .btn-microsoft {
   background-color: #4a36e6;
+
   padding: 7px 115px;
+  /* padding: 7px 25%; */
+  /* width: 260px; */
+  /* padding-bottom: calc(var(--size) - 555px); */
+  /* display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  -webkit-font-smoothing: antialiased !important;
+  box-sizing: border-box;
+  text-align: center;
+  -webkit-text-size-adjust: 100%;
+  display: block;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  height: 44px;
+  width: 328px;
+  border: 0px;
+  margin: -6px -10px; */
 }
 
 .btn {
@@ -68,19 +99,59 @@ a.btn i {
   border: 2px solid black;
   border-color: #d8d8d8;
   font-weight: bold;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   font-family: "Google Sans",arial,sans-serif;
   overflow: hidden;
   text-overflow: ellipsis;
-  vertical-align: top;
+  vertical-align:middle;
   letter-spacing: 0.25px;
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  width: 60px;
+  width: 260px;
   text-align: center;
   text-decoration: none;
   color: #ffffff;
   border-radius: 4px;
   cursor: pointer;
+  white-space: nowrap;
+  margin: 0;
+}
+
+/* .new-button{
+  width: 100px;
+  height: 7px;
+  border: 2px solid rgba(208, 12, 12, 0.801);
+  border-color: #1a04dc;
+  font-weight: bold;
+  flex-grow: 1; 
+  font-family: "Google Sans",arial,sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align:middle;
+  letter-spacing: 0.25px;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  margin: 0;
+} */
+
+@media only screen and (orientation: landscape) {
+  /* For mobile phones: */
+  .btn-microsoft {
+    padding: 10% 10%;
+  }
+}
+
+@media only screen and (max-width: 434px) {
+  /* For mobile phones: */
+  .buttons {
+    padding: 7px 26%;
+  }
 }
