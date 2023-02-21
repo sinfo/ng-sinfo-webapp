@@ -53,7 +53,6 @@
     <div *ngIf="!myCv" class="action-button">
       <button mat-raised-button class="cv-buttons upload-button">
         <input
-          *ngIf="!myCv"
           (change)="uploadCV($event)"
           class="inputfile"
           type="file"
@@ -71,7 +70,6 @@
     <div *ngIf="myCv" class="action-button">
       <button mat-raised-button class="cv-buttons upload-button">
         <input
-          *ngIf="!myCv"
           (change)="uploadCV($event)"
           class="inputfile"
           type="file"
