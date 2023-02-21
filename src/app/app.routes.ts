@@ -45,6 +45,7 @@ import { SecretAchievementsComponent } from './user/secret-achievements/secret-a
 import { CardComponent } from './user/card/card.component'
 import { WorkshopValidationComponent } from './user/workshop-validation/workshop-validation.component'
 import { MicrosoftLoginComponent } from './auth/login/microsoft.component'
+import { AddAchievementComponent } from './user/add-achievement/add-achievement.component'
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -102,7 +103,9 @@ const routes: Routes = [
       { path: 'promote', component: PromoteComponent, canActivate: [IsTeamGuard] },
       { path: 'sessions', component: SessionsComponent, canActivate: [IsTeamGuard] },
       { path: 'coc', component: CodeOfConductComponent },
-      { path: 'privacy-policy', component: PrivacyPolicyComponent }
+      { path: 'privacy-policy', component: PrivacyPolicyComponent },
+      
+      { path: 'add-achievement', component: AddAchievementComponent, canActivate: [IsTeamGuard] },
     ]
   },
 

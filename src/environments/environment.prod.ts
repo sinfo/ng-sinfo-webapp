@@ -67,19 +67,19 @@ export const environment = {
     appId: '708252219264170'
   },
   google: {
-    clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
+    clientId: '475922911787-mj5hp1pcb00329tarno2bdeclmh7schr.apps.googleusercontent.com'
   },
   fenix: {
-    clientId: '1695915081466129',
-    redirectUrl: 'https://app.sinfo.org'
+    clientId: '1977390058176874',
+    redirectUrl: 'https://sinfo.org/login'
   },
   linkedin: {
     clientId: '78k3k77vq56igl',
-    redirectUrl: 'https://app.sinfo.org/login/linkedin'
+    redirectUrl: 'https://sinfo.org/login/linkedin'
   },
   microsoft: {
     clientId: '',
-    redirectUrl: 'http://app.sinfo.org/login/microsoft',
+    redirectUrl: 'https://sinfo.org/login/microsoft',
     authority: 'https://login.microsoftonline.com/common'
   }
 }

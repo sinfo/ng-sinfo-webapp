@@ -144,13 +144,13 @@ export class AchievementsComponent implements OnInit {
       this.achievements = achievements
         .filter((a) => { return a.id })
         .filter((a) => {
-          return a.validity.to || a.validity.from
+          return a.validTo || a.validFrom
         })
         .sort((a, b) => { return a.id.localeCompare(b.id) }) // sort by id
 
       this.achievements.forEach(element => {
-        let from = new Date(element.validity.from)
-        let to = new Date(element.validity.to)
+        let from = new Date(element.validFrom)
+        let to = new Date(element.validTo)
         let day = from.getUTCDay()
         if (day === to.getUTCDay()) {
           switch (day) {

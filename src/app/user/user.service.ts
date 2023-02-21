@@ -11,6 +11,7 @@ import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
 import { File as CV } from './cv/file'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { Link, Note } from './link/link.model'
 
 @Injectable()
 export class UserService {
@@ -19,6 +20,7 @@ export class UserService {
   public me: User
   private event: Event
   private cv: CV
+  private links = new Map<string,Link>();
 
   constructor(
     private http: HttpClient,
@@ -40,7 +42,16 @@ export class UserService {
       headers.Authorization = `Bearer ${this.authService.getToken().token}`
     }
 
-    return this.http.get<User>(`${this.usersUrl}/${id}`, { headers: new HttpHeaders(headers) })
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders(headers)
+    }
+
+    return this.http.get<User>(`${this.usersUrl}/${id}`, httpOptions)
       .pipe(
         catchError(this.handleError<User>(`getting user profile`))
       )
@@ -100,6 +111,109 @@ export class UserService {
 
   deleteMe() {
     this.me = null
+  }
+
+  getLink(attendeeId: string, companyId: string, forceRefresh = false): Observable<Link> {
+    if (this.links.has(companyId) && !forceRefresh) {
+      return of(this.links.get(companyId))
+    }
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<Link>(`${this.usersUrl}/${attendeeId}/link/${companyId}`, httpOptions)
+      .pipe(
+        tap(link => {
+          this.links.set(link.company, link)
+        }),
+        catchError(this.handleError<Link>('getLink'))
+      )
+  }
+
+  createLink(attendeeId: string, companyId: string, userId: string, note: Note): Observable<Link> {
+    return this.http.post<Link>(`${this.usersUrl}/${attendeeId}/link`, {
+      userId: userId,
+      companyId: companyId,
+      notes: {
+        contacts: {
+          email: note.contacts.email ?? '',
+        },
+        internships: note.internships ?? '',
+        otherObservations: note.otherObservations ?? ''
+      }
+    }, { headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getToken().token}`
+    })})
+      .pipe(
+        tap(link => {
+          this.links.set(link.company, link)
+        }),
+        catchError(this.handleError<Link>('createLink'))
+      )
+  }
+
+  updateLink(attendeeId: string, companyId: string, userId: string, note: Note): Observable<Link> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.put<Link>(`${this.usersUrl}/${attendeeId}/link/${companyId}`, {
+      userId: userId,
+      notes: note
+    }, httpOptions)
+      .pipe(
+        tap(link => {
+          this.links.set(link.company, link)
+        }),
+        catchError(this.handleError<Link>('updateLink'))
+      )
+  }
+
+  getLinks(attendeeId: string, forceRefresh = false): Observable<Link[]> {
+    if (!forceRefresh && this.links.size !== 0) {
+      return of(Array.from(this.links.values()))
+    }
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.get<Link[]>(`${this.usersUrl}/${attendeeId}/link`, httpOptions)
+      .pipe(
+        tap(links => {
+          links.forEach(link => {
+            this.links.set(link.company, link)
+          })
+        }),
+        catchError(this.handleError<Link[]>('getLinks', []))
+      )
+  }
+
+  deleteLink(attendeeId: string, companyId: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+
+    return this.http.delete<Link>(`${this.usersUrl}/${attendeeId}/link/${companyId}`, httpOptions)
+      .pipe(
+        tap(link => {
+          this.links.delete(link.company)
+        }),
+        catchError(this.handleError<Link>('deleteLink'))
+      )
   }
 
   getCv(): Observable<CV> {
@@ -271,6 +385,10 @@ export class UserService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+      if (error.status === 404 && operation === 'getLink') {
+        return of(result)
+      }
+
       this.snackBar.open(error.message, "Ok", {
         panelClass: ['mat-toolbar', 'mat-warn'],
         duration: 2000

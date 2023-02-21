@@ -1,3 +1,4 @@
+import { Company } from '../../company/company.model'
 import { User } from '../user.model'
 
 export class Note {
@@ -5,13 +6,19 @@ export class Note {
     email: String
     phone: String
   }
+  otherObservations: String
+
+  //company links
   interestedIn: String
   degree: String
   availability: String
-  otherObservations: String
+
+  //attendee links
+  internships: String
 }
 
 export class Link {
+  author: string
   company: string
   edition: string
   attendee: string
@@ -23,7 +30,9 @@ export class Link {
 }
 
 export class ProcessedLink {
+  author: string
   attendee: User
+  company: Company
   user: User
   note: Note
   noteEmpty: boolean

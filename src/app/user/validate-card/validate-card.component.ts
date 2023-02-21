@@ -39,11 +39,11 @@ export class ValidateCardComponent implements OnInit {
       })
   }
 
-  receiveUser(user: User) {
-    this.userRead = user
-    this.userService.validateCard(user.id).subscribe((_user) => {
+  receiveUser(data: {user:User, company}) {
+    this.userRead = data.user
+    this.userService.validateCard(data.user.id).subscribe((_user) => {
       if (!_user) return
-      this.snackbar.open(`Validated ${user.name}'s card`, "Nice!", {
+      this.snackbar.open(`Validated ${data.user.name}'s card`, "Nice!", {
         panelClass: ['mat-toolbar', 'mat-primary'],
         duration: 2000
       })
@@ -57,7 +57,7 @@ export class ValidateCardComponent implements OnInit {
     }, error => {
 
       if (error.error.statusCode === 409) {
-        this.snackbar.open(`${user.name}'s card is already validated`, "Oops", {
+        this.snackbar.open(`${data.user.name}'s card is already validated`, "Oops", {
           panelClass: ['mat-toolbar', 'mat-warn'],
           duration: 2000
         })
@@ -69,7 +69,7 @@ export class ValidateCardComponent implements OnInit {
           timeout: 7000
         }) */
       } else if (error.error.statusCode === 404 || error.error.statusCode === 422) {
-        this.snackbar.open(`Not enough signatures on ${user.name}'s card`, "Yikes", {
+        this.snackbar.open(`Not enough signatures on ${data.user.name}'s card`, "Yikes", {
           panelClass: ['mat-toolbar', 'mat-warn'],
           duration: 2000
         }
