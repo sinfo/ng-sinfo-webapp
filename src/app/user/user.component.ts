@@ -23,16 +23,11 @@ export class UserComponent implements OnInit {
   achievements: Achievement[];
   opened = true;
   isLoggedIn = false;
-  // screenWidth: number;
   isCvUpdated: Boolean = false;
   messages = ['message1'];
-
-
   screenHeight = window.innerHeight;
   screenWidth = window.innerWidth;
-
-  mobile = this.screenHeight > this.screenWidth;
-
+  desktop = this.screenHeight < this.screenWidth;
 
   constructor(
     private router: Router,
@@ -65,13 +60,10 @@ export class UserComponent implements OnInit {
       // false for not mobile device
       console.log("not mobile device");
     }
-
-    console.log("window width " + this.screenWidth); 
   }
 
   reloadApp() {
     window.location.reload();
-    this.mobile = this.screenHeight > this.screenWidth;
   }
 
   @HostListener("window:resize", ["$event"])
