@@ -25,17 +25,14 @@ a.btn i {
 
 .btn-fenix {
   background-color: #19ACCD;
-  /* padding: 7px 170px; */
 }
 
 .btn-linkedin {
   background-color: #36434a;
-  /* padding: 7px 118px; */
 }
 
 .btn-microsoft {
   background-color: #4a36e6;
-  /* padding: 7px 115px; */
 }
 
 .btn {
@@ -59,11 +56,6 @@ a.btn i {
   max-height: 7vh;
 }
 
-.button-google {
-  /* display: flex;
-  justify-content: center; */
-}
-
 .buttons{
   display: flexbox;
   margin: auto; 
@@ -78,23 +70,6 @@ a.btn i {
   text-align: center;
   border-radius: 4px;
   padding: 4px 0px;
-  /* align-items: center; */
-  /* align-items: center;
-  justify-content: center; */
-    /* 
-  height: 30px;
-  border: 2px solid black;
-  border-color: #d8d8d8;
-  flex-grow: 1;
-  overflow: visible;
-  text-overflow: ellipsis;
-  vertical-align:middle;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-   */
-  /* margin-left: auto;
-  margin-right: auto; */
 }
 
 .new-align-center{
@@ -105,23 +80,4 @@ a.btn i {
   text-align: center;
   flex-wrap: wrap;
   width: 100%;
-  /* display: block;
-  margin: auto; */
-  /* width: 50%; */
-  /* margin-left: auto; 
-  margin-right: auto; */
-  /* text-align: center; */
 }
-
-/* @media only screen and (orientation: landscape) {
-  .btn-microsoft {
-    padding: 10% 10%;
-  }
-} */
-
-/* @media only screen and (max-width: 434px) {
-  .buttons {
-    padding: 7px calc(100% - 271px);
-  }
-}
- */
