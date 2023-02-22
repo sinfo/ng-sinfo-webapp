@@ -13,13 +13,12 @@
     </div>
     <br />
     <br />
+    
     <app-loading [content]="!submitting"></app-loading>
-    <div class="align-center" *ngIf="!submitting">
-      <div class="button-google">
+    <div class="new-align-center" *ngIf="!submitting">
         <div id="google-button"></div>
-      </div>
-      <!-- <br>
-      <br> -->
+      <br>
+      <br>
       <!-- <a href="#" class="butn">Button</a> -->
       <a href="{{ linkedinUrlAuth }}" class="buttons btn-linkedin">
         <i class="fa fa-linkedin"></i>
@@ -27,21 +26,16 @@
       </a>
       <br>
       <br>
-      <br>
-      <div class="align-center">
-        <a href="{{ fenixUrlAuth }}" class="buttons btn-fenix">
-          <i class="fa fa-graduation-cap"></i>
-          Sign in with Fenix
-        </a>
-      </div>
+      <a href="{{ fenixUrlAuth }}" class="buttons btn-fenix">
+        <i class="fa fa-graduation-cap"></i>
+        Sign in with Fenix
+      </a>
       <br>
       <br>
-      <div class="align-center">
-        <a href="{{ microsoftUrlAuth }}" class="buttons btn-microsoft">
-          <i class="fa fa-windows"></i>
-          Sign in with Microsoft
-        </a>
-      </div>
+      <a href="{{ microsoftUrlAuth }}" class="buttons btn-microsoft">
+        <i class="fa fa-windows"></i>
+        Sign in with Microsoft
+      </a>
       <!-- <button class="new-button" type="button">
         <a href="{{ microsoftUrlAuth }}" class="buttons btn-microsoft">
           <i class="fa fa-windows"></i>
