@@ -21,11 +21,11 @@
     <!-- Schedule start -->
     <div *ngIf="schedule" class="schedule">
 
-      <mat-tab-group dynamicHeight fitInkBarToContent style="padding-left: 5%; padding-right: 5%;">
+      <mat-tab-group dynamicHeight style="padding-left: 5%; padding-right: 5%;">
         <mat-tab *ngFor="let day of schedule; let i=index">
           <!-- Tab Label -->
-          <ng-template mat-tab-label>
-            <div style="height: 75px">
+          <ng-template mat-tab-label style="height: 10vh">
+            <div>
               <h6 class="highlight">{{day.theme}}</h6>
               <h6 class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0000'}}</h6>
             </div>

@@ -188,9 +188,9 @@
   font-family: 'Montserrat' !important;
 }
 
-.mat-mdc-tab.mdc-tab {
+/* .mat-mdc-tab.mdc-tab {
   height: 10vh;
-}
+} */
 
 .example-card {
   transition: all .1s linear;

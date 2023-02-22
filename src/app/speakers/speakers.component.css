@@ -191,6 +191,7 @@ img .speaker-socials {
   min-width: 15vh;
   margin: 2%;
   background-size: cover;
+  background-position: center;
 }
 
 .example-card {
@@ -258,6 +259,6 @@ img .speaker-socials {
   }
 }
 
-*:not(mat-icon) {
+*:not(mat-icon, .fa) {
   font-family: 'Montserrat' !important;
 }

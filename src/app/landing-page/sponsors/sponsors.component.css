@@ -139,6 +139,6 @@ h2 {
   }
 }
 
-*:not(mat-icon) {
+*:not(mat-icon, .fa) {
   font-family: 'Montserrat' !important;
 }

@@ -34,7 +34,7 @@ p {
 }
 
 .speaker-section img {
-  border-radius: 50%;
+  border-radius: 15px;
 }
 
 .speaker-section h5 {
@@ -187,6 +187,6 @@ p {
   align-items: center;
 }
 
-* {
+*:not(.fa) {
   font-family: 'Montserrat' !important;
 }
