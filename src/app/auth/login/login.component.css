@@ -116,10 +116,9 @@ a.btn i {
   }
 } */
 
-@media only screen and (max-width: 434px) {
-  /* For mobile phones: */
+/* @media only screen and (max-width: 434px) {
   .buttons {
     padding: 7px calc(100% - 271px);
   }
 }
-
+ */
