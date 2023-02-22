@@ -196,3 +196,7 @@
 .example-card:hover {
   box-shadow: -1px 10px 29px 0px rgba(26, 11, 82, 0.4);
 }
+
+.mat-mdc-tab-header .mdc-tab {
+  height: 60px !important;
+}
