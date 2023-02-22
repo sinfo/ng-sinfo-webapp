@@ -34,7 +34,7 @@ p {
 }
 
 .speaker-section img {
-  border-radius: 50%;
+  max-height: 300px;
 }
 
 .speaker-section h5 {
