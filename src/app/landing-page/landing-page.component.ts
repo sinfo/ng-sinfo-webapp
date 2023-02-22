@@ -55,6 +55,7 @@ export class LandingPageComponent implements OnInit {
   ngOnInit() {
     this.selectedAboutText = 'About Us'
     this.eventService.getCurrent().subscribe((event: Event) => {
+      event = new Event(event)
       this.titleService.setTitle(event.name)
       this.eventId = event.id
       this.begin = event.begin

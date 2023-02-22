@@ -74,7 +74,7 @@ export const environment = {
   },
   fenix: {
     clientId: '1977390058176863',
-    redirectUrl: 'http://localhost:4201'
+    redirectUrl: 'http://localhost:4201/login'
   },
   linkedin: {
     clientId: '77i6uer5luxghl',

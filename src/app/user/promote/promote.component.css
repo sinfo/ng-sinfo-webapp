@@ -42,6 +42,8 @@ button {
   text-align: center;
   background-position-x: 98%;
   background-position-y: 50%;
+  background-color: #018ae6 !important;
+  color: white !important;
 }
 
 .rescan span {
@@ -57,7 +59,6 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
     width: 100%;
 }
 
@@ -202,3 +203,19 @@ div.mini-portrait-wrapper img {
     padding-top: 100%;
 }
 
+.rescan-button {
+    background-color: #14A44D !important;
+    color: white !important;
+}
+
+.powerOn {
+    border: 0px !important;
+    max-width: 52px !important;
+    margin-top: 25% !important;
+}
+
+@media (max-width: 475px) {
+    .powerOn {
+        margin-top: 0% !important;
+    }
+}

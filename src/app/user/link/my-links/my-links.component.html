@@ -88,15 +88,25 @@
             </span>
           </p>
         </div>
-        <div>
-          <span class='link-section'>
-            <button type="button" class="btn btn-button center" (click)="editLink(link)">
+        <div class="row rowCenter">
+          <div class="col-sm-6">
+            <!-- <button type="button" class="btn btn-button center" (click)="editLink(link)">
               Edit Link
+            </button> -->
+            <button mat-raised-button color="primary" (click)="editLink(link)" class="link-buttons">
+              <mat-icon>link</mat-icon>
+              <span> Edit Link</span>
             </button>
-            <button type="button" class="btn btn-button btn-danger center" (click)="deleteLink(link)">
+          </div>
+          <div class="col-sm-6">
+            <button mat-raised-button color="warn" (click)="deleteLink(link)" class="link-buttons">
+              <mat-icon>link_off</mat-icon>
+              <span> Delete Link</span>
+            </button>
+            <!-- <button type="button" class="btn btn-button btn-danger center" (click)="deleteLink(link)">
               Delete Link
-            </button>
-          </span>
+            </button> -->
+          </div>
         </div>
       </div>
     </div>

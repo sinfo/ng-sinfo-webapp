@@ -65,3 +65,7 @@
 .carousel-control span {
   color: black;
 }
+
+*:not(.icon) {
+  font-family: 'Montserrat' !important;
+}

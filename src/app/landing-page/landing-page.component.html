@@ -142,7 +142,7 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content style=" overflow: overlay; font-family: 'Montserrat:  !important;';">
     <div class="content">
       <section id="hero" class="hero-section light-text">
         <div class="video-bg">
@@ -171,7 +171,7 @@
           </div>
         </div>
         <div class="intro ">
-          <a (click)="scroll(speakerstab)">
+          <a (click)="scroll(schedule)">
             <i class="fa fa-chevron-down" aria-hidden="true" aria-label="Scroll down"></i>
           </a>
         </div>
@@ -181,20 +181,22 @@
       <div #schedule>
         <app-schedule *ngIf="eventId" [eventId]="eventId"></app-schedule>
       </div>
+      <mat-divider></mat-divider>
 
       <div #speakerstab>
         <app-speakers *ngIf="eventId" [eventId]="eventId"></app-speakers>
       </div>
-
+      <mat-divider></mat-divider>
 
       <div #stands>
         <app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
       </div>
+      <mat-divider></mat-divider>
 
       <!-- STANDS -->
 
       <section #event class="price-area section-padding" id="the-event">
-        <div class="container">
+        <div class="container" style="display: flex; flex-direction: column; align-items: center;">
           <div class="row">
             <div class="text-center">
               <div class="page-title">
@@ -210,12 +212,11 @@
 
           <div class="event-content">
 
-            <mat-card class="example-card">
+            <mat-card class="example-card speaker-card" style="background-image: linear-gradient(rgba(27, 38, 97, 0.5), rgba(27, 38, 97, 0.5)),
+            url('assets/img/event-cards/speaker.jpg');">
               <mat-card-header>
                 <mat-card-title class="card-title">
-                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/keynotes.svg"
-                    height="152" width="152" alt="" />
-                  <h5>Speaker Keynotes</h5>
+                  <h4 style="color: white;">Speaker Keynotes</h4>
                 </mat-card-title>
               </mat-card-header>
               <mat-card-content class="card-content">
@@ -226,28 +227,11 @@
               </mat-card-content>
             </mat-card>
 
-            <mat-card class="example-card">
+            <mat-card class="example-card speaker-card" style="background-image: linear-gradient(rgba(27, 38, 97, 0.5), rgba(27, 38, 97, 0.5)),
+            url('assets/img/event-cards/workshop.jpg');">
               <mat-card-header>
                 <mat-card-title class="card-title">
-                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/presentations.svg"
-                    height="152" width="152" alt="" />
-                  <h5>Company Presentations</h5>
-                </mat-card-title>
-              </mat-card-header>
-              <mat-card-content class="card-content">
-                <p>
-                  Get to know more about the top IT companies that are looking for
-                  your super-powers!
-                </p>
-              </mat-card-content>
-            </mat-card>
-
-            <mat-card class="example-card">
-              <mat-card-header>
-                <mat-card-title class="card-title">
-                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/workshops.svg"
-                    height="152" width="152" alt="" />
-                  <h5>Workshops</h5>
+                  <h4 style="color: white;">Workshops</h4>
                 </mat-card-title>
               </mat-card-header>
               <mat-card-content class="card-content">
@@ -258,12 +242,26 @@
               </mat-card-content>
             </mat-card>
 
-            <mat-card class="example-card">
+            <mat-card class="example-card speaker-card" style="background-image: linear-gradient(rgba(27, 38, 97, 0.5), rgba(27, 38, 97, 0.5)),
+            url('assets/img/event-cards/presentation.jpg');">
               <mat-card-header>
                 <mat-card-title class="card-title">
-                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/networking.svg"
-                    height="152" width="152" alt="" />
-                  <h5>Networking</h5>
+                  <h4 style="color: white;">Company Presentations</h4>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="card-content">
+                <p>
+                  Get to know more about the top IT companies that are looking for
+                  your super-powers!
+                </p>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="example-card speaker-card" style="background-image: linear-gradient(rgba(27, 38, 97, 0.5), rgba(27, 38, 97, 0.5)),
+            url('assets/img/event-cards/networking.jpg');">
+              <mat-card-header>
+                <mat-card-title class="card-title">
+                  <h4 style="color: white;">Networking</h4>
                 </mat-card-title>
               </mat-card-header>
               <mat-card-content class="card-content">
@@ -274,12 +272,26 @@
               </mat-card-content>
             </mat-card>
 
-            <mat-card class="example-card">
+            <mat-card class="example-card speaker-card" style="background-image: linear-gradient(rgba(27, 38, 97, 0.5), rgba(27, 38, 97, 0.5)),
+            url('assets/img/event-cards/opportunities.jpg');">
               <mat-card-header>
                 <mat-card-title class="card-title">
-                  <img src="https://sinfo.ams3.cdn.digitaloceanspaces.com/static/30-sinfo/icons/giveaways.svg"
-                    height="152" width="152" alt="" />
-                  <h5>Giveaways</h5>
+                  <h4 style="color: white;">Opportunities</h4>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="card-content">
+                <p>
+                  Find job opportunities with the top IT companies in Portugal and more, or recruit new and upcoming
+                  talent directly from IST!
+                </p>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="example-card speaker-card" style="background-image: linear-gradient(rgba(27, 38, 97, 0.5), rgba(27, 38, 97, 0.5)),
+            url('assets/img/event-cards/prizes.jpg');">
+              <mat-card-header>
+                <mat-card-title class="card-title">
+                  <h4 style="color: white;">Giveaways</h4>
                 </mat-card-title>
               </mat-card-header>
               <mat-card-content class="card-content">
@@ -294,6 +306,8 @@
           </div>
         </div>
       </section>
+
+      <mat-divider></mat-divider>
 
       <section #uploadCv class="section bg-cover overlay newsletterbg light-text align-center">
         <div class="container">
@@ -310,7 +324,20 @@
         </div>
       </section>
 
+
+      <div #sponsorstab>
+        <app-sponsors *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
+      </div>
+
+      <mat-divider></mat-divider>
+
+
+      <app-partners #partners *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
+
+      <mat-divider></mat-divider>
+
       <app-team *ngIf="eventId" [eventId]="eventId"></app-team>
+
 
       <section #newsletter class="section bg-cover overlay newsletterbg light-text align-center">
         <div class="container">
@@ -326,11 +353,6 @@
 
         </div>
       </section>
-
-      <div #sponsorstab>
-        <app-sponsors *ngIf="sponsors" [sponsors]="sponsors"></app-sponsors>
-      </div>
-      <app-partners #partners *ngIf="sponsors" [sponsors]="sponsors"></app-partners>
 
 
       <section #about class="section align-center">
@@ -446,6 +468,7 @@
           </div>
         </div>
       </section>
+      <mat-divider></mat-divider>
 
       <section #faq class="price-area section-padding" style="margin-bottom: 5%;" id="the-event">
         <div class="container">
