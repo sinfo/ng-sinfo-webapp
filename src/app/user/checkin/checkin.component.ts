@@ -127,7 +127,7 @@ export class CheckinComponent implements OnInit {
     localStorage.setItem('selectedSession', JSON.stringify(this.selectedSession))
   }
 
-  receiveUser(data: {user:User,company}) {
+  receiveUser(data: { user: User, company }) {
     this.users.push(data.user)
     localStorage.setItem('users', JSON.stringify(this.users))
     this.submitLabel = `Submit ${this.users.length + this.unregistered} users`
@@ -230,13 +230,13 @@ export class CheckinComponent implements OnInit {
 
   idToName(session: Session): string {
     let id: string
-    if (session.kind === "Presentation" || 
-        session.kind === "Workshop") {
-      if(session.companies[0] === undefined) return null
-      id = session.companies[0]
+    if (session.kind === "Presentation" ||
+      session.kind === "Workshop") {
+      if (session.companies[0] === undefined) return null
+      id = session.companies[0].id
     }
-    else if (session.kind === "Keynote"){
-      if(session.speakers[0] === undefined) return null
+    else if (session.kind === "Keynote") {
+      if (session.speakers[0] === undefined) return null
       id = session.speakers[0].id
     }
     else {
@@ -244,7 +244,7 @@ export class CheckinComponent implements OnInit {
     }
 
     var splitted = id.split("-");
-    for(let i=0; i<splitted.length; i++){
+    for (let i = 0; i < splitted.length; i++) {
       let result = splitted[i].charAt(0).toUpperCase() + splitted[i].slice(1);
       splitted[i] = result
     }

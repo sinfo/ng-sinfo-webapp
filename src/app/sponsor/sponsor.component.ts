@@ -63,7 +63,7 @@ export class SponsorComponent implements OnInit {
   getSessions(id: string): void {
     this.sessionService.getSessions(this.event.id)
       .subscribe(sessions => {
-        this.sessions = sessions.filter(session => session.companies && session.companies.length > 0 && session.companies[0] === id)
+        this.sessions = sessions.filter(session => session.companies && session.companies.length > 0 && session.companies[0].id === id)
       })
   }
 
