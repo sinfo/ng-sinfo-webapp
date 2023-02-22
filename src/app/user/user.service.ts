@@ -176,11 +176,6 @@ export class UserService {
 
   getLinks(attendeeId: string): Observable<Link[]> {
     const httpOptions = {
-      params: new HttpParams({
-        fromObject: {
-          'editionId': this.event.id
-        }
-      }),
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${this.authService.getToken().token}`
@@ -204,10 +199,26 @@ export class UserService {
         'Authorization': `Bearer ${this.authService.getToken().token}`
       })
     }
-    console.log("Passou 1")
     return this.http.get<User>(`${this.usersUrl}/${attendeeId}/shareLinks`, httpOptions)
       .pipe(
         catchError(this.handleError<User>('shareUserLinks'))
+      )
+  }
+
+  toggleSharePermitions(attendeeId: string): Observable<User> {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+    return this.http.get<User>(`${this.usersUrl}/shareLinksPermissions`, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('toggleSharePermitions'))
       )
   }
 

@@ -23,6 +23,8 @@ export class MyLinksComponent implements OnInit {
   company: Company
   processedLinks: Array<ProcessedLink>
   gotLinks: boolean
+  shareActive: boolean
+  sharePerms: boolean
 
   constructor(
     private userService: UserService,
@@ -58,6 +60,7 @@ export class MyLinksComponent implements OnInit {
               })
           }
           else {
+            this.sharePerms = me.shareLinks
             this.userService.getLinks(this.me.id)
               .subscribe(links => {
                 this.links = links
@@ -65,6 +68,10 @@ export class MyLinksComponent implements OnInit {
               })
           }
         })
+      let unixEvent = Math.floor(event.end.getTime() / 1000)
+      let now = new Date()
+      let unixNow = Math.floor(now.getTime() / 1000)
+      this.shareActive = (unixNow > unixEvent)
     })
   }
 
@@ -123,24 +130,31 @@ export class MyLinksComponent implements OnInit {
   }
 
   fillAttendee(link: Link, processed: ProcessedLink, author: string) {
-    if (author === "company") {
-      this.userService.getUser(link.attendee).subscribe(
-        attendee => {
-          if (attendee) {
-            processed.attendee = attendee
-            this.processedLinks.push(processed)
-          }
-        })
-    }
-    else {
-      this.companyService.getCompany(link.company).subscribe(
-        company => {
-          if (company) {
-            processed.company = company
-            this.processedLinks.push(processed)
-          }
-        })
-    }
+    this.userService.getUser(link.attendee).subscribe(
+      attendee => {
+        if (attendee) {
+          processed.attendee = attendee
+        }
+
+        if (author !== "company")  {
+          this.companyService.getCompany(link.company).subscribe(
+            company => {
+              if (company) {
+                processed.company = company
+                this.processedLinks.push(processed)
+              }
+          })
+        } else {
+          this.processedLinks.push(processed)
+        }
+    })
     
   }
+
+  toggleSharePerms(){
+    this.userService.toggleSharePermitions(this.me.id).subscribe(_user => {
+      this.sharePerms = _user.shareLinks
+    })
+  }
 }
+

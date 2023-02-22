@@ -75,7 +75,7 @@
           </div>
         </div> -->
 
-        <div class="row" *ngIf="userRead">
+        <div class="row" *ngIf="userRead && !share">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button rescan" (click)="toLink()">
               <span>Link</span>
@@ -83,7 +83,7 @@
           </div>
         </div>
 
-        <div class="row" *ngIf="userRead">
+        <div class="row" *ngIf="userRead  && !share">
           <div class="col-xs-12">
             <button type="button" class="btn btn-button" (click)="reScan()">
               {{me.role === 'company' ? "Sign another user" : "Cancel"}}
@@ -133,7 +133,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="yesToLink && me.role !=='company'" class='full-width'>
+      <div *ngIf="yesToLink && me.role !=='company' && !share" class='full-width'>
 
         <p>You can store company information here.</p>
 
@@ -157,11 +157,31 @@
           </div>
         </div>
       </div>
-      <div *ngIf="yesToLink" class='full-width'>
+      <div *ngIf="yesToLink && !share" class='full-width'>
         <div class="row">
           <div class="col-xs-12">
             <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="link()">
               <span class="glyphicon glyphicon-link"></span> Link
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button" (click)="reScan()">
+              <span class="glyphicon glyphicon-pencil"></span>
+              {{
+              cam ? 'Rescan' : 'Insert another ID'
+              }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="share" class='full-width'>
+        <div class="row">
+          <div class="col-xs-12">
+            <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="shareLinks()">
+              <span class="glyphicon glyphicon-link"></span> Share Links
             </button>
           </div>
         </div>

@@ -37,6 +37,7 @@ export class LinkComponent implements OnInit {
   //yesToSign: Boolean
   cam: Boolean
   userId: string = ''
+  share: boolean
 
   constructor(
     private userService: UserService,
@@ -52,6 +53,7 @@ export class LinkComponent implements OnInit {
   ngOnInit() {
     this.scannerActive = false
     this.yesToLink = false
+    this.share = false
     this.cam = true
     this.notes = {
       contacts: {
@@ -122,6 +124,7 @@ export class LinkComponent implements OnInit {
     this.userRead = null
     this.userId = ''
     this.yesToLink = false
+    this.share = false
     this.description = this.descriptions[0]
     //this.info = ''
     //this.yesToSign = false
@@ -185,9 +188,8 @@ export class LinkComponent implements OnInit {
           })
       } else {
       // if another role is read, share notes instead of creating a link
-        console.log("certo")  
-        this.userService.shareUserLinks(data.user.id)
-        .subscribe(_user => {})
+        console.log("certo")
+        this.share = true 
       }
     }
   }
@@ -252,6 +254,7 @@ export class LinkComponent implements OnInit {
       })
     }
     else{
+      console.log(this.userRead)
       this.userService.createLink(this.me.id, this.company.id, this.userRead.id, this.notes)
       .subscribe(_link => {
         if (_link) {
@@ -316,6 +319,11 @@ export class LinkComponent implements OnInit {
     }
     
     console.log("updateLink")
+  }
+
+  shareLinks() {
+    this.userService.shareUserLinks(this.userRead.id)
+        .subscribe(_user => {})
   }
 
   // submit() {

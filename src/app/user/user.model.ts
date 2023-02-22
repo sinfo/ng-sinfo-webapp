@@ -4,6 +4,7 @@ export class User {
   name: string
   img: string
   role: string
+  shareLinks: boolean
   company: [
     {
       edition: string
@@ -21,6 +22,13 @@ export class User {
       }[]
     }
   ]
+  linkShared: [{
+    // edition: String,
+    // links:[{
+    //   id: String,
+    // }]
+    id: String
+  }]
   mail: string
   bearer: [
     {
