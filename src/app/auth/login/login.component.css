@@ -25,17 +25,14 @@ a.btn i {
 
 .btn-fenix {
   background-color: #19ACCD;
-  padding: 7px 125px;
 }
 
 .btn-linkedin {
-  background-color: #0077B5;
-  padding: 7px 117px;
+  background-color: #36434a;
 }
 
 .btn-microsoft {
   background-color: #4a36e6;
-  padding: 7px 115px;
 }
 
 .btn {
@@ -59,28 +56,28 @@ a.btn i {
   max-height: 7vh;
 }
 
-.button-google {
-  display: flex;
-  justify-content: center;
+.buttons{
+  display: flexbox;
+  margin: auto; 
+  width: 280px; 
+  height: 30px;
+  font-weight: bold;
+  font-family: "Google Sans",arial,sans-serif;
+  letter-spacing: 0.25px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 0px;
 }
 
-.buttons{
-  border: 2px solid black;
-  border-color: #d8d8d8;
-  font-weight: bold;
-  flex-grow: 1;
-  font-family: "Google Sans",arial,sans-serif;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: top;
-  letter-spacing: 0.25px;
-  align-items: center;
+.new-align-center{
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: 14px;
-  width: 60px;
+  align-items: center;
   text-align: center;
-  text-decoration: none;
-  color: #ffffff;
-  border-radius: 4px;
-  cursor: pointer;
+  flex-wrap: wrap;
+  width: 100%;
 }
