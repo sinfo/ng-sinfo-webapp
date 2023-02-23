@@ -72,7 +72,7 @@ a.btn i {
   padding: 4px 0px;
 }
 
-.new-align-center{
+.new-align-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -80,4 +80,8 @@ a.btn i {
   text-align: center;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.new-align-center > * {
+  margin-bottom: 3vh;
 }

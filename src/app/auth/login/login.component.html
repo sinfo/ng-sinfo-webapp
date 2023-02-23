@@ -6,33 +6,27 @@
   </span>
 </mat-toolbar>
 
-  
-    <div class="align-center">
-      <i class="icon section-icon fa fa-sign-in"></i>
-      <h3>Login</h3>
-    </div>
-    <br />
-    <br />
-    
-    <app-loading [content]="!submitting"></app-loading>
-    <div class="new-align-center" *ngIf="!submitting">
-        <div id="google-button"></div>
-      <br>
-      <br>
-      <a href="{{ linkedinUrlAuth }}" class="buttons btn-linkedin">
-        <i class="fa fa-linkedin"></i>
-        Sign in with LinkedIn
-      </a>
-      <br>
-      <br>
-      <a href="{{ fenixUrlAuth }}" class="buttons btn-fenix">
-        <i class="fa fa-graduation-cap"></i>
-        Sign in with Fenix
-      </a>
-      <br>
-      <br>
-      <a href="{{ microsoftUrlAuth }}" class="buttons btn-microsoft">
-        <i class="fa fa-windows"></i>
-        Sign in with Microsoft
-      </a>
-    </div>
+
+<div class="align-center">
+  <i class="icon section-icon fa fa-sign-in"></i>
+  <h3>Login</h3>
+</div>
+<br />
+<br />
+
+<app-loading [content]="!submitting"></app-loading>
+<div class="new-align-center" *ngIf="!submitting">
+  <div id="google-button"></div>
+  <a href="{{ linkedinUrlAuth }}" class="buttons btn-linkedin">
+    <i class="fa fa-linkedin"></i>
+    Sign in with LinkedIn
+  </a>
+  <a href="{{ fenixUrlAuth }}" class="buttons btn-fenix">
+    <i class="fa fa-graduation-cap"></i>
+    Sign in with Fenix
+  </a>
+  <a href="{{ microsoftUrlAuth }}" class="buttons btn-microsoft">
+    <i class="fa fa-windows"></i>
+    Sign in with Microsoft
+  </a>
+</div>
