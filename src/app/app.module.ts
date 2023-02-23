@@ -118,6 +118,7 @@ import { PromocodesDialogComponent } from "./user/promocodes/promocodes-dialog/p
 import { RouterModule } from '@angular/router';
 import { AddAchievementComponent } from "./user/add-achievement/add-achievement.component";
 import { SponsorComponent } from "./sponsor/sponsor.component";
+import { DeleteLinkDialogComponent } from "./user/link/my-links/delete-link-dialog/delete-link-dialog.component";
 
 import { marked } from 'marked';
 
@@ -186,6 +187,7 @@ library.add(fas);
     SpeedDateSignComponent,
     SecretAchievementsComponent,
     GdprDialogComponent,
+    DeleteLinkDialogComponent,
     PromocodesDialogComponent,
     WorkshopValidationComponent,
     AddAchievementComponent,

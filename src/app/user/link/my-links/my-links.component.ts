@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
-import { Link, Note, ProcessedLink } from '../link.model'
+import { Link, ProcessedLink } from '../link.model'
 import { User } from '../../user.model'
 import { UserService } from '../../user.service'
 import { Company } from '../../../company/company.model'
 import { CompanyService } from '../../../company/company.service'
 import { CompanyCannonService } from '../../../company/company-cannon.service'
 import { EventService } from '../../../events/event.service'
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteLinkDialogComponent } from './delete-link-dialog/delete-link-dialog.component'
 
 @Component({
   selector: 'app-my-links',
@@ -171,24 +172,4 @@ export class MyLinksComponent implements OnInit {
     }
     
   }
-}
-
-@Component({
-  selector: 'delete-link-dialog',
-  templateUrl: 'delete-link-dialog.html',
-  styleUrls: ['./my-links.component.css']
-})
-export class DeleteLinkDialogComponent {
-
-  constructor(
-    public dialogRef: MatDialogRef<DeleteLinkDialogComponent>) {}
-
-    onDeleteClick(): void {
-      this.dialogRef.close(true);
-    }    
-
-    onCancelClick(): void {
-      this.dialogRef.close(false);
-    }
-
 }
