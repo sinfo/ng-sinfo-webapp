@@ -48,6 +48,27 @@
   padding-bottom: 15px;
 }
 
+.mat-text {
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.dialog-container {
+  padding: 20px;
+  background-color: rgba(75, 153, 209, 0.13);
+  align-items: center;
+  border: solid 2px #2C49A6;
+}
+
+.btn-cancel {
+  background-color: #000000;
+  border-color: #f3f3f3;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+
 .link-note p {
   padding-left: 10px;
   padding-right: 10px;
@@ -163,4 +184,13 @@ img.portrait {
   .link {
     width: 100%;
   }
+}
+
+.link-buttons {
+  width: 150px;
+  margin-bottom: 0.5rem;
+}
+
+.rowCenter {
+  text-align: center;
 }

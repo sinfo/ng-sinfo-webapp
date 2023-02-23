@@ -44,17 +44,23 @@ import { MyCardComponent } from './user/my-card/my-card.component'
 import { SecretAchievementsComponent } from './user/secret-achievements/secret-achievements.component'
 import { CardComponent } from './user/card/card.component'
 import { WorkshopValidationComponent } from './user/workshop-validation/workshop-validation.component'
+import { SponsorComponent } from './sponsor/sponsor.component'
+import { MicrosoftLoginComponent } from './auth/login/microsoft.component'
+import { AddAchievementComponent } from './user/add-achievement/add-achievement.component'
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: LandingPageComponent },
 
+  { path: 'home', component: LandingPageComponent },
   { path: 'live', component: LiveComponent },
 
   { path: 'login', component: LoginComponent },
   { path: 'login/linkedin', component: LinkedinLoginComponent },
+  { path: 'login/microsoft', component: MicrosoftLoginComponent },
 
   { path: 'speakers/:id', component: SpeakerComponent },
   { path: 'sessions/:id', component: SessionComponent },
+  { path: 'sponsors/:id', component: SponsorComponent },
 
   { path: 'sponsors', component: SponsorsComponent },
 
@@ -99,7 +105,9 @@ const routes: Routes = [
       { path: 'promote', component: PromoteComponent, canActivate: [IsTeamGuard] },
       { path: 'sessions', component: SessionsComponent, canActivate: [IsTeamGuard] },
       { path: 'coc', component: CodeOfConductComponent },
-      { path: 'privacy-policy', component: PrivacyPolicyComponent }
+      { path: 'privacy-policy', component: PrivacyPolicyComponent },
+      
+      { path: 'add-achievement', component: AddAchievementComponent, canActivate: [IsTeamGuard] },
     ]
   },
 
@@ -109,4 +117,7 @@ const routes: Routes = [
   { path: '**', component: PageNotFoundComponent }
 ]
 
-export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes)
+export const Routing: ModuleWithProviders<RouterModule> = RouterModule.forRoot(routes, {
+  anchorScrolling: 'enabled',
+  scrollPositionRestoration: 'disabled'
+})

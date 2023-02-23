@@ -34,7 +34,6 @@
 
 .full-width{
     width: 100%;
-    height: 100% !important;
 }
 
 .form-control {
@@ -164,4 +163,17 @@ div.mini-portrait-wrapper img {
   content: "";
   display: block;
   padding-top: 100%;
+}
+
+.link-button {
+  background-color: #14A44D !important;
+}
+
+.info {
+  font-size: 16px !important;
+}
+
+.form-field {
+  width: 100%;
+  height: 100px;
 }

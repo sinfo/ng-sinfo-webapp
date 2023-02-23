@@ -1,7 +1,6 @@
 <app-loading [content]="user"></app-loading>
 
 <div class="align-center pad" *ngIf="user">
-
   <div class="row">
     <h3>Upload CV</h3>
   </div>
@@ -11,61 +10,103 @@
   </div>
 
   <div id="info">
-
     <div>
       <h5>Last upload:</h5>
     </div>
 
     <div class="img" *ngIf="myCv && updated">
-      <img src="assets/img/icons/sidebar/updatedcv.png">
+      <img src="assets/img/icons/sidebar/updatedcv.png" />
     </div>
 
     <div class="img" *ngIf="myCv && !updated">
-      <img src="assets/img/icons/sidebar/oldcv.png">
+      <img src="assets/img/icons/sidebar/oldcv.png" />
     </div>
 
     <div class="img" *ngIf="myCv === undefined">
-      <img src="assets/img/icons/sidebar/nocv.png">
+      <img src="assets/img/icons/sidebar/nocv.png" />
     </div>
 
     <div *ngIf="myCv">
       <ul>
-        <li><a href="{{ cvDownloadUrl }}">{{myCv.name}}</a></li>
-        <li>({{ myCv.updated | date: 'dd/MM/yyyy':'+0000'}})</li>
+        <li>
+          <a href="{{ cvDownloadUrl }}">{{ myCv.name }}</a>
+        </li>
+        <li>({{ myCv.updated | date : "dd/MM/yyyy" : "+0000" }})</li>
       </ul>
     </div>
     <div *ngIf="myCv === undefined">
       <h5>No uploads</h5>
     </div>
-
   </div>
 
   <div id="progress-bar">
     <span *ngIf="upload_progress">
-      <ngb-progressbar type="info" [value]="upload_progress" [striped]="true"></ngb-progressbar>
+      <ngb-progressbar
+        type="info"
+        [value]="upload_progress"
+        [striped]="true"
+      ></ngb-progressbar>
     </span>
   </div>
 
-  <div id="actions" class="row">
-    <div class="col-sm-12 align-center cv-buttons">
-
-      <input (change)="uploadCV($event)" class="inputfile" type="file" id="file" name="file" accept=".pdf,.doc,.docx">
-      <label for="file" class="btn cv-button upload" [ngClass]="{'btn-success': myCv, 'btn-info': !myCv}">
-        <span class="glyphicon glyphicon-cloud-upload"></span>
-        {{ myCv ? 'Update' : 'Upload' }}
-      </label>
-
-      <a *ngIf="myCv" href="{{ cvDownloadUrl }}" target="_blank" class="btn cv-button download">
-        <span class="glyphicon glyphicon-cloud-download"></span>
-        Download
-      </a>
-
-      <button *ngIf="myCv" class="btn cv-button delete" id="deleteFile" (click)="deleteCV()">
-        <span class="glyphicon glyphicon-remove"></span>
-        Delete
+  <div class="center-buttons">
+    <div *ngIf="!myCv" class="action-button">
+      <button mat-raised-button class="cv-buttons upload-button">
+        <input
+          (change)="uploadCV($event)"
+          class="inputfile"
+          type="file"
+          id="file"
+          name="file"
+          accept=".pdf,.doc,.docx"
+        />
+        <label for="file" class="label-height">
+          <mat-icon class="upload-icon">cloud_upload</mat-icon>
+          <span class="upload-text"> Upload CV</span>
+        </label>
       </button>
+    </div>
 
+    <div *ngIf="myCv" class="action-button">
+      <button mat-raised-button class="cv-buttons upload-button">
+        <input
+          (change)="uploadCV($event)"
+          class="inputfile"
+          type="file"
+          id="file"
+          name="file"
+          accept=".pdf,.doc,.docx"
+        />
+        <label for="file" class="label-height">
+          <mat-icon class="upload-icon">cloud_upload</mat-icon>
+          <span class="upload-text"> Update CV</span>
+        </label>
+      </button>
+    </div>
+
+    <div *ngIf="myCv" class="action-button">
+      <a
+        mat-raised-button
+        href="{{ cvDownloadUrl }}"
+        target="_blank"
+        class="download-button text-no-format cv-buttons"
+        color="primary"
+      >
+        <mat-icon>cloud_download</mat-icon>
+        <span> Download CV</span>
+      </a>
+    </div>
+
+    <div *ngIf="myCv" class="action-button">
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="deleteCV()"
+        class="cv-buttons"
+      >
+        <mat-icon>delete_forever</mat-icon>
+        <span> Delete CV</span>
+      </button>
     </div>
   </div>
-
 </div>

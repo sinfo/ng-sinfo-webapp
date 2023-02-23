@@ -92,7 +92,6 @@ export class WorkshopValidationComponent implements OnInit {
       sessions.sort((a, b) => {
         return new Date(a.date).toISOString() <= new Date(b.date).toISOString() ? -1 : 1
       })
-      console.log(sessions)
       this.workshops = sessions
     })
   }
@@ -109,8 +108,8 @@ export class WorkshopValidationComponent implements OnInit {
     })
   }
 
-  receiveUser(user: User) {
-    if (this.ticket.users.includes(user.id)) {
+  receiveUser(data: {user: User, company}) {
+    if (this.ticket.users.includes(data.user.id)) {
       this.snackBar.open(`User is registered!`, "Ok", {
         panelClass: ['mat-toolbar', 'mat-primary'],
         duration: 2000

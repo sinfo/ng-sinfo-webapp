@@ -1,0 +1,209 @@
+<div class="container">
+  <h3 class="title">Add Achievement</h3>
+  <form
+    (ngSubmit)="submitAchievement(achievementForm.value)"
+    #achievementForm="ngForm"
+  >
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Kind</mat-label>
+      <mat-select
+        name="kind"
+        id="kind"
+        required
+        name="kind"
+        [(ngModel)]="kind"
+      >
+        <mat-option *ngFor="let kind of kinds" [value]="kind.value">
+          {{ kind.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        id="name"
+        required
+        name="name"
+        ngModel
+      />
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="kind === 'presentation'"
+      appearance="fill"
+      class="field"
+    >
+      <mat-label>Presentation session ID</mat-label>
+      <mat-select
+        name="session"
+        id="session"
+        required
+        name="session"
+        ngModel
+      >
+        <mat-option *ngFor="let session of sessionPresentationIds" [value]="session">
+          {{ session }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="kind === 'workshop'"
+      appearance="fill"
+      class="field"
+    >
+      <mat-label>Workshop session ID</mat-label>
+      <mat-select
+        name="session"
+        id="session"
+        required
+        name="session"
+        ngModel
+      >
+        <mat-option *ngFor="let session of sessionWorkshopIds" [value]="session">
+          {{ session }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="kind === 'keynote'"
+      appearance="fill"
+      class="field"
+    >
+      <mat-label>Keynote session ID</mat-label>
+      <mat-select
+        name="session"
+        id="session"
+        required
+        name="session"
+        ngModel
+      >
+        <mat-option *ngFor="let session of sessionKeynoteIds" [value]="session">
+          {{ session }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="imageUpload.click()"
+      class="upload-image-btn"
+    >
+      <span>Upload Image</span>
+      <input
+        #imageUpload
+        type="file"
+        (click)="imageUpload.value = null"
+        (change)="uploadImage($event)"
+        class="upload-image-input"
+        accept="image/*"
+        id="img"
+        required
+        name="img"
+      />
+    </button>
+    <span *ngIf="imageFile">
+      <mat-icon class="check-icon">check_circle</mat-icon>
+      <p>{{ imageFile.name }}</p>
+    </span>
+
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Value</mat-label>
+      <input
+        matInput
+        id="value"
+        required
+        name="value"
+        ngModel
+      />
+    </mat-form-field>
+
+    <div class="row">
+      <div class="col-sm-6 form-group">
+        <label for="from">Validity (from)</label>
+        <br />
+        <mat-form-field appearance="fill" class="field">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="from"
+            name="from"
+            ngModel
+          />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="from"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #from></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-6 form-group">
+        <label for="to">Validity (to)</label>
+        <br />
+        <mat-form-field appearance="fill" class="field">
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="to"
+            name="to"
+            ngModel
+          />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="to"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #to></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Description (optional)</mat-label>
+      <input
+        matInput
+        id="description"
+        name="description"
+        ngModel
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Category (optional)</mat-label>
+      <input
+        matInput
+        id="category"
+        name="category"
+        ngModel
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="field">
+      <mat-label>Instructions (optional)</mat-label>
+      <input
+        matInput
+        id="instructions"
+        name="instructions"
+        ngModel
+      />
+    </mat-form-field>
+
+    <div class="center">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!achievementForm.form.valid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

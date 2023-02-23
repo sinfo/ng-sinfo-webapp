@@ -27,13 +27,11 @@
   </div>
 
   <div *ngIf="!camStarted && userRead !== undefined" class='vertical center'>
-    <div class="row limit-width">
-      <h3 class="name center">
-        {{userRead.name}}
-      </h3>
+    <div class="row">
+      <h5 class="name center">{{userRead.name}}</h5>
     </div>
 
-    <div class="row limit-width">
+    <div class="row">
       <h5 *ngIf="info === 'team'">
         <img class="sinfo-logo" src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/sinfoLogo.png">
       </h5>

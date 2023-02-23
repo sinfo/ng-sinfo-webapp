@@ -1,6 +1,5 @@
 export const environment = {
   production: true,
-  deckUrl: 'https://deck.sinfo.org',
   cannonUrl: 'https://cannon.sinfo.org',
   url_to_id: {
     '28-sinfo': '28-sinfo',
@@ -19,6 +18,13 @@ export const environment = {
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '30-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'AI & ML',
+      'Game Dev',
+      'Tech Trends'
+    ],
     '28-sinfo': [
       'Software Engineering',
       'Multimedia',
@@ -68,14 +74,19 @@ export const environment = {
     appId: '708252219264170'
   },
   google: {
-    clientId: '744740842123-vqj8fl4sijr329jj5rotvr9a28nn6idg.apps.googleusercontent.com'
+    clientId: '475922911787-mj5hp1pcb00329tarno2bdeclmh7schr.apps.googleusercontent.com'
   },
   fenix: {
-    clientId: '1695915081466129',
-    redirectUrl: 'https://app.sinfo.org'
+    clientId: '1977390058176874',
+    redirectUrl: 'https://sinfo.org/login'
   },
   linkedin: {
-    clientId: '78k3k77vq56igl',
-    redirectUrl: 'https://app.sinfo.org/login/linkedin'
+    clientId: '77i6uer5luxghl',
+    redirectUrl: 'https://sinfo.org/login/linkedin'
+  },
+  microsoft: {
+    clientId: 'c572d99a-8c82-47aa-89b4-01dc934858fc',
+    redirectUrl: 'https://sinfo.org/login/microsoft',
+    authority: 'https://login.microsoftonline.com/common'
   }
 }

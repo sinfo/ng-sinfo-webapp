@@ -1,20 +1,20 @@
 <app-loading [content]="companies"></app-loading>
 
-<div class="wrapper pad" *ngIf="companies">
+<div class="wrapper pad" *ngIf="companies" style="height: 100%;">
 
-  <div>
-    <h3 class="title mb-1">{{ title }}</h3>
-  </div>
-
-  <div class="align-center" *ngIf="!userRead">
-    <app-qrcode-scanner (userReadOutput)="receiveUser($event)" [camStarted]="scannerActive" [title]="" [info]="info"
-      [userRead]="userRead" [company]="userReadCompany" style="height: 100%">
+  <div *ngIf="!userRead" style="height: 100%;">
+    <div>
+      <h3 class="title mb-1">{{ title }}</h3>
+    </div>
+    <app-qrcode-scanner (readData)="receiveUser($event)" [camStarted]="scannerActive" [title]="" [info]="info"
+      [userRead]="userRead" [company]="userReadCompany" style="height: 100%;">
     </app-qrcode-scanner>
   </div>
 
-
-
-  <div class="container justify-center user" *ngIf="userRead">
+  <div class="container justify-center user" *ngIf="userRead" style="height: 100%;">
+    <div>
+      <h3 class="title mb-1">{{ title }}</h3>
+    </div>
 
     <div class='wrapper'>
       <div *ngIf="userRead" class='vertical center'>
@@ -40,7 +40,7 @@
             <div class="mini-portrait-wrapper"
               *ngIf="userRead.role === 'team' || (userRead.role === 'company' && company)">
               <img *ngIf="userRead.role === 'team'" class="mini-image"
-                src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png">
+                src="https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/powerOn.png" class="powerOn">
               <img *ngIf="userRead.role === 'company' && company" class="mini-image" [src]="company.img">
             </div>
           </div>
@@ -49,43 +49,60 @@
       </div>
     </div>
 
-    <div class="row">
+    <div *ngIf="userRead.role !== 'team'" class="row">
       <div class='col-xs-12 promote typeahead'>
-        <button class="btn btn-button promote-team" (click)="promoteToTeam()">Promote to team</button>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-xs-12">
-        <button class="btn btn-button" (click)="promoteToCompany()" [class.disabled]="!validCompany()">
-          Promote to company
+        <!-- <button class="btn btn-button promote-team" (click)="promoteToTeam()">Promote to team</button> -->
+        <button mat-raised-button class="promote-team" (click)="promoteToTeam()">
+          <mat-icon>person</mat-icon>
+          <span>Promote to SINFO member</span>
         </button>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-12 promote typeahead">
-        <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany"
+    <div *ngIf="userRead.role !== 'company'" class="row">
+      <div class="col-sm-6 promote typeahead">
+        <!-- <input matInput id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany"
           [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)"
           #instance="ngbTypeahead" placeholder="Search for company" [inputFormatter]="formatter"
-          [resultFormatter]="formatter" [resultTemplate]="rt" />
+          [resultFormatter]="formatter" [resultTemplate]="rt" /> -->
+        <mat-form-field appearance="fill" style="width: 100%;">
+          <mat-label>Search for company</mat-label>
+          <mat-select name="searchCompany" id="searchCompany" name="searchCompany" [(ngModel)]="searchedCompany">
+            <mat-option *ngFor="let comp of companies" [value]="comp">
+              {{ comp.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-xs-12">
-        <button class="btn btn-button rescan" (click)="reScan()">
-          Rescan QrCode
-          <span class="glyphicon glyphicon-qrcode"></span>
+      <div class="col-sm-6">
+        <!-- <button class="btn btn-button" (click)="promoteToCompany()">
+          Promote to company
+        </button> -->
+        <button mat-raised-button color="primary" (click)="promoteToCompany()">
+          <mat-icon>business</mat-icon>
+          <span>Promote to company</span>
         </button>
       </div>
     </div>
 
 
     <div class="row">
-      <div class="col-xs-12">
-        <button class="btn btn-button btn-danger" (click)="demoteUser()">Demote user</button>
+      <div class="col-sm-6">
+        <!-- <button class="btn btn-button rescan" (click)="reScan()">
+          Rescan QrCode
+          <span class="glyphicon glyphicon-qrcode"></span>
+        </button> -->
+        <button mat-raised-button (click)="reScan()" class="rescan-button">
+          <mat-icon>qr_code</mat-icon>
+          <span>Rescan QRCode</span>
+        </button>
+      </div>
+      <div class="col-sm-6">
+        <!-- <button class="btn btn-button btn-danger" (click)="demoteUser()">Demote user</button> -->
+        <button mat-raised-button color="warn" (click)="demoteUser()">
+          <mat-icon>cancel</mat-icon>
+          <span> Demote user</span>
+        </button>
       </div>
     </div>
 

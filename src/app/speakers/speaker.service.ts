@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
-import { Speaker } from './speaker.model'
+import { Speaker, SpeakerData } from './speaker.model'
 import { environment } from '../../environments/environment'
-import { MessageService, Type } from '../message.service'
 import { MatSnackBar } from '@angular/material/snack-bar'
 
 const httpOptions = {
@@ -13,41 +12,30 @@ const httpOptions = {
 
 @Injectable()
 export class SpeakerService {
-  private speakersUrl = environment.deckUrl + '/api/speakers'
-  private speakers: Speaker[]
-  private eventId: string
+  private speakersUrl = environment.cannonUrl + '/speaker'
+  private speakersData: SpeakerData
+  isCollapsed = false
 
   constructor(
     private http: HttpClient,
-    private snackBar: MatSnackBar,
-    private messageService: MessageService
+    private snackBar: MatSnackBar
   ) { }
 
-  getSpeakers(eventId: string): Observable<Speaker[]> {
-    if (this.speakers && this.eventId === eventId) {
-      return of(this.speakers)
+  getSpeakers(): Observable<SpeakerData> {
+    if (this.speakersData) {
+      return of(this.speakersData)
     }
 
-    this.eventId = eventId
-
-    const params = new HttpParams({
-      fromObject: {
-        'sort': 'name',
-        'event': eventId,
-        'participations': 'true'
-      }
-    })
-
-    return this.http.get<Speaker[]>(this.speakersUrl, { params })
+    return this.http.get<SpeakerData>(this.speakersUrl)
       .pipe(
-        tap(speakers => this.speakers = speakers),
-        catchError(this.handleError<Speaker[]>('getSpeakers', []))
+        tap(data => this.speakersData = data),
+        catchError(this.handleError<SpeakerData>('getSpeakers'))
       )
   }
 
   getSpeaker(id: string): Observable<Speaker> {
-    if (this.speakers) {
-      return of(this.speakers.find(speaker => speaker.id === id))
+    if (this.speakersData) {
+      return of(this.speakersData.speakers.find(speaker => speaker.id === id))
     }
     return this.http.get<Speaker>(`${this.speakersUrl}/${id}`)
       .pipe(

@@ -8,6 +8,7 @@ import { Company } from '../../../company/company.model'
 import { CompanyService } from '../../../company/company.service'
 import { CompanyCannonService } from '../../../company/company-cannon.service'
 import { EventService } from '../../../events/event.service'
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-my-links',
@@ -25,13 +26,15 @@ export class MyLinksComponent implements OnInit {
   gotLinks: boolean
   shareActive: boolean
   sharePerms: boolean
+  selectedLink: ProcessedLink
 
   constructor(
     private userService: UserService,
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
     private eventService: EventService,
-    private titleService: Title
+    private titleService: Title,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -43,15 +46,15 @@ export class MyLinksComponent implements OnInit {
       this.userService.getMe()
         .subscribe(me => {
           this.me = me
-          if(this.me.role === "company"){
+          if (this.me.role === "company") {
             const company = me.company.find(c => {
               return c.edition === event.id
             })
 
             this.companyService.getCompany(company.company)
-            .subscribe(_company => {
-              this.company = _company
-            })
+              .subscribe(_company => {
+                this.company = _company
+              })
 
             this.companyCannonService.getLinks(company.company)
               .subscribe(links => {
@@ -75,28 +78,51 @@ export class MyLinksComponent implements OnInit {
     })
   }
 
-  deleteLink(id: string) {
-    if (this.me.role === "company") {
-      this.companyCannonService.deleteLink(this.company.id, id).subscribe(() => {
-        this.companyCannonService.getLinks(this.company.id)
-          .subscribe(links => {
-            this.processedLinks = []
-            this.links = links
-            links.forEach(link => this.processLink(link, "company"))
+  deleteLink(link: ProcessedLink) {
+    const dialogRef = this.dialog.open(DeleteLinkDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // User confirmed deletion, so call the delete API
+        if (link.author === "company") {
+          this.companyCannonService.deleteLink(this.company.id, link.attendee.id).subscribe(() => {
+            this.companyCannonService.getLinks(this.company.id)
+              .subscribe(links => {
+                this.processedLinks = []
+                this.links = links
+                links.forEach(link => this.processLink(link, "company"))
+              })
           })
+        }
+        else {
+          this.userService.deleteLink(this.me.id, link.company.id).subscribe(() => {
+            this.userService.getLinks(this.me.id)
+              .subscribe(links => {
+                this.processedLinks = []
+                this.links = links
+                links.forEach(link => this.processLink(link, "attendee"))
+              })
+          })
+        }
+      }
+    });
+  }
+
+
+  editLink(link: ProcessedLink) {
+    this.selectedLink = link
+  }
+
+  receiveEditedLink(editedLink: ProcessedLink) {
+    if (editedLink) {
+      this.processedLinks.forEach(link => {
+        if (this.selectedLink === link) {
+          link = editedLink
+        }
       })
     }
-    else {
-      this.userService.deleteLink(this.me.id, id).subscribe(() => {
-        this.userService.getLinks(this.me.id)
-          .subscribe(links => {
-            this.processedLinks = []
-            this.links = links
-            links.forEach(link => this.processLink(link, "attendee"))
-          })
-      })
-    }
-    
+
+    this.selectedLink = null
   }
 
   processLink(link: Link, author: string) {
@@ -107,12 +133,14 @@ export class MyLinksComponent implements OnInit {
 
     processed.cv = link.cv
     processed.note = link.notes
+    processed.author = link.author
     processed.noteEmpty = (!link.notes.contacts.email &&
       !link.notes.contacts.phone &&
       !link.notes.degree &&
       !link.notes.availability &&
       !link.notes.interestedIn &&
-      !link.notes.otherObservations)
+      !link.notes.otherObservations &&
+      !link.notes.internships)
 
     if (savedUser) {
       processed.user = savedUser
@@ -136,25 +164,44 @@ export class MyLinksComponent implements OnInit {
           processed.attendee = attendee
         }
 
-        if (author !== "company")  {
+        if (author !== "company") {
           this.companyService.getCompany(link.company).subscribe(
             company => {
               if (company) {
                 processed.company = company
                 this.processedLinks.push(processed)
               }
-          })
+            })
         } else {
           this.processedLinks.push(processed)
         }
-    })
-    
+      })
+
   }
 
-  toggleSharePerms(){
+  toggleSharePerms() {
     this.userService.toggleSharePermitions(this.me.id).subscribe(_user => {
       this.sharePerms = _user.shareLinks
     })
   }
 }
 
+@Component({
+  selector: 'delete-link-dialog',
+  templateUrl: 'delete-link-dialog.html',
+  styleUrls: ['./my-links.component.css']
+})
+export class DeleteLinkDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<DeleteLinkDialogComponent>) { }
+
+  onDeleteClick(): void {
+    this.dialogRef.close(true);
+  }
+
+  onCancelClick(): void {
+    this.dialogRef.close(false);
+  }
+
+}

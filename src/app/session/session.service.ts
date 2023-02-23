@@ -9,6 +9,9 @@ import { Session } from './session.model'
 import { environment } from '../../environments/environment'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MessageService, Type } from '../message.service'
+import { SpeakerService } from '../speakers/speaker.service'
+import { SponsorService } from '../landing-page/sponsors/sponsor.service'
+
 
 
 const httpOptions = {
@@ -17,33 +20,47 @@ const httpOptions = {
 
 @Injectable()
 export class SessionService {
-  private sessionsUrl = environment.deckUrl + '/api/sessions'
+  private sessionsUrl = environment.cannonUrl + '/session'
   private sessions: Session[]
   private eventId: string
 
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private messageService: MessageService
+    private speakerService: SpeakerService,
+    private companyService: SponsorService
+
   ) { }
 
-  getSessions(eventId: string): Observable<Session[]> {
+  getSessions(eventId: string, withoutAchievement: boolean = false): Observable<Session[]> {
     if (this.sessions && this.eventId === eventId) {
       return of(this.sessions)
     }
 
     this.eventId = eventId
 
-    const params = new HttpParams({
-      fromObject: {
-        'sort': 'date',
-        'event': eventId
-      }
-    })
-
-    return this.http.get<Session[]>(this.sessionsUrl, { params })
+    return this.http.get<Session[]>(this.sessionsUrl + '?withoutAchievements=' + withoutAchievement)
       .pipe(
-        tap(sessions => this.sessions = sessions),
+        tap(sessions => {
+          this.sessions = sessions
+          sessions.forEach(s => {
+            if (s.speakers.length > 0) {
+              s.speakers.forEach((sSpe, i) => {
+                this.speakerService.getSpeaker(sSpe.id).subscribe(val => {
+                  s.speakers[i] = val
+                })
+              })
+            }
+
+            if (s.companies.length > 0) {
+              s.companies.forEach((sComp, i) => {
+                this.companyService.getSponsor(sComp as unknown as string).subscribe(val => {
+                  s.companies[i] = val
+                })
+              })
+            }
+          })
+        }),
         catchError(this.handleError<Session[]>('getSessions', []))
       )
   }

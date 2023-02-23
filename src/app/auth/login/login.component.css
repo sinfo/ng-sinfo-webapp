@@ -28,7 +28,11 @@ a.btn i {
 }
 
 .btn-linkedin {
-  background-color: #0077B5;
+  background-color: #36434a;
+}
+
+.btn-microsoft {
+  background-color: #4a36e6;
 }
 
 .btn {
@@ -40,7 +44,6 @@ a.btn i {
 .row .fa {
   color: white
 }
-
 
 .topbar{
   background-color: black;
@@ -54,6 +57,31 @@ a.btn i {
 }
 
 .buttons{
+  display: flexbox;
+  margin: auto; 
+  width: 280px; 
+  height: 30px;
+  font-weight: bold;
+  font-family: "Google Sans",arial,sans-serif;
+  letter-spacing: 0.25px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 4px 0px;
+}
+
+.new-align-center {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.new-align-center > * {
+  margin-bottom: 3vh;
 }

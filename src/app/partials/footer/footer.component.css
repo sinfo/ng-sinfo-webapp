@@ -31,10 +31,12 @@ ul {
   margin: 0;
 }
 
-@media (min-width: 1000px) {
+
+
+@media (min-width: 480px) {
   .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
   }
 }

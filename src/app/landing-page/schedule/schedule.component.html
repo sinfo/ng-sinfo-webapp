@@ -12,7 +12,7 @@
 
     <a class="btn btn-sm btn-outline-clr ics" href="https://deck.sinfo.org/calendar.ics" target="_blank">
       Download calendar
-      <span class="fa fa-download"></span>
+      <span class="fa fa-download icon"></span>
     </a>
 
     <app-loading [content]="schedule">
@@ -21,8 +21,137 @@
     <!-- Schedule start -->
     <div *ngIf="schedule" class="schedule">
 
-      <!-- Navigation by day start -->
-      <div class="nav-wrapper" (window:resize)="showOrHideDropdown()">
+      <mat-tab-group dynamicHeight style="padding-left: 5%; padding-right: 5%;">
+        <mat-tab *ngFor="let day of schedule; let i=index">
+          <!-- Tab Label -->
+          <ng-template mat-tab-label style="height: 10vh">
+            <div>
+              <h6 class="highlight">{{day.theme}}</h6>
+              <h6 class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0000'}}</h6>
+            </div>
+          </ng-template>
+          <!-- Tab Content -->
+          <mat-tab-group dynamicHeight>
+
+            <!-- Presentations -->
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <div>
+                  <h5 class="highlight">Presentations</h5>
+                </div>
+              </ng-template>
+              <div class="tab-content">
+                <div *ngFor="let presentation of day.sessions.Presentation.sala1; let iSession=index"
+                  style="margin: 2%;">
+
+                  <mat-card class="example-card" (click)="onSelect(presentation)">
+                    <mat-card-header>
+                      <div mat-card-avatar> <img appImage [url]="presentation.img" alt=""> </div>
+                      <mat-card-title><strong class="time highlight">
+                          <span class="icon icon-office-24"></span>
+                          {{presentation.date | date:'shortTime':'+0000'}}
+                          <span class="icon icon-office-47 place"></span>
+                          {{presentation.place}}
+                        </strong></mat-card-title>
+                      <mat-card-subtitle>
+                        <p>{{presentation.companies[0].name}}</p>
+                      </mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                      <mat-divider></mat-divider>
+                      <h6 class="title">{{presentation.name}}</h6>
+                    </mat-card-content>
+                  </mat-card>
+
+                </div>
+              </div>
+            </mat-tab>
+
+            <!-- Keynotes -->
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <div>
+                  <h5 class="highlight">Keynotes</h5>
+                </div>
+              </ng-template>
+
+              <div class="tab-content">
+                <div *ngFor="let session of day.sessions.Keynote; let iSession=index" style="margin: 2%;">
+
+                  <mat-card class="example-card" (click)="onSelect(session)">
+                    <mat-card-header>
+                      <div mat-card-avatar> <img appImage [url]="session.img" alt="" class="img-responsive"> </div>
+                      <mat-card-title>
+                        <strong class="time highlight">
+                          <span class="icon icon-office-24"></span>
+                          {{session.date | date:'shortTime':'+0000'}}
+                          <span class="icon icon-office-47 place"></span>
+                          {{session.place}}
+                        </strong>
+                      </mat-card-title>
+                      <mat-card-subtitle *ngIf="session.speakers.length > 0 && session.speakers[0]">
+                        <p>{{session.speakers[0].name}}</p>
+                      </mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                      <h6 class=" title">
+                        <strong *ngFor="let speaker of session.speakers" class="highlight speaker-name">
+                          {{session.name.split(' - ')[0]}}
+                        </strong>
+                        -- {{session.name.split(' - ')[1]}}
+                      </h6>
+                      <div class="panel-collapse collapse in schedule-item-body">
+                        <article>
+                          <p class="description">{{session.description}}</p>
+                        </article>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+
+                </div>
+              </div>
+
+            </mat-tab>
+            <!-- Workshops -->
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <div>
+                  <h5 class="highlight">Workshops</h5>
+                </div>
+              </ng-template>
+              <div class="tab-content">
+                <div *ngFor="let workshop of day.sessions.Workshop.all; let iSession=index" style="margin: 2%;">
+
+                  <mat-card class="example-card" (click)="onSelect(workshop)">
+                    <mat-card-header>
+                      <div mat-card-avatar> <img appImage [url]="workshop.img" alt=""> </div>
+                      <mat-card-title><strong class="time highlight">
+                          <span class="icon icon-office-24"></span>
+                          {{workshop.date | date:'shortTime':'+0000'}}
+                          <span class="icon icon-office-47 place"></span>
+                          {{workshop.place}}
+                        </strong></mat-card-title>
+                      <mat-card-subtitle>
+                        <p>{{workshop.companies[0].name}}</p>
+                      </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <h6 class="title">{{workshop.name}}</h6>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+
+        </mat-tab>
+      </mat-tab-group>
+
+      <!-- <div class="nav-wrapper" (window:resize)="showOrHideDropdown()">
         <span class="nav-current" (click)="toggleDayDropdown()">
           <h5 class="highlight"> {{ selectedTheme }}</h5>
           <p class="text-alt">{{ selectedTime | date:'dd-MM-yyyy':'+0000'}}</p>
@@ -36,16 +165,12 @@
           </li>
         </ul>
       </div>
-      <!-- Navigation by day end -->
 
-      <!-- First level content start -->
       <div class="tab-content">
 
-        <!-- Day 1 content start -->
         <div *ngFor="let day of schedule; let i=index" class="tab-pane fade in"
           [ngClass]="{'active': selectedTheme === day.theme}">
 
-          <!-- Navigation by session type start -->
           <div class="nav-wrapper">
             <span class="nav-current" (click)="toggleSessionDropdown()">{{selectedSession}}</span>
             <ul *ngIf="displaySessionDropdown" class="nav nav-schedule schedule-type">
@@ -60,15 +185,11 @@
               </li>
             </ul>
           </div>
-          <!-- Navigation by session type start -->
 
-          <!-- Second level content start -->
           <div class="tab-content tab-content-schedule">
 
-            <!-- Keynotes content start -->
             <div class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Keynotes'}">
 
-              <!-- Accordion start -->
               <div *ngIf="day.sessions.Keynote" class="panel-group">
 
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" class="panel schedule-item">
@@ -100,15 +221,11 @@
 
                 </div>
               </div>
-              <!-- Accordion end -->
 
             </div>
-            <!-- Keynotes content end -->
 
-            <!-- Presentations content start -->
             <div class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Presentations'}">
 
-              <!-- Accordion start -->
               <div *ngIf="day.sessions.Presentation" class="panel-group">
 
                 <div *ngIf="day.sessions.Presentation.sala1" class="room1 col-sm-6">
@@ -180,15 +297,11 @@
                 </div>
 
               </div>
-              <!-- Accordion end -->
 
             </div>
-            <!-- Presentations content end -->
 
-            <!-- Workshops content start -->
             <div class="tab-pane fade in" [ngClass]="{'active': selectedSession === 'Workshops'}">
 
-              <!-- Accordion start -->
               <div *ngIf="day.sessions.Workshop" class="panel-group">
 
                 <div *ngIf="day.sessions.Workshop.sala1" class="room1 col-sm-6">
@@ -260,17 +373,13 @@
                 </div>
 
               </div>
-              <!-- Accordion end -->
 
             </div>
-            <!-- Workshops content end -->
 
           </div>
-          <!-- Second level content end -->
 
         </div>
-        <!-- Day 1 content end -->
-      </div>
+      </div> -->
 
     </div>
     <!-- First level content end -->

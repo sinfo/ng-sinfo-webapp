@@ -1,4 +1,5 @@
 import { Speaker } from "../speakers/speaker.model"
+import { Company } from "../company/company.model"
 
 export class Session {
   id: string
@@ -8,7 +9,7 @@ export class Session {
   place: string
   description: string
   speakers: Array<Speaker>
-  companies: Array<string>
+  companies: Array<Company>
   date: string
   duration: string
   updated: string

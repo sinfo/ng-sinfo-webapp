@@ -5,11 +5,33 @@ import { LivestreamService } from './livestream/livestream.service'
 import { SponsorService } from './sponsors/sponsor.service'
 import { Sponsor } from './sponsors/sponsor.model'
 import { Event } from '../events/event.model'
+import { environment } from '../../environments/environment'
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  AUTO_STYLE
+} from '@angular/animations';
+
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.css']
+  styleUrls: ['./landing-page.component.css'],
+  animations: [
+    trigger('myInsertRemoveTrigger', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('0ms', style({ opacity: 0 }))
+      ])
+    ]),
+  ]
+
 })
 export class LandingPageComponent implements OnInit {
   selectedAboutText: string
@@ -20,19 +42,20 @@ export class LandingPageComponent implements OnInit {
   end: Date
   fragment: string
   isLive: boolean
-
+  dropdownNav: boolean = false
   sponsors: Sponsor[]
 
-  constructor (
+  constructor(
     private titleService: Title,
     private eventService: EventService,
     private liveStreamService: LivestreamService,
     private sponsorService: SponsorService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.selectedAboutText = 'About Us'
     this.eventService.getCurrent().subscribe((event: Event) => {
+      event = new Event(event)
       this.titleService.setTitle(event.name)
       this.eventId = event.id
       this.begin = event.begin
@@ -45,35 +68,46 @@ export class LandingPageComponent implements OnInit {
     //this.checkLiveStream()
   }
 
-  getSponsors (event: Event): void {
+  toggleDropdown() {
+    this.dropdownNav = !this.dropdownNav
+  }
+
+  getSponsors(event: Event): void {
     this.sponsorService.getSponsors(event.id)
-      .subscribe(sponsors => this.sponsors = sponsors)
+      .subscribe(sponsors => {
+        this.sponsors = sponsors
+      }
+      )
   }
 
   /* Beggining of Dropdown tabs actions */
-  showOrHideDropdown (): void {
+  showOrHideDropdown(): void {
     this.displayAboutDropdown = window.innerWidth > 768 ? true : false
     this.menuClick = false
   }
 
-  dropdown (): boolean {
+  dropdown(): boolean {
     return !this.displayAboutDropdown && this.menuClick
   }
 
-  updateMenuClick (): void {
+  updateMenuClick(): void {
     this.menuClick = !this.menuClick
   }
 
-  updatedSelectedText (text: string): void {
+  updatedSelectedText(text: string): void {
     this.selectedAboutText = text
   }
   /* End of Dropdown tabs actions */
 
-  checkLiveStream () {
+  checkLiveStream() {
     this.liveStreamService.getLivestreamInformation().subscribe(
       data => {
         this.isLive = data['up']
       }
     )
+  }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({ behavior: 'smooth' });
   }
 }

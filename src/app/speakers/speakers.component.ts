@@ -3,55 +3,63 @@ import { Router } from '@angular/router'
 import { Speaker } from './speaker.model'
 import { SpeakerService } from './speaker.service'
 import { EventService } from '../events/event.service'
+import {
+  trigger,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 
 @Component({
   selector: 'app-speakers',
   templateUrl: './speakers.component.html',
-  styleUrls: ['./speakers.component.css']
+  styleUrls: ['./speakers.component.css'],
+  animations: [
+    trigger('myInsertRemoveTrigger', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ]),
+  ]
 })
 export class SpeakersComponent implements OnInit, OnChanges {
   @Input() eventId: string
   speakers: Speaker[]
   previousSpeakers: Boolean
 
-  constructor (
+  constructor(
     private router: Router,
     private speakerService: SpeakerService,
-    private eventService: EventService
   ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.getSpeakers()
   }
 
-  ngOnChanges () {
+  ngOnChanges() {
     this.getSpeakers()
   }
 
-  getSpeakers (): void {
-    this.speakerService.getSpeakers(this.eventId)
-      .subscribe(speakers => {
-        if (speakers.length !== 0) {
-          this.speakers = speakers
-          this.previousSpeakers = false
-        } else {
-          this.eventService.getPrevious().subscribe(event => {
-            this.eventId = event.id
-            this.speakerService.getSpeakers(this.eventId)
-              .subscribe(previousSpeakers => this.speakers = previousSpeakers)
-            this.previousSpeakers = true
-          })
-        }
+  getSpeakers(): void {
+    this.speakerService.getSpeakers()
+      .subscribe(speakerData => {
+        this.eventId = speakerData.eventId
+        this.previousSpeakers = speakerData.previousEdition,
+        this.speakers = speakerData.speakers
       })
   }
 
-  setCompanyImg (speaker) {
+  setCompanyImg(speaker) {
     return {
-      'background-image': `url('https://sinfo.ams3.cdn.digitaloceanspaces.com/static/${this.eventId}/speakersCompanies/${speaker.id}.png')`
+      'background-image': `url('https://sinfo.ams3.cdn.digitaloceanspaces.com/static/${this.eventId}/speakersPhotos/${speaker.id}.png')`
     }
   }
 
-  onSelect (speaker: Speaker): void {
+  onSelect(speaker: Speaker): void {
     this.router.navigate(['/speakers', speaker.id])
   }
 }

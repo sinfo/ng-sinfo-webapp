@@ -124,7 +124,7 @@ export class SpeedDateSignComponent implements OnInit {
 
         this.userRead = user
         this.description = this.descriptions[1]
-        this.receiveUser(user)
+        this.receiveUser({user:user, company:null})
 
       })
   }
@@ -162,8 +162,8 @@ export class SpeedDateSignComponent implements OnInit {
     })
   }
 
-  receiveUser(user: User) {
-    this.userRead = user
+  receiveUser(data:{user:User, company:Company}) {
+    this.userRead = data.user
     this.scannerActive = false
     this.companyCannonService.getLink(this.myCompany.id, this.userRead.id)
       .subscribe(_link => {

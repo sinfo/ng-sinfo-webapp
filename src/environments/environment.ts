@@ -5,7 +5,6 @@
 
 export const environment = {
   production: false,
-  deckUrl: 'https://deck-staging.sinfo.org',
   cannonUrl: 'http://localhost:8090',
   url_to_id: {
     '27-sinfo': '27-sinfo',
@@ -22,6 +21,13 @@ export const environment = {
     '23-sinfo-conf': '23-sinfo'
   },
   themes: {
+    '30-sinfo': [
+      'Software Engineering',
+      'Multimedia',
+      'AI & ML',
+      'Game Dev',
+      'Tech Trends'
+    ],
     '27-sinfo': [
       'Software Engineering',
       'Multimedia',
@@ -64,14 +70,19 @@ export const environment = {
     appId: '1993609550676550' // development appId
   },
   google: {
-    clientId: '744740842123-4fs8tbutopitaqpfsk3rnhkkdkut7q3d.apps.googleusercontent.com'
+    clientId: '475922911787-2eunqihjt791ul7kfi1ji185o7mlehq2.apps.googleusercontent.com'
   },
   fenix: {
     clientId: '1977390058176863',
-    redirectUrl: 'http://localhost:4201'
+    redirectUrl: 'http://localhost:4201/login'
   },
   linkedin: {
     clientId: '77i6uer5luxghl',
     redirectUrl: 'http://localhost:4201/login/linkedin'
+  },
+  microsoft: {
+    clientId: 'c572d99a-8c82-47aa-89b4-01dc934858fc',
+    redirectUrl: 'http://localhost:4201/login/microsoft',
+    authority: 'https://login.microsoftonline.com/common'
   }
 }
