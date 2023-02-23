@@ -10,6 +10,7 @@
 
 .sidenav-container {
   height: calc(100% - 7vh);
+  position: fixed;
 }
 
 .topbar {
@@ -30,6 +31,7 @@
 
 .sidenav {
   background-color: rgba(0, 0, 0, 0.85);
+  /* position: fixed; */
   /* width: 250px; */
 }
 
