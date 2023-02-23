@@ -8,6 +8,20 @@
   height: 100%;
 }
 
+@media (orientation: landscape) {
+  .user-wrapper {
+    position: fixed;
+  
+    display: flex;
+    flex-direction: row;
+  
+    width: calc(100% - 15vw);
+    /* width: 100vw; */
+
+    margin: auto;
+  }
+}
+
 .sidenav-container {
   height: calc(100% - 7vh);
   position: fixed;
