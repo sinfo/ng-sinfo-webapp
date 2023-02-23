@@ -21,7 +21,7 @@
   <div class="row">
     <div class="col-sm-12">
       <div class="portrait-wrapper">
-        <button *ngIf="!company && !shareActive" type="button" class="btn btn-button rescan"
+        <button *ngIf="!company && shareActive" type="button" class="btn btn-button rescan"
           (click)="toggleSharePerms()">
           <span class="glyphicon glyphicon-link"></span> Sharing Links: {{this.sharePerms ? "Yes" : "No"}}
         </button>

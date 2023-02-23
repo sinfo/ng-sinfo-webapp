@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core'
-import { Title } from '@angular/platform-browser'
 
-import { Link, Note, ProcessedLink } from '../link.model'
+import { Link, ProcessedLink } from '../link.model'
 import { User } from '../../user.model'
 import { UserService } from '../../user.service'
 import { Company } from '../../../company/company.model'
 import { CompanyService } from '../../../company/company.service'
 import { CompanyCannonService } from '../../../company/company-cannon.service'
 import { EventService } from '../../../events/event.service'
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Event } from '../../../events/event.model';
 
 @Component({
   selector: 'app-my-links',
@@ -33,7 +33,6 @@ export class MyLinksComponent implements OnInit {
     private companyService: CompanyService,
     private companyCannonService: CompanyCannonService,
     private eventService: EventService,
-    private titleService: Title,
     public dialog: MatDialog
   ) { }
 
@@ -41,7 +40,8 @@ export class MyLinksComponent implements OnInit {
     this.processedLinks = []
     this.fetchedUsers = []
 
-    this.eventService.getCurrent().subscribe(event => {
+    this.eventService.getCurrent().subscribe((event: Event) => {
+      event = new Event(event)
       //this.titleService.setTitle(event.name + ' - My Links')
       this.userService.getMe()
         .subscribe(me => {
