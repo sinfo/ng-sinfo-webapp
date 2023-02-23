@@ -77,18 +77,12 @@
 
         <div class="row" *ngIf="userRead">
           <div class="col-sm-6">
-            <!-- <button type="button" class="btn btn-button rescan" (click)="toLink()">
-              <span>Link</span>
-            </button> -->
             <button mat-raised-button color="primary" (click)="toLink()" class="link-button">
               <mat-icon>link</mat-icon>
               <span> Link</span>
             </button>
           </div>
           <div class="col-sm-6">
-            <!-- <button type="button" class="btn btn-button" (click)="reScan()">
-              {{me.role === 'company' ? "Sign another user" : "Cancel"}}
-            </button> -->
             <button mat-raised-button color="warn" (click)="reScan()">
               <mat-icon>qr_code</mat-icon>
               <span>{{me.role === 'company' ? "Sign another user" : "Cancel"}}</span>
@@ -148,15 +142,10 @@
               <mat-label>Employee email</mat-label>
               <textarea matInput [(ngModel)]="notes.contacts.email"></textarea>
             </mat-form-field>
-
-            <!-- <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Employee email" autocapitalize="off">
-            </textarea> -->
           </div>
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <!-- <textarea [(ngModel)]="notes.internships" class="form-control" placeholder="Internships details">
-            </textarea> -->
             <mat-form-field class="form-field">
               <mat-label>Internship details</mat-label>
               <textarea matInput [(ngModel)]="notes.internships"></textarea>
@@ -165,9 +154,6 @@
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <!-- <textarea [(ngModel)]="notes.otherObservations" class="form-control"
-              placeholder="Insert your other observations here">
-            </textarea> -->
             <mat-form-field class="form-field">
               <mat-label>Insert your other observations here</mat-label>
               <textarea matInput [(ngModel)]="notes.otherObservations"></textarea>
@@ -178,9 +164,6 @@
       <div *ngIf="yesToLink" class='full-width'>
         <div class="row">
           <div class="col-sm-6">
-            <!-- <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan" (click)="link()">
-              <span class="glyphicon glyphicon-link"></span> Link
-            </button> -->
             <button mat-raised-button color="primary" (click)="link()" class="link-button">
               <mat-icon>link</mat-icon>
               <span> Link</span>
@@ -188,12 +171,6 @@
           </div>
 
           <div *ngIf="!linkToEdit" class="col-sm-6">
-            <!-- <button class="btn btn-button" (click)="reScan()">
-              <span class="glyphicon glyphicon-pencil"></span>
-              {{
-              cam ? 'Rescan' : 'Insert another ID'
-              }}
-            </button> -->
             <button mat-raised-button color="primary" (click)="reScan()">
               <mat-icon>qr_code</mat-icon>
               <span>{{ cam ? 'Rescan' : 'Insert another ID'}}</span>
@@ -205,9 +182,6 @@
               <mat-icon>cancel</mat-icon>
               <span> Cancel</span>
             </button>
-            <!-- <button class="btn btn-button" (click)="cancelEdit()">
-              <span class="glyphicon glyphicon-pencil"></span> Cancel
-            </button> -->
           </div>
         </div>
 

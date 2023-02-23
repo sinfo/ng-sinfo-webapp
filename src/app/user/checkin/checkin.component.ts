@@ -17,7 +17,7 @@ import { AchievementService } from '../achievements/achievement.service'
   styleUrls: ['./checkin.component.css']
 })
 export class CheckinComponent implements OnInit {
-  sessions = []
+  sessions: Session[]
 
   selectedSession: Session
   users: User[]
@@ -107,7 +107,7 @@ export class CheckinComponent implements OnInit {
                   canCheckIn: sessionDate.getDate() === new Date().getDate()
                 })
 
-                _sessions.find(e => e.kind === ach.kind).achievements.sort((a, b): number => {
+                _sessions.find(e => e.kind === ach.kind).sessions.sort((a, b): number => {
                   return a.begin.toISOString() <= b.begin.toISOString() ? -1 : 1
                 })
               }

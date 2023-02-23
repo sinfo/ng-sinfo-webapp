@@ -18,11 +18,14 @@
     <div class="row destroy">
       <h4>Unregistered Users</h4>
       <div class='unregistered'>
-        <button class='btn btn-button' (click)="updateUnregistered(-1)">-</button>
+        <button mat-raised-button (click)="updateUnregistered(-1)" color="primary">-</button>
         <div class='box'>{{unregistered}}</div>
-        <button class='btn btn-button' (click)="updateUnregistered(1)">+</button>
+        <button mat-raised-button (click)="updateUnregistered(1)" color="primary">+</button>
       </div>
-      <button class="btn btn-button" (click)="delete()">Cancel</button>
+      <button mat-raised-button (click)="delete()" color="warn">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancel</span>
+      </button>
     </div>
   </div>
 
@@ -61,8 +64,11 @@
                 </div>
               </div>
             </div>
-            <div *ngIf='session.canCheckIn' class="col-sm-3 checkin">
-              <button class="btn btn-button" (click)="beginCheckIn(session.session)">Check in</button>
+            <div *ngIf='session.canCheckIn' class="checkin mb-2">
+              <button mat-raised-button (click)="beginCheckIn(session.session)" color="primary">
+                <mat-icon>qr_code</mat-icon>
+                <span>Check in</span>
+              </button>
             </div>
           </mat-card>
         </div>
