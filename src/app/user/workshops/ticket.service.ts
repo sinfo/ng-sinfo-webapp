@@ -63,19 +63,6 @@ export class TicketService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open('When fetching tickets from server', "Ok", {
-        panelClass: ['mat-toolbar', 'mat-warn'],
-        duration: 2000
-      })
-      this.messageService.add({
-        origin: `TicketService: ${operation}`,
-        showAlert: false,
-        text: 'When fetching tickets from server',
-        errorObject: error,
-        type: Type.error,
-        timeout: 4000
-      })
-
       // Let the app keep running by returning an empty result.
       return of(result)
     }
