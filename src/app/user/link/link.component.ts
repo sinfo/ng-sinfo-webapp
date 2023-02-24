@@ -41,6 +41,7 @@ export class LinkComponent implements OnInit {
   cam: Boolean
   userId: string = ''
   share: boolean
+  signError: boolean = false
 
   constructor(
     private userService: UserService,
@@ -141,10 +142,6 @@ export class LinkComponent implements OnInit {
 
   signUser() {
     this.signatureService.checkSignature(this.userRead, this.company)
-    this.snackBar.open('User was successfully signed!', "Ok", {
-      panelClass: ['mat-toolbar', 'mat-primary'],
-      duration: 2000
-    })
   }
 
   receiveUser(data: { user: User, company: Company }) {
