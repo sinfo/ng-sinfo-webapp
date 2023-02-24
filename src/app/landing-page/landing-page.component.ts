@@ -5,7 +5,6 @@ import { LivestreamService } from './livestream/livestream.service'
 import { SponsorService } from './sponsors/sponsor.service'
 import { Sponsor } from './sponsors/sponsor.model'
 import { Event } from '../events/event.model'
-import { environment } from '../../environments/environment'
 import {
   trigger,
   state,

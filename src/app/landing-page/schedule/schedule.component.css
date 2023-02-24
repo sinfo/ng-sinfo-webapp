@@ -188,9 +188,9 @@
   font-family: 'Montserrat' !important;
 }
 
-.mat-mdc-tab.mdc-tab {
-  height: 10vh
-}
+/* .mat-mdc-tab.mdc-tab {
+  height: 10vh;
+} */
 
 .example-card {
   transition: all .1s linear;
@@ -201,6 +201,6 @@
   box-shadow: -1px 10px 29px 0px rgba(26, 11, 82, 0.4);
 }
 
-.mat-mdc-tab-group.mat-mdc-tab-group-stretch-tabs>.mat-mdc-tab-header .mat-mdc-tab {
-  margin-top: 10px !important;
+.mat-mdc-tab-header .mdc-tab {
+  height: 60px !important;
 }

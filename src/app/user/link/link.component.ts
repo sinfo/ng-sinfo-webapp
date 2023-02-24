@@ -40,6 +40,7 @@ export class LinkComponent implements OnInit {
   //yesToSign: Boolean
   cam: Boolean
   userId: string = ''
+  share: boolean
 
   constructor(
     private userService: UserService,
@@ -55,6 +56,7 @@ export class LinkComponent implements OnInit {
   ngOnInit() {
     this.scannerActive = false
     this.yesToLink = false
+    this.share = false
     this.cam = true
     this.notes = {
       contacts: {
@@ -74,13 +76,13 @@ export class LinkComponent implements OnInit {
       this.userService.getMe()
         .subscribe(user => {
           this.me = user
-          if (user.role === 'company'){
+          if (user.role === 'company') {
             let company = user.company.find(c => {
               return c.edition === event.id
             })
-  
+
             if (!company) return
-  
+
             this.companyService.getCompany(company.company)
               .subscribe(_company => {
                 this.company = _company
@@ -88,10 +90,10 @@ export class LinkComponent implements OnInit {
 
                 if (this.linkToEdit) {
                   this.userRead = this.linkToEdit.attendee
-                  this.receiveUser({user:this.userRead,company:this.company})
+                  this.receiveUser({ user: this.userRead, company: this.company })
                   this.yesToLink = true
                 }
-                else{
+                else {
                   this.scannerActive = true
                 }
               })
@@ -99,18 +101,18 @@ export class LinkComponent implements OnInit {
           else {
             this.linkReady = true
             if (this.linkToEdit) {
-              this.userRead = this.linkToEdit.user 
+              this.userRead = this.linkToEdit.user
               this.company = this.linkToEdit.company
-              this.receiveUser({user:this.userRead,company:this.company})
+              this.receiveUser({ user: this.userRead, company: this.company })
               this.yesToLink = true
             }
-            else{
+            else {
               this.scannerActive = true
             }
           }
         })
     })
-    
+
     // this.descriptions = [
     //   'Insert the ID of the attendee in the text box below or scan the QR code by switching input.',
     //   'Sign a user\'s card after you have interacted with them.'
@@ -122,52 +124,35 @@ export class LinkComponent implements OnInit {
     this.cam = !this.cam
   }
 
-  // signUser() {
-  //   this.yesToSign = true
-  //   this.info = `Signing ${this.userRead.name}'s card.`
-  //   this.updateInfo()
-  // }
 
   toLink() {
     this.yesToLink = true
-    //this.info = `Linking ${this.userRead.name} with ${this.company.name}`
-    //this.description = this.info
   }
 
   reScan() {
     this.userRead = null
     this.userId = ''
     this.yesToLink = false
-    //this.description = this.descriptions[0]
-    //this.info = ''
-    //this.yesToSign = false
+    this.share = false
     this.linkReady = true
 
     this.scannerActive = true
   }
 
   signUser() {
-    //this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
     this.snackBar.open('User was successfully signed!', "Ok", {
       panelClass: ['mat-toolbar', 'mat-primary'],
       duration: 2000
     })
-    // this.messageService.add({
-    //   origin: 'Sign and Link',
-    //   showAlert: true,
-    //   text: 'User was successfully signed!',
-    //   type: Type.success,
-    //   timeout: 2000
-    // })
   }
 
-  receiveUser(data: {user:User,company:Company}) {
+  receiveUser(data: { user: User, company: Company }) {
     this.userRead = data.user
     this.scannerActive = false
     if (this.me.role === 'company') {
       if (data.user.role !== 'company') {
-        if(!this.linkToEdit) this.signUser()
+        if (!this.linkToEdit) this.signUser()
         this.companyCannonService.getLink(this.company.id, this.userRead.id)
           .subscribe(_link => {
             if (_link) {
@@ -186,15 +171,21 @@ export class LinkComponent implements OnInit {
       }
     }
     else {
-      // if a normal user is read, share notes instead of creating a link
-      this.company = data.company
-      this.userService.getLink(this.me.id, data.company.id)
-        .subscribe(_link => {
-          if (_link) {
-            this.currentLink = _link
-          }
-          this.buildNotes(_link)
-        })
+      if (data.user.role === 'company') {
+        // if a company is read, create a link with the company
+        this.company = data.company
+        this.userService.getLink(this.me.id, data.company.id)
+          .subscribe(_link => {
+            if (_link) {
+              this.currentLink = _link
+            }
+
+            this.buildNotes(_link)
+          })
+      } else {
+        // if another role is read, share notes instead of creating a link
+        this.share = true
+      }
     }
   }
 
@@ -240,97 +231,101 @@ export class LinkComponent implements OnInit {
   createLink() {
     if (this.me.role === 'company') {
       this.companyCannonService.createLink(this.company.id, this.me.id, this.userRead.id, this.notes)
-      .subscribe(_link => {
-        if (_link) {
-          this.currentLink = _link
-          this.snackBar.open('Link created', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-        } else {
-          this.snackBar.open('Error creating link', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-        }
-      })
+        .subscribe(_link => {
+          if (_link) {
+            this.currentLink = _link
+            this.snackBar.open('Link created', "Ok", {
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              duration: 2000
+            })
+          } else {
+            this.snackBar.open('Error creating link', "Ok", {
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              duration: 2000
+            })
+          }
+        })
     }
-    else{
+    else {
       this.userService.createLink(this.me.id, this.company.id, this.userRead.id, this.notes)
-      .subscribe(_link => {
-        if (_link) {
-          this.currentLink = _link
-          this.snackBar.open('Link created', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-        } else {
-          this.snackBar.open('Error creating link', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-        }
-      })
+        .subscribe(_link => {
+          if (_link) {
+            this.currentLink = _link
+            this.snackBar.open('Link created', "Ok", {
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              duration: 2000
+            })
+          } else {
+            this.snackBar.open('Error creating link', "Ok", {
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              duration: 2000
+            })
+          }
+        })
     }
-    
   }
 
   updateLink() {
     if (this.me.role === 'company') {
       this.companyCannonService.updateLink(this.company.id, this.me.id, this.userRead.id, this.notes)
-      .subscribe(_link => {
-        if (_link) {
-          this.currentLink = _link
-          this.snackBar.open('Link updated', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-          if (this.linkToEdit) {
-            this.linkToEdit.note = this.currentLink.notes
-            this.updatedLink.emit(this.linkToEdit)
+        .subscribe(_link => {
+          if (_link) {
+            this.currentLink = _link
+            this.snackBar.open('Link updated', "Ok", {
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              duration: 2000
+            })
+            if (this.linkToEdit) {
+              this.linkToEdit.notes = this.currentLink.notes
+              this.updatedLink.emit(this.linkToEdit)
+            }
+          } else {
+            this.snackBar.open('Error updating link', "Ok", {
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              duration: 2000
+            })
+            if (this.linkToEdit) {
+              this.updatedLink.emit(null)
+            }
           }
-        } else {
-          this.snackBar.open('Error updating link', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-          if (this.linkToEdit) {
-            this.updatedLink.emit(null)
-          }
-        }
-        // this.messageService.add({
-        //   origin: 'Link component',
-        //   showAlert: true,
-        //   text: 'Link updated',
-        //   timeout: 4000,
-        //   type: Type.success
-        // })
-      })
+          // this.messageService.add({
+          //   origin: 'Link component',
+          //   showAlert: true,
+          //   text: 'Link updated',
+          //   timeout: 4000,
+          //   type: Type.success
+          // })
+        })
     }
     else {
       this.userService.updateLink(this.me.id, this.company.id, this.userRead.id, this.notes)
-      .subscribe(_link => {
-        if (_link) {
-          this.currentLink = _link
-          this.snackBar.open('Link updated', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-          if (this.linkToEdit) {
-            this.linkToEdit.note = this.currentLink.notes
-            this.updatedLink.emit(this.linkToEdit)
+        .subscribe(_link => {
+          if (_link) {
+            this.currentLink = _link
+            this.snackBar.open('Link updated', "Ok", {
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              duration: 2000
+            })
+            if (this.linkToEdit) {
+              this.linkToEdit.notes = this.currentLink.notes
+              this.updatedLink.emit(this.linkToEdit)
+            }
+          } else {
+            this.snackBar.open('Error updating link', "Ok", {
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              duration: 2000
+            })
+            if (this.linkToEdit) {
+              this.updatedLink.emit(null)
+            }
           }
-        } else {
-          this.snackBar.open('Error updating link', "Ok", {
-            panelClass: ['mat-toolbar', 'mat-primary'],
-            duration: 2000
-          })
-          if (this.linkToEdit) {
-            this.updatedLink.emit(null)
-          }
-        }
-      })
+        })
     }
+  }
+
+  shareLinks() {
+    this.userService.shareUserLinks(this.userRead.id)
+      .subscribe(_user => { })
   }
 
   cancelEdit() {

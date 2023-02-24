@@ -21,10 +21,10 @@
     <!-- Schedule start -->
     <div *ngIf="schedule" class="schedule">
 
-      <mat-tab-group dynamicHeight fitInkBarToContent style="padding-left: 5%; padding-right: 5%;">
+      <mat-tab-group dynamicHeight style="padding-left: 5%; padding-right: 5%;">
         <mat-tab *ngFor="let day of schedule; let i=index">
           <!-- Tab Label -->
-          <ng-template mat-tab-label>
+          <ng-template mat-tab-label style="height: 10vh">
             <div>
               <h6 class="highlight">{{day.theme}}</h6>
               <h6 class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0000'}}</h6>
@@ -54,7 +54,7 @@
                           {{presentation.place}}
                         </strong></mat-card-title>
                       <mat-card-subtitle>
-                        <p>{{presentation.companies[0]}}</p>
+                        <p>{{presentation.companies[0].name}}</p>
                       </mat-card-subtitle>
                     </mat-card-header>
 
@@ -134,7 +134,7 @@
                           {{workshop.place}}
                         </strong></mat-card-title>
                       <mat-card-subtitle>
-                        <p>{{workshop.companies[0]}}</p>
+                        <p>{{workshop.companies[0].name}}</p>
                       </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>

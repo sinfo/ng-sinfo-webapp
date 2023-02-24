@@ -187,6 +187,6 @@ p {
     align-items: center;
 }
 
-* {
+*:not(.fa) {
     font-family: 'Montserrat' !important;
 }

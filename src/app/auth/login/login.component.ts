@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         text: "signin_with",
         logo_alignment: "center",
         locale: "en_US",
-        width: window.innerWidth < 400 ? window.innerWidth - 16 : 400
+        width: 280
       }
     );
   }

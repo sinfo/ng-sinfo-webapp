@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { MessageService, Type } from '../message.service'
 import { SpeakerService } from '../speakers/speaker.service'
+import { SponsorService } from '../landing-page/sponsors/sponsor.service'
 
 
 
@@ -26,7 +27,8 @@ export class SessionService {
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private speakerService: SpeakerService
+    private speakerService: SpeakerService,
+    private companyService: SponsorService
 
   ) { }
 
@@ -46,6 +48,14 @@ export class SessionService {
               s.speakers.forEach((sSpe, i) => {
                 this.speakerService.getSpeaker(sSpe.id).subscribe(val => {
                   s.speakers[i] = val
+                })
+              })
+            }
+
+            if (s.companies.length > 0) {
+              s.companies.forEach((sComp, i) => {
+                this.companyService.getSponsor(sComp as unknown as string).subscribe(val => {
+                  s.companies[i] = val
                 })
               })
             }
