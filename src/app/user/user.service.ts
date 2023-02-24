@@ -20,7 +20,7 @@ export class UserService {
   public me: User
   private event: Event
   private cv: CV
-  private links = new Map<string,Link>();
+  private links = new Map<string, Link>();
 
   constructor(
     private http: HttpClient,
@@ -145,10 +145,12 @@ export class UserService {
         internships: note.internships ?? '',
         otherObservations: note.otherObservations ?? ''
       }
-    }, { headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.authService.getToken().token}`
-    })})
+    }, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    })
       .pipe(
         tap(link => {
           this.links.set(link.company, link)
@@ -196,6 +198,40 @@ export class UserService {
           })
         }),
         catchError(this.handleError<Link[]>('getLinks', []))
+      )
+  }
+
+  shareUserLinks(attendeeId: string): Observable<User> {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+    return this.http.get<User>(`${this.usersUrl}/${attendeeId}/shareLinks`, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('shareUserLinks'))
+      )
+  }
+
+  toggleSharePermitions(attendeeId: string): Observable<User> {
+    const httpOptions = {
+      params: new HttpParams({
+        fromObject: {
+          'editionId': this.event.id
+        }
+      }),
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.authService.getToken().token}`
+      })
+    }
+    return this.http.get<User>(`${this.usersUrl}/shareLinksPermissions`, httpOptions)
+      .pipe(
+        catchError(this.handleError<User>('toggleSharePermitions'))
       )
   }
 
@@ -286,7 +322,6 @@ export class UserService {
 
   updateUser(id: string, role: string, company?: string): Observable<User> {
     if (['user', 'team', 'company'].indexOf(role) === -1) {
-      console.log("ERROR")
       return of(null)
     }
 

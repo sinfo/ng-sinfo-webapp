@@ -1,11 +1,11 @@
 <app-loading [content]="linkReady"></app-loading>
 
 <div class="wrapper pad" *ngIf="linkReady">
-  
-  
+
+
   <div class="align-center">
     <!-- <p *ngIf="!cam">{{ description }}</p> -->
-    
+
     <div class="row">
       <h3 class="title">{{(me.role === 'company' ? "Sign and ": "" )}}Link Card </h3>
     </div>
@@ -75,13 +75,16 @@
           </div>
         </div> -->
 
-        <div class="row" *ngIf="userRead">
+        <div class="row" *ngIf="userRead && !share">
           <div class="col-sm-6">
             <button mat-raised-button color="primary" (click)="toLink()" class="link-button">
               <mat-icon>link</mat-icon>
               <span> Link</span>
             </button>
           </div>
+        </div>
+
+        <div class="row" *ngIf="userRead  && !share">
           <div class="col-sm-6">
             <button mat-raised-button color="warn" (click)="reScan()">
               <mat-icon>qr_code</mat-icon>
@@ -96,7 +99,8 @@
 
         <div class="row">
           <div class="col-xs-12">
-            <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email" autocapitalize="off">
+            <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email"
+              autocapitalize="off">
             </textarea>
           </div>
         </div>
@@ -132,7 +136,7 @@
           </div>
         </div>
       </div>
-      <div *ngIf="yesToLink && me.role !=='company'" class='full-width'>
+      <div *ngIf="yesToLink && me.role !=='company' && !share" class='full-width'>
 
         <p class="info">You can store company information here.</p>
 
@@ -161,10 +165,11 @@
           </div>
         </div>
       </div>
-      <div *ngIf="yesToLink" class='full-width'>
+      <div *ngIf="yesToLink && !share" class='full-width'>
         <div class="row">
           <div class="col-sm-6">
-            <button mat-raised-button color="primary" (click)="link()" class="link-button">
+            <button mat-raised-button color="primary" routerLink="/user/links/my-links" (click)="link()"
+              class="link-button">
               <mat-icon>link</mat-icon>
               <span> Link</span>
             </button>
@@ -196,6 +201,27 @@
             </button>
           </div>
         </div> -->
+      </div>
+      <div *ngIf="share" class='full-width'>
+        <div class="row">
+          <div class="col-xs-12">
+            <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan"
+              (click)="shareLinks()">
+              <span class="glyphicon glyphicon-link"></span> Share Links
+            </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-button" (click)="reScan()">
+              <span class="glyphicon glyphicon-pencil"></span>
+              {{
+              cam ? 'Rescan' : 'Insert another ID'
+              }}
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>

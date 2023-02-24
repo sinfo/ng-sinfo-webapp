@@ -34,7 +34,7 @@ export class ProcessedLink {
   attendee: User
   company: Company
   user: User
-  note: Note
+  notes: Note
   noteEmpty: boolean
   cv: boolean
 }
