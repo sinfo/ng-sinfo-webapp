@@ -27,7 +27,7 @@ export class CvComponent implements OnInit {
   upload_progress: number
   updated: boolean
 
-  constructor (
+  constructor(
     private eventService: EventService,
     private userService: UserService,
     private authService: AuthService,
@@ -41,42 +41,44 @@ export class CvComponent implements OnInit {
         .subscribe(user => {
           this.user = user
 
-          this.userService.getCv().subscribe(cv => this.myCv = cv)
+          this.userService.getCv().subscribe(cv => {
+            this.myCv = cv.id ? cv : undefined
+          })
           this.userService.isCvUpdated().subscribe(updated => this.updated = updated)
         })
     })
   }
 
-  ngOnInit () {
+  ngOnInit() {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Curriculum')
     })
     let permissions = this.hasGrpdPermissions()
-    if(!permissions){
+    if (!permissions) {
       this.showDialog()
     }
   }
 
 
-  hasGrpdPermissions(){
+  hasGrpdPermissions() {
     let permissions = localStorage.getItem(GRPD_PERMISSIONS_KEY)
-    if(permissions == undefined){
-      localStorage.setItem(GRPD_PERMISSIONS_KEY,"false")
+    if (permissions == undefined) {
+      localStorage.setItem(GRPD_PERMISSIONS_KEY, "false")
       return false
     } else {
-       return permissions == "true" 
-    } 
+      return permissions == "true"
+    }
   }
 
-  showDialog(){
+  showDialog() {
     const dialogRef = this.dialog.open(GdprDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       // Check here and change permissions
-      localStorage.setItem(GRPD_PERMISSIONS_KEY,"true") 
-     });
+      localStorage.setItem(GRPD_PERMISSIONS_KEY, "true")
+    });
   }
 
-  uploadCV (event) {
+  uploadCV(event) {
     let fileList: FileList = event.target.files
     if (fileList.length > 0) {
       let file: File = fileList[0]
@@ -101,7 +103,7 @@ export class CvComponent implements OnInit {
     }
   }
 
-  deleteCV () {
+  deleteCV() {
     this.userService.deleteCV().subscribe(res => {
       this.myCv = undefined
     })
