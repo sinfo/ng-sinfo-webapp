@@ -105,9 +105,6 @@
         </div>
         <div *ngIf="me.id === link.attendee.id" class="row rowCenter">
           <div class="col-sm-6">
-            <!-- <button type="button" class="btn btn-button center" (click)="editLink(link)">
-              Edit Link
-            </button> -->
             <button mat-raised-button color="primary" routerLink="/user/links/my-links" (click)="editLink(link)"
               class="link-buttons">
               <mat-icon>link</mat-icon>
@@ -123,9 +120,6 @@
               <mat-icon>link_off</mat-icon>
               <span> Delete Link</span>
             </button>
-            <!-- <button type="button" class="btn btn-button btn-danger center" (click)="deleteLink(link)">
-              Delete Link
-            </button> -->
           </div>
         </div>
       </div>

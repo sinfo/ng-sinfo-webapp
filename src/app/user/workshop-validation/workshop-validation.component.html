@@ -20,7 +20,10 @@
     </app-qrcode-scanner>
 
     <div class="row destroy">
-      <button class="btn btn-button" (click)="cancel()">Cancel</button>
+      <button mat-raised-button (click)="cancel()" color="warn">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancel</span>
+      </button>
     </div>
   </div>
 
@@ -53,7 +56,10 @@
           </div>
         </div>
         <div class="col-sm-3 checkin">
-          <button class="btn btn-primary" (click)="beginCheck(workshop)">Validate</button>
+          <button mat-raised-button (click)="beginCheck(workshop)" color="primary" class="mb-2">
+            <mat-icon>qr_code</mat-icon>
+            <span>Validate</span>
+          </button>
         </div>
       </mat-card>
     </div>

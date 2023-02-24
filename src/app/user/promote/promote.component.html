@@ -51,7 +51,6 @@
 
     <div *ngIf="userRead.role !== 'team'" class="row">
       <div class='col-xs-12 promote typeahead'>
-        <!-- <button class="btn btn-button promote-team" (click)="promoteToTeam()">Promote to team</button> -->
         <button mat-raised-button class="promote-team" (click)="promoteToTeam()">
           <mat-icon>person</mat-icon>
           <span>Promote to SINFO member</span>
@@ -61,10 +60,6 @@
 
     <div *ngIf="userRead.role !== 'company'" class="row">
       <div class="col-sm-6 promote typeahead">
-        <!-- <input matInput id="typeahead-template" type="text" class="form-control" [(ngModel)]="searchedCompany"
-          [ngbTypeahead]="search" (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)"
-          #instance="ngbTypeahead" placeholder="Search for company" [inputFormatter]="formatter"
-          [resultFormatter]="formatter" [resultTemplate]="rt" /> -->
         <mat-form-field appearance="fill" style="width: 100%;">
           <mat-label>Search for company</mat-label>
           <mat-select name="searchCompany" id="searchCompany" name="searchCompany" [(ngModel)]="searchedCompany">
@@ -75,9 +70,6 @@
         </mat-form-field>
       </div>
       <div class="col-sm-6">
-        <!-- <button class="btn btn-button" (click)="promoteToCompany()">
-          Promote to company
-        </button> -->
         <button mat-raised-button color="primary" (click)="promoteToCompany()">
           <mat-icon>business</mat-icon>
           <span>Promote to company</span>
@@ -88,17 +80,12 @@
 
     <div class="row">
       <div class="col-sm-6">
-        <!-- <button class="btn btn-button rescan" (click)="reScan()">
-          Rescan QrCode
-          <span class="glyphicon glyphicon-qrcode"></span>
-        </button> -->
         <button mat-raised-button (click)="reScan()" class="rescan-button">
           <mat-icon>qr_code</mat-icon>
           <span>Rescan QRCode</span>
         </button>
       </div>
       <div class="col-sm-6">
-        <!-- <button class="btn btn-button btn-danger" (click)="demoteUser()">Demote user</button> -->
         <button mat-raised-button color="warn" (click)="demoteUser()">
           <mat-icon>cancel</mat-icon>
           <span> Demote user</span>

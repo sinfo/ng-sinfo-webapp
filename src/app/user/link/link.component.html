@@ -76,7 +76,7 @@
         </div> -->
 
         <div class="row" *ngIf="userRead && !share">
-          <div class="col-xs-12">
+          <div class="col-sm-6">
             <button mat-raised-button color="primary" (click)="toLink()" class="link-button">
               <mat-icon>link</mat-icon>
               <span> Link</span>
@@ -85,7 +85,7 @@
         </div>
 
         <div class="row" *ngIf="userRead  && !share">
-          <div class="col-xs-12">
+          <div class="col-sm-6">
             <button mat-raised-button color="warn" (click)="reScan()">
               <mat-icon>qr_code</mat-icon>
               <span>{{me.role === 'company' ? "Sign another user" : "Cancel"}}</span>
@@ -187,9 +187,6 @@
               <mat-icon>cancel</mat-icon>
               <span> Cancel</span>
             </button>
-            <!-- <button class="btn btn-button" (click)="cancelEdit()">
-              <span class="glyphicon glyphicon-pencil"></span> Cancel
-            </button> -->
           </div>
         </div>
 
