@@ -50,6 +50,10 @@
       <div class="link-note">
         <div>
           <p>
+            <span *ngIf="me.id !== link.attendee.id" class='link-section'>
+              <h6 class='link-title'>Author information </h6>
+              <span><span class="panel-content-strong">Name: </span>{{link.attendee.name}}</span>
+            </span>
             <span class='link-section'>
               <h6 class='link-title'>Employee information </h6>
               <span><span class="panel-content-strong">Name: </span>{{link.user.name}}</span>
@@ -61,24 +65,24 @@
 
               <span class='link-data warning' *ngIf='!link.cv'>This attendee has not submitted his CV yet</span>
               <p class='lead small tip link-title' *ngIf='link.noteEmpty && !link.cv'>No information on this user</p>
-              <span class='link-data' *ngIf='link.note.contacts.email'><span class="panel-content-strong">Email:
-                </span>{{link.note.contacts.email}}</span>
+              <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
+                </span>{{link.notes.contacts.email}}</span>
 
-              <span class='link-data' *ngIf='link.note.contacts.phone'><span class="panel-content-strong">Phone:
-                </span>{{link.note.contacts.phone}}</span>
+              <span class='link-data' *ngIf='link.notes.contacts.phone'><span class="panel-content-strong">Phone:
+                </span>{{link.notes.contacts.phone}}</span>
 
-              <span class='link-data' *ngIf='link.note.availability'><span class="panel-content-strong">Availability:
-                </span>{{link.note.availability}}</span>
+              <span class='link-data' *ngIf='link.notes.availability'><span class="panel-content-strong">Availability:
+                </span>{{link.notes.availability}}</span>
 
-              <span class='link-data' *ngIf='link.note.degree'><span class="panel-content-strong">Degree:
-                </span>{{link.note.degree}}</span>
+              <span class='link-data' *ngIf='link.notes.degree'><span class="panel-content-strong">Degree:
+                </span>{{link.notes.degree}}</span>
 
-              <span class='link-data' *ngIf='link.note.interestedIn'><span class="panel-content-strong">Interested in:
-                </span>{{link.note.interestedIn}}</span>
+              <span class='link-data' *ngIf='link.notes.interestedIn'><span class="panel-content-strong">Interested in:
+                </span>{{link.notes.interestedIn}}</span>
 
-              <span class='link-data' *ngIf='link.note.otherObservations'><span class="panel-content-strong">Other
+              <span class='link-data' *ngIf='link.notes.otherObservations'><span class="panel-content-strong">Other
                   Notes:
-                </span>{{link.note.otherObservations}}</span>
+                </span>{{link.notes.otherObservations}}</span>
             </span>
           </p>
 
@@ -87,15 +91,15 @@
               <h6 class='link-title'>Company information </h6>
 
               <p class='lead small tip link-title' *ngIf='link.noteEmpty'>No information on this company</p>
-              <span class='link-data' *ngIf='link.note.contacts.email'><span class="panel-content-strong">Email:
-                </span>{{link.note.contacts.email}}</span>
+              <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
+                </span>{{link.notes.contacts.email}}</span>
 
-              <span class='link-data' *ngIf='link.note.internships'><span class="panel-content-strong">Internships:
-                </span>{{link.note.internships}}</span>
+              <span class='link-data' *ngIf='link.notes.internships'><span class="panel-content-strong">Internships:
+                </span>{{link.notes.internships}}</span>
 
-              <span class='link-data' *ngIf='link.note.otherObservations'><span class="panel-content-strong">Other
+              <span class='link-data' *ngIf='link.notes.otherObservations'><span class="panel-content-strong">Other
                   Notes:
-                </span>{{link.note.otherObservations}}</span>
+                </span>{{link.notes.otherObservations}}</span>
             </span>
           </p>
         </div>
@@ -104,7 +108,8 @@
             <!-- <button type="button" class="btn btn-button center" (click)="editLink(link)">
               Edit Link
             </button> -->
-            <button mat-raised-button color="primary" (click)="editLink(link)" class="link-buttons">
+            <button mat-raised-button color="primary" routerLink="/user/links/my-links" (click)="editLink(link)"
+              class="link-buttons">
               <mat-icon>link</mat-icon>
               <span> Edit Link</span>
             </button>

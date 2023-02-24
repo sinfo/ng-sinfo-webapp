@@ -9,6 +9,7 @@ import { CompanyCannonService } from '../../../company/company-cannon.service'
 import { EventService } from '../../../events/event.service'
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Event } from '../../../events/event.model';
+import { DeleteLinkDialogComponent } from './delete-link-dialog/delete-link-dialog.component'
 
 @Component({
   selector: 'app-my-links',
@@ -132,7 +133,7 @@ export class MyLinksComponent implements OnInit {
     let processed = new ProcessedLink()
 
     processed.cv = link.cv
-    processed.note = link.notes
+    processed.notes = link.notes
     processed.author = link.author
     processed.noteEmpty = (!link.notes.contacts.email &&
       !link.notes.contacts.phone &&
@@ -184,24 +185,4 @@ export class MyLinksComponent implements OnInit {
       this.sharePerms = _user.shareLinks
     })
   }
-}
-
-@Component({
-  selector: 'delete-link-dialog',
-  templateUrl: 'delete-link-dialog.html',
-  styleUrls: ['./my-links.component.css']
-})
-export class DeleteLinkDialogComponent {
-
-  constructor(
-    public dialogRef: MatDialogRef<DeleteLinkDialogComponent>) { }
-
-  onDeleteClick(): void {
-    this.dialogRef.close(true);
-  }
-
-  onCancelClick(): void {
-    this.dialogRef.close(false);
-  }
-
 }

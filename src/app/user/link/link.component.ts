@@ -122,20 +122,11 @@ export class LinkComponent implements OnInit {
 
   toggleCam() {
     this.cam = !this.cam
-    console.log("toggleCam")
   }
 
-  // signUser() {
-  //   this.yesToSign = true
-  //   this.info = `Signing ${this.userRead.name}'s card.`
-  //   this.updateInfo()
-  // }
 
   toLink() {
     this.yesToLink = true
-    //this.info = `Linking ${this.userRead.name} with ${this.company.name}`
-    //this.description = this.info
-    console.log("toLink")
   }
 
   reScan() {
@@ -143,30 +134,17 @@ export class LinkComponent implements OnInit {
     this.userId = ''
     this.yesToLink = false
     this.share = false
-    //this.description = this.descriptions[0]
-    //this.info = ''
-    //this.yesToSign = false
     this.linkReady = true
 
     this.scannerActive = true
-    console.log("reScan")
   }
 
   signUser() {
-    //this.info = `Signed ${this.userRead.name}`
     this.signatureService.checkSignature(this.userRead, this.company)
     this.snackBar.open('User was successfully signed!', "Ok", {
       panelClass: ['mat-toolbar', 'mat-primary'],
       duration: 2000
     })
-    // this.messageService.add({
-    //   origin: 'Sign and Link',
-    //   showAlert: true,
-    //   text: 'User was successfully signed!',
-    //   type: Type.success,
-    //   timeout: 2000
-    // })
-    console.log("signUser")
   }
 
   receiveUser(data: { user: User, company: Company }) {
@@ -201,12 +179,11 @@ export class LinkComponent implements OnInit {
             if (_link) {
               this.currentLink = _link
             }
+
             this.buildNotes(_link)
-            console.log("errado")
           })
       } else {
         // if another role is read, share notes instead of creating a link
-        console.log("certo")
         this.share = true
       }
     }
@@ -230,7 +207,6 @@ export class LinkComponent implements OnInit {
     this.notes.availability = null
     this.notes.otherObservations = null
     this.notes.internships = null
-    console.log("buildNotes")
   }
 
   link() {
@@ -250,7 +226,6 @@ export class LinkComponent implements OnInit {
         timeout: 6000
       })
     }
-    console.log("link")
   }
 
   createLink() {
@@ -272,7 +247,6 @@ export class LinkComponent implements OnInit {
         })
     }
     else {
-      console.log(this.userRead)
       this.userService.createLink(this.me.id, this.company.id, this.userRead.id, this.notes)
         .subscribe(_link => {
           if (_link) {
@@ -289,8 +263,6 @@ export class LinkComponent implements OnInit {
           }
         })
     }
-
-    console.log("createLink")
   }
 
   updateLink() {
@@ -304,7 +276,7 @@ export class LinkComponent implements OnInit {
               duration: 2000
             })
             if (this.linkToEdit) {
-              this.linkToEdit.note = this.currentLink.notes
+              this.linkToEdit.notes = this.currentLink.notes
               this.updatedLink.emit(this.linkToEdit)
             }
           } else {
@@ -335,7 +307,7 @@ export class LinkComponent implements OnInit {
               duration: 2000
             })
             if (this.linkToEdit) {
-              this.linkToEdit.note = this.currentLink.notes
+              this.linkToEdit.notes = this.currentLink.notes
               this.updatedLink.emit(this.linkToEdit)
             }
           } else {
