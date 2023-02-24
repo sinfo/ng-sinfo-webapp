@@ -22,7 +22,7 @@
     <div *ngIf="schedule" class="schedule">
 
       <mat-tab-group dynamicHeight style="padding-left: 5%; padding-right: 5%;">
-        <mat-tab *ngFor="let day of schedule; let i=index">
+        <mat-tab style="height: 100vh" *ngFor="let day of schedule; let i=index">
           <!-- Tab Label -->
           <ng-template mat-tab-label style="height: 10vh">
             <div>
@@ -31,7 +31,7 @@
             </div>
           </ng-template>
           <!-- Tab Content -->
-          <mat-tab-group dynamicHeight>
+          <mat-tab-group dynamicHeight style="margin-top: 5vh">
 
             <!-- Presentations -->
             <mat-tab>
