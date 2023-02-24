@@ -41,7 +41,6 @@ export class LinkComponent implements OnInit {
   cam: Boolean
   userId: string = ''
   share: boolean
-  signError: boolean = false
 
   constructor(
     private userService: UserService,
