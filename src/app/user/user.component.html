@@ -33,6 +33,35 @@
     </a>
   </mat-toolbar>
 
+  <mat-list class="list-look">
+    <mat-list-item>       
+       <a mat-list-item href="/" target="_blank">
+        <div class="navigation-link">
+          <mat-icon>computer</mat-icon>
+          <span class="list-item">Goooo to website</span>
+        </div>
+      </a>
+    </mat-list-item>
+    <mat-list-item>
+      <a *ngIf="isLoggedIn" mat-list-item routerLink="/user/qrcode" routerLinkActive="navigation-link active">
+        <div class="navigation-link">
+          <mat-icon>qr_code</mat-icon>
+          <span class="list-item">QR Code</span>
+        </div>
+      </a>
+    </mat-list-item>
+    <mat-list-item>
+      <a *ngIf="user && user.role !== 'company'" mat-list-item routerLink="/user/cv"
+      routerLinkActive="navigation-link active"  class="mat-list-item-custom">
+      <div class="navigation-link">
+        <mat-icon *ngIf="!isCvUpdated" matBadge="!" matBadgeColor="warn" matBadgeSize="small">account_box</mat-icon>
+        <mat-icon *ngIf="isCvUpdated">account_box</mat-icon>
+        <span class="list-item">Upload CV</span>
+      </div>
+    </a>
+  </mat-list-item>
+  </mat-list>
+
   <mat-sidenav-container [hasBackdrop]="false" class="sidenav-container" [autosize]="true">
     <mat-sidenav #sidenav mode="side" [opened]="opened" class="sidenav" [disableClose]="true">
       <mat-nav-list class="navlist">

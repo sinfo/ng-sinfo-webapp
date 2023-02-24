@@ -8,136 +8,6 @@
   height: 100%;
 }
 
-@media (orientation: landscape) {
-  .user-wrapper {
-    position: fixed;
-
-    display: flex;
-    flex-direction: row;
-  
-    /* width: 100vw; */
-    width: calc(100% - 15vw);
-    height: 100%;
-    /* margin: auto; */
-    /* margin-right: 100px; */
-    /* position: fixed;
-  
-    display: flex;
-    flex-direction: row;
-  
-    
-    margin-right: 50px; */
-
-    /* width: 100vw; */
-    /* margin-left: 100px; */
-  }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  .user-wrapper {
-    position: fixed;
-
-    display: flex;
-    flex-direction: row;
-  
-    /* width: 100vw; */
-    width: calc(100% - 25vw);
-    height: 100%;
-    /* margin: auto; */
-    /* margin-right: 100px; */
-    /* position: fixed;
-  
-    display: flex;
-    flex-direction: row;
-  
-    
-    margin-right: 50px; */
-
-    /* width: 100vw; */
-    /* margin-left: 100px; */
-  }
-}
-
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-  .user-wrapper {
-    position: fixed;
-
-    display: flex;
-    flex-direction: row;
-  
-    /* width: 100vw; */
-    width: calc(100% - 20vw);
-    height: 100%;
-    /* margin: auto; */
-    /* margin-right: 100px; */
-    /* position: fixed;
-  
-    display: flex;
-    flex-direction: row;
-  
-    
-    margin-right: 50px; */
-
-    /* width: 100vw; */
-    /* margin-left: 100px; */
-  }
-}
-
-@media only screen and (min-width: 868px) {
-  .user-wrapper {
-    position: fixed;
-
-    display: flex;
-    flex-direction: row;
-  
-    /* width: 100vw; */
-    width: calc(100% - 30vw);
-    height: 100%;
-    /* margin: auto; */
-    /* margin-right: 100px; */
-    /* position: fixed;
-  
-    display: flex;
-    flex-direction: row;
-  
-    
-    margin-right: 50px; */
-
-    /* width: 100vw; */
-    /* margin-left: 100px; */
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  .user-wrapper {
-    position: fixed;
-
-    display: flex;
-    flex-direction: row;
-  
-    /* width: 100vw; */
-    width: calc(100% - 15vw);
-    height: 100%;
-    /* margin: auto; */
-    /* margin-right: 100px; */
-    /* position: fixed;
-  
-    display: flex;
-    flex-direction: row;
-  
-    
-    margin-right: 50px; */
-
-    /* width: 100vw; */
-    /* margin-left: 100px; */
-  }
-}
-
-
 .sidenav-container {
   height: calc(100% - 7vh);
   position: fixed;
@@ -292,5 +162,19 @@
   text-align: center;
   justify-content: space-between;
   width: 100%;
+  height: 100%;
+}
+
+.list-look{
+  background-color: #252525;
+  width: 200px;
+  height: calc(100vh);
+  /* position: fixed; */
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+
+  /* width: 100vw; */
   height: 100%;
 }
