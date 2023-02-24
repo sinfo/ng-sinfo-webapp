@@ -16,10 +16,6 @@ export class CompanyService {
   private companiesUrl = environment.cannonUrl + '/company'
   private companies: Company[]
   private event: Event
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.authService.getToken().token}`
-  })
 
   constructor(
     private http: HttpClient,
