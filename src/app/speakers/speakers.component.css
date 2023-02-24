@@ -187,11 +187,21 @@ img .speaker-socials {
 
 .speaker-card {
   color: white;
-  min-height: 15vh;
   min-width: 15vh;
-  margin: 2%;
+  height: 0; /* set height to 0 to use padding-top for aspect ratio */
+  padding-top: 100%; /* maintain 1:1 aspect ratio */
   background-size: cover;
   background-position: center;
+}
+
+.description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 8vh;  /* change if speaker with long description */
+  word-wrap: anywhere;
+  top: 50%;
+
 }
 
 .example-card {
