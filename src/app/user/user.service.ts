@@ -425,6 +425,8 @@ export class UserService {
         return of(result)
       } else if (error.status === 500 && operation === 'getMe') {
         this.authService.logout()
+        this.deleteMe()
+        window.location.reload()
       } else {
         this.snackBar.open(error.message, "Ok", {
           panelClass: ['mat-toolbar', 'mat-warn'],
