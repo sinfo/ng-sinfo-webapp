@@ -27,12 +27,11 @@
         </mat-card-subtitle>
       </mat-card-header>
       <qrcode mat-card-image [qrdata]="user.id" [scale]="8"></qrcode>
-      <mat-card-content>
-        <div mat-card-avatar *ngIf="user.role === 'company' && company" class="logo-avatar">
+      <div mat-card-avatar *ngIf="user.role === 'company' && company" class="logo-avatar">
 
-            <img class="company-logo" src="{{ company.img }}" />
-        </div>
-        <br>
+          <img class="sinfo-logo" src="{{ company.img }}" />
+      </div>
+      <mat-card-content>
         <h5>
           {{ presentationRole }}
         </h5>

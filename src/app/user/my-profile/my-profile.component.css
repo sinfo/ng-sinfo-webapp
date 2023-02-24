@@ -51,24 +51,9 @@ div.mini-portrait-wrapper img {
 }
 
 .logo-avatar {
-  margin-bottom: 0 !important;
-  position: relative;
-  /* display: block; */
-  
-  text-align: center;
-  left: 80px;
-}
-
-.company-logo{
-
-  width: 100%;
-
-}
-
-.company-name{
-  font-size: 24px;
-  color: #ffffff;
-  margin-top: 10px;
+  margin-bottom: -20 !important;
+  margin-top: -10px;
+  margin-left: 75px;
 }
 
 h3 {
@@ -343,3 +328,10 @@ div.achivements-wrapper img.achievement {
   text-align: 'center';
 }
 
+.company-name {
+  overflow-wrap: 'anywhere'; 
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 10px;
+}
