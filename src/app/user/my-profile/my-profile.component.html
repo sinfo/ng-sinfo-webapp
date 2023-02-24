@@ -29,7 +29,8 @@
       <qrcode mat-card-image [qrdata]="user.id" [scale]="8"></qrcode>
       <mat-card-content>
         <div mat-card-avatar *ngIf="user.role === 'company' && company" class="logo-avatar">
-          <img class="company-logo" src="{{ company.img }}" />
+
+            <img class="company-logo" src="{{ company.img }}" />
         </div>
         <br>
         <h5>

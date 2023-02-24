@@ -52,18 +52,16 @@ div.mini-portrait-wrapper img {
 
 .logo-avatar {
   margin-bottom: 0 !important;
-  position: fixed;
-  display: block;
+  position: relative;
+  /* display: block; */
   
   text-align: center;
+  left: 80px;
 }
 
 .company-logo{
-  display: block;
-  
-  text-align: center;
-  justify-content: center;
-  justify-items: center;
+
+  width: 100%;
 
 }
 
