@@ -10,15 +10,25 @@
 
 @media (orientation: landscape) {
   .user-wrapper {
-    position: fixed;
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+  
+    width: 80vw;
+    height: 100%;
+    /* position: fixed;
   
     display: flex;
     flex-direction: row;
   
     width: calc(100% - 15vw);
-    /* width: 100vw; */
+    
+    margin-right: 50px; */
 
-    margin: auto;
+    /* width: 100vw; */
+    /* margin: auto; */
+    /* margin-left: 100px; */
   }
 }
 
