@@ -141,10 +141,6 @@ export class LinkComponent implements OnInit {
 
   signUser() {
     this.signatureService.checkSignature(this.userRead, this.company)
-    this.snackBar.open('User was successfully signed!', "Ok", {
-      panelClass: ['mat-toolbar', 'mat-primary'],
-      duration: 2000
-    })
   }
 
   receiveUser(data: { user: User, company: Company }) {

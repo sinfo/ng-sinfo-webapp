@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { environment } from '../../environments/environment'
 import { Company } from './company.model'
 import { Observable, of } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
-import { MessageService, Type } from '../message.service'
-import { AuthService } from '../auth/auth.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
 import { MatSnackBar } from '@angular/material/snack-bar'
@@ -16,16 +14,10 @@ export class CompanyService {
   private companiesUrl = environment.cannonUrl + '/company'
   private companies: Company[]
   private event: Event
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.authService.getToken().token}`
-  })
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
     private snackBar: MatSnackBar,
-    private authService: AuthService,
     private eventService: EventService
   ) {
     this.eventService.getCurrent().subscribe(event => this.event = event)
