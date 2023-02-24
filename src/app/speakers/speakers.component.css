@@ -200,8 +200,8 @@ img .speaker-socials {
   justify-content: center;
   height: 8vh;  /* change if speaker with long description */
   word-wrap: anywhere;
+  padding-top: 5%;
   top: 50%;
-
 }
 
 .example-card {
