@@ -53,7 +53,8 @@ a.btn i {
 }
 
 #logo_white {
-  max-height: 7vh;
+  max-height: 3vh;
+  display: flex;
 }
 
 .buttons{
