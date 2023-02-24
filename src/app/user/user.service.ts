@@ -105,7 +105,7 @@ export class UserService {
         tap((user) => {
           this.me = user
         }),
-        catchError(this.handleError<User>('getting user personal profile'))
+        catchError(this.handleError<User>('getMe'))
       )
   }
 
@@ -423,19 +423,14 @@ export class UserService {
     return (error: any): Observable<T> => {
       if (error.status === 404 && operation === 'getLink') {
         return of(result)
+      } else if (error.status === 500 && operation === 'getMe') {
+        this.authService.logout()
+      } else {
+        this.snackBar.open(error.message, "Ok", {
+          panelClass: ['mat-toolbar', 'mat-warn'],
+          duration: 2000
+        })
       }
-
-      this.snackBar.open(error.message, "Ok", {
-        panelClass: ['mat-toolbar', 'mat-warn'],
-        duration: 2000
-      })
-      /* this.messageService.add({
-        origin: `UserService: ${operation}`,
-        showAlert: false,
-        text: `When ${operation}`,
-        errorObject: error,
-        type: Type.error
-      }) */
 
       // Let the app keep running by returning an empty result.
       return of(result)
