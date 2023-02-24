@@ -74,8 +74,8 @@ export class MyLinksComponent implements OnInit {
                 links.forEach(link => this.processLink(link, "attendee"))
               })
           }
-          this.linkTabs.set("My links", this.processedLinks)
-          this.linkTabs.set("Shared links", this.processedLinks)
+          this.linkTabs.set("My links", this.processedLinks.filter(link => link.author == 'attendee' && link.attendee.id === me.id))
+          this.linkTabs.set("Shared links", this.processedLinks.filter(link => link.author == 'attendee' && link.attendee.id !== me.id))
         })
       let unixEvent = Math.floor(event.end.getTime() / 1000)
       let now = new Date()
