@@ -52,6 +52,25 @@ div.mini-portrait-wrapper img {
 
 .logo-avatar {
   margin-bottom: 0 !important;
+  position: fixed;
+  display: block;
+  
+  text-align: center;
+}
+
+.company-logo{
+  display: block;
+  
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+
+}
+
+.company-name{
+  font-size: 24px;
+  color: #ffffff;
+  margin-top: 10px;
 }
 
 h3 {
@@ -325,3 +344,4 @@ div.achivements-wrapper img.achievement {
   width: 100%;
   text-align: 'center';
 }
+
