@@ -10,7 +10,7 @@
       <h3 class="title">{{(me.role === 'company' ? "Sign and ": "" )}}Link Card </h3>
     </div>
     <app-qrcode-scanner (readData)="receiveUser($event)" [camStarted]="scannerActive" [title]="" [info]=""
-      style="height: 100%; margin-top: 50px;">
+      style="height: 100%; margin-top: 50px;" [ngClass]="{'big-margin': yesToLink && me.role ==='company'}">
     </app-qrcode-scanner>
 
     <!-- <div class="column" *ngIf="!cam && !userRead">
@@ -26,7 +26,7 @@
       <div class="btn btn-primary" (click)="toggleCam()">{{cam? 'Write ID manually':'Read QR Code'}}</div>
     </div> -->
 
-    <div *ngIf="userRead" class='wrapper'>
+    <div *ngIf="userRead" [ngClass]="{'wrapper': !yesToLink || me.role !=='company'}" class="full-width">
 
       <div *ngIf='!yesToLink' class='full-width'>
         <!-- <div class='wrapper'>
@@ -77,16 +77,16 @@
 
         <div class="row" *ngIf="userRead && !share">
           <div class="col-sm-6">
-            <button mat-raised-button color="primary" (click)="toLink()" class="link-button">
+            <button mat-raised-button (click)="toLink()" class="link-button">
               <mat-icon>link</mat-icon>
-              <span> Link</span>
+              <span>{{this.currentLink ? " Update existing link" : "  Link"}}</span>
             </button>
           </div>
         </div>
 
-        <div class="row" *ngIf="userRead  && !share">
+        <div class="row" *ngIf="userRead && !share">
           <div class="col-sm-6">
-            <button mat-raised-button color="warn" (click)="reScan()">
+            <button mat-raised-button (click)="reScan()" [ngClass]="me.role === 'company' ? 'primary-color' : 'warn-color'">
               <mat-icon>qr_code</mat-icon>
               <span>{{me.role === 'company' ? "Sign another user" : "Cancel"}}</span>
             </button>
@@ -94,45 +94,69 @@
         </div>
       </div>
       <div *ngIf="yesToLink && me.role ==='company'" class='full-width'>
-
+        
         <p class="info">You can store user information here.</p>
 
         <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email"
+          <div class="col-sm-12">
+            <!-- <textarea [(ngModel)]="notes.contacts.email" class="form-control" placeholder="Attendee email"
               autocapitalize="off">
-            </textarea>
+            </textarea> -->
+            <mat-form-field class="form-field">
+              <mat-label>Attendee email</mat-label>
+              <textarea matInput [(ngModel)]="notes.contacts.email"></textarea>
+            </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="notes.contacts.phone" class="form-control" placeholder="Attendee phone number">
-            </textarea>
+          <div class="col-sm-12">
+            <!-- <textarea [(ngModel)]="notes.contacts.phone" class="form-control" placeholder="Attendee phone number">
+            </textarea> -->
+            <mat-form-field class="form-field">
+              <mat-label>Attendee phone number</mat-label>
+              <textarea matInput [(ngModel)]="notes.contacts.phone"></textarea>
+            </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="notes.interestedIn" class="form-control" placeholder="Attendee's interests">
-            </textarea>
+          <div class="col-sm-12">
+            <!-- <textarea [(ngModel)]="notes.interestedIn" class="form-control" placeholder="Attendee's interests">
+            </textarea> -->
+            <mat-form-field class="form-field">
+              <mat-label>Attendee's interests</mat-label>
+              <textarea matInput [(ngModel)]="notes.interestedIn"></textarea>
+            </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="notes.degree" class="form-control" placeholder="Attendee's degree">
-            </textarea>
+          <div class="col-sm-12">
+            <!-- <textarea [(ngModel)]="notes.degree" class="form-control" placeholder="Attendee's degree">
+            </textarea> -->
+            <mat-form-field class="form-field">
+              <mat-label>Attendee's degree</mat-label>
+              <textarea matInput [(ngModel)]="notes.degree"></textarea>
+            </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="notes.availability" class="form-control" placeholder="Attendee's avaliability">
-            </textarea>
+          <div class="col-sm-12">
+            <!-- <textarea [(ngModel)]="notes.availability" class="form-control" placeholder="Attendee's avaliability">
+            </textarea> -->
+            <mat-form-field class="form-field">
+              <mat-label>Attendee's avaliability</mat-label>
+              <textarea matInput [(ngModel)]="notes.availability"></textarea>
+            </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-12">
-            <textarea [(ngModel)]="notes.otherObservations" class="form-control"
+          <div class="col-sm-12">
+            <!-- <textarea [(ngModel)]="notes.otherObservations" class="form-control"
               placeholder="Insert your other observations here">
-            </textarea>
+            </textarea> -->
+            <mat-form-field class="form-field">
+              <mat-label>Insert your other observations here</mat-label>
+              <textarea matInput [(ngModel)]="notes.otherObservations"></textarea>
+            </mat-form-field>
           </div>
         </div>
       </div>
@@ -171,7 +195,7 @@
             <button mat-raised-button color="primary" routerLink="/user/links/my-links" (click)="link()"
               class="link-button">
               <mat-icon>link</mat-icon>
-              <span> Link</span>
+              <span>{{this.currentLink ? " Edit Link" : "  Create Link"}}</span>
             </button>
           </div>
 
@@ -204,21 +228,27 @@
       </div>
       <div *ngIf="share" class='full-width'>
         <div class="row">
-          <div class="col-xs-12">
-            <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan"
+          <div class="col-sm-6">
+            <!-- <button routerLink="/user/links/my-links" type="button" class="btn btn-button rescan"
               (click)="shareLinks()">
               <span class="glyphicon glyphicon-link"></span> Share Links
+            </button> -->
+            <button mat-raised-button color="primary" routerLink="/user/links/my-links" (click)="shareLinks()"
+              class="link-button">
+              <mat-icon>share</mat-icon>
+              <span> Share Links</span>
             </button>
           </div>
-        </div>
-
-        <div class="row">
-          <div class="col-xs-12">
-            <button class="btn btn-button" (click)="reScan()">
+          <div class="col-sm-6">
+            <!-- <button class="btn btn-button" (click)="reScan()">
               <span class="glyphicon glyphicon-pencil"></span>
               {{
               cam ? 'Rescan' : 'Insert another ID'
               }}
+            </button> -->
+            <button mat-raised-button color="primary" (click)="reScan()">
+              <mat-icon>qr_code</mat-icon>
+              <span>{{ cam ? 'Rescan' : 'Insert another ID'}}</span>
             </button>
           </div>
         </div>

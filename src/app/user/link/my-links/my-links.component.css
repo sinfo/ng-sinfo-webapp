@@ -194,3 +194,7 @@ img.portrait {
 .rowCenter {
   text-align: center;
 }
+
+.black-text {
+  color: black;
+}

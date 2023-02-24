@@ -20,18 +20,24 @@ export class SignatureService {
   sign(user: User, company: Company): void {
     this.companyCannonService.sign(company.id, user.id)
       .subscribe(_user => {
-        if (!_user) return
-        this.snackBar.open(`Signed ${user.name}'s card`, "Ok", {
-          panelClass: ['mat-toolbar', 'mat-primary'],
-          duration: 2000
-        })
-        this.messageService.add({
-          origin: 'Signatures',
-          showAlert: true,
-          text: `Signed ${user.name}'s card`,
-          type: Type.success,
-          timeout: 7000
-        })
+        if (!_user) {
+          this.snackBar.open(`Error signing user card`, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-warn'],
+            duration: 4000
+          })
+        } else {
+          this.snackBar.open(`Signed ${user.name}'s card`, "Ok", {
+            panelClass: ['mat-toolbar', 'mat-primary'],
+            duration: 2000
+          })
+        }
+        // this.messageService.add({
+        //   origin: 'Signatures',
+        //   showAlert: true,
+        //   text: `Signed ${user.name}'s card`,
+        //   type: Type.success,
+        //   timeout: 7000
+        // })
       })
   }
 
@@ -69,21 +75,20 @@ export class SignatureService {
       // signature not found
       if (wantedSignature === -1) {
         this.sign(user, company)
-        return
+      } else {
+        // signature found
+        this.snackBar.open(`Already signed ${user.name}'s card for today`, "Ok", {
+          panelClass: ['mat-toolbar', 'mat-warn'],
+          duration: 2000
+        })
       }
-
-      // signature found
-      this.snackBar.open(`Already signed ${user.name}'s card for today`, "Ok", {
-        panelClass: ['mat-toolbar', 'mat-warn'],
-        duration: 2000
-      })
-      this.messageService.add({
-        origin: 'Signatures',
-        showAlert: true,
-        text: `Already signed ${user.name}'s card for today`,
-        type: Type.warning,
-        timeout: 7000
-      })
+      // this.messageService.add({
+      //   origin: 'Signatures',
+      //   showAlert: true,
+      //   text: `Already signed ${user.name}'s card for today`,
+      //   type: Type.warning,
+      //   timeout: 7000
+      // })
     })
   }
 }
