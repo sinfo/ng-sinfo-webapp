@@ -4,8 +4,6 @@ import { environment } from '../../environments/environment'
 import { Company } from './company.model'
 import { Observable, of } from 'rxjs'
 import { catchError, tap } from 'rxjs/operators'
-import { MessageService, Type } from '../message.service'
-import { AuthService } from '../auth/auth.service'
 import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model'
 import { MatSnackBar } from '@angular/material/snack-bar'
@@ -19,9 +17,7 @@ export class CompanyService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService,
     private snackBar: MatSnackBar,
-    private authService: AuthService,
     private eventService: EventService
   ) {
     this.eventService.getCurrent().subscribe(event => this.event = event)
