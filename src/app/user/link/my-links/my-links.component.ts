@@ -24,6 +24,7 @@ export class MyLinksComponent implements OnInit {
   links: Link[]
   company: Company
   processedLinks: Array<ProcessedLink>
+  linkTabs: Map<string, ProcessedLink[]>
   gotLinks: boolean
   shareActive: boolean
   sharePerms: boolean
@@ -35,7 +36,9 @@ export class MyLinksComponent implements OnInit {
     private companyCannonService: CompanyCannonService,
     private eventService: EventService,
     public dialog: MatDialog
-  ) { }
+  ) { 
+    this.linkTabs = new Map<string, ProcessedLink[]>();
+  }
 
   ngOnInit() {
     this.processedLinks = []
@@ -71,6 +74,8 @@ export class MyLinksComponent implements OnInit {
                 links.forEach(link => this.processLink(link, "attendee"))
               })
           }
+          this.linkTabs.set("My links", this.processedLinks)
+          this.linkTabs.set("Shared links", this.processedLinks)
         })
       let unixEvent = Math.floor(event.end.getTime() / 1000)
       let now = new Date()
