@@ -29,6 +29,7 @@ export class MyLinksComponent implements OnInit {
   shareActive: boolean
   sharePerms: boolean
   selectedLink: ProcessedLink
+  isChecked: boolean
 
   constructor(
     private userService: UserService,
@@ -68,6 +69,7 @@ export class MyLinksComponent implements OnInit {
           }
           else {
             this.sharePerms = me.shareLinks
+            this.isChecked = me.shareLinks
             this.userService.getLinks(this.me.id)
               .subscribe(links => {
                 this.links = links
@@ -189,5 +191,9 @@ export class MyLinksComponent implements OnInit {
     this.userService.toggleSharePermitions(this.me.id).subscribe(_user => {
       this.sharePerms = _user.shareLinks
     })
+  }
+
+  test(){
+    console.log("HELLO")
   }
 }
