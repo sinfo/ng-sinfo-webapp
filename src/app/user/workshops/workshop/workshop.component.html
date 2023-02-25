@@ -1,11 +1,11 @@
 <app-loading [content]="workshop"></app-loading>
 
-<div class="col-sm-12" *ngIf="workshop">
+<div class="row" *ngIf="workshop">
   <div class="well well-sm workshop-wrapper" [ngClass]="{'workshop-collapsed': isRegistrationClosed }">
-    <div class="img-wrapper col-md-2">
+    <div class="img-wrapper col-sm-4 col-md-2">
       <img src="{{workshop.img}}" alt="{{workshop.name}}" title="{{workshop.name}}">
     </div>
-    <div class="info-wrapper col-md-7">
+    <div class="info-wrapper col-sm-8 col-md-6">
       <h4 class="name">{{workshop.name}}</h4>
       <div class="session-details">
         <div *ngIf="workshop.date" class="padded">
@@ -40,7 +40,7 @@
         </p>
       </div>
     </div>
-    <div class="button-wrapper col-md-2 align-center">
+    <div class="button-wrapper col-sm-6 col-md-3 align-center">
       <app-workshop-register-button (isReserved)="hasTicket($event)"
         (onRegistrationClosed)="onRegistrationClosed($event)" [user]="user" [workshop]="workshop">
       </app-workshop-register-button>

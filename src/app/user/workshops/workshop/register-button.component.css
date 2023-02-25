@@ -1,31 +1,25 @@
-button.getTicket {
-  width: 200px;
-}
 button.btn-success {
   background-color: #14A44D !important;
-  border-color: #14A44D !important;
 }
 button.btn-danger {
   background-color: #d9534f !important;
-  border-color: #d43f3a !important;
 }
 button.btn-disabled {
   background-color: #51545b !important;
-  border-color: #262627 !important;
 }
+
+.register-button {
+  color: white !important;
+}
+
 button.getTicket span i{
   color: white;
   padding: 0;
   margin: 0;
 }
+
 div.waiting-alert {
   padding: 7px;
   margin-bottom: 5px;
   font-size: 14px;
-}
-
-@media (max-width: 767px) {
-  button.getTicket {
-    font-size: 7px;
-  }
 }
