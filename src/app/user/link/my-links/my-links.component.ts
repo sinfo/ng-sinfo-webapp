@@ -203,8 +203,4 @@ export class MyLinksComponent implements OnInit {
       this.isChecked = _user.shareLinks
     })
   }
-
-  test() {
-    console.log("HELLO")
-  }
 }
