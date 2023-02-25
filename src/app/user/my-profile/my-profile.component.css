@@ -45,13 +45,17 @@ div.mini-portrait-wrapper img {
 }
 
 .sinfo-logo {
-  height: 3.5vh;
-  height: 40px !important;
-  width: 40px !important;
+  height: auto;
+  width: 80px;
+  /* height: 40px !important;
+  width: 40px !important; */
 }
 
 .logo-avatar {
-  margin-bottom: 0 !important;
+  margin-top: 10px;
+  margin-bottom: 5 !important;
+  height: auto;
+  width: 80px;
 }
 
 h3 {
@@ -108,6 +112,8 @@ div.achivements-wrapper img.achievement {
   background-color: #2C49A6;
   color: white;
   max-width: 500px;
+  text-align: center;
+  align-items: center;
 }
 
 .card h5 {
@@ -317,7 +323,9 @@ div.achivements-wrapper img.achievement {
   justify-content: center;
   align-items: center;
   max-width: 298px;
-  padding: 16px 0 !important;
+  /* padding: 16px 0 !important; */
+  /* margin-top: 0px; */
+  /* margin-bottom: -10px; */
 }
 
 .top-name {
