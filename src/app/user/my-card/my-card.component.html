@@ -5,22 +5,30 @@
     <h3 class="title">
       {{signatures.day | date:'EEEE':'+0000'}}'s card
     </h3>
-    <h6 *ngIf="signatures.redeemed" class="title">
+    <h6 *ngIf="userSignatures && userSignatures.redeemed" class="title">
       Already redeemed your prize.
       <br> Come back tomorrow for more prizes
     </h6>
-    <div *ngIf="!signatures.redeemed" class="title">
-      <h5 [ngClass]="{allSignatures: signatures.companies.length === signatures.capacity}">
-        {{signatures.companies.length}}/{{signatures.capacity}}
-        <i *ngIf="signatures.companies.length === signatures.capacity" class="fa fa-check"></i>
+    <div *ngIf="userSignatures && !userSignatures.redeemed" class="title">
+      <h5 [ngClass]="{allSignatures: numSignatures === signatures.capacity}">
+        {{numSignatures}}/{{signatures.capacity}}
+        <i *ngIf="numSignatures === signatures.capacity" class="fa fa-check"></i>
       </h5>
     </div>
+    <div *ngIf="userSignatures && !userSignatures.redeemed" class="alert alert-info promocode-info">
+      <b>Earn prizes</b>
+      <span *ngIf="numSignatures < signatures.capacity">: Visit 10 companies and get the chance to spin the wheel of fortune at SINFO stand.</span>
+      <span *ngIf="numSignatures === signatures.capacity"><b> now:</b> You can now spin the wheel of fortune at SINFO stand.</span>
+    </div>
   </div>
-  <div *ngIf="!signatures.redeemed" class="row">
+  <div *ngIf="userSignatures && !userSignatures.redeemed" class="row">
     <div class="col-sm-12">
       <div class="signatures">
-        <div class="card-portrait-wrapper" *ngFor="let company of signatures.companies">
-          <img class="portrait" src="{{company.img}}">
+        <div *ngFor="let company of signatures.companies">
+          <div class="card-portrait-wrapper">
+            <img class="portrait" src="{{company.img}}">
+          </div>
+          <p style="text-align: center;">{{company.name ? company.name : ""}}</p>
         </div>
         <div class="card-portrait-wrapper missing"
           *ngFor="let missing of getArray(signatures.capacity - signatures.companies.length)">

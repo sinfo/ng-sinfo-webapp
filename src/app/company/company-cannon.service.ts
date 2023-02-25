@@ -132,11 +132,15 @@ export class CompanyCannonService {
         return of(result)
       }
       msg.text = error.message
-      this.snackBar.open(error.message, "Ok", {
+      // this.snackBar.open(error.message, "Ok", {
+      //   panelClass: ['mat-toolbar', 'mat-warn'],
+      //   duration: 2000
+      // })
+
+      this.snackBar.open("An error occurred and was sent to SINFO team.", "Ok", {
         panelClass: ['mat-toolbar', 'mat-warn'],
         duration: 2000
       })
-      // this.messageService.add(msg)
 
       // Let the app keep running by returning an empty result.
       return of(result)

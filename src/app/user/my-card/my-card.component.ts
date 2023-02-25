@@ -20,6 +20,9 @@ export class MyCardComponent implements OnInit {
     capacity: environment.signaturesCardCapacity,
     companies: []
   }
+  //TODO: Put here the correct type (Signature[] does not work)
+  userSignatures: any
+  numSignatures: Number
 
   constructor(
     private userService: UserService,
@@ -32,7 +35,7 @@ export class MyCardComponent implements OnInit {
     this.eventService.getCurrent().subscribe(event => {
       this.titleService.setTitle(event.name + ' - Card')
 
-      this.userService.getMe().subscribe(user => {
+      this.userService.getMe(true).subscribe(user => {
         this.user = user
 
         if (!this.user.signatures) {
@@ -40,23 +43,30 @@ export class MyCardComponent implements OnInit {
         }
 
         let day = this.signatures.day.getDate().toString()
-        let userSignatures = this.user.signatures.find(s => {
+        this.userSignatures = this.user.signatures.find(s => {
           return s.day === day && s.edition === event.id
-        }) || { day: day, edition: event.id, redeemed: false, signatures: [] }
-
-        userSignatures.signatures.sort((a, b) => { return b.date.valueOf() - a.date.valueOf() })
-        // userSignatures.signatures = userSignatures.signatures.slice(0, this.signatures.capacity)
-        // userSignatures.signatures = [{ companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}]
-
-        userSignatures.signatures.forEach(signature => {
-          this.companyService.getCompany(signature.companyId)
-            .subscribe(c => {
-              this.signatures.companies.push({
-                name: c.name,
-                img: c.img
-              })
-            })
         })
+
+        if (this.userSignatures) {
+          this.userSignatures.signatures.sort((a, b) => { return b.date.valueOf() - a.date.valueOf() })
+          // userSignatures.signatures = userSignatures.signatures.slice(0, this.signatures.capacity)
+          // userSignatures.signatures = [{ companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}, { companyId:"optimus", date: new Date()}]
+  
+          this.numSignatures = this.userSignatures.signatures.length
+  
+          this.userSignatures.signatures.forEach(signature => {
+            this.companyService.getCompany(signature.companyId)
+              .subscribe(c => {
+                if (c) {
+                  this.signatures.companies.push({
+                    name: c.name,
+                    img: c.img
+                  })
+                }
+              })
+          })
+        }
+
       })
     })
 
