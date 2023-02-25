@@ -108,6 +108,8 @@ div.achivements-wrapper img.achievement {
   background-color: #2C49A6;
   color: white;
   max-width: 500px;
+  text-align: center;
+  align-items: center;
 }
 
 .card h5 {
