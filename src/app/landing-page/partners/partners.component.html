@@ -3,7 +3,7 @@
 <div *ngIf="partners && partners.length > 0 " style="margin-top: 10vh;">
     <div class="overallSponsors">
         <span class="icon section-icon icon-documents-bookmarks-12"></span>
-        <h3 (click)="showAll = !showAll">Partners<mat-icon [class.chev-open]="!showAll" [class.chev-close]="showAll">
+        <h3 (click)="showAll = !showAll">Partners<mat-icon [class.chev-open]="!showAll" [class.chev-close]="showAll" class="cursor-pointer">
                 expand_more
             </mat-icon>
         </h3>

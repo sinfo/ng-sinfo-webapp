@@ -48,7 +48,7 @@
                 <div *ngFor="let presentation of day.sessions.Presentation.sala1; let iSession=index"
                   style="margin: 2%;">
 
-                  <mat-card class="example-card" (click)="onSelect(presentation)">
+                  <mat-card class="example-card cursor-pointer" (click)="onSelect(presentation)">
                     <mat-card-header>
                       <div mat-card-avatar> <img appImage [url]="presentation.img" alt=""> </div>
                       <mat-card-title><strong class="time highlight">
@@ -83,7 +83,7 @@
               <div class="tab-content">
                 <div *ngFor="let session of day.sessions.Keynote; let iSession=index" style="margin: 2%;">
 
-                  <mat-card class="example-card" (click)="onSelect(session)">
+                  <mat-card class="example-card cursor-pointer" (click)="onSelect(session)">
                     <mat-card-header>
                       <div mat-card-avatar> <img appImage [url]="session.img" alt="" class="img-responsive"> </div>
                       <mat-card-title>
@@ -128,7 +128,7 @@
               <div class="tab-content">
                 <div *ngFor="let workshop of day.sessions.Workshop.all; let iSession=index" style="margin: 2%;">
 
-                  <mat-card class="example-card" (click)="onSelect(workshop)">
+                  <mat-card class="example-card cursor-pointer" (click)="onSelect(workshop)">
                     <mat-card-header>
                       <div mat-card-avatar> <img appImage [url]="workshop.img" alt=""> </div>
                       <mat-card-title><strong class="time highlight">
