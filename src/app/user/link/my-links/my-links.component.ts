@@ -190,6 +190,7 @@ export class MyLinksComponent implements OnInit {
   toggleSharePerms() {
     this.userService.toggleSharePermitions(this.me.id).subscribe(_user => {
       this.sharePerms = _user.shareLinks
+      this.isChecked = _user.shareLinks
     })
   }
 
