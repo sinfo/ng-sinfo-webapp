@@ -314,3 +314,8 @@
 *:not(.intro, .fa, .fa-chevron-down, mat-icon) {
   font-family: 'Montserrat' !important;
 }
+
+::ng-deep .mat-toolbar{
+  z-index: 998;
+  position: fixed
+}
