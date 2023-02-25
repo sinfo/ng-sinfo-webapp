@@ -23,7 +23,7 @@ export class MyLinksComponent implements OnInit {
   me: User
   links: Link[]
   company: Company
-  processedLinks: Array<ProcessedLink>
+  processedLinks: ProcessedLink[]
   linkTabs: Map<string, ProcessedLink[]>
   gotLinks: boolean
   shareActive: boolean
@@ -36,7 +36,7 @@ export class MyLinksComponent implements OnInit {
     private companyCannonService: CompanyCannonService,
     private eventService: EventService,
     public dialog: MatDialog
-  ) { 
+  ) {
     this.linkTabs = new Map<string, ProcessedLink[]>();
   }
 
@@ -68,14 +68,14 @@ export class MyLinksComponent implements OnInit {
           }
           else {
             this.sharePerms = me.shareLinks
+            this.linkTabs.set("My Links", new Array<ProcessedLink>())
+            this.linkTabs.set("Shared Links", new Array<ProcessedLink>())
             this.userService.getLinks(this.me.id)
               .subscribe(links => {
                 this.links = links
                 links.forEach(link => this.processLink(link, "attendee"))
               })
           }
-          this.linkTabs.set("My links", this.processedLinks.filter(link => link.author == 'attendee' && link.attendee.id === me.id))
-          this.linkTabs.set("Shared links", this.processedLinks.filter(link => link.author == 'attendee' && link.attendee.id !== me.id))
         })
       let unixEvent = Math.floor(event.end.getTime() / 1000)
       let now = new Date()
@@ -176,6 +176,16 @@ export class MyLinksComponent implements OnInit {
               if (company) {
                 processed.company = company
                 this.processedLinks.push(processed)
+
+                if (processed.author === "attendee" && processed.attendee.id === this.me.id) {
+                  let array = this.linkTabs.get("My Links")
+                  array.push(processed)
+                  this.linkTabs.set("My Links", array)
+                } else if (processed.author == 'attendee' && processed.attendee.id !== this.me.id) {
+                  let array = this.linkTabs.get("Shared Links")
+                  array.push(processed)
+                  this.linkTabs.set("Shared Links", array)
+                }
               }
             })
         } else {
