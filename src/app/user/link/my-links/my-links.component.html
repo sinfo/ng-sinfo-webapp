@@ -25,6 +25,7 @@
           (click)="toggleSharePerms()">
           <span class="glyphicon glyphicon-link"></span> Sharing Links: {{this.sharePerms ? "Yes" : "No"}}
         </button>
+        <mat-slide-toggle (change)="toggleSharePerms()" [(ngModel)]="isChecked">Link Sharing {{this.isChecked ? "Enabled" : "Disabled"}}</mat-slide-toggle>
       </div>
     </div>
   </div>
