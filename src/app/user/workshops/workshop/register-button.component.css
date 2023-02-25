@@ -23,3 +23,8 @@ div.waiting-alert {
   margin-bottom: 5px;
   font-size: 14px;
 }
+
+.ticket-icon {
+  font-size: 1.125rem;
+  margin-top: 0.25rem;
+}
