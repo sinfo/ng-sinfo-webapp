@@ -45,13 +45,16 @@ div.mini-portrait-wrapper img {
 }
 
 .sinfo-logo {
-  height: 3.5vh;
-  height: 40px !important;
-  width: 40px !important;
+  height: 60px;
+  width: 60px;
+  /* height: 40px !important;
+  width: 40px !important; */
 }
 
 .logo-avatar {
   margin-bottom: 0 !important;
+  height: 60px;
+  width: 60px;
 }
 
 h3 {
@@ -319,7 +322,9 @@ div.achivements-wrapper img.achievement {
   justify-content: center;
   align-items: center;
   max-width: 298px;
-  padding: 16px 0 !important;
+  /* padding: 16px 0 !important; */
+  /* margin-top: 0px; */
+  margin-bottom: -10px;
 }
 
 .top-name {
