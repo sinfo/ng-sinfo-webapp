@@ -22,5 +22,6 @@
       <i class="fa fa-circle-o-notch fa-spin"></i> Processing Request... </span>
     <span *ngIf="!loading && !isRegistrationClosed">{{ ( !hasTicket) ? 'Get Ticket' : 'Return Ticket' }}</span>
     <span *ngIf="isRegistrationClosed">Registration Closed</span>
+    <mat-icon class="ticket-icon">bookmark</mat-icon>
   </button>
 </div>
