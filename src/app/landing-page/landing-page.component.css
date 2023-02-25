@@ -44,16 +44,15 @@
   display: flex;
   background-color: black;
   position: sticky;
-  position: -webkit-sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
-  min-height: 64px;
+  height: 7vh;
   height: fit-content;
 }
 
 .sidenav-container {
-  height: calc(100% - 7vh);
+  height: calc(100% - 12vh);
 }
 
 .sidenav {
@@ -313,9 +312,4 @@
 
 *:not(.intro, .fa, .fa-chevron-down, mat-icon) {
   font-family: 'Montserrat' !important;
-}
-
-::ng-deep .mat-toolbar{
-  z-index: 998;
-  position: fixed
 }
