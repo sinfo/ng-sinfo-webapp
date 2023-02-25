@@ -1,14 +1,5 @@
 button.getTicket {
-  /* letter-spacing: 0.30em;
-  padding: 13px;
-  margin: auto;
-  margin-bottom: 5px;
-  margin-top: 10px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  width: 80%; */
   width: 200px;
-
 }
 button.btn-success {
   background-color: #14A44D !important;
