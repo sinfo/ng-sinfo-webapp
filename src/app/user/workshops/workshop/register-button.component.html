@@ -11,7 +11,7 @@
     </p>
     <p>There was an error processing your request. Please try again.</p>
   </div>
-  <button id="buttonLoad" class="getTicket btn" 
+  <button mat-raised-button class="register-button"
     [ngClass]="{
     'btn-success': !hasTicket, 
     'btn-danger': hasTicket, 
@@ -22,5 +22,6 @@
       <i class="fa fa-circle-o-notch fa-spin"></i> Processing Request... </span>
     <span *ngIf="!loading && !isRegistrationClosed">{{ ( !hasTicket) ? 'Get Ticket' : 'Return Ticket' }}</span>
     <span *ngIf="isRegistrationClosed">Registration Closed</span>
+    <mat-icon class="ticket-icon">bookmark</mat-icon>
   </button>
 </div>
