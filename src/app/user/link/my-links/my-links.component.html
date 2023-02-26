@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="processedLinks?.length">
     <div class="col-sm-12">
       <div class="portrait-wrapper">
         <button *ngIf="!company && shareActive" type="button" class="btn btn-button rescan"
@@ -40,7 +40,7 @@
     </div>
   </div>
 
-  <mat-tab-group *ngIf="me.role !== 'company'" mat-align-tabs="center">
+  <mat-tab-group *ngIf="processedLinks?.length && me.role !== 'company'" mat-align-tabs="center">
     <mat-tab *ngFor="let linkTab of linkTabs | keyvalue" label="{{linkTab.key}}">
       <div id="links" *ngIf="linkTab.value && !selectedLink" class='links'>
 
