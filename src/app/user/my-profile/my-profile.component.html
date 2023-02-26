@@ -15,19 +15,19 @@
   <div class="card-wrapper">
     <mat-card class="card">
       <mat-card-header class="name-header">
-        <div mat-card-avatar *ngIf="user.role === 'team'" class="logo-avatar">
+        <div mat-card-avatar *ngIf="user.role === 'team'" style="margin-bottom: 0;">
           <img class="sinfo-logo" src="assets/img/PowerOn.png" />
-        </div>
-        <div mat-card-avatar *ngIf="user.role === 'company' && company" class="logo-avatar">
-          <img class="sinfo-logo" src="{{ company.img }}" />
         </div>
         <mat-card-title class="top-name">
           {{ user.name }}
         </mat-card-title>
         <mat-card-subtitle *ngIf="user.role === 'company' && company">
-          <h6 style="color: white">{{ company.name }}</h6>
+          <h7 style="color: white">{{ company.name }}</h7>
         </mat-card-subtitle>
       </mat-card-header>
+      <div mat-card-avatar *ngIf="user.role === 'company' && company" class="logo-avatar">
+        <img class="sinfo-logo" src="{{ company.img }}" />
+      </div>
       <qrcode mat-card-image [qrdata]="user.id" [scale]="8"></qrcode>
       <mat-card-content>
         <h5>

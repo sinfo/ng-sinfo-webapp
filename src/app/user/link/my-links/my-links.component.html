@@ -18,13 +18,14 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="processedLinks?.length">
     <div class="col-sm-12">
       <div class="portrait-wrapper">
         <button *ngIf="!company && shareActive" type="button" class="btn btn-button rescan"
           (click)="toggleSharePerms()">
           <span class="glyphicon glyphicon-link"></span> Sharing Links: {{this.sharePerms ? "Yes" : "No"}}
         </button>
+        <mat-slide-toggle (change)="toggleSharePerms()" [(ngModel)]="isChecked">Link Sharing {{this.isChecked ? "Enabled" : "Disabled"}}</mat-slide-toggle>
       </div>
     </div>
   </div>
@@ -39,89 +40,175 @@
     </div>
   </div>
 
+  <mat-tab-group *ngIf="processedLinks?.length && me.role !== 'company'" mat-align-tabs="center">
+    <mat-tab *ngFor="let linkTab of linkTabs | keyvalue" label="{{linkTab.key}}">
+      <div id="links" *ngIf="linkTab.value && !selectedLink" class='links'>
 
-  <div id="links" *ngIf="processedLinks && !selectedLink" class='links'>
-
-    <div *ngFor="let link of processedLinks" class="link">
-
-      <h5 *ngIf="me.role === 'company' && 'link.attendee'" class='link-title'>{{link.attendee.name}}</h5>
-      <h5 *ngIf="me.role !== 'company' && 'link.company'" class='link-title'>{{link.company.name}}</h5>
-
-      <div class="link-note">
-        <div>
-          <p>
-            <span *ngIf="me.id !== link.attendee.id" class='link-section'>
-              <h6 class='link-title'>Author information </h6>
-              <span><span class="panel-content-strong">Name: </span>{{link.attendee.name}}</span>
-            </span>
-            <span class='link-section'>
-              <h6 class='link-title'>Employee information </h6>
-              <span><span class="panel-content-strong">Name: </span>{{link.user.name}}</span>
-            </span>
-          </p>
-          <p *ngIf="me.role === 'company'">
-            <span class='link-section'>
-              <h6 class='link-title'>User information </h6>
-
-              <span class='link-data warning' *ngIf='!link.cv'>This attendee has not submitted his CV yet</span>
-              <p class='lead small tip link-title' *ngIf='link.noteEmpty && !link.cv'>No information on this user</p>
-              <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
-                </span>{{link.notes.contacts.email}}</span>
-
-              <span class='link-data' *ngIf='link.notes.contacts.phone'><span class="panel-content-strong">Phone:
-                </span>{{link.notes.contacts.phone}}</span>
-
-              <span class='link-data' *ngIf='link.notes.availability'><span class="panel-content-strong">Availability:
-                </span>{{link.notes.availability}}</span>
-
-              <span class='link-data' *ngIf='link.notes.degree'><span class="panel-content-strong">Degree:
-                </span>{{link.notes.degree}}</span>
-
-              <span class='link-data' *ngIf='link.notes.interestedIn'><span class="panel-content-strong">Interested in:
-                </span>{{link.notes.interestedIn}}</span>
-
-              <span class='link-data' *ngIf='link.notes.otherObservations'><span class="panel-content-strong">Other
-                  Notes:
-                </span>{{link.notes.otherObservations}}</span>
-            </span>
-          </p>
-
-          <p *ngIf="me.role !== 'company'">
-            <span class='link-section'>
-              <h6 class='link-title'>Company information </h6>
-
-              <p class='lead small tip link-title' *ngIf='link.noteEmpty'>No information on this company</p>
-              <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
-                </span>{{link.notes.contacts.email}}</span>
-
-              <span class='link-data' *ngIf='link.notes.internships'><span class="panel-content-strong">Career
-                  Opportunities:
-                </span>{{link.notes.internships}}</span>
-
-              <span class='link-data' *ngIf='link.notes.otherObservations'><span class="panel-content-strong">Other
-                  Notes:
-                </span>{{link.notes.otherObservations}}</span>
-            </span>
-          </p>
-        </div>
-        <div *ngIf="me.role === 'company' || (me.role !== 'company' && me.id === link.attendee.id) " class="row rowCenter">
-          <div class="col-sm-6">
-            <button mat-raised-button color="primary" routerLink="/user/links/my-links" (click)="editLink(link)"
-              class="link-buttons">
-              <mat-icon>link</mat-icon>
-              <span> Edit Link</span>
-            </button>
-          </div>
-          <div class="col-sm-6">
-            <button mat-raised-button color="warn" (click)="deleteLink(link)" class="link-buttons">
-              <mat-icon>link_off</mat-icon>
-              <span> Delete Link</span>
-            </button>
+        <div *ngFor="let link of linkTab.value" class="link">
+    
+          <h5 *ngIf="me.role === 'company' && 'link.attendee'" class='link-title'>{{link.attendee.name}}</h5>
+          <h5 *ngIf="me.role !== 'company' && 'link.company'" class='link-title'>{{link.company.name}}</h5>
+    
+          <div class="link-note">
+            <div>
+              <p>
+                <span *ngIf="me.id !== link.attendee.id" class='link-section'>
+                  <h6 class='link-title'>Author information </h6>
+                  <span><span class="panel-content-strong">Name: </span>{{link.attendee.name}}</span>
+                </span>
+                <span class='link-section'>
+                  <h6 class='link-title'>Employee information </h6>
+                  <span><span class="panel-content-strong">Name: </span>{{link.user.name}}</span>
+                </span>
+              </p>
+              <p *ngIf="me.role === 'company'">
+                <span class='link-section'>
+                  <h6 class='link-title'>User information </h6>
+    
+                  <span class='link-data warning' *ngIf='!link.cv'>This attendee has not submitted his CV yet</span>
+                  <p class='lead small tip link-title' *ngIf='link.noteEmpty && !link.cv'>No information on this user</p>
+                  <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
+                    </span>{{link.notes.contacts.email}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.contacts.phone'><span class="panel-content-strong">Phone:
+                    </span>{{link.notes.contacts.phone}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.availability'><span class="panel-content-strong">Availability:
+                    </span>{{link.notes.availability}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.degree'><span class="panel-content-strong">Degree:
+                    </span>{{link.notes.degree}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.interestedIn'><span class="panel-content-strong">Interested in:
+                    </span>{{link.notes.interestedIn}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.otherObservations'><span class="panel-content-strong">Other
+                      Notes:
+                    </span>{{link.notes.otherObservations}}</span>
+                </span>
+              </p>
+    
+              <p *ngIf="me.role !== 'company'">
+                <span class='link-section'>
+                  <h6 class='link-title'>Company information </h6>
+    
+                  <p class='lead small tip link-title' *ngIf='link.noteEmpty'>No information on this company</p>
+                  <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
+                    </span>{{link.notes.contacts.email}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.internships'><span class="panel-content-strong">Career
+                      Opportunities:
+                    </span>{{link.notes.internships}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.otherObservations'><span class="panel-content-strong">Other
+                      Notes:
+                    </span>{{link.notes.otherObservations}}</span>
+                </span>
+              </p>
+            </div>
+            <div *ngIf="me.role === 'company' || (me.role !== 'company' && me.id === link.attendee.id) " class="row rowCenter">
+              <div class="col-sm-6">
+                <button mat-raised-button color="primary" routerLink="/user/links/my-links" (click)="editLink(link)"
+                  class="link-buttons">
+                  <mat-icon>link</mat-icon>
+                  <span> Edit Link</span>
+                </button>
+              </div>
+              <div class="col-sm-6">
+                <button mat-raised-button color="warn" (click)="deleteLink(link)" class="link-buttons">
+                  <mat-icon>link_off</mat-icon>
+                  <span> Delete Link</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <div id="links" *ngIf="processedLinks && !selectedLink && me.role === 'company'" class='links'>
+
+        <div *ngFor="let link of processedLinks" class="link">
+    
+          <h5 *ngIf="me.role === 'company' && 'link.attendee'" class='link-title'>{{link.attendee.name}}</h5>
+          <h5 *ngIf="me.role !== 'company' && 'link.company'" class='link-title'>{{link.company.name}}</h5>
+    
+          <div class="link-note">
+            <div>
+              <p>
+                <span *ngIf="me.id !== link.attendee.id" class='link-section'>
+                  <h6 class='link-title'>Author information </h6>
+                  <span><span class="panel-content-strong">Name: </span>{{link.attendee.name}}</span>
+                </span>
+                <span class='link-section'>
+                  <h6 class='link-title'>Employee information </h6>
+                  <span><span class="panel-content-strong">Name: </span>{{link.user.name}}</span>
+                </span>
+              </p>
+              <p *ngIf="me.role === 'company'">
+                <span class='link-section'>
+                  <h6 class='link-title'>User information </h6>
+    
+                  <span class='link-data warning' *ngIf='!link.cv'>This attendee has not submitted his CV yet</span>
+                  <p class='lead small tip link-title' *ngIf='link.noteEmpty && !link.cv'>No information on this user</p>
+                  <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
+                    </span>{{link.notes.contacts.email}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.contacts.phone'><span class="panel-content-strong">Phone:
+                    </span>{{link.notes.contacts.phone}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.availability'><span class="panel-content-strong">Availability:
+                    </span>{{link.notes.availability}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.degree'><span class="panel-content-strong">Degree:
+                    </span>{{link.notes.degree}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.interestedIn'><span class="panel-content-strong">Interested in:
+                    </span>{{link.notes.interestedIn}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.otherObservations'><span class="panel-content-strong">Other
+                      Notes:
+                    </span>{{link.notes.otherObservations}}</span>
+                </span>
+              </p>
+    
+              <p *ngIf="me.role !== 'company'">
+                <span class='link-section'>
+                  <h6 class='link-title'>Company information </h6>
+    
+                  <p class='lead small tip link-title' *ngIf='link.noteEmpty'>No information on this company</p>
+                  <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
+                    </span>{{link.notes.contacts.email}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.internships'><span class="panel-content-strong">Career
+                      Opportunities:
+                    </span>{{link.notes.internships}}</span>
+    
+                  <span class='link-data' *ngIf='link.notes.otherObservations'><span class="panel-content-strong">Other
+                      Notes:
+                    </span>{{link.notes.otherObservations}}</span>
+                </span>
+              </p>
+            </div>
+            <div *ngIf="me.role === 'company' || (me.role !== 'company' && me.id === link.attendee.id) " class="row rowCenter">
+              <div class="col-sm-6">
+                <button mat-raised-button color="primary" routerLink="/user/links/my-links" (click)="editLink(link)"
+                  class="link-buttons">
+                  <mat-icon>link</mat-icon>
+                  <span> Edit Link</span>
+                </button>
+              </div>
+              <div class="col-sm-6">
+                <button mat-raised-button color="warn" (click)="deleteLink(link)" class="link-buttons">
+                  <mat-icon>link_off</mat-icon>
+                  <span> Delete Link</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
   <app-link *ngIf="selectedLink" [linkToEdit]="selectedLink" (updatedLink)="receiveEditedLink($event)"></app-link>
 

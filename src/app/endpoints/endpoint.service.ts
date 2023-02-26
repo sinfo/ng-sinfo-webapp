@@ -135,17 +135,16 @@ export class EndpointService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      this.snackBar.open(error.message, "Ok", {
+      // this.snackBar.open(error.message, "Ok", {
+      //   panelClass: ['mat-toolbar', 'mat-warn'],
+      //   duration: 2000
+      // })
+
+      this.snackBar.open("An error occurred and was sent to SINFO team.", "Ok", {
         panelClass: ['mat-toolbar', 'mat-warn'],
         duration: 2000
       })
-      /* this.messageService.add({
-        origin: `CompanyService: ${operation}`,
-        showAlert: true,
-        text: error.message,
-        type: Type.error
-      })
- */
+      
       // Let the app keep running by returning an empty result.
       return of(result)
     }

@@ -54,3 +54,13 @@ export class User {
   registered: string
   updated: string
 }
+
+// export class Signature {
+//   day: string
+//   edition: string
+//   redeemed: boolean
+//   signatures: {
+//     companyId: string,
+//     date: Date
+//   }[]
+// }

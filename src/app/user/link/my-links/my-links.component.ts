@@ -23,11 +23,13 @@ export class MyLinksComponent implements OnInit {
   me: User
   links: Link[]
   company: Company
-  processedLinks: Array<ProcessedLink>
+  processedLinks: ProcessedLink[]
+  linkTabs: Map<string, ProcessedLink[]>
   gotLinks: boolean
   shareActive: boolean
   sharePerms: boolean
   selectedLink: ProcessedLink
+  isChecked: boolean
 
   constructor(
     private userService: UserService,
@@ -35,7 +37,9 @@ export class MyLinksComponent implements OnInit {
     private companyCannonService: CompanyCannonService,
     private eventService: EventService,
     public dialog: MatDialog
-  ) { }
+  ) {
+    this.linkTabs = new Map<string, ProcessedLink[]>();
+  }
 
   ngOnInit() {
     this.processedLinks = []
@@ -65,6 +69,9 @@ export class MyLinksComponent implements OnInit {
           }
           else {
             this.sharePerms = me.shareLinks
+            this.isChecked = me.shareLinks
+            this.linkTabs.set("My Links", new Array<ProcessedLink>())
+            this.linkTabs.set("Shared Links", new Array<ProcessedLink>())
             this.userService.getLinks(this.me.id)
               .subscribe(links => {
                 this.links = links
@@ -171,6 +178,16 @@ export class MyLinksComponent implements OnInit {
               if (company) {
                 processed.company = company
                 this.processedLinks.push(processed)
+
+                if (processed.author === "attendee" && processed.attendee.id === this.me.id) {
+                  let array = this.linkTabs.get("My Links")
+                  array.push(processed)
+                  this.linkTabs.set("My Links", array)
+                } else if (processed.author == 'attendee' && processed.attendee.id !== this.me.id) {
+                  let array = this.linkTabs.get("Shared Links")
+                  array.push(processed)
+                  this.linkTabs.set("Shared Links", array)
+                }
               }
             })
         } else {
@@ -183,6 +200,7 @@ export class MyLinksComponent implements OnInit {
   toggleSharePerms() {
     this.userService.toggleSharePermitions(this.me.id).subscribe(_user => {
       this.sharePerms = _user.shareLinks
+      this.isChecked = _user.shareLinks
     })
   }
 }

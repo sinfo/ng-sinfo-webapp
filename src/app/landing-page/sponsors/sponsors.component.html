@@ -5,7 +5,7 @@
 <div *ngIf="sponsors && sponsors.length > 0">
   <div class="overallSponsors">
     <span class="icon section-icon icon-documents-bookmarks-12"></span>
-    <h3 (click)="show()">Sponsors<mat-icon [class.chev-open]="showAll" [class.chev-close]="!showAll">
+    <h3 (click)="show()">Sponsors<mat-icon [class.chev-open]="showAll" [class.chev-close]="!showAll" class="cursor-pointer">
         expand_more
       </mat-icon>
     </h3>
@@ -19,7 +19,7 @@
 
       <h5>Platinum Sponsors</h5>
       <div class="row" *ngIf="platinums.length">
-        <mat-card class="example-card speaker-card platinum" *ngFor="let platinum of platinums"
+        <mat-card class="example-card speaker-card platinum cursor-pointer" *ngFor="let platinum of platinums"
           (click)="onSelect(platinum)" [ngStyle]="{'background-image': 'url(' + platinum.img + ')' }">
         </mat-card>
       </div>
@@ -28,7 +28,7 @@
         <hr>
         <h5>Gold Sponsors</h5>
         <div class="row" *ngIf="golds.length">
-          <mat-card class="example-card speaker-card gold" *ngFor="let gold of golds" (click)="onSelect(gold)"
+          <mat-card class="example-card speaker-card gold cursor-pointer" *ngFor="let gold of golds" (click)="onSelect(gold)"
             [ngStyle]="{'background-image': 'url(' + gold.img + ')' }">
           </mat-card>
         </div>
@@ -36,7 +36,7 @@
         <hr>
         <h5>Silver Sponsors</h5>
         <div class="row" *ngIf="silvers.length">
-          <mat-card class="example-card speaker-card silver" *ngFor="let silver of silvers" (click)="onSelect(silver)"
+          <mat-card class="example-card speaker-card silver cursor-pointer" *ngFor="let silver of silvers" (click)="onSelect(silver)"
             [ngStyle]="{'background-image': 'url(' + silver.img + ')' }">
           </mat-card>
         </div>

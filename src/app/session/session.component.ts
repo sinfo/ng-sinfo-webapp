@@ -9,17 +9,37 @@ import { Session } from './session.model'
 import { SpeakerService } from '../speakers/speaker.service'
 import { Speaker } from '../speakers/speaker.model'
 import { EventService } from './../events/event.service'
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  AUTO_STYLE
+} from '@angular/animations';
 
 @Component({
   selector: 'app-sessions',
   templateUrl: './session.component.html',
-  styleUrls: ['./session.component.css']
+  styleUrls: ['./session.component.css'],
+  animations: [
+    trigger('myInsertRemoveTrigger', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      // transition(':leave', [
+      //   animate('300ms', style({ opacity: 0 }))
+      // ])
+    ]),
+  ]
 })
 
 export class SessionComponent implements OnInit {
   session: Session
   speaker: Speaker
   description: SafeHtml
+  showMore = false
 
   constructor(
     private sessionService: SessionService,

@@ -5,7 +5,7 @@
   <div class="container">
     <span class="icon section-icon icon-faces-users-03"></span>
     <h3 (click)="isCollapsed = !isCollapsed" *ngIf="!previousSpeakers && speakers.length > 0">Speakers<mat-icon
-        [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
+        [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed" class="cursor-pointer">
         expand_more
       </mat-icon>
     </h3>
@@ -43,8 +43,19 @@
           </div>
         </div> -->
 
-        <div *ngFor="let speaker of speakers" class="member-div" (click)="onSelect(speaker)">
-          <h6 class="name">{{ speaker.name }}</h6>
+        <div *ngFor="let speaker of speakers" (click)="onSelect(speaker)" style="margin: 2%;">
+          <mat-card class="example-card cursor-pointer" (click)="onSelect(presentation)" style="padding: 5%">
+            <h6 class="name">{{ speaker.name }}</h6>
+            <mat-card class="speaker-card"
+              [ngStyle]="{'background-image': speaker.img? 'url('+speaker.img+')' : 'url(https://static.sinfo.org/static/25-sinfo/speakers/hacky.png)' }">
+            </mat-card>
+            <div class="text-alt description">
+              <small>{{ speaker.title }}</small>
+            </div>
+          </mat-card>
+
+          
+          <!-- <h6 class="name">{{ speaker.name }}</h6>
           <mat-card class="example-card speaker-card member"
             [ngStyle]="{'background-image': speaker.img? 'url('+speaker.img+')' : 'url(https://static.sinfo.org/static/25-sinfo/speakers/hacky.png)' }">
 
@@ -52,7 +63,7 @@
           <p class="text-alt" style="word-wrap:anywhere; ">
             <small>{{ speaker.title }}</small>
           </p>
-          <p class="divider"></p>
+          <p class="divider"></p> -->
         </div>
 
       </div>
