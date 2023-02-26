@@ -8,21 +8,21 @@ p {
   font-size: 15px;
 }
 
-.speaker-section {
+.session-details {
   padding: 20px 20px;
   display: flex;
   align-items: center;
 }
 
-.speaker-section .name {
+.session-details .name {
   color: #004ecc;
 }
 
-.speaker-section img {
+.speaker-img {
   border-radius: 50%;
 }
 
-.speaker-section h5 {
+.session-details h5 {
   margin: 15px auto;
 }
 
@@ -49,18 +49,18 @@ p {
   font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
-.session-section .description p {
+.session-details .description p {
   margin: 20px;
   white-space: pre-line;
   line-height: 1.45;
 }
 
 @media (max-width: 767px) {
-  .speaker-section {
+  .session-details {
     display: block;
   }
 
-  .speaker-section h5 {
+  .session-details h5 {
     text-align: center;
   }
 
@@ -75,6 +75,25 @@ p {
   .session-details p {
     margin-bottom: 2px;
   }
+}
+
+.session {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.session h2 {
+  font-size: 24px;
+  font-weight: 200;
+  color: #262627;
+  margin-bottom: 10px;
+}
+
+.session h3 {
+  font-size: 28px;
+  font-weight: 100;
+  color: #008ae6;
+  margin-bottom: 15px;
 }
 
 .socials-nav-item a:not(:hover):not(:active):not(:focus) {
@@ -180,4 +199,17 @@ p {
 
 *:not(.fa) {
   font-family: 'Montserrat' !important;
+}
+
+p.description {
+  text-align: justify;
+}
+
+span.seeMore:hover {
+  color: #008ae6;
+  cursor: pointer;
+}
+
+.session-align {
+  text-align: center;
 }
