@@ -180,6 +180,10 @@ img.portrait {
   color: #d9534f;
 }
 
+.success{
+  color: #0e9707;
+}
+
 @media (max-width: 767px) {
   .link {
     width: 100%;
