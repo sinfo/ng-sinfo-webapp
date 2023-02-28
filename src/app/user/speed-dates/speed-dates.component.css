@@ -19,12 +19,15 @@
   justify-content: space-around;
   align-content: center;
   width: max-content;
-  font-size: 4vh;
-  width: 50vh;
+  font-size: 4dvh
+;
+  width: 50dvh
+;
 }
 
 .shifter{
-  font-size: 5vh;
+  font-size: 5dvh
+;
   cursor: pointer;
 }
 
@@ -36,24 +39,28 @@
 }
 
 .achievement{
-  margin: 2vh 2vw;
+  margin: 2dvh
+ 2vw;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 25vw;
-  height: 18vh;
+  height: 18dvh
+;
   border: solid 2px #2C49A6;
   background-color: rgba(75, 153, 209, 0.13);
   border-radius: 15px;
 }
 
 .complete{
-  margin: 2vh 2vw;
+  margin: 2dvh
+ 2vw;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 25vw;
-  height: 18vh;
+  height: 18dvh
+;
   border: solid 2px rgb(17, 83, 17);
   background-color: rgba(39, 204, 10, 0.192);
   border-radius: 15px;
@@ -87,7 +94,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2vh;
+  font-size: 2dvh
+;
 }
 
 .achievement .bar, .complete .bar {
@@ -111,7 +119,8 @@
   border-radius: 50%;
   border: 2px solid darkslategray;
   background-color: rgba(128, 128, 128, 0.274);
-  font-size: 2vh;
+  font-size: 2dvh
+;
 }
 
 .achievement .points .grey:before, .complete .points .grey:before {

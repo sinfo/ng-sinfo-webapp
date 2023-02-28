@@ -156,7 +156,8 @@ div.img-wrapper img {
   margin-top: 8%;
   margin-bottom: 8%;
   width: 30%;
-  font-size: 4vh;
+  font-size: 4dvh
+;
   min-width: none !important;
 }
 
@@ -166,7 +167,8 @@ div.img-wrapper img {
   margin-left: 3%;
   margin-right: 3%;
   width: 10%;
-  font-size: 4vh;
+  font-size: 4dvh
+;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -176,6 +178,8 @@ div.img-wrapper img {
 /* TODO(mdc-migration): The following rule targets internal classes of slide-toggle that may no longer apply for the MDC version. */
 mat-slide-toggle {
   transform: scale(1.5);
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  margin-top: 5dvh
+;
+  margin-bottom: 5dvh
+;
 }

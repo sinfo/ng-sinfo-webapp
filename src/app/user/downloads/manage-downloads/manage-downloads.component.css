@@ -122,7 +122,8 @@ ul.selected-list li .label:hover span {
 
 
 .period {
-  margin-top: 5vh;
+  margin-top: 5dvh
+;
   display: flex;
   flex-direction: column;
   align-items: stretch;

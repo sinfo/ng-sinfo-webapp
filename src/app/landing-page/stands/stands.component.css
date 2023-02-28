@@ -33,7 +33,8 @@
 
 .carousel-inner img {
   background-color: white;
-  max-height: 80vh;
+  max-height: 80dvh
+;
   width: auto;
   display: inline-block;
 }

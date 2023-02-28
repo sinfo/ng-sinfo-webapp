@@ -1,5 +1,7 @@
 .wrapper {
-  margin: 10vh 5vh 0;
+  margin: 10dvh
+ 5dvh
+ 0;
   width: 100%;
 }
 
@@ -110,18 +112,24 @@ h2 {
 }
 
 .platinum {
-  height: 20vh;
-  width: 20vh;
+  height: 20dvh
+;
+  width: 20dvh
+;
 }
 
 .gold {
-  height: 15vh;
-  width: 15vh;
+  height: 15dvh
+;
+  width: 15dvh
+;
 }
 
 .silver {
-  height: 10vh;
-  width: 10vh;
+  height: 10dvh
+;
+  width: 10dvh
+;
 }
 
 .sponsor-level {
