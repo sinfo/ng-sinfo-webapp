@@ -29,11 +29,7 @@ export class UserComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private userService: UserService,
-    private route: ActivatedRoute,
-    private titleService: Title,
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
+    private userService: UserService
   ) {}
 
   ngOnInit() {
