@@ -47,13 +47,15 @@ a.btn i {
 
 .topbar{
   background-color: black;
-  height: 7vh;
+  height: 7dvh
+;
   display: flex;
   justify-content: center;
 }
 
 #logo_white {
-  max-height: 3vh;
+  max-height: 3dvh
+;
   display: flex;
 }
 
@@ -84,5 +86,6 @@ a.btn i {
 }
 
 .new-align-center > * {
-  margin-bottom: 3vh;
+  margin-bottom: 3dvh
+;
 }

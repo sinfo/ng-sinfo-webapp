@@ -113,7 +113,8 @@ p {
 }
 
 .sidenav-container {
-  height: calc(100% - 7vh);
+  height: calc(100% - 7dvh
+);
 }
 
 .sidenav {
@@ -143,7 +144,8 @@ p {
 
 #sidenav ul li a i,
 #sidenav ul li a img {
-  max-height: 4vh;
+  max-height: 4dvh
+;
 }
 
 .list-item {
@@ -151,7 +153,8 @@ p {
 }
 
 .navigation-link {
-  font-size: 1.5vh;
+  font-size: 1.5dvh
+;
   font-family: 'Montserrat';
 }
 
@@ -181,7 +184,8 @@ p {
 .dropdown-content {
   background-color: black;
   color: lightgrey;
-  font-size: 1.5vh;
+  font-size: 1.5dvh
+;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -47,12 +47,14 @@
   top: 0;
   z-index: 1000;
   width: 100%;
-  min-height: 7vh;
+  min-height: 7dvh
+;
   height: fit-content;
 }
 
 .sidenav-container {
-  height: calc(100% - 7vh);
+  height: calc(100% - 7dvh
+);
 }
 
 .sidenav {
@@ -82,7 +84,8 @@
 
 #sidenav1 ul li a i,
 #sidenav1 ul li a img {
-  max-height: 4vh;
+  max-height: 4dvh
+;
 }
 
 .list-item {
@@ -180,9 +183,12 @@
 }
 
 #logo_white {
-  max-height: 7vh;
-  max-width: 7vh;
-  padding: 0.7vh 0 0 0;
+  max-height: 7dvh
+;
+  max-width: 7dvh
+;
+  padding: 0.7dvh
+ 0 0 0;
   margin-left: 1vw;
 }
 
@@ -208,20 +214,24 @@
 
 @keyframes jump {
   0% {
-    bottom: 4vh;
+    bottom: 4dvh
+;
   }
 
   50% {
-    bottom: 5vh;
+    bottom: 5dvh
+;
   }
 
   100% {
-    bottom: 4vh;
+    bottom: 4dvh
+;
   }
 }
 
 .navigation-link {
-  font-size: 1.5vh;
+  font-size: 1.5dvh
+;
   font-family: 'Montserrat';
 }
 
@@ -248,7 +258,8 @@
 }
 
 .content {
-  min-height: 90vh;
+  min-height: 90dvh
+;
   background-color: white;
   overflow: hidden;
 }
@@ -264,7 +275,8 @@
 .dropdown-content {
   background-color: black;
   color: lightgrey;
-  font-size: 1.5vh;
+  font-size: 1.5dvh
+;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
