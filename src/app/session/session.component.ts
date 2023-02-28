@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router, Params } from '@angular/router'
 import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser'
 import { Location } from '@angular/common';
-
-
 import { SessionService } from './session.service'
 import { Session } from './session.model'
 import { SpeakerService } from '../speakers/speaker.service'
@@ -11,12 +9,12 @@ import { Speaker } from '../speakers/speaker.model'
 import { EventService } from './../events/event.service'
 import {
   trigger,
-  state,
   style,
   animate,
-  transition,
-  AUTO_STYLE
+  transition
 } from '@angular/animations';
+import { UserService } from '../user/user.service';
+import { User } from '../user/user.model';
 
 @Component({
   selector: 'app-sessions',
@@ -39,6 +37,7 @@ export class SessionComponent implements OnInit {
   session: Session
   speaker: Speaker
   description: SafeHtml
+  user: User
   showMore = false
 
   constructor(
@@ -46,6 +45,7 @@ export class SessionComponent implements OnInit {
     private speakerService: SpeakerService,
     private activatedRoute: ActivatedRoute,
     private eventService: EventService,
+    private userService: UserService,
     private sanitizer: DomSanitizer,
     private router: Router,
     private titleService: Title,
@@ -60,6 +60,8 @@ export class SessionComponent implements OnInit {
       this.eventService.getCurrent().subscribe(event => {
         this.titleService.setTitle(event.name + ' - ' + this.session.name)
       })
+
+      this.userService.getMe().subscribe((me) => this.user = me)
     })
   }
   backClicked() {
