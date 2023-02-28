@@ -66,6 +66,7 @@
                   <h6 class='link-title'>User information </h6>
     
                   <span class='link-data warning' *ngIf='!link.cv'>This attendee has not submitted his CV yet</span>
+                  <span class='link-data success center' *ngIf='link.cv'>CV available to download</span>
                   <p class='lead small tip link-title' *ngIf='link.noteEmpty && !link.cv'>No information on this user</p>
                   <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
                     </span>{{link.notes.contacts.email}}</span>
@@ -151,6 +152,7 @@
                   <h6 class='link-title'>User information </h6>
     
                   <span class='link-data warning' *ngIf='!link.cv'>This attendee has not submitted his CV yet</span>
+                  <span class='link-data success' *ngIf='link.cv'>CV available to download</span>
                   <p class='lead small tip link-title' *ngIf='link.noteEmpty && !link.cv'>No information on this user</p>
                   <span class='link-data' *ngIf='link.notes.contacts.email'><span class="panel-content-strong">Email:
                     </span>{{link.notes.contacts.email}}</span>
