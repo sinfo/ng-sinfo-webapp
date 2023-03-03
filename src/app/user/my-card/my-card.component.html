@@ -9,19 +9,20 @@
       Already redeemed your prize.
       <br> Come back tomorrow for more prizes
     </h6>
-    <div *ngIf="userSignatures && !userSignatures.redeemed" class="title">
+    <div class="title">
       <h5 [ngClass]="{allSignatures: numSignatures === signatures.capacity}">
-        {{numSignatures}}/{{signatures.capacity}}
+        <span *ngIf="numSignatures">{{numSignatures}}/{{signatures.capacity}}</span>
+        <span *ngIf="!numSignatures">0/{{signatures.capacity}}</span>
         <i *ngIf="numSignatures === signatures.capacity" class="fa fa-check"></i>
       </h5>
     </div>
-    <div *ngIf="userSignatures && !userSignatures.redeemed" class="alert alert-info promocode-info">
+    <div class="alert alert-info promocode-info" *ngIf="!userSignatures.redeemed">
       <b>Earn prizes</b>
-      <span *ngIf="numSignatures < signatures.capacity">: Visit 10 companies and get the chance to spin the wheel of fortune at SINFO stand.</span>
+      <span *ngIf="!numSignatures || numSignatures < signatures.capacity">: Visit 10 companies and get the chance to spin the wheel of fortune at SINFO stand.</span>
       <span *ngIf="numSignatures === signatures.capacity"><b> now:</b> You can now spin the wheel of fortune at SINFO stand.</span>
     </div>
   </div>
-  <div *ngIf="userSignatures && !userSignatures.redeemed" class="row">
+  <div class="row">
     <div class="col-sm-12">
       <div class="signatures">
         <div *ngFor="let company of signatures.companies">
