@@ -136,7 +136,8 @@ button#sidebarCollapse {
   position: absolute;
   outline: none;
   right: -55px;
-  top: 40vh;
+  top: 40dvh
+;
   color: #133157;
   padding: 2px 30px 2px 0px;
   animation: jump 1s infinite;

@@ -3246,7 +3246,8 @@ li {
 
 div.intro {
   position: absolute;
-  bottom: 4vh;
+  bottom: 4dvh
+;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -7577,7 +7578,8 @@ div.clear input.btn:hover {
 }
 
 .hero-section {
-  height: 100vh;
+  height: 100dvh
+;
   z-index: 1;
   overflow: hidden;
 }
@@ -7913,7 +7915,8 @@ div.clear input.btn:hover {
 }
 
 .sinfo-intro-wrapper {
-  height: 100vh;
+  height: 100dvh
+;
   padding-top: 50px;
   justify-content: center;
 }
@@ -7937,7 +7940,8 @@ div.clear input.btn:hover {
 .sidebar-wrapper {
   display: flex;
   align-items: stretch;
-  min-height: 87vh;
+  min-height: 87dvh
+;
   width: 100%;
   background-color: white;
   overflow-y: scroll;
@@ -7983,7 +7987,8 @@ div.clear input.btn:hover {
   flex-direction: column !important;
   left: 0 !important;
   overflow-y: scroll !important;
-  height: 25vh;
+  height: 25dvh
+;
   position: absolute;
   width: 100%;
   margin: 0px auto;
@@ -8074,7 +8079,8 @@ div.clear input.btn:hover {
   margin: 0px;
   width: 100%;
   position: absolute;
-  height: 45vh;
+  height: 45dvh
+;
 }
 
 .manage-downloads .dropdown-item {
@@ -8137,7 +8143,8 @@ body {
   padding: 0 !important;
   margin: 0 !important;
 
-  height: 100vh;
+  height: 100dvh
+;
   width: 100vw;
 
   overflow-x: hidden;

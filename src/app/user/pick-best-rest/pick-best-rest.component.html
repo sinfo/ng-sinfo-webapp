@@ -23,6 +23,23 @@
   <div class="row">
     <div class="col-sm-12 align-center">
 
+      <mat-form-field appearance="fill" class="field">
+        <mat-label>Date to pick winner</mat-label>
+        <input
+          matInput
+          (dateInput)="dateChanged($event.value)"
+          [matDatepicker]="pickWinnerDay"
+          name="pickWinnerDay"
+          ngModel
+        />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="pickWinnerDay"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickWinnerDay></mat-datepicker>
+      </mat-form-field>
+
       <div *ngIf="!winner">
         <div class="actions">
           <button (click)=chooseWinner() type="button" class="btn btn-secondary">Pick Winner</button>

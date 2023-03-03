@@ -135,12 +135,14 @@ div.achivements-wrapper img.achievement {
 
 .qrcode {
   background: #2c49a6;
-  padding: 3vh 3vw;
+  padding: 3dvh
+ 3vw;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 60vh;
+  height: 60dvh
+;
 }
 
 .footer-nav-item {

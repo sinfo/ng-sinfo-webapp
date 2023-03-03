@@ -19,6 +19,7 @@ export class PickBestRestComponent implements OnInit {
   winner: User
   cvWinner: User
   totalEntries: number = 0
+  pickWinnerDay: Date
 
   constructor(
     private router: Router,
@@ -36,20 +37,26 @@ export class PickBestRestComponent implements OnInit {
         this.router.navigate(['/user/qrcode'])
       }
 
-      this.eventService.getCurrent().subscribe(event => {
-        this.totalEntries = 0
-        this.userService.getActiveUsers().subscribe(users => {
-          this.eligibleUsers = users.filter((user) => {
-            return (user.role !== 'team' && user.points > 0)
-          })
-          this.eligibleUsers.forEach((user) => {
-            this.totalEntries += user.points
-          })
-        })
+      this.totalEntries = 0
+      this.pickWinnerDay = new Date()
 
-        this.achievementService.getActiveAchievements().subscribe(achievements => {
-          this.cvUsers = achievements.find((ach) => ach.kind === 'cv').users
-        })
+      this.getUsersCurrentDay(this.pickWinnerDay)
+
+      this.achievementService.getActiveAchievements().subscribe(achievements => {
+        this.cvUsers = achievements.find((ach) => ach.kind === 'cv').users
+      })
+    })
+  }
+
+  getUsersCurrentDay(date: Date) {
+    this.totalEntries = 0
+
+    this.userService.getActiveUsers(date).subscribe(users => {
+      this.eligibleUsers = users.filter((user) => {
+        return (user.role !== 'team' && user.points > 0)
+      })
+      this.eligibleUsers.forEach((user) => {
+        this.totalEntries += user.points
       })
     })
   }
@@ -66,6 +73,11 @@ export class PickBestRestComponent implements OnInit {
       }
       return true
     })
+  }
+
+  public dateChanged(event): void {
+    this.pickWinnerDay = event
+    this.getUsersCurrentDay(this.pickWinnerDay)
   }
 
   chooseCVWinner() {

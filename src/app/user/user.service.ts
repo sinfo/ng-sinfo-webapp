@@ -73,7 +73,7 @@ export class UserService {
       )
   }
 
-  getActiveUsers(): Observable<User[]> {
+  getActiveUsers(date: Date): Observable<User[]> {
     let headers = {
       'Content-Type': 'application/json',
       'Authorization': ''
@@ -83,7 +83,7 @@ export class UserService {
       headers.Authorization = `Bearer ${this.authService.getToken().token}`
     }
 
-    return this.http.get<User[]>(this.usersUrl, { headers: new HttpHeaders(headers) })
+    return this.http.get<User[]>(this.usersUrl  + '?date=' + date, { headers: new HttpHeaders(headers) })
       .pipe(
         catchError(this.handleError<User[]>(`getting all users with achievements`))
       )
