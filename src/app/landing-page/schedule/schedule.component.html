@@ -4,22 +4,23 @@
 <section *ngIf="sessions && sessions.length" id="schedule" class="section schedule-section align-center">
   <div class="container">
     <span class="icon section-icon icon-office-21"></span>
-    <h3>Schedule</h3>
+    <h3>Schedule - TBA</h3>
     <strong id="subtitle">All times displayed in the schedule are relative to Lisbon's timezone, GMT+00:00</strong>
     <br />
 
     <br />
-
-    <a class="btn btn-sm btn-outline-clr ics" href="https://deck.sinfo.org/calendar.ics" target="_blank" style="margin-bottom: 50px">
+    <!-- TODO: Uncoment when information is updated-->
+    <!-- <a class="btn btn-sm btn-outline-clr ics" href="https://deck.sinfo.org/calendar.ics" target="_blank" style="margin-bottom: 50px">
       Download calendar
       <span class="fa fa-download icon"></span>
     </a>
 
     <app-loading [content]="schedule">
-    </app-loading>
+    </app-loading> -->
 
     <!-- Schedule start -->
-    <div *ngIf="schedule" class="schedule">
+    <!-- <div *ngIf="schedule" class="schedule"> | TODO: Change to this when information is updated-->
+    <div *ngIf="false" class="schedule">
 
       <mat-tab-group dynamicHeight style="padding-left: 5%; padding-right: 5%;">
         <mat-tab *ngFor="let day of schedule; let i=index" dynamicHeight>
@@ -35,8 +36,7 @@
             </div>
           </ng-template>
           <!-- Tab Content -->
-          <mat-tab-group dynamicHeight style="margin-top: 5dvh
-">
+          <mat-tab-group dynamicHeight style="margin-top: 5dvh">
 
             <!-- Presentations -->
             <mat-tab>

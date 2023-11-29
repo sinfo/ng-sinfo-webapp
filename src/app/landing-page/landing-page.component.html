@@ -189,7 +189,8 @@
       <mat-divider></mat-divider>
 
       <div #stands>
-        <app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
+        <!-- TODO: Change false to event ID when stands are updated-->
+        <app-stands *ngIf="false" [eventId]="eventId"></app-stands>
       </div>
       <mat-divider></mat-divider>
 
