@@ -3,8 +3,8 @@
 <section *ngIf="speakers && speakers.length > 0" id="speakers" class="section align-center">
 
   <div class="container">
-    <span class="icon section-icon icon-faces-users-03"></span>
-    <h3 (click)="isCollapsed = !isCollapsed" *ngIf="!previousSpeakers && speakers.length > 0">Speakers<mat-icon
+    <span class="icon section-icon icon-faces-users-03"></span> <!-- TODO: Remove "Previous" when speakers are updated -->
+    <h3 (click)="isCollapsed = !isCollapsed" *ngIf="!previousSpeakers && speakers.length > 0">Previous Speakers<mat-icon
         [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed" class="cursor-pointer">
         expand_more
       </mat-icon>
