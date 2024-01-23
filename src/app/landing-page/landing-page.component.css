@@ -325,3 +325,11 @@
 *:not(.intro, .fa, .fa-chevron-down, mat-icon) {
   font-family: 'Montserrat' !important;
 }
+
+.offers {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  row-gap: 2rem;
+  column-gap: 1rem;
+}
