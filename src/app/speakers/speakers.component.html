@@ -3,20 +3,17 @@
 <section *ngIf="speakers && speakers.length > 0" id="speakers" class="section align-center">
 
   <div class="container">
-    <span class="icon section-icon icon-faces-users-03"></span> <!-- TODO: Remove "Previous" when speakers are updated -->
-    <h3 (click)="isCollapsed = !isCollapsed" *ngIf="!previousSpeakers && speakers.length > 0">Previous Speakers<mat-icon
-        [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed" class="cursor-pointer">
+    <span class="icon section-icon icon-faces-users-03"></span>
+    <h3 (click)="isCollapsed = !isCollapsed" *ngIf="speakers.length > 0">
+      {{ previousSpeakers ? 'Previous Speakers' : 'Speakers'}}
+      <mat-icon
+        [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
         expand_more
       </mat-icon>
     </h3>
     <p *ngIf="!previousSpeakers && speakers.length > 0" style="text-align: center">Check out our wonderful speakers,
       primed and ready to tell their
       stories and give you their advice. Don't miss their keynotes!</p>
-    <h3 (click)="isCollapsed = !isCollapsed" *ngIf="previousSpeakers && speakers.length > 0">Previous Speakers<mat-icon
-        [class.chev-open]="!isCollapsed" [class.chev-close]="isCollapsed">
-        expand_more
-      </mat-icon>
-    </h3>
     <br />
     <br />
 
