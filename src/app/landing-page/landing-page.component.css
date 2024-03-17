@@ -9,7 +9,7 @@
 
 .example-card {
   margin: 5%;
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   /* align horizontal */
   align-items: center;
@@ -313,7 +313,6 @@
 }
 
 .example-card {
-
   transition: all .1s linear;
   box-shadow: 0px 1px 2px 0px rgba(26, 11, 82, 0.4);
 }
@@ -328,8 +327,9 @@
 
 .offers {
   display: grid;
-  width: 100%;
+  /*width: 100%;*/
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   row-gap: 2rem;
   column-gap: 1rem;
+  justify-content: center;
 }
