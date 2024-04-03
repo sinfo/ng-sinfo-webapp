@@ -56,16 +56,12 @@
 
                 <div class="row speaker-section">
                     <div class="col-sm-3 col-xs-12">
-                        <a (click)="onSelect(sponsor.id)">
-                            <img src='{{sponsor.img}}'
-                                onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
-                        </a>
+                        <img src='{{sponsor.img}}'
+                            onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                     </div>
 
                     <div class="col-sm-9 col-xs-12 align-left justify">
-                        <a (click)="onSelect(sponsor.id)">
-                            <h5 class="name">{{sponsor.name}}</h5>
-                        </a>
+                        <h5 class="name">{{sponsor.name}}</h5>
                     </div>
                 </div>
 
