@@ -10,15 +10,15 @@
       <div class="session-details">
         <div *ngIf="workshop.date" class="padded">
           <p>
-            <i class="fa fa-calendar"></i> {{workshop.date | date:'fullDate':'+0000'}} </p>
+            <i class="fa fa-calendar"></i> {{workshop.date | date:'fullDate':'+0001'}} </p>
         </div>
         <div *ngIf="workshop.date" class="padded">
           <p>
-            <i class="fa fa-clock-o"></i> {{workshop.date | date:'shortTime':'+0000'}} </p>
+            <i class="fa fa-clock-o"></i> {{workshop.date | date:'shortTime':'+0001'}} </p>
         </div>
         <div *ngIf="workshop.duration" class="padded">
           <p>
-            <i class="fa fa-clock-o"></i> {{workshop.duration | date:'h:mm':'+0000'}} </p>
+            <i class="fa fa-clock-o"></i> {{workshop.duration | date:'h:mm':'+0001'}} </p>
         </div>
         <div *ngIf="workshop.place">
           <p>

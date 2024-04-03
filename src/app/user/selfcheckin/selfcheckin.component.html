@@ -21,13 +21,13 @@
               <div class="session-details">
                 <div *ngIf="session.begin" class="padded">
                   <p>
-                    <i class="fa fa-calendar"></i> {{session.begin | date:'fullDate':'+0000'}}
+                    <i class="fa fa-calendar"></i> {{session.begin | date:'fullDate':'+0001'}}
                   </p>
                 </div>
                 <div *ngIf="session.begin" class="padded">
                   <p>
-                    <i class="fa fa-clock-o"></i> {{session.begin | date:'shortTime':'+0000'}} -
-                    {{session.end | date:'shortTime':'+0000'}}
+                    <i class="fa fa-clock-o"></i> {{session.begin | date:'shortTime':'+0001'}} -
+                    {{session.end | date:'shortTime':'+0001'}}
                   </p>
                 </div>
                 <div *ngIf="session.place">
