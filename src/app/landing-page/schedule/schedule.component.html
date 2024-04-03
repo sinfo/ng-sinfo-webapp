@@ -9,18 +9,16 @@
     <br />
 
     <br />
-    <!-- TODO: Uncoment when information is updated-->
-    <!-- <a class="btn btn-sm btn-outline-clr ics" href="https://deck.sinfo.org/calendar.ics" target="_blank" style="margin-bottom: 50px">
+    <a class="btn btn-sm btn-outline-clr ics" href="https://deck.sinfo.org/calendar.ics" target="_blank" style="margin-bottom: 50px">
       Download calendar
       <span class="fa fa-download icon"></span>
     </a>
 
     <app-loading [content]="schedule">
-    </app-loading> -->
+    </app-loading>
 
     <!-- Schedule start -->
-    <!-- <div *ngIf="schedule" class="schedule"> | TODO: Change to this when information is updated-->
-    <div *ngIf="false" class="schedule">
+    <div *ngIf="schedule" class="schedule">
 
       <mat-tab-group dynamicHeight style="padding-left: 5%; padding-right: 5%;">
         <mat-tab *ngFor="let day of schedule; let i=index" dynamicHeight>
