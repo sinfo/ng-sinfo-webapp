@@ -5,24 +5,27 @@
 <div *ngIf="sponsors && sponsors.length > 0">
   <div class="overallSponsors">
     <span class="icon section-icon icon-documents-bookmarks-12"></span>
-    <h3 (click)="show()">Sponsors<mat-icon [class.chev-open]="showAll" [class.chev-close]="!showAll" class="cursor-pointer">
-        expand_more
-      </mat-icon>
-    </h3>
+    <h3>Sponsors</h3>
     <p style="text-align: center">Get to know our amazing sponsors, who make it all possible!</p>
     <br />
 
     <app-loading [content]="sponsors"></app-loading>
 
     <div class="sponsor-level" *ngIf="sponsors">
-
-
+      
       <h5>Platinum Sponsors</h5>
       <div class="row" *ngIf="platinums.length">
         <mat-card class="example-card speaker-card platinum cursor-pointer" *ngFor="let platinum of platinums"
           (click)="onSelect(platinum)" [ngStyle]="{'background-image': 'url(' + platinum.img + ')' }">
         </mat-card>
       </div>
+      <br />
+
+      <h4 (click)="show()">See more<mat-icon [class.chev-open]="showAll" [class.chev-close]="!showAll" class="cursor-pointer">
+          expand_more
+        </mat-icon>
+      </h4>
+      <br />
 
       <div *ngIf="showAll" @myInsertRemoveTrigger class="sponsor-level">
         <hr>
@@ -42,14 +45,6 @@
         </div>
 
       </div>
-
-      <!-- <div class="show">
-        <button *ngIf="!showAll" class="btn btn-outline-clr btn-sm" (click)="show()">
-          See more
-        </button>
-      </div>
-    </div> -->
-
     </div>
 
     <div *ngIf="!sponsors || sponsors.length == 0" class="sponsors">
