@@ -12,7 +12,7 @@
 
   <div class="row" *ngFor="let workshops of _workshops">
     <div class="col-sm-12" *ngIf="workshops.date">
-      <h4 class="weekDay">{{workshops.date | date:'EEEE':'+0000'}}</h4>
+      <h4 class="weekDay">{{workshops.date | date:'EEEE':'+0001'}}</h4>
     </div>
     <app-workshop-status-element *ngFor="let workshop of workshops.workshops" [user]="user" [workshop]="workshop">
     </app-workshop-status-element>
