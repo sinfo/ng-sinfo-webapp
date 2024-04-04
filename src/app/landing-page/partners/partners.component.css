@@ -81,12 +81,6 @@ div.sponsors.silver div.sponsor {
     }
 }
 
-h1,
-h2 {
-    margin: 0px;
-}
-
-
 .wrapper {
     margin: 10dvh
  5dvh
@@ -113,26 +107,6 @@ div.sponsors {
     flex-wrap: wrap;
     min-width: 100%;
     margin-bottom: 5%;
-}
-
-@media (max-width: 767px) {
-
-    .chev-open,
-    .chev-close {
-        font-size: 9vw;
-    }
-
-
-}
-
-@media (max-width: 480px) {
-
-    .chev-open,
-    .chev-close {
-        font-size: 9vw;
-    }
-
-
 }
 
 h1,
@@ -227,13 +201,12 @@ h2 {
     align-items: center;
 }
 
-@media (max-width: 925px) {
-
+@media (max-width: 767px){
     .chev-open,
     .chev-close {
-        font-size: 9vw;
+      font-size: 31.5px;
     }
-}
+  }
 
 *:not(mat-icon) {
     font-family: 'Montserrat' !important;
