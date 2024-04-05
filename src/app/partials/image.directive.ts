@@ -10,7 +10,7 @@ import {
 export class ImageDirective implements AfterContentInit, OnDestroy {
 
   private errorImage = 'https://static.sinfo.org/static/25-sinfo/speakers/hacky.png'
-  private loadingImage = 'assets/img/logos/loading.gif'
+  private loadingImage = 'https://static.sinfo.org/static/31-sinfo/websiteImages/loading.gif'
 
   private nativeElement: HTMLElement
   private cancelOnError: Function
