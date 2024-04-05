@@ -8,32 +8,6 @@
   object-fit: cover;
 }
 
-
-.chev-open {
-  position: absolute;
-  line-height: 1.2;
-  font-size: 50px;
-  width: auto;
-  height: auto;
-  transition: 0.3s transform ease-in-out;
-  transform: rotate(180deg);
-}
-
-.h3 {
-  display: flex;
-  justify-content: center;
-}
-
-.chev-close {
-  line-height: 1.2;
-  position: absolute;
-  font-size: 50px;
-  width: auto;
-  height: auto;
-  transition: 0.3s transform ease-in-out;
-  transform: rotate(0);
-}
-
 .collapse:not(.show) {
   transition: all 0.3s ease-out;
   display: block !important;
@@ -57,15 +31,7 @@
   /*any number which is lager than a height of any of your elements*/
 }
 
-
 @media (max-width: 925px) {
-
-
-  .chev-open,
-  .chev-close {
-    font-size: 9vw;
-  }
-
   .speaker img {
     width: 10dvh
 ;
@@ -118,26 +84,17 @@
   transform: rotate(0);
 }
 
-@media (max-width: 925px) {
-
-
+@media (max-width: 767px){
   .chev-open,
   .chev-close {
-    font-size: 9vw;
+    font-size: 31.5px;
   }
-
-
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px) {
   .speaker-socials {
     top: 20% !important;
     position: absolute;
-  }
-
-  .chev-open,
-  .chev-close {
-    font-size: 9vw;
   }
 
   .member {
@@ -151,14 +108,8 @@
     position: absolute;
   }
 
-  .chev-open,
-  .chev-close {
-    font-size: 9vw;
-  }
-
   .member {
     height: 160px;
-
   }
 }
 
@@ -171,8 +122,6 @@
   .member {
     height: 190px;
   }
-
-
 }
 
 .name {

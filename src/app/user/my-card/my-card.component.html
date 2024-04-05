@@ -3,7 +3,7 @@
 <div class="wrapper pad" *ngIf="signatures && signatures.companies">
   <div class="row">
     <h3 class="title">
-      {{signatures.day | date:'EEEE':'+0000'}}'s card
+      {{signatures.day | date:'EEEE':'+0100'}}'s card
     </h3>
     <h6 *ngIf="userSignatures && userSignatures.redeemed" class="title">
       Already redeemed your prize.

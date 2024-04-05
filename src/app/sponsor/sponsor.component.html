@@ -56,16 +56,12 @@
 
                 <div class="row speaker-section">
                     <div class="col-sm-3 col-xs-12">
-                        <a (click)="onSelect(sponsor.id)">
-                            <img src='{{sponsor.img}}'
-                                onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
-                        </a>
+                        <img src='{{sponsor.img}}'
+                            onerror="this.src='https://sinfo.ams3.digitaloceanspaces.com/static/25-sinfo/speakers/hacky.png'">
                     </div>
 
                     <div class="col-sm-9 col-xs-12 align-left justify">
-                        <a (click)="onSelect(sponsor.id)">
-                            <h5 class="name">{{sponsor.name}}</h5>
-                        </a>
+                        <h5 class="name">{{sponsor.name}}</h5>
                     </div>
                 </div>
 
@@ -82,10 +78,10 @@
                             <h3 class="name">{{session.name}}</h3>
                             <div class="session-details">
                                 <div class="padded">
-                                    <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate':'+0000'}} </p>
+                                    <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate':'+0100'}} </p>
                                 </div>
                                 <div class="padded">
-                                    <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime':'+0000'}} </p>
+                                    <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime':'+0100'}} </p>
                                 </div>
                                 <div *ngIf="session.place">
                                     <p> <i class="fa fa-map-marker"></i> {{session.place}} </p>
