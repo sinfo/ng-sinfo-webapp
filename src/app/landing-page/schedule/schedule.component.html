@@ -44,7 +44,7 @@
                 </div>
               </ng-template>
               <div class="tab-content">
-                <div *ngFor="let presentation of day.sessions.Presentation.sala1; let iSession=index"
+                <div *ngFor="let presentation of day.sessions.Presentation.all; let iSession=index"
                   style="margin: 2%;">
 
                   <mat-card class="example-card cursor-pointer" (click)="onSelect(presentation)">
@@ -70,7 +70,6 @@
                 </div>
               </div>
             </mat-tab>
-
             <!-- Keynotes -->
             <mat-tab>
               <ng-template mat-tab-label>
