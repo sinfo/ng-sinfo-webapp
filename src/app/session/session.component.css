@@ -19,7 +19,8 @@ p {
 }
 
 .speaker-img {
-  border-radius: 50%;
+  border-radius: 15px;
+  max-height: 300px;
 }
 
 .session-details h5 {
