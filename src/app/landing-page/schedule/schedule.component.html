@@ -29,7 +29,7 @@
                 <h6 class="highlight">{{day.theme}}</h6>
               </div>
               <div>
-                <h8 class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0001'}}</h8>
+                <h8 class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0100'}}</h8>
               </div>
             </div>
           </ng-template>
@@ -52,7 +52,7 @@
                       <div mat-card-avatar> <img appImage [url]="presentation.img" alt=""> </div>
                       <mat-card-title><strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{presentation.date | date:'shortTime':'+0001'}}
+                          {{presentation.date | date:'shortTime':'+0100'}}
                           <span class="icon icon-office-47 place"></span>
                           {{presentation.place}}
                         </strong></mat-card-title>
@@ -88,7 +88,7 @@
                       <mat-card-title>
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{session.date | date:'shortTime':'+0001'}}
+                          {{session.date | date:'shortTime':'+0100'}}
                           <span class="icon icon-office-47 place"></span>
                           {{session.place}}
                         </strong>
@@ -132,7 +132,7 @@
                       <div mat-card-avatar> <img appImage [url]="workshop.img" alt=""> </div>
                       <mat-card-title><strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{workshop.date | date:'shortTime':'+0001'}}
+                          {{workshop.date | date:'shortTime':'+0100'}}
                           <span class="icon icon-office-47 place"></span>
                           {{workshop.place}}
                         </strong></mat-card-title>
@@ -157,13 +157,13 @@
       <!-- <div class="nav-wrapper" (window:resize)="showOrHideDropdown()">
         <span class="nav-current" (click)="toggleDayDropdown()">
           <h5 class="highlight"> {{ selectedTheme }}</h5>
-          <p class="text-alt">{{ selectedTime | date:'dd-MM-yyyy':'+0001'}}</p>
+          <p class="text-alt">{{ selectedTime | date:'dd-MM-yyyy':'+0100'}}</p>
         </span>
         <ul *ngIf="displayDayDropdown" class="nav nav-schedule nav-day">
           <li *ngFor="let day of schedule; let i=index" [ngClass]="{'active': selectedTheme === day.theme}">
             <a (click)="updateSelectedDayText(day.theme, day.date)">
               <h5 class="highlight">{{day.theme}}</h5>
-              <p class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0001'}}</p>
+              <p class="text-alt">{{day.date | date:'dd-MM-yyyy':'+0100'}}</p>
             </a>
           </li>
         </ul>
@@ -204,7 +204,7 @@
                   <a (click)="onSelect(session)" class="schedule-item-header">
                     <strong class="time highlight">
                       <span class="icon icon-office-24"></span>
-                      {{session.date | date:'shortTime':'+0001'}}
+                      {{session.date | date:'shortTime':'+0100'}}
                       <span class="icon icon-office-47 place"></span>
                       {{session.place}}
                     </strong>
@@ -244,7 +244,7 @@
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{presentation.date | date:'shortTime':'+0001'}}
+                          {{presentation.date | date:'shortTime':'+0100'}}
                           <span class="icon icon-office-47 place"></span>
                           {{presentation.place}}
                         </strong>
@@ -278,7 +278,7 @@
                       <a (click)="onSelect(presentation)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{presentation.date | date:'shortTime':'+0001'}}
+                          {{presentation.date | date:'shortTime':'+0100'}}
                           <span class="icon icon-office-47 place"></span>
                           {{presentation.place}}
                         </strong>
@@ -319,7 +319,7 @@
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{workshop.date | date:'shortTime':'+0001'}}
+                          {{workshop.date | date:'shortTime':'+0100'}}
                           <span class="icon icon-office-47 place"></span>
                           {{workshop.place}}
                         </strong>
@@ -352,7 +352,7 @@
                       <a (click)="onSelect(workshop)" class="schedule-item-header">
                         <strong class="time highlight">
                           <span class="icon icon-office-24"></span>
-                          {{workshop.date | date:'shortTime':'+0001'}}
+                          {{workshop.date | date:'shortTime':'+0100'}}
                           <span class="icon icon-office-47 place"></span>
                           {{workshop.place}}
                         </strong>

@@ -78,10 +78,10 @@
                             <h3 class="name">{{session.name}}</h3>
                             <div class="session-details">
                                 <div class="padded">
-                                    <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate':'+0001'}} </p>
+                                    <p> <i class="fa fa-calendar"></i> {{session.date | date:'fullDate':'+0100'}} </p>
                                 </div>
                                 <div class="padded">
-                                    <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime':'+0001'}} </p>
+                                    <p> <i class="fa fa-clock-o"></i> {{session.date | date:'shortTime':'+0100'}} </p>
                                 </div>
                                 <div *ngIf="session.place">
                                     <p> <i class="fa fa-map-marker"></i> {{session.place}} </p>

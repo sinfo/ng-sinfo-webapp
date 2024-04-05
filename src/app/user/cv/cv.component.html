@@ -31,7 +31,7 @@
         <li>
           <a href="{{ cvDownloadUrl }}">{{ myCv.name }}</a>
         </li>
-        <li>({{ myCv.updated | date : "dd/MM/yyyy" : "+0001" }})</li>
+        <li>({{ myCv.updated | date : "dd/MM/yyyy" : "+0100" }})</li>
       </ul>
     </div>
     <div *ngIf="myCv === undefined">
