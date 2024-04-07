@@ -85,6 +85,11 @@ export class ScheduleComponent implements OnInit, OnChanges {
     })
 
     tempSchedule.forEach(day => {
+      day.sessions.Keynote.sort(function(a, b) {
+        if (a.date <= b.date) return -1;
+        else return 1;
+      })
+
       day.sessions.Workshop.all.sort(function(a, b) {
         if (a.date < b.date) return -1;
         if (a.date > b.date) return 1;
