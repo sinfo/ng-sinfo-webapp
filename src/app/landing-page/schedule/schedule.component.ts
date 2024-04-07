@@ -94,14 +94,14 @@ export class ScheduleComponent implements OnInit, OnChanges {
         if (a.date < b.date) return -1;
         if (a.date > b.date) return 1;
         // Dates are equal, sort by place
-        return a.place === 'Room 1' ? -1 : 1;
+        return a.place.localeCompare(b.place);
       })
 
       day.sessions.Presentation.all.sort(function(a, b) {
         if (a.date < b.date) return -1;
         if (a.date > b.date) return 1;
         // Dates are equal, sort by place
-        return a.place === 'Room 1' ? -1 : 1;
+        return a.place.localeCompare(b.place);
       })
     })
 
