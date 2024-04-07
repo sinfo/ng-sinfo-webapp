@@ -85,11 +85,18 @@ export class ScheduleComponent implements OnInit, OnChanges {
     })
 
     tempSchedule.forEach(day => {
-      day.sessions.Workshop.all.sort((a, b) => {
-        a.date < b.date
+      day.sessions.Workshop.all.sort(function(a, b) {
+        if (a.date < b.date) return -1;
+        if (a.date > b.date) return 1;
+        // Dates are equal, sort by place
+        return a.place === 'Room 1' ? -1 : 1;
       })
-      day.sessions.Presentation.all.sort((a, b) => {
-        a.date < b.date
+
+      day.sessions.Presentation.all.sort(function(a, b) {
+        if (a.date < b.date) return -1;
+        if (a.date > b.date) return 1;
+        // Dates are equal, sort by place
+        return a.place === 'Room 1' ? -1 : 1;
       })
     })
 
