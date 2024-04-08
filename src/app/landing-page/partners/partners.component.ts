@@ -50,4 +50,8 @@ export class PartnersComponent implements OnInit, OnChanges {
       return sponsor.advertisementLvl === 'other'
     })
   }
+
+  onSelect(partner: Sponsor) {
+    if (partner.site) window.open(partner.site, '_blank')
+  }
 }
