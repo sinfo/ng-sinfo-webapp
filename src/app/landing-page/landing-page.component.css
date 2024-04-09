@@ -61,7 +61,22 @@
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
   height: min-content;
-  width: max-content;
+  width: 180px;
+  padding: 0 20px;
+  font-family: 'Montserrat';
+}
+
+.sidenav a {
+  text-decoration: none;
+  color: white;
+}
+
+.sidenav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  font-size: 0.9em;
 }
 
 .sidenav::-webkit-scrollbar {
