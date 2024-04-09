@@ -9,7 +9,8 @@
     <br />
 
     <br />
-    <a class="btn btn-sm btn-outline-clr ics" href="https://deck.sinfo.org/calendar.ics" target="_blank" style="margin-bottom: 50px">
+    <a *ngIf="calendarUrl"
+      class="btn btn-sm btn-outline-clr ics" href={{calendarUrl}} target="_blank" style="margin-bottom: 50px">
       Download calendar
       <span class="fa fa-download icon"></span>
     </a>
