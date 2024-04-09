@@ -7169,20 +7169,6 @@ div.clear input.btn:hover {
   background-color: black;
 }
 
-.footer-base {
-  padding: 30px 0 30px;
-  text-align: left;
-}
-
-.footer-nav>li {
-  margin-right: 25px;
-  display: inline-block;
-}
-
-.footer-nav>li:last-child {
-  margin-right: 0;
-}
-
 .footer-nav>li a {
   font-family: "Roboto", "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-size: 11px;
@@ -7271,11 +7257,6 @@ div.clear input.btn:hover {
 }
 
 @media (max-width: 991px) {
-  .footer-nav>li {
-    margin-right: 0;
-    width: 100%;
-  }
-
   .footer .socials-nav {
     margin: 20px 0 20px -12px;
     width: 100%;
