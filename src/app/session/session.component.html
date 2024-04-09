@@ -62,16 +62,12 @@
 
         <div class="row session-details" *ngIf="session.kind === 'Keynote' && speaker">
           <div class="col-sm-3 col-xs-12">
-            <a (click)="onSelect(speaker.id)">
-              <img class="speaker-img" src='{{speaker.img}}'>
-            </a>
+            <img class="speaker-img" src='{{speaker.img}}'>
           </div>
 
           <div class="col-sm-9 col-xs-12 align-left justify">
-            <a (click)="onSelect(speaker.id)">
-              <h5 class="name">{{speaker.name}}</h5>
-              <h5>{{speaker.title}}</h5>
-            </a>
+            <h5 class="name">{{speaker.name}}</h5>
+            <h5>{{speaker.title}}</h5>
           </div>
         </div>
 
@@ -83,23 +79,23 @@
           <div class="col-md-7 col-sm-12 align-left justify">
             <h5 class="name">{{session.name}}</h5>
           <!--TODO Add the rest of the information-->
-            <div class="description-wrapper" *ngIf="session.description">
-              <p @myInsertRemoveTrigger class="description" *ngIf="showMore || session.description.length <= 300">
-                {{ session.description }}
-                <span *ngIf="showMore" (click)="showMore = !showMore" class="seeMore">
-                  <b> see less </b>
-                </span>
-              </p>
-              <p @myInsertRemoveTrigger class="description" *ngIf="!showMore && session.description.length > 300">
-                {{ session.description | slice:0:300 }}
-                <span *ngIf="!showMore" (click)="showMore = !showMore" class="seeMore">
-                  <b>... see more </b>
-                </span>
-              </p>
-            </div>
           </div>
         </div>
 
+        <div class="description-wrapper" *ngIf="session.description">
+          <p @myInsertRemoveTrigger class="description" *ngIf="showMore || session.description.length <= 300">
+            {{ session.description }}
+            <span *ngIf="showMore" (click)="showMore = !showMore" class="seeMore">
+              <b> see less </b>
+            </span>
+          </p>
+          <p @myInsertRemoveTrigger class="description" *ngIf="!showMore && session.description.length > 300">
+            {{ session.description | slice:0:300 }}
+            <span *ngIf="!showMore" (click)="showMore = !showMore" class="seeMore">
+              <b>... see more </b>
+            </span>
+          </p>
+        </div>
         
         <!--TODO Fetch users checked-in -->
 
