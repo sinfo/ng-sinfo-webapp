@@ -1,42 +1,10 @@
 .footer {
-  color: white !important;
+  padding: 30px 0 0 0;
   position: relative;
   z-index: 1;
-  margin-top: 5px
 }
 
 .footer i,
 .footer a {
   color: rgb(106, 213, 255);
-}
-
-.first {
-  margin-left: 0;
-}
-
-.container {
-  text-align: center
-}
-
-ul {
-  display: inline-block;
-  text-align: left;
-}
-
-.footer-nav-item {
-  text-align: center;
-}
-
-.list {
-  margin: 0;
-}
-
-
-
-@media (min-width: 480px) {
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
