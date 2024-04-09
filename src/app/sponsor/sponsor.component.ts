@@ -12,6 +12,7 @@ import { Company } from '../company/company.model';
 import { CompanyService } from '../company/company.service';
 import { EventService } from './../events/event.service'
 import { Event } from '../events/event.model';
+import { Sponsor } from '../landing-page/sponsors/sponsor.model';
 
 @Component({
   selector: 'app-sponsor',
@@ -73,6 +74,10 @@ export class SponsorComponent implements OnInit {
 
   onSelect(id: string): void {
     this.router.navigate(['/sessions', id])
+  }
+
+  visitSite(sponsor: Sponsor) {
+    if (sponsor.site) window.open(sponsor.site, '_blank')
   }
 
 }

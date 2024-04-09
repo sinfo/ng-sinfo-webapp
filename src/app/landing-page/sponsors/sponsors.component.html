@@ -40,7 +40,7 @@
         <hr>
         <h5>Silver Sponsors</h5>
         <div class="row" *ngIf="silvers.length">
-          <mat-card class="example-card speaker-card silver cursor-pointer" *ngFor="let silver of silvers" (click)="onSelect(silver)"
+          <mat-card class="example-card speaker-card silver cursor-pointer" *ngFor="let silver of silvers" (click)="visitSite(silver)"
             [ngStyle]="{'background-image': 'url(' + silver.img + ')' }">
           </mat-card>
         </div>
