@@ -36,6 +36,11 @@
           </a>
         </li>
         <li class="socials-nav-item">
+          <a (click)="scroll(offers)" class="navigation-link" aria-label="Offers">
+            Offers
+          </a>
+        </li>
+        <li class="socials-nav-item">
           <a (click)="scroll(faq)" class="navigation-link" aria-label="FAQ">
             FAQ
           </a>
@@ -82,6 +87,11 @@
         <li class="socials-nav-item">
           <a (click)="scroll(about);toggleDropdown()" class="navigation-link" aria-label="About Us">
             About Us
+          </a>
+        </li>
+        <li class="socials-nav-item">
+          <a (click)="scroll(offers);toggleDropdown()" class="navigation-link" aria-label="Offers">
+            Offers
           </a>
         </li>
         <li class="socials-nav-item">
@@ -469,7 +479,7 @@
       </section>
       <mat-divider></mat-divider>
 
-      <section #faq class="price-area section-padding" style="margin-bottom: 5%;" id="the-event">
+      <section #offers class="price-area section-padding" style="margin-bottom: 5%;">
         <div class="container">
           <div class="row">
             <div class="text-center">
@@ -480,13 +490,12 @@
                 </p>
                 <div class="offers">
                   <mat-card *ngFor="let offer of promocodes" class="example-card" style="padding: 5%;">
-                    <a href="{{offer.company.site}}" style="width: 100%;">
-                      <img src="{{offer.company.img}}" alt="{{offer.company.name}} logo" style="width: 100%;">
-                    </a>
+                    <img src="{{offer.company.img}}" alt="{{offer.company.name}} logo">
+
                     <div class="text-alt description">
                       <small>{{offer.description}}</small>
                     </div>
-                    <a *ngIf="offer.link" href="{{offer.code}}" class="btn btn-rounded btn-outline-clr btn-sm" style="margin-top: 2%;">
+                    <a *ngIf="offer.link" href="{{offer.code}}" target="_blank" class="btn btn-rounded btn-outline-clr btn-sm" style="margin-top: 2%;">
                       Claim Offer
                     </a>
                     <div *ngIf="!offer.link" style="display:flex; flex-direction: column; margin-top: 2%;">
