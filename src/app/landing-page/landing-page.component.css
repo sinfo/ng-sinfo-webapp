@@ -9,7 +9,7 @@
 
 .example-card {
   margin: 5%;
-  /*display: flex;*/
+  display: flex;
   justify-content: center;
   /* align horizontal */
   align-items: center;
@@ -342,9 +342,15 @@
 
 .offers {
   display: grid;
-  /*width: 100%;*/
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  width: 100%;
+  grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
   row-gap: 2rem;
   column-gap: 1rem;
-  justify-content: center;
+}
+
+.offers img {
+  max-height: 20vh;
+  max-width: 100%;
+  height: auto;
+  width: auto;
 }
