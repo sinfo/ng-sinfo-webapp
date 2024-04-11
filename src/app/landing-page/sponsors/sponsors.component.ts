@@ -76,4 +76,8 @@ export class SponsorsComponent implements OnInit {
     this.router.navigate(['/sponsors', sponsor.id])
   }
 
+  visitSite(sponsor: Sponsor) {
+    if (sponsor.site) window.open(sponsor.site, '_blank')
+  }
+
 }
