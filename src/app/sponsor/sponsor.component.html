@@ -17,39 +17,44 @@
 
 <mat-sidenav-container class='sidenav-container'>
     <mat-sidenav #sidenav1 mode="over" class='sidenav' position="end">
-        <mat-nav-list class='navlist'>
-            <a mat-list-item href="https://twitter.com/sinfoist" target="_blank" aria-label="Twitter"
-                (click)="sidenav1.toggle()" class="navigation-link">
-                <span class="list-item">Twitter</span>
-                <span style="margin-left:auto" class="fa fa-twitter"></span>
-            </a>
-            <a mat-list-item href="https://www.facebook.com/sinfoist/" target="_blank" aria-label="Facebook"
-                (click)="sidenav1.toggle()" class="navigation-link">
-                <span class="list-item">Facebook</span>
-                <span style="margin-left:auto" class="fa fa-facebook"></span>
-            </a>
-            <a mat-list-item href="https://github.com/sinfo" target="_blank" aria-label="Github"
-                (click)="sidenav1.toggle()" class="navigation-link">
-                <span class="list-item">Github</span>
-                <span style="margin-left:auto" class="fa fa-github"></span>
-            </a>
-            <a mat-list-item href="https://www.instagram.com/sinfoist/" target="_blank" aria-label="Instagram"
-                (click)="sidenav1.toggle()" class="navigation-link">
-                <span class="list-item">Instagram</span>
-                <span style="margin-left:auto" class="fa fa-instagram"></span>
-            </a>
-            <a mat-list-item href="https://www.youtube.com/user/sinfoist" target="_blank" aria-label="Youtube"
-                (click)="sidenav1.toggle()" class="navigation-link">
-                <span class="list-item">Youtube</span>
-                <span style="margin-left:auto" class="fa fa-youtube"></span>
-            </a>
-            <a mat-list-item href="https://www.linkedin.com/company/2760221" target="_blank" aria-label="Linkedin"
-                (click)="sidenav1.toggle()" class="navigation-link">
-                <span class="list-item">Linkedin</span>
-                <span style="margin-left:auto" class="fa fa-linkedin"></span>
-            </a>
-        </mat-nav-list>
+      <a href="https://twitter.com/sinfoist" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+        <div class="sidenav-item">
+            <span>Twitter</span>
+            <span class="fa fa-twitter"></span>
+        </div>
+      </a>
+      <a href="https://www.facebook.com/sinfoist/" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+        <div class="sidenav-item">
+            <span>Facebook</span>
+            <span class="fa fa-facebook"></span>
+        </div>
+      </a>
+      <a href="https://github.com/sinfo" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+        <div class="sidenav-item">
+            <span>Github</span>
+            <span class="fa fa-github"></span>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/sinfoist/" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+        <div class="sidenav-item">
+            <span>Instagram</span>
+            <span class="fa fa-instagram"></span>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/user/sinfoist" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+        <div class="sidenav-item">
+            <span>Youtube</span>
+            <span class="fa fa-youtube"></span>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/2760221" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+        <div class="sidenav-item">
+            <span>Linkedin</span>
+            <span class="fa fa-linkedin"></span>
+        </div>
+      </a>
     </mat-sidenav>
+
     <mat-sidenav-content>
         <section *ngIf="sponsor" class="section align-center">
             <div class="container">
