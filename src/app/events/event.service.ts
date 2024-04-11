@@ -62,7 +62,7 @@ export class EventService {
   }
 
   getCalendarUrl(): Observable<string> {
-    return this.http.get<string>(`${environment.cannonUrl}/calendar`)
+    return this.http.get<string>(`${environment.cannonUrl}/calendar`, { responseType: 'text' as 'json' })
       .pipe(
         catchError(this.handleError<string>('getCalendarUrl', ''))
       )
