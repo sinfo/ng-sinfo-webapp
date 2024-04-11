@@ -126,8 +126,8 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 40px;
-  font-size: 0.9em;
+  height: 55px;
+  font-size: 1.2em;
 }
 
 .sidenav::-webkit-scrollbar {
