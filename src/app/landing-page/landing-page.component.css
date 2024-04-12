@@ -9,7 +9,7 @@
 
 .example-card {
   margin: 5%;
-  /*display: flex;*/
+  display: flex;
   justify-content: center;
   /* align horizontal */
   align-items: center;
@@ -61,7 +61,22 @@
   background-color: rgba(0, 0, 0, 0.85);
   color: white;
   height: min-content;
-  width: max-content;
+  width: 180px;
+  padding: 0 20px;
+  font-family: 'Montserrat';
+}
+
+.sidenav a {
+  text-decoration: none;
+  color: white;
+}
+
+.sidenav-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 55px;
+  font-size: 1.2em;
 }
 
 .sidenav::-webkit-scrollbar {
@@ -327,9 +342,15 @@
 
 .offers {
   display: grid;
-  /*width: 100%;*/
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  width: 100%;
+  grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
   row-gap: 2rem;
   column-gap: 1rem;
-  justify-content: center;
+}
+
+.offers img {
+  max-height: 20vh;
+  max-width: 100%;
+  height: auto;
+  width: auto;
 }

@@ -4,6 +4,8 @@ import { Title } from '@angular/platform-browser'
 import { LivestreamService } from './livestream/livestream.service'
 import { SponsorService } from './sponsors/sponsor.service'
 import { Sponsor } from './sponsors/sponsor.model'
+import { PromocodeService } from './promocodes/promocode.service'
+import { Promocode } from './promocodes/promocode.model'
 import { Event } from '../events/event.model'
 import {
   trigger,
@@ -43,12 +45,14 @@ export class LandingPageComponent implements OnInit {
   isLive: boolean
   dropdownNav: boolean = false
   sponsors: Sponsor[]
+  promocodes: Promocode[]
 
   constructor(
     private titleService: Title,
     private eventService: EventService,
     private liveStreamService: LivestreamService,
-    private sponsorService: SponsorService
+    private sponsorService: SponsorService,
+    private promocodeService: PromocodeService
   ) { }
 
   ngOnInit() {
@@ -61,6 +65,7 @@ export class LandingPageComponent implements OnInit {
       this.end = event.end
 
       this.getSponsors(event)
+      this.getPromocodes()
     })
 
     this.showOrHideDropdown()
@@ -77,6 +82,13 @@ export class LandingPageComponent implements OnInit {
         this.sponsors = sponsors
       }
       )
+  }
+
+  getPromocodes(): void {
+    this.promocodeService.getPromocodes(this.eventId)
+      .subscribe(promocodes => {
+        this.promocodes = promocodes
+      })
   }
 
   /* Beggining of Dropdown tabs actions */

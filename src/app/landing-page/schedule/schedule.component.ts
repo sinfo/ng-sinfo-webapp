@@ -3,6 +3,7 @@ import { Router } from '@angular/router'
 
 import { Session } from '../../session/session.model'
 import { SessionService } from '../../session/session.service'
+import { EventService } from '../../events/event.service'
 
 import { environment } from '../../../environments/environment'
 
@@ -22,14 +23,17 @@ export class ScheduleComponent implements OnInit, OnChanges {
 
   sessions: Session[]
   private schedule
+  calendarUrl: string
 
   constructor(
     private sessionService: SessionService,
+    private eventService: EventService,
     private router: Router,
   ) { }
 
   ngOnInit() {
     this.getSessions()
+    this.getCalendarUrl()
     this.showOrHideDropdown()
   }
 
@@ -43,6 +47,11 @@ export class ScheduleComponent implements OnInit, OnChanges {
         this.sessions = sessions
         this.createSchedule(sessions)
       })
+  }
+
+  getCalendarUrl(): void {
+    this.eventService.getCalendarUrl()
+      .subscribe(url => this.calendarUrl = url)
   }
 
   createSchedule(sessions: Session[]): void {

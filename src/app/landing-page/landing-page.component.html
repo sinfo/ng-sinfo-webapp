@@ -36,6 +36,11 @@
           </a>
         </li>
         <li class="socials-nav-item">
+          <a (click)="scroll(offers)" class="navigation-link" aria-label="Offers">
+            Offers
+          </a>
+        </li>
+        <li class="socials-nav-item">
           <a (click)="scroll(faq)" class="navigation-link" aria-label="FAQ">
             FAQ
           </a>
@@ -85,6 +90,11 @@
           </a>
         </li>
         <li class="socials-nav-item">
+          <a (click)="scroll(offers);toggleDropdown()" class="navigation-link" aria-label="Offers">
+            Offers
+          </a>
+        </li>
+        <li class="socials-nav-item">
           <a (click)="scroll(faq);toggleDropdown()" class="navigation-link" aria-label="FAQ">
             FAQ
           </a>
@@ -98,50 +108,44 @@
 
 <mat-sidenav-container class='sidenav-container'>
   <mat-sidenav #sidenav1 mode="over" class='sidenav' position="end">
-    <mat-nav-list class='navlist'>
-      <a mat-list-item href="https://twitter.com/sinfoist" target="_blank" aria-label="Twitter"
-        (click)="sidenav1.toggle()">
-        <div class="social-link">
-          <span class="list-item">Twitter</span>
+    <a href="https://twitter.com/sinfoist" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+      <div class="sidenav-item">
+          <span>Twitter</span>
           <span class="fa fa-twitter"></span>
-        </div>
-      </a>
-      <a mat-list-item href="https://www.facebook.com/sinfoist/" target="_blank" aria-label="Facebook"
-        (click)="sidenav1.toggle()">
-        <div class="social-link">
-          <span class="list-item">Facebook</span>
+      </div>
+    </a>
+    <a href="https://www.facebook.com/sinfoist/" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+      <div class="sidenav-item">
+          <span>Facebook</span>
           <span class="fa fa-facebook"></span>
-        </div>
-      </a>
-      <a mat-list-item href="https://github.com/sinfo" target="_blank" aria-label="Github" (click)="sidenav1.toggle()">
-        <div class="social-link">
-          <span class="list-item">Github</span>
+      </div>
+    </a>
+    <a href="https://github.com/sinfo" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+      <div class="sidenav-item">
+          <span>Github</span>
           <span class="fa fa-github"></span>
-        </div>
-      </a>
-      <a mat-list-item href="https://www.instagram.com/sinfoist/" target="_blank" aria-label="Instagram"
-        (click)="sidenav1.toggle()">
-        <div class="social-link">
-          <span class="list-item">Instagram</span>
+      </div>
+    </a>
+    <a href="https://www.instagram.com/sinfoist/" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+      <div class="sidenav-item">
+          <span>Instagram</span>
           <span class="fa fa-instagram"></span>
-        </div>
-      </a>
-      <a mat-list-item href="https://www.youtube.com/user/sinfoist" target="_blank" aria-label="Youtube"
-        (click)="sidenav1.toggle()">
-        <div class="social-link">
-          <span class="list-item">Youtube</span>
+      </div>
+    </a>
+    <a href="https://www.youtube.com/user/sinfoist" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+      <div class="sidenav-item">
+          <span>Youtube</span>
           <span class="fa fa-youtube"></span>
-        </div>
-      </a>
-      <a mat-list-item href="https://www.linkedin.com/company/2760221" target="_blank" aria-label="Linkedin"
-        (click)="sidenav1.toggle()">
-        <div class="social-link">
-          <span class="list-item">Linkedin</span>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/company/2760221" target="_blank" aria-label="Twitter" (click)="sidenav1.toggle()">
+      <div class="sidenav-item">
+          <span>Linkedin</span>
           <span class="fa fa-linkedin"></span>
-        </div>
-      </a>
-    </mat-nav-list>
+      </div>
+    </a>
   </mat-sidenav>
+
   <mat-sidenav-content style=" overflow: overlay; font-family: 'Montserrat:  !important'">
     <div class="content">
       <section id="hero" class="hero-section light-text">
@@ -397,7 +401,7 @@
                     SINFO is a college student and non-profitable organization responsible for the planning of one of
                     the
                     biggest Tech events
-                    in Portugal. It’s an annual conference that takes place at the Alameda Campus of Técnico Lisboa, in
+                    in Portugal. It’s an annual conference that takes place at Técnico Innovation Center, in
                     the
                     capital
                     city of Portugal, Lisbon. We had a record breaking attendance of participants last year, achievement
@@ -469,7 +473,7 @@
       </section>
       <mat-divider></mat-divider>
 
-      <section #faq class="price-area section-padding" style="margin-bottom: 5%;" id="the-event">
+      <section #offers class="price-area section-padding" style="margin-bottom: 5%;">
         <div class="container">
           <div class="row">
             <div class="text-center">
@@ -479,14 +483,22 @@
                   Take advantage of exclusive offers from our partners!
                 </p>
                 <div class="offers">
-                  <mat-card class="example-card cursor-pointer" style="padding: 2%;width: 250px;margin-left: 40%;">
-                    <a href="https://www.flytap.com"><img src="https://static.sinfo.org/static/31-sinfo/offers/tap.jpg"/></a>
+                  <mat-card *ngFor="let offer of promocodes" class="example-card" style="padding: 5%;">
+                    <img src="{{offer.company.img}}" alt="{{offer.company.name}} logo">
+
                     <div class="text-alt description">
-                      <small>Official Carrier of SINFO 31</small>
+                      <small>{{offer.description}}</small>
                     </div>
-                    <a href="https://static.sinfo.org/static/31-sinfo/offers/tap_tos.pdf" class="btn btn-rounded btn-outline-clr btn-sm" style="margin-top: 2%;">
+                    <a *ngIf="offer.link" href="{{offer.code}}" target="_blank" class="btn btn-rounded btn-outline-clr btn-sm" style="margin-top: 2%;">
                       Claim Offer
                     </a>
+                    <div *ngIf="!offer.link" style="display:flex; flex-direction: column; margin-top: 2%;">
+                      <span>
+                        <small>Code:</small>
+                        <p class="btn btn-rounded btn-outline-clr btn-sm">{{offer.code}}</p>
+                      </span>
+                      <small>Expires: {{offer.expire | date : "dd/MM/yyyy" : "+0100"}}</small>
+                    </div>
                   </mat-card>
                 </div>
               </div>

@@ -121,6 +121,7 @@ import { SponsorComponent } from "./sponsor/sponsor.component";
 import { DeleteLinkDialogComponent } from "./user/link/my-links/delete-link-dialog/delete-link-dialog.component";
 
 import { marked } from 'marked';
+import { PromocodeService } from "./landing-page/promocodes/promocode.service";
 
 
 library.add(fas);
@@ -231,6 +232,7 @@ library.add(fas);
     SpeakerService,
     MessageService,
     SponsorService,
+    PromocodeService,
     TeamService,
     AuthService,
     AuthGuard,
