@@ -47,13 +47,13 @@ export class ValidateCardComponent implements OnInit {
         panelClass: ['mat-toolbar', 'mat-primary'],
         duration: 2000
       })
-      /* this.messageService.add({
+      this.messageService.add({
         origin: 'Validate card',
         showAlert: true,
-        text: `Validated ${user.name}'s card`,
+        text: `Validated ${data.user.name}'s card`,
         type: Type.success,
         timeout: 7000
-      }) */
+      }) 
     }, error => {
 
       if (error.error.statusCode === 409) {
@@ -61,26 +61,26 @@ export class ValidateCardComponent implements OnInit {
           panelClass: ['mat-toolbar', 'mat-warn'],
           duration: 2000
         })
-        /* this.messageService.add({
+        this.messageService.add({
           origin: 'Validate card',
           showAlert: true,
-          text: `${user.name}'s card is already validated`,
+          text: `${data.user.name}'s card is already validated`,
           type: Type.warning,
           timeout: 7000
-        }) */
+        })
       } else if (error.error.statusCode === 404 || error.error.statusCode === 422) {
         this.snackbar.open(`Not enough signatures on ${data.user.name}'s card`, "Yikes", {
           panelClass: ['mat-toolbar', 'mat-warn'],
           duration: 2000
         }
         )
-        /* this.messageService.add({
+        this.messageService.add({
           origin: 'Validate card',
           showAlert: true,
-          text: `Not enough signatures on ${user.name}'s card`,
+          text: `Not enough signatures on ${data.user.name}'s card`,
           type: Type.warning,
           timeout: 7000
-        }) */
+        })
       }
 
     })
