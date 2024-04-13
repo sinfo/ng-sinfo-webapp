@@ -153,7 +153,7 @@ export class QrcodeScannerComponent implements OnInit {
           }
           this.userRead = user
           this.lastUser = user
-          this.lastRaw = undefined
+          //this.lastRaw = undefined // Removed to prevent infinite reading of the same qrcode. Revisit if problem in reverse links appear
         }
       })
   }
