@@ -85,6 +85,13 @@ export class ScheduleComponent implements OnInit, OnChanges {
       }
 
       if (val.kind === 'Keynote') {
+        // FIXME
+        // Sets the session image to a static image in digital ocean for the panel (only case where seapers.len > 1 !!! FOR NOW !!!)
+        // Change this link if panel image changes
+        // If a normal talk has more than 1 speaker this need to be revisited
+        if (val.speakers.length > 1){
+          val.img = "https://static.sinfo.org/static/31-sinfo/websiteImages/panel-31.png"
+        }
         tempSchedule[registeredDays].sessions[val.kind].push(val)
       } else {
         let place = (val.place === 'Room 2') ? 'sala2' : 'sala1'

@@ -23,6 +23,14 @@ p {
   max-height: 300px;
 }
 
+.panelSpeaker-img {
+  border-radius: 15px;
+  max-height: 300px;
+  width: 20dvh;
+  height: 20dvh;
+  object-fit: cover;
+}
+
 .session-details h5 {
   margin: 15px auto;
 }

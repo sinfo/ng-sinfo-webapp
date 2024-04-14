@@ -64,14 +64,16 @@
           </div>
         </div>
 
-        <div class="row session-details" *ngIf="session.kind === 'Keynote' && speaker">
-          <div class="col-sm-3 col-xs-12">
-            <img class="speaker-img" src='{{speaker.img}}'>
-          </div>
-
-          <div class="col-sm-9 col-xs-12 align-left justify">
-            <h5 class="name">{{speaker.name}}</h5>
-            <h5>{{speaker.title}}</h5>
+        <div class="row session-details" *ngIf="session.kind === 'Keynote' && speakers.length > 0">
+          <div *ngFor="let speaker of speakers; let iSession=index">
+            <div class="col-sm-3 col-xs-12">
+              <img [ngClass]="speakers.length > 1 ? 'panelSpeaker-img' : 'speaker-img'" src='{{speaker.img}}'>
+            </div>
+  
+            <div class="col-sm-9 col-xs-12 align-left justify">
+              <h5 class="name">{{speaker.name}}</h5>
+              <h5>{{speaker.title}}</h5>
+            </div>
           </div>
         </div>
 
