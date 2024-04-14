@@ -3,7 +3,7 @@
 <div class="wrapper pad" *ngIf="signatures && signatures.companies">
   <div class="row">
     <h3 class="title">
-      {{signatures.day | date:'EEEE':'+0100'}}'s card
+      {{signatures.day | date:'EEEE':'+0100'}}'s Activity
     </h3>
     <h6 *ngIf="userSignatures && userSignatures.redeemed" class="title">
       Already redeemed your prize.
@@ -16,10 +16,10 @@
         <i *ngIf="numSignatures === signatures.capacity" class="fa fa-check"></i>
       </h5>
     </div>
-    <div class="alert alert-info promocode-info" *ngIf="!userSignatures.redeemed">
+    <div class="alert alert-info promocode-info" *ngIf="!userSignatures || !userSignatures.redeemed">
       <b>Earn prizes</b>
-      <span *ngIf="!numSignatures || numSignatures < signatures.capacity">: Visit 10 companies and get the chance to spin the wheel of fortune at SINFO stand.</span>
-      <span *ngIf="numSignatures === signatures.capacity"><b> now:</b> You can now spin the wheel of fortune at SINFO stand.</span>
+      <span *ngIf="!numSignatures || numSignatures < signatures.capacity">: Visit 10 companies and get the chance to spin the wheel of fortune at the frontdesk.</span>
+      <span *ngIf="numSignatures === signatures.capacity"><b> now:</b> You can now spin the wheel of fortune at the frontdesk.</span>
     </div>
   </div>
   <div class="row">
