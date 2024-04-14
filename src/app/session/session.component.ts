@@ -6,7 +6,7 @@ import { SessionService } from './session.service'
 import { Session } from './session.model'
 import { SpeakerService } from '../speakers/speaker.service'
 import { Speaker } from '../speakers/speaker.model'
-import { EventService } from './../events/event.service'
+import { EventService } from '../events/event.service'
 import {
   trigger,
   style,

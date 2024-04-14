@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
-import { EventService } from './../events/event.service'
+import { EventService } from '../events/event.service'
 
 @Component({
   selector: 'app-code-of-conduct',

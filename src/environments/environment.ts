@@ -80,7 +80,7 @@ export const environment = {
     clientId: '475922911787-2eunqihjt791ul7kfi1ji185o7mlehq2.apps.googleusercontent.com'
   },
   fenix: {
-    clientId: '1977390058176863',
+    clientId: '1414440104755307',
     redirectUrl: 'http://localhost:4201/login'
   },
   linkedin: {
