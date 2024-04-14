@@ -94,16 +94,17 @@
                         </strong>
                       </mat-card-title>
                       <mat-card-subtitle *ngIf="session.speakers.length > 0 && session.speakers[0]">
-                        <p>{{session.speakers[0].name}}</p>
+                        <!-- FIXME
+                        -- Every check for session.speakers.length > 1 is checking if a keynote is a panel
+                        -- For keynotes with more than 1 speaker and arent a panel this needs to be revisited
+                        -->
+                        <p>{{session.speakers.length > 1 ? '' : session.speakers[0].name}}</p>
                       </mat-card-subtitle>
                     </mat-card-header>
 
                     <mat-card-content>
                       <h6 class=" title">
-                        <strong *ngFor="let speaker of session.speakers" class="highlight speaker-name">
-                          {{session.name.split(' - ')[0]}}
-                        </strong>
-                        -- {{session.name.split(' - ')[1]}}
+                        {{session.name}}
                       </h6>
                       <div class="panel-collapse collapse in schedule-item-body">
                         <article>
