@@ -62,8 +62,9 @@
       <div class="col-sm-6 promote typeahead">
         <mat-form-field appearance="fill" style="width: 100%; background-color: white;">
           <mat-label>Search for company</mat-label>
-          <mat-select name="searchCompany" id="searchCompany" style="background-color: white;" name="searchCompany" [(ngModel)]="searchedCompany">
-            <mat-option style="background-color: white;" *ngFor="let comp of companies" [value]="comp">
+          <mat-select name="searchCompany" id="searchCompany" name="searchCompany">
+            <input (keyup)="onKey($event.target.value)" style="width: 100%;">
+            <mat-option *ngFor="let comp of selectedCompanies" [value]="comp.name">
               {{ comp.name }}
             </mat-option>
           </mat-select>
