@@ -10,7 +10,7 @@ import { SessionService } from '../session/session.service';
 import { Session } from '../session/session.model'
 import { Company } from '../company/company.model';
 import { CompanyService } from '../company/company.service';
-import { EventService } from './../events/event.service'
+import { EventService } from '../events/event.service'
 import { Event } from '../events/event.model';
 import { Sponsor } from '../landing-page/sponsors/sponsor.model';
 

@@ -26,6 +26,7 @@ export class PromoteComponent implements OnInit {
   userReadCompany: Company
 
   companies: Company[]
+  selectedCompanies: Company[]
   searchedCompany: Company
 
   me: User
@@ -124,9 +125,12 @@ export class PromoteComponent implements OnInit {
         //Filtering companies from companies and partners array
         let companies = companiesPartners.filter((company) => {
           return company.advertisementLvl != "other";
+        }).sort((a, b) => {
+          return a.name.localeCompare(b.name)
         });
 
         this.companies = companies
+        this.selectedCompanies = companies;
       })
   }
 
@@ -172,8 +176,15 @@ export class PromoteComponent implements OnInit {
 
         this.userRead = user
         this.receiveUser({user:user, company:null})
-
       })
   }
 
+  onKey(value) {
+    this.selectedCompanies = this.search(value.name);
+  }
+  
+  search(value: Company) {
+    let filter = value.name.toLowerCase();
+    return this.companies.filter(comp => comp.name.toLowerCase().includes(filter));
+  }
 }

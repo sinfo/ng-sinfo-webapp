@@ -6,7 +6,7 @@ import { SessionService } from './session.service'
 import { Session } from './session.model'
 import { SpeakerService } from '../speakers/speaker.service'
 import { Speaker } from '../speakers/speaker.model'
-import { EventService } from './../events/event.service'
+import { EventService } from '../events/event.service'
 import {
   trigger,
   style,
@@ -35,7 +35,7 @@ import { User } from '../user/user.model';
 
 export class SessionComponent implements OnInit {
   session: Session
-  speaker: Speaker
+  speakers: Speaker[] = []
   description: SafeHtml
   user: User
   showMore = false
@@ -80,8 +80,12 @@ export class SessionComponent implements OnInit {
   }
 
   getSpeaker(session: Session): void {
-    this.speakerService.getSpeaker(session.speakers[0]['id'])
-      .subscribe(speaker => this.speaker = speaker)
+    for(let sessionSpeaker of session.speakers){
+      this.speakerService.getSpeaker(sessionSpeaker['id'])
+      .subscribe(speaker => {
+        this.speakers.push(speaker);
+      })
+    }
   }
 
   onSelect(id: string): void {

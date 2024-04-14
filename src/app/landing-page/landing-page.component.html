@@ -15,11 +15,11 @@
             Speakers
           </a>
         </li>
-        <li class="socials-nav-item">
+        <!-- <li class="socials-nav-item">
           <a (click)="scroll(stands)" class="navigation-link" aria-label="Venue">
             Venue
           </a>
-        </li>
+        </li> -->
         <li class="socials-nav-item">
           <a (click)="scroll(event)" class="navigation-link" aria-label="Event">
             Event
@@ -69,11 +69,11 @@
             Speakers
           </a>
         </li>
-        <li class="socials-nav-item">
+        <!-- <li class="socials-nav-item">
           <a (click)="scroll(stands);toggleDropdown()" class="navigation-link" aria-label="Venue">
             Venue
           </a>
-        </li>
+        </li> -->
         <li class="socials-nav-item">
           <a (click)="scroll(event);toggleDropdown()" class="navigation-link" aria-label="Event">
             Event
@@ -154,27 +154,23 @@
 
         <div class="sinfo-intro-wrapper heading-block">
           <div class="container">
-            <h5 class="heading-alt">
-              <span>
-                <span class="fa fa-map-marker base-clr-txt" style="margin-left: 14px;"></span>
-                Técnico, Lisbon
-              </span>
-
-              <span>
-                <br class="visible-xs">
-                <span class="fa fa-calendar-o base-clr-txt"></span>
-                15th - 19th of April 2024
-              </span>
+            <h5 class="heading-alt text-center">
+              <i class="fa fa-calendar-o base-clr-txt"></i>
+              15th - 19th of April 2024
+            </h5>
+            <h5 class="heading-alt text-center mt-2">
+              <i class="fa fa-map-marker base-clr-txt"></i>
+              Técnico Innovation Center, Lisbon
             </h5>
             <img class="logo-hero" src="assets/img/logo-branco2.png" alt="SINFO logo">
-            <h6 class="thin base-font align-center">Biggest
-              <strong>free tech conference</strong> in Portugal
+            <h6 class="thin base-font align-center">
+              Biggest free tech conference in Portugal
             </h6>
 
             <app-livestream *ngIf="isLive"></app-livestream>
           </div>
         </div>
-        <div class="intro cursor-pointer">
+        <div class="intro cursor-pointer mb-3">
           <a (click)="scroll(schedule)">
             <i class="fa fa-chevron-down" aria-hidden="true" aria-label="Scroll down"></i>
           </a>
