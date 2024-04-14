@@ -30,11 +30,13 @@
     </div>
   </div>
 
-  <div *ngIf="!processedLinks?.length" class="row">
+  <div class="row">
     <div class="col-sm-12">
-      <h6 class="lead">
+      <h6 *ngIf="!processedLinks?.length" class="lead">
         Looks like you have not made any links yet.
-        <br> You can link with {{me.role === "company" ? "attendees" : "companies"}}
+      </h6>
+      <h6 class="lead">
+        You can link with {{me.role === "company" ? "attendees" : "companies"}}
         <a routerLink="/user/links/link">here</a>.
       </h6>
     </div>

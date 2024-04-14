@@ -205,3 +205,8 @@ img.portrait {
 .black-text {
   color: black;
 }
+
+h6.lead{
+  margin-bottom: 40px;
+  text-align: center;
+}
