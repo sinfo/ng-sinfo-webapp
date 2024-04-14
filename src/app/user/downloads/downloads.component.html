@@ -30,17 +30,18 @@
 
     <div class="row">
       <div class="col-sm-12">
-        <a href="{{ cvsDownloadUrl }}" target="_blank" class="btn btn-info">
+        <button (click)="downloadCVs()" class="btn btn-info">
           <span class="glyphicon glyphicon-cloud-download"></span>
           Download CVs
-        </a>
+        </button>
       </div>
       <div *ngIf="me && me.role === 'company'" class="col-sm-12">
-        <a href="{{ linksCVsDownloadUrl }}" target="_blank" class="btn btn-info">
-          <span class="glyphicon glyphicon-link"></span>
-          Download Links' CVs
-        </a>
+          <button (click)="downloadLinksCVs()" class="btn btn-info">
+            <span class="glyphicon glyphicon-link"></span>
+            Download Links' CVs
+          </button>
       </div>
+
     </div>
 
   </div>

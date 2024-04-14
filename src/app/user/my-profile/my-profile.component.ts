@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser'
 
 import { UserService } from '../user.service'
 import { User } from '../user.model'
-import { environment } from './../../../environments/environment'
+import { environment } from '../../../environments/environment'
 import { CompanyService } from '../../company/company.service'
 import { Company } from '../../company/company.model'
 import { AuthService } from '../../auth/auth.service'
