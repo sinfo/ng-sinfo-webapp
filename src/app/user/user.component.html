@@ -2,7 +2,7 @@
 <mat-toolbar class="topbar">
   <button
     mat-icon-button
-    style="color: white; background-color: black"
+    style="color: white; background-color: transparent"
     class="menu-icon"
     aria-label="Menu icon"
     (click)="sidenav.toggle()"
@@ -71,13 +71,12 @@
         </div>
       </a>
       <mat-accordion *ngIf="user && user.role === 'team'">
-        <mat-expansion-panel style="background-color: transparent !important">
+        <mat-expansion-panel style="background-color: transparent; box-shadow: none;">
           <mat-expansion-panel-header class="specific-class">
             <a mat-list-item>
               <div class="navigation-link">
                 <mat-icon>cake</mat-icon>
                 <span class="list-item">Pick Winner</span>
-                <mat-icon>keyboard_arrow_right</mat-icon>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -136,13 +135,12 @@
       </a>
       
       <mat-accordion *ngIf="user && user.role === 'team'">
-        <mat-expansion-panel style="background-color: transparent !important">
+        <mat-expansion-panel style="background-color: transparent; box-shadow: none;">
           <mat-expansion-panel-header class="specific-class">
             <a mat-list-item class="navigation-link">
               <div class="navigation-link">
                 <mat-icon>get_app</mat-icon>
                 <span class="list-item">CV Downloads </span>
-                <mat-icon>keyboard_arrow_right</mat-icon>
               </div>
             </a>
           </mat-expansion-panel-header>
@@ -209,13 +207,12 @@
       </a>
 
       <mat-accordion *ngIf="user && user.role === 'team'">
-        <mat-expansion-panel style="background-color: transparent !important">
+        <mat-expansion-panel style="background-color: transparent; box-shadow: none;">
           <mat-expansion-panel-header class="specific-class">
             <a mat-list-item class="navigation-link">
               <div class="navigation-link">
                 <mat-icon> business</mat-icon>
                 <span class="list-item">Workshops</span>
-                <mat-icon>keyboard_arrow_right</mat-icon>
               </div>
             </a>
           </mat-expansion-panel-header>
