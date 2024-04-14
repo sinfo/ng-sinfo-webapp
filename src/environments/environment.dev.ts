@@ -1,7 +1,6 @@
 export const environment = {
   production: true,
-  //cannonUrl: 'https://cannon-staging.sinfo.org',
-  cannonUrl: 'http://localhost:8090',
+  cannonUrl: 'https://cannon-staging.sinfo.org',
   url_to_id: {
     '28-sinfo': '28-sinfo',
     '27-sinfo': '27-sinfo',
