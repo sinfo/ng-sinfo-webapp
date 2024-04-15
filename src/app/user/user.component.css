@@ -174,5 +174,5 @@
 }
 
 .navlist {
-  height: -webkit-fill-available !important;
+  min-height: 100%;
 }
