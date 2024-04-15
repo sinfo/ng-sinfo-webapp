@@ -180,11 +180,11 @@ export class PromoteComponent implements OnInit {
   }
 
   onKey(value) {
-    this.selectedCompanies = this.search(value.name);
+    this.selectedCompanies = this.search(value);
   }
   
-  search(value: Company) {
-    let filter = value.name.toLowerCase();
+  search(value: string) {
+    let filter = value.toLowerCase();
     return this.companies.filter(comp => comp.name.toLowerCase().includes(filter));
   }
 }
