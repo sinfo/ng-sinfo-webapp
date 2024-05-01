@@ -9,12 +9,6 @@ import { environment } from '../../../environments/environment'
 import { AuthService } from '../../auth/auth.service'
 import { EventService } from '../../events/event.service'
 
-import { catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
-
-import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-
 @Component({
   selector: 'app-downloads',
   templateUrl: './downloads.component.html',
@@ -32,8 +26,7 @@ export class DownloadsComponent implements OnInit {
     private companyService: CompanyService,
     private authService: AuthService,
     private eventService: EventService,
-    private titleService: Title,
-    private http: HttpClient
+    private titleService: Title
   ) { }
 
   
@@ -70,60 +63,4 @@ export class DownloadsComponent implements OnInit {
     })
   }
 
-  downloadCVs() {
-    if (this.cvsDownloadUrl) {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        }),
-        observe: 'response' as 'response'
-      };
-      
-      this.http.get(this.cvsDownloadUrl, httpOptions)
-        .pipe(
-          catchError(err => {
-            console.error('Failed to download CVs:', err);
-            alert('Unable to dowload CVs at this time. When available the team will contact you.');
-            throw err;  // Re-throw the error if needed for further handling
-          })
-        )
-        .subscribe({
-          next: response => {
-            // Success, open the download URL
-            window.open(this.cvsDownloadUrl, '_blank');
-          }
-        });
-    } else {
-      alert('CV download URL is not available.');
-    }
-  }
-  
-  downloadLinksCVs() {
-    if (this.linksCVsDownloadUrl) {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        }),
-        observe: 'response' as 'response'
-      };
-  
-      this.http.get(this.linksCVsDownloadUrl, httpOptions)
-        .pipe(
-          catchError(err => {
-            console.error('Failed to download linked CVs:', err);
-            alert('Unable to dowload links CVs at this time. When available the team will contact you.');
-            throw err;  // Re-throw the error if needed for further handling
-          })
-        )
-        .subscribe({
-          next: response => {
-            // Success, open the download URL
-            window.open(this.linksCVsDownloadUrl, '_blank');
-          }
-        });
-    } else {
-      alert('Links CV download URL is not available.');
-    }
-  }
-  
 }
