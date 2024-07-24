@@ -35,7 +35,7 @@
             About Us
           </a>
         </li>
-        <li class="socials-nav-item">
+        <li *ngIf="promocodes && promocodes.length" class="socials-nav-item">
           <a (click)="scroll(offers)" class="navigation-link" aria-label="Offers">
             Offers
           </a>
@@ -89,7 +89,7 @@
             About Us
           </a>
         </li>
-        <li class="socials-nav-item">
+        <li *ngIf="promocodes && promocodes.length" class="socials-nav-item">
           <a (click)="scroll(offers);toggleDropdown()" class="navigation-link" aria-label="Offers">
             Offers
           </a>
@@ -156,7 +156,7 @@
           <div class="container">
             <h5 class="heading-alt text-center">
               <i class="fa fa-calendar-o base-clr-txt"></i>
-              15th - 19th of April 2024
+              To Be Announced
             </h5>
             <h5 class="heading-alt text-center mt-2">
               <i class="fa fa-map-marker base-clr-txt"></i>
@@ -189,7 +189,8 @@
       <mat-divider></mat-divider>
 
       <div #stands>
-        <app-stands *ngIf="eventId" [eventId]="eventId"></app-stands>
+        <!-- TODO: Change false to eventId when stands are update -->
+        <app-stands *ngIf="false" [eventId]="eventId"></app-stands>
       </div>
       <mat-divider></mat-divider>
 
@@ -469,7 +470,7 @@
       </section>
       <mat-divider></mat-divider>
 
-      <section #offers class="price-area section-padding" style="margin-bottom: 5%;">
+      <section *ngIf="promocodes && promocodes.length" #offers class="price-area section-padding" style="margin-bottom: 5%;">
         <div class="container">
           <div class="row">
             <div class="text-center">
@@ -537,11 +538,10 @@
                 <mat-panel-title>
                   <mat-icon class="faq-chev">{{panel2.expanded ? 'keyboard_arrow_up' :
                     'keyboard_arrow_down'}}</mat-icon>
-                  <span class="faq-title">Where is SINFO 31 taking place?</span>
+                  <span class="faq-title">Where is SINFO 32 taking place?</span>
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <p>Our venue changed place this year. Visit us at Técnico Innovation Center, in Lisbon, from the 15th to the 19th of April, 2024!
-              </p>
+              <p>To be announced. Stay tuned for more information!</p>
             </mat-expansion-panel>
 
             <mat-expansion-panel #panel3 hideToggle>
@@ -566,7 +566,7 @@
                   <span class="faq-title">We want to be sponsors. How can we proceed?</span>
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <p>You can find all the information regarding this in <a href="https://sponsors.sinfo.org">our Sponsors Website</a> or 
+              <p>You can find all the information regarding this in <a href="https://sponsors.sinfo.org">our Sponsors Website</a> or
                 send us an e-mail to geral@sinfo.org for additional information and assistance!
               </p>
             </mat-expansion-panel>
